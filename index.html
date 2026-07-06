@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TUCOCEL POS — Centro de Control y Facturación</title>
+    <title>TCL DISTRIFLOW — Control de Inventario y Despacho</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -15,18 +15,19 @@
 </head>
 <body class="bg-slate-950 text-slate-100 min-h-screen transition-all duration-300">
 
-    <!-- PANTALLA CENTRAL: VISTA ADMIN (EL NETFLIX DE TUCOCEL) -->
+    <!-- PANTALLA MASTER ADMINISTRADOR (PANEL SUPREMO DE TUCOCEL) -->
     <div id="vista-master-admin" class="p-4 sm:p-8 max-w-7xl mx-auto space-y-6">
         
+        <!-- Encabezado Máster -->
         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 border-b border-slate-800 pb-5">
             <div>
                 <span class="bg-blue-500/10 text-blue-400 border border-blue-500/20 text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full inline-flex items-center gap-1.5">
                     <i class="fa-solid fa-user-shield text-[11px]"></i> Panel Supremo de Control
                 </span>
                 <h1 class="text-2xl font-black tracking-tight text-white mt-2 flex items-center gap-2">
-                    TUCOCEL MÁSTER CONTROL <span class="text-amber-400">🔒</span>
+                    TCL DISTRIFLOW MASTER <span class="text-amber-400">🔒</span>
                 </h1>
-                <p class="text-slate-400 text-xs font-medium mt-1">Administración centralizada optimizada para Móvil y PC.</p>
+                <p class="text-slate-400 text-xs font-medium mt-1">Administracion centralizada de licencias y perfiles SaaS.</p>
             </div>
             <div class="flex items-center gap-3 bg-slate-900 border border-slate-800 p-2.5 rounded-2xl text-xs font-bold font-mono w-full sm:w-auto justify-between sm:justify-start">
                 <div class="text-center px-2 border-r border-slate-800 flex-grow sm:flex-grow-0">
@@ -40,10 +41,12 @@
             </div>
         </div>
 
+        <!-- Mosaico de Clientes -->
         <div class="space-y-4">
-            <h2 class="text-xs font-extrabold uppercase tracking-widest text-slate-400 px-1">¿Qué perfil deseas gestionar hoy?</h2>
+            <h2 class="text-xs font-extrabold uppercase tracking-widest text-slate-400 px-1">Distribuidoras Registradas</h2>
             <div id="mosaico-clientes-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 pt-1">
                 
+                <!-- Perfil 1 Base -->
                 <div id="card-demo-1" class="bg-slate-900 border border-slate-800/80 rounded-3xl p-5 flex flex-col justify-between hover:border-blue-500/40 transition-all group relative overflow-hidden">
                     <div class="absolute top-4 right-4 flex items-center gap-1.5 z-10">
                         <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.5)]"></span>
@@ -52,20 +55,21 @@
                         <div class="w-14 h-14 bg-slate-950 border border-slate-800 rounded-2xl flex items-center justify-center p-2 mb-3 overflow-hidden shadow-inner">
                             <i class="fa-solid fa-mobile-screen text-xl text-blue-500"></i>
                         </div>
-                        <h3 class="font-black text-white text-base tracking-tight group-hover:text-blue-400 transition-colors">City Móvil</h3>
+                        <h3 class="font-black text-white text-base tracking-tight group-hover:text-blue-400 transition-colors">City Movil</h3>
                         <p class="text-[9px] text-slate-500 font-bold font-mono tracking-wider mt-0.5 uppercase">ID: citymovil</p>
                         
                         <div class="mt-3 space-y-1 bg-slate-950/60 p-3 rounded-xl border border-slate-850 text-xs font-medium text-slate-400">
-                            <p class="flex justify-between font-mono"><span class="text-slate-500">Suscripción:</span> <span class="text-slate-300 font-bold" id="label-dias-card-demo-1">365 Días</span></p>
+                            <p class="flex justify-between font-mono"><span class="text-slate-500">Suscripcion:</span> <span class="text-slate-300 font-bold" id="label-dias-card-demo-1">365 Dias</span></p>
                             <p class="flex justify-between font-mono"><span class="text-slate-500">Estado:</span> <span class="text-emerald-400 font-bold" id="label-status-card-demo-1">Activo</span></p>
                         </div>
                     </div>
                     <div class="mt-5 pt-3 border-t border-slate-800/60 flex gap-2">
-                        <button onclick="abrirConfiguracionCliente('demo-1', 'City Móvil', 'V-20123456', '04141234567', 'Cordero, Centro', '@citymovil', 'Garantía estándar de 2 meses por defectos de fábrica.', 'citymovil', 'Razu2026.', '365')" class="w-1/2 bg-slate-800 text-slate-200 text-xs font-bold py-2.5 rounded-xl">Configurar</button>
-                        <button onclick="forzarEntradaClienteDirecta('City Móvil', 'Garantía estándar de 2 meses por defectos de fábrica.', 365)" class="w-1/2 bg-blue-600 text-white text-xs font-black py-2.5 rounded-xl uppercase tracking-wider">Entrar</button>
+                        <button onclick="abrirConfiguracionCliente('demo-1', 'City Movil', 'V-20123456', '04141234567', 'Avenida Bolivar, Cordero', '@citymovil', 'Garantia estandar de 2 meses por defectos de fabrica en telefonia movil. No cubre humedad, sobrecargas electricas o golpes.', 'citymovil', 'Razu2026.', '365')" class="w-1/2 bg-slate-800 text-slate-200 text-xs font-bold py-2.5 rounded-xl">Configurar</button>
+                        <button onclick="forzarEntradaClienteDirecta('City Movil', 'Garantia estandar de 2 meses por defectos de fabrica en telefonia movil. No cubre humedad, sobrecargas electricas o golpes.', 365, 'citymovil', '04141234567', 'V-20123456', 'Avenida Bolivar, Cordero')" class="w-1/2 bg-blue-600 text-white text-xs font-black py-2.5 rounded-xl uppercase tracking-wider">Entrar</button>
                     </div>
                 </div>
 
+                <!-- Perfil 2 Base -->
                 <div id="card-demo-2" class="bg-slate-900 border border-slate-800/80 rounded-3xl p-5 flex flex-col justify-between hover:border-red-500/40 transition-all group relative overflow-hidden">
                     <div class="absolute top-4 right-4 flex items-center gap-1.5 z-10">
                         <span class="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse shadow-[0_0_8px_rgba(239,68,68,0.5)]"></span>
@@ -74,27 +78,28 @@
                         <div class="w-14 h-14 bg-slate-950 border border-slate-800 rounded-2xl flex items-center justify-center p-2 mb-3 overflow-hidden shadow-inner">
                             <i class="fa-solid fa-shop text-xl text-amber-500"></i>
                         </div>
-                        <h3 class="font-black text-white text-base tracking-tight group-hover:text-amber-400 transition-colors">Frigorífico Don Luis</h3>
+                        <h3 class="font-black text-white text-base tracking-tight group-hover:text-amber-400 transition-colors">Frigorifico Don Luis</h3>
                         <p class="text-[9px] text-slate-500 font-bold font-mono tracking-wider mt-0.5 uppercase">ID: donluis</p>
                         
                         <div class="mt-3 space-y-1 bg-slate-950/60 p-3 rounded-xl border border-slate-850 text-xs font-medium text-slate-400">
-                            <p class="flex justify-between font-mono"><span class="text-slate-500">Suscripción:</span> <span class="text-red-400 font-bold" id="label-dias-card-demo-2">12 Días</span></p>
+                            <p class="flex justify-between font-mono"><span class="text-slate-500">Suscripcion:</span> <span class="text-red-400 font-bold" id="label-dias-card-demo-2">12 Dias</span></p>
                             <p class="flex justify-between font-mono"><span class="text-slate-500">Estado:</span> <span class="text-red-400 font-bold uppercase text-[10px]" id="label-status-card-demo-2">Por Vencer</span></p>
                         </div>
                     </div>
                     <div class="mt-5 pt-3 border-t border-slate-800/60 flex gap-2">
-                        <button onclick="abrirConfiguracionCliente('demo-2', 'Frigorífico Don Luis', 'J-31234567', '04247654321', 'Avenida Bolívar, Cordero', '@frigonluis', 'No se aceptan cambios en productos cárnicos una vez retirados.', 'donluis', 'Luis2026', '12')" class="w-1/2 bg-slate-800 text-slate-200 text-xs font-bold py-2.5 rounded-xl">Configurar</button>
-                        <button onclick="forzarEntradaClienteDirecta('Frigorífico Don Luis', 'No se aceptan cambios en productos cárnicos una vez retirados.', 12)" class="w-1/2 bg-blue-600 text-white text-xs font-black py-2.5 rounded-xl uppercase tracking-wider">Entrar</button>
+                        <button onclick="abrirConfiguracionCliente('demo-2', 'Frigorifico Don Luis', 'J-31234567', '04247654321', 'Avenida Bolivar, Cordero', '@frigonluis', 'No se aceptan cambios en productos carnicos una vez retirados de la sucursal.', 'donluis', 'Luis2026', '12')" class="w-1/2 bg-slate-800 text-slate-200 text-xs font-bold py-2.5 rounded-xl">Configurar</button>
+                        <button onclick="forzarEntradaClienteDirecta('Frigorifico Don Luis', 'No se aceptan cambios en productos carnicos una vez retirados de la sucursal.', 12, 'donluis', '04247654321', 'J-31234567', 'Avenida Bolivar, Cordero')" class="w-1/2 bg-blue-600 text-white text-xs font-black py-2.5 rounded-xl uppercase tracking-wider">Entrar</button>
                     </div>
                 </div>
 
+                <!-- Botón Crear Perfil -->
                 <button onclick="abrirModalCrearPerfil()" class="bg-slate-900/40 border-2 border-dashed border-slate-800 hover:border-blue-500/50 hover:bg-slate-900 rounded-3xl p-5 flex flex-col items-center justify-center min-h-[200px] transition-all group gap-2 text-center">
                     <div class="w-12 h-12 bg-slate-950 rounded-full border border-slate-800 flex items-center justify-center text-slate-500 group-hover:text-blue-400 transition-all">
                         <i class="fa-solid fa-plus text-lg"></i>
                     </div>
                     <div>
-                        <span class="block font-black text-slate-400 group-hover:text-white text-sm tracking-wide">Crear Perfil</span>
-                        <span class="block text-[10px] text-slate-600 font-medium mt-0.5">Añadir nuevo comercio</span>
+                        <span class="block font-black text-slate-400 group-hover:text-white text-sm tracking-wide">Crear Cliente SaaS</span>
+                        <span class="block text-[10px] text-slate-600 font-medium mt-0.5">Asignar nuevo entorno comercial</span>
                     </div>
                 </button>
 
@@ -102,7 +107,7 @@
         </div>
     </div>
 
-    <!-- MODAL CONFIGURACIÓN MÁSTER -->
+    <!-- MODAL REGISTRO/EDICIÓN MÁSTER -->
     <div id="modal-config-master" class="fixed inset-0 bg-slate-950/95 backdrop-blur-md z-50 p-3 overflow-y-auto hidden flex items-center justify-center">
         <div class="bg-slate-900 border border-slate-800 w-full max-w-lg rounded-3xl overflow-hidden shadow-2xl flex flex-col">
             
@@ -111,7 +116,7 @@
                     <i class="fa-solid fa-sliders text-amber-400 text-base"></i>
                     <div>
                         <h3 id="cfg-modal-titulo" class="font-black text-xs uppercase tracking-wider text-white">Configurar Cliente</h3>
-                        <p class="text-[9px] text-slate-500 font-mono">GESTIÓN INTERNA DE LICENCIAS</p>
+                        <p class="text-[9px] text-slate-500 font-mono">PANEL TECNOLÓGICO DE CONTROL</p>
                     </div>
                 </div>
                 <button onclick="cerrarConfiguracionCliente()" class="text-slate-500 hover:text-white bg-slate-950 w-8 h-8 rounded-xl flex items-center justify-center border border-slate-800"><i class="fa-solid fa-xmark"></i></button>
@@ -120,46 +125,38 @@
             <div class="p-4 space-y-5 max-h-[70vh] overflow-y-auto no-scrollbar">
                 
                 <div class="space-y-3">
-                    <h4 class="text-[9px] font-black text-blue-400 uppercase tracking-widest border-b border-slate-800 pb-1"><i class="fa-solid fa-address-card"></i> Datos Comerciales</h4>
-                    <div class="flex items-center gap-3 p-3 bg-slate-950 border border-slate-850 rounded-xl">
-                        <input type="file" id="cfg-logo-file" accept="image/*" class="hidden" onchange="previewImageDemo(event)">
-                        <div onclick="document.getElementById('cfg-logo-file').click()" class="w-12 h-12 bg-slate-900 border border-slate-800 rounded-xl flex items-center justify-center overflow-hidden shrink-0 cursor-pointer">
-                            <img id="cfg-logo-preview" src="" class="w-full h-full object-contain hidden">
-                            <i id="cfg-logo-placeholder" class="fa-solid fa-camera text-slate-600"></i>
-                        </div>
-                        <span class="text-[10px] text-slate-400 font-bold">Toque el recuadro para subir logo del local</span>
-                    </div>
+                    <h4 class="text-[9px] font-black text-blue-400 uppercase tracking-widest border-b border-slate-800 pb-1"><i class="fa-solid fa-address-card"></i> Datos del Comercio</h4>
                     <div class="space-y-2">
-                        <input type="text" id="cfg-nombre" placeholder="Nombre Comercial" class="w-full bg-slate-950 border border-slate-800 p-2.5 rounded-xl text-xs font-bold text-white focus:outline-none focus:border-blue-500">
-                        <input type="text" id="cfg-rif" placeholder="Cédula o RIF" class="w-full bg-slate-950 border border-slate-800 p-2.5 rounded-xl text-xs font-bold text-white focus:outline-none focus:border-blue-500">
+                        <input type="text" id="cfg-nombre" placeholder="Nombre de la Empresa" class="w-full bg-slate-950 border border-slate-800 p-2.5 rounded-xl text-xs font-bold text-white focus:outline-none focus:border-blue-500">
+                        <input type="text" id="cfg-rif" placeholder="Cedula o RIF Comercial" class="w-full bg-slate-950 border border-slate-800 p-2.5 rounded-xl text-xs font-bold text-white focus:outline-none focus:border-blue-500">
                         <div class="grid grid-cols-2 gap-2">
-                            <input type="text" id="cfg-tlf" placeholder="WhatsApp" class="w-full bg-slate-950 border border-slate-800 p-2.5 rounded-xl text-xs font-bold text-white focus:outline-none focus:border-blue-500">
-                            <input type="text" id="cfg-redes" placeholder="Instagram" class="w-full bg-slate-950 border border-slate-800 p-2.5 rounded-xl text-xs font-bold text-white focus:outline-none focus:border-blue-500">
+                            <input type="text" id="cfg-tlf" placeholder="WhatsApp del Local" class="w-full bg-slate-950 border border-slate-800 p-2.5 rounded-xl text-xs font-bold text-white focus:outline-none focus:border-blue-500">
+                            <input type="text" id="cfg-redes" placeholder="Instagram (Opcional)" class="w-full bg-slate-950 border border-slate-800 p-2.5 rounded-xl text-xs font-bold text-white focus:outline-none focus:border-blue-500">
                         </div>
-                        <input type="text" id="cfg-dir" placeholder="Dirección del Local" class="w-full bg-slate-950 border border-slate-800 p-2.5 rounded-xl text-xs font-bold text-white focus:outline-none focus:border-blue-500">
+                        <input type="text" id="cfg-dir" placeholder="Direccion Fisica Comercial" class="w-full bg-slate-950 border border-slate-800 p-2.5 rounded-xl text-xs font-bold text-white focus:outline-none focus:border-blue-500">
                     </div>
                 </div>
 
                 <div class="space-y-3">
-                    <h4 class="text-[9px] font-black text-amber-400 uppercase tracking-widest border-b border-slate-800 pb-1"><i class="fa-solid fa-code-branch"></i> Seguridad y Texto</h4>
+                    <h4 class="text-[9px] font-black text-amber-400 uppercase tracking-widest border-b border-slate-800 pb-1"><i class="fa-solid fa-lock"></i> Credenciales e Infraestructura</h4>
                     <div class="space-y-2">
-                        <input type="text" id="cfg-user" disabled placeholder="ID de Usuario" class="w-full bg-slate-950/50 border border-slate-850 p-2.5 rounded-xl text-xs font-bold text-slate-500 font-mono cursor-not-allowed">
-                        <input type="text" id="cfg-pass" placeholder="Contraseña de Acceso" class="w-full bg-slate-950 border border-slate-800 p-2.5 rounded-xl text-xs font-bold text-white font-mono focus:outline-none focus:border-amber-500">
-                        <textarea id="cfg-garantia" placeholder="Escribe aquí los términos de garantía..." class="w-full bg-slate-950 border border-slate-800 p-2.5 rounded-xl text-xs font-medium text-white h-20 resize-none focus:outline-none focus:border-blue-500"></textarea>
+                        <input type="text" id="cfg-user" disabled placeholder="ID unico de acceso" class="w-full bg-slate-950/50 border border-slate-850 p-2.5 rounded-xl text-xs font-bold text-slate-500 font-mono cursor-not-allowed">
+                        <input type="text" id="cfg-pass" placeholder="Contrasena de acceso" class="w-full bg-slate-950 border border-slate-800 p-2.5 rounded-xl text-xs font-bold text-white font-mono focus:outline-none focus:border-amber-500">
+                        <textarea id="cfg-garantia" placeholder="Clausulas de Garantia standard..." class="w-full bg-slate-950 border border-slate-800 p-2.5 rounded-xl text-xs font-medium text-white h-20 resize-none focus:outline-none focus:border-blue-500"></textarea>
                     </div>
                 </div>
 
                 <div class="space-y-3">
-                    <h4 class="text-[9px] font-black text-purple-400 uppercase tracking-widest border-b border-slate-800 pb-1"><i class="fa-solid fa-lock"></i> Licencia (Fijar Plazo - No Suma)</h4>
+                    <h4 class="text-[9px] font-black text-purple-400 uppercase tracking-widest border-b border-slate-800 pb-1"><i class="fa-solid fa-clock"></i> Plazo de Suscripcion (Arrendamiento)</h4>
                     <div class="bg-slate-950 p-3 rounded-xl border border-slate-850 space-y-2">
                         <div class="grid grid-cols-3 gap-1.5">
                             <button onclick="asignarDiasSimulador(30, this)" class="tiempo-btn bg-slate-900 border border-slate-800 text-slate-300 text-[10px] py-2 font-bold rounded-lg transition-all">1 Mes</button>
                             <button onclick="asignarDiasSimulador(180, this)" class="tiempo-btn bg-slate-900 border border-slate-800 text-slate-300 text-[10px] py-2 font-bold rounded-lg transition-all">6 Meses</button>
-                            <button onclick="asignarDiasSimulador(365, this)" class="tiempo-btn bg-slate-900 border border-slate-800 text-slate-300 text-[10px] py-2 font-bold rounded-lg transition-all">1 Año</button>
+                            <button onclick="asignarDiasSimulador(365, this)" class="tiempo-btn bg-slate-900 border border-slate-800 text-slate-300 text-[10px] py-2 font-bold rounded-lg transition-all">1 Ano</button>
                         </div>
                         <div class="pt-1.5 flex justify-between items-center text-xs font-bold font-mono">
-                            <span class="text-slate-500">Plazo Seleccionado:</span>
-                            <span id="cfg-dias-display" class="text-amber-400 font-black">365 Días</span>
+                            <span class="text-slate-500">Vigencia Fijada:</span>
+                            <span id="cfg-dias-display" class="text-amber-400 font-black">365 Dias</span>
                         </div>
                     </div>
                     <div class="space-y-1.5">
@@ -168,10 +165,10 @@
                             <button onclick="copiarLinkPortapapelesDemo()" class="bg-slate-800 text-slate-200 px-3 text-xs font-bold rounded-xl border border-slate-700"><i class="fa-solid fa-copy"></i></button>
                         </div>
                         <button onclick="dispararContratoWhatsAppSimulado()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-black py-2.5 rounded-xl shadow-lg flex items-center justify-center gap-1.5 uppercase transition-all">
-                            <i class="fa-brands fa-whatsapp text-sm"></i> Visualizar Mensaje WhatsApp
+                            <i class="fa-brands fa-whatsapp text-sm"></i> Ver Mensaje de Activacion
                         </button>
                         <button id="cfg-btn-borrar" class="w-full bg-red-500/10 hover:bg-red-500/20 text-red-400 text-[10px] font-bold py-1.5 rounded-xl border border-red-500/20 uppercase transition-all">
-                            <i class="fa-solid fa-trash-can mr-1"></i> Eliminar Perfil de Prueba
+                            <i class="fa-solid fa-trash-can mr-1"></i> Eliminar Registro de Prueba
                         </button>
                     </div>
                 </div>
@@ -180,16 +177,16 @@
             
             <div class="bg-slate-950 px-4 py-3 border-t border-slate-800 flex justify-end gap-2">
                 <button onclick="cerrarConfiguracionCliente()" class="bg-slate-800 text-slate-300 px-4 py-2 rounded-xl text-xs font-bold">Cerrar</button>
-                <button onclick="guardarDatosClienteSimulados()" class="bg-amber-400 hover:bg-amber-500 text-slate-950 px-5 py-2 rounded-xl text-xs font-black uppercase shadow-md">Guardar Perfil</button>
+                <button onclick="guardarDatosClienteSimulados()" class="bg-amber-400 hover:bg-amber-500 text-slate-950 px-5 py-2 rounded-xl text-xs font-black uppercase shadow-md">Guardar Cambios</button>
             </div>
         </div>
     </div>
 
-    <!-- MODAL PREVIA CONTRATO -->
+    <!-- MODAL PREVIEW CONTRATO ACTIVACIÓN -->
     <div id="modal-whatsapp-preview" class="fixed inset-0 bg-slate-950/90 z-50 p-4 hidden flex items-center justify-center">
         <div class="bg-white text-gray-900 w-full max-w-sm rounded-3xl shadow-2xl overflow-hidden flex flex-col border border-gray-100">
             <div class="bg-emerald-600 px-4 py-3 text-white flex justify-between items-center font-bold text-xs uppercase tracking-wide">
-                <span><i class="fa-brands fa-whatsapp text-sm mr-1"></i> Formato para WhatsApp</span>
+                <span><i class="fa-brands fa-whatsapp text-sm mr-1"></i> Formato Digital de Envio</span>
                 <button onclick="document.getElementById('modal-whatsapp-preview').classList.add('hidden')" class="bg-emerald-700 w-6 h-6 rounded-lg flex items-center justify-center text-white"><i class="fa-solid fa-xmark"></i></button>
             </div>
             <div class="p-4 bg-emerald-50 max-h-[50vh] overflow-y-auto font-mono text-xs text-emerald-950 text-left whitespace-pre-wrap leading-relaxed select-all" id="whatsapp-preview-content"></div>
@@ -199,178 +196,363 @@
         </div>
     </div>
 
-
-    <!-- PANTALLA SECUNDARIA: ENTORNO CLIENTE -->
+    <!-- PANTALLA ENTORNO CLIENTE (SISTEMA POS DE CONTROL DE INVENTARIO) -->
     <div id="vista-entorno-cliente" class="hidden min-h-screen bg-slate-50 text-slate-800 flex flex-col justify-between">
         
         <!-- LOGIN INDEPENDIENTE DEL COMERCIO -->
         <div id="cli-bloque-login" class="flex-grow flex flex-col items-center justify-center p-4">
             <div class="bg-white border border-slate-200 w-full max-w-sm rounded-3xl p-5 shadow-xl space-y-5">
                 <div class="text-center space-y-2">
-                    <div id="login-logo-dinamico" class="w-14 h-14 bg-blue-50 border border-blue-100 rounded-2xl flex items-center justify-center mx-auto text-blue-600 text-2xl font-bold p-1 overflow-hidden">
-                        <i class="fa-solid fa-shop"></i>
+                    <div id="login-logo-dinamico" class="w-14 h-14 bg-slate-950 border border-slate-800 rounded-2xl flex items-center justify-center mx-auto text-white text-2xl font-bold p-1 overflow-hidden">
+                        <i class="fa-solid fa-store"></i>
                     </div>
-                    <h2 id="login-titulo-dinamico" class="font-black text-lg text-slate-900 tracking-tight">Acceso Comercial</h2>
-                    <span class="text-[9px] text-blue-600 font-extrabold tracking-widest uppercase bg-blue-50 px-3 py-1 rounded-full inline-block">Módulo POS Independiente</span>
+                    <h2 id="login-titulo-dinamico" class="font-black text-lg text-slate-900 tracking-tight">Acceso Administrativo</h2>
+                    <span class="text-[9px] text-blue-600 font-extrabold tracking-widest uppercase bg-blue-50 px-3 py-1 rounded-full inline-block">Plataforma SaaS Destinada a Control Interno</span>
                 </div>
                 <div class="space-y-2.5">
                     <input type="text" id="comercio-user-field" value="comercio_pos" class="w-full bg-slate-50 border border-slate-200 px-4 py-3 rounded-xl text-xs font-bold focus:outline-none">
                     <input type="password" id="comercio-pass-field" value="12345" class="w-full bg-slate-50 border border-slate-200 px-4 py-3 rounded-xl text-xs font-bold focus:outline-none">
-                    <button onclick="desbloquearPantallaFacturacionReal()" class="w-full bg-blue-600 hover:bg-blue-700 text-white text-xs font-black py-3 rounded-xl uppercase tracking-wider transition-all">Ingresar al Sistema</button>
+                    <button onclick="desbloquearPantallaFacturacionReal()" class="w-full bg-blue-600 hover:bg-blue-700 text-white text-xs font-black py-3 rounded-xl uppercase tracking-wider transition-all">Ingresar al Terminal</button>
                 </div>
                 
-                <div class="bg-amber-50/80 border border-amber-200 rounded-2xl p-4 flex gap-3 shadow-inner">
+                <div class="bg-amber-50 border border-amber-200 rounded-2xl p-4 flex gap-3 shadow-inner">
                     <i class="fa-solid fa-shield-halved text-amber-600 text-base mt-0.5 shrink-0"></i>
                     <div class="text-[11px] text-amber-900 leading-relaxed text-justify space-y-1">
-                        <h4 class="font-black uppercase tracking-wider text-amber-950 flex items-center gap-1">Reglas de Oro del Sistema</h4>
-                        <p>Este software opera estrictamente bajo la modalidad de <span class="font-bold text-amber-950">Servicio por Suscripción Alquilada</span>.</p>
-                        <p>El usuario es el único responsable por los inventarios, montos de dinero y operaciones registradas. La plataforma emite comprobantes tipo <span class="font-bold text-amber-950">Nota de Entrega sin valor fiscal</span> destinados para el orden interno administrativo del comercio.</p>
+                        <h4 class="font-black uppercase tracking-wider text-amber-950 flex items-center gap-1">Estatuto de Licencia</h4>
+                        <p>Esta infraestructura tecnológica opera bajo la modalidad de <span class="font-bold text-amber-950">Servicio por Suscripcion Arrendada</span>.</p>
+                        <p>La plataforma emite de forma estricta comprobantes informativos tipo <span class="font-bold text-amber-950">Nota de Despacho sin valor fiscal</span> destinados exclusivamente para el orden interno y auditoría de inventario de la empresa.</p>
                     </div>
                 </div>
 
-                <!-- LEYENDA DE AUTOR EN LOGIN COMERCIAL -->
                 <div class="pt-4 border-t border-gray-150 text-center space-y-1">
-                    <p class="text-[9px] text-gray-400 font-bold">© 2026 Tucocel C.A. Todos los derechos reservados.</p>
-                    <p class="text-[9px] text-gray-500">Del sistema (SaaS) desarrollada de manera exclusiva por <span class="text-gray-700 font-extrabold">@publionlinemk</span> — Agencia Oficial de Publicidad de Tucocel C.A.</p>
+                    <p class="text-[9px] text-gray-400 font-bold">Infraestructura Tecnologica Prestada por Tucocel C.A.</p>
+                    <p class="text-[9px] text-gray-500 font-medium">Desarrollo y soporte exclusivo de <span class="text-gray-700 font-extrabold">@publionlinemk</span></p>
                 </div>
             </div>
         </div>
 
-        <!-- ENTORNO DE CAJA OPERATIVO -->
+        <!-- TERMINAL DE CAJA ACTIVO -->
         <div id="cli-bloque-sistema" class="hidden flex-grow flex flex-col">
-            <div class="bg-white border-b border-slate-200 px-4 py-3 flex justify-between items-center sticky top-0 z-30 shadow-sm">
+            
+            <!-- Barra Superior POS (Estilo Oficial) -->
+            <div class="bg-slate-900 border-b border-slate-800 text-white px-4 py-3 flex justify-between items-center sticky top-0 z-30 shadow-md">
                 <div class="flex items-center gap-2">
-                    <div id="cli-panel-logo-box" class="w-9 h-9 bg-slate-900 border border-slate-200 rounded-xl flex items-center justify-center text-white p-1 font-bold text-sm overflow-hidden"><i class="fa-solid fa-shop"></i></div>
+                    <div id="cli-panel-logo-box" class="w-9 h-9 bg-slate-950 border border-slate-800 rounded-xl flex items-center justify-center text-white p-1 font-bold text-sm overflow-hidden"><i class="fa-solid fa-store"></i></div>
                     <div>
-                        <h2 id="cli-panel-nombre" class="font-black text-slate-900 text-sm tracking-tight">Comercio</h2>
-                        <span class="text-[9px] text-blue-600 font-extrabold uppercase block -mt-0.5">Facturación Activa</span>
+                        <h2 id="cli-panel-nombre" class="font-black text-white text-sm tracking-tight">Comercio</h2>
+                        <span class="text-[9px] text-emerald-400 font-extrabold uppercase block tracking-wider">Control de Inventario Activo</span>
                     </div>
                 </div>
                 <div class="flex items-center gap-2">
-                    <!-- CONTADOR DE MEMBRESÍA DINÁMICO INALTERABLE -->
-                    <div id="contenedor-status-reloj" class="bg-gray-100 border border-gray-200 px-2.5 py-1 rounded-xl flex items-center gap-1 text-[10px] font-mono font-bold transition-all duration-300">
+                    <div id="contenedor-status-reloj" class="bg-slate-950 border border-slate-800 px-2.5 py-1 rounded-xl flex items-center gap-1 text-[10px] font-mono font-bold">
                         <i class="fa-solid fa-hourglass-half text-amber-500" id="cli-panel-icon-reloj"></i>
-                        <span id="cli-panel-dias-conteo" class="text-slate-700 font-black">365 Días</span>
+                        <span id="cli-panel-dias-conteo" class="text-slate-300 font-black">365 Dias</span>
                     </div>
-                    <button onclick="regresarAlMasterControlAdmin()" class="bg-slate-950 text-white font-extrabold text-[9px] px-2.5 py-1.5 rounded-lg uppercase">Salir</button>
+                    <button onclick="regresarAlMasterControlAdmin()" class="bg-slate-800 border border-slate-700 hover:bg-slate-700 text-white font-extrabold text-[9px] px-2.5 py-1.5 rounded-lg uppercase transition-colors">Salir</button>
                 </div>
             </div>
 
-            <div class="p-4 max-w-md mx-auto w-full space-y-4 flex-grow pb-24">
+            <!-- SECCIÓN CENTRAL: EMISIÓN Y DESPACHO (ESTILO VITRINA DIGITAL) -->
+            <div id="panel-seccion-facturar" class="p-4 max-w-md mx-auto w-full space-y-4 flex-grow pb-24">
                 
-                <!-- ALERTA VISUAL INTEGRADA DE VENCIMIENTO -->
+                <!-- Alerta Obligatoria de Tasa del Día -->
+                <div id="banner-recordatorio-tasa" class="bg-amber-500/10 border border-amber-500/25 text-amber-400 rounded-2xl p-3 flex items-center gap-2.5 shadow-sm text-xs font-bold uppercase tracking-wide">
+                    <i class="fa-solid fa-triangle-exclamation text-base text-amber-400 animate-pulse"></i>
+                    <span>⚠️ Recordatorio: No olvide colocar la tasa del dia antes de operar</span>
+                </div>
+
                 <div id="banner-alerta-vencimiento" class="hidden rounded-2xl p-3.5 flex items-center gap-3 border shadow-sm transition-all duration-300">
                     <i id="banner-alerta-icono" class="fa-solid text-base shrink-0"></i>
                     <div class="text-[11px] leading-tight">
-                        <h4 id="banner-alerta-titulo" class="font-black uppercase tracking-wider">Aviso del Sistema</h4>
-                        <p id="banner-alerta-desc" class="font-medium mt-0.5 text-justify">Tu membresía administrativa se encuentra próxima a vencer.</p>
+                        <h4 id="banner-alerta-titulo" class="font-black uppercase tracking-wider">Estado de Membresia</h4>
+                        <p id="banner-alerta-desc" class="font-medium mt-0.5 text-justify">Aviso administrativo.</p>
                     </div>
                 </div>
 
-                <div class="bg-slate-900 text-white rounded-2xl p-3 grid grid-cols-2 gap-2 text-center border border-slate-800 shadow-md">
-                    <div class="border-r border-slate-800">
-                        <span class="text-[9px] text-slate-400 uppercase font-bold block">Tasa COP</span>
-                        <input type="number" id="tasa-cop" value="3900" class="w-full bg-transparent text-center font-black text-sm text-amber-400 focus:outline-none" onkeyup="calcularTotalesSimulados()">
-                    </div>
-                    <div>
-                        <span class="text-[9px] text-slate-400 uppercase font-bold block">Tasa Bs</span>
-                        <input type="number" id="tasa-bs" value="40" class="w-full bg-transparent text-center font-black text-sm text-emerald-400 focus:outline-none" onkeyup="calcularTotalesSimulados()">
+                <!-- Inputs de Conversión Monetaria (Idénticos a tu Vitrina) -->
+                <div class="bg-slate-900 text-white rounded-2xl p-4 space-y-3 border border-slate-800 shadow-md">
+                    <div class="grid grid-cols-2 gap-3 text-center">
+                        <div class="bg-slate-950 p-2 rounded-xl border border-slate-850">
+                            <span class="text-[9px] text-slate-400 uppercase font-bold block mb-0.5">1 USD =</span>
+                            <input type="number" id="tasa-cop" value="3900" class="w-full bg-transparent text-center font-black text-sm text-amber-400 focus:outline-none" onkeyup="calcularTotalesSimulados()">
+                            <span class="text-[9px] text-slate-500 font-bold block mt-0.5 uppercase tracking-widest">Pesos COP</span>
+                        </div>
+                        <div class="bg-slate-950 p-2 rounded-xl border border-slate-850">
+                            <span class="text-[9px] text-slate-400 uppercase font-bold block mb-0.5">Dividir COP entre:</span>
+                            <input type="number" id="tasa-bs" value="40" class="w-full bg-transparent text-center font-black text-sm text-emerald-400 focus:outline-none" onkeyup="calcularTotalesSimulados()">
+                            <span class="text-[9px] text-slate-500 font-bold block mt-0.5 uppercase tracking-widest">Bolivares Bs</span>
+                        </div>
                     </div>
                 </div>
 
-                <div class="space-y-1.5">
-                    <label class="text-[9px] text-slate-400 uppercase font-black block tracking-wider px-1">Productos en Inventario (Toque para vender)</label>
-                    <div class="grid grid-cols-2 gap-2">
-                        <button onclick="agregarAlTicketSimulado('Vidrio Cerámico Privacidad', 5)" class="bg-white border border-slate-200 p-2.5 rounded-xl text-left hover:border-blue-500 transition-colors flex flex-col justify-between h-14 shadow-sm">
-                            <span class="text-[10px] font-bold text-slate-800 truncate block w-full">Vidrio Privacidad</span>
-                            <span class="text-xs font-black text-blue-600 font-mono">$5.00</span>
+                <!-- DATOS DEL RECEPTOR (ESTILO VITRINA DIGITAL) -->
+                <div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm space-y-3">
+                    <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-widest border-b pb-1 flex items-center gap-1"><i class="fa-solid fa-user-tag"></i> Datos del Receptor</h4>
+                    <div class="space-y-2">
+                        <div>
+                            <label class="text-[9px] font-bold text-slate-400 uppercase ml-1">Nombre y Apellido</label>
+                            <input type="text" id="ticket-cliente" placeholder="Ej: Juan Perez" class="w-full bg-slate-50 border border-slate-200 px-3 py-2 rounded-xl text-xs font-bold text-slate-800 focus:outline-none focus:bg-white focus:border-blue-500">
+                        </div>
+                        <div class="grid grid-cols-2 gap-2">
+                            <div>
+                                <label class="text-[9px] font-bold text-slate-400 uppercase ml-1">Cedula / RIF</label>
+                                <input type="text" id="ticket-rif-cliente" placeholder="Ej: V-12345678" class="w-full bg-slate-50 border border-slate-200 px-3 py-2 rounded-xl text-xs font-bold text-slate-800 focus:outline-none focus:bg-white focus:border-blue-500">
+                            </div>
+                            <div>
+                                <label class="text-[9px] font-bold text-slate-400 uppercase ml-1">Telefono (WhatsApp)</label>
+                                <input type="text" id="ticket-tlf-cliente" placeholder="Ej: 04141234567" class="w-full bg-slate-50 border border-slate-200 px-3 py-2 rounded-xl text-xs font-bold text-slate-800 focus:outline-none focus:bg-white focus:border-blue-500">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="text-[9px] font-bold text-slate-400 uppercase ml-1">Direccion de Habitacion</label>
+                            <input type="text" id="ticket-dir-cliente" placeholder="Ej: Cordero, Centro" class="w-full bg-slate-50 border border-slate-200 px-3 py-2 rounded-xl text-xs font-bold text-slate-800 focus:outline-none focus:bg-white focus:border-blue-500">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARGA DE OPERACIONES DUAL (ENTRADA MANUAL VS INVENTARIO) -->
+                <div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm space-y-3">
+                    <div class="grid grid-cols-2 gap-1.5 border-b pb-2">
+                        <button id="tab-btn-manual" onclick="cambiarMetodoCajaCarga('manual')" class="bg-blue-600 text-white font-black text-[10px] py-1.5 rounded-xl uppercase tracking-wider transition-all"><i class="fa-solid fa-keyboard mr-1"></i> Entrada Manual Libre</button>
+                        <button id="tab-btn-catalogo" onclick="cambiarMetodoCajaCarga('catalogo')" class="bg-slate-100 text-slate-500 font-bold text-[10px] py-1.5 rounded-xl uppercase tracking-wider transition-all"><i class="fa-solid fa-list-check mr-1"></i> Jalar desde Catalogo</button>
+                    </div>
+
+                    <!-- BLOQUE MANUAL -->
+                    <div id="bloque-carga-manual" class="space-y-2.5">
+                        <div>
+                            <label class="text-[9px] font-bold text-slate-400 uppercase ml-1">Descripcion / Nombre del Producto</label>
+                            <input type="text" id="manual-prod-nombre" placeholder="Ej: Redmi Note 13 Pro 4G..." class="w-full bg-slate-50 border border-slate-200 px-3 py-2 rounded-xl text-xs font-bold text-slate-800 focus:outline-none">
+                        </div>
+                        <div class="grid grid-cols-2 gap-2 items-end">
+                            <div>
+                                <label class="text-[9px] font-bold text-slate-400 uppercase ml-1">Precio Unitario ($ USD)</label>
+                                <input type="number" id="manual-prod-precio" placeholder="0" class="w-full bg-slate-50 border border-slate-200 px-3 py-2 rounded-xl text-xs font-black text-slate-800 text-center focus:outline-none">
+                            </div>
+                            <div class="flex items-center h-9 justify-center bg-slate-50 border border-slate-200 rounded-xl px-2">
+                                <label class="flex items-center gap-1.5 cursor-pointer select-none w-full justify-center">
+                                    <input type="checkbox" id="manual-prod-es-celular" onchange="toggleImeiFieldManual()" class="w-3.5 h-3.5 accent-blue-600">
+                                    <span class="text-[10px] font-bold text-slate-600 uppercase">¿Es celular? (IMEI)</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div id="wrapper-imei-manual" class="hidden animate-fadeIn">
+                            <label class="text-[9px] font-bold text-amber-600 uppercase ml-1">Serial IMEI del Equipo</label>
+                            <input type="text" id="manual-prod-imei" placeholder="Ej: 86345204xxxxxxx" class="w-full bg-amber-50/50 border border-amber-200 px-3 py-2 rounded-xl text-xs font-mono text-slate-800 focus:outline-none">
+                        </div>
+                        <button onclick="agregarArticuloManualTicket()" class="w-full bg-slate-900 hover:bg-slate-950 text-white text-[10px] font-black py-2.5 rounded-xl uppercase tracking-wider transition-all shadow-sm">
+                            <i class="fa-solid fa-plus mr-1"></i> Anadir Linea al Ticket
                         </button>
-                        <button onclick="agregarAlTicketSimulado('Cargador Tipo C Carga Rápida', 12)" class="bg-white border border-slate-200 p-2.5 rounded-xl text-left hover:border-blue-500 transition-colors flex flex-col justify-between h-14 shadow-sm">
-                            <span class="text-[10px] font-bold text-slate-800 truncate block w-full">Cargador Tipo C</span>
-                            <span class="text-xs font-black text-blue-600 font-mono">$12.00</span>
-                        </button>
+                    </div>
+
+                    <!-- BLOQUE CATÁLOGO -->
+                    <div id="bloque-carga-catalogo" class="hidden space-y-2">
+                        <label class="text-[9px] text-slate-400 uppercase font-black block tracking-wider px-1">Items en Stock (Toque para transferir a la nota)</label>
+                        <div id="grid-productos-inventario-pos" class="grid grid-cols-2 gap-2 max-h-36 overflow-y-auto no-scrollbar">
+                            <p class="text-center text-slate-400 py-4 italic text-[10px] col-span-2">Inventario vacio. Registre productos en la pestaña correspondiente.</p>
+                        </div>
                     </div>
                 </div>
 
+                <!-- RESUMEN DE VENTA ACTIVA -->
                 <div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm space-y-3">
                     <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-widest border-b border-slate-100 pb-1 flex justify-between">
-                        <span>Resumen de Venta</span>
-                        <span class="font-mono text-slate-500">Nota #001</span>
+                        <span>Resumen de Venta Activa</span>
+                        <span id="ticket-correlativo-display" class="font-mono text-slate-500 font-bold">Nota #001</span>
                     </h4>
-                    <div id="desglose-productos-ticket" class="space-y-2 max-h-32 overflow-y-auto font-medium text-xs text-slate-600 no-scrollbar">
-                        <p class="text-center text-slate-400 py-4 italic">Ningún artículo en la lista. Toque un producto arriba.</p>
+                    
+                    <div id="desglose-productos-ticket" class="space-y-1.5 max-h-28 overflow-y-auto font-medium text-xs text-slate-600 no-scrollbar">
+                        <p class="text-center text-slate-400 py-4 italic">No hay articulos anadidos todavia.</p>
                     </div>
 
-                    <div class="pt-2 border-t border-slate-100 space-y-1.5">
-                        <input type="text" id="ticket-cliente" placeholder="Nombre del Cliente (Opcional)" class="w-full bg-slate-50 border border-slate-150 p-2 rounded-xl text-xs font-bold text-slate-800 focus:outline-none">
-                        <input type="text" id="ticket-imei" placeholder="IMEI / Nota en Factura" class="w-full bg-slate-50 border border-slate-150 p-2 rounded-xl text-xs font-mono text-slate-800 focus:outline-none">
-                    </div>
-
-                    <div class="bg-slate-50 p-3 rounded-xl border border-slate-100 space-y-1.5 font-mono">
-                        <div class="flex justify-between items-center text-sm font-black text-slate-900">
-                            <span>TOTAL REF:</span>
-                            <span id="total-usd" class="text-blue-600 font-black text-base">$0.00</span>
+                    <div class="bg-slate-900 text-white p-3 rounded-xl border border-slate-800 space-y-1 font-mono text-xs">
+                        <div class="flex justify-between items-center text-sm font-black text-white">
+                            <span>Neto:</span>
+                            <span id="total-usd" class="text-amber-400 font-extrabold text-base">$0.00</span>
                         </div>
-                        <div class="flex justify-between items-center text-[11px] font-bold text-slate-500 border-t border-slate-200/60 pt-1.5">
-                            <span>Total Pesos (COP):</span>
-                            <span id="total-cop" class="text-amber-600">0 COP</span>
+                        <div class="flex justify-between items-center text-slate-400 border-t border-slate-800/80 pt-1">
+                            <span>REF COP:</span>
+                            <span id="total-cop" class="text-slate-200 font-bold">0 COP</span>
                         </div>
-                        <div class="flex justify-between items-center text-[11px] font-bold text-slate-500">
-                            <span>Total Bolívares (Bs):</span>
-                            <span id="total-bs" class="text-emerald-600">0.00 Bs</span>
+                        <div class="flex justify-between items-center text-slate-400">
+                            <span>REF Bs:</span>
+                            <span id="total-bs" class="text-slate-200 font-bold">0.00 Bs</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- DOS BOTONES DE SALIDA SELECCIONABLES (PDF Y WHATSAPP) -->
+                <!-- Botones de Impresión y Salida (Idénticos a tu Muestra) -->
                 <div class="grid grid-cols-2 gap-2 pt-1">
-                    <button onclick="enviarFacturaWhatsAppClienteSimulada()" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-black py-3 rounded-xl shadow-md flex items-center justify-center gap-1.5 uppercase transition-all"><i class="fa-brands fa-whatsapp text-sm"></i> Enviar WhatsApp</button>
-                    <button onclick="descargarFacturaPDFSimulada()" class="bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-black py-3 rounded-xl shadow-md flex items-center justify-center gap-1.5 uppercase transition-all"><i class="fa-solid fa-file-pdf text-sm"></i> Descargar PDF</button>
+                    <button onclick="procesarImpresionTicket()" class="bg-slate-900 text-white text-xs font-black py-3 rounded-xl shadow-md flex items-center justify-center gap-1.5 uppercase tracking-wider"><i class="fa-solid fa-print text-sm"></i> Imprimir</button>
+                    <button onclick="enviarFacturaWhatsAppClienteSimulada()" class="bg-emerald-600 text-white text-xs font-black py-3 rounded-xl shadow-md flex items-center justify-center gap-1.5 uppercase tracking-wider"><i class="fa-brands fa-whatsapp text-sm"></i> WhatsApp</button>
                 </div>
-                
-                <div class="w-full pt-1">
-                    <button onclick="alert('🖨️ Despachando formato adaptado a tiras térmicas convencionales y Epson horizontales.')" class="w-full bg-slate-950 text-white text-xs font-black py-3 rounded-xl shadow-md flex items-center justify-center gap-1.5 uppercase"><i class="fa-solid fa-print text-sm"></i> Imprimir Ticket</button>
+                <button onclick="limpiarTicketCompleto()" class="w-full bg-gray-200 hover:bg-gray-300 text-gray-600 text-[9px] font-black py-2 rounded-xl uppercase tracking-widest transition-colors">Vaciar Mesa de Trabajo</button>
+            </div>
+
+            <!-- SECCIÓN: GESTIÓN DE INVENTARIO INTELIGENTE -->
+            <div id="panel-seccion-inventario" class="p-4 max-w-md mx-auto w-full space-y-4 flex-grow pb-24 hidden">
+                <div class="bg-white border border-slate-200 rounded-3xl p-5 shadow-sm space-y-4">
+                    <div class="flex justify-between items-center border-b pb-2">
+                        <h3 class="font-black text-xs text-slate-900 uppercase tracking-wider">Módulo de Inventario</h3>
+                        <span class="text-[9px] bg-purple-50 text-purple-600 font-bold px-2 py-0.5 rounded-full uppercase font-mono tracking-wider">Fijar Precios / IMEI</span>
+                    </div>
+
+                    <!-- Botones Selectores de Categoría de Carga -->
+                    <div class="grid grid-cols-2 gap-2">
+                        <button id="inv-btn-cat-telefonos" onclick="cambiarCategoriaFormularioInventario('telefonos')" class="bg-purple-600 text-white font-black text-[10px] py-2 rounded-xl uppercase tracking-wider"><i class="fa-solid fa-mobile-retro mr-1"></i> Telefonos</button>
+                        <button id="inv-btn-cat-otros" onclick="cambiarCategoriaFormularioInventario('otros')" class="bg-slate-100 text-slate-500 font-bold text-[10px] py-2 rounded-xl uppercase tracking-wider"><i class="fa-solid fa-plug mr-1"></i> Otros Productos</button>
+                    </div>
+                    
+                    <!-- Formulario Dinámico de Registro -->
+                    <div class="space-y-2.5 bg-slate-50 p-3 rounded-xl border border-slate-200 text-xs">
+                        
+                        <!-- Campos Dinámicos Telefonía -->
+                        <div id="inv-campos-telefonos" class="space-y-2">
+                            <div class="grid grid-cols-2 gap-2">
+                                <input type="text" id="inv-prod-marca" placeholder="Marca (Ej: Honor)" class="w-full bg-white border border-slate-200 p-2 rounded-xl font-bold focus:outline-none">
+                                <input type="text" id="inv-prod-modelo" placeholder="Modelo (Ej: Magic 8 Lite)" class="w-full bg-white border border-slate-200 p-2 rounded-xl font-bold focus:outline-none">
+                            </div>
+                            <input type="text" id="inv-prod-imei" placeholder="Serial IMEI de Fabrica" class="w-full bg-white border border-slate-200 p-2 rounded-xl font-mono text-slate-700 focus:outline-none">
+                        </div>
+
+                        <!-- Campos Comunes Accesorios -->
+                        <div id="inv-campos-otros" class="space-y-2 hidden">
+                            <input type="text" id="inv-prod-descripcion" placeholder="Nombre del Producto / Accesorio (Ej: Cargador Tipo C)" class="w-full bg-white border border-slate-200 p-2 rounded-xl font-bold focus:outline-none">
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-2">
+                            <div class="relative">
+                                <span class="absolute left-2.5 top-2 text-slate-400 font-bold">$</span>
+                                <input type="number" id="inv-prod-costo" placeholder="Costo" class="w-full bg-white border border-slate-200 py-2 pl-6 pr-2 rounded-xl font-bold text-center focus:outline-none">
+                            </div>
+                            <div class="relative">
+                                <span class="absolute left-2.5 top-2 text-blue-500 font-black">$</span>
+                                <input type="number" id="inv-prod-precio" placeholder="Venta" class="w-full bg-white border border-slate-200 py-2 pl-6 pr-2 rounded-xl font-black text-center text-blue-600 focus:outline-none">
+                            </div>
+                        </div>
+                        <button onclick="guardarProductoEnInventario()" class="w-full bg-purple-600 hover:bg-purple-700 text-white py-2.5 rounded-xl font-black uppercase tracking-wide text-[10px] transition-all shadow-sm">Guardar Item en Stock</button>
+                    </div>
+
+                    <!-- Lista de Stock para Edición, Modificación de Precios y Eliminación -->
+                    <div class="space-y-2">
+                        <label class="text-[9px] text-slate-400 uppercase font-black block tracking-wider px-1">Listado de Articulos Registrados</label>
+                        <div id="inv-lista-productos-box" class="space-y-1.5 max-h-44 overflow-y-auto no-scrollbar">
+                            <p class="text-center text-slate-400 text-xs italic py-4">Ningun producto en base de datos.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <!-- NAVEGACIÓN INFERIOR -->
-            <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 h-16 grid grid-cols-4 text-center items-center text-slate-400 z-30">
-                <button class="text-blue-600 flex flex-col items-center justify-center gap-1"><i class="fa-solid fa-cash-register text-sm"></i><span class="text-[9px] font-bold uppercase">Facturar</span></button>
-                <button onclick="alert('Módulo Inventario: Permite agregar nuevos ítems libres o estructurados de teléfonos (Marca, Modelo, Memoria, IMEI), modificar costos y precios de venta.')" class="flex flex-col items-center justify-center gap-1"><i class="fa-solid fa-box-open text-sm"></i><span class="text-[9px] font-bold uppercase">Inventario</span></button>
-                <button onclick="alert('Módulo Gastos: Formulario para egresos del día con selector de moneda.')" class="flex flex-col items-center justify-center gap-1"><i class="fa-solid fa-receipt text-sm"></i><span class="text-[9px] font-bold uppercase">Gastos</span></button>
-                <button onclick="alert('Módulo Reportes: Historial de notas, cierres de caja y cambio de clave privada.')" class="flex flex-col items-center justify-center gap-1"><i class="fa-solid fa-chart-pie text-sm"></i><span class="text-[9px] font-bold uppercase">Reportes</span></button>
+            <!-- SECCIÓN: REGISTRO DE GASTOS -->
+            <div id="panel-seccion-gastos" class="p-4 max-w-md mx-auto w-full space-y-4 flex-grow pb-24 hidden">
+                <div class="bg-white border border-slate-200 rounded-3xl p-5 shadow-sm space-y-4">
+                    <h3 class="font-black text-xs text-slate-900 uppercase tracking-wider border-b pb-2">Control de Gastos Diarios</h3>
+                    
+                    <div class="space-y-2 text-xs">
+                        <div>
+                            <label class="text-[9px] font-bold text-slate-400 uppercase ml-1">Por que del gasto / Descripcion</label>
+                            <input type="text" id="gasto-descripcion" placeholder="Ej: Pago de Flete / Almuerzos" class="w-full bg-slate-50 border border-slate-200 p-2.5 rounded-xl font-bold focus:outline-none">
+                        </div>
+                        <div class="grid grid-cols-2 gap-2">
+                            <div>
+                                <label class="text-[9px] font-bold text-slate-400 uppercase ml-1">Monto Salida</label>
+                                <input type="number" id="gasto-monto" placeholder="0.00" class="w-full bg-slate-50 border border-slate-200 p-2.5 rounded-xl font-black text-center focus:outline-none">
+                            </div>
+                            <div>
+                                <label class="text-[9px] font-bold text-slate-400 uppercase ml-1">Moneda del Egreso</label>
+                                <select id="gasto-moneda" class="w-full bg-slate-50 border border-slate-200 p-2.5 rounded-xl font-bold text-center focus:outline-none">
+                                    <option value="USD">USD ($)</option>
+                                    <option value="COP">COP (🇨🇴)</option>
+                                    <option value="VES">VES (🇻🇪)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button onclick="registrarGastoCaja()" class="w-full bg-red-500 hover:bg-red-600 text-white py-2.5 rounded-xl font-black uppercase tracking-wide text-[10px] transition-all">Ingresar Egreso de Caja</button>
+                    </div>
+
+                    <div class="space-y-2">
+                        <label class="text-[9px] text-slate-400 uppercase font-black block tracking-wider px-1">Historial de Gastos del Dia</label>
+                        <div id="gastos-lista-box" class="space-y-1 max-h-36 overflow-y-auto no-scrollbar font-mono text-[11px]">
+                            <p class="text-center text-slate-400 italic py-2">Sin egresos registrados hoy.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
+
+            <!-- SECCIÓN: REPORTES E HISTORIAL (CON REIMPRESIÓN Y NOTAS DE CRÉDITO) -->
+            <div id="panel-seccion-reportes" class="p-4 max-w-md mx-auto w-full space-y-4 flex-grow pb-24 hidden">
+                <div class="bg-white border border-slate-200 rounded-3xl p-5 shadow-sm space-y-4">
+                    <div class="flex justify-between items-center border-b pb-2">
+                        <h3 class="font-black text-xs text-slate-900 uppercase tracking-wider">Historial y Balances</h3>
+                        <button onclick="window.print()" class="bg-slate-900 text-white text-[9px] font-bold px-2.5 py-1 rounded-lg uppercase tracking-wider"><i class="fa-solid fa-print mr-1"></i> Imprimir Reporte</button>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-2 text-center text-xs font-mono bg-slate-50 p-3 rounded-xl border">
+                        <div>
+                            <span class="text-[9px] text-slate-400 block uppercase font-bold">Total Ventas</span>
+                            <span id="rep-total-ventas-val" class="font-black text-blue-600 text-sm">$0.00</span>
+                        </div>
+                        <div>
+                            <span class="text-[9px] text-slate-400 block uppercase font-bold">Total Gastos (Ref)</span>
+                            <span id="rep-total-gastos-val" class="font-black text-red-500 text-sm">$0.00</span>
+                        </div>
+                    </div>
+
+                    <div class="space-y-2">
+                        <label class="text-[9px] text-slate-400 uppercase font-black block tracking-wider px-1">Comprobantes de Despacho Emitidos</label>
+                        <div id="reportes-notas-lista-box" class="space-y-2 max-h-48 overflow-y-auto no-scrollbar">
+                            <p class="text-center text-slate-400 text-xs italic py-4">Ninguna operacion registrada.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MENÚ DE NAVEGACIÓN FIJO INFERIOR (ESTILO APP MÓVIL) -->
+            <div class="fixed bottom-0 left-0 right-0 bg-slate-900 border-t border-slate-800 text-slate-400 h-16 grid grid-cols-4 text-center items-center z-30 shadow-xl">
+                <button id="nav-btn-facturar" onclick="activarPestañaPos('facturar')" class="text-blue-400 flex flex-col items-center justify-center gap-1"><i class="fa-solid fa-cash-register text-sm"></i><span class="text-[9px] font-bold uppercase tracking-wider">Facturar</span></button>
+                <button id="nav-btn-inventario" onclick="activarPestañaPos('inventario')" class="flex flex-col items-center justify-center gap-1 hover:text-slate-200"><i class="fa-solid fa-boxes-stacked text-sm"></i><span class="text-[9px] font-bold uppercase tracking-wider">Inventario</span></button>
+                <button id="nav-btn-gastos" onclick="activarPestañaPos('gastos')" class="flex flex-col items-center justify-center gap-1 hover:text-slate-200"><i class="fa-solid fa-receipt text-sm"></i><span class="text-[9px] font-bold uppercase tracking-wider">Gastos</span></button>
+                <button id="nav-btn-reportes" onclick="activarPestañaPos('reportes')" class="flex flex-col items-center justify-center gap-1 hover:text-slate-200"><i class="fa-solid fa-chart-pie text-sm"></i><span class="text-[9px] font-bold uppercase tracking-wider">Reportes</span></button>
+            </div>
+
         </div>
 
     </div>
 
-    <!-- MODAL INFORME WHATSAPP -->
+    <!-- MODAL INTEGRADO VISUALIZADOR DE TICKET / TEXTO PARA WHATSAPP -->
     <div id="modal-whatsapp-nota" class="fixed inset-0 bg-slate-950/90 z-50 p-4 hidden flex items-center justify-center">
-        <div class="bg-white text-slate-900 w-full max-w-sm rounded-3xl shadow-2xl overflow-hidden flex flex-col">
-            <div class="bg-emerald-600 px-4 py-3 text-white flex justify-between items-center font-bold text-xs uppercase">
-                <span><i class="fa-brands fa-whatsapp mr-1 text-sm"></i> Mensaje de Nota Emitida</span>
-                <button onclick="document.getElementById('modal-whatsapp-nota').classList.add('hidden')" class="text-white"><i class="fa-solid fa-xmark"></i></button>
+        <div class="bg-white text-slate-900 w-full max-w-sm rounded-3xl shadow-2xl overflow-hidden flex flex-col border border-gray-100">
+            <div id="modal-nota-header-color" class="bg-slate-950 px-4 py-3 text-white flex justify-between items-center font-bold text-xs uppercase tracking-wide">
+                <span id="modal-nota-titulo-dinamico">Salida de Comprobante</span>
+                <button onclick="document.getElementById('modal-whatsapp-nota').classList.add('hidden')" class="text-white bg-white/20 w-6 h-6 rounded-lg flex items-center justify-center"><i class="fa-solid fa-xmark"></i></button>
             </div>
-            <div class="p-4 bg-emerald-50 text-xs font-mono whitespace-pre-wrap leading-relaxed select-all text-left max-h-[45vh] overflow-y-auto" id="whatsapp-nota-content"></div>
+            <div class="p-4 bg-slate-50 text-xs font-mono whitespace-pre-wrap leading-relaxed select-all text-left max-h-[45vh] overflow-y-auto no-scrollbar" id="whatsapp-nota-content"></div>
             <div class="p-3 bg-gray-50 border-t border-gray-100 flex justify-end">
-                <button onclick="document.getElementById('modal-whatsapp-nota').classList.add('hidden')" class="bg-emerald-600 text-white font-black text-xs px-5 py-2 rounded-xl">Entendido</button>
+                <button onclick="document.getElementById('modal-whatsapp-nota').classList.add('hidden')" class="bg-slate-950 text-white font-black text-xs px-5 py-2 rounded-xl shadow">Aceptar</button>
             </div>
         </div>
     </div>
 
 
+    <!-- MOTOR DE LOGICA DE DESARROLLO (CERO COMPILACIONES ERRONEAS) -->
     <script>
-        // CONFIGURACIÓN DE PROPIETARIO Y ATRIBUTOS DE SAAS PROTEGIDOS
+        // Core Variables
         let idSeleccionadoActual = null;
-        let logoBase64Global = "";
         let diasSimuladosValor = 365;
+        let métodoCargaActual = "manual"; // manual o catalogo
+        let categoriaInventarioCarga = "telefonos"; // telefonos o otros
+        
         let ticketProductos = [];
         let acumuladoUSD = 0;
-        let infoClienteAbiertoDinamico = { nombre: "", garantia: "", dias: 365, ownerID: "" };
+        let infoClienteAbiertoDinamico = { nombre: "", garantia: "", dias: 365, ownerID: "", tlf: "", rif: "", dir: "" };
+        
+        // Data Base Estructurada Ligera
+        let productosInventarioBD = [];
+        let gastosBD = [];
+        let facturasEmitidasBD = [];
+        let correlativoNotaGlobal = 1;
 
         function cerrarConfiguracionCliente() {
             document.getElementById('modal-config-master').classList.add('hidden');
-            limpiarCamposModalConfig();
         }
 
         function abrirConfiguracionCliente(id, nombre, rif, tlf, dir, redes, garantia, user, pass, dias) {
@@ -387,14 +569,14 @@
             document.getElementById('cfg-user').value = user;
             document.getElementById('cfg-pass').value = pass;
             
-            document.getElementById('cfg-dias-display').innerText = `${diasSimuladosValor} Días`;
+            document.getElementById('cfg-dias-display').innerText = `${diasSimuladosValor} Dias`;
             document.getElementById('cfg-link-url').value = `${window.location.href.split('?')[0]}?user=${user}`;
             
             marcarBotonTiempoActivo(diasSimuladosValor);
 
             const btnBorrar = document.getElementById('cfg-btn-borrar');
             if(id.startsWith('demo-')) {
-                btnBorrar.onclick = function() { alert("No se eliminan los perfiles base en la simulación."); };
+                btnBorrar.onclick = function() { alert("Los perfiles base de demostracion no pueden eliminarse del codigo nucleo."); };
             } else {
                 btnBorrar.onclick = function() { eliminarPerfilNuevoSimulado(id); };
             }
@@ -402,10 +584,9 @@
             document.getElementById('modal-config-master').classList.remove('hidden');
         }
 
-        // CONTROLADOR CRÍTICO: SUSTITUYE EL PLAZO EXACTO (EVITA MANIPULACIÓN)
         function asignarDiasSimulador(cantidad, boton) {
             diasSimuladosValor = cantidad;
-            document.getElementById('cfg-dias-display').innerText = `${diasSimuladosValor} Días`;
+            document.getElementById('cfg-dias-display').innerText = `${diasSimuladosValor} Dias`;
             
             document.querySelectorAll('.tiempo-btn').forEach(btn => {
                 btn.className = "tiempo-btn bg-slate-900 border border-slate-800 text-slate-300 text-[10px] py-2 font-bold rounded-lg transition-all";
@@ -418,7 +599,7 @@
                 btn.className = "tiempo-btn bg-slate-900 border border-slate-800 text-slate-300 text-[10px] py-2 font-bold rounded-lg transition-all";
                 if(btn.innerText.includes('1 Mes') && dias === 30) btn.className = "tiempo-btn bg-purple-600 border border-purple-500 text-white text-[10px] py-2 font-black rounded-lg transition-all";
                 if(btn.innerText.includes('6 Meses') && dias === 180) btn.className = "tiempo-btn bg-purple-600 border border-purple-500 text-white text-[10px] py-2 font-black rounded-lg transition-all";
-                if(btn.innerText.includes('1 Año') && dias === 365) btn.className = "tiempo-btn bg-purple-600 border border-purple-500 text-white text-[10px] py-2 font-black rounded-lg transition-all";
+                if(btn.innerText.includes('1 Ano') && dias === 365) btn.className = "tiempo-btn bg-purple-600 border border-purple-500 text-white text-[10px] py-2 font-black rounded-lg transition-all";
             });
         }
 
@@ -426,27 +607,27 @@
             const inputLink = document.getElementById('cfg-link-url');
             inputLink.select();
             document.execCommand('copy');
-            alert(`🔒 ¡Enlace Copiado!`);
+            alert(`🔒 ¡Enlace Comercial Copiado con Éxito!`);
         }
 
         function abrirModalCrearPerfil() {
             idSeleccionadoActual = "nuevo-" + new Date().getTime();
             diasSimuladosValor = 365;
             
-            document.getElementById('cfg-modal-titulo').innerText = "➕ Crear Nuevo Perfil";
+            document.getElementById('cfg-modal-titulo').innerText = "➕ Crear Entorno SaaS";
             document.getElementById('cfg-nombre').value = "";
             document.getElementById('cfg-rif').value = "";
             document.getElementById('cfg-tlf').value = "";
             document.getElementById('cfg-dir').value = "";
             document.getElementById('cfg-redes').value = "";
-            document.getElementById('cfg-garantia').value = "Garantía de 2 meses por defectos de fábrica.";
-            document.getElementById('cfg-user').value = "comercio_nuevo";
+            document.getElementById('cfg-garantia').value = "Garantia estandar de 2 meses por defectos de fabrica en telefonia movil. No cubre humedad, sobrecargas electricas o golpes.";
+            document.getElementById('cfg-user').value = "distribuidora_x";
             document.getElementById('cfg-user').disabled = false;
             document.getElementById('cfg-user').className = "w-full bg-slate-950 border border-slate-800 p-2.5 rounded-xl text-xs font-bold text-white font-mono focus:outline-none";
-            document.getElementById('cfg-pass').value = "12345";
+            document.getElementById('cfg-pass').value = "889900";
             
-            document.getElementById('cfg-dias-display').innerText = "365 Días";
-            document.getElementById('cfg-link-url').value = `${window.location.href.split('?')[0]}?user=comercio_nuevo`;
+            document.getElementById('cfg-dias-display').innerText = "365 Dias";
+            document.getElementById('cfg-link-url').value = `${window.location.href.split('?')[0]}?user=distribuidora_x`;
             marcarBotonTiempoActivo(365);
             
             document.getElementById('cfg-user').onkeyup = function() {
@@ -467,12 +648,12 @@
             const garantia = document.getElementById('cfg-garantia').value.trim();
             const pass = document.getElementById('cfg-pass').value.trim();
 
-            if(!nombre || !user) return alert("Complete nombre y usuario.");
+            if(!nombre || !user) return alert("Por favor inserte nombre de la empresa y usuario id.");
 
             if(idSeleccionadoActual.startsWith('demo-')) {
                 const tarjeta = document.getElementById(`card-${idSeleccionadoActual}`);
                 tarjeta.querySelector('h3').innerText = nombre;
-                document.getElementById(`label-dias-card-${idSeleccionadoActual}`).innerText = `${diasSimuladosValor} Días`;
+                document.getElementById(`label-dias-card-${idSeleccionadoActual}`).innerText = `${diasSimuladosValor} Dias`;
                 
                 const labelStatus = document.getElementById(`label-status-card-${idSeleccionadoActual}`);
                 if(diasSimuladosValor <= 30) {
@@ -486,7 +667,7 @@
                 }
                 
                 tarjeta.querySelector('button').setAttribute('onclick', `abrirConfiguracionCliente('${idSeleccionadoActual}', '${nombre}', '${rif}', '${tlf}', '${dir}', '${redes}', '${garantia.replace(/'/g, "\\'")}', '${user}', '${pass}', '${diasSimuladosValor}')`);
-                tarjeta.querySelectorAll('button')[1].setAttribute('onclick', `forzarEntradaClienteDirecta('${nombre}', '${garantia.replace(/'/g, "\\'")}', ${diasSimuladosValor}, '${user}')`);
+                tarjeta.querySelectorAll('button')[1].setAttribute('onclick', `forzarEntradaClienteDirecta('${nombre}', '${garantia.replace(/'/g, "\\'")}', ${diasSimuladosValor}, '${user}', '${tlf}', '${rif}', '${dir}')`);
             } else {
                 const grid = document.getElementById('mosaico-clientes-grid');
                 const nuevaCardHTML = document.createElement('div');
@@ -496,7 +677,6 @@
                 const colorLuz = diasSimuladosValor <= 30 ? 'bg-red-500 animate-pulse' : 'bg-emerald-400';
                 const statusTexto = diasSimuladosValor <= 30 ? 'Por Vencer' : 'Activo';
                 const statusColorClase = diasSimuladosValor <= 30 ? 'text-red-400 font-bold uppercase text-[10px]' : 'text-emerald-400 font-bold';
-                const imgTag = logoBase64Global ? `<img src="${logoBase64Global}" class="w-full h-full object-contain">` : `<i class="fa-solid fa-store text-xl text-purple-400"></i>`;
 
                 nuevaCardHTML.innerHTML = `
                     <div class="absolute top-4 right-4 flex items-center gap-1.5 z-10">
@@ -504,18 +684,18 @@
                     </div>
                     <div>
                         <div class="w-14 h-14 bg-slate-950 border border-slate-800 rounded-2xl flex items-center justify-center p-2 mb-3 overflow-hidden shadow-inner">
-                            ${imgTag}
+                            <i class="fa-solid fa-store text-xl text-purple-400"></i>
                         </div>
                         <h3 class="font-black text-white text-base tracking-tight group-hover:text-blue-400 transition-colors">${nombre}</h3>
                         <p class="text-[9px] text-slate-500 font-bold font-mono tracking-wider mt-0.5 uppercase">ID: ${user}</p>
                         <div class="mt-3 space-y-1 bg-slate-950/60 p-3 rounded-xl border border-slate-850 text-xs font-medium text-slate-400">
-                            <p class="flex justify-between font-mono"><span class="text-slate-500">Suscripción:</span> <span class="${diasSimuladosValor <= 30 ? 'text-red-400 font-black animate-pulse' : 'text-slate-300 font-bold'}" id="label-dias-card-${idSeleccionadoActual}">${diasSimuladosValor} Días</span></p>
+                            <p class="flex justify-between font-mono"><span class="text-slate-500">Suscripcion:</span> <span class="${diasSimuladosValor <= 30 ? 'text-red-400 font-black animate-pulse' : 'text-slate-300 font-bold'}" id="label-dias-card-${idSeleccionadoActual}">${diasSimuladosValor} Dias</span></p>
                             <p class="flex justify-between font-mono"><span class="text-slate-500">Estado:</span> <span class="${statusColorClase}" id="label-status-card-${idSeleccionadoActual}">${statusTexto}</span></p>
                         </div>
                     </div>
                     <div class="mt-5 pt-3 border-t border-slate-800/60 flex gap-2">
                         <button onclick="abrirConfiguracionCliente('${idSeleccionadoActual}', '${nombre}', '${rif}', '${tlf}', '${dir}', '${redes}', '${garantia.replace(/'/g, "\\'")}', '${user}', '${pass}', '${diasSimuladosValor}')" class="w-1/2 bg-slate-800 text-slate-200 text-xs font-bold py-2.5 rounded-xl">Configurar</button>
-                        <button onclick="forzarEntradaClienteDirecta('${nombre}', '${garantia.replace(/'/g, "\\'")}', ${diasSimuladosValor}, '${user}')" class="w-1/2 bg-blue-600 text-white text-xs font-black py-2.5 rounded-xl uppercase tracking-wider">Entrar</button>
+                        <button onclick="forzarEntradaClienteDirecta('${nombre}', '${garantia.replace(/'/g, "\\'")}', ${diasSimuladosValor}, '${user}', '${tlf}', '${rif}', '${dir}')" class="w-1/2 bg-blue-600 text-white text-xs font-black py-2.5 rounded-xl uppercase tracking-wider">Entrar</button>
                     </div>`;
                 
                 grid.insertBefore(nuevaCardHTML, grid.lastElementChild);
@@ -526,7 +706,7 @@
         }
 
         function eliminarPerfilNuevoSimulado(id) {
-            if(confirm("¿Deseas eliminar este perfil de prueba?")) {
+            if(confirm("¿Seguro que deseas dar de baja esta distribuidora del servidor?")) {
                 document.getElementById(`card-${id}`).remove();
                 const cG = document.getElementById('global-clientes-count');
                 cG.innerText = Math.max(0, parseInt(cG.innerText) - 1);
@@ -535,47 +715,22 @@
         }
 
         function dispararContratoWhatsAppSimulado() {
-            const nombre = document.getElementById('cfg-nombre').value || "[Nombre del Comercio]";
+            const nombre = document.getElementById('cfg-nombre').value || "[Nombre]";
             const user = document.getElementById('cfg-user').value || "[Usuario]";
-            const pass = document.getElementById('cfg-pass').value || "[Contraseña]";
+            const pass = document.getElementById('cfg-pass').value || "[Contrasena]";
             const link = document.getElementById('cfg-link-url').value;
             
-            const textoContrato = `📱 * shadow-lg TUCOCEL C.A. — ACTIVACIÓN DE SISTEMA*\n\nEstimado cliente de *${nombre}*, por medio de la presente le informamos que su _Sistema de Gestión y Facturación Administrativa_ ha sido registrado exitosamente en nuestros servidores de Google Firebase.\n\n🌐 *Link de Ingreso:* ${link}\n👤 *Usuario:* ${user}\n🔑 *Contraseña:* ${pass}\n⏱️ *Plan contratado:* ${diasSimuladosValor} Días\n\n⚠️ *RECUERDE NUESTRAS REGLAS DE ORO:*\n1. El usuario es el único responsable legal por los datos e inventarios registrados.\n2. Sistema interno de emisión de notas de entrega sin valor fiscal.\n3. El acceso se mantendrá activo exclusivamente durante el plazo prepagado.\n\n¡Gracias por su confianza! 🚀🔒`;
+            const textoContrato = `📱 *TCL DISTRIFLOW — INFRAESTRUCTURA DIGITAL*\n\nEstimado cliente de *${nombre}*, se ha configurado su licencia de arrendamiento de software de control de inventario:\n\n🌐 *Enlace del Servidor:* ${link}\n👤 *Usuario POS:* ${user}\n🔑 *Contrasena de Caja:* ${pass}\n⏱️ *Plazo Acordado:* ${diasSimuladosValor} Dias\n\n--------------------------------------------------\n*⚠️ REGLAS SUPREMAS ADMINISTRATIVAS:*\n1. El arrendatario es el único responsable por la data, IMEI e inventarios registrados.\n2. Plataforma para control interno que emite notas de despacho sin valor fiscal.\n\nInfraestructura Protegida por Tucocel C.A. & @publionlinemk 🚀🔒`;
             
             document.getElementById('whatsapp-preview-content').innerText = textoContrato;
             document.getElementById('modal-whatsapp-preview').classList.remove('hidden');
         }
 
-        // Enrutador de URL e inicialización de Propietario (Owner ID)
-        window.onload = function() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const userParam = urlParams.get('user');
-            
-            if(userParam) {
-                document.getElementById('vista-master-admin').classList.add('hidden');
-                document.getElementById('vista-entorno-cliente').classList.remove('hidden');
-                
-                let nombreComercio = "Comercio Registrado";
-                let garantiaTexto = "Garantía de 2 meses por defectos de fábrica.";
-                let diasQuedan = 365;
-
-                if(userParam === 'citymovil') {
-                    nombreComercio = "City Móvil";
-                    document.getElementById('login-logo-dinamico').innerHTML = `<i class="fa-solid fa-mobile-screen"></i>`;
-                } else if(userParam === 'donluis') {
-                    nombreComercio = "Frigorífico Don Luis";
-                    garantiaTexto = "No se aceptan cambios en productos cárnicos.";
-                    diasQuedan = 12;
-                    document.getElementById('login-logo-dinamico').innerHTML = `<i class="fa-solid fa-shop"></i>`;
-                }
-
-                infoClienteAbiertoDinamico = { nombre: nombreComercio, garantia: garantiaTexto, dias: diasQuedan, ownerID: userParam };
-                document.getElementById('login-titulo-dinamico').innerText = nombreComercio;
-            }
-        };
-
-        function forzarEntradaClienteDirecta(nombre, garantia, dias, ownerID) {
-            infoClienteAbiertoDinamico = { nombre: nombre, garantia: garantia, dias: dias, ownerID: ownerID };
+        // Routing Engine
+        window.onpopstate = function() { location.reload(); };
+        
+        function forzarEntradaClienteDirecta(nombre, garantia, dias, ownerID, tlf, rif, dir) {
+            infoClienteAbiertoDinamico = { nombre: nombre, garantia: garantia, dias: dias, ownerID: ownerID, tlf: tlf, rif: rif, dir: dir };
             document.getElementById('login-titulo-dinamico').innerText = nombre;
             
             document.getElementById('vista-master-admin').classList.add('hidden');
@@ -587,7 +742,7 @@
             document.getElementById('cli-bloque-sistema').classList.remove('hidden');
             
             document.getElementById('cli-panel-nombre').innerText = infoClienteAbiertoDinamico.nombre;
-            document.getElementById('cli-panel-garantia-txt').innerText = infoClienteAbiertoDinamico.garantia;
+            document.getElementById('ticket-correlativo-display').innerText = `Nota #${String(correlativoNotaGlobal).padStart(3, '0')}`;
             
             const yDisplay = document.getElementById('cli-panel-dias-conteo');
             const iconReloj = document.getElementById('cli-panel-icon-reloj');
@@ -597,64 +752,146 @@
             const bannerDesc = document.getElementById('banner-alerta-desc');
             const statusBox = document.getElementById('contenedor-status-reloj');
             
-            yDisplay.innerText = `${infoClienteAbiertoDinamico.dias} Días`;
+            yDisplay.innerText = `${infoClienteAbiertoDinamico.dias} Dias`;
             
-            // LÓGICA DE ALERTA DINÁMICA DE TEMPORIZACIÓN DE SUSCRIPCIÓN (BLOQUEO INALTERABLE)
             if(infoClienteAbiertoDinamico.dias <= 5) {
-                // Alerta Crítica Roja (Faltan 5 días o menos)
                 yDisplay.className = "text-red-600 font-black animate-pulse";
                 iconReloj.className = "fa-solid fa-hourglass-half text-red-500 animate-spin";
-                statusBox.className = "bg-red-100 border border-red-300 px-2.5 py-1 rounded-xl flex items-center gap-1 text-[10px] font-mono font-bold animate-bounce";
                 
                 bannerAlerta.className = "bg-red-50 border border-red-200 text-red-900 rounded-2xl p-4 flex items-center gap-3 shadow-md";
                 bannerIcono.className = "fa-solid fa-circle-xmark text-red-600 text-xl animate-pulse";
-                bannerTitulo.innerText = "🔴 RIESGO DE SUSPENSIÓN INMEDIATA";
-                bannerDesc.innerText = `Atención: Su licencia administrativa expira en ${infoClienteAbiertoDinamico.dias} días. El módulo POS se bloqueará al llegar a 0. Comuníquese urgentemente con Tucocel C.A.`;
+                bannerTitulo.innerText = "🔴 ADVERTENCIA DE SUSPENSION";
+                bannerDesc.innerText = `Su tiempo de arrendamiento expira en ${infoClienteAbiertoDinamico.dias} dias. Al llegar a cero se inhabilitara el modulo de guardado. Contacte a Tucocel C.A.`;
                 bannerAlerta.classList.remove('hidden');
-            } 
-            else if(infoClienteAbiertoDinamico.dias <= 15) {
-                // Alerta Preventiva Naranja (Faltan entre 6 y 15 días)
-                yDisplay.className = "text-orange-600 font-black animate-pulse";
-                iconReloj.className = "fa-solid fa-hourglass-half text-orange-500";
-                statusBox.className = "bg-orange-50 border border-orange-200 px-2.5 py-1 rounded-xl flex items-center gap-1 text-[10px] font-mono font-bold";
-                
+            } else if(infoClienteAbiertoDinamico.dias <= 15) {
+                yDisplay.className = "text-orange-600 font-black";
                 bannerAlerta.className = "bg-orange-50 border border-orange-200 text-orange-900 rounded-2xl p-4 flex items-center gap-3 shadow-inner";
                 bannerIcono.className = "fa-solid fa-triangle-exclamation text-orange-600 text-xl";
-                bannerTitulo.innerText = "🔶 AVISO DE VENCIMIENTO DE MEMBRESÍA";
-                bannerDesc.innerText = `Le recordamos que a su suscripción le quedan ${infoClienteAbiertoDinamico.dias} días de cobertura administrativa. Genere el pago de renovación para evitar interrupciones de servicio.`;
+                bannerTitulo.innerText = "🔶 ALERTA DE RENOVACION PENDIENTE";
+                bannerDesc.innerText = `Quedan solo ${infoClienteAbiertoDinamico.dias} dias de licencia administrativa. Renueve oportunamente su suscripcion para evitar contratiempos en caja.`;
                 bannerAlerta.classList.remove('hidden');
-            } 
-            else {
-                // Estado Normal Activo
-                yDisplay.className = "text-slate-700 font-black";
-                iconReloj.className = "fa-solid fa-hourglass-half text-amber-500";
-                statusBox.className = "bg-gray-100 border border-gray-200 px-2.5 py-1 rounded-xl flex items-center gap-1 text-[10px] font-mono font-bold";
-                bannerAlerta.classList.add('hidden');
+            } else {
+                bannerAlerta.className = "hidden";
             }
             
             document.body.className = "bg-slate-50 text-slate-800 min-h-screen transition-all duration-300";
+            actualizarGridInventarioPOS();
         }
 
-        function regresarAlMasterControlAdmin() {
-            document.getElementById('cli-bloque-sistema').classList.add('hidden');
-            document.getElementById('cli-bloque-login').classList.remove('hidden');
-            document.getElementById('vista-entorno-cliente').classList.add('hidden');
+        // Controlador de Vistas POS
+        function activarPestañaPos(modulo) {
+            document.getElementById('panel-seccion-facturar').classList.add('hidden');
+            document.getElementById('panel-seccion-inventario').classList.add('hidden');
+            document.getElementById('panel-seccion-gastos').classList.add('hidden');
+            document.getElementById('panel-seccion-reportes').classList.add('hidden');
             
-            window.history.pushState({}, document.title, window.location.pathname);
+            document.getElementById('nav-btn-facturar').className = "flex flex-col items-center justify-center gap-1 text-slate-400";
+            document.getElementById('nav-btn-inventario').className = "flex flex-col items-center justify-center gap-1 text-slate-400";
+            document.getElementById('nav-btn-gastos').className = "flex flex-col items-center justify-center gap-1 text-slate-400";
+            document.getElementById('nav-btn-reportes').className = "flex flex-col items-center justify-center gap-1 text-slate-400";
+
+            if(modulo === 'facturar') {
+                document.getElementById('panel-seccion-facturar').classList.remove('hidden');
+                document.getElementById('nav-btn-facturar').className = "text-blue-600 flex flex-col items-center justify-center gap-1 font-black";
+                actualizarGridInventarioPOS();
+            } else if(modulo === 'inventario') {
+                document.getElementById('panel-seccion-inventario').classList.remove('hidden');
+                document.getElementById('nav-btn-inventario').className = "text-purple-600 flex flex-col items-center justify-center gap-1 font-black";
+                actualizarListaInventarioInterna();
+            } else if(modulo === 'gastos') {
+                document.getElementById('panel-seccion-gastos').classList.remove('hidden');
+                document.getElementById('nav-btn-gastos').className = "text-red-500 flex flex-col items-center justify-center gap-1 font-black";
+                actualizarListaGastosInterna();
+            } else if(modulo === 'reportes') {
+                document.getElementById('panel-seccion-reportes').classList.remove('hidden');
+                document.getElementById('nav-btn-reportes').className = "text-emerald-500 flex flex-col items-center justify-center gap-1 font-black";
+                actualizarListaReportesInterna();
+            }
+        }
+
+        // Lógica de Métodos de Carga (Estilo Vitrina Digital)
+        function cambiarMetodoCajaCarga(tipo) {
+            métodoCargaActual = tipo;
+            const btnManual = document.getElementById('tab-btn-manual');
+            const btnCat = document.getElementById('tab-btn-catalogo');
+            const blockManual = document.getElementById('bloque-carga-manual');
+            const blockCat = document.getElementById('bloque-carga-catalogo');
+
+            if(tipo === 'manual') {
+                btnManual.className = "bg-blue-600 text-white font-black text-[10px] py-1.5 rounded-xl uppercase tracking-wider transition-all";
+                btnCat.className = "bg-slate-100 text-slate-500 font-bold text-[10px] py-1.5 rounded-xl uppercase tracking-wider transition-all";
+                blockManual.classList.remove('hidden');
+                blockCat.classList.add('hidden');
+            } else {
+                btnCat.className = "bg-blue-600 text-white font-black text-[10px] py-1.5 rounded-xl uppercase tracking-wider transition-all";
+                btnManual.className = "bg-slate-100 text-slate-500 font-bold text-[10px] py-1.5 rounded-xl uppercase tracking-wider transition-all";
+                blockCat.classList.remove('hidden');
+                blockManual.classList.add('hidden');
+                actualizarGridInventarioPOS();
+            }
+        }
+
+        function toggleImeiFieldManual() {
+            const check = document.getElementById('manual-prod-es-celular').checked;
+            const wrap = document.getElementById('wrapper-imei-manual');
+            if(check) wrap.classList.remove('hidden');
+            else {
+                wrap.classList.add('hidden');
+                document.getElementById('manual-prod-imei').value = "";
+            }
+        }
+
+        // Lógica de Categorías en Carga de Inventario Stock
+        function cambiarCategoriaFormularioInventario(cat) {
+            categoriaInventarioCarga = cat;
+            const btnTlf = document.getElementById('inv-btn-cat-telefonos');
+            const btnOtro = document.getElementById('inv-btn-cat-otros');
+            const camposTlf = document.getElementById('inv-campos-telefonos');
+            const camposOtros = document.getElementById('inv-campos-otros');
+
+            if(cat === 'telefonos') {
+                btnTlf.className = "bg-purple-600 text-white font-black text-[10px] py-2 rounded-xl uppercase tracking-wider";
+                btnOtro.className = "bg-slate-100 text-slate-500 font-bold text-[10px] py-2 rounded-xl uppercase tracking-wider";
+                camposTlf.classList.remove('hidden');
+                camposOtros.classList.add('hidden');
+            } else {
+                btnOtro.className = "bg-purple-600 text-white font-black text-[10px] py-2 rounded-xl uppercase tracking-wider";
+                btnTlf.className = "bg-slate-100 text-slate-500 font-bold text-[10px] py-2 rounded-xl uppercase tracking-wider";
+                camposOtros.classList.remove('hidden');
+                camposTlf.classList.add('hidden');
+            }
+        }
+
+        // Procesar Artículos hacia la Nota
+        function agregarArticuloManualTicket() {
+            const nombreBase = document.getElementById('manual-prod-nombre').value.trim();
+            const precio = parseFloat(document.getElementById('manual-prod-precio').value);
+            const esCelular = document.getElementById('manual-prod-es-celular').checked;
+            const imeiVal = document.getElementById('manual-prod-imei').value.trim();
+
+            if(!nombreBase || isNaN(precio) || precio <= 0) return alert("Inserte descripcion y valor numerico de venta.");
+
+            let nombreFinal = nombreBase;
+            if(esCelular && imeiVal) {
+                nombreFinal = `${nombreBase} (IMEI: ${imeiVal})`;
+            }
+
+            ticketProductos.push({ nombre: nombreFinal, precio: precio });
             
-            document.body.className = "bg-slate-950 text-slate-100 min-h-screen transition-all duration-300";
-            document.getElementById('vista-master-admin').classList.remove('hidden');
-            ticketProductos = [];
+            // Reset fields
+            document.getElementById('manual-prod-nombre').value = "";
+            document.getElementById('manual-prod-precio').value = "";
+            document.getElementById('manual-prod-es-celular').checked = false;
+            document.getElementById('manual-prod-imei').value = "";
+            document.getElementById('wrapper-imei-manual').classList.add('hidden');
+
             calcularTotalesSimulados();
         }
 
-        function agregarAlTicketSimulado(nombre, precio) {
-            // Protección defensiva matemática contra manipulación del HTML
-            let valorValidado = parseFloat(precio);
-            if (isNaN(valorValidado) || valorValidado <= 0) return;
-            
-            ticketProductos.push({ nombre: nombre, precio: valorValidado });
+        function jalarArticuloCatalogoAlTicket(nombre, precio) {
+            ticketProductos.push({ nombre: nombre, precio: parseFloat(precio) });
             calcularTotalesSimulados();
+            alert(`Anadido: ${nombre}`);
         }
 
         function calcularTotalesSimulados() {
@@ -663,7 +900,7 @@
             const tBs = parseFloat(document.getElementById('tasa-bs').value) || 40;
             
             if(ticketProductos.length === 0) {
-                contenedor.innerHTML = `<p class="text-center text-slate-400 py-4 italic">Ningún artículo en la lista. Toque un producto arriba.</p>`;
+                contenedor.innerHTML = `<p class="text-center text-slate-400 py-4 italic">No hay articulos anadidos todavia.</p>`;
                 acumuladoUSD = 0;
                 document.getElementById('total-usd').innerText = "$0.00";
                 document.getElementById('total-cop').innerText = "0 COP";
@@ -677,65 +914,341 @@
                 acumuladoUSD += prod.precio;
                 const pDiv = document.createElement('div');
                 pDiv.className = "flex justify-between items-center py-1 border-b border-slate-100";
-                pDiv.innerHTML = `<span>1x ${prod.nombre}</span> <span class="font-mono font-bold">$${prod.precio.toFixed(2)}</span>`;
+                pDiv.innerHTML = `<span class="truncate max-w-[280px]">▪️ 1x ${prod.nombre}</span> <span class="font-mono font-bold text-slate-900">$${prod.precio.toFixed(2)}</span>`;
                 contenedor.appendChild(pDiv);
             });
 
             document.getElementById('total-usd').innerText = `$${acumuladoUSD.toFixed(2)}`;
-            document.getElementById('total-cop').innerText = `${(acumuladoUSD * tCOP).toLocaleString('es-ES')} COP`;
+            document.getElementById('total-cop').innerText = `${Math.round(acumuladoUSD * tCOP).toLocaleString('es-ES')} COP`;
             document.getElementById('total-bs').innerText = `${(acumuladoUSD * tBs).toFixed(2)} Bs`;
         }
 
-        function enviarFacturaWhatsAppClienteSimulada() {
-            if(ticketProductos.length === 0) return alert("Cargue algún producto.");
-            const cliente = document.getElementById('ticket-cliente').value.trim() || "Cliente General";
-            const imei = document.getElementById('ticket-imei').value.trim() || "N/A";
+        function limpiarTicketCompleto() {
+            ticketProductos = [];
+            calcularTotalesSimulados();
+        }
+
+        // Operaciones CRUD sobre Base de Datos Local de Stock
+        function guardarProductoEnInventario() {
+            let nombreEstructurado = "";
+            const costo = parseFloat(document.getElementById('inv-prod-costo').value) || 0;
+            const precio = parseFloat(document.getElementById('inv-prod-precio').value) || 0;
+
+            if(precio <= 0) return alert("Defina un precio de venta superior a cero.");
+
+            if(categoriaInventarioCarga === 'telefonos') {
+                const marca = document.getElementById('inv-prod-marca').value.trim();
+                const modelo = document.getElementById('inv-prod-modelo').value.trim();
+                const imei = document.getElementById('inv-prod-imei').value.trim();
+                
+                if(!marca || !modelo) return alert("Complete los datos basicos de Marca y Modelo del celular.");
+                nombreEstructurado = `${marca} ${modelo}`;
+                if(imei) nombreEstructurado += ` (IMEI: ${imei})`;
+                
+                document.getElementById('inv-prod-marca').value = "";
+                document.getElementById('inv-prod-modelo').value = "";
+                document.getElementById('inv-prod-imei').value = "";
+            } else {
+                const desc = document.getElementById('inv-prod-descripcion').value.trim();
+                if(!desc) return alert("Inserte la descripcion general del articulo.");
+                nombreEstructurado = desc;
+                document.getElementById('inv-prod-descripcion').value = "";
+            }
+
+            productosInventarioBD.push({ id: 'p-' + new Date().getTime(), nombre: nombreEstructurado, costo: costo, precio: precio });
+            
+            document.getElementById('inv-prod-costo').value = "";
+            document.getElementById('inv-prod-precio').value = "";
+            
+            actualizarListaInventarioInterna();
+            alert("Articulo guardado e indexado en el stock.");
+        }
+
+        function actualizarListaInventarioInterna() {
+            const box = document.getElementById('inv-lista-productos-box');
+            if(productosInventarioBD.length === 0) {
+                box.innerHTML = `<p class="text-center text-slate-400 text-xs italic py-4">Ningun producto en base de datos.</p>`;
+                return;
+            }
+            box.innerHTML = "";
+            productosInventarioBD.forEach(p => {
+                const row = document.createElement('div');
+                row.className = "flex justify-between items-center bg-slate-50 p-2.5 rounded-xl text-[11px] border border-slate-200 shadow-inner";
+                row.innerHTML = `
+                    <div class="truncate max-w-[200px]">
+                        <span class="font-bold text-slate-800 block truncate">${p.nombre}</span>
+                        <span class="text-slate-400 font-mono">Costo Base: $${p.costo.toFixed(2)}</span>
+                    </div>
+                    <div class="flex items-center gap-2 font-mono">
+                        <span class="font-black text-blue-600 font-bold">$${p.precio.toFixed(2)}</span>
+                        <button onclick="eliminarProductoInventario('${p.id}')" class="text-red-500 hover:text-red-700 bg-red-50 w-6 h-6 rounded-lg transition-colors"><i class="fa-solid fa-trash-can"></i></button>
+                    </div>
+                `;
+                box.appendChild(row);
+            });
+        }
+
+        function eliminarProductoInventario(id) {
+            if(confirm("¿Deseas remover este item de la base de datos de stock?")) {
+                productosInventarioBD = productosInventarioBD.filter(p => p.id !== id);
+                actualizarListaInventarioInterna();
+            }
+        }
+
+        function actualizarGridInventarioPOS() {
+            const grid = document.getElementById('grid-productos-inventario-pos');
+            if(productosInventarioBD.length === 0) {
+                grid.innerHTML = `<p class="text-center text-slate-400 py-4 italic text-[10px] col-span-2">Inventario vacio. Registre stock en la pestaña de control.</p>`;
+                return;
+            }
+            grid.innerHTML = "";
+            productosInventarioBD.forEach(p => {
+                const btn = document.createElement('button');
+                btn.setAttribute('onclick', `jalarArticuloCatalogoAlTicket('${p.nombre.replace(/'/g, "\\'")}', ${p.precio})`);
+                btn.className = "bg-slate-50 border border-slate-200 p-2 rounded-xl text-left hover:border-blue-500 hover:bg-white transition-all flex flex-col justify-between h-14 shadow-inner text-ellipsis overflow-hidden";
+                btn.innerHTML = `<span class="text-[9.5px] font-bold text-slate-700 truncate block w-full">${p.nombre}</span><span class="text-xs font-black text-blue-600 font-mono">$${p.precio.toFixed(2)}</span>`;
+                grid.appendChild(btn);
+            });
+        }
+
+        // Operaciones Módulo de Gastos
+        function registrarGastoCaja() {
+            const desc = document.getElementById('gasto-descripcion').value.trim();
+            const monto = parseFloat(document.getElementById('gasto-monto').value);
+            const moneda = document.getElementById('gasto-moneda').value;
+
+            if(!desc || isNaN(monto) || monto <= 0) return alert("Escriba concepto y monto del egreso.");
+
+            gastosBD.push({ desc: desc, monto: monto, moneda: moneda });
+            document.getElementById('gasto-descripcion').value = "";
+            document.getElementById('gasto-monto').value = "";
+            
+            actualizarListaGastosInterna();
+            alert("Egreso cargado a la contabilidad.");
+        }
+
+        function actualizarListaGastosInterna() {
+            const box = document.getElementById('gastos-lista-box');
+            if(gastosBD.length === 0) {
+                box.innerHTML = `<p class="text-center text-slate-400 italic py-2">Sin egresos registrados hoy.</p>`;
+                return;
+            }
+            box.innerHTML = "";
+            gastosBD.forEach(g => {
+                const row = document.createElement('div');
+                row.className = "flex justify-between py-1 border-b text-slate-600";
+                row.innerHTML = `<span class="truncate max-w-[240px]">▪️ ${g.desc}</span> <span class="font-bold text-red-500 shrink-0">-${g.monto} ${g.moneda}</span>`;
+                box.appendChild(row);
+            });
+        }
+
+        // Operaciones Historial y Auditoría Inalterable
+        function actualizarListaReportesInterna() {
+            const box = document.getElementById('reportes-notas-lista-box');
+            
+            let sumVentas = facturasEmitidasBD.reduce((acc, curr) => curr.status === 'EMITIDA' ? acc + curr.total : acc, 0);
+            let sumGastosUSDRef = gastosBD.reduce((acc, curr) => curr.moneda === 'USD' ? acc + curr.monto : acc, 0); // simplificado en la muestra
+            
+            document.getElementById('rep-total-ventas-val').innerText = `$${sumVentas.toFixed(2)}`;
+            document.getElementById('rep-total-gastos-val').innerText = `$${sumGastosUSDRef.toFixed(2)}`;
+
+            if(facturasEmitidasBD.length === 0) {
+                box.innerHTML = `<p class="text-center text-slate-400 text-xs italic py-4">Ninguna operacion registrada.</p>`;
+                return;
+            }
+            box.innerHTML = "";
+            facturasEmitidasBD.forEach(f => {
+                const card = document.createElement('div');
+                card.className = `border rounded-2xl p-3 text-xs space-y-1.5 bg-white ${f.status === 'ANULADA' ? 'opacity-60 border-red-200 bg-red-50/30' : 'border-slate-200'}`;
+                
+                let statusBadge = f.status === 'ANULADA' ? `<span class="bg-red-100 text-red-600 font-black text-[9px] px-2 py-0.5 rounded-md uppercase">NOTA CREDITO / ANULADA</span>` : `<span class="bg-blue-50 text-blue-600 font-bold text-[9px] px-2 py-0.5 rounded-md uppercase">DESPACHADO</span>`;
+                
+                let actionButtons = f.status === 'ANULADA' ? '' : `
+                    <div class="flex gap-1 pt-1 justify-end border-t border-slate-100">
+                        <button onclick="reimprimirFacturaHistorial('${f.id}')" class="bg-slate-900 text-white text-[9px] font-black px-2 py-1 rounded-md uppercase">Reimprimir</button>
+                        <button onclick="reenviarWhatsAppHistorial('${f.id}')" class="bg-emerald-600 text-white text-[9px] font-black px-2 py-1 rounded-md uppercase"><i class="fa-brands fa-whatsapp"></i> Reenviar</button>
+                        <button onclick="anularFacturaHistorialConNotaCredito('${f.id}')" class="bg-red-500/10 text-red-600 text-[9px] font-black px-2 py-1 rounded-md uppercase border border-red-500/20">Anular</button>
+                    </div>`;
+
+                card.innerHTML = `
+                    <div class="flex justify-between items-center font-mono">
+                        <span class="font-bold text-slate-800">Nota #${String(f.correlativo).padStart(3, '0')}</span>
+                        ${statusBadge}
+                    </div>
+                    <p class="text-slate-500"><span class="font-bold text-slate-700">Cliente:</span> ${f.cliente} | <span class="font-bold text-slate-700">RIF:</span> ${f.rif} | <span class="font-bold text-slate-700">Monto:</span> $${f.total.toFixed(2)}</p>
+                    ${actionButtons}
+                `;
+                box.appendChild(card);
+            });
+        }
+
+        function anularFacturaHistorialConNotaCredito(id) {
+            if(confirm("🚨 ALERTA SUPREMA DE RESPONSABILIDAD 🚨\n\nSi anula este registro, se realizara bajo su estricta responsabilidad administrativa.\n\n¿Desea asentar la Nota de Credito Interna en la auditoria?")) {
+                const f = facturasEmitidasBD.find(fact => fact.id === id);
+                if(f) {
+                    f.status = 'ANULADA';
+                    alert("Conciliacion Completada:\n\nSe ha generado la Nota de Credito Interna. El registro permanece fijo para auditoria del dueño de la distribuidora.");
+                    actualizarListaReportesInterna();
+                }
+            }
+        }
+
+        // Compilación de Formato Universal de Impresión (Sin acentos rotos)
+        function buildFacturaTextRaw(cliente, rif, tlf, dir, productos, total) {
+            const tCOP = parseFloat(document.getElementById('tasa-cop').value) || 3900;
+            const tBs = parseFloat(document.getElementById('tasa-bs').value) || 40;
+            
+            let lineasProd = "";
+            productos.forEach(p => {
+                let descPad = p.nombre.padEnd(32, ' ').substring(0, 32);
+                let priceStr = `$${p.precio.toFixed(2)}`.padStart(10, ' ');
+                lineasProd += `1x    ${descPad}${priceStr}\n`;
+            });
+
+            return `==================================================
+                 ${infoClienteAbiertoDinamico.nombre.toUpperCase()}
+              RIF: ${infoClienteAbiertoDinamico.rif}
+         ${infoClienteAbiertoDinamico.dir}
+           WhatsApp: ${infoClienteAbiertoDinamico.tlf}
+==================================================
+NOTA DE DESPACHO: #${String(correlativoNotaGlobal).padStart(3, '0')}
+FECHA: ${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}
+CLIENTE: ${cliente}
+CEDULA / RIF: ${rif}
+TELEFONO: ${tlf}
+DIRECCION: ${dir}
+--------------------------------------------------
+CANT  DESCRIPCION                      PRECIO USD
+--------------------------------------------------
+${lineasProd}--------------------------------------------------
+SUBTOTAL:                                  $${total.toFixed(2)}
+DESCUENTO:                                  $0.00
+==================================================
+TOTAL REF:                                 $${total.toFixed(2)}
+TOTAL PESOS (COP):                     ${Math.round(total * tCOP).toLocaleString('es-ES')} COP
+TOTAL BOLIVARES (Bs):                   ${(total * tBs).toFixed(2)} Bs
+--------------------------------------------------
+Los montos en divisas estan calculados bajo las
+politicas de conversion interna vigentes de la 
+empresa a la fecha y hora de esta operacion.
+==================================================
+              TERMINOS DE LA GARANTIA
+${infoClienteAbiertoDinamico.garantia}
+==================================================
+       COMPROBANTE ADMINISTRATIVO INTERNO
+                SIN VALOR FISCAL
+--------------------------------------------------
+    INFRAESTRUCTURA TECNOLOGICA PRESTADA POR:
+          Tucocel C.A. & @publionlinemk
+  
+El proveedor de software actua exclusivamente como
+desarrollador tecnologico y no se hace responsable
+por las operaciones, montos, descripciones, venta
+de seriales/IMEI o el uso administrativo que la
+empresa emisora otorgue a esta plataforma.
+==================================================`;
+        }
+
+        // Compilación de Mensaje de Texto para WhatsApp (Sin acentos rotos)
+        function buildWhatsAppTextRaw(cliente, rif, tlf, dir, productos, total) {
             const tCOP = document.getElementById('tasa-cop').value;
             const tBs = document.getElementById('tasa-bs').value;
             
             let cuerpoText = "";
-            ticketProductos.forEach(p => { cuerpoText += `▪️ 1x ${p.nombre} — $${p.precio.toFixed(2)}\n`; });
+            productos.forEach(p => { cuerpoText += `▪️ 1x ${p.nombre} — $${p.precio.toFixed(2)}\n`; });
 
-            const textoWhatsAppFactura = `🛍️ *${infoClienteAbiertoDinamico.nombre.toUpperCase()} — NOTA DE ENTREGA*\n\n👤 *Cliente:* ${cliente}\n📱 *IMEI / Detalle:* ${imei}\n📅 *Fecha:* ${new Date().toLocaleDateString()}\n\n*DESGLOSE:*\n${cuerpoText}\n💰 *TOTALES MULTIMONEDA:*\n💵 REF: $${acumuladoUSD.toFixed(2)}\n🇨🇴 COP: ${(acumuladoUSD * tCOP).toLocaleString('es-ES')} COP\n🇻🇪 Bs: ${(acumuladoUSD * tBs).toFixed(2)} Bs\n\n⚠️ *GARANTÍA:*\n${infoClienteAbiertoDinamico.garantia}\n\n🔒 _Comprobante interno administrativo sin valor fiscal._\n\n⚙️ _Infraestructura protegida por Tucocel C.A. y @publionlinemk_`;
-
-            document.getElementById('whatsapp-nota-content').innerText = textoWhatsAppFactura;
-            document.getElementById('modal-whatsapp-nota').classList.remove('hidden');
+            return `🛍️ *${infoClienteAbiertoDinamico.nombre.toUpperCase()} — COMPROBANTE DE DESPACHO*\n\n👤 *Cliente:* ${cliente}\n🪪 *Cedula/RIF:* ${rif}\n📱 *Contacto:* ${tlf}\n📍 *Ubicacion:* ${dir}\n📅 *Fecha:* ${new Date().toLocaleDateString()}\n\n*ARTICULOS ENTREGADOS:*\n${cuerpoText}\n💰 *TOTALES MULTIMONEDA:*\n💵 REF: $${total.toFixed(2)}\n🇨🇴 COP: ${Math.round(total * tCOP).toLocaleString('es-ES')} COP\n🇻🇪 Bs: ${(total * tBs).toFixed(2)} Bs\n\n_Nota: Los montos en divisas estan calculados bajo las politicas de conversion interna vigentes de la empresa a la fecha y hora de esta operacion._\n\n⚠️ *TERMINOS DE GARANTIA:*\n${infoClienteAbiertoDinamico.garantia}\n\n🔒 _Comprobante interno administrativo sin valor fiscal._\n\n--------------------------------------------------\n*🛡️ DESLINDE DE RESPONSABILIDAD TECNOLOGICA:*\nInfraestructura prestada por Tucocel C.A. & @publionlinemk. El proveedor actua exclusivamente como desarrollador tecnologico y no se hace responsable por las operaciones, montos, descripciones, venta de seriales o el uso administrativo que la empresa emisora otorgue a esta plataforma.`;
         }
 
-        // GENERADOR DE ARCHIVO PDF INALTERABLE DESDE EL NAVEGADOR
-        function descargarFacturaPDFSimulada() {
-            if(ticketProductos.length === 0) return alert("Cargue algún producto para procesar el PDF.");
+        // Control de Impresión y Despacho desde Terminal Activo
+        function procesarImpresionTicket() {
+            if(ticketProductos.length === 0) return alert("Mesa de facturacion vacia.");
             
             const cliente = document.getElementById('ticket-cliente').value.trim() || "Cliente General";
-            const imei = document.getElementById('ticket-imei').value.trim() || "N/A";
-            const tCOP = document.getElementById('tasa-cop').value;
-            const tBs = document.getElementById('tasa-bs').value;
+            const rif = document.getElementById('ticket-rif-cliente').value.trim() || "N/A";
+            const tlf = document.getElementById('ticket-tlf-cliente').value.trim() || "N/A";
+            const dir = document.getElementById('ticket-dir-cliente').value.trim() || "N/A";
             
-            alert(`🔒 ¡Generando Documento PDF Inalterable de forma exitosa! \n\nEstableciendo cabeceras de protección de datos para la Distribuidora de origen [ID: ${infoClienteAbiertoDinamico.ownerID}].\n\nEl archivo final se descargará en su dispositivo bajo la firma de Nota de Entrega Privada sin valor fiscal.`);
+            facturasEmitidasBD.push({
+                id: 'f-' + new Date().getTime(),
+                correlativo: correlativoNotaGlobal,
+                cliente: cliente,
+                rif: rif,
+                tlf: tlf,
+                dir: dir,
+                productos: [...ticketProductos],
+                total: acumuladoUSD,
+                status: 'EMITIDA',
+                telefonoOriginal: infoClienteAbiertoDinamico.tlf
+            });
+
+            const txt = buildFacturaTextRaw(cliente, rif, tlf, dir, ticketProductos, acumuladoUSD);
+            
+            document.getElementById('modal-nota-header-color').className = "bg-slate-950 px-4 py-3 text-white flex justify-between items-center font-bold text-xs uppercase tracking-wide";
+            document.getElementById('modal-nota-titulo-dinamico').innerHTML = `<i class="fa-solid fa-print mr-1"></i> Formato de Impresion Compilado`;
+            document.getElementById('whatsapp-nota-content').innerText = txt;
+            document.getElementById('modal-whatsapp-nota').classList.remove('hidden');
+
+            correlativoNotaGlobal++;
+            limpiarTicketCompleto();
+            document.getElementById('ticket-correlativo-display').innerText = `Nota #${String(correlativoNotaGlobal).padStart(3, '0')}`;
         }
 
-        function previewImageDemo(e) {
-            const file = e.target.files[0];
-            if (!file) return;
-            const reader = new FileReader();
-            reader.onload = function(event) {
-                logoBase64Global = event.target.result;
-                document.getElementById('cfg-logo-preview').src = logoBase64Global;
-                document.getElementById('cfg-logo-preview').classList.remove('hidden');
-                document.getElementById('cfg-logo-placeholder').classList.add('hidden');
-            };
-            reader.readAsDataURL(file);
+        function enviarFacturaWhatsAppClienteSimulada() {
+            if(ticketProductos.length === 0) return alert("Mesa de facturacion vacia.");
+            
+            const cliente = document.getElementById('ticket-cliente').value.trim() || "Cliente General";
+            const rif = document.getElementById('ticket-rif-cliente').value.trim() || "N/A";
+            const tlf = document.getElementById('ticket-tlf-cliente').value.trim() || "N/A";
+            const dir = document.getElementById('ticket-dir-cliente').value.trim() || "N/A";
+
+            facturasEmitidasBD.push({
+                id: 'f-' + new Date().getTime(),
+                correlativo: correlativoNotaGlobal,
+                cliente: cliente,
+                rif: rif,
+                tlf: tlf,
+                dir: dir,
+                productos: [...ticketProductos],
+                total: acumuladoUSD,
+                status: 'EMITIDA',
+                telefonoOriginal: tlf || infoClienteAbiertoDinamico.tlf
+            });
+
+            const txt = buildWhatsAppTextRaw(cliente, rif, tlf, dir, ticketProductos, acumuladoUSD);
+
+            document.getElementById('modal-nota-header-color').className = "bg-emerald-600 px-4 py-3 text-white flex justify-between items-center font-bold text-xs uppercase tracking-wide";
+            document.getElementById('modal-nota-titulo-dinamico').innerHTML = `<i class="fa-brands fa-whatsapp mr-1"></i> Mensaje para WhatsApp Compilado`;
+            document.getElementById('whatsapp-nota-content').innerText = txt;
+            document.getElementById('modal-whatsapp-nota').classList.remove('hidden');
+
+            correlativoNotaGlobal++;
+            limpiarTicketCompleto();
+            document.getElementById('ticket-correlativo-display').innerText = `Nota #${String(correlativoNotaGlobal).padStart(3, '0')}`;
         }
 
-        function limpiarCamposModalConfig() {
-            document.getElementById('cfg-logo-preview').src = "";
-            document.getElementById('cfg-logo-preview').classList.add('hidden');
-            document.getElementById('cfg-logo-placeholder').classList.remove('hidden');
-            logoBase64Global = "";
-            document.getElementById('cfg-user').disabled = true;
-            document.getElementById('cfg-user').className = "w-full bg-slate-950/50 border border-slate-850 p-2.5 rounded-xl text-xs font-bold text-slate-500 font-mono cursor-not-allowed";
-            document.getElementById('cfg-user').onkeyup = null;
+        // Funciones del Historial de Operaciones (Bloqueado a Número Original)
+        function reimprimirFacturaHistorial(id) {
+            const f = facturasEmitidasBD.find(fact => fact.id === id);
+            if(f) {
+                const txt = buildFacturaTextRaw(f.cliente, f.rif, f.tlf, f.dir, f.productos, f.total);
+                document.getElementById('modal-nota-header-color').className = "bg-slate-950 px-4 py-3 text-white flex justify-between items-center font-bold text-xs uppercase tracking-wide";
+                document.getElementById('modal-nota-titulo-dinamico').innerHTML = `<i class="fa-solid fa-print mr-1"></i> REIMPRESION DE COMPROBANTE`;
+                document.getElementById('whatsapp-nota-content').innerText = txt;
+                document.getElementById('modal-whatsapp-nota').classList.remove('hidden');
+            }
+        }
+
+        function reenviarWhatsAppHistorial(id) {
+            const f = facturasEmitidasBD.find(fact => fact.id === id);
+            if(f) {
+                const txt = buildWhatsAppTextRaw(f.cliente, f.rif, f.tlf, f.dir, f.productos, f.total);
+                document.getElementById('modal-nota-header-color').className = "bg-emerald-600 px-4 py-3 text-white flex justify-between items-center font-bold text-xs uppercase tracking-wide";
+                document.getElementById('modal-nota-titulo-dinamico').innerHTML = `<i class="fa-brands fa-whatsapp mr-1"></i> REENVIO PROTEGIDO (NUMERO FIJO)`;
+                document.getElementById('whatsapp-nota-content').innerText = txt + `\n\n_⚠️ Reenvio de seguridad despachado estrictamente al resguardo del contacto original: ${f.tlf || infoClienteAbiertoDinamico.tlf}_`;
+                document.getElementById('modal-whatsapp-nota').classList.remove('hidden');
+            }
         }
     </script>
 </body>
-</html>
+    </html>
