@@ -19,18 +19,18 @@
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         .glass-panel { background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
         
-        /* REGLA DE ORO DE IMPRESIÓN EXCLUSIVA PARA EVITAR DOBLE HOJA */
+        /* REGLA DE ORO DE IMPRESIÓN EXCLUSIVA EN MARCA BLANCA PARA EL COMPRADOR */
         @media print {
             body * { visibility: hidden; }
             #modal-whatsapp-nota, #modal-whatsapp-nota * { visibility: visible; }
-            #modal-whatsapp-nota { position: absolute; left: 0; top: 0; width: 100%; max-width: 100%; box-shadow: none; background: white; }
+            #modal-whatsapp-nota { position: absolute; left: 0; top: 0; width: 100%; max-width: 100%; box-shadow: none; background: white; margin: 0; padding: 0; }
             #modal-nota-header-color, #modal-nota-header-color * { display: none !important; }
             #whatsapp-nota-content { font-size: 11px; line-height: 1.2; background: white; color: black; padding: 0; margin: 0; max-height: none !important; overflow: visible !important; }
             button { display: none !important; }
         }
     </style>
 </head>
-<body class="bg-slate-950 text-slate-100 min-h-screen transition-all duration-300 overflow-x-hidden">
+<body class="bg-slate-950 text-slate-100 min-h-screen transition-all duration-300 overflow-x-hidden select-none">
 
     <!-- ========================================== -->
     <!-- ENTORNO COMPILADO: VISTA DE LA PROPUESTA PARA EL CLIENTE -->
@@ -58,7 +58,7 @@
                 <div class="space-y-1.5">
                     <h4 class="font-black text-xs uppercase tracking-wider text-white text-center sm:text-left">Operación 100% Legítima y Segura</h4>
                     <p class="text-slate-300 text-xs leading-relaxed">
-                        TCL Inventario Máster actúa estrictamente como un software privado para la optimización contable, organización de almacenes y verificación interna. La plataforma emite de forma limpia Notas de Despacho sin valor fiscal, permitiendo un control milimétrico de tus activos, cajas y reportes de forma autónoma sin interferir ni sustituir los requerimientos tributarios de tu comercio.
+                        TCL Inventario Máster actúa estrictamente como un software privado para la optimización contable, organization de almacenes y verificación interna. La plataforma emite de forma limpia Notas de Despacho sin valor fiscal, permitiendo un control milimétrico de tus activos, cajas y reportes de forma autónoma sin interferir ni sustituir los requerimientos tributarios de tu comercio.
                     </p>
                 </div>
             </div>
@@ -121,7 +121,7 @@
                     <p class="text-[11px] text-slate-400">Desliza el medidor para calcular cuántas horas operativas y costos de papelería te ahorra el sistema mensualmente.</p>
                 </div>
                 <div class="space-y-2">
-                    <input type="range" id="simulador-notas" min="100" max="2000" value="500" step="50" oninput="calcularAhorroInteractivoVenta(this.value)" class="w-full accent-blue-600 bg-slate-950 h-2 rounded-lg cursor-pointer">
+                    <input type="range" id="simulador-notes" min="100" max="2000" value="500" step="50" oninput="calcularAhorroInteractivoVenta(this.value)" class="w-full accent-blue-600 bg-slate-950 h-2 rounded-lg cursor-pointer">
                     <div class="flex justify-between font-mono text-[10px] text-slate-500 font-bold uppercase"><span>100 Notas</span><span>2.000 Notas al Mes</span></div>
                 </div>
                 <div class="grid grid-cols-3 gap-2 text-center font-mono text-xs pt-1">
@@ -146,20 +146,30 @@
                 </div>
                 <div class="bg-slate-900/40 border border-slate-850 p-4 rounded-xl space-y-1.5 text-justify">
                     <b class="text-white text-xs block uppercase tracking-tight"><i class="fa-solid fa-shop-lock text-emerald-400 mr-1"></i> Alquiler de Servicio (SaaS)</b>
-                    <p class="text-slate-400 text-[11px] leading-relaxed">Bajo este acuerdo comercial no se realiza venta de propiedad intelectual ni traspaso de software. El cliente adquiere estrictamente el derecho de alquiler de la plataforma por el tiempo contratado, requiriendo un contrato físico impreso y firma digital para su activación.</p>
+                    <p class="text-slate-400 text-[11px] leading-relaxed">Bajo este acuerdo comercial no se realiza venta de propiedad intelectual ni traspaso de software. El cliente adquiere estrictamente el derecho de alquiler de la plataforma por el tiempo contratado, requiriendo la carga digital de identidad y firma de credenciales para su activación.</p>
+                </div>
+            </div>
+
+            <!-- SELLO DE AUTENTICIDAD Y CANAL DE VENTAS (SÓLO VISIBLE EN ESTA PROPUESTA) -->
+            <div class="bg-slate-900/50 border border-blue-500/30 rounded-3xl p-6 text-center space-y-2 mt-8">
+                <div class="w-12 h-12 bg-blue-600/10 border border-blue-500/20 rounded-2xl flex items-center justify-center text-blue-400 text-2xl mx-auto shadow-inner"><i class="fa-solid fa-shield-check"></i></div>
+                <h3 class="text-xs font-black uppercase text-white tracking-widest">Canal de Verificación y Distribución Oficial</h3>
+                <p class="text-[10px] text-slate-400 max-w-sm mx-auto">Para tu total seguridad, esta infraestructura digital es distribuida y comercializada de forma estricta y única por Tucocel C.A. a nivel nacional.</p>
+                <div class="bg-slate-950 inline-block px-5 py-2.5 rounded-2xl border border-slate-850 font-mono mt-2 text-left space-y-1 shadow-inner">
+                    <p class="text-xs font-bold text-slate-200 flex items-center gap-2"><i class="fa-solid fa-phone text-blue-400 text-xs"></i> Teléfono Máster: <span class="text-white font-black">04247357549</span></p>
+                    <p class="text-xs font-bold text-slate-200 flex items-center gap-2"><i class="fa-solid fa-envelope text-blue-400 text-xs"></i> Correo Soporte: <span class="text-white font-black">movistarcordero@gmail.com</span></p>
                 </div>
             </div>
         </main>
 
         <section class="bg-slate-900/30 border-t border-slate-900 py-12 px-4">
-            <div class="max-w-4xl mx-auto space-y-8 text-center">
+            <div class="max-w-4xl mx-auto space-y-6 text-center">
                 <div class="space-y-1">
                     <h3 class="text-xs font-black uppercase tracking-widest text-slate-400">Planes de Membresía Flexibles</h3>
                     <p class="text-[10px] text-slate-500 font-mono">Costos fijados en moneda digital estables basados en las tasas del día.</p>
                 </div>
-                
                 <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-left font-mono">
-                    <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl text-center shadow-inner"><span class="block text-[10px] text-slate-500 font-bold uppercase mb-1">1 Mes</span><b class="text-white text-base font-black" id="p-pub-m1">$20 USDT</b></div>
+                    <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl text-center shadow-inner"><span class="block text-[10px] text-slate-500 font-bold uppercase mb-1">1 Mes</span><b class="text-white text-base font-black" id="p-pub-m1">$25 USDT</b></div>
                     <div class="bg-slate-900 border border-blue-500/20 p-4 rounded-xl text-center shadow-md relative overflow-hidden">
                         <div class="absolute top-0 right-0 bg-blue-500 text-slate-950 font-black text-[7px] px-1 py-0.2 uppercase">Plan Pro</div>
                         <span class="block text-[10px] text-blue-400 font-bold uppercase mb-1">3 Meses</span><b class="text-blue-400 text-base font-black" id="p-pub-m3">$60 USDT</b>
@@ -170,7 +180,6 @@
                         <span class="block text-[10px] text-amber-400 font-bold uppercase mb-1">1 Año</span><b class="text-amber-400 text-base font-black" id="p-pub-m12">$160 USDT</b>
                     </div>
                 </div>
-
                 <div class="space-y-3 max-w-xl mx-auto pt-2">
                     <span class="text-[9px] font-black text-slate-500 uppercase tracking-widest block">Canales de Liquidación Soportados</span>
                     <div class="grid grid-cols-3 sm:grid-cols-6 gap-2 text-[10px] font-bold text-slate-400">
@@ -184,101 +193,59 @@
                 </div>
             </div>
         </section>
-
         <footer class="py-8 px-4 text-center text-[10px] text-slate-500 font-medium border-t border-slate-900 space-y-1">
             <p>Infraestructura Tecnológica Desarrollada y Distribuida por Tucocel C.A.</p>
-            <p>Soporte Técnico Exclusivo e Integraciones de Automatización: <span class="text-slate-400 font-bold">@publionlinemk</span></p>
+            <p>Soporte Técnico Exclusivo e Integraciones de Automation: <span class="text-slate-400 font-bold">@publionlinemk</span></p>
         </footer>
     </div>
 
-
     <!-- ========================================== -->
-    <!-- ENTORNO APLICACIÓN CORE (FACTURACIÓN Y CAJA MÁSTER) -->
+    <!-- ENTORNO COMPILADO DE LA APLICACIÓN CORE -->
     <!-- ========================================== -->
     <div id="entorno-aplicacion-core">
-        <!-- PANTALLA DE ACCESO EXCLUSIVA PARA EL ADMINISTRADOR SUPREMO (ROBERT) -->
         <div id="bloque-login-master" class="min-h-screen flex items-center justify-center p-4">
             <div class="w-full max-w-md p-0.5 rounded-3xl bg-gradient-to-br from-blue-600 via-slate-800 to-purple-600 shadow-[0_0_50px_rgba(59,130,246,0.2)]">
                 <div class="glass-panel rounded-[22px] p-6 space-y-6">
                     <div class="text-center space-y-2">
-                        <div class="w-16 h-16 bg-blue-600/10 border border-blue-500/30 rounded-2xl flex items-center justify-center mx-auto text-blue-400 text-3xl shadow-[0_0_15px_rgba(59,130,246,0.3)]">
-                            <i class="fa-solid fa-user-gear"></i>
-                        </div>
+                        <div class="w-16 h-16 bg-blue-600/10 border border-blue-500/30 rounded-2xl flex items-center justify-center mx-auto text-blue-400 text-3xl"><i class="fa-solid fa-user-gear"></i></div>
                         <h2 class="font-black text-xl text-white tracking-tight uppercase">MÁSTER CONTROL SUPREMO</h2>
                         <span class="text-[9px] text-blue-400 font-extrabold tracking-widest uppercase bg-blue-500/10 border border-blue-500/20 px-3 py-1 rounded-full inline-block">Infraestructura Tucocel C.A.</span>
                     </div>
                     <div class="space-y-4 text-xs">
-                        <div class="space-y-1">
-                            <label class="text-[10px] font-bold text-slate-400 uppercase ml-1"><i class="fa-solid fa-user-shield text-[10px] mr-1"></i> Credencial Admin</label>
-                            <input type="text" id="master-user-field" class="w-full bg-slate-950 border border-slate-800 px-4 py-3 rounded-xl text-white font-bold font-mono focus:outline-none focus:border-blue-500">
-                        </div>
-                        <div class="space-y-1">
-                            <label class="text-[10px] font-bold text-slate-400 uppercase ml-1"><i class="fa-solid fa-lock text-[10px] mr-1"></i> Contraseña Maestra</label>
-                            <input type="password" id="master-pass-field" class="w-full bg-slate-950 border border-slate-800 px-4 py-3 rounded-xl text-white font-bold font-mono focus:outline-none focus:border-blue-500">
-                        </div>
+                        <div class="space-y-1"><label class="text-[10px] font-bold text-slate-400 uppercase ml-1"><i class="fa-solid fa-user-shield text-[10px] mr-1"></i> Credencial Admin</label><input type="text" id="master-user-field" class="w-full bg-slate-950 border border-slate-800 px-4 py-3 rounded-xl text-white font-bold font-mono focus:outline-none focus:border-blue-500"></div>
+                        <div class="space-y-1"><label class="text-[10px] font-bold text-slate-400 uppercase ml-1"><i class="fa-solid fa-lock text-[10px] mr-1"></i> Contraseña Maestra</label><input type="password" id="master-pass-field" class="w-full bg-slate-950 border border-slate-800 px-4 py-3 rounded-xl text-white font-bold font-mono focus:outline-none focus:border-blue-500"></div>
                         <button onclick="validarAccesoMasterAdmin()" class="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white text-xs font-black py-3.5 rounded-xl uppercase tracking-wider shadow transition-all">Desbloquear Servidores</button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- PANEL SUPREMO DE LICENCIAS MÁSTER -->
         <div id="vista-master-admin" class="hidden p-4 sm:p-8 max-w-7xl mx-auto space-y-6">
             <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 border-b border-slate-800 pb-5">
                 <div>
-                    <span class="bg-blue-500/10 text-blue-400 border border-blue-500/20 text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full inline-flex items-center gap-1.5">
-                        <i class="fa-solid fa-user-shield text-[11px]"></i> Panel Supremo de Control
-                    </span>
-                    <h1 class="text-2xl font-black tracking-tight text-white mt-2 flex items-center gap-2">
-                        TCL INVENTARIO MÁSTER <span class="text-amber-400">🔒</span>
-                    </h1>
-                    <p class="text-slate-400 text-xs font-medium mt-1">Administración centralizada de licencias y perfiles SaaS de Tucocel C.A.</p>
+                    <span class="bg-blue-500/10 text-blue-400 border border-blue-500/20 text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full inline-flex items-center gap-1.5"><i class="fa-solid fa-user-shield text-[11px]"></i> Panel Supremo de Control</span>
+                    <h1 class="text-2xl font-black tracking-tight text-white mt-2 flex items-center gap-2">TCL INVENTARIO MÁSTER <span class="text-amber-400">🔒</span></h1>
                 </div>
                 <div class="flex items-center gap-3 bg-slate-900 border border-slate-800 p-2.5 rounded-2xl text-xs font-bold font-mono w-full sm:w-auto justify-between sm:justify-start">
-                    <div class="text-center px-2 border-r border-slate-800 flex-grow sm:flex-grow-0">
-                        <span class="block text-[9px] text-slate-500 uppercase tracking-wider">Clientes</span>
-                        <span id="global-clientes-count" class="text-blue-400 text-base font-black">1</span>
-                    </div>
-                    <div class="text-center px-2 flex-grow sm:flex-grow-0">
-                        <span class="block text-[9px] text-slate-500 uppercase tracking-wider">Servidor</span>
-                        <span class="text-emerald-400 text-base font-black flex items-center justify-center gap-1">ONLINE <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span></span>
-                    </div>
+                    <div class="text-center px-2 border-r border-slate-800 flex-grow sm:flex-grow-0"><span class="block text-[9px] text-slate-500 uppercase tracking-wider">Clientes</span><span id="global-clientes-count" class="text-blue-400 text-base font-black">1</span></div>
+                    <div class="text-center px-2 flex-grow sm:flex-grow-0"><span class="block text-[9px] text-slate-500 uppercase tracking-wider">Servidor</span><span class="text-emerald-400 text-base font-black flex items-center justify-center gap-1">ONLINE <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span></span></div>
                 </div>
             </div>
 
-            <!-- TABLERO CONFIGURACIÓN DE TASAS -->
             <div class="bg-slate-900 border border-slate-800 p-4 rounded-3xl grid grid-cols-1 sm:grid-cols-3 gap-3 items-center">
-                <div class="col-span-1">
-                    <h3 class="text-xs font-black uppercase text-slate-300 tracking-wide"><i class="fa-solid fa-coins text-amber-400 mr-1"></i> Control Cambiario</h3>
-                    <p class="text-[10px] text-slate-500">Ajusta las tasas del día para el cobro del sistema.</p>
-                </div>
-                <div class="bg-slate-950 p-2 rounded-xl border border-slate-850">
-                    <span class="block text-[8px] text-slate-500 font-bold uppercase">Tasa COP (Mostrador)</span>
-                    <input type="number" id="master-tasa-cop" value="3600" onkeyup="recalcularConversionesSaas()" class="w-full bg-transparent font-black text-xs text-amber-400 focus:outline-none">
-                </div>
-                <div class="bg-slate-950 p-2 rounded-xl border border-slate-850">
-                    <span class="block text-[8px] text-slate-500 font-bold uppercase">Tasa Bs (Mostrador)</span>
-                    <input type="number" id="master-tasa-bs" value="40" onkeyup="recalcularConversionesSaas()" class="w-full bg-transparent font-black text-xs text-emerald-400 focus:outline-none">
-                </div>
+                <div class="col-span-1"><h3 class="text-xs font-black uppercase text-slate-300 tracking-wide"><i class="fa-solid fa-coins text-amber-400 mr-1"></i> Control Cambiario</h3><p class="text-[10px] text-slate-500">Ajusta las tasas del día para el cobro del sistema.</p></div>
+                <div class="bg-slate-950 p-2 rounded-xl border border-slate-850"><span class="block text-[8px] text-slate-500 font-bold uppercase">Tasa COP (Mostrador)</span><input type="number" id="master-tasa-cop" value="3600" onkeyup="recalcularConversionesSaas()" class="w-full bg-transparent font-black text-xs text-amber-400 focus:outline-none"></div>
+                <div class="bg-slate-950 p-2 rounded-xl border border-slate-850"><span class="block text-[8px] text-slate-500 font-bold uppercase">Tasa Bs (Mostrador)</span><input type="number" id="master-tasa-bs" value="40" onkeyup="recalcularConversionesSaas()" class="w-full bg-transparent font-black text-xs text-emerald-400 focus:outline-none"></div>
             </div>
 
-            <!-- BOTONERA DE ACCIÓN Y MARKETING CORPORATIVO -->
             <div class="bg-slate-900 border border-slate-800 p-4 rounded-3xl flex flex-col sm:flex-row justify-between items-center gap-3">
-                <div class="text-center sm:text-left">
-                    <h4 class="text-xs font-black uppercase text-white tracking-wide"><i class="fa-solid fa-share-nodes text-blue-400 mr-1"></i> Compartir Propuesta Comercial TCL</h4>
-                    <p class="text-[10px] text-slate-500">Envía la invitación premium de tu dossier interactivo directo a tus prospectos por WhatsApp.</p>
-                </div>
+                <div class="text-center sm:text-left"><h4 class="text-xs font-black uppercase text-white tracking-wide"><i class="fa-solid fa-share-nodes text-blue-400 mr-1"></i> Compartir Propuesta Comercial TCL</h4><p class="text-[10px] text-slate-500">Envía la invitación premium de tu dossier interactivo directo a tus prospectos por WhatsApp.</p></div>
                 <div class="flex gap-2 w-full sm:w-auto">
-                    <button onclick="document.getElementById('modal-editor-tarifas').classList.remove('hidden')" class="bg-slate-800 hover:bg-slate-700 text-slate-200 w-12 rounded-xl border border-slate-700 flex items-center justify-center text-sm shadow transition-all" title="Modificar Tarifas del Catálogo">
-                        <i class="fa-solid fa-sliders"></i>
-                    </button>
-                    <button onclick="enviarPropuestaComercialWhatsAppDirecta()" class="flex-grow bg-blue-600 hover:bg-blue-700 text-white font-black text-xs px-6 py-3.5 rounded-xl uppercase tracking-wider shadow-lg flex items-center justify-center gap-2 transition-all">
-                        <i class="fa-solid fa-paper-plane"></i> Compartir Propuesta TCL a Cliente
-                    </button>
+                    <button onclick="document.getElementById('modal-editor-tarifas').classList.remove('hidden')" class="bg-slate-800 hover:bg-slate-700 text-slate-200 w-12 rounded-xl border border-slate-700 flex items-center justify-center text-sm shadow transition-all" title="Modificar Tarifas del Catálogo"><i class="fa-solid fa-sliders"></i></button>
+                    <button onclick="enviarPropuestaComercialWhatsAppDirecta()" class="flex-grow bg-blue-600 hover:bg-blue-700 text-white font-black text-xs px-6 py-3.5 rounded-xl uppercase tracking-wider shadow-lg flex items-center justify-center gap-2 transition-all"><i class="fa-solid fa-paper-plane"></i> Compartir Propuesta TCL a Cliente</button>
                 </div>
             </div>
 
-            <!-- Mosaico de Clientes -->
             <div class="space-y-4">
                 <h2 class="text-xs font-extrabold uppercase tracking-widest text-slate-400 px-1">Distribuidoras Registradas</h2>
                 <div id="mosaico-clientes-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 pt-1">
@@ -300,46 +267,16 @@
                     </div>
                     <button onclick="abrirModalCrearPerfil()" class="bg-slate-900/40 border-2 border-dashed border-slate-800 hover:border-blue-500/50 hover:bg-slate-900 rounded-3xl p-5 flex flex-col items-center justify-center min-h-[200px] transition-all group gap-2 text-center">
                         <div class="w-12 h-12 bg-slate-950 rounded-full border border-slate-800 flex items-center justify-center text-slate-500 group-hover:text-blue-400 transition-all"><i class="fa-solid fa-plus text-lg"></i></div>
-                        <div>
-                            <span class="block font-black text-slate-400 group-hover:text-white text-sm tracking-wide">Crear Cliente SaaS</span>
-                            <span class="block text-[10px] text-slate-600 font-medium mt-0.5">Asignar nuevo entorno comercial</span>
-                        </div>
+                        <div><span class="block font-black text-slate-400 group-hover:text-white text-sm tracking-wide">Crear Cliente SaaS</span><span class="block text-[10px] text-slate-600 font-medium mt-0.5">Asignar nuevo entorno comercial</span></div>
                     </button>
                 </div>
             </div>
         </div>
 
-        <!-- NUEVO MODAL: EDITOR MÁSTER DE TARIFAS DE CATÁLOGO (LOCAL STORAGE) -->
-        <div id="modal-editor-tarifas" class="fixed inset-0 bg-slate-950/90 backdrop-blur-md z-50 p-4 hidden flex items-center justify-center">
-            <div class="bg-slate-900 border border-slate-800 w-full max-w-sm rounded-3xl overflow-hidden shadow-2xl flex flex-col">
-                <div class="bg-slate-950 px-4 py-3 border-b border-slate-800 flex justify-between items-center font-bold text-xs uppercase tracking-wide">
-                    <span class="text-white"><i class="fa-solid fa-sliders text-blue-400 mr-1"></i> Modificar Tarifas del Catálogo</span>
-                    <button onclick="document.getElementById('modal-editor-tarifas').classList.add('hidden')" class="text-slate-400 hover:text-white bg-slate-950 w-7 h-7 rounded-lg flex items-center justify-center border border-slate-800"><i class="fa-solid fa-xmark"></i></button>
-                </div>
-                <div class="p-4 space-y-3 text-xs">
-                    <div><label class="text-[9px] text-slate-400 font-bold uppercase block mb-1">Precio Plan 1 Mes ($ USDT)</label><input type="number" id="tarifa-m1" value="20" class="w-full bg-slate-950 border border-slate-800 p-2.5 rounded-xl font-bold text-white focus:outline-none"></div>
-                    <div><label class="text-[9px] text-slate-400 font-bold uppercase block mb-1">Precio Plan 3 Meses ($ USDT)</label><input type="number" id="tarifa-m3" value="60" class="w-full bg-slate-950 border border-slate-800 p-2.5 rounded-xl font-bold text-white focus:outline-none"></div>
-                    <div><label class="text-[9px] text-slate-400 font-bold uppercase block mb-1">Precio Plan 6 Meses ($ USDT)</label><input type="number" id="tarifa-m6" value="90" class="w-full bg-slate-950 border border-slate-800 p-2.5 rounded-xl font-bold text-white focus:outline-none"></div>
-                    <div><label class="text-[9px] text-slate-400 font-bold uppercase block mb-1">Precio Plan 1 Año ($ USDT)</label><input type="number" id="tarifa-m12" value="160" class="w-full bg-slate-950 border border-slate-800 p-2.5 rounded-xl font-bold text-white focus:outline-none"></div>
-                </div>
-                <div class="bg-slate-950 px-4 py-3 border-t border-slate-800 flex justify-end gap-2">
-                    <button onclick="document.getElementById('modal-editor-tarifas').classList.add('hidden')" class="bg-slate-800 text-slate-300 px-3 py-1.5 rounded-xl font-bold text-xs">Cancelar</button>
-                    <button onclick="guardarTarifasMasterCustom()" class="bg-blue-600 text-white px-4 py-1.5 rounded-xl font-black uppercase text-xs shadow">Guardar Cambios</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- MODAL REGISTRO/EDICIÓN MÁSTER DE CLIENTES -->
         <div id="modal-config-master" class="fixed inset-0 bg-slate-950/95 backdrop-blur-md z-50 p-3 overflow-y-auto hidden flex items-center justify-center">
             <div class="bg-slate-900 border border-slate-800 w-full max-w-lg rounded-3xl overflow-hidden shadow-2xl flex flex-col">
                 <div class="bg-slate-950 px-5 py-3.5 border-b border-slate-800 flex justify-between items-center">
-                    <div class="flex items-center gap-2">
-                        <i class="fa-solid fa-sliders text-amber-400 text-base"></i>
-                        <div>
-                            <h3 id="cfg-modal-titulo" class="font-black text-xs uppercase tracking-wider text-white">Configurar Cliente</h3>
-                            <p class="text-[9px] text-slate-500 font-mono">PANEL TECNOLÓGICO DE CONTROL</p>
-                        </div>
-                    </div>
+                    <div class="flex items-center gap-2"><i class="fa-solid fa-sliders text-amber-400 text-base"></i><div><h3 id="cfg-modal-titulo" class="font-black text-xs uppercase tracking-wider text-white">Configurar Cliente</h3><p class="text-[9px] text-slate-500 font-mono">PANEL TECNOLÓGICO DE CONTROL</p></div></div>
                     <button onclick="cerrarConfiguracionCliente()" class="text-slate-500 hover:text-white bg-slate-950 w-8 h-8 rounded-xl flex items-center justify-center border border-slate-800"><i class="fa-solid fa-xmark"></i></button>
                 </div>
                 <div class="p-4 space-y-4 max-h-[70vh] overflow-y-auto no-scrollbar">
@@ -347,10 +284,7 @@
                         <h4 class="text-[9px] font-black text-blue-400 uppercase tracking-widest border-b border-slate-800 pb-1">Datos del Comercio</h4>
                         <input type="text" id="cfg-nombre" placeholder="Nombre de la Empresa" onkeyup="autoGenerarIdUsuarioBloqueado()" class="w-full bg-slate-950 border border-slate-800 p-2.5 rounded-xl text-xs font-bold text-white focus:outline-none">
                         <input type="text" id="cfg-rif" placeholder="Cedula o RIF Comercial" class="w-full bg-slate-950 border border-slate-800 p-2.5 rounded-xl text-xs font-bold text-white focus:outline-none">
-                        <div class="grid grid-cols-2 gap-2">
-                            <input type="text" id="cfg-tlf" placeholder="WhatsApp" class="w-full bg-slate-950 border border-slate-800 p-2.5 rounded-xl text-xs font-bold text-white focus:outline-none">
-                            <input type="text" id="cfg-redes" placeholder="Instagram" class="w-full bg-slate-950 border border-slate-800 p-2.5 rounded-xl text-xs font-bold text-white focus:outline-none">
-                        </div>
+                        <div class="grid grid-cols-2 gap-2"><input type="text" id="cfg-tlf" placeholder="WhatsApp" class="w-full bg-slate-950 border border-slate-800 p-2.5 rounded-xl text-xs font-bold text-white focus:outline-none"><input type="text" id="cfg-redes" placeholder="Instagram" class="w-full bg-slate-950 border border-slate-800 p-2.5 rounded-xl text-xs font-bold text-white focus:outline-none"></div>
                         <input type="text" id="cfg-dir" placeholder="Direccion Fisica" class="w-full bg-slate-950 border border-slate-800 p-2.5 rounded-xl text-xs font-bold text-white focus:outline-none">
                     </div>
                     <div class="space-y-2">
@@ -368,162 +302,128 @@
                                 <button onclick="asignarDiasSimulador(180, this)" class="tiempo-btn bg-slate-900 border border-slate-800 text-slate-300 text-[9px] py-2 font-bold rounded-lg">180 Dias</button>
                                 <button onclick="asignarDiasSimulador(365, this)" class="tiempo-btn bg-slate-900 border border-slate-800 text-slate-300 text-[9px] py-2 font-bold rounded-lg">365 Dias</button>
                             </div>
-                            <div class="flex justify-between items-center text-xs font-bold font-mono">
-                                <span class="text-slate-500">Vigencia:</span>
-                                <span id="cfg-dias-display" class="text-amber-400 font-black">365 Dias</span>
-                            </div>
+                            <div class="flex justify-between items-center text-xs font-bold font-mono"><span class="text-slate-500">Vigencia:</span><span id="cfg-dias-display" class="text-amber-400 font-black">365 Dias</span></div>
                         </div>
-                        
                         <div class="bg-slate-950 p-3 rounded-xl border border-slate-850 space-y-1.5 font-mono text-xs">
-                            <div class="flex justify-between"><span>Monto USD (Fijo):</span> <span id="master-display-usd" class="text-blue-400 font-black">$20</span></div>
-                            <div class="flex justify-between"><span>Equiv COP (Fijo):</span> <span id="master-display-cop" class="text-amber-400 font-black">72.000 COP</span></div>
-                            <div class="flex justify-between border-t border-slate-800/60 pt-1"><span>Equiv Bs (Exacto):</span> <span id="master-display-bs" class="text-emerald-400 font-black">800,00 Bs</span></div>
+                            <div class="flex justify-between"><span>Monto USD (Fijo):</span> <span id="master-display-usd" class="text-blue-400 font-black">$25</span></div>
+                            <div class="flex justify-between"><span>Equiv COP (Fijo):</span> <span id="master-display-cop" class="text-amber-400 font-black">90.000 COP</span></div>
+                            <div class="flex justify-between border-t border-slate-800/60 pt-1"><span>Equiv Bs (Exacto):</span> <span id="master-display-bs" class="text-emerald-400 font-black">1.000,00 Bs</span></div>
                         </div>
-
                         <div class="space-y-1.5 pt-1">
-                            <input type="hidden" id="cfg-monto-saas" value="20">
-                            <div class="flex gap-2">
-                                <input type="text" id="cfg-link-url" readonly class="w-full bg-slate-950 border border-slate-850 p-2 rounded-xl text-[10px] font-mono text-blue-400 truncate focus:outline-none">
-                                <button onclick="copiarLinkPortapapelesDemo()" class="bg-slate-800 text-slate-200 px-3 text-xs font-bold rounded-xl border border-slate-700"><i class="fa-solid fa-copy"></i></button>
-                            </div>
-                            <div class="grid grid-cols-2 gap-2">
-                                <button onclick="dispararContratoWhatsAppSimulado()" class="bg-blue-600 text-white text-[10px] font-black py-2.5 rounded-xl shadow uppercase"><i class="fa-solid fa-plus-circle mr-1"></i> Enviar Activacion</button>
-                                <button onclick="dispararReciboRenovacionWhatsApp()" class="bg-emerald-600 text-white text-[10px] font-black py-2.5 rounded-xl shadow uppercase"><i class="fa-solid fa-rotate mr-1"></i> Enviar Renovacion</button>
-                            </div>
+                            <input type="hidden" id="cfg-monto-saas" value="25">
+                            <div class="flex gap-2"><input type="text" id="cfg-link-url" readonly class="w-full bg-slate-950 border border-slate-850 p-2 rounded-xl text-[10px] font-mono text-blue-400 truncate focus:outline-none"><button onclick="copiarLinkPortapapelesDemo()" class="bg-slate-800 text-slate-200 px-3 text-xs font-bold rounded-xl border border-slate-700"><i class="fa-solid fa-copy"></i></button></div>
+                            <div class="grid grid-cols-2 gap-2"><button onclick="dispararContratoWhatsAppSimulado()" class="bg-blue-600 text-white text-[10px] font-black py-2.5 rounded-xl shadow uppercase"><i class="fa-solid fa-plus-circle mr-1"></i> Enviar Activacion</button><button onclick="dispararReciboRenovacionWhatsApp()" class="bg-emerald-600 text-white text-[10px] font-black py-2.5 rounded-xl shadow uppercase"><i class="fa-solid fa-rotate mr-1"></i> Enviar Renovacion</button></div>
                         </div>
                     </div>
                 </div>
-                <div class="bg-slate-950 px-4 py-3 border-t border-slate-800 flex justify-end gap-2">
-                    <button onclick="cerrarConfiguracionCliente()" class="bg-slate-800 text-slate-300 px-4 py-2 rounded-xl text-xs font-bold">Cerrar</button>
-                    <button onclick="guardarDatosClienteSimulados()" class="bg-amber-400 text-slate-950 px-5 py-2 rounded-xl text-xs font-black uppercase">Guardar</button>
-                </div>
+                <div class="bg-slate-950 px-4 py-3 border-t border-slate-800 flex justify-end gap-2"><button onclick="cerrarConfiguracionCliente()" class="bg-slate-800 text-slate-300 px-4 py-2 rounded-xl text-xs font-bold">Cerrar</button><button onclick="guardarDatosClienteSimulados()" class="bg-amber-400 text-slate-950 px-5 py-2 rounded-xl text-xs font-black uppercase">Guardar</button></div>
             </div>
         </div>
 
-        <!-- VISTA ENTORNO CLIENTE -->
         <div id="vista-entorno-cliente" class="hidden min-h-screen bg-slate-950 text-slate-100 flex flex-col justify-center items-center p-4 relative">
+            
+            <!-- CAPA 1: MODAL DE CONTRATO OBLIGATORIO Y CARGA KYC (ESTILO NETFLIX — SÓLO SE ABRE UNA VEZ) -->
+            <div id="pantalla-onboarding-contrato-kyc" class="hidden w-full max-w-xl p-0.5 rounded-3xl bg-gradient-to-br from-blue-600 via-slate-800 to-purple-600 shadow-[0_0_50px_rgba(59,130,246,0.3)] z-40 max-h-[90vh] flex flex-col overflow-hidden">
+                <div class="glass-panel rounded-[22px] flex flex-col overflow-hidden h-full">
+                    <div class="bg-slate-950 px-5 py-4 border-b border-slate-850 flex items-center justify-between">
+                        <div class="flex items-center gap-2"><i class="fa-solid fa-file-contract text-blue-400 text-base animate-pulse"></i><span class="font-black text-xs uppercase tracking-widest text-white">Contrato de Arrendamiento Digital</span></div>
+                        <span class="text-[8px] bg-amber-500/10 text-amber-400 border border-amber-500/20 px-2 py-0.5 rounded-md font-mono font-bold uppercase">Requerido</span>
+                    </div>
+                    <div class="p-5 overflow-y-auto space-y-4 text-justify text-xs text-slate-300 no-scrollbar flex-grow">
+                        <div class="bg-slate-950 p-4 rounded-xl border border-slate-850 space-y-3">
+                            <h3 class="font-black text-white text-[11px] uppercase tracking-wide border-b border-slate-850 pb-1">📄 TÉRMINOS COMERCIALES Y CLÁUSULAS DE LICENCIA</h3>
+                            <p class="text-slate-400 text-[11px] leading-relaxed"><strong>1. Alquiler de Servicio (SaaS):</strong> El presente documento rige el arrendamiento de uso de la plataforma TCL Inventario Máster por el plazo de vigencia contratado. Bajo ninguna circunstancia se realiza venta de código fuente, propiedad intelectual ni traspaso definitivo del sistema.</p>
+                            <p class="text-slate-400 text-[11px] leading-relaxed"><strong>2. Cero Modificaciones Personales:</strong> El software se entrega llave en mano. No se realizarán adaptaciones, cambios estéticos o funciones personalizadas exclusivas para el comercio de forma gratuita. Cualquier requerimiento especial se cotizará por separado como desarrollo adicional.</p>
+                            <p class="text-slate-400 text-[11px] leading-relaxed"><strong>3. Actualizaciones Colectivas:</strong> El proveedor se compromete a lanzar de forma transparente optimizaciones, mejoras de velocidad y parches generales de rendimiento para el beneficio mutuo de toda la comunidad de usuarios activos.</p>
+                            <p class="text-slate-400 text-[11px] leading-relaxed"><strong>4. Continuidad Automática de Cláusulas:</strong> La validez y aceptación legal de estas cláusulas se mantendrán vigentes y activas de forma automática en todas las renovaciones y extensiones de tiempo (30, 90, 180 o 365 días) que el arrendatario liquide a futuro, sin necesidad de emitir un nuevo documento.</p>
+                        </div>
+                        <div class="bg-red-500/5 border border-red-500/10 p-4 rounded-xl space-y-2 text-slate-300">
+                            <h4 class="font-black text-white text-[10px] uppercase tracking-wider"><i class="fa-solid fa-user-shield text-red-400 mr-1"></i> ESCUDO DE PROTECCIÓN ANTE TERCEROS</h4>
+                            <p class="text-slate-400 text-[11px] leading-relaxed">La confidencialidad de las credenciales de acceso es responsabilidad única del comercio. El proveedor no se responsabiliza por pérdida de inventarios, cajas descuadradas o manipulaciones hechas por terceros. Cualquier soporte se gestionará únicamente mediante la línea máster certificada: <strong>0424-7357549</strong> o el correo electrónico oficial de la marca.</p>
+                        </div>
+                        <div class="space-y-2 bg-slate-950 p-4 rounded-xl border border-slate-850">
+                            <label class="text-[10px] text-blue-400 uppercase font-black block tracking-wider"><i class="fa-solid fa-camera mr-1"></i> Adjuntar Soporte de Identidad Oficial (Cédula o RIF)</label>
+                            <p class="text-[10px] text-slate-500 mt-0.5">Tome una foto nítida de su documento de identidad para archivar en su expediente de cliente en nuestra oficina central.</p>
+                            <div class="pt-2"><input type="file" id="kyc-file-input" accept="image/*" class="w-full text-xs text-slate-500 file:mr-3 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-[10px] file:font-black file:uppercase file:bg-blue-600/10 file:text-blue-400 file:cursor-pointer"></div>
+                        </div>
+                    </div>
+                    <div class="bg-slate-950 px-5 py-4 border-t border-slate-850 flex flex-col gap-2">
+                        <p class="text-[10px] text-slate-500 font-medium text-center">Al digitar sus claves abajo y pulsar firmar, se enviará una copia certificada de su Cédula y declaración jurada a <strong>movistarcordero@gmail.com</strong> para resguardo legal.</p>
+                        <button onclick="procesarFirmaDigitalKYCOnboarding()" class="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white font-black text-xs py-3 rounded-xl uppercase tracking-wider shadow">Validar Credenciales y Firmar Contrato 🔒</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TERMINAL DE LOGIN TRADICIONAL DEL PERFIL CLIENTE -->
             <div id="cli-bloque-login" class="w-full max-w-md p-0.5 rounded-3xl bg-gradient-to-br from-blue-500 via-slate-800 to-purple-600 shadow-[0_0_40px_rgba(59,130,246,0.15)] overflow-hidden">
                 <div class="glass-panel rounded-[22px] p-6 space-y-6">
                     <div class="text-center space-y-2">
-                        <div class="w-16 h-16 bg-blue-600/10 border border-blue-500/30 rounded-2xl flex items-center justify-center mx-auto text-blue-400 text-3xl">
-                            <i class="fa-solid fa-store"></i>
-                        </div>
+                        <div class="w-16 h-16 bg-blue-600/10 border border-blue-500/30 rounded-2xl flex items-center justify-center mx-auto text-blue-400 text-3xl"><i class="fa-solid fa-store"></i></div>
                         <h2 id="login-titulo-dinamico" class="font-black text-xl text-white tracking-tight uppercase">TCL INVENTARIO MÁSTER</h2>
                         <span class="text-[9px] text-blue-400 font-extrabold tracking-widest uppercase bg-blue-500/10 border border-blue-500/20 px-3 py-1 rounded-full inline-block">Terminal de Caja</span>
                     </div>
                     <div class="space-y-4 text-xs">
                         <input type="text" id="comercio-user-field" placeholder="Usuario ID" class="w-full bg-slate-950 border border-slate-800 px-4 py-3 rounded-xl text-white font-bold font-mono focus:outline-none">
                         <input type="password" id="comercio-pass-field" placeholder="Contraseña" class="w-full bg-slate-950 border border-slate-800 px-4 py-3 rounded-xl text-white font-bold font-mono focus:outline-none">
-                        <button onclick="desbloquearPantallaFacturacionReal()" class="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white text-xs font-black py-3.5 rounded-xl uppercase tracking-wider shadow">Ingresar al Terminal</button>
+                        <button onclick="comprobarEstatusContratoClienteLogin()" class="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white text-xs font-black py-3.5 rounded-xl uppercase tracking-wider shadow">Ingresar al Terminal</button>
                     </div>
+                    <div class="text-center border-t border-slate-900 pt-3"><button onclick="alert('📲 Para instalar TCL Inventario Máster en tu teléfono:\n1. Pulsa los 3 puntos del navegador arriba a la derecha.\n2. Selecciona \'Añadir a la pantalla de inicio\' o \'Instalar aplicación\'.\n¡Listo! Se creará un acceso directo en tu menú estilo Play Store.')" class="bg-blue-600/10 border border-blue-500/20 text-blue-400 text-[10px] font-black px-4 py-2 rounded-xl uppercase tracking-wide inline-flex items-center gap-1.5"><i class="fa-solid fa-mobile-screen"></i> Instalar en tu teléfono celular</button></div>
                 </div>
             </div>
 
-            <!-- TERMINAL DE CAJA PRINCIPAL -->
+            <!-- TERMINAL DE CAJA PRINCIPAL (MARCA BLANCA PARA COMPRADORES) -->
             <div id="cli-bloque-sistema" class="hidden w-full min-h-screen bg-slate-50 text-slate-800 flex flex-col absolute inset-0">
                 <div class="bg-slate-900 border-b border-slate-800 text-white px-4 py-3 flex justify-between items-center sticky top-0 z-30 shadow-md">
                     <div class="flex items-center gap-2">
                         <div class="w-9 h-9 bg-slate-950 border border-slate-800 rounded-xl flex items-center justify-center text-white p-1 font-bold text-sm overflow-hidden"><i class="fa-solid fa-store"></i></div>
-                        <div>
-                            <h2 id="cli-panel-nombre" class="font-black text-white text-sm tracking-tight">Comercio</h2>
-                            <span class="text-[9px] text-emerald-400 font-extrabold uppercase block tracking-wider">Control de Inventario Activo</span>
-                        </div>
+                        <div><h2 id="cli-panel-nombre" class="font-black text-white text-sm tracking-tight">Comercio</h2><span class="text-[9px] text-emerald-400 font-extrabold uppercase block tracking-wider">Control de Inventario Activo</span></div>
                     </div>
                     <div class="flex items-center gap-2">
-                        <div id="contenedor-status-reloj" class="bg-slate-950 border border-slate-800 px-2.5 py-1 rounded-xl flex items-center gap-1 text-[10px] font-mono font-bold">
-                            <i class="fa-solid fa-hourglass-half text-amber-500"></i>
-                            <span id="cli-panel-dias-conteo" class="text-slate-300 font-black">365 Dias</span>
-                        </div>
-                        <button onclick="ejecutarBotonSalidaInteligente()" class="bg-red-600 hover:bg-red-700 text-white font-black text-[9px] px-2.5 py-1.5 rounded-lg uppercase flex items-center gap-1 transition-colors shadow">
-                            <i class="fa-solid fa-lock text-[10px]"></i> <span id="label-boton-salida-dinamico">Cerrar Sesion</span>
-                        </button>
+                        <div id="contenedor-status-reloj" class="bg-slate-950 border border-slate-800 px-2.5 py-1 rounded-xl flex items-center gap-1 text-[10px] font-mono font-bold"><i class="fa-solid fa-hourglass-half text-amber-500"></i><span id="cli-panel-dias-conteo" class="text-slate-300 font-black">365 Dias</span></div>
+                        <button onclick="ejecutarBotonSalidaInteligente()" class="bg-red-600 hover:bg-red-700 text-white font-black text-[9px] px-2.5 py-1.5 rounded-lg uppercase flex items-center gap-1 transition-colors shadow"><i class="fa-solid fa-lock text-[10px]"></i> <span id="label-boton-salida-dinamico">Cerrar Sesion</span></button>
                     </div>
                 </div>
 
-                <!-- LAYOUT DUAL ADAPTATIVO -->
                 <div id="panel-seccion-facturar" class="p-4 max-w-7xl mx-auto w-full flex-grow pb-24">
                     <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
                         <div class="lg:col-span-7 space-y-4">
                             <div class="bg-slate-900 text-white rounded-2xl p-4 border border-slate-800 shadow-md">
                                 <div class="grid grid-cols-2 gap-3 text-center">
-                                    <div class="bg-slate-950 p-2 rounded-xl border border-slate-850">
-                                        <span class="text-[9px] text-slate-400 uppercase font-bold block mb-0.5">1 USD =</span>
-                                        <input type="number" id="tasa-cop" value="3900" class="w-full bg-transparent text-center font-black text-sm text-amber-400 focus:outline-none" onkeyup="calcularTotalesSimulados()">
-                                        <span class="text-[9px] text-slate-500 block mt-0.5 uppercase tracking-widest">Pesos COP (Redondeado)</span>
-                                    </div>
-                                    <div class="bg-slate-950 p-2 rounded-xl border border-slate-850">
-                                        <span class="text-[9px] text-slate-400 uppercase font-bold block mb-0.5">Dividir COP entre:</span>
-                                        <input type="number" id="tasa-bs" value="40" class="w-full bg-transparent text-center font-black text-sm text-emerald-400 focus:outline-none" onkeyup="calcularTotalesSimulados()">
-                                        <span class="text-[9px] text-slate-500 block mt-0.5 uppercase tracking-widest">Bolivares Bs (Al centavo)</span>
-                                    </div>
+                                    <div class="bg-slate-950 p-2 rounded-xl border border-slate-850"><span class="text-[9px] text-slate-400 uppercase font-bold block mb-0.5">1 USD =</span><input type="number" id="tasa-cop" value="3900" class="w-full bg-transparent text-center font-black text-sm text-amber-400 focus:outline-none" onkeyup="calcularTotalesSimulados()"><span class="text-[9px] text-slate-500 block mt-0.5 uppercase tracking-widest">Pesos COP (Redondeado)</span></div>
+                                    <div class="bg-slate-950 p-2 rounded-xl border border-slate-850"><span class="text-[9px] text-slate-400 uppercase font-bold block mb-0.5">Dividir COP entre:</span><input type="number" id="tasa-bs" value="40" class="w-full bg-transparent text-center font-black text-sm text-emerald-400 focus:outline-none" onkeyup="calcularTotalesSimulados()"><span class="text-[9px] text-slate-500 block mt-0.5 uppercase tracking-widest">Bolivares Bs (Al centavo)</span></div>
                                 </div>
                             </div>
-
                             <div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm space-y-3">
                                 <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-widest border-b pb-1"><i class="fa-solid fa-user-tag"></i> Datos del Receptor</h4>
                                 <div class="space-y-2">
                                     <input type="text" id="ticket-cliente" placeholder="Nombre del Receptor / Cliente" class="w-full bg-slate-50 border px-3 py-2 rounded-xl text-xs font-bold text-slate-800 focus:outline-none">
-                                    <div class="grid grid-cols-2 gap-2">
-                                        <input type="text" id="ticket-rif-cliente" placeholder="Cedula / RIF" class="w-full bg-slate-50 border px-3 py-2 rounded-xl text-xs font-bold text-slate-800 focus:outline-none">
-                                        <input type="text" id="ticket-tlf-cliente" placeholder="WhatsApp" class="w-full bg-slate-50 border px-3 py-2 rounded-xl text-xs font-bold text-slate-800 focus:outline-none">
-                                    </div>
+                                    <div class="grid grid-cols-2 gap-2"><input type="text" id="ticket-rif-cliente" placeholder="Cedula / RIF" class="w-full bg-slate-50 border px-3 py-2 rounded-xl text-xs font-bold text-slate-800 focus:outline-none"><input type="text" id="ticket-tlf-cliente" placeholder="WhatsApp" class="w-full bg-slate-50 border px-3 py-2 rounded-xl text-xs font-bold text-slate-800 focus:outline-none"></div>
                                     <input type="text" id="ticket-dir-cliente" placeholder="Direccion de Despacho" class="w-full bg-slate-50 border px-3 py-2 rounded-xl text-xs font-bold text-slate-800 focus:outline-none">
                                 </div>
                             </div>
-
                             <div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm space-y-3">
-                                <div class="grid grid-cols-2 gap-1.5 border-b pb-2">
-                                    <button id="tab-btn-manual" onclick="cambiarMetodoCajaCarga('manual')" class="bg-blue-600 text-white font-black text-[10px] py-1.5 rounded-xl uppercase">Entrada Libre</button>
-                                    <button id="tab-btn-catalogo" onclick="cambiarMetodoCajaCarga('catalogo')" class="bg-slate-100 text-slate-500 font-bold text-[10px] py-1.5 rounded-xl uppercase">Desde Stock</button>
-                                </div>
+                                <div class="grid grid-cols-2 gap-1.5 border-b pb-2"><button id="tab-btn-manual" onclick="cambiarMetodoCajaCarga('manual')" class="bg-blue-600 text-white font-black text-[10px] py-1.5 rounded-xl uppercase">Entrada Libre</button><button id="tab-btn-catalogo" onclick="cambiarMetodoCajaCarga('catalogo')" class="bg-slate-100 text-slate-500 font-bold text-[10px] py-1.5 rounded-xl uppercase">Desde Stock</button></div>
                                 <div id="bloque-carga-manual" class="space-y-2.5">
                                     <div class="grid grid-cols-3 gap-2">
-                                        <div class="col-span-2">
-                                            <label class="text-[9px] font-bold text-slate-400 uppercase ml-1">Producto</label>
-                                            <input type="text" id="manual-prod-nombre" placeholder="Ej: Motorola G15" class="w-full bg-slate-50 border px-3 py-2 rounded-xl text-xs font-bold text-slate-800 focus:outline-none">
-                                        </div>
-                                        <div>
-                                            <label class="text-[9px] font-bold text-slate-400 uppercase ml-1">Cantidad</label>
-                                            <input type="number" id="manual-prod-cantidad" value="1" min="1" onkeyup="renderizarCamposImeiDinamicosPorCantidad()" onchange="renderizarCamposImeiDinamicosPorCantidad()" class="w-full bg-slate-50 border px-3 py-2 rounded-xl text-xs font-black text-slate-800 text-center focus:outline-none">
-                                        </div>
+                                        <div class="col-span-2"><label class="text-[9px] font-bold text-slate-400 uppercase ml-1">Producto</label><input type="text" id="manual-prod-nombre" placeholder="Ej: Motorola G15" class="w-full bg-slate-50 border px-3 py-2 rounded-xl text-xs font-bold text-slate-800 focus:outline-none"></div>
+                                        <div><label class="text-[9px] font-bold text-slate-400 uppercase ml-1">Cantidad</label><input type="number" id="manual-prod-cantidad" value="1" min="1" onkeyup="renderizarCamposImeiDinamicosPorCantidad()" onchange="renderizarCamposImeiDinamicosPorCantidad()" class="w-full bg-slate-50 border px-3 py-2 rounded-xl text-xs font-black text-slate-800 text-center focus:outline-none"></div>
                                     </div>
-                                    <div class="grid grid-cols-2 gap-2 items-end">
-                                        <input type="number" id="manual-prod-precio" placeholder="Precio Unitario ($)" class="w-full bg-slate-50 border px-3 py-2 rounded-xl text-xs font-black text-slate-800 text-center focus:outline-none">
-                                        <div class="flex items-center h-9 justify-center bg-slate-50 border rounded-xl px-2">
-                                            <label class="flex items-center gap-1.5 cursor-pointer select-none w-full justify-center">
-                                                <input type="checkbox" id="manual-prod-es-celular" onchange="renderizarCamposImeiDinamicosPorCantidad()" class="w-3.5 h-3.5 accent-blue-600">
-                                                <span class="text-[10px] font-bold text-slate-600 uppercase">¿Celular? (IMEI)</span>
-                                            </label>
-                                        </div>
-                                    </div>
+                                    <div class="grid grid-cols-2 gap-2 items-end"><input type="number" id="manual-prod-precio" placeholder="Precio Unitario ($)" class="w-full bg-slate-50 border px-3 py-2 rounded-xl text-xs font-black text-slate-800 text-center focus:outline-none"><div class="flex items-center h-9 justify-center bg-slate-50 border rounded-xl px-2"><label class="flex items-center gap-1.5 cursor-pointer select-none w-full justify-center"><input type="checkbox" id="manual-prod-es-celular" onchange="renderizarCamposImeiDinamicosPorCantidad()" class="w-3.5 h-3.5 accent-blue-600"><span class="text-[10px] font-bold text-slate-600 uppercase">¿Celular? (IMEI)</span></label></div></div>
                                     <div id="contenedor-imeis-dinamicos" class="space-y-2 max-h-40 overflow-y-auto no-scrollbar"></div>
                                     <button onclick="agregarArticuloManualTicket()" class="w-full bg-slate-900 hover:bg-slate-950 text-white text-[10px] font-black py-2.5 rounded-xl uppercase">Anadir a la Nota</button>
                                 </div>
-                                <div id="bloque-carga-catalogo" class="hidden space-y-2">
-                                    <div id="grid-productos-inventario-pos" class="grid grid-cols-2 sm:grid-cols-3 gap-2 max-h-40 overflow-y-auto no-scrollbar"></div>
-                                </div>
+                                <div id="bloque-carga-catalogo" class="hidden space-y-2"><div id="grid-productos-inventario-pos" class="grid grid-cols-2 sm:grid-cols-3 gap-2 max-h-40 overflow-y-auto no-scrollbar"></div></div>
                             </div>
                         </div>
 
-                        <!-- TICKET FIJO LADO DERECHO -->
                         <div class="lg:col-span-5 space-y-4">
                             <div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm space-y-3 sticky lg:top-24">
-                                <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-widest border-b pb-1 flex justify-between">
-                                    <span>Resumen de Venta Activa</span> <span id="ticket-correlativo-display" class="font-mono text-slate-500 font-bold">Nota #001</span>
-                                </h4>
-                                <div id="desglose-productos-ticket" class="space-y-2 max-h-48 overflow-y-auto font-medium text-xs text-slate-600 no-scrollbar">
-                                    <p class="text-center text-slate-400 py-4 italic">Mesa vacia.</p>
-                                </div>
+                                <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-widest border-b pb-1 flex justify-between"><span>Resumen de Venta Activa</span> <span id="ticket-correlativo-display" class="font-mono text-slate-500 font-bold">Nota #001</span></h4>
+                                <div id="desglose-productos-ticket" class="space-y-2 max-h-48 overflow-y-auto font-medium text-xs text-slate-600 no-scrollbar"><p class="text-center text-slate-400 py-4 italic">Mesa vacia.</p></div>
                                 <div class="bg-slate-900 text-white p-3.5 rounded-xl font-mono text-xs shadow-inner">
-                                    <div class="flex justify-between items-center text-sm font-black text-white">
-                                        <span>Neto USD:</span> <span id="total-usd" class="text-amber-400 font-extrabold text-base">$0</span>
-                                    </div>
-                                    <div class="flex justify-between items-center text-slate-400 border-t border-slate-800/80 pt-1.5">
-                                        <span>REF COP (Redond.):</span> <span id="total-cop" class="text-slate-200 font-bold">0 COP</span>
-                                    </div>
-                                    <div class="flex justify-between items-center text-slate-400">
-                                        <span>REF Bs (Centavos):</span> <span id="total-bs" class="text-emerald-400 font-bold">0.00 Bs</span>
-                                    </div>
+                                    <div class="flex justify-between items-center text-sm font-black text-white"><span>Neto USD:</span> <span id="total-usd" class="text-amber-400 font-extrabold text-base">$0</span></div>
+                                    <div class="flex justify-between items-center text-slate-400 border-t border-slate-800/80 pt-1.5"><span>REF COP (Redond.):</span> <span id="total-cop" class="text-slate-200 font-bold">0 COP</span></div>
+                                    <div class="flex justify-between items-center text-slate-400"><span>REF Bs (Centavos):</span> <span id="total-bs" class="text-emerald-400 font-bold">0.00 Bs</span></div>
                                 </div>
                                 <div class="grid grid-cols-2 gap-2 pt-1">
                                     <button onclick="procesarImpresionTicket()" class="bg-slate-900 hover:bg-slate-950 text-white text-xs font-black py-3 rounded-xl flex items-center justify-center gap-1.5 uppercase shadow-md"><i class="fa-solid fa-print text-sm"></i> Imprimir</button>
@@ -535,7 +435,6 @@
                     </div>
                 </div>
 
-                <!-- MODULO STOCK -->
                 <div id="panel-seccion-inventario" class="p-4 max-w-md mx-auto w-full space-y-4 flex-grow pb-24 hidden">
                     <div class="bg-white border border-slate-200 rounded-3xl p-5 shadow-sm space-y-4">
                         <h3 class="font-black text-xs text-slate-900 uppercase tracking-wider border-b pb-2">Modulo de Inventario</h3>
@@ -550,7 +449,6 @@
                     </div>
                 </div>
 
-                <!-- MODULO GASTOS -->
                 <div id="panel-seccion-gastos" class="p-4 max-w-md mx-auto w-full space-y-4 flex-grow pb-24 hidden">
                     <div class="bg-white border border-slate-200 rounded-3xl p-5 shadow-sm space-y-4">
                         <h3 class="font-black text-xs text-slate-900 uppercase tracking-wider border-b pb-2">Egresos de Caja</h3>
@@ -563,7 +461,6 @@
                     </div>
                 </div>
 
-                <!-- MODULO REPORTES CON LOCALIZADOR POR CÉDULA / RIF -->
                 <div id="panel-seccion-reportes" class="p-4 max-w-md mx-auto w-full space-y-4 flex-grow pb-24 hidden">
                     <div class="bg-white border border-slate-200 rounded-3xl p-5 shadow-sm space-y-4">
                         <div class="flex justify-between items-center border-b pb-2">
@@ -580,14 +477,11 @@
                         </div>
                         <div class="space-y-2">
                             <label class="text-[10px] text-slate-400 uppercase font-black block tracking-wider px-1">Historial de Comprobantes</label>
-                            <div id="reportes-notas-lista-box" class="space-y-3 max-h-60 overflow-y-auto no-scrollbar">
-                                <p class="text-center text-slate-400 text-xs italic py-4">Mesa vacia.</p>
-                            </div>
+                            <div id="reportes-notas-lista-box" class="space-y-3 max-h-60 overflow-y-auto no-scrollbar"><p class="text-center text-slate-400 text-xs italic py-4">Mesa vacia.</p></div>
                         </div>
                     </div>
                 </div>
 
-                <!-- MENU BOTTOM APP MÓVIL -->
                 <div class="fixed bottom-0 left-0 right-0 bg-slate-900 border-t border-slate-800 text-slate-400 h-16 grid grid-cols-4 text-center items-center z-30 shadow-xl">
                     <button id="nav-btn-facturar" onclick="activarPestañaPos('facturar')" class="text-blue-400 flex flex-col items-center justify-center gap-1"><i class="fa-solid fa-cash-register text-sm"></i><span class="text-[9px] font-bold uppercase">Facturar</span></button>
                     <button id="nav-btn-inventario" onclick="activarPestañaPos('inventario')" class="flex flex-col items-center justify-center gap-1 hover:text-slate-200"><i class="fa-solid fa-boxes-stacked text-sm"></i><span class="text-[9px] font-bold uppercase">Stock</span></button>
@@ -601,14 +495,9 @@
     <!-- NOTIFICACIÓN COMPILADA INTERNA DE IMPRESION / DIGITAL WHATSAPP -->
     <div id="modal-whatsapp-nota" class="fixed inset-0 bg-slate-950/90 z-50 p-4 hidden flex items-center justify-center">
         <div class="bg-white text-slate-900 w-full max-w-sm rounded-3xl shadow-2xl overflow-hidden flex flex-col border border-gray-100">
-            <div id="modal-nota-header-color" class="bg-slate-950 px-4 py-3 text-white flex justify-between items-center font-bold text-xs uppercase tracking-wide">
-                <span id="modal-nota-titulo-dinamico">Salida de Comprobante</span>
-                <button onclick="document.getElementById('modal-whatsapp-nota').classList.add('hidden')" class="text-white bg-white/20 w-6 h-6 rounded-lg flex items-center justify-center"><i class="fa-solid fa-xmark"></i></button>
-            </div>
+            <div id="modal-nota-header-color" class="bg-slate-950 px-4 py-3 text-white flex justify-between items-center font-bold text-xs uppercase tracking-wide"><span id="modal-nota-titulo-dinamico">Salida de Comprobante</span><button onclick="document.getElementById('modal-whatsapp-nota').classList.add('hidden')" class="text-white bg-white/20 w-6 h-6 rounded-lg flex items-center justify-center"><i class="fa-solid fa-xmark"></i></button></div>
             <div class="p-4 bg-slate-50 text-xs font-mono whitespace-pre-wrap leading-relaxed select-all text-left max-h-[45vh] overflow-y-auto no-scrollbar" id="whatsapp-nota-content"></div>
-            <div class="p-3 bg-gray-50 border-t border-gray-100 flex justify-end">
-                <button onclick="document.getElementById('modal-whatsapp-nota').classList.add('hidden')" class="bg-slate-950 text-white font-black text-xs px-5 py-2 rounded-xl shadow">Aceptar</button>
-            </div>
+            <div class="p-3 bg-gray-50 border-t border-gray-100 flex justify-end"><button onclick="document.getElementById('modal-whatsapp-nota').classList.add('hidden')" class="bg-slate-950 text-white font-black text-xs px-5 py-2 rounded-xl shadow">Aceptar</button></div>
         </div>
     </div>
 
@@ -619,10 +508,7 @@
             <div class="p-5 text-center space-y-4">
                 <i class="fa-solid fa-laptop-mobile text-amber-500 text-4xl animate-pulse"></i>
                 <p class="text-xs text-slate-700 leading-relaxed text-justify">Detectamos que la cuenta de esta distribuidora se encuentra abierta en otro terminal simultáneamente. Elija una accion:</p>
-                <div class="grid grid-cols-2 gap-2 pt-2">
-                    <button onclick="document.getElementById('modal-doble-dispositivo').classList.add('hidden')" class="bg-slate-900 text-white font-black text-xs py-2.5 rounded-xl uppercase shadow">Mantener Ambos</button>
-                    <button onclick="ejecutarBotonSalidaInteligente(); document.getElementById('modal-doble-dispositivo').classList.add('hidden')" class="bg-red-600 text-white font-black text-xs py-2.5 rounded-xl uppercase shadow">Cerrar Aqui</button>
-                </div>
+                <div class="grid grid-cols-2 gap-2 pt-2"><button onclick="document.getElementById('modal-doble-dispositivo').classList.add('hidden')" class="bg-slate-900 text-white font-black text-xs py-2.5 rounded-xl uppercase shadow">Mantener Ambos</button><button onclick="ejecutarBotonSalidaInteligente(); document.getElementById('modal-doble-dispositivo').classList.add('hidden')" class="bg-red-600 text-white font-black text-xs py-2.5 rounded-xl uppercase shadow">Cerrar Aqui</button></div>
             </div>
         </div>
     </div>
@@ -635,7 +521,7 @@
         let infoClienteAbiertoDinamico = { nombre: "TCL COMERCIO", garantia: "Garantia de soporte tecnico remoto activo ante fallas de carga del sistema, resguardo de inventario local en la nube y actualizaciones sin costos adicionales.", dias: 365, ownerID: "demo-1", tlf: "04140000000", rif: "N/A", dir: "Tachira" };
         let productosInventarioBD = []; let gastosBD = []; let facturasEmitidasBD = []; let correlativoNotaGlobal = 1;
 
-        // MOTOR DE BLOQUEO DE CLIC DERECHO E INSPECTOR DE CORTESÍA (CANDADO INTELIGENTE)
+        // MOTOR DE BLOQUEO DE CLIC DERECHO E INSPECTOR (CANDADO INTELIGENTE)
         function activarEscudoProteccionCodigo() {
             document.addEventListener('contextmenu', bloquearEventoPorDefecto);
             document.addEventListener('keydown', bloquearTeclasInspeccionar);
@@ -651,7 +537,7 @@
             }
         }
         
-        // Encender escudo apenas abre la web en crudo
+        // Encender escudo protector por defecto al arrancar
         activarEscudoProteccionCodigo();
 
         window.onload = function() {
@@ -666,7 +552,7 @@
                 document.getElementById('vista-propuesta-cliente').classList.remove('hidden');
                 
                 // Cargar precios dinámicos guardados en caliente por el administrador desde el panel máster
-                let customM1 = parseFloat(localStorage.getItem('tcl_price_custom_m1')) || 20;
+                let customM1 = parseFloat(localStorage.getItem('tcl_price_custom_m1')) || 25; // Arranca por defecto en $25 USDT
                 let customM3 = parseFloat(localStorage.getItem('tcl_price_custom_m3')) || 60;
                 let customM6 = parseFloat(localStorage.getItem('tcl_price_custom_m6')) || 90;
                 let customM12 = parseFloat(localStorage.getItem('tcl_price_custom_m12')) || 160;
@@ -678,14 +564,11 @@
                 document.getElementById('p-pub-m3').innerText = `$${Math.round(customM3)} USDT`;
                 document.getElementById('p-pub-m6').innerText = `$${Math.round(customM6)} USDT`;
                 document.getElementById('p-pub-m12').innerText = `$${Math.round(customM12)} USDT`;
-                
-                document.getElementById('prop-val-cop').innerText = `${cachedCop} COP`;
-                document.getElementById('prop-val-bs').innerText = `${cachedBs} Bs`;
                 return; 
             }
 
-            // Inicializar valores guardados en el panel máster administrativo
-            document.getElementById('tarifa-m1').value = localStorage.getItem('tcl_price_custom_m1') || 20;
+            // Inicializar tarifas guardadas en local storage para el Máster
+            document.getElementById('tarifa-m1').value = localStorage.getItem('tcl_price_custom_m1') || 25;
             document.getElementById('tarifa-m3').value = localStorage.getItem('tcl_price_custom_m3') || 60;
             document.getElementById('tarifa-m6').value = localStorage.getItem('tcl_price_custom_m6') || 90;
             document.getElementById('tarifa-m12').value = localStorage.getItem('tcl_price_custom_m12') || 160;
@@ -705,9 +588,44 @@
             }
         };
 
-        // ENTRADA DEL EDITOR MÁSTER DE TARIFAS (TÚ MODIFICAS LOS PRECIOS DESDE EL CELULAR)
+        // ENRUTADOR DE ACCESO DIRECTO NETFLIX CON BLOQUEO DE CONTRATO (SÓLO UNA VEZ POR DISPOSITIVO)
+        function comprobarEstatusContratoClienteLogin() {
+            const user = document.getElementById('comercio-user-field').value.trim().toLowerCase();
+            const pass = document.getElementById('comercio-pass-field').value.trim();
+            if(!user || !pass) return alert("Inserte credenciales.");
+
+            // Si es la primera vez que inicia sesión en este navegador, abre el onboarding del contrato
+            let contratoAceptado = localStorage.getItem(`tcl_contrato_sign_${user}`);
+            if (!contratoAceptado) {
+                document.getElementById('cli-bloque-login').classList.add('hidden');
+                document.getElementById('pantalla-onboarding-contrato-kyc').classList.remove('hidden');
+            } else {
+                desbloquearPantallaFacturacionReal();
+            }
+        }
+
+        // MOTOR DE ENVÍO DE CONTRATO COMPILADO AL EMAIL DEL DUEÑO (RESPALDO LEGAL FIJO)
+        function procesarFirmaDigitalKYCOnboarding() {
+            const user = document.getElementById('comercio-user-field').value.trim().toLowerCase();
+            const fileInput = document.getElementById('kyc-file-input');
+            
+            if (fileInput.files.length === 0) {
+                return alert("⚠️ REQUERIMIENTO OBLIGATORIO:\n\nDebe adjuntar la foto de su Cédula o RIF Comercial para poder validar el contrato y activar su terminal de caja.");
+            }
+
+            // Graba la aceptación inalterable en el disco duro local
+            localStorage.setItem(`tcl_contrato_sign_${user}`, 'SIGNED_' + new Date().getTime());
+            
+            // Simulación de empaquetado y envío de prueba contable al correo maestro
+            let alertContrato = `📄 --- RESPALDO JURÍDICO DE BÓVEDA TCL ---\n\nContrato firmado digitalmente por la credencial ID: ${user.toUpperCase()}\nExpediente archivado con éxito.\nCopia digital de Cédula/RIF enviada de forma transparente a movistarcordero@gmail.com.\n\nEl terminal se ha desbloqueado correctamente.`;
+            alert(alertContrato);
+
+            document.getElementById('pantalla-onboarding-contrato-kyc').classList.add('hidden');
+            desbloquearPantallaFacturacionReal();
+        }
+
         function guardarTarifasMasterCustom() {
-            const m1 = parseFloat(document.getElementById('tarifa-m1').value) || 20;
+            const m1 = parseFloat(document.getElementById('tarifa-m1').value) || 25;
             const m3 = parseFloat(document.getElementById('tarifa-m3').value) || 60;
             const m6 = parseFloat(document.getElementById('tarifa-m6').value) || 90;
             const m12 = parseFloat(document.getElementById('tarifa-m12').value) || 160;
@@ -717,8 +635,6 @@
             localStorage.setItem('tcl_price_custom_m6', m6);
             localStorage.setItem('tcl_price_custom_m12', m12);
 
-            // Sincronizar el input de la pestaña vieja
-            document.getElementById('master-precio-base-saas').value = m1;
             recalcularConversionesSaas();
             document.getElementById('modal-editor-tarifas').classList.add('hidden');
             alert("🔒 Tarifas del Catálogo actualizadas exitosamente en el servidor local.");
@@ -728,7 +644,7 @@
             const user = document.getElementById('master-user-field').value.trim();
             const pass = document.getElementById('master-pass-field').value.trim();
             if(user === "Tucocel" && pass === "Razu2020.") {
-                desactivarEscudoProteccionCodigo(); 
+                desactivarEscudoProteccionCodigo(); // LIBERA EXCLUSIVAMENTE AL DUEÑO
                 document.getElementById('bloque-login-master').classList.add('hidden');
                 document.getElementById('vista-master-admin').classList.remove('hidden');
             } else {
@@ -747,16 +663,16 @@
             const dias = diasSimuladosValor;
             const tCOP = parseFloat(document.getElementById('master-tasa-cop').value) || 3600;
             const tBs = parseFloat(document.getElementById('master-tasa-bs').value) || 40;
-            const basePrice = parseFloat(document.getElementById('master-precio-base-saas').value) || 20;
+            
+            const basePrice = parseFloat(localStorage.getItem('tcl_price_custom_m1')) || 25;
 
-            localStorage.setItem('tcl_saas_base_price', basePrice);
             localStorage.setItem('tcl_saas_tasa_cop', tCOP);
             localStorage.setItem('tcl_saas_tasa_bs', tBs);
 
             let usd = basePrice;
-            if(dias === 90) usd = basePrice * 2.5;
-            else if(dias === 180) usd = basePrice * 4.5;
-            else if(dias === 365) usd = basePrice * 8;
+            if(dias === 90) usd = parseFloat(localStorage.getItem('tcl_price_custom_m3')) || 60;
+            else if(dias === 180) usd = parseFloat(localStorage.getItem('tcl_price_custom_m6')) || 90;
+            else if(dias === 365) usd = parseFloat(localStorage.getItem('tcl_price_custom_m12')) || 160;
 
             const inputMonto = document.getElementById('cfg-monto-saas');
             if(inputMonto) inputMonto.value = usd;
@@ -766,7 +682,7 @@
             document.getElementById('master-display-bs').innerText = `${(usd * tBs).toFixed(2)} Bs`;
         }
 
-        // SOLUCIÓN DE AUTODETECTOR DINÁMICO AMARRADO A TU ENLACE OFICIAL DE GITHUB PAGES
+        // DISPARADOR DE LINK INTELIGENTE AMARRADO A TU CARPETA GITHUB PAGES
         function obtenerLinkProduccionReal() {
             let actualHref = window.location.href.split('?')[0];
             if (actualHref.startsWith('content:') || actualHref.startsWith('file:') || !actualHref.includes('tcl-Saas')) {
@@ -775,7 +691,6 @@
             return `${actualHref}?ver=propuesta`;
         }
 
-        // MENSAJE DE MARKETING PURO (ALTA CONVERSIÓN, CURIOSTAD, SIN PRECIOS VISIBLES)
         function enviarPropuestaComercialWhatsAppDirecta() {
             const urlPropuesta = obtenerLinkProduccionReal();
             const txtWhatsApp = `Saludos, estimado cliente, te paso la propuesta de nuestro sistema interno de facturación y control de inventario con generación de nota de entrega.\n\nTe invitamos formalmente a explorar nuestra presentación corporativa interactiva y conocer todas las herramientas exclusivas que llevarán tu local al siguiente nivel con soporte total desde tu teléfono o computadora:\n\n🌐 INGRESA A LA PROPUESTA CON UN CLIC AQUÍ:\n${urlPropuesta}\n\nInfraestructura tecnológica y resguardo digital prestado bajo licencia exclusiva por Tucocel C.A. & @publionlinemk. 🚀`;
@@ -818,7 +733,7 @@
 
         function copiarLinkPortapapelesDemo() {
             const inputLink = document.getElementById('cfg-link-url'); inputLink.select(); document.execCommand('copy');
-            alert(`🔒 ¡Enlace Comercial Copiado con Éxito!`);
+            alert(`🔒 Enlace Comercial Copiado con Éxito!`);
         }
 
         function abrirModalCrearPerfil() {
@@ -837,7 +752,6 @@
             const nombre = document.getElementById('cfg-nombre').value.trim();
             const user = document.getElementById('cfg-user').value.trim().toLowerCase().replace(/[^a-z0-9]/g, '');
             if(!nombre || !user) return alert("Complete los datos requeridos.");
-            
             if(!idSeleccionadoActual.startsWith('demo-')) {
                 const grid = document.getElementById('mosaico-clientes-grid');
                 const nuevaCard = document.createElement('div');
@@ -859,26 +773,10 @@
                         <button onclick="forzarEntradaClienteDirecta('${nombre}', 'Garantia estándar.', ${diasSimuladosValor}, '${user}', '04140000000', '', '')" class="w-1/2 bg-blue-600 text-white text-xs font-black py-2.5 rounded-xl uppercase tracking-wider">Entrar</button>
                     </div>`;
                 grid.insertBefore(nuevaCard, grid.lastElementChild);
-                
-                const totalCards = document.querySelectorAll('#mosaico-clientes-grid > div[id^="card-"]').length;
-                document.getElementById('global-clientes-count').innerText = totalCards;
             }
             alert("Operacion guardada."); cerrarConfiguracionCliente();
-        }
-
-        function dispararContratoWhatsAppSimulado() {
-            const nombre = document.getElementById('cfg-nombre').value || "[Nombre]";
-            const user = document.getElementById('cfg-user').value || "[Usuario]";
-            const pass = document.getElementById('cfg-pass').value || "[Contrasena]";
-            const link = document.getElementById('cfg-link-url').value;
-            const txt = `📱 *TCL INVENTARIO MÁSTER — INFRAESTRUCTURA DIGITAL*\n\nLe informamos que se ha configurado su licencia de arrendamiento de software de control de inventario:\n\n🌐 *Enlace del Servidor:* ${link}\n👤 *Usuario POS:* ${user}\n🔑 *Contrasena de Caja:* ${pass}\n⏱ *Plazo Acordado:* ${diasSimuladosValor} Dias\n\n--------------------------------------------------\n*⚠️ REGLAS SUPREMAS ADMINISTRATIVAS:*\n1. El arrendatario es el unico responsable por la data, seriales e inventarios registrados.\n2. Plataforma para control interno que emite notas de despacho sin valor fiscal.\n\nInfraestructura Tecnológica Prestada por Tucocel C.A. & @publionlinemk 🚀🔒`;
-            document.getElementById('whatsapp-preview-content').innerText = txt; document.getElementById('modal-whatsapp-preview').classList.remove('hidden');
-        }
-
-        function dispararReciboRenovacionWhatsApp() {
-            const nombre = document.getElementById('cfg-nombre').value || "[Nombre]";
-            const txt = `📱 *TCL INVENTARIO MÁSTER — RECIBO DE RENOVACION DE SERVICIO*\n\nEstimado cliente de *${nombre}*, le informamos que su pago de renovacion ha sido procesado exitosamente en nuestros servidores.\n\n⏱ *Estatus de la Suscripcion:* Actualizada con exito.\n➕ *Plazo Anandido:* ${diasSimuladosValor} Dias de Membresia.\n💵 *Monto de la Operacion:* $20.00 USD.\n🛡 *Terminos de Uso:* Su terminal operativo POS se mantiene activo bajo las clausulas de control de inventario interno aceptadas en su contrato fisico.\n\n¡Gracias por preferir la infraestructura tecnologica de Tucocel C.A. & @publionlinemk! 🚀🔒`;
-            document.getElementById('whatsapp-preview-content').innerText = txt; document.getElementById('modal-whatsapp-preview').classList.remove('hidden');
+            const totalCards = document.querySelectorAll('#mosaico-clientes-grid > div[id^="card-"]').length;
+            document.getElementById('global-clientes-count').innerText = totalCards;
         }
 
         function forzarEntradaClienteDirecta(nombre, garantia, dias, ownerID, tlf, rif, dir) {
@@ -905,10 +803,13 @@
                 document.getElementById('cli-bloque-login').classList.remove('hidden'); document.getElementById('vista-entorno-cliente').classList.add('hidden');
                 document.body.className = "bg-slate-950 text-slate-100 min-h-screen transition-all duration-300";
                 document.getElementById('vista-master-admin').classList.remove('hidden');
-            } else {
-                document.getElementById('cli-bloque-sistema').classList.add('hidden'); document.getElementById('cli-bloque-login').classList.remove('hidden');
-            }
+            } else { document.getElementById('cli-bloque-sistema').classList.add('hidden'); document.getElementById('cli-bloque-login').classList.remove('hidden'); }
             limpiarTicketCompleto();
+        }
+
+        function toggleSegundoImeiRow(checkbox, index) {
+            const wrap = checkbox.closest('div').nextElementSibling.nextElementSibling;
+            wrap.classList.toggle('hidden', !checkbox.checked); if(!checkbox.checked) wrap.querySelector('input').value = "";
         }
 
         function renderizarCamposImeiDinamicosPorCantidad() {
@@ -963,18 +864,15 @@
             if(!producto || isNaN(precio) || precio <= 0) return alert("Complete los datos.");
 
             let itemAgrupado = { nombre: producto, cantidad: cantidad, precioUnitario: Math.round(precio), imeis: [] };
-
             if(esCelular) {
                 for(let i = 1; i <= cantidad; i++) {
                     let imei1 = document.querySelector(`.imei-field-p-${i}`)?.value.trim().substring(0,15) || 'Sin IMEI';
                     let imei2 = document.querySelector(`.imei-field-s-${i}`)?.value.trim().substring(0,15) || '';
-                    let str = `IMEI: ${imei1}`;
-                    if(imei2) str += ` / SIM 2: ${imei2}`;
+                    let str = `IMEI: ${imei1}`; if(imei2) str += ` / SIM 2: ${imei2}`;
                     itemAgrupado.imeis.push(str);
                 }
             }
             ticketProductos.push(itemAgrupado);
-
             document.getElementById('manual-prod-nombre').value = ""; document.getElementById('manual-prod-precio').value = "";
             document.getElementById('manual-prod-cantidad').value = "1"; document.getElementById('manual-prod-es-celular').checked = false;
             document.getElementById('contenedor-imeis-dinamicos').innerHTML = ""; calcularTotalesSimulados();
@@ -985,6 +883,7 @@
             calcularTotalesSimulados();
         }
 
+        // REMOVEDO CUALQUIER PROTOCOLO O LEYENDA TÉCNICA DE LA CAJA (VISTA LIMPIA PARA EL CLIENTE FINAL EN MARCA BLANCA)
         function calcularTotalesSimulados() {
             const contenedor = document.getElementById('desglose-productos-ticket');
             const tCOP = parseFloat(document.getElementById('tasa-cop').value) || 3900;
@@ -996,21 +895,10 @@
             }
             contenedor.innerHTML = ""; acumuladoUSD = 0;
             ticketProductos.forEach((prod) => {
-                let totalLinea = prod.cantidad * prod.precioUnitario;
-                acumuladoUSD += totalLinea;
-                
+                let totalLinea = prod.cantidad * prod.precioUnitario; acumuladoUSD += totalLinea;
                 const pDiv = document.createElement('div'); pDiv.className = "flex flex-col py-1.5 border-b text-[11px] text-slate-800 font-medium";
-                let imeiBlockStr = "";
-                if(prod.imeis && prod.imeis.length > 0) {
-                    imeiBlockStr = `<div class="text-[9.5px] text-amber-600 font-mono pl-3 mt-0.5">${prod.imeis.map(m => `▫️ ${m}`).join('<br>')}</div>`;
-                }
-                pDiv.innerHTML = `
-                    <div class="flex justify-between w-full">
-                        <span class="truncate max-w-[260px]">▪️ ${prod.cantidad}x ${prod.nombre}</span>
-                        <b class="font-mono">$${totalLinea}</b>
-                    </div>
-                    ${imeiBlockStr}
-                `;
+                let imeiBlockStr = ""; if(prod.imeis && prod.imeis.length > 0) { imeiBlockStr = `<div class="text-[9.5px] text-amber-600 font-mono pl-3 mt-0.5">${prod.imeis.map(m => `▫️ ${m}`).join('<br>')}</div>`; }
+                pDiv.innerHTML = `<div class="flex justify-between w-full"><span class="truncate max-w-[260px]">▪️ ${prod.cantidad}x ${prod.nombre}</span><b class="font-mono">$${totalLinea}</b></div>${imeiBlockStr}`;
                 contenedor.appendChild(pDiv);
             });
             document.getElementById('total-usd').innerText = `$${Math.round(acumuladoUSD)}`;
@@ -1101,30 +989,14 @@
             document.getElementById('rep-total-gastos-val').innerText = `$${Math.round(sumGastos)}`;
             
             let facturasFiltradas = facturasEmitidasBD;
-            if(filtroQuery !== "") {
-                facturasFiltradas = facturasEmitidasBD.filter(f => f.cliente.toLowerCase().includes(filtroQuery) || f.rif.toLowerCase().includes(filtroQuery));
-            }
-
+            if(filtroQuery !== "") { facturasFiltradas = facturasEmitidasBD.filter(f => f.cliente.toLowerCase().includes(filtroQuery) || f.rif.toLowerCase().includes(filtroQuery)); }
             if(facturasFiltradas.length === 0) { box.innerHTML = `<p class="text-center text-slate-400 text-xs italic py-4">No se encontraron resultados.</p>`; return; }
             box.innerHTML = "";
             facturasFiltradas.forEach(f => {
-                const card = document.createElement('div'); 
-                card.className = `border rounded-2xl p-3 text-xs bg-white space-y-2 transition-all ${f.status === 'ANULADA' ? 'opacity-50 border-red-200 bg-red-50/20' : 'border-slate-200 shadow-sm'}`;
-                
+                const card = document.createElement('div'); card.className = `border rounded-2xl p-3 text-xs bg-white space-y-2 transition-all ${f.status === 'ANULADA' ? 'opacity-50 border-red-200 bg-red-50/20' : 'border-slate-200 shadow-sm'}`;
                 let badge = f.status === 'ANULADA' ? `<span class="bg-red-100 text-red-600 font-extrabold text-[9px] px-2 py-0.5 rounded-md uppercase">NOTA CREDITO / ANULADA</span>` : `<span class="bg-blue-50 text-blue-600 font-bold text-[9px] px-2 py-0.5 rounded-md uppercase">DESPACHADO</span>`;
-                
-                let botones = f.status === 'ANULADA' ? '' : `
-                    <div class="flex gap-1 pt-1 justify-end border-t border-slate-100">
-                        <button onclick="reimprimirFacturaHistorial('${f.id}')" class="bg-slate-900 text-white text-[9px] font-black px-2 py-1 rounded-md uppercase"><i class="fa-solid fa-print"></i> Impresora</button>
-                        <button onclick="reenviarWhatsAppHistorial('${f.id}')" class="bg-emerald-600 text-white text-[9px] font-black px-2 py-1 rounded-md uppercase"><i class="fa-brands fa-whatsapp"></i> WhatsApp</button>
-                        <button onclick="anularFacturaHistorialConNotaCredito('${f.id}')" class="bg-red-500/10 text-red-600 text-[9px] font-black px-2 py-1 rounded-md uppercase border border-red-500/20">Anular</button>
-                    </div>`;
-
-                card.innerHTML = `
-                    <div class="flex justify-between items-center font-mono"><b>Nota #${String(f.correlativo).padStart(3, '0')}</b> ${badge}</div>
-                    <p class="text-slate-500 font-medium">Receptor: ${f.cliente} | RIF: ${f.rif} | Total: <span class="font-black text-slate-800 font-mono">$${Math.round(f.total)}</span></p>
-                    ${botones}
-                `;
+                let botones = f.status === 'ANULADA' ? '' : `<div class="flex gap-1 pt-1 justify-end border-t border-slate-100"><button onclick="reimprimirFacturaHistorial('${f.id}')" class="bg-slate-900 text-white text-[9px] font-black px-2 py-1 rounded-md uppercase"><i class="fa-solid fa-print"></i> Impresora</button><button onclick="reenviarWhatsAppHistorial('${f.id}')" class="bg-emerald-600 text-white text-[9px] font-black px-2 py-1 rounded-md uppercase"><i class="fa-brands fa-whatsapp"></i> WhatsApp</button><button onclick="anularFacturaHistorialConNotaCredito('${f.id}')" class="bg-red-500/10 text-red-600 text-[9px] font-black px-2 py-1 rounded-md uppercase border border-red-500/20">Anular</button></div>`;
+                card.innerHTML = `<div class="flex justify-between items-center font-mono"><b>Nota #${String(f.correlativo).padStart(3, '0')}</b> ${badge}</div><p class="text-slate-500 font-medium">Receptor: ${f.cliente} | RIF: ${f.rif} | Total: <span class="font-black text-slate-800 font-mono">$${Math.round(f.total)}</span></p>${botones}`;
                 box.appendChild(card);
             });
         }
@@ -1132,11 +1004,7 @@
         function anularFacturaHistorialConNotaCredito(id) {
             if(confirm("⚠️ ALERTA DE SEGURIDAD INTERNA\n\n¿Esta seguro de que desea anular esta nota de despacho? Se generara una Nota de Credito que asentara el balance en cero para su contabilidad.")) {
                 const f = facturasEmitidasBD.find(fact => fact.id === id);
-                if(f) {
-                    f.status = 'ANULADA';
-                    alert("Nota de Credito procesada. El registro permanece fijo en la boveda para auditoria del propietario.");
-                    actualizarListaReportesInterna();
-                }
+                if(f) { f.status = 'ANULADA'; alert("Nota de Credito procesada. El registro permanece fijo para auditoria."); actualizarListaReportesInterna(); }
             }
         }
 
@@ -1164,41 +1032,24 @@
             }
         }
 
-        function ejecutarCierreCajaPeriodo(tipo) {
-            let sumVentas = facturasEmitidasBD.reduce((acc, curr) => curr.status === 'EMITIDA' ? acc + curr.total : acc, 0);
-            let sumGastos = gastosBD.reduce((acc, curr) => curr.moneda === 'USD' ? acc + curr.monto : acc, 0);
-            let neto = sumVentas - sumGastos;
-            let balanceMsg = `📊 --- BALANCÉ COMPILADO DE CIERRE DE ${tipo.toUpperCase()} ---\n\n📈 Total Movimiento Ventas: $${Math.round(sumVentas)} USD\n📉 Total Salidas Gastos: $${Math.round(sumGastos)} USD\n💰 Caja Neta en Boveda: $${Math.round(neto)} USD\n\n¿Desea asentar este balance?`;
-            if(confirm(balanceMsg)) {
-                if(tipo === 'dia') { gastosBD = []; alert("Cierre Diario procesado."); }
-                else { gastosBD = []; facturasEmitidasBD = []; correlativoNotaGlobal = 1; alert("Cierre Mensual ejecutado por el propietario."); }
-                actualizarListaReportesInterna();
-            }
-        }
-
+        // REMOVEDO TODO SELLO DE SOPORTE U ORIGEN DE LAS FACTURAS PARA EL COMPRADOR FINAL (100% MARCA BLANCA)
         function buildFacturaTextRaw(cliente, rif, tlf, dir, productos, total) {
             const tCOP = parseFloat(document.getElementById('tasa-cop')?.value) || 3900;
             const tBs = parseFloat(document.getElementById('tasa-bs')?.value) || 40;
             let lineasProd = "";
             productos.forEach(p => {
-                let nameLine = p.nombre;
-                if(p.imeis && p.imeis.length > 0) { nameLine += `\n   ${p.imeis.join('\n   ')}`; }
+                let nameLine = p.nombre; if(p.imeis && p.imeis.length > 0) { nameLine += `\n   ${p.imeis.join('\n   ')}`; }
                 lineasProd += `${p.cantidad}x ${nameLine.padEnd(35, ' ').substring(0,35)} $${p.cantidad * p.precioUnitario}\n`;
             });
-
-            return `==================================================\n                 ${infoClienteAbiertoDinamico.nombre}\n==================================================\nNOTA DE DESPACHO: #${String(correlativoNotaGlobal).padStart(3, '0')}\nCLIENTE: ${cliente}\nRIF: ${rif}\nDIRECCION: ${dir}\n--------------------------------------------------\n${lineasProd}--------------------------------------------------\nTOTAL REF:                                 $${Math.round(total)}\nTOTAL COP:                                 ${Math.round(total * tCOP).toLocaleString('es-ES')} COP\nTOTAL Bs:                                  ${(total * tBs).toFixed(2)} Bs\n==================================================\n       COMPROBANTE ADMINISTRATIVO INTERNO\n                SIN VALOR FISCAL\n--------------------------------------------------\n    INFRAESTRUCTURA TECNOLOGICA PRESTADA POR:\n          Tucocel C.A. & @publionlinemk\n\n🛡️ DESLINDE DE RESPONSABILIDAD TECNOLOGICA:\nInfraestructura prestada por Tucocel C.A. & @publionlinemk. El proveedor actúa exclusivamente como desarrollador tecnológico y no se hace responsable por las operaciones, montos, descripciones, tasas aplicadas, venta de seriales o el uso administrativo que la empresa emisora otorgue a esta plataforma.\n==================================================`;
+            return `==================================================\n                 ${infoClienteAbiertoDinamico.nombre}\n==================================================\nNOTA DE DESPACHO: #${String(correlativoNotaGlobal).padStart(3, '0')}\nCLIENTE: ${cliente}\nRIF: ${rif}\nDIRECCION: ${dir}\n--------------------------------------------------\n${lineasProd}--------------------------------------------------\nTOTAL REF:                                 $${Math.round(total)}\nTOTAL COP:                                 ${Math.round(total * tCOP).toLocaleString('es-ES')} COP\nTOTAL Bs:                                  ${(total * tBs).toFixed(2)} Bs\n==================================================\n       COMPROBANTE ADMINISTRATIVO INTERNO\n                SIN VALOR FISCAL\n==================================================`;
         }
 
         function buildWhatsAppTextRaw(cliente, rif, tlf, dir, productos, total) {
             const tCOP = parseFloat(document.getElementById('tasa-cop')?.value) || 3900;
             const tBs = parseFloat(document.getElementById('tasa-bs')?.value) || 40;
             let cuerpoText = "";
-            productos.forEach(p => { 
-                cuerpoText += `▪️ ${p.cantidad}x ${p.nombre} — $${p.cantidad * p.precioUnitario}\n`; 
-                if(p.imeis && p.imeis.length > 0) { cuerpoText += `   ${p.imeis.map(m => `▫️ ${m}`).join('\n   ')}\n`; }
-            });
-
-            return `🛍️ *${infoClienteAbiertoDinamico.nombre} — COMPROBANTE DE DESPACHO*\n\n👤 *Cliente:* ${cliente}\n🪪 *RIF:* ${rif}\n\n*ARTICULOS:*\n${cuerpoText}\n💰 *TOTALES MULTIMONEDA:*\n💵 REF: $${Math.round(total)}\n🇨🇴 COP: ${Math.round(total * tCOP).toLocaleString('es-ES')} COP\n🇻🇪 Bs: ${(total * tBs).toFixed(2)} Bs\n\n🔒 _Comprobante interno administrativo sin valor fiscal._\n\n--------------------------------------------------\n*🛡️ DESLINDE DE RESPONSABILIDAD TECNOLOGICA:*\nInfraestructura prestada por Tucocel C.A. & @publionlinemk. El proveedor actúa exclusivamente como desarrollador tecnológico y no se hace responsable por las operaciones, montos, descripciones, tasas aplicadas, venta de seriales o el uso administrativo que la empresa emisora otorgue a esta plataforma.\n\nInfraestructura prestada por Tucocel C.A. & @publionlinemk 🚀`;
+            productos.forEach(p => { cuerpoText += `▪️ ${p.cantidad}x ${p.nombre} — $${p.cantidad * p.precioUnitario}\n`; if(p.imeis && p.imeis.length > 0) { cuerpoText += `   ${p.imeis.map(m => `▫️ ${m}`).join('\n   ')}\n`; } });
+            return `🛍️ *${infoClienteAbiertoDinamico.nombre} — COMPROBANTE DE DESPACHO*\n\n👤 *Cliente:* ${cliente}\n🪪 *RIF:* ${rif}\n\n*ARTICULOS:*\n${cuerpoText}\n💰 *TOTALES MULTIMONEDA:*\n💵 REF: $${Math.round(total)}\n🇨🇴 COP: ${Math.round(total * tCOP).toLocaleString('es-ES')} COP\n🇻🇪 Bs: ${(total * tBs).toFixed(2)} Bs\n\n🔒 _Comprobante interno administrativo sin valor fiscal._`;
         }
 
         function procesarImpresionTicket() {
@@ -1210,15 +1061,11 @@
 
             facturasEmitidasBD.push({ id: 'f-'+new Date().getTime(), correlativo: correlativoNotaGlobal, cliente: cl, rif: rf, tlf: tlf, dir: dir, productos: [...ticketProductos], total: acumuladoUSD, status: 'EMITIDA' });
             const txt = buildFacturaTextRaw(cl, rf, tlf, dir, ticketProductos, acumuladoUSD);
-            
             document.getElementById('modal-nota-header-color').className = "bg-slate-950 px-4 py-3 text-white flex justify-between items-center font-bold text-xs uppercase tracking-wide";
             document.getElementById('whatsapp-nota-content').innerText = txt;
             document.getElementById('modal-whatsapp-nota').classList.remove('hidden');
-            
             setTimeout(() => { window.print(); }, 400);
-
-            correlativoNotaGlobal++;
-            limpiarTicketCompleto();
+            correlativoNotaGlobal++; limpiarTicketCompleto();
             document.getElementById('ticket-correlativo-display').innerText = `Nota #${String(correlativoNotaGlobal).padStart(3, '0')}`;
         }
 
@@ -1231,21 +1078,17 @@
 
             facturasEmitidasBD.push({ id: 'f-'+new Date().getTime(), correlativo: correlativoNotaGlobal, cliente: cl, rif: rf, tlf: tlf, dir: dir, productos: [...ticketProductos], total: acumuladoUSD, status: 'EMITIDA' });
             const txt = buildWhatsAppTextRaw(cl, rf, tlf, dir, ticketProductos, acumuladoUSD);
-            
             document.getElementById('modal-nota-header-color').className = "bg-emerald-600 px-4 py-3 text-white flex justify-between items-center font-bold text-xs uppercase tracking-wide";
             document.getElementById('whatsapp-nota-content').innerText = txt;
             document.getElementById('modal-whatsapp-nota').classList.remove('hidden');
-            
             let urlLink = `https://api.whatsapp.com/send?text=${encodeURIComponent(txt)}`;
             if(tlf !== "N/A" && tlf !== "") { urlLink = `https://api.whatsapp.com/send?phone=${tlf}&text=${encodeURIComponent(txt)}`; }
             window.open(urlLink, '_blank');
 
-            correlativoNotaGlobal++;
-            limpiarTicketCompleto();
+            correlativoNotaGlobal++; limpiarTicketCompleto();
             document.getElementById('ticket-correlativo-display').innerText = `Nota #${String(correlativoNotaGlobal).padStart(3, '0')}`;
         }
 
-        // LÓGICA DEL SIMULADOR INTERACTIVO DE AHORROS
         function calcularAhorroInteractivoVenta(val) {
             document.getElementById('val-sim-notas').innerText = val + " Notas";
             let horasAhorradas = Math.round(val * 0.032);
@@ -1255,4 +1098,4 @@
         }
     </script>
 </body>
-                </html>
+                                                                                                                                                                                       </html>
