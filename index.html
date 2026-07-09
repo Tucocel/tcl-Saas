@@ -7,7 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght=400;500;600;700;800&display=swap');
         body { font-family: 'Plus Jakarta Sans', sans-serif; }
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
@@ -23,13 +23,6 @@
             button { display: none !important; }
         }
     </style>
-    <script>
-        // MOTOR PWA INSTALABLE
-        let deferredPrompt;
-        window.addEventListener('beforeinstallprompt', (e) => {
-            e.preventDefault(); deferredPrompt = e;
-        });
-    </script>
 </head>
 <body class="bg-slate-950 text-slate-100 min-h-screen transition-all duration-300 overflow-x-hidden">
 
@@ -75,7 +68,7 @@
             <div class="flex items-center gap-3 bg-slate-900 border border-slate-800 p-2.5 rounded-2xl text-xs font-bold font-mono w-full sm:w-auto justify-between sm:justify-start">
                 <div class="text-center px-2 border-r border-slate-800 flex-grow sm:flex-grow-0">
                     <span class="block text-[9px] text-slate-500 uppercase tracking-wider">Clientes</span>
-                    <span id="global-clientes-count" class="text-blue-400 text-base font-black">2</span>
+                    <span id="global-clientes-count" class="text-blue-400 text-base font-black">1</span>
                 </div>
                 <div class="text-center px-2 flex-grow sm:flex-grow-0">
                     <span class="block text-[9px] text-slate-500 uppercase tracking-wider">Servidor</span>
@@ -118,7 +111,7 @@
                         </div>
                     </div>
                     <div class="mt-5 pt-3 border-t border-slate-800/60 flex gap-2">
-                        <button onclick="abrirConfiguracionCliente('demo-1', 'City Movil', 'V-20123456', '04141234567', 'Avenida Bolivar, Cordero', '@citymovil', 'Garantia de soporte tecnico remoto activo ante fallas de carga del sistema, resguardo de inventario local en la nube y actualizaciones de seguridad sin costos adicionales durante el periodo de su membresia.', 'citymovil', 'Razu2026.', '365')" class="w-1/2 bg-slate-800 text-slate-200 text-xs font-bold py-2.5 rounded-xl">Configurar</button>
+                        <button onclick="abrirConfiguracionCliente('demo-1', 'City Movil', 'V-20123456', '04141234567', 'Avenida Bolivar, Cordero', '@citymovil', 'Garantia de soporte tecnico remoto activo ante fallas de carga del sistema, resguardo de inventario local en la nube y actualizaciones sin costos adicionales durante el periodo de su membresia.', 'citymovil', 'Razu2026.', '365')" class="w-1/2 bg-slate-800 text-slate-200 text-xs font-bold py-2.5 rounded-xl">Configurar</button>
                         <button onclick="forzarEntradaClienteDirecta('City Movil', 'Garantia de soporte tecnico remoto activo.', 365, 'citymovil', '04141234567', 'V-20123456', 'Avenida Bolivar, Cordero')" class="w-1/2 bg-blue-600 text-white text-xs font-black py-2.5 rounded-xl uppercase tracking-wider">Entrar</button>
                     </div>
                 </div>
@@ -362,7 +355,7 @@
             <!-- MODULO GASTOS -->
             <div id="panel-seccion-gastos" class="p-4 max-w-md mx-auto w-full space-y-4 flex-grow pb-24 hidden">
                 <div class="bg-white border border-slate-200 rounded-3xl p-5 shadow-sm space-y-4">
-                    <h3 class="font-black text-xs text-slate-900 uppercase tracking-wider border-b pb-2">Egresos de Caja</h3>
+                    <h3 class="font-black text-xs text-slate-900 uppercase tracking-wider border-b pb-2">Control de Gastos</h3>
                     <div class="space-y-2 text-xs">
                         <input type="text" id="gasto-descripcion" placeholder="Concepto" class="w-full bg-slate-50 border p-2.5 rounded-xl font-bold">
                         <div class="grid grid-cols-2 gap-2"><input type="number" id="gasto-monto" placeholder="Monto" class="w-full bg-slate-50 border p-2.5 rounded-xl font-black text-center"><select id="gasto-moneda" class="w-full bg-slate-50 border p-2.5 rounded-xl font-bold text-center"><option value="USD">USD ($)</option><option value="COP">COP (🇨🇴)</option><option value="VES">VES (🇻🇪)</option></select></div>
@@ -372,7 +365,7 @@
                 </div>
             </div>
 
-            <!-- MODULO REPORTES INTERACTIVO CON REIMPRESIÓN Y ANULACIÓN -->
+            <!-- MODULO REPORTES CON BUSCADOR DE CÉDULA / RIF INCORPORADO -->
             <div id="panel-seccion-reportes" class="p-4 max-w-md mx-auto w-full space-y-4 flex-grow pb-24 hidden">
                 <div class="bg-white border border-slate-200 rounded-3xl p-5 shadow-sm space-y-4">
                     <div class="flex justify-between items-center border-b pb-2">
@@ -384,6 +377,12 @@
                         <div><span class="text-[9px] text-slate-400 block uppercase font-bold">Total Gastos</span><span id="rep-total-gastos-val" class="font-black text-red-500 text-sm">$0</span></div>
                     </div>
                     
+                    <!-- BARRA DE BÚSQUEDA PROFESIONAL POR CÉDULA O RIF -->
+                    <div class="space-y-1.5">
+                        <label class="text-[10px] text-slate-400 uppercase font-black block tracking-wider px-1"><i class="fa-solid fa-magnifying-glass text-blue-500"></i> Localizador de Notas Emitidas</label>
+                        <input type="text" id="master-buscador-historial" placeholder="Escriba Cédula, RIF o Nombre para filtrar..." onkeyup="filtrarHistorialFacturasPorDocumento()" class="w-full bg-slate-50 border border-slate-200 px-3 py-2.5 rounded-xl text-xs font-bold text-slate-800 focus:outline-none focus:border-blue-500 shadow-inner">
+                    </div>
+
                     <div class="space-y-2">
                         <label class="text-[10px] text-slate-400 uppercase font-black block tracking-wider px-1">Historial de Comprobantes</label>
                         <div id="reportes-notas-lista-box" class="space-y-3 max-h-60 overflow-y-auto no-scrollbar">
@@ -437,16 +436,39 @@
         let idSeleccionadoActual = null; let diasSimuladosValor = 365;
         let métodoCargaActual = "manual"; let categoriaInventarioCarga = "telefonos"; let esEntradaForzadaMaster = false;
         let ticketProductos = []; let acumuladoUSD = 0;
-        let infoClienteAbiertoDinamico = { nombre: "TCL COMERCIO", garantia: "Garantia de soporte tecnico remoto activo ante fallas de carga del sistema, resguardo de inventario local en la nube y actualizaciones sin costos adicionales.", dias: 365, ownerID: "demo-1", tlf: "04140000000", rif: "J-00000000", dir: "Tachira" };
+        let infoClienteAbiertoDinamico = { nombre: "TCL COMERCIO", garantia: "Garantia de soporte tecnico remoto activo ante fallas de carga del sistema, resguardo de inventario local en la nube y actualizaciones sin costos adicionales.", dias: 365, ownerID: "demo-1", tlf: "04140000000", rif: "N/A", dir: "Tachira" };
         let productosInventarioBD = []; let gastosBD = []; let facturasEmitidasBD = []; let correlativoNotaGlobal = 1;
 
-        // CAPTURADOR INTELIGENTE DE ENLACES MÁSTER EN EL ARRANQUE (?user=id)
+        // MOTOR DE BLOQUEO DE CLIC DERECHO E INSPECTOR DE CORTESÍA (CANDADO INTELIGENTE)
+        function activarEscudoProteccionCodigo() {
+            document.addEventListener('contextmenu', bloquearEventoPorDefecto);
+            document.addEventListener('keydown', bloquearTeclasInspeccionar);
+        }
+        function desactivarEscudoProteccionCodigo() {
+            document.removeEventListener('contextmenu', bloquearEventoPorDefecto);
+            document.removeEventListener('keydown', bloquearTeclasInspeccionar);
+        }
+        function bloquearEventoPorDefecto(e) { e.preventDefault(); }
+        function bloquearTeclasInspeccionar(e) {
+            if (e.keyCode === 123 || 
+                (e.ctrlKey && e.shiftKey && e.keyCode === 73) || 
+                (e.ctrlKey && e.keyCode === 85)) {
+                e.preventDefault();
+            }
+        }
+        // Encender escudo apenas abre la web en crudo
+        activarEscudoProteccionCodigo();
+
         window.onload = function() {
+            // Contar perfiles reales cargados dinámicamente al iniciar
+            const totalCards = document.querySelectorAll('#mosaico-clientes-grid > div[id^="card-"]').length;
+            const countLabel = document.getElementById('global-clientes-count');
+            if(countLabel) countLabel.innerText = totalCards;
+
             recalcularConversionesSaas();
             const urlParams = new URLSearchParams(window.location.search);
             const userParam = urlParams.get('user');
             if(userParam) {
-                // RUTA CLIENTE DIRECTA: Se salta el login administrativo de Robert
                 infoClienteAbiertoDinamico.nombre = userParam.toUpperCase();
                 infoClienteAbiertoDinamico.ownerID = userParam;
                 document.getElementById('login-titulo-dinamico').innerText = userParam.toUpperCase();
@@ -456,11 +478,11 @@
             }
         };
 
-        // CONTROL DE ACCESO AL PANEL DE CONTROL ADMINISTRATIVO
         function validarAccesoMasterAdmin() {
             const user = document.getElementById('master-user-field').value.trim();
             const pass = document.getElementById('master-pass-field').value.trim();
             if(user === "Tucocel" && pass === "Razu2020.") {
+                desactivarEscudoProteccionCodigo(); // LIBERA F12 Y CLIC DERECHO SÓLO PARA ROBERT
                 document.getElementById('bloque-login-master').classList.add('hidden');
                 document.getElementById('vista-master-admin').classList.remove('hidden');
             } else {
@@ -534,7 +556,7 @@
             document.getElementById('cfg-modal-titulo').innerText = "➕ Crear Entorno SaaS";
             document.getElementById('cfg-nombre').value = ""; document.getElementById('cfg-rif').value = "";
             document.getElementById('cfg-tlf').value = ""; document.getElementById('cfg-dir').value = "";
-            document.getElementById('cfg-redes').value = ""; document.getElementById('cfg-garantia').value = "Garantia de soporte tecnico remoto activo ante fallas de carga del sistema, resguardo de inventario local en la nube.";
+            document.getElementById('cfg-redes').value = ""; document.getElementById('cfg-garantia').value = "Garantia de soporte tecnico remoto activo ante fallas de carga del sistema, resguardo de inventario local en la nube y actualizaciones sin costos adicionales durante el periodo de su membresia.";
             document.getElementById('cfg-user').value = "distribuidora_x"; document.getElementById('cfg-user').disabled = false;
             document.getElementById('cfg-pass').value = "889900"; document.getElementById('cfg-dias-display').innerText = "365 Dias";
             marcarBotonTiempoActivo(365); recalcularConversionesSaas();
@@ -567,8 +589,10 @@
                         <button onclick="forzarEntradaClienteDirecta('${nombre}', 'Garantia estándar.', ${diasSimuladosValor}, '${user}', '04140000000', '', '')" class="w-1/2 bg-blue-600 text-white text-xs font-black py-2.5 rounded-xl uppercase tracking-wider">Entrar</button>
                     </div>`;
                 grid.insertBefore(nuevaCard, grid.lastElementChild);
-                const count = document.getElementById('global-clientes-count');
-                count.innerText = parseInt(count.innerText) + 1;
+                
+                // Recalcular contador real de tarjetas activas
+                const totalCards = document.querySelectorAll('#mosaico-clientes-grid > div[id^="card-"]').length;
+                document.getElementById('global-clientes-count').innerText = totalCards;
             }
             alert("Operacion guardada."); cerrarConfiguracionCliente();
         }
@@ -800,16 +824,31 @@
             });
         }
 
-        function actualizarListaReportesInterna() {
+        // LÓGICA DE FILTRADO DINÁMICO POR CÉDULA / RIF SOLICITADO
+        function filtrarHistorialFacturasPorDocumento() {
+            const query = document.getElementById('master-buscador-historial').value.trim().toLowerCase();
+            actualizarListaReportesInterna(query);
+        }
+
+        function actualizarListaReportesInterna(filtroQuery = "") {
             const box = document.getElementById('reportes-notas-lista-box');
             let sumVentas = facturasEmitidasBD.reduce((acc, curr) => curr.status === 'EMITIDA' ? acc + curr.total : acc, 0);
             let sumGastos = gastosBD.reduce((acc, curr) => curr.moneda === 'USD' ? acc + curr.monto : acc, 0);
             document.getElementById('rep-total-ventas-val').innerText = `$${Math.round(sumVentas)}`;
             document.getElementById('rep-total-gastos-val').innerText = `$${Math.round(sumGastos)}`;
             
-            if(facturasEmitidasBD.length === 0) { box.innerHTML = `<p class="text-center text-slate-400 text-xs italic py-4">Sin operaciones.</p>`; return; }
+            // Filtrar arreglo en tiempo real si hay texto en la barra
+            let facturasFiltradas = facturasEmitidasBD;
+            if(filtroQuery !== "") {
+                facturasFiltradas = facturasEmitidasBD.filter(f => 
+                    f.cliente.toLowerCase().includes(filtroQuery) || 
+                    f.rif.toLowerCase().includes(filtroQuery)
+                );
+            }
+
+            if(facturasFiltradas.length === 0) { box.innerHTML = `<p class="text-center text-slate-400 text-xs italic py-4">No se encontraron resultados.</p>`; return; }
             box.innerHTML = "";
-            facturasEmitidasBD.forEach(f => {
+            facturasFiltradas.forEach(f => {
                 const card = document.createElement('div'); 
                 card.className = `border rounded-2xl p-3 text-xs bg-white space-y-2 transition-all ${f.status === 'ANULADA' ? 'opacity-50 border-red-200 bg-red-50/20' : 'border-slate-200 shadow-sm'}`;
                 
@@ -853,6 +892,7 @@
             }
         }
 
+        // REENVÍO BLINDADO OBLIGATORIO AL MISMO NÚMERO ORIGINAL DE FACTURACIÓN SOLICITADO
         function reenviarWhatsAppHistorial(id) {
             const f = facturasEmitidasBD.find(fact => fact.id === id);
             if(f) {
@@ -860,9 +900,25 @@
                 document.getElementById('modal-nota-header-color').className = "bg-emerald-600 px-4 py-3 text-white flex justify-between items-center font-bold text-xs uppercase tracking-wide";
                 document.getElementById('whatsapp-nota-content').innerText = txt;
                 document.getElementById('modal-whatsapp-nota').classList.remove('hidden');
+                
+                // Forzar el uso estricto del teléfono recolectado por primera vez en la nota
                 let urlLink = `https://api.whatsapp.com/send?text=${encodeURIComponent(txt)}`;
-                if(f.tlf && f.tlf !== "") { urlLink = `https://api.whatsapp.com/send?phone=${f.tlf}&text=${encodeURIComponent(txt)}`; }
+                if(f.tlf && f.tlf !== "N/A" && f.tlf !== "") { 
+                    urlLink = `https://api.whatsapp.com/send?phone=${f.tlf}&text=${encodeURIComponent(txt)}`; 
+                }
                 window.open(urlLink, '_blank');
+            }
+        }
+
+        function ejecutarCierreCajaPeriodo(tipo) {
+            let sumVentas = facturasEmitidasBD.reduce((acc, curr) => curr.status === 'EMITIDA' ? acc + curr.total : acc, 0);
+            let sumGastos = gastosBD.reduce((acc, curr) => curr.moneda === 'USD' ? acc + curr.monto : acc, 0);
+            let neto = sumVentas - sumGastos;
+            let balanceMsg = `📊 --- BALANCÉ COMPILADO DE CIERRE DE ${tipo.toUpperCase()} ---\n\n📈 Total Movimiento Ventas: $${Math.round(sumVentas)} USD\n📉 Total Salidas Gastos: $${Math.round(sumGastos)} USD\n💰 Caja Neta en Boveda: $${Math.round(neto)} USD\n\n¿Desea asentar este balance?`;
+            if(confirm(balanceMsg)) {
+                if(tipo === 'dia') { gastosBD = []; alert("Cierre Diario procesado."); }
+                else { gastosBD = []; facturasEmitidasBD = []; correlativoNotaGlobal = 1; alert("Cierre Mensual ejecutado por el propietario."); }
+                actualizarListaReportesInterna();
             }
         }
 
@@ -878,7 +934,7 @@
                 lineasProd += `${p.cantidad}x ${nameLine.padEnd(35, ' ').substring(0,35)} $${p.cantidad * p.precioUnitario}\n`;
             });
 
-            return `==================================================\n                 ${infoClienteAbiertoDinamico.nombre}\n==================================================\nNOTA DE DESPACHO: #${String(correlativoNotaGlobal).padStart(3, '0')}\nCLIENTE: ${cliente}\nRIF: ${rif}\nDIRECCION: ${dir}\n--------------------------------------------------\n${lineasProd}--------------------------------------------------\nTOTAL REF:                                 $${Math.round(total)}\nTOTAL COP:                                 ${Math.round(total * tCOP).toLocaleString('es-ES')} COP\nTOTAL Bs:                                  ${(total * tBs).toFixed(2)} Bs\n==================================================\n       COMPROBANTE ADMINISTRATIVO INTERNO\n                SIN VALOR FISCAL\n--------------------------------------------------\n    INFRAESTRUCTURA TECNOLOGICA PRESTADA POR:\n          Tucocel C.A. & @publionlinemk\n\n🛡️ DESLINDE DE RESPONSABILIDAD TECNOLOGICA:\nInfraestructura prestada por Tucocel C.A. & @publionlinemk. El proveedor actua exclusivamente como desarrollador tecnologico y no se hace responsable por las operaciones, montos, descripciones, tasas aplicadas, venta de seriales o el uso administrativo que la empresa emisora otorgue a esta plataforma.\n==================================================`;
+            return `==================================================\n                 ${infoClienteAbiertoDinamico.nombre}\n==================================================\nNOTA DE DESPACHO: #${String(correlativoNotaGlobal).padStart(3, '0')}\nCLIENTE: ${cliente}\nRIF: ${rif}\nDIRECCION: ${dir}\n--------------------------------------------------\n${lineasProd}--------------------------------------------------\nTOTAL REF:                                 $${Math.round(total)}\nTOTAL COP:                                 ${Math.round(total * tCOP).toLocaleString('es-ES')} COP\nTOTAL Bs:                                  ${(total * tBs).toFixed(2)} Bs\n==================================================\n       COMPROBANTE ADMINISTRATIVO INTERNO\n                SIN VALOR FISCAL\n--------------------------------------------------\n    INFRAESTRUCTURA TECNOLOGICA PRESTADA POR:\n          Tucocel C.A. & @publionlinemk\n\n🛡️ DESLINDE DE RESPONSABILIDAD TECNOLOGICA:\nInfraestructura prestada por Tucocel C.A. & @publionlinemk. El proveedor actúa exclusivamente como desarrollador tecnológico y no se hace responsable por las operaciones, montos, descripciones, tasas aplicadas, venta de seriales o el uso administrativo que la empresa emisora otorgue a esta plataforma.\n==================================================`;
         }
 
         function buildWhatsAppTextRaw(cliente, rif, tlf, dir, productos, total) {
@@ -892,7 +948,7 @@
                 }
             });
 
-            return `🛍️ *${infoClienteAbiertoDinamico.nombre} — COMPROBANTE DE DESPACHO*\n\n👤 *Cliente:* ${cliente}\n🪪 *RIF:* ${rif}\n\n*ARTICULOS:*\n${cuerpoText}\n💰 *TOTALES MULTIMONEDA:*\n💵 REF: $${Math.round(total)}\n🇨🇴 COP: ${Math.round(total * tCOP).toLocaleString('es-ES')} COP\n🇻🇪 Bs: ${(total * tBs).toFixed(2)} Bs\n\n🔒 _Comprobante interno administrativo sin valor fiscal._\n\n--------------------------------------------------\n*🛡️ DESLINDE DE RESPONSABILIDAD TECNOLOGICA:*\nInfraestructura prestada por Tucocel C.A. & @publionlinemk. El proveedor actua exclusivamente como desarrollador tecnologico y no se hace responsable por las operaciones, montos, descripciones, tasas aplicadas, venta de seriales o el uso administrativo que la empresa emisora otorgue a esta plataforma.\n\nInfraestructura prestada por Tucocel C.A. & @publionlinemk 🚀`;
+            return `🛍️ *${infoClienteAbiertoDinamico.nombre} — COMPROBANTE DE DESPACHO*\n\n👤 *Cliente:* ${cliente}\n🪪 *RIF:* ${rif}\n\n*ARTICULOS:*\n${cuerpoText}\n💰 *TOTALES MULTIMONEDA:*\n💵 REF: $${Math.round(total)}\n🇨🇴 COP: ${Math.round(total * tCOP).toLocaleString('es-ES')} COP\n🇻🇪 Bs: ${(total * tBs).toFixed(2)} Bs\n\n🔒 _Comprobante interno administrativo sin valor fiscal._\n\n--------------------------------------------------\n*🛡️ DESLINDE DE RESPONSABILIDAD TECNOLOGICA:*\nInfraestructura prestada por Tucocel C.A. & @publionlinemk. El proveedor actúa exclusivamente como desarrollador tecnológico y no se hace responsable por las operaciones, montos, descripciones, tasas aplicadas, venta de seriales o el uso administrativo que la empresa emisora otorgue a esta plataforma.\n\nInfraestructura prestada por Tucocel C.A. & @publionlinemk 🚀`;
         }
 
         function procesarImpresionTicket() {
