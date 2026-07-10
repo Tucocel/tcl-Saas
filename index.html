@@ -13,7 +13,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght=400;500;600;700;800&display=swap');
         body { font-family: 'Plus Jakarta Sans', sans-serif; }
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
@@ -205,7 +205,7 @@
                     <p class="text-[11px] text-slate-400">Desliza el medidor para calcular cuántas horas operativas y costos de papelería te ahorra el sistema mensualmente.</p>
                 </div>
                 <div class="space-y-2">
-                    <input type="range" id="simulador-notas" min="100" max="2000" value="500" step="50" oninput="calcularAhorroInteractivoVenta(this.value)" class="w-full accent-blue-600 bg-slate-950 h-2 rounded-lg cursor-pointer">
+                    <input type="range" id="simulador-notes" min="100" max="2000" value="500" step="50" oninput="calcularAhorroInteractivoVenta(this.value)" class="w-full accent-blue-600 bg-slate-950 h-2 rounded-lg cursor-pointer">
                     <div class="flex justify-between font-mono text-[10px] text-slate-500 font-bold uppercase"><span>100 Notas</span><span>2.000 Notas al Mes</span></div>
                 </div>
                 <div class="grid grid-cols-3 gap-2 text-center font-mono text-xs pt-1">
@@ -374,7 +374,7 @@
                                 <button onclick="asignarDiasSimulador(30, this)" class="tiempo-btn bg-slate-900 border border-slate-800 text-slate-300 text-[9px] py-2 font-bold rounded-lg">30 Días</button>
                                 <button onclick="asignarDiasSimulador(90, this)" class="tiempo-btn bg-slate-900 border border-slate-800 text-slate-300 text-[9px] py-2 font-bold rounded-lg">90 Días</button>
                                 <button onclick="asignarDiasSimulador(180, this)" class="tiempo-btn bg-slate-900 border border-slate-800 text-slate-300 text-[9px] py-2 font-bold rounded-lg">180 Días</button>
-                                <button onclick="asignarDiasSimulador(365, this)" class="tiempo-btn bg-slate-900 border border-slate-800 text-slate-300 text-[9px] py-2 font-bold rounded-lg">365 Días</button>
+                                <button onclick="asignarDiasSimulador(365, this)" class="tiempo-btn bg-purple-600 text-white text-[9px] py-2 font-black rounded-lg shadow">365 Días</button>
                             </div>
                             <div class="flex justify-between items-center text-xs font-bold font-mono"><span class="text-slate-500">Vigencia:</span><span id="cfg-dias-display" class="text-amber-400 font-black">365 Días</span></div>
                         </div>
@@ -459,7 +459,7 @@
                             <p><strong>SEGUNDA: DEL OBJETO DEL CONTRATO.</strong> EL PROVEEDOR otorga en carácter de Arrendamiento Temporal Protegido (Suscripción Alquilada) el acceso y uso de la infraestructura tecnológica de la plataforma denominada "TCL INVENTARIO MÁSTER", cuyo objeto único es la gestión, auditoría y control de inventario interno, ordenación de stock y emisión de comprobantes informativos de despacho o entrega de mercancía de forma centralizada.</p>
                             <p><strong>TERCERA: DE LA NATURALEZA ADMINISTRATIVA INTERNA (BLINDAJE FISCAL).</strong> EL ARRENDATARIO declara aceptar de forma expresa e irrevocable que El Sistema es una herramienta contable interna. No es, ni pretende sustituir, un sistema de facturación fiscal homologado o regulado por el SENIAT. Todos los comprobantes llevan impresa la leyenda de Comprobante administrativo interno sin valor fiscal. EL ARRENDATARIO asume la obligación única de facturar mediante canales autorizados de ley.</p>
                             <p><strong>CUARTA: DEL DESLINDE DE RESPONSABILIDAD LEGAL Y PENAL.</strong> EL ARRENDATARIO es el único custodio de la información. EL PROVEEDOR no se hace responsable civil, administrativa ni penalmente por montos, márgenes de ganancia, procedencia de seriales electrónicos o IMEI de telefonía móvil cargados al sistema.</p>
-                            <p><strong>QUINTA: PLAZOS, CORTE Y POLÍTICA DE PURGA POR SEGURIDAD.</strong> Al expirar el plazo prepagado, el sistema suspenderá el acceso. EL PROVEEDOR otorga un plazo de gracia máximo de dos (02) a tres (03) días continuos para la renovación del servicio. Vencido dicho lapso sin recibir el pago correspondiente, EL PROVEEDOR procederá a la inhabilitación del perfil y al borrado total, definitivo e irrecuperable de toda la base de datos e inventarios por estrictas medidas de seguridad y privacidad.</p>
+                            <p><strong>QUINTA: PLAZOS, CORTE Y POLÍTICA DE PURGA POR SEGURIDAD.</strong> AL expirar el plazo prepagado, el sistema suspenderá el acceso. EL PROVEEDOR otorga un plazo de gracia máximo de dos (02) a tres (03) días continuos para la renovación del servicio. Vencido dicho lapso sin recibir el pago correspondiente, EL PROVEEDOR procederá a la inhabilitación del perfil y al borrado total, definitivo e irrecuperable de toda la base de datos e inventarios por estrictas medidas de seguridad y privacidad.</p>
                             <p><strong>SEXTA: RECONOCIMIENTO DEL PRODUCTO ESTÁNDAR.</strong> EL ARRENDATARIO acepta que el software opera bajo un modelo unificado en la nube cerrado llave en mano, adaptándose el comercio a la estructura estándar.</p>
                         </div>
                         <div class="space-y-2 bg-slate-950 p-4 rounded-xl border border-slate-850">
@@ -495,7 +495,7 @@
             <div id="cli-panel-reglas-fijas" class="w-full max-w-md space-y-3 z-10 px-1 text-center mt-4">
                 <div class="bg-amber-500/5 border border-amber-500/20 rounded-2xl p-4 text-justify space-y-1">
                     <div class="flex items-center gap-2 text-amber-400 font-black text-[10px] uppercase tracking-wider"><i class="fa-solid fa-shield-halved text-xs"></i> <span>Reglas de Oro del Sistema</span></div>
-                    <p class="text-[11px] text-slate-300 leading-relaxed">Este software es un <strong>Servicio bajo Suscripción Alquilada</strong>[cite: 1]. Usted es el único responsable por los montos e inventarios[cite: 1]. Los comprobantes emitidos corresponden a <strong>Notas de Entrega sin valor fiscal</strong> para orden interno[cite: 1]. El cumplimiento total de las obligaciones tributarias e impuestos comerciales corresponde de forma única and exclusiva a EL ARRENDATARIO, eximiendo de toda responsabilidad al proveedor.</p>
+                    <p class="text-[11px] text-slate-300 leading-relaxed">Este software es un <strong>Servicio bajo Suscripción Alquilada</strong>. Usted es el único responsable por los montos e inventarios. Los comprobantes emitidos corresponden a <strong>Notas de Entrega sin valor fiscal</strong> para orden interno. El cumplimiento total de las obligaciones tributarias e impuestos comerciales corresponde de forma única and exclusiva a EL ARRENDATARIO, eximiendo de toda responsabilidad al proveedor.</p>
                 </div>
                 <div class="bg-slate-900/40 border border-slate-900 rounded-2xl p-3 text-center font-mono text-[10px] text-slate-400 space-y-1">
                     <p class="font-bold text-slate-300 flex items-center justify-center gap-1"><i class="fa-solid fa-headset text-blue-400"></i> Soporte Técnico Certificado:</p>
@@ -517,7 +517,7 @@
                     <div class="flex items-center gap-2">
                         <button onclick="document.getElementById('modal-autogestion-password-cliente').classList.remove('hidden')" class="bg-slate-950 hover:bg-slate-800 border border-slate-800 text-slate-300 font-bold text-[9px] px-2.5 py-1.5 rounded-xl uppercase flex items-center gap-1"><i class="fa-solid fa-key text-blue-400"></i> Mi Clave</button>
                         <div class="bg-slate-950 border border-slate-800 px-2.5 py-1 rounded-xl flex items-center gap-1 text-[10px] font-mono font-bold"><i class="fa-solid fa-hourglass-half text-amber-500"></i><span id="cli-panel-dias-conteo" class="text-slate-300 font-black">365 Días</span></div>
-                        <button onclick="ejecutarBotonSalidaInteligente()" class="bg-red-600 hover:bg-red-700 text-white font-black text-[9px] px-2.5 py-1.5 rounded-lg uppercase flex items-center gap-1 transition-colors shadow"><i class="fa-solid fa-lock text-[10px]"></i> <span id="label-boton-salida-dinamico">Cerrar Sesión</span></button>
+                        <button onclick="ejecutarBotonSalidaInteligente()" class="bg-red-600 hover:bg-red-700 text-white font-black text-[9px] px-2.5 py-1.5 rounded-lg uppercase flex items-center gap-1 transition-colors shadow" style="height: 30px;"><i class="fa-solid fa-lock text-[10px]"></i> <span id="label-boton-salida-dinamico">Cerrar Sesión</span></button>
                     </div>
                 </div>
 
@@ -531,6 +531,50 @@
                                     <div class="bg-slate-950 p-2 rounded-xl border border-slate-850"><span class="text-[9px] text-slate-400 uppercase font-bold block mb-0.5">Dividir COP entre:</span><input type="number" id="tasa-bs" value="40" class="w-full bg-transparent text-center font-black text-sm text-emerald-400 focus:outline-none" onkeyup="calcularTotalesSimulados()"><span class="text-[9px] text-slate-500 block mt-0.5 uppercase tracking-widest">Bolívares Bs</span></div>
                                 </div>
                             </div>
+
+                            <!-- AUDITORÍA DE CAJA, TIPO DE OPERACIÓN Y CONDICIÓN DE FACTURACIÓN -->
+                            <div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm space-y-3">
+                                <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-widest border-b pb-1"><i class="fa-solid fa-cogs"></i> Control de Mostrador</h4>
+                                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs font-bold">
+                                    <div>
+                                        <label class="text-[9px] text-slate-400 uppercase ml-1 block mb-1">Vendedor / Cajero (Obligatorio)</label>
+                                        <input type="text" id="ticket-vendedor" placeholder="Nombre" class="w-full bg-slate-50 border px-3 py-2 rounded-xl text-xs font-black uppercase text-purple-600 focus:outline-none focus:border-purple-500">
+                                    </div>
+                                    <div>
+                                        <label class="text-[9px] text-slate-400 uppercase ml-1 block mb-1">Tipo de Operación</label>
+                                        <select id="ticket-condicion-pago" onchange="toggleLógicaCondicionCaja()" class="w-full bg-slate-50 border px-3 py-2 rounded-xl text-xs font-bold text-slate-800 focus:outline-none">
+                                            <option value="CONTADO">Contado Efectivo</option>
+                                            <option value="CREDITO">Crédito / Pendiente</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label class="text-[9px] text-slate-400 uppercase ml-1 block mb-1">Moneda Recibida</label>
+                                        <select id="ticket-moneda-recibida" class="w-full bg-slate-50 border px-3 py-2 rounded-xl text-xs font-bold text-slate-800 focus:outline-none">
+                                            <option value="USD">Dólares ($)</option>
+                                            <option value="COP">Pesos (COP)</option>
+                                            <option value="VES">Bolívares (Bs)</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <!-- CAMPOS REQUERIDOS PARA EL DESGLOSE DE CRÉDITO Y DÍAS MANUALES -->
+                                <div id="wrapper-campos-credito-pos" class="hidden space-y-3 bg-purple-50 p-2.5 rounded-xl border border-purple-100">
+                                    <div class="grid grid-cols-3 gap-2 text-xs">
+                                        <div>
+                                            <label class="text-[9px] text-purple-500 font-bold uppercase ml-1 block mb-1">Días Plazo</label>
+                                            <input type="number" id="ticket-credito-dias" value="5" min="1" class="w-full bg-white border px-3 py-1.5 rounded-xl text-xs font-black text-slate-800 text-center focus:outline-none">
+                                        </div>
+                                        <div>
+                                            <label class="text-[9px] text-purple-500 font-bold uppercase ml-1 block mb-1">Abono Inicial ($)</label>
+                                            <input type="number" id="ticket-abono" value="0" onkeyup="recalcularSaldosPendientesCaja()" class="w-full bg-white border px-3 py-1.5 rounded-xl text-xs font-black text-slate-800 text-center focus:outline-none">
+                                        </div>
+                                        <div>
+                                            <label class="text-[9px] text-slate-400 font-bold uppercase ml-1 block mb-1">Saldos Restantes ($)</label>
+                                            <input type="text" id="ticket-resta-display" readonly value="$0" class="w-full bg-transparent px-3 py-1.5 text-xs font-black text-purple-600 text-center cursor-not-allowed">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm space-y-3">
                                 <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-widest border-b pb-1"><i class="fa-solid fa-user-tag"></i> Datos del Receptor</h4>
                                 <div class="space-y-2">
@@ -582,7 +626,7 @@
                             <div id="inv-campos-telefonos" class="grid grid-cols-2 gap-2"><input type="text" id="inv-prod-marca" placeholder="Marca" class="w-full bg-white border p-2 rounded-xl font-bold"><input type="text" id="inv-prod-modelo" placeholder="Modelo" class="w-full bg-white border p-2 rounded-xl font-bold"></div>
                             <div id="inv-campos-otros" class="hidden"><input type="text" id="inv-prod-descripcion" placeholder="Descripción" class="w-full bg-white border p-2 rounded-xl font-bold"></div>
                             <div class="grid grid-cols-2 gap-2"><input type="number" id="inv-prod-costo" placeholder="Costo $" class="w-full bg-white border p-2 rounded-xl text-center font-bold"><input type="number" id="inv-prod-precio" placeholder="Venta $" class="w-full bg-white border p-2 rounded-xl text-center font-black text-blue-600"></div>
-                            <button onclick="guardarProducto EnInventario()" class="w-full bg-purple-600 text-white py-2.5 rounded-xl font-black uppercase text-[10px]">Guardar Stock</button>
+                            <button onclick="guardarProductoEnInventario()" class="w-full bg-purple-600 text-white py-2.5 rounded-xl font-black uppercase text-[10px]">Guardar Stock</button>
                         </div>
                         <div id="inv-lista-productos-box" class="space-y-1.5 max-h-40 overflow-y-auto no-scrollbar"></div>
                     </div>
@@ -622,7 +666,7 @@
                         </div>
                         <div class="space-y-2">
                             <label class="text-[10px] text-slate-400 uppercase font-black block tracking-wider px-1">Historial de Comprobantes</label>
-                            <div id="reportes-notas-lista-box" class="space-y-3 max-h-60 overflow-y-auto no-scrollbar"><p class="text-center text-slate-400 text-xs italic py-4">No se encontraron resultados.</p></div>
+                            <div id="reportes-notes-lista-box" class="space-y-3 max-h-60 overflow-y-auto no-scrollbar"><p class="text-center text-slate-400 text-xs italic py-4">No se encontraron resultados.</p></div>
                         </div>
                     </div>
                 </div>
@@ -699,12 +743,32 @@
             }
         };
 
+        function toggleLógicaCondicionCaja() {
+            const condicion = document.getElementById('ticket-condicion-pago').value;
+            const wrapCredito = document.getElementById('wrapper-campos-credito-pos');
+            if(condicion === 'CREDITO') {
+                wrapCredito.classList.remove('hidden');
+                recalcularSaldosPendientesCaja();
+            } else {
+                wrapCredito.classList.add('hidden');
+                document.getElementById('ticket-abono').value = "0";
+            }
+        }
+
+        function recalcularSaldosPendientesCaja() {
+            const abono = parseFloat(document.getElementById('ticket-abono').value) || 0;
+            let resta = acumuladoUSD - abono;
+            if (resta < 0) resta = 0;
+            document.getElementById('ticket-resta-display').value = `$${Math.round(resta)}`;
+        }
+
+        // CONTROL CLAVE MAESTRA CORREGIDO
         function validarAccesoMasterAdmin() {
             const user = document.getElementById('master-user-field').value.trim();
             const pass = document.getElementById('master-pass-field').value.trim();
             const savedMasterPass = localStorage.getItem('tcl_pass_master_supreme') || "Razu2020.";
             
-            if(user === "Tucocel" && pass === savedMasterPass) {
+            if(user.toLowerCase() === "tucocel" && pass === savedMasterPass) {
                 document.getElementById('bloque-login-master').classList.add('hidden');
                 document.getElementById('vista-master-admin').classList.remove('hidden');
             } else { alert("❌ Credenciales Maestras Incorrectas."); }
@@ -736,7 +800,7 @@
             document.getElementById('login-titulo-dinamico').innerText = infoClienteAbiertoDinamico.nombre;
 
             let contratoAceptado = localStorage.getItem(`tcl_contrato_sign_${user}`);
-            if (!contratoAceptado) {
+            if (!contratoAceptado && user !== "tucocel") {
                 document.getElementById('cli-bloque-login').classList.add('hidden');
                 document.getElementById('cli-panel-reglas-fijas').classList.add('hidden');
                 document.getElementById('pantalla-onboarding-contrato-kyc').classList.remove('hidden');
@@ -775,7 +839,11 @@
             document.getElementById('cli-panel-nombre').innerText = infoClienteAbiertoDinamico.nombre;
             document.getElementById('cli-panel-badge-rango').innerText = `Control Activo — Rango: ${infoClienteAbiertoDinamico.rango || 'CLIENTE'}`;
             
-            if(!esEntradaForzadaMaster) document.getElementById('label-boton-salida-dinamico').innerText = "Cerrar Sesión";
+            if(!esEntradaForzadaMaster) {
+                document.getElementById('label-boton-salida-dinamico').innerText = "Cerrar Sesión";
+            } else {
+                document.getElementById('label-boton-salida-dinamico').innerText = "Regresar Panel";
+            }
             document.getElementById('cli-panel-dias-conteo').innerText = `${infoClienteAbiertoDinamico.dias} Días`;
             
             const id = infoClienteAbiertoDinamico.ownerID;
@@ -792,6 +860,8 @@
             actualizarListaInventarioInterna();
             actualizarListaGastosInterna();
             actualizarListaReportesInterna();
+            activarPestañaPos('facturar');
+            toggleLógicaCondicionCaja();
         }
 
         function abrirConfiguracionCliente(id, nombre, rif, tlf, dir, redes, garantia, user, pass, dias, rango) {
@@ -1042,7 +1112,7 @@
         function forzarEntradaClienteDirecta(nombre, garantia, dias, ownerID, tlf, rif, dir, rango) {
             infoClienteAbiertoDinamico = { nombre, garantia, dias, ownerID, tlf, rif, dir, rango };
             document.getElementById('login-titulo-dinamico').innerText = nombre; esEntradaForzadaMaster = true; 
-            document.getElementById('label-boton-salida-dinamico').innerText = "Regresar al Panel Administrativo";
+            document.getElementById('label-boton-salida-dinamico').innerText = "Regresar Panel";
             document.getElementById('bloque-login-master').classList.add('hidden');
             document.getElementById('vista-master-admin').classList.add('hidden'); 
             document.getElementById('vista-entorno-cliente').classList.remove('hidden');
@@ -1159,7 +1229,7 @@
             ticketProductos.push(itemAgrupado);
             document.getElementById('manual-prod-nombre').value = ""; document.getElementById('manual-prod-precio').value = "";
             document.getElementById('manual-prod-cantidad').value = "1"; document.getElementById('manual-prod-es-celular').checked = false;
-            document.getElementById('contenedor-imeis-dinamicos').innerHTML = ""; calcularTotalesSimulados();
+            document.getElementById('contenedor-imeis-dinamicos').innerHTML = ""; calcularTotadosSimulados();
         }
 
         function calcularTotalesSimulados() {
@@ -1183,6 +1253,7 @@
             document.getElementById('total-usd').innerText = `$${Math.round(acumuladoUSD)}`;
             document.getElementById('total-cop').innerText = `${Math.round(acumuladoUSD * tCOP).toLocaleString('es-ES')} COP`;
             document.getElementById('total-bs').innerText = `${(acumuladoUSD * tBs).toLocaleString('es-ES', {minimumFractionDigits: 2})} Bs`;
+            recalcularSaldosPendientesCaja();
         }
 
         function limpiarTicketCompleto() { ticketProductos = []; calcularTotalesSimulados(); }
@@ -1261,7 +1332,13 @@
             const box = document.getElementById('reportes-notas-lista-box');
             if(!box) return;
             const tCOP = parseFloat(document.getElementById('tasa-cop').value) || 3900;
-            let sumVentas = facturasEmitidasBD.reduce((acc, curr) => curr.status === 'EMITIDA' ? acc + curr.total : acc, 0);
+            let sumVentas = facturasEmitidasBD.reduce((acc, curr) => {
+                if (curr.status === 'EMITIDA') {
+                    if (curr.condicion === 'CREDITO') return acc + curr.abono;
+                    return acc + curr.total;
+                }
+                return acc;
+            }, 0);
             let sumGastos = gastosBD.reduce((acc, curr) => curr.moneda === 'USD' ? acc + curr.monto : (curr.moneda === 'COP' ? acc + (curr.monto / tCOP) : acc), 0);
             document.getElementById('rep-total-ventas-val').innerText = `$${Math.round(sumVentas)}`;
             document.getElementById('rep-total-gastos-val').innerText = `$${Math.round(sumGastos)}`;
@@ -1272,13 +1349,16 @@
             box.innerHTML = "";
             facturasFiltradas.forEach(f => {
                 const card = document.createElement('div'); card.className = `border rounded-2xl p-3 text-xs bg-white space-y-2 transition-all ${f.status === 'ANULADA' ? 'opacity-50 border-red-200 bg-red-50/20' : 'border-slate-200 shadow-sm'}`;
-                let badge = f.status === 'ANULADA' ? `<span class="bg-red-100 text-red-600 font-extrabold text-[9px] px-2 py-0.5 rounded-md uppercase">ANULADA</span>` : `<span class="bg-blue-50 text-blue-600 font-bold text-[9px] px-2 py-0.5 rounded-md uppercase">DESPACHADO</span>`;
                 
+                let tagCondicion = f.condicion === 'CREDITO' ? `CRÉDITO (${f.diasCredito || 5} Días — Abono: $${f.abono} / Resta: $${f.resta})` : `CONTADO (${f.monedaRecibida || 'USD'})`;
+                let badge = f.status === 'ANULADA' ? `<span class="bg-red-100 text-red-600 font-extrabold text-[9px] px-2 py-0.5 rounded-md uppercase">ANULADA</span>` : `<span class="bg-blue-50 text-blue-600 font-bold text-[9px] px-2 py-0.5 rounded-md uppercase">${tagCondicion}</span>`;
+                
+                let txtVendedorBox = f.vendedor ? `<span class="block text-[9.5px] text-slate-500 font-bold">Vendedor: ${f.vendedor.toUpperCase()}</span>` : "";
                 let currentActiveRange = (infoClienteAbiertoDinamico && infoClienteAbiertoDinamico.rango) ? infoClienteAbiertoDinamico.rango : "CLIENTE";
                 let btnEliminarMasterPruebas = (currentActiveRange === 'MASTER') ? `<button onclick="eliminarRegistroFacturaDefinitivoMasterPrueba('${f.id}')" class="bg-red-600 text-white text-[9px] font-black px-2 py-1 rounded-md uppercase ml-1"><i class="fa-solid fa-trash"></i> Purgar</button>` : '';
                 let botones = f.status === 'ANULADA' ? btnEliminarMasterPruebas : `<div class="flex gap-1 pt-1 justify-end border-t border-slate-100"><button onclick="reimprimirFacturaHistorial('${f.id}')" class="bg-slate-900 text-white text-[9px] font-black px-2 py-1 rounded-md uppercase"><i class="fa-solid fa-print"></i> Impresora</button><button onclick="reenviarWhatsAppHistorial('${f.id}')" class="bg-emerald-600 text-white text-[9px] font-black px-2 py-1 rounded-md uppercase"><i class="fa-brands fa-whatsapp"></i> WhatsApp</button><button onclick="anularFacturaHistorialConNotaCredito('${f.id}')" class="bg-red-500/10 text-red-600 text-[9px] font-black px-2 py-1 rounded-md uppercase border border-red-500/20">Anular</button>${btnEliminarMasterPruebas}</div>`;
                 
-                card.innerHTML = `<div class="flex justify-between items-center font-mono"><b>Nota #${String(f.correlativo).padStart(3, '0')}</b> ${badge}</div><p class="text-slate-500 font-medium">Receptor: ${f.cliente} | RIF: ${f.rif} | Total: <span class="font-black text-slate-800 font-mono">$${Math.round(f.total)}</span></p>${botones}`;
+                card.innerHTML = `<div class="flex justify-between items-center font-mono"><b>Nota #${String(f.correlativo).padStart(3, '0')}</b> ${badge}</div><p class="text-slate-500 font-medium">Receptor: ${f.cliente} | RIF: ${f.rif} | Total: <span class="font-black text-slate-800 font-mono">$${Math.round(f.total)}</span></p>${txtVendedorBox}${botones}`;
                 box.appendChild(card);
             });
         }
@@ -1291,7 +1371,7 @@
             }
         }
 
-        function buildFacturaTextRaw(cliente, rif, tlf, dir, productos, total) {
+        function buildFacturaTextRaw(cliente, rif, tlf, dir, productos, total, vendedor, condicion, monedaRecibida, abono, resta, diasCredito) {
             const tCOP = parseFloat(document.getElementById('tasa-cop')?.value) || 3900;
             const tBs = parseFloat(document.getElementById('tasa-bs')?.value) || 40;
             let lineasProd = "";
@@ -1300,26 +1380,50 @@
                 lineasProd += `${p.cantidad}x ${nameLine.padEnd(35, ' ').substring(0,35)} $${Math.round(p.precioUnitario * p.cantidad)}\n`;
             });
             
-            return `==================================================\n                 ${infoClienteAbiertoDinamico.nombre.toUpperCase()}\n==================================================\nNOTA DE DESPACHO: #${String(correlativoNotaGlobal).padStart(3, '0')}\nCLIENTE: ${cliente}\nRIF: ${rif}\nDIRECCIÓN: ${dir}\n--------------------------------------------------\n${lineasProd}--------------------------------------------------\nTOTAL REF:                                 $${Math.round(total)}\nTOTAL COP:                                 ${Math.round(total * tCOP).toLocaleString('es-ES')} COP\nTOTAL Bs:                                  ${(total * tBs).toLocaleString('es-ES', {minimumFractionDigits:2})} Bs\n==================================================\n⚠️ ADVERTENCIA: NOTA DE DESPACHO E INVENTARIO INTERNO\nESTE COMPROBANTE CONSTITUYE EXCLUSIVAMENTE UN REGISTRO OPERATIVO DE CONTROL DE ALMACÉN Y MOVILIZACIÓN INTERNA DE MERCANCÍAS. EN NINGÚN CASO ADQUIERE CARÁCTER DE FACTURA FISCAL, NI SUSTITUYE O MINIMIZA LAS FUNCIONES DE LOS MEDIOS DE EMISIÓN REGULADOS POR LA PROVIDENCIA ADMINISTRATIVA VIGENTE DE LA GERENCIA DE RECAUDACIÓN TRIBUTARIA DEL SENIAT. EL COMERCIO ADQUIERE LA OBLIGACIÓN EXCLUSIVA DE RESPALDAR SUS OPERACIONES MEDIANTE LOS CANALES TRIBUTARIOS LEGALES.\nEl proveedor de la infraestructura tecnológica y los desarrolladores del sistema quedan totalmente eximidos de responsabilidad civil, administrativa o penal sobre los montos cargados, descripciones o tasas cambiarias aplicadas en este terminal.\n--------------------------------------------------\nInfraestructura Tecnológica por Tucocel C.A.\nAutomatización y Publicidad: Publi-Online-Mk\n==================================================`;
+            let bloqueAuditoriaCaja = `VENDEDOR / CAJERO:                           ${vendedor ? vendedor.toUpperCase() : 'GENERAL'}\nCONDICIÓN:                                   ${condicion || 'CONTADO'}\n`;
+            if (condicion === 'CREDITO') {
+                bloqueAuditoriaCaja += `PLAZO DE CRÉDITO:                            ${diasCredito || 5} DÍAS\nABONADO EN MESA:                             $${abono || 0}\nSALDO PENDIENTE:                             $${resta || 0}\n`;
+            } else {
+                bloqueAuditoriaCaja += `LIQUIDADO EN CAJA:                           ${monedaRecibida || 'USD'}\n`;
+            }
+            
+            return `==================================================\n                 ${infoClienteAbiertoDinamico.nombre.toUpperCase()}\n==================================================\nNOTA DE DESPACHO: #${String(correlativoNotaGlobal).padStart(3, '0')}\nCLIENTE: ${cliente}\nRIF: ${rif}\nDIRECCIÓN: ${dir}\n--------------------------------------------------\n${bloqueAuditoriaCaja}--------------------------------------------------\n${lineasProd}--------------------------------------------------\nTOTAL REF:                                 $${Math.round(total)}\nTOTAL COP:                                 ${Math.round(total * tCOP).toLocaleString('es-ES')} COP\nTOTAL Bs:                                  ${(total * tBs).toLocaleString('es-ES', {minimumFractionDigits:2})} Bs\n==================================================\n⚠️ ADVERTENCIA: NOTA DE DESPACHO E INVENTARIO INTERNO\nESTE COMPROBANTE CONSTITUYE EXCLUSIVAMENTE UN REGISTRO OPERATIVO DE CONTROL DE ALMACÉN Y MOVILIZACIÓN INTERNA DE MERCANCÍAS. EN NINGÚN CASO ADQUIERE CARÁCTER DE FACTURA FISCAL, NI SUSTITUYE O MINIMIZA LAS FUNCIONES DE LOS MEDIOS DE EMISIÓN REGULADOS POR LA PROVIDENCIA ADMINISTRATIVA VIGENTE DE LA GERENCIA DE RECAUDACIÓN TRIBUTARIA DEL SENIAT. EL COMERCIO ADQUIERE LA OBLIGACIÓN EXCLUSIVA DE RESPALDAR SUS OPERACIONES MEDIANTE LOS CANALES TRIBUTARIOS LEGALES.\nEl proveedor de la infraestructura tecnológica y los desarrolladores del sistema quedan totalmente eximidos de responsabilidad civil, administrativa o penal sobre los montos cargados, descripciones o tasas cambiarias aplicadas en este terminal.\n--------------------------------------------------\nInfraestructura Tecnológica por Tucocel C.A.\nAutomatización y Publicidad: Publi-Online-Mk\n==================================================`;
         }
 
-        function buildWhatsAppTextRaw(cliente, rif, tlf, dir, productos, total) {
+        function buildWhatsAppTextRaw(cliente, rif, tlf, dir, productos, total, vendedor, condicion, monedaRecibida, abono, resta, diasCredito) {
             const tCOP = parseFloat(document.getElementById('tasa-cop')?.value) || 3900;
             const tBs = parseFloat(document.getElementById('tasa-bs')?.value) || 40;
             let cuerpoText = "";
             productos.forEach(p => { cuerpoText += `▪ ${p.cantidad}x ${p.nombre} — $${Math.round(p.precioUnitario * p.cantidad)}\n`; if(p.imeis && p.imeis.length > 0) { cuerpoText += `   ${p.imeis.map(m => `▫ ${m}`).join('\n   ')}\n`; } });
-            return `🛍️ *${infoClienteAbiertoDinamico.nombre.toUpperCase()} — COMPROBANTE DE DESPACHO*\n\n👤 *Cliente:* ${cliente}\n🪪 *RIF:* ${rif}\n\n*ARTÍCULOS:*\n${cuerpoText}\n💰 *TOTALES MULTIMONEDA:*\n💵 REF: $${Math.round(total)}\n🇨🇴 COP: ${Math.round(total * tCOP).toLocaleString('es-ES')} COP\n🇻🇪 Bs: ${(total * tBs).toLocaleString('es-ES', {minimumFractionDigits:2})} Bs\n\n🔒 _Comprobante de control operativo de almacén interno sin valor fiscal regulado por el SENIAT._`;
+            
+            let strCondicion = `📝 *Condición:* ${condicion || 'CONTADO'}\n👤 *Vendedor:* ${vendedor ? vendedor.toUpperCase() : 'GENERAL'}\n`;
+            if (condicion === 'CREDITO') {
+                strCondicion += `📅 *Plazo de Crédito:* ${diasCredito || 5} Días\n💵 *Abonado:* $${abono || 0}\n🚨 *Saldo Restante:* $${resta || 0}\n`;
+            } else {
+                strCondicion += `💰 *Forma de Pago:* Recibido en ${monedaRecibida || 'USD'}\n`;
+            }
+            
+            return `🛍️ *${infoClienteAbiertoDinamico.nombre.toUpperCase()} — COMPROBANTE DE DESPACHO*\n\n👤 *Cliente:* ${cliente}\n🪪 *RIF:* ${rif}\n\n${strCondicion}\n*ARTÍCULOS:*\n${cuerpoText}\n💰 *TOTALES MULTIMONEDA:*\n💵 REF: $${Math.round(total)}\n🇨🇴 COP: ${Math.round(total * tCOP).toLocaleString('es-ES')} COP\n🇻🇪 Bs: ${(total * tBs).toLocaleString('es-ES', {minimumFractionDigits:2})} Bs\n\n🔒 _Comprobante de control operativo de almacén interno sin valor fiscal regulado por el SENIAT._`;
         }
 
         function procesarImpresionTicket() {
             if(ticketProductos.length === 0) return alert("Mesa vacía.");
+            const vendedor = document.getElementById('ticket-vendedor').value.trim();
+            if(!vendedor) return alert("⚠️ Error crítico: Debe ingresar el nombre de la vendedora o cajero para auditar la operación de forma obligatoria.");
+
             const cl = document.getElementById('ticket-cliente')?.value || "General";
             const rf = document.getElementById('ticket-rif-cliente')?.value || "N/A";
             const tlf = document.getElementById('ticket-tlf-cliente')?.value || "N/A";
             const dir = document.getElementById('ticket-dir-cliente')?.value || "N/A";
+            
+            const condicion = document.getElementById('ticket-condicion-pago').value;
+            const monedaRecibida = document.getElementById('ticket-moneda-recibida').value;
+            const abono = parseFloat(document.getElementById('ticket-abono').value) || 0;
+            const diasCredito = parseInt(document.getElementById('ticket-credito-dias')?.value) || 5;
+            let resta = acumuladoUSD - abono; if (resta < 0) resta = 0;
 
-            facturasEmitidasBD.push({ id: 'f-'+new Date().getTime(), correlativo: correlativoNotaGlobal, cliente: cl, rif: rf, tlf: tlf, dir: dir, productos: [...ticketProductos], total: acumuladoUSD, status: 'EMITIDA' });
-            const txt = buildFacturaTextRaw(cl, rf, tlf, dir, ticketProductos, acumuladoUSD);
+            facturasEmitidasBD.push({ id: 'f-'+new Date().getTime(), correlativo: correlativoNotaGlobal, cliente: cl, rif: rf, tlf: tlf, dir: dir, productos: [...ticketProductos], total: acumuladoUSD, status: 'EMITIDA', vendedor: vendedor, condicion: condicion, monedaRecibida: monedaRecibida, abono: abono, resta: resta, diasCredito: diasCredito });
+            const txt = buildFacturaTextRaw(cl, rf, tlf, dir, ticketProductos, acumuladoUSD, vendedor, condicion, monedaRecibida, abono, resta, diasCredito);
             
             document.getElementById('contenedor-impresion-termica-fijo').innerText = txt;
             document.getElementById('whatsapp-nota-content').innerText = txt;
@@ -1332,18 +1436,29 @@
             localStorage.setItem(`${infoClienteAbiertoDinamico.ownerID}_correlativo_val`, correlativoNotaGlobal);
             limpiarTicketCompleto();
             document.getElementById('ticket-correlativo-display').innerText = `Nota #${String(correlativoNotaGlobal).padStart(3, '0')}`;
+            document.getElementById('ticket-vendedor').value = "";
+            document.getElementById('ticket-abono').value = "0";
             actualizarListaReportesInterna();
         }
 
         function enviarFacturaWhatsAppClienteSimulada() {
             if(ticketProductos.length === 0) return alert("Mesa vacía.");
+            const vendedor = document.getElementById('ticket-vendedor').value.trim();
+            if(!vendedor) return alert("⚠️ Error crítico: Debe ingresar el nombre de la vendedora o cajero para auditar la operación de forma obligatoria.");
+
             const cl = document.getElementById('ticket-cliente')?.value || "General";
             const rf = document.getElementById('ticket-rif-cliente')?.value || "N/A";
             const tlf = document.getElementById('ticket-tlf-cliente')?.value || "N/A";
             const dir = document.getElementById('ticket-dir-cliente')?.value || "N/A";
+            
+            const condicion = document.getElementById('ticket-condicion-pago').value;
+            const monedaRecibida = document.getElementById('ticket-moneda-recibida').value;
+            const abono = parseFloat(document.getElementById('ticket-abono').value) || 0;
+            const diasCredito = parseInt(document.getElementById('ticket-credito-dias')?.value) || 5;
+            let resta = acumuladoUSD - abono; if (resta < 0) resta = 0;
 
-            facturasEmitidasBD.push({ id: 'f-'+new Date().getTime(), correlativo: correlativoNotaGlobal, cliente: cl, rif: rf, tlf: tlf, dir: dir, productos: [...ticketProductos], total: acumuladoUSD, status: 'EMITIDA' });
-            const txt = buildWhatsAppTextRaw(cl, rf, tlf, dir, ticketProductos, acumuladoUSD);
+            facturasEmitidasBD.push({ id: 'f-'+new Date().getTime(), correlativo: correlativoNotaGlobal, cliente: cl, rif: rf, tlf: tlf, dir: dir, productos: [...ticketProductos], total: acumuladoUSD, status: 'EMITIDA', vendedor: vendedor, condicion: condicion, monedaRecibida: monedaRecibida, abono: abono, resta: resta, diasCredito: diasCredito });
+            const txt = buildWhatsAppTextRaw(cl, rf, tlf, dir, ticketProductos, acumuladoUSD, vendedor, condicion, monedaRecibida, abono, resta, diasCredito);
             
             document.getElementById('whatsapp-nota-content').innerText = txt;
             document.getElementById('modal-whatsapp-nota').classList.remove('hidden');
@@ -1357,11 +1472,13 @@
             localStorage.setItem(`${infoClienteAbiertoDinamico.ownerID}_correlativo_val`, correlativoNotaGlobal);
             limpiarTicketCompleto();
             document.getElementById('ticket-correlativo-display').innerText = `Nota #${String(correlativoNotaGlobal).padStart(3, '0')}`;
+            document.getElementById('ticket-vendedor').value = "";
+            document.getElementById('ticket-abono').value = "0";
             actualizarListaReportesInterna();
         }
 
         function anularFacturaHistorialConNotaCredito(id) {
-            if(confirm("⚠️ ALERTA DE SEGURIDAD INTERNA\n\n¿Está seguro de que desea procesar la anulación contable de esta nota?")) {
+            if(confirm("⚠️ ALERTA DE SEGURIDAD INTERNA\n\n¿Grid seguro de que desea procesar la anulación contable de esta nota?")) {
                 const f = facturasEmitidasBD.find(fact => fact.id === id);
                 if(f) { 
                     f.status = 'ANULADA'; 
@@ -1375,7 +1492,7 @@
         function reimprimirFacturaHistorial(id) {
             const f = facturasEmitidasBD.find(fact => fact.id === id);
             if(f) {
-                const txt = buildFacturaTextRaw(f.cliente, f.rif, f.tlf, f.dir, f.productos, f.total);
+                const txt = buildFacturaTextRaw(f.cliente, f.rif, f.tlf, f.dir, f.productos, f.total, f.vendedor || "General", f.condicion || "CONTADO", f.monedaRecibida || "USD", f.abono || 0, f.resta || 0, f.diasCredito || 5);
                 document.getElementById('contenedor-impresion-termica-fijo').innerText = txt;
                 document.getElementById('whatsapp-nota-content').innerText = txt;
                 document.getElementById('modal-whatsapp-nota').classList.remove('hidden');
@@ -1386,7 +1503,7 @@
         function reenviarWhatsAppHistorial(id) {
             const f = facturasEmitidasBD.find(fact => fact.id === id);
             if(f) {
-                const txt = buildWhatsAppTextRaw(f.cliente, f.rif, f.tlf, f.dir, f.productos, f.total);
+                const txt = buildWhatsAppTextRaw(f.cliente, f.rif, f.tlf, f.dir, f.productos, f.total, f.vendedor || "General", f.condicion || "CONTADO", f.monedaRecibida || "USD", f.abono || 0, f.resta || 0, f.diasCredito || 5);
                 document.getElementById('whatsapp-nota-content').innerText = txt;
                 document.getElementById('modal-whatsapp-nota').classList.remove('hidden');
                 let urlLink = `https://api.whatsapp.com/send?text=${encodeURIComponent(txt)}`;
@@ -1396,18 +1513,30 @@
         }
 
         function enviarReporteCierreDiarioWhatsAppDueño() {
-            let sumVentas = facturasEmitidasBD.reduce((acc, curr) => curr.status === 'EMITIDA' ? acc + curr.total : acc, 0);
+            let sumVentas = facturasEmitidasBD.reduce((acc, curr) => {
+                if (curr.status === 'EMITIDA') {
+                    if (curr.condicion === 'CREDITO') return acc + curr.abono;
+                    return acc + curr.total;
+                }
+                return acc;
+            }, 0);
             let sumGastos = gastosBD.reduce((acc, curr) => curr.moneda === 'USD' ? acc + curr.monto : acc, 0);
             let neto = sumVentas - sumGastos;
             
-            const msg = `📊 *CIERRE DIARIO DE CAJA — ${infoClienteAbiertoDinamico.nombre.toUpperCase()}*\n\n▪ *Ventas Totales:* $${Math.round(sumVentas)}\n▪ *Gastos Totales:* $${Math.round(sumGastos)}\n📦 *Balance Neto:* $${Math.round(neto)}\n\n🔒 _Reporte administrativo resguardado localmente de uso privado._`;
+            const msg = `📊 *CIERRE DIARIO DE CAJA — ${infoClienteAbiertoDinamico.nombre.toUpperCase()}*\n\n▪ *Ventas / Abonos Totales:* $${Math.round(sumVentas)}\n▪ *Gastos Totales:* $${Math.round(sumGastos)}\n📦 *Balance Neto:* $${Math.round(neto)}\n\n🔒 _Reporte administrativo resguardado localmente de uso privado._`;
             let urlLink = `https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`;
             if(infoClienteAbiertoDinamico.tlf) { urlLink = `https://api.whatsapp.com/send?phone=${filterCleanInternationalPhone(infoClienteAbiertoDinamico.tlf)}&text=${encodeURIComponent(msg)}`; }
             window.open(urlLink, '_blank');
         }
 
         function ejecutarCierreCajaPeriodo(tipo) {
-            let sumVentas = facturasEmitidasBD.reduce((acc, curr) => curr.status === 'EMITIDA' ? acc + curr.total : acc, 0);
+            let sumVentas = facturasEmitidasBD.reduce((acc, curr) => {
+                if (curr.status === 'EMITIDA') {
+                    if (curr.condicion === 'CREDITO') return acc + curr.abono;
+                    return acc + curr.total;
+                }
+                return acc;
+            }, 0);
             let sumGastos = gastosBD.reduce((acc, curr) => curr.moneda === 'USD' ? acc + curr.monto : acc, 0);
             let neto = sumVentas - sumGastos;
             if(confirm(`📊 BALANCE CIERRE DE ${tipo.toUpperCase()}\n\nVentas: $${Math.round(sumVentas)}\nGastos: $${Math.round(sumGastos)}\nNeto: $${Math.round(neto)}\n\n¿Asentar turno contable?`)) {
@@ -1443,4 +1572,4 @@
         }
     </script>
 </body>
-                </html>
+    </html>
