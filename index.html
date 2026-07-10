@@ -13,7 +13,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght=400;500;600;700;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
         body { font-family: 'Plus Jakarta Sans', sans-serif; }
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
@@ -74,130 +74,204 @@
     <!-- ========================================== -->
     <!-- ENTORNO: VISTA DE LA PROPUESTA PARA EL CLIENTE -->
     <!-- ========================================== -->
-    <div id="vista-propuesta-cliente" class="hidden min-h-screen bg-slate-950 text-slate-100">
-        <header class="relative overflow-hidden border-b border-slate-900 bg-slate-900/40 py-12 px-4 text-center">
+    <div id="vista-propuesta-cliente" class="hidden min-h-screen bg-slate-950 text-slate-100 antialiased selection:bg-blue-600 selection:text-white pb-12">
+        
+        <!-- HERO DE ALTA GAMA -->
+        <header class="relative overflow-hidden border-b border-slate-900 bg-slate-900/40 py-14 px-4 text-center">
             <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.1),transparent_60%)]"></div>
             <div class="relative max-w-3xl mx-auto space-y-4">
                 <span class="bg-blue-500/10 text-blue-400 border border-blue-500/20 text-[10px] font-extrabold tracking-widest uppercase px-3 py-1 rounded-full inline-flex items-center gap-1.5 shadow-sm">
-                    <i class="fa-solid fa-rocket animate-pulse"></i> Presentación Comercial Oficial 2026
+                    <i class="fa-solid fa-rocket animate-pulse"></i> Presentación Corporativa 2026
                 </span>
-                <h1 class="text-3xl sm:text-4xl font-black tracking-tight text-white uppercase">TCL INVENTARIO MÁSTER</h1>
-                <p class="text-amber-400 font-extrabold text-xs tracking-wider font-mono uppercase bg-amber-500/5 border border-amber-500/10 px-4 py-1.5 rounded-xl inline-block">🔒 Tu Negocio Bajo Control Absoluto</p>
+                <h1 class="text-3xl sm:text-4xl font-black tracking-tight text-white uppercase">
+                    TCL INVENTARIO MÁSTER
+                </h1>
+                <p class="text-amber-400 font-extrabold text-xs tracking-wider font-mono uppercase bg-amber-500/5 border border-amber-500/10 px-4 py-1.5 rounded-xl inline-block">
+                    🔒 Infraestructura SaaS de Control y Despacho Comercial
+                </p>
                 <p class="text-slate-400 text-sm max-w-xl mx-auto font-medium leading-relaxed">
-                    La infraestructura SaaS definitiva para la administración, control de stock y despacho inmediato de mercancía. Diseñada con enfoque prioritario para operar desde tu teléfono celular o computadora.
+                    La solución digital definitiva diseñada para optimizar los tiempos de venta, resguardar tus seriales de auditoría y automatizar la administración interna de tu empresa desde cualquier dispositivo.
                 </p>
             </div>
         </header>
 
+        <!-- CUADRO DE BLINDAJE Y MARCO LEGAL -->
+        <section class="max-w-4xl mx-auto px-4 pt-8">
+            <div class="bg-gradient-to-br from-blue-950/40 to-slate-900 border border-blue-500/20 rounded-3xl p-5 shadow-xl flex flex-col sm:flex-row gap-4 items-center sm:items-start text-justify">
+                <div class="w-12 h-12 bg-blue-600/10 border border-blue-500/20 rounded-2xl flex items-center justify-center text-blue-400 text-2xl shrink-0 shadow-inner">
+                    <i class="fa-solid fa-scale-balanced"></i>
+                </div>
+                <div class="space-y-1.5">
+                    <h4 class="font-black text-xs uppercase tracking-wider text-white text-center sm:text-left">Operación 100% Legítima y Segura</h4>
+                    <p class="text-slate-300 text-xs leading-relaxed">
+                        <strong>TCL Inventario Máster</strong> actúa estrictamente como un software privado para la optimización contable, organización de almacenes y verificación interna. La plataforma emite de forma limpia <strong>Notas de Despacho sin valor fiscal</strong>, permitiendo un control milimétrico de tus activos, cajas y reportes de forma autónoma sin interferir ni sustituir los requerimientos tributarios de tu comercio.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- PILARES DE SERVICIO -->
         <main class="max-w-5xl mx-auto px-4 py-10 space-y-8">
+            <h3 class="text-xs font-black uppercase tracking-widest text-slate-400 border-b border-slate-900 pb-2 flex items-center gap-2">
+                <i class="fa-solid fa-briefcase text-blue-500"></i> Beneficios y Servicios Integrados en tu Terminal
+            </h3>
+            
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div class="bg-slate-900/60 border border-slate-800/80 rounded-2xl p-5 space-y-3 shadow-inner">
+                
+                <!-- Beneficio 1: Impresión -->
+                <div class="bg-slate-900/60 border border-slate-800/80 rounded-2xl p-5 space-y-3 shadow-inner hover:border-slate-700/60 transition-all">
                     <div class="flex items-center gap-3">
                         <div class="w-10 h-10 bg-amber-500/10 border border-amber-500/20 rounded-xl flex items-center justify-center text-amber-400 text-lg"><i class="fa-solid fa-print"></i></div>
                         <h4 class="font-bold text-sm text-white uppercase tracking-tight">Impresión Suprema Universal</h4>
                     </div>
-                    <p class="text-slate-400 text-xs leading-relaxed text-justify">El motor del sistema autodetecta al instante tu hardware activo, adaptando el formato de forma automática para tickeras térmicas de mostrador, impresoras portátiles por Bluetooth o impresoras de oficina de cualquier marca (Epson, HP, Canon). Su regla de aislamiento elástico garantiza el corte exacto.</p>
+                    <p class="text-slate-400 text-xs leading-relaxed text-justify">
+                        Ahorra más del 50% en consumibles de papelería. El motor del sistema autodetecta al instante tu hardware activo, adaptando el formato de forma automática para tickeras térmicas de mostrador, impresoras portátiles por Bluetooth o impresoras de oficina de cualquier marca (Epson, HP, Canon). Su regla de aislamiento estricto garantiza que el ticket se corte de forma exacta en una hoja física.
+                    </p>
                 </div>
-                <div class="bg-slate-900/60 border border-slate-800/80 rounded-2xl p-5 space-y-3 shadow-inner">
+
+                <!-- Beneficio 2: Despacho -->
+                <div class="bg-slate-900/60 border border-slate-800/80 rounded-2xl p-5 space-y-3 shadow-inner hover:border-slate-700/60 transition-all">
                     <div class="flex items-center gap-3">
                         <div class="w-10 h-10 bg-emerald-500/10 border border-emerald-500/20 rounded-xl flex items-center justify-center text-emerald-400 text-lg"><i class="fa-solid fa-paper-plane"></i></div>
                         <h4 class="font-bold text-sm text-white uppercase tracking-tight">Despacho Digital Instantáneo</h4>
                     </div>
-                    <p class="text-slate-400 text-xs leading-relaxed text-justify">Con un solo toque en pantalla, el sistema procesa el cierre de la venta y le dispara un comprobante digital de su nota de entrega de forma directa al WhatsApp del cliente en tiempo real.</p>
+                    <p class="text-slate-400 text-xs leading-relaxed text-justify">
+                        Eleva la presencia corporativa de tu marca. Con un solo toque en pantalla, el sistema procesa el cierre de la venta y le dispara un comprobante digital impecable con el desglose detallado de su compra de forma directa al WhatsApp del cliente en tiempo real, agilizando el flujo de entrega en el mostrador.
+                    </p>
                 </div>
+
+                <!-- NUEVO BENEFICIO: MODULO MULTIMONEDA INTEGRADO -->
+                <div class="bg-slate-900/60 border border-blue-500/20 rounded-2xl p-5 space-y-3 shadow-inner hover:border-blue-500/40 transition-all">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-blue-500/10 border border-blue-500/20 rounded-xl flex items-center justify-center text-blue-400 text-lg"><i class="fa-solid fa-calculator"></i></div>
+                        <h4 class="font-bold text-sm text-white uppercase tracking-tight">Conversión Multimoneda Inteligente</h4>
+                    </div>
+                    <p class="text-slate-400 text-xs leading-relaxed text-justify">
+                        Domina tu mercado transaccional convirtiendo y desglosando cuentas de forma automática. El sistema unifica y calcula tus totales en tiempo real entre Dólares ($), Pesos Colombianos (COP) y Bolívares (Bs) según las tasas de control diario establecidas en tu mostrador, eliminando cualquier descuadre o error humano en caja.
+                    </p>
+                </div>
+
+                <!-- Beneficio 3: Protección -->
+                <div class="bg-slate-900/60 border border-slate-800/80 rounded-2xl p-5 space-y-3 shadow-inner hover:border-slate-700/60 transition-all">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-blue-500/10 border border-blue-500/20 rounded-xl flex items-center justify-center text-blue-400 text-lg"><i class="fa-solid fa-shield-halved"></i></div>
+                        <h4 class="font-bold text-sm text-white uppercase tracking-tight">Protección Antifraude y Auditoría</h4>
+                    </div>
+                    <p class="text-slate-400 text-xs leading-relaxed text-justify">
+                        Mantén el control absoluto de tus cajeros y empleados. El software prohíbe la eliminación arbitraria de registros. Cualquier error humano en mostrador se corrige mediante la generación contable de una Nota de Crédito Interna, la cual resta el saldo de la caja de forma transparente pero mantiene fijo el historial inalterable para la revisión del dueño.
+                    </p>
+                </div>
+
+                <!-- Beneficio 4: IMEI -->
+                <div class="bg-slate-900/60 border border-slate-800/80 rounded-2xl p-5 space-y-3 shadow-inner hover:border-slate-700/60 transition-all">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-purple-500/10 border border-purple-500/20 rounded-xl flex items-center justify-center text-purple-400 text-lg"><i class="fa-solid fa-barcode"></i></div>
+                        <h4 class="font-bold text-sm text-white uppercase tracking-tight">Rastreador Inteligente Multi-IMEI</h4>
+                    </div>
+                    <p class="text-slate-400 text-xs leading-relaxed text-justify">
+                        Especializado para el sector tecnológico y de telefonía móvil. Centraliza múltiples ventas de un mismo modelo agrupándolas en una línea compacta con su cantidad total, ordenando verticalmente hacia abajo los seriales IMEI de auditoría e incorporando soporte nativo para configuraciones Dual SIM.
+                    </p>
+                </div>
+
+                <!-- Recomendación Premium 1: Anti-Apagones -->
+                <div class="bg-slate-900/60 border border-blue-500/20 rounded-2xl p-5 space-y-3 shadow-inner hover:border-blue-500/40 transition-all relative overflow-hidden">
+                    <div class="absolute top-0 right-0 bg-blue-600/10 text-blue-400 text-[8px] font-black uppercase font-mono px-2 py-0.5 border-b border-l border-blue-500/20">Exclusivo</div>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-blue-500/10 border border-blue-500/20 rounded-xl flex items-center justify-center text-blue-400 text-lg"><i class="fa-solid fa-bolt-lightning"></i></div>
+                        <h4 class="font-bold text-sm text-white uppercase tracking-tight">Operación Local Autónoma (Anti-Apagones)</h4>
+                    </div>
+                    <p class="text-slate-400 text-xs leading-relaxed text-justify">
+                        Diseñado para la reality de nuestra región. El sistema cuenta con un motor interno de resguardo autónomo que mantiene la mesa de facturación y el inventario vivos en la memoria local. Si el internet fluctúa o se corta temporalmente, tu negocio no se detiene: puedes seguir operando y, al retornar la señal, todo se sincroniza en la nube de forma invisible.
+                    </p>
+                </div>
+
+                <!-- Beneficio 5: Buscador -->
+                <div class="bg-slate-900/60 border border-slate-800/80 rounded-2xl p-5 space-y-3 shadow-inner hover:border-slate-700/60 transition-all">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-cyan-500/10 border border-cyan-500/20 rounded-xl flex items-center justify-center text-cyan-400 text-lg"><i class="fa-solid fa-magnifying-glass"></i></div>
+                        <h4 class="font-bold text-sm text-white uppercase tracking-tight">Buscador y Seguridad de Destino</h4>
+                    </div>
+                    <p class="text-slate-400 text-xs leading-relaxed text-justify">
+                        Localiza al instante cualquier comprobante antiguo ingresando el número de Cédula o RIF del cliente. Además, para evitar fugas de información, el software bloquea el destino al momento de compartir, enviando los mensajes de WhatsApp estrictamente al número telefónico original registrado en la primera transacción.
+                    </p>
+                </div>
+
             </div>
 
-            <!-- SECCIÓN RESTAURADA DE SUSCRIPCIONES Y PLANES PREMIUM -->
-            <div class="space-y-4 pt-6">
-                <div class="text-center">
-                    <h3 class="text-xs font-black uppercase text-blue-400 tracking-widest"><i class="fa-solid fa-tags mr-1"></i> Planes y Suscripciones Disponibles</h3>
-                    <p class="text-slate-400 text-xs mt-1">Planes flexibles adaptados a la escala y ritmo administrativo de tu comercio.</p>
-                </div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                    <!-- PLAN 1 MES -->
-                    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 flex flex-col justify-between space-y-4 relative overflow-hidden group">
-                        <div class="space-y-2">
-                            <span class="text-[9px] font-bold text-slate-400 uppercase tracking-wider block">Acceso Básico</span>
-                            <h4 class="text-base font-black text-white uppercase">Plan Bronce</h4>
-                            <div class="text-2xl font-black text-blue-400 font-mono" id="p-pub-m1">$25 USDT</div>
-                            <p class="text-[11px] text-slate-400 leading-relaxed">Ideal para periodos de auditoría corta o control administrativo express de stock.</p>
-                        </div>
-                        <button class="w-full bg-slate-800 hover:bg-slate-700 text-white text-[11px] font-black py-2.5 rounded-xl uppercase tracking-wider transition-colors">Adquirir Licencia</button>
-                    </div>
-                    <!-- PLAN 3 MESES -->
-                    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 flex flex-col justify-between space-y-4 relative overflow-hidden group">
-                        <div class="space-y-2">
-                            <span class="text-[9px] font-bold text-purple-400 uppercase tracking-wider block">Control Avanzado</span>
-                            <h4 class="text-base font-black text-white uppercase">Plan Plata Pro</h4>
-                            <div class="text-2xl font-black text-purple-400 font-mono" id="p-pub-m3">$60 USDT</div>
-                            <p class="text-[11px] text-slate-400 leading-relaxed">Perfecto para balances de temporada y optimización mediana del almacén.</p>
-                        </div>
-                        <button class="w-full bg-slate-800 hover:bg-slate-700 text-white text-[11px] font-black py-2.5 rounded-xl uppercase tracking-wider transition-colors">Adquirir Licencia</button>
-                    </div>
-                    <!-- PLAN 6 MESES -->
-                    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 flex flex-col justify-between space-y-4 relative overflow-hidden group">
-                        <div class="space-y-2">
-                            <span class="text-[9px] font-bold text-amber-400 uppercase tracking-wider block">Estabilidad Almacén</span>
-                            <h4 class="text-base font-black text-white uppercase">Plan Oro Premium</h4>
-                            <div class="text-2xl font-black text-amber-400 font-mono" id="p-pub-m6">$90 USDT</div>
-                            <p class="text-[11px] text-slate-400 leading-relaxed">Gestión semestral extendida con copias de seguridad continuas de base de datos.</p>
-                        </div>
-                        <button class="w-full bg-slate-800 hover:bg-slate-700 text-white text-[11px] font-black py-2.5 rounded-xl uppercase tracking-wider transition-colors">Adquirir Licencia</button>
-                    </div>
-                    <!-- PLAN 12 MESES -->
-                    <div class="bg-gradient-to-b from-blue-950 to-slate-900 border-2 border-blue-500/40 rounded-2xl p-5 flex flex-col justify-between space-y-4 relative overflow-hidden group shadow-lg">
-                        <div class="absolute top-0 right-0 bg-blue-600 text-white font-black text-[8px] uppercase px-2.5 py-1 rounded-bl-xl tracking-widest shadow">Recomendado</div>
-                        <div class="space-y-2">
-                            <span class="text-[9px] font-bold text-emerald-400 uppercase tracking-wider block">Dominio Corporativo</span>
-                            <h4 class="text-base font-black text-white uppercase">Membresía Anual Pro</h4>
-                            <div class="text-2xl font-black text-emerald-400 font-mono" id="p-pub-m12">$160 USDT</div>
-                            <p class="text-[11px] text-slate-300 leading-relaxed">Máxima rentabilidad, control permanente y soporte prioritario 24/7 sin interrupciones.</p>
-                        </div>
-                        <button class="w-full bg-blue-600 hover:bg-blue-700 text-white text-[11px] font-black py-2.5 rounded-xl uppercase tracking-wider transition-colors shadow-md">Adquirir Licencia</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- SECCIÓN RESTAURADA DE MEDIOS DE PAGO AUTORIZADOS -->
-            <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 space-y-4">
-                <div class="text-center sm:text-left border-b border-slate-800 pb-2">
-                    <h4 class="text-xs font-black uppercase text-blue-400 tracking-wide"><i class="fa-solid fa-credit-card mr-1"></i> Canales y Medios de Pago Autorizados</h4>
-                </div>
-                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center text-xs font-mono">
-                    <div class="bg-slate-950 p-3 rounded-xl border border-slate-850 flex flex-col items-center justify-center gap-1">
-                        <i class="fa-solid fa-mobile-screen-button text-purple-400 text-lg"></i>
-                        <span class="text-[9px] text-slate-400 uppercase font-bold">Nequi</span>
-                    </div>
-                    <div class="bg-slate-950 p-3 rounded-xl border border-slate-850 flex flex-col items-center justify-center gap-1">
-                        <i class="fa-solid fa-building-columns text-amber-400 text-lg"></i>
-                        <span class="text-[9px] text-slate-400 uppercase font-bold">Bancolombia</span>
-                    </div>
-                    <div class="bg-slate-950 p-3 rounded-xl border border-slate-850 flex flex-col items-center justify-center gap-1">
-                        <i class="fa-solid fa-money-bill-transfer text-emerald-400 text-lg"></i>
-                        <span class="text-[9px] text-slate-400 uppercase font-bold">Pago Móvil</span>
-                    </div>
-                    <div class="bg-slate-950 p-3 rounded-xl border border-slate-850 flex flex-col items-center justify-center gap-1">
-                        <i class="fa-solid fa-coins text-blue-400 text-lg"></i>
-                        <span class="text-[9px] text-slate-400 uppercase font-bold">Cripto USDT</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- SIMULADOR INTERACTIVO DE RENTABILIDAD -->
+            <!-- SIMULADOR INTERACTIVO -->
             <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 space-y-4">
                 <div class="text-center sm:text-left">
                     <h4 class="text-xs font-black uppercase text-amber-400 tracking-wide"><i class="fa-solid fa-chart-line mr-1"></i> Simulador Interactivo de Rentabilidad TCL</h4>
+                    <p class="text-[11px] text-slate-400">Desliza el medidor para calcular cuántas horas operativas y costos de papelería te ahorra el sistema mensualmente.</p>
                 </div>
-                <input type="range" id="simulador-notes" min="100" max="2000" value="500" step="50" oninput="calcularAhorroInteractivoVenta(this.value)" class="w-full accent-blue-600 bg-slate-950 h-2 rounded-lg cursor-pointer">
+                <div class="space-y-2">
+                    <input type="range" id="simulador-notas" min="100" max="2000" value="500" step="50" oninput="calcularAhorroInteractivoVenta(this.value)" class="w-full accent-blue-600 bg-slate-950 h-2 rounded-lg cursor-pointer">
+                    <div class="flex justify-between font-mono text-[10px] text-slate-500 font-bold uppercase"><span>100 Notas</span><span>2.000 Notas al Mes</span></div>
+                </div>
                 <div class="grid grid-cols-3 gap-2 text-center font-mono text-xs pt-1">
-                    <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-850"><span class="block text-[8px] text-slate-500 uppercase font-bold">Volumen</span><b class="text-white text-sm font-black" id="val-sim-notas">500 Notas</b></div>
+                    <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-850"><span class="block text-[8px] text-slate-500 uppercase font-bold">Volumen Mensual</span><b class="text-white text-sm font-black" id="val-sim-notas">500 Notas</b></div>
                     <div class="bg-slate-950 p-2.5 rounded-xl border border-blue-500/20"><span class="block text-[8px] text-blue-400 uppercase font-bold">Tiempo Ahorrado</span><b class="text-blue-400 text-sm font-black" id="val-sim-tiempo">16 Horas</b></div>
                     <div class="bg-slate-950 p-2.5 rounded-xl border border-emerald-500/20"><span class="block text-[8px] text-emerald-400 uppercase font-bold">Papel Ahorrado</span><b class="text-emerald-400 text-sm font-black" id="val-sim-dinero">$35.00 USD</b></div>
                 </div>
             </div>
+
+            <!-- REGLAS DEL DOMINÓ: TÉRMINOS LEGALES -->
+            <h3 class="text-xs font-black uppercase tracking-widest text-slate-400 border-b border-slate-900 pb-2 flex items-center gap-2 pt-4">
+                <i class="fa-solid fa-handshake-angle text-amber-500"></i> Términos de Contratación y Reglas de Uso
+            </h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="bg-slate-900/40 border border-slate-850 p-4 rounded-xl space-y-1.5 text-justify">
+                    <b class="text-white text-xs block uppercase tracking-tight"><i class="fa-solid fa-ban text-red-400 mr-1"></i> Modificaciones Personales</b>
+                    <p class="text-slate-400 text-[11px] leading-relaxed">El software se entrega bajo la modalidad cerrada llave en mano. No se contemplan modificaciones personales a la interfaz o código de forma gratuita. Cualquier requerimiento exclusivo del comercio se cotizará como un development adicional fuera de la suscripción.</p>
+                </div>
+                <div class="bg-slate-900/40 border border-slate-850 p-4 rounded-xl space-y-1.5 text-justify">
+                    <b class="text-white text-xs block uppercase tracking-tight"><i class="fa-solid fa-rotate text-blue-400 mr-1"></i> Actualizaciones Futuras</b>
+                    <p class="text-slate-400 text-[11px] leading-relaxed">Nuestra infraestructura se mantiene en constante evolución para adaptarse al comercio. Todos los usuarios con membresía activa disfrutarán de actualizaciones globales, parches de seguridad y mejoras generales de rendimiento de forma 100% gratuita.</p>
+                </div>
+                <div class="bg-slate-900/40 border border-slate-850 p-4 rounded-xl space-y-1.5 text-justify">
+                    <b class="text-white text-xs block uppercase tracking-tight"><i class="fa-solid fa-shop-lock text-emerald-400 mr-1"></i> Alquiler de Servicio (SaaS)</b>
+                    <p class="text-slate-400 text-[11px] leading-relaxed">Bajo este acuerdo comercial no se realiza venta de propiedad intelectual ni traspaso de software. El cliente adquiere estrictamente el derecho de alquiler de la plataforma por el tiempo contratado, requiriendo un contrato físico impreso y firma digital para su activación.</p>
+                </div>
+            </div>
         </main>
-        
-        <!-- FOOTER ENMENDADO CON DERECHOS DE AUTOR ORIGINALES -->
+
+        <!-- PANELES DE INVERSIÓN Y PLANES -->
+        <section class="bg-slate-900/30 border-t border-slate-900 py-12 px-4">
+            <div class="max-w-4xl mx-auto space-y-8 text-center">
+                <div class="space-y-1">
+                    <h3 class="text-xs font-black uppercase tracking-widest text-slate-400">Planes de Membresía Flexibles</h3>
+                    <p class="text-[10px] text-slate-500 font-mono">Costos fijados en moneda digital estables basados en las tasas del día.</p>
+                </div>
+                
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-left font-mono">
+                    <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl text-center shadow-inner"><span class="block text-[10px] text-slate-500 font-bold uppercase mb-1">1 Mes</span><b class="text-white text-base font-black" id="p-pub-m1">$25 USDT</b></div>
+                    <div class="bg-slate-900 border border-blue-500/20 p-4 rounded-xl text-center shadow-md relative overflow-hidden">
+                        <div class="absolute top-0 right-0 bg-blue-500 text-slate-950 font-black text-[7px] px-1 py-0.2 uppercase">Plan Pro</div>
+                        <span class="block text-[10px] text-blue-400 font-bold uppercase mb-1">3 Meses</span><b class="text-blue-400 text-base font-black" id="p-pub-m3">$60 USDT</b>
+                    </div>
+                    <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl text-center shadow-inner"><span class="block text-[10px] text-slate-500 font-bold uppercase mb-1">6 Meses</span><b class="text-white text-base font-black" id="p-pub-m6">$90 USDT</b></div>
+                    <div class="bg-slate-900 border border-amber-500/20 p-4 rounded-xl text-center shadow-md relative overflow-hidden">
+                        <div class="absolute top-0 right-0 bg-amber-400 text-slate-950 font-black text-[7px] px-1 py-0.2 uppercase">Mejor Valor</div>
+                        <span class="block text-[10px] text-amber-400 font-bold uppercase mb-1">1 Año</span><b class="text-amber-400 text-base font-black" id="p-pub-m12">$160 USDT</b>
+                    </div>
+                </div>
+
+                <!-- CANALES DE PAGO DISPONIBLES -->
+                <div class="space-y-3 max-w-xl mx-auto pt-2">
+                    <span class="text-[9px] font-black text-slate-500 uppercase tracking-widest block">Canales de Liquidación Soportados</span>
+                    <div class="grid grid-cols-3 sm:grid-cols-6 gap-2 text-[10px] font-bold text-slate-400">
+                        <div class="bg-slate-900 border border-slate-850 p-2 rounded-xl flex flex-col items-center gap-1"><i class="fa-solid fa-mobile-screen text-emerald-400 text-sm"></i> Pago Móvil</div>
+                        <div class="bg-slate-900 border border-slate-850 p-2 rounded-xl flex flex-col items-center gap-1"><i class="fa-solid fa-money-bill-1 text-green-500 text-sm"></i> Efectivo $</div>
+                        <div class="bg-slate-900 border border-slate-850 p-2 rounded-xl flex flex-col items-center gap-1"><i class="fa-solid fa-flag text-amber-500 text-sm"></i> Pesos COP</div>
+                        <div class="bg-slate-900 border border-slate-850 p-2 rounded-xl flex flex-col items-center gap-1"><i class="fa-solid fa-wallet text-purple-400 text-sm"></i> Nequi</div>
+                        <div class="bg-slate-900 border border-slate-850 p-2 rounded-xl flex flex-col items-center gap-1"><i class="fa-solid fa-heart text-pink-400 text-sm"></i> Zinli</div>
+                        <div class="bg-slate-900 border border-slate-850 p-2 rounded-xl flex flex-col items-center gap-1"><i class="fa-solid fa-coins text-yellow-400 text-sm"></i> Binance</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PIE DE PÁGINA CORPORATIVO -->
         <footer class="py-8 px-4 text-center text-[10px] text-slate-500 font-medium border-t border-slate-900 space-y-1">
             <p>Infraestructura Tecnológica Desarrollada y Distribuida por Tucocel C.A.</p>
             <p class="text-slate-600 font-mono">© 2026 Todos los Derechos Reservados. Propiedad Intelectual y Automatización por @publionlinemk.</p>
@@ -368,7 +442,7 @@
         </div>
 
         <!-- VISTA ENTORNO CLIENTE COMPLETO -->
-        <div id="vista-entorno-cliente" class="hidden min-h-screen bg-slate-950 text-slate-100 flex flex-col justify-center items-center p-4 relative">
+        <div id="vista-entorno-cliente" class="hidden min-h-screen bg-slate-50 text-slate-100 flex flex-col justify-center items-center p-4 relative">
             
             <!-- ONBOARDING DE CONTRATO OFICIAL (6 CLÁUSULAS COMPLETAS) -->
             <div id="pantalla-onboarding-contrato-kyc" class="hidden w-full max-w-xl p-0.5 rounded-3xl bg-gradient-to-br from-blue-600 via-slate-800 to-purple-600 shadow-[0_0_50px_rgba(59,130,246,0.3)] z-40 max-h-[90vh] flex flex-col overflow-hidden">
@@ -421,7 +495,7 @@
             <div id="cli-panel-reglas-fijas" class="w-full max-w-md space-y-3 z-10 px-1 text-center mt-4">
                 <div class="bg-amber-500/5 border border-amber-500/20 rounded-2xl p-4 text-justify space-y-1">
                     <div class="flex items-center gap-2 text-amber-400 font-black text-[10px] uppercase tracking-wider"><i class="fa-solid fa-shield-halved text-xs"></i> <span>Reglas de Oro del Sistema</span></div>
-                    <p class="text-[11px] text-slate-300 leading-relaxed">Este software es un <strong>Servicio bajo Suscripción Alquilada</strong>[cite: 1]. Usted es el único responsable por los montos e inventarios[cite: 1]. Los comprobantes emitidos corresponden a <strong>Notas de Entrega sin valor fiscal</strong> para orden interno[cite: 1]. El cumplimiento total de las obligaciones tributarias e impuestos comerciales corresponde de forma única y exclusiva a EL ARRENDATARIO, eximiendo de toda responsabilidad al proveedor.</p>
+                    <p class="text-[11px] text-slate-300 leading-relaxed">Este software es un <strong>Servicio bajo Suscripción Alquilada</strong>[cite: 1]. Usted es el único responsable por los montos e inventarios[cite: 1]. Los comprobantes emitidos corresponden a <strong>Notas de Entrega sin valor fiscal</strong> para orden interno[cite: 1]. El cumplimiento total de las obligaciones tributarias e impuestos comerciales corresponde de forma única and exclusiva a EL ARRENDATARIO, eximiendo de toda responsabilidad al proveedor.</p>
                 </div>
                 <div class="bg-slate-900/40 border border-slate-900 rounded-2xl p-3 text-center font-mono text-[10px] text-slate-400 space-y-1">
                     <p class="font-bold text-slate-300 flex items-center justify-center gap-1"><i class="fa-solid fa-headset text-blue-400"></i> Soporte Técnico Certificado:</p>
@@ -508,7 +582,7 @@
                             <div id="inv-campos-telefonos" class="grid grid-cols-2 gap-2"><input type="text" id="inv-prod-marca" placeholder="Marca" class="w-full bg-white border p-2 rounded-xl font-bold"><input type="text" id="inv-prod-modelo" placeholder="Modelo" class="w-full bg-white border p-2 rounded-xl font-bold"></div>
                             <div id="inv-campos-otros" class="hidden"><input type="text" id="inv-prod-descripcion" placeholder="Descripción" class="w-full bg-white border p-2 rounded-xl font-bold"></div>
                             <div class="grid grid-cols-2 gap-2"><input type="number" id="inv-prod-costo" placeholder="Costo $" class="w-full bg-white border p-2 rounded-xl text-center font-bold"><input type="number" id="inv-prod-precio" placeholder="Venta $" class="w-full bg-white border p-2 rounded-xl text-center font-black text-blue-600"></div>
-                            <button onclick="guardarProductoEnInventario()" class="w-full bg-purple-600 text-white py-2.5 rounded-xl font-black uppercase text-[10px]">Guardar Stock</button>
+                            <button onclick="guardarProducto EnInventario()" class="w-full bg-purple-600 text-white py-2.5 rounded-xl font-black uppercase text-[10px]">Guardar Stock</button>
                         </div>
                         <div id="inv-lista-productos-box" class="space-y-1.5 max-h-40 overflow-y-auto no-scrollbar"></div>
                     </div>
@@ -928,11 +1002,6 @@
             document.querySelectorAll('.tiempo-btn').forEach(btn => btn.className = "tiempo-btn bg-slate-900 border border-slate-800 text-slate-300 text-[9px] py-2 font-bold rounded-lg");
             boton.className = "tiempo-btn bg-purple-600 text-white text-[9px] py-2 font-black rounded-lg shadow";
             recalcularConversionesSaas();
-        }
-
-        function markingBotonTiempoActivo(dias) {
-            // Alias por compatibilidad interna
-            marcarBotonTiempoActivo(dias);
         }
 
         function marcarBotonTiempoActivo(dias) {
@@ -1374,4 +1443,4 @@
         }
     </script>
 </body>
-                            </html>
+                </html>
