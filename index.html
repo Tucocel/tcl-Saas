@@ -13,7 +13,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght=400;500;600;700;800&display=swap');
         body { font-family: 'Plus Jakarta Sans', sans-serif; }
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
@@ -22,15 +22,32 @@
         /* REGLA DE ORO DE IMPRESIÓN EXCLUSIVA EN MARCA BLANCA PARA EL COMPRADOR */
         @media print {
             body * { visibility: hidden; }
-            #modal-whatsapp-nota, #modal-whatsapp-nota * { visibility: visible; }
-            #modal-whatsapp-nota { position: absolute; left: 0; top: 0; width: 100%; max-width: 100%; box-shadow: none; background: white; margin: 0; padding: 0; }
-            #modal-nota-header-color, #modal-nota-header-color * { display: none !important; }
-            #whatsapp-nota-content { font-size: 11px; line-height: 1.2; background: white; color: black; padding: 0; margin: 0; max-height: none !important; overflow: visible !important; }
+            #contenedor-impresion-termica-fijo, #contenedor-impresion-termica-fijo * { visibility: visible; }
+            #contenedor-impresion-termica-fijo { position: absolute; left: 0; top: 0; width: 100%; max-width: 100%; box-shadow: none; background: white; color: black; margin: 0; padding: 0; font-family: monospace; font-size: 11px; line-height: 1.2; }
             button { display: none !important; }
         }
     </style>
 </head>
 <body class="bg-slate-950 text-slate-100 min-h-screen transition-all duration-300 overflow-x-hidden select-none">
+
+    <!-- CONTENEDOR EFECTIVO REQUERIDO PARA LA REGLA DE IMPRESIÓN FÍSICA -->
+    <div id="contenedor-impresion-termica-fijo" class="hidden whitespace-pre bg-white text-black p-4 z-0"></div>
+
+    <!-- MODAL DE VISUALIZACIÓN DIGITAL INTERNA ANTES DE ENVIAR O IMPRIMIR -->
+    <div id="modal-whatsapp-nota" class="fixed inset-0 bg-slate-950/90 backdrop-blur-sm z-50 p-4 hidden flex items-center justify-center">
+        <div class="bg-slate-900 border border-slate-800 w-full max-w-md rounded-3xl overflow-hidden shadow-2xl flex flex-col">
+            <div id="modal-nota-header-color" class="bg-slate-950 px-4 py-3 text-white flex justify-between items-center font-bold text-xs uppercase tracking-wide">
+                <span><i class="fa-solid fa-receipt mr-1"></i> Comprobante Generado</span>
+                <button onclick="document.getElementById('modal-whatsapp-nota').classList.add('hidden')"><i class="fa-solid fa-xmark text-sm"></i></button>
+            </div>
+            <div class="p-4 bg-slate-950 m-3 rounded-xl border border-slate-850">
+                <pre id="whatsapp-nota-content" class="text-slate-300 font-mono text-[10px] whitespace-pre-wrap max-h-60 overflow-y-auto no-scrollbar"></pre>
+            </div>
+            <div class="bg-slate-950 p-3 border-t border-slate-850 flex justify-end gap-2">
+                <button onclick="document.getElementById('modal-whatsapp-nota').classList.add('hidden')" class="bg-slate-800 px-4 py-2 rounded-xl text-xs font-bold text-slate-300">Cerrar</button>
+            </div>
+        </div>
+    </div>
 
     <!-- ========================================== -->
     <!-- ENTORNO COMPILADO: VISTA DE LA PROPUESTA PARA EL CLIENTE -->
@@ -58,7 +75,7 @@
                 <div class="space-y-1.5">
                     <h4 class="font-black text-xs uppercase tracking-wider text-white text-center sm:text-left">Operación 100% Legítima y Segura</h4>
                     <p class="text-slate-300 text-xs leading-relaxed">
-                        TCL Inventario Máster actúa estrictamente como un software privado para la optimización contable, organización de almacenes y verificación interna. La plataforma emite de forma limpia Notas de Despacho sin valor fiscal, permitiendo un control milimétrico de tus activos, cajas y reportes de forma autónoma sin interferir ni sustituir los requerimientos tributarios de tu comercio.
+                        TCL Inventario Máster actúa estrictamente como un software privado para la optimización contable, organization de almacenes y verificación interna. La plataforma emite de forma limpia Notas de Despacho sin valor fiscal, permitiendo un control milimétrico de tus activos, cajas y reportes de forma autónoma sin interferir ni sustituir los requerimientos tributarios de tu comercio.
                     </p>
                 </div>
             </div>
@@ -111,6 +128,15 @@
                         <h4 class="font-bold text-sm text-white uppercase tracking-tight">Buscador y Seguridad de Destino</h4>
                     </div>
                     <p class="text-slate-400 text-xs leading-relaxed text-justify">Localiza al instante cualquier comprobante antiguo ingresando el número de Cédula o RIF del cliente. Además, para evitar fugas de información, el software bloquea el destino al momento de compartir, enviando los mensajes de WhatsApp estrictamente al número telefónico original registrado en la primera transacción.</p>
+                </div>
+                <!-- NOVEDAD PREMIUM AGREGADA AL DOSSIER DE MARKETING -->
+                <div class="bg-slate-900/60 border-2 border-emerald-500/20 rounded-2xl p-5 space-y-3 shadow-md md:col-span-2 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 bg-emerald-500 text-slate-950 font-black text-[8px] px-2.5 py-0.5 uppercase tracking-wider font-mono">Control Total</div>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-emerald-500/10 border border-emerald-500/20 rounded-xl flex items-center justify-center text-emerald-400 text-lg"><i class="fa-solid fa-chart-pie"></i></div>
+                        <h4 class="font-bold text-sm text-white uppercase tracking-tight">Auditoría Suprema y Cierre Diario de Ventas</h4>
+                    </div>
+                    <p class="text-slate-400 text-xs leading-relaxed text-justify">Máximo poder para el propietario. El terminal de mostrador cuenta con un sistema inteligente de arqueo de caja de turno. Con un solo toque, el software consolida la lista exacta de todos los productos y seriales vendidos en el día, calcula las ventas totales, resta los egresos y genera un balance multimoneda (USD, COP, Bs) listo para imprimirse o enviarse automáticamente al WhatsApp del dueño de la empresa.</p>
                 </div>
             </div>
 
@@ -241,7 +267,7 @@
             <div class="bg-slate-900 border border-slate-800 p-4 rounded-3xl flex flex-col sm:flex-row justify-between items-center gap-3">
                 <div class="text-center sm:text-left"><h4 class="text-xs font-black uppercase text-white tracking-wide"><i class="fa-solid fa-share-nodes text-blue-400 mr-1"></i> Compartir Propuesta Comercial TCL</h4><p class="text-[10px] text-slate-500">Envía la invitación premium de tu dossier interactivo directo a tus prospectos por WhatsApp.</p></div>
                 <div class="flex gap-2 w-full sm:w-auto">
-                    <button onclick="abrirBovedaContratosMasterModal()" class="bg-amber-500/10 text-amber-400 hover:bg-amber-500/20 px-4 rounded-xl border border-amber-500/20 text-xs font-black uppercase tracking-wider" title="Ver Bóveda de Contratos"><i class="fa-solid fa-file-contract mr-1"></i> Expedientes</button>
+                    <button onclick="abrirBovedaContratosMasterModal()" class="bg-amber-500/10 text-amber-400 hover:bg-amber-500/20 px-4 py-2.5 rounded-xl border border-amber-500/20 text-xs font-black uppercase tracking-wider" title="Ver Bóveda de Contratos"><i class="fa-solid fa-file-contract mr-1"></i> Expedientes</button>
                     <button onclick="document.getElementById('modal-editor-tarifas').classList.remove('hidden')" class="bg-slate-800 hover:bg-slate-700 text-slate-200 w-12 rounded-xl border border-slate-700 flex items-center justify-center text-sm shadow transition-all" title="Modificar Tarifas del Catálogo"><i class="fa-solid fa-sliders"></i></button>
                     <button onclick="enviarPropuestaComercialWhatsAppDirecta()" class="flex-grow bg-blue-600 hover:bg-blue-700 text-white font-black text-xs px-6 py-3.5 rounded-xl uppercase tracking-wider shadow-lg flex items-center justify-center gap-2 transition-all"><i class="fa-solid fa-paper-plane"></i> Compartir Propuesta TCL a Cliente</button>
                 </div>
@@ -253,7 +279,7 @@
                     <div id="card-demo-1" class="bg-slate-900 border border-slate-800/80 rounded-3xl p-5 flex flex-col justify-between hover:border-blue-500/40 transition-all group relative overflow-hidden">
                         <div class="absolute top-4 right-4 flex items-center gap-1.5 z-10"><span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span></div>
                         <div>
-                            <div class="w-14 h-14 bg-slate-950 border border-slate-800 rounded-2xl flex items-center justify-center p-2 mb-3 shadow-inner"><i class="fa-solid fa-mobile-screen text-xl text-blue-500"></i></div>
+                            <div class="w-14 h-14 bg-slate-950 border border-slate-800 rounded-2xl flex items-center justify-center p-2 mb-3 shadow-inner"><i class="fa-solid fa-store text-xl text-blue-500"></i></div>
                             <h3 class="font-black text-white text-base tracking-tight group-hover:text-blue-400 transition-colors">City Movil</h3>
                             <p class="text-[9px] text-slate-500 font-bold font-mono tracking-wider mt-0.5 uppercase">ID: citymovil</p>
                             <div class="mt-3 space-y-1 bg-slate-950/60 p-3 rounded-xl border border-slate-850 text-xs font-medium text-slate-400">
@@ -263,7 +289,7 @@
                         </div>
                         <div class="mt-5 pt-3 border-t border-slate-800/60 flex gap-2">
                             <button onclick="abrirConfiguracionCliente('demo-1', 'City Movil', 'V-20123456', '04141234567', 'Avenida Bolivar, Cordero', '@citymovil', 'Garantia de soporte tecnico remoto activo ante fallas de carga del sistema, resguardo de inventario local en la nube y actualizaciones de seguridad sin costos adicionales durante el periodo de su membresia.', 'citymovil', 'Razu2026.', '365')" class="w-1/2 bg-slate-800 text-slate-200 text-xs font-bold py-2.5 rounded-xl">Configurar</button>
-                            <button onclick="forzarEntradaClienteDirecta('City Movil', 'Garantia de soporte tecnico remoto activo.', 365, 'citymovil', '04141234567', 'V-20123456', 'Avenida Bolivar, Cordero')" class="w-1/2 bg-blue-600 text-white text-xs font-black py-2.5 rounded-xl uppercase tracking-wider">Entrar</button>
+                            <button onclick="forzarEntradaClienteDirecta('City Movil', 'Garantia de soporte tecnico remoto activo.', 365, 'demo-1', '04141234567', 'V-20123456', 'Avenida Bolivar, Cordero')" class="w-1/2 bg-blue-600 text-white text-xs font-black py-2.5 rounded-xl uppercase tracking-wider">Entrar</button>
                         </div>
                     </div>
                     <button onclick="abrirModalCrearPerfil()" class="bg-slate-900/40 border-2 border-dashed border-slate-800 hover:border-blue-500/50 hover:bg-slate-900 rounded-3xl p-5 flex flex-col items-center justify-center min-h-[200px] transition-all group gap-2 text-center">
@@ -283,17 +309,23 @@
                 </div>
                 <div class="p-4 space-y-4 max-h-[70vh] overflow-y-auto no-scrollbar">
                     <div class="space-y-2">
-                        <h4 class="text-[9px] font-black text-blue-400 uppercase tracking-widest border-b border-slate-800 pb-1">Datos del Comercio</h4>
-                        <input type="text" id="cfg-nombre" placeholder="Nombre de la Empresa" onkeyup="autoGenerarIdUsuarioBloqueado()" class="w-full bg-slate-950 border border-slate-800 p-2.5 rounded-xl text-xs font-bold text-white focus:outline-none">
-                        <input type="text" id="cfg-rif" placeholder="Cedula o RIF Comercial" class="w-full bg-slate-950 border border-slate-800 p-2.5 rounded-xl text-xs font-bold text-white focus:outline-none">
-                        <div class="grid grid-cols-2 gap-2"><input type="text" id="cfg-tlf" placeholder="WhatsApp" class="w-full bg-slate-950 border border-slate-800 p-2.5 rounded-xl text-xs font-bold text-white focus:outline-none"><input type="text" id="cfg-redes" placeholder="Instagram" class="w-full bg-slate-950 border border-slate-800 p-2.5 rounded-xl text-xs font-bold text-white focus:outline-none"></div>
-                        <input type="text" id="cfg-dir" placeholder="Direccion Fisica" class="w-full bg-slate-950 border border-slate-800 p-2.5 rounded-xl text-xs font-bold text-white focus:outline-none">
+                        <div class="flex justify-between items-center"><h4 class="text-[9px] font-black text-blue-400 uppercase tracking-widest border-b border-slate-800 pb-1 w-full">Datos del Comercio (Use el Lápiz para Editar)</h4></div>
+                        
+                        <div class="flex items-center gap-2 bg-slate-950 rounded-xl px-2.5 border border-slate-850"><input type="text" id="cfg-nombre" readonly placeholder="Nombre de la Empresa" onkeyup="autoGenerarIdUsuarioBloqueado()" class="w-full bg-transparent p-2 text-xs font-bold text-slate-400 focus:outline-none"><button onclick="liberarInputEdicionCustom('cfg-nombre')" class="text-blue-400 text-xs p-1" title="Editar"><i class="fa-solid fa-pencil"></i></button></div>
+                        <div class="flex items-center gap-2 bg-slate-950 rounded-xl px-2.5 border border-slate-850"><input type="text" id="cfg-rif" readonly placeholder="Cedula o RIF Comercial" class="w-full bg-transparent p-2 text-xs font-bold text-slate-400 focus:outline-none"><button onclick="liberarInputEdicionCustom('cfg-rif')" class="text-blue-400 text-xs p-1" title="Editar"><i class="fa-solid fa-pencil"></i></button></div>
+                        
+                        <div class="grid grid-cols-2 gap-2">
+                            <div class="flex items-center gap-1 bg-slate-950 rounded-xl px-2 border border-slate-850"><input type="text" id="cfg-tlf" readonly placeholder="WhatsApp" class="w-full bg-transparent p-2 text-xs font-bold text-slate-400 focus:outline-none"><button onclick="liberarInputEdicionCustom('cfg-tlf')" class="text-blue-400 text-xs p-1" title="Editar"><i class="fa-solid fa-pencil"></i></button></div>
+                            <div class="flex items-center gap-1 bg-slate-950 rounded-xl px-2 border border-slate-850"><input type="text" id="cfg-redes" readonly placeholder="Instagram" class="w-full bg-transparent p-2 text-xs font-bold text-slate-400 focus:outline-none"><button onclick="liberarInputEdicionCustom('cfg-redes')" class="text-blue-400 text-xs p-1" title="Editar"><i class="fa-solid fa-pencil"></i></button></div>
+                        </div>
+                        
+                        <div class="flex items-center gap-2 bg-slate-950 rounded-xl px-2.5 border border-slate-850"><input type="text" id="cfg-dir" readonly placeholder="Direccion Fisica" class="w-full bg-transparent p-2 text-xs font-bold text-slate-400 focus:outline-none"><button onclick="liberarInputEdicionCustom('cfg-dir')" class="text-blue-400 text-xs p-1" title="Editar"><i class="fa-solid fa-pencil"></i></button></div>
                     </div>
                     <div class="space-y-2">
-                        <h4 class="text-[9px] font-black text-amber-400 uppercase tracking-widest border-b border-slate-800 pb-1">Credenciales</h4>
-                        <input type="text" id="cfg-user" disabled class="w-full bg-slate-950/50 border border-slate-850 p-2.5 rounded-xl text-xs font-bold text-slate-500 font-mono cursor-not-allowed">
-                        <input type="text" id="cfg-pass" placeholder="Contraseña de acceso" class="w-full bg-slate-950 border border-slate-800 p-2.5 rounded-xl text-xs font-bold text-white font-mono focus:outline-none">
-                        <textarea id="cfg-garantia" disabled class="w-full bg-slate-950/50 border border-slate-850 p-2.5 rounded-xl text-xs font-medium text-slate-400 h-16 resize-none focus:outline-none"></textarea>
+                        <h4 class="text-[9px] font-black text-amber-400 uppercase tracking-widest border-b border-slate-800 pb-1">Credenciales Inalterables</h4>
+                        <input type="text" id="cfg-user" disabled class="w-full bg-slate-950/40 border border-slate-850 p-2.5 rounded-xl text-xs font-bold text-slate-600 font-mono cursor-not-allowed" title="ID de Servidor Bloqueado por Seguridad">
+                        <div class="flex items-center gap-2 bg-slate-950 rounded-xl px-2.5 border border-slate-850"><input type="text" id="cfg-pass" readonly placeholder="Contraseña de acceso" class="w-full bg-transparent p-2 text-xs font-bold text-slate-400 font-mono focus:outline-none"><button onclick="liberarInputEdicionCustom('cfg-pass')" class="text-blue-400 text-xs p-1" title="Editar"><i class="fa-solid fa-pencil"></i></button></div>
+                        <textarea id="cfg-garantia" disabled class="w-full bg-slate-950/50 border border-slate-850 p-2.5 rounded-xl text-xs font-medium text-slate-400 h-14 resize-none focus:outline-none"></textarea>
                     </div>
                     <div class="space-y-3">
                         <h4 class="text-[9px] font-black text-purple-400 uppercase tracking-widest border-b border-slate-800 pb-1">Plazo de Suscripción</h4>
@@ -322,51 +354,62 @@
             </div>
         </div>
 
-        <!-- MODAL: EDITOR MÁSTER DE PRECIOS -->
-        <div id="modal-editor-tarifas" class="fixed inset-0 bg-slate-950/90 backdrop-blur-md z-50 p-4 hidden flex items-center justify-center">
-            <div class="bg-slate-900 border border-slate-800 w-full max-w-sm rounded-3xl overflow-hidden shadow-2xl flex flex-col">
-                <div class="bg-slate-950 px-4 py-3 border-b border-slate-800 flex justify-between items-center font-bold text-xs uppercase tracking-wide">
-                    <span class="text-white"><i class="fa-solid fa-sliders text-blue-400 mr-1"></i> Modificar Tarifas del Catálogo</span>
-                    <button onclick="document.getElementById('modal-editor-tarifas').classList.add('hidden')" class="text-slate-400 hover:text-white bg-slate-950 w-7 h-7 rounded-lg flex items-center justify-center border border-slate-800"><i class="fa-solid fa-xmark"></i></button>
+        <!-- NUEVO MODAL: BÓVEDA DE CONTRATOS / EXPEDIENTES -->
+        <div id="modal-boveda-contratos-master" class="fixed inset-0 bg-slate-950/90 backdrop-blur-sm z-50 p-4 hidden flex items-center justify-center">
+            <div class="bg-slate-900 border border-slate-800 w-full max-w-lg rounded-3xl overflow-hidden shadow-2xl flex flex-col">
+                <div class="bg-slate-950 px-4 py-3 border-b border-slate-800 flex justify-between items-center text-white font-bold text-xs uppercase tracking-wider">
+                    <span><i class="fa-solid fa-file-contract text-amber-400 mr-1"></i> Bóveda Digital de Expedientes</span>
+                    <button onclick="document.getElementById('modal-boveda-contratos-master').classList.add('hidden')" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
                 </div>
-                <div class="p-4 space-y-3 text-xs">
-                    <div><label class="text-[9px] text-slate-400 font-bold uppercase block mb-1">Precio Plan 1 Mes ($ USDT)</label><input type="number" id="tarifa-m1" value="25" class="w-full bg-slate-950 border border-slate-800 p-2.5 rounded-xl font-bold text-white focus:outline-none"></div>
-                    <div><label class="text-[9px] text-slate-400 font-bold uppercase block mb-1">Precio Plan 3 Meses ($ USDT)</label><input type="number" id="tarifa-m3" value="60" class="w-full bg-slate-950 border border-slate-800 p-2.5 rounded-xl font-bold text-white focus:outline-none"></div>
-                    <div><label class="text-[9px] text-slate-400 font-bold uppercase block mb-1">Precio Plan 6 Meses ($ USDT)</label><input type="number" id="tarifa-m6" value="90" class="w-full bg-slate-950 border border-slate-800 p-2.5 rounded-xl font-bold text-white focus:outline-none"></div>
-                    <div><label class="text-[9px] text-slate-400 font-bold uppercase block mb-1">Precio Plan 1 Año ($ USDT)</label><input type="number" id="tarifa-m12" value="160" class="w-full bg-slate-950 border border-slate-800 p-2.5 rounded-xl font-bold text-white focus:outline-none"></div>
-                </div>
-                <div class="bg-slate-950 px-4 py-3 border-t border-slate-800 flex justify-end gap-2">
-                    <button onclick="document.getElementById('modal-editor-tarifas').classList.add('hidden')" class="bg-slate-800 text-slate-300 px-3 py-1.5 rounded-xl font-bold text-xs">Cancelar</button>
-                    <button onclick="guardarTarifasMasterCustom()" class="bg-blue-600 text-white px-4 py-1.5 rounded-xl font-black uppercase text-xs shadow">Guardar Cambios</button>
+                <div id="contenedor-expedientes-lista-master" class="p-4 space-y-3 max-h-[60vh] overflow-y-auto no-scrollbar"></div>
+                <div class="bg-slate-950 px-4 py-3 border-t border-slate-800 flex justify-end">
+                    <button onclick="document.getElementById('modal-boveda-contratos-master').classList.add('hidden')" class="bg-slate-800 text-slate-300 px-4 py-2 rounded-xl text-xs font-bold">Cerrar</button>
                 </div>
             </div>
         </div>
 
-        <!-- NUEVO MODAL MÁSTER: BÓVEDA CENTRAL DE EXPEDIENTES Y CONTRATOS SaaS -->
-        <div id="modal-boveda-contratos-master" class="fixed inset-0 bg-slate-950/95 backdrop-blur-md z-50 p-4 hidden flex items-center justify-center">
-            <div class="bg-slate-900 border border-slate-800 w-full max-w-2xl rounded-3xl overflow-hidden shadow-2xl flex flex-col h-[85vh]">
-                <div class="bg-slate-950 px-5 py-4 border-b border-slate-800 flex justify-between items-center">
-                    <div class="flex items-center gap-2"><i class="fa-solid fa-folder-closed text-amber-400 text-base"></i><div><h3 class="font-black text-xs uppercase tracking-wider text-white">Bóveda de Expedientes y Contratos</h3><p class="text-[8px] text-slate-500 font-mono font-bold">REGISTRO JURÍDICO INTERNO</p></div></div>
-                    <button onclick="document.getElementById('modal-boveda-contratos-master').classList.add('hidden')" class="text-slate-500 hover:text-white bg-slate-950 w-8 h-8 rounded-xl flex items-center justify-center border border-slate-800"><i class="fa-solid fa-xmark"></i></button>
+        <!-- NUEVO MODAL: EDITOR DE TARIFAS DE CATÁLOGO -->
+        <div id="modal-editor-tarifas" class="fixed inset-0 bg-slate-950/90 backdrop-blur-sm z-50 p-4 hidden flex items-center justify-center">
+            <div class="bg-slate-900 border border-slate-800 w-full max-w-sm rounded-3xl overflow-hidden shadow-2xl">
+                <div class="bg-slate-950 px-4 py-3 border-b border-slate-800 flex justify-between items-center text-white font-bold text-xs uppercase tracking-wider">
+                    <span><i class="fa-solid fa-sliders text-blue-400 mr-1"></i> Modificar Tarifas Globales</span>
+                    <button onclick="document.getElementById('modal-editor-tarifas').classList.add('hidden')" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
                 </div>
-                <div class="p-5 flex-grow overflow-y-auto no-scrollbar space-y-4" id="contenedor-expedientes-lista-master">
-                    <div class="bg-slate-950 border border-slate-850 p-4 rounded-2xl flex items-center justify-between text-xs font-medium text-slate-400">
-                        <div>
-                            <h4 class="font-black text-white text-sm">City Movil</h4>
-                            <p class="text-[10px] text-slate-500 font-mono font-bold uppercase mt-0.5">ID: citymovil | RIF: V-20123456</p>
-                            <p class="text-[10px] text-emerald-400 mt-2 font-mono flex items-center gap-1"><i class="fa-solid fa-calendar-check"></i> Contrato firmado digitalmente vía credenciales.</p>
-                        </div>
-                        <button onclick="alert('📄 EXPEDIENTE COMERCIAL CERTIFICADO:\n\nDistribuidora: City Movil\nEstatus: CONTRATO FIRMADO DIGITALMENTE\nFecha: Registro guardado en la nube.\nSoporte Cédula: Cargado con éxito.\n\nEste archivo está listo en tu panel para auditoría contable y legal.')" class="bg-slate-900 border border-slate-800 px-4 py-2 rounded-xl text-[10px] font-black text-slate-200 uppercase tracking-wide">Ver Expediente</button>
-                    </div>
+                <div class="p-4 space-y-3 text-xs">
+                    <div><label class="text-[9px] text-slate-500 font-bold uppercase block mb-1">Membresía 1 Mes ($)</label><input type="number" id="tarifa-m1" value="25" class="w-full bg-slate-950 border border-slate-800 p-2 rounded-xl font-bold font-mono text-white focus:outline-none"></div>
+                    <div><label class="text-[9px] text-slate-500 font-bold uppercase block mb-1">Membresía 3 Meses ($)</label><input type="number" id="tarifa-m3" value="60" class="w-full bg-slate-950 border border-slate-800 p-2 rounded-xl font-bold font-mono text-white focus:outline-none"></div>
+                    <div><label class="text-[9px] text-slate-500 font-bold uppercase block mb-1">Membresía 6 Meses ($)</label><input type="number" id="tarifa-m6" value="90" class="w-full bg-slate-950 border border-slate-800 p-2 rounded-xl font-bold font-mono text-white focus:outline-none"></div>
+                    <div><label class="text-[9px] text-slate-500 font-bold uppercase block mb-1">Membresía 1 Año ($)</label><input type="number" id="tarifa-m12" value="160" class="w-full bg-slate-950 border border-slate-800 p-2 rounded-xl font-bold font-mono text-white focus:outline-none"></div>
                 </div>
-                <div class="bg-slate-950 px-5 py-4 border-t border-slate-800 flex justify-end"><button onclick="document.getElementById('modal-boveda-contratos-master').classList.add('hidden')" class="bg-slate-800 text-slate-300 px-5 py-2 rounded-xl text-xs font-bold">Cerrar Bóveda</button></div>
+                <div class="bg-slate-950 px-4 py-3 border-t border-slate-800 flex justify-end gap-2">
+                    <button onclick="document.getElementById('modal-editor-tarifas').classList.add('hidden')" class="bg-slate-800 text-slate-300 px-4 py-2 rounded-xl text-xs font-bold">Cancelar</button>
+                    <button onclick="guardarTarifasGlobalesMaster()" class="bg-blue-600 text-white px-4 py-2 rounded-xl text-xs font-black uppercase shadow">Guardar Cambios</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- NUEVO MODAL: AUTOGESTIÓN DE CLAVE EXCLUSIVO PARA EL CLIENTE EN SU TERMINAL -->
+        <div id="modal-autogestion-password-cliente" class="fixed inset-0 bg-slate-950/90 backdrop-blur-sm z-50 p-4 hidden flex items-center justify-center">
+            <div class="bg-slate-900 border border-slate-800 w-full max-w-sm rounded-3xl overflow-hidden shadow-2xl">
+                <div class="bg-slate-950 px-4 py-3 border-b border-slate-800 flex justify-between items-center font-bold text-xs uppercase text-white">
+                    <span><i class="fa-solid fa-key text-blue-400 mr-1"></i> Autogestionar Contraseña</span>
+                    <button onclick="document.getElementById('modal-autogestion-password-cliente').classList.add('hidden')" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+                <div class="p-4 space-y-3 text-xs">
+                    <p class="text-[10px] text-slate-400 leading-relaxed">Por motivos de auditoría de bases de datos, su Usuario ID es inalterable. Únicamente tiene autorización para actualizar la contraseña de su terminal.</p>
+                    <div><label class="text-[9px] text-slate-500 font-bold uppercase block mb-1">Nueva Contraseña de Caja</label><input type="text" id="auto-cli-new-pass" class="w-full bg-slate-950 border border-slate-800 p-2.5 rounded-xl font-bold font-mono text-white focus:outline-none focus:border-blue-500"></div>
+                </div>
+                <div class="bg-slate-950 px-4 py-3 border-t border-slate-800 flex justify-end gap-2">
+                    <button onclick="document.getElementById('modal-autogestion-password-cliente').classList.add('hidden')" class="bg-slate-800 text-slate-300 px-3 py-1.5 rounded-xl text-xs font-bold">Cancelar</button>
+                    <button onclick="procesarCambioContraseñaAutonomaCliente()" class="bg-blue-600 text-white px-4 py-1.5 rounded-xl text-xs font-black uppercase shadow">Actualizar Clave</button>
+                </div>
             </div>
         </div>
 
         <!-- VISTA ENTORNO CLIENTE COMPLETO -->
         <div id="vista-entorno-cliente" class="hidden min-h-screen bg-slate-950 text-slate-100 flex flex-col justify-center items-center p-4 relative">
             
-            <!-- ONBOARDING DE CONTRATO OBLIGATORIO Y CARGA KYC (ESTILO NETFLIX — SÓLO SE ABRE UNA VEZ) -->
+            <!-- ONBOARDING DE CONTRATO OBLIGATORIO Y CARGA KYC (ESTILO NETFLIX) -->
             <div id="pantalla-onboarding-contrato-kyc" class="hidden w-full max-w-xl p-0.5 rounded-3xl bg-gradient-to-br from-blue-600 via-slate-800 to-purple-600 shadow-[0_0_50px_rgba(59,130,246,0.3)] z-40 max-h-[90vh] flex flex-col overflow-hidden">
                 <div class="glass-panel rounded-[22px] flex flex-col overflow-hidden h-full">
                     <div class="bg-slate-950 px-5 py-4 border-b border-slate-850 flex items-center justify-between">
@@ -393,7 +436,7 @@
                     </div>
                     <div class="bg-slate-950 px-5 py-4 border-t border-slate-850 flex flex-col gap-2">
                         <p class="text-[10px] text-slate-500 font-medium text-center">Al digitar sus claves abajo y pulsar firmar, se enviará una copia certificada de su Cédula y declaración jurada a <strong>movistarcordero@gmail.com</strong> para resguardo legal.</p>
-                        <button onclick="procesarFirmaDigitalKYCOnboarding()" class="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white font-black text-xs py-3 rounded-xl uppercase tracking-wider shadow">Validar Credenciales y Firmar Contrato 🔒</button>
+                        <button onclick="procesarFirmaDigitalKYCOnsemblingDirecto()" class="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white font-black text-xs py-3 rounded-xl uppercase tracking-wider shadow">Validar Credenciales y Firmar Contrato 🔒</button>
                     </div>
                 </div>
             </div>
@@ -415,7 +458,7 @@
                 </div>
             </div>
 
-            <!-- TERMINAL DE CAJA PRINCIPAL (MARCA BLANCA PARA COMPRADORES — PRIVADO) -->
+            <!-- TERMINAL DE CAJA PRINCIPAL -->
             <div id="cli-bloque-sistema" class="hidden w-full min-h-screen bg-slate-50 text-slate-800 flex flex-col absolute inset-0">
                 <div class="bg-slate-900 border-b border-slate-800 text-white px-4 py-3 flex justify-between items-center sticky top-0 z-30 shadow-md">
                     <div class="flex items-center gap-2">
@@ -423,6 +466,7 @@
                         <div><h2 id="cli-panel-nombre" class="font-black text-white text-sm tracking-tight">Comercio</h2><span class="text-[9px] text-emerald-400 font-extrabold uppercase block tracking-wider">Control de Inventario Activo</span></div>
                     </div>
                     <div class="flex items-center gap-2">
+                        <button onclick="document.getElementById('modal-autogestion-password-cliente').classList.remove('hidden')" class="bg-slate-950 hover:bg-slate-800 border border-slate-800 text-slate-300 font-bold text-[9px] px-2.5 py-1.5 rounded-xl uppercase flex items-center gap-1 transition-colors"><i class="fa-solid fa-key text-blue-400"></i> Mi Clave</button>
                         <div id="contenedor-status-reloj" class="bg-slate-950 border border-slate-800 px-2.5 py-1 rounded-xl flex items-center gap-1 text-[10px] font-mono font-bold"><i class="fa-solid fa-hourglass-half text-amber-500"></i><span id="cli-panel-dias-conteo" class="text-slate-300 font-black">365 Dias</span></div>
                         <button onclick="ejecutarBotonSalidaInteligente()" class="bg-red-600 hover:bg-red-700 text-white font-black text-[9px] px-2.5 py-1.5 rounded-lg uppercase flex items-center gap-1 transition-colors shadow"><i class="fa-solid fa-lock text-[10px]"></i> <span id="label-boton-salida-dinamico">Cerrar Sesion</span></button>
                     </div>
@@ -509,7 +553,11 @@
                     <div class="bg-white border border-slate-200 rounded-3xl p-5 shadow-sm space-y-4">
                         <div class="flex justify-between items-center border-b pb-2">
                             <h3 class="font-black text-xs text-slate-900 uppercase tracking-wider">Balances de Turno</h3>
-                            <div class="flex gap-1"><button onclick="ejecutarCierreCajaPeriodo('dia')" class="bg-blue-600 text-white text-[8.5px] font-black px-2 py-1 rounded-md uppercase">Cierre Dia</button><button onclick="ejecutarCierreCajaPeriodo('mes')" class="bg-purple-600 text-white text-[8.5px] font-black px-2 py-1 rounded-md uppercase">Cierre Mes</button></div>
+                            <div class="flex gap-1.5 items-center">
+                                <button onclick="enviarReporteCierreDiarioWhatsAppDueño()" class="bg-emerald-600 text-white text-[8.5px] font-black px-2.5 py-1.5 rounded-md uppercase flex items-center gap-1 shadow"><i class="fa-brands fa-whatsapp"></i> Enviar Cierre Diario</button>
+                                <button onclick="ejecutarCierreCajaPeriodo('dia')" class="bg-blue-600 text-white text-[8.5px] font-black px-2 py-1.5 rounded-md uppercase">Cierre Dia</button>
+                                <button onclick="ejecutarCierreCajaPeriodo('mes')" class="bg-purple-600 text-white text-[8.5px] font-black px-2 py-1.5 rounded-md uppercase">Cierre Mes</button>
+                            </div>
                         </div>
                         <div class="grid grid-cols-2 gap-2 text-center text-xs font-mono bg-slate-50 p-3 rounded-xl border">
                             <div><span class="text-[9px] text-slate-400 block uppercase font-bold">Total Ventas</span><span id="rep-total-ventas-val" class="font-black text-blue-600 text-sm">$0</span></div>
@@ -536,46 +584,35 @@
         </div>
     </div>
 
+    <!-- REGLA JS DE LÓGICA CORE INTEGRAL -->
     <script>
-        // JS Engine Core Máster 100% Protegido y Blindado Contra Errores de Referencia
         let idSeleccionadoActual = null; let diasSimuladosValor = 365;
         let métodoCargaActual = "manual"; let categoriaInventarioCarga = "telefonos"; let esEntradaForzadaMaster = false;
         let ticketProductos = []; let acumuladoUSD = 0;
-        let infoClienteAbiertoDinamico = { nombre: "TCL COMERCIO", garantia: "Garantia de soporte tecnico remoto activo ante fallas de carga del sistema, resguardo de inventario local en la nube y actualizaciones sin costos adicionales.", dias: 365, ownerID: "demo-1", tlf: "04140000000", rif: "N/A", dir: "Tachira" };
+        let infoClienteAbiertoDinamico = { nombre: "TCL COMERCIO", garantia: "Garantia de soporte tecnico remoto activo ante fallas de carga del sistema, resguardo de inventario local en la nube y actualizaciones sin costos adicionales.", dias: 365, ownerID: "demo-1", tlf: "04247357549", rif: "N/A", dir: "Tachira" };
         let productosInventarioBD = []; let gastosBD = []; let facturasEmitidasBD = []; let correlativoNotaGlobal = 1;
 
-        // MOTOR DE BLOQUEO DE CLIC DERECHO E INSPECTOR (CANDADO INTELIGENTE)
         function activarEscudoProteccionCodigo() {
-            document.addEventListener('contextmenu', bloquearEventoPorDefecto);
-            document.addEventListener('keydown', bloquearTeclasInspeccionar);
+            document.addEventListener('contextmenu', e => e.preventDefault());
+            document.addEventListener('keydown', e => {
+                if (e.keyCode === 123 || (e.ctrlKey && e.shiftKey && e.keyCode === 73) || (e.ctrlKey && e.keyCode === 85)) {
+                    e.preventDefault();
+                }
+            });
         }
-        function desactivarEscudoProteccionCodigo() {
-            document.removeEventListener('contextmenu', bloquearEventoPorDefecto);
-            document.removeEventListener('keydown', bloquearTeclasInspeccionar);
-        }
-        function bloquearEventoPorDefecto(e) { e.preventDefault(); }
-        function bloquearTeclasInspeccionar(e) {
-            if (e.keyCode === 123 || (e.ctrlKey && e.shiftKey && e.keyCode === 73) || (e.ctrlKey && e.keyCode === 85)) {
-                e.preventDefault();
-            }
-        }
-        
-        // Encender escudo protector por defecto al arrancar
         activarEscudoProteccionCodigo();
 
+        // 1. REPARACIÓN DE INICIO DE SESIÓN Y CARGA DE DISCOS LOCALES
         window.onload = function() {
-            // ENRUTADOR SUPREMO DE URL DUAL (EDIFICIO GITHUB PAGES COMPARTIDO)
             const urlParams = new URLSearchParams(window.location.search);
             const verPropuesta = urlParams.get('ver');
             const userParam = urlParams.get('user');
 
             if (verPropuesta === 'propuesta') {
-                // Modo catálogo abierto al público: Apaga la aplicación core y enciende el dossier comercial limpio
                 document.getElementById('entorno-aplicacion-core').classList.add('hidden');
                 document.getElementById('vista-propuesta-cliente').classList.remove('hidden');
                 
-                // Cargar precios dinámicos guardados en caliente por el administrador desde el panel máster
-                let customM1 = parseFloat(localStorage.getItem('tcl_price_custom_m1')) || 25; // Arranca por defecto en $25 USDT
+                let customM1 = parseFloat(localStorage.getItem('tcl_price_custom_m1')) || 25; 
                 let customM3 = parseFloat(localStorage.getItem('tcl_price_custom_m3')) || 60;
                 let customM6 = parseFloat(localStorage.getItem('tcl_price_custom_m6')) || 90;
                 let customM12 = parseFloat(localStorage.getItem('tcl_price_custom_m12')) || 160;
@@ -587,33 +624,53 @@
                 return; 
             }
 
-            // Inicializar tarifas guardadas en local storage para el Máster
-            document.getElementById('tarifa-m1').value = localStorage.getItem('tcl_price_custom_m1') || 25;
-            document.getElementById('tarifa-m3').value = localStorage.getItem('tcl_price_custom_m3') || 60;
-            document.getElementById('tarifa-m6').value = localStorage.getItem('tcl_price_custom_m6') || 90;
-            document.getElementById('tarifa-m12').value = localStorage.getItem('tcl_price_custom_m12') || 160;
-
-            const totalCards = document.querySelectorAll('#mosaico-clientes-grid > div[id^="card-"]').length;
-            document.getElementById('global-clientes-count').innerText = totalCards;
+            rebuildMosaicoDesdeCeroStorage();
             recalcularConversionesSaas();
 
             if(userParam) {
-                infoClienteAbiertoDinamico.nombre = userParam.toUpperCase();
-                infoClienteAbiertoDinamico.ownerID = userParam;
-                document.getElementById('login-titulo-dinamico').innerText = userParam.toUpperCase();
+                let listadoLocales = JSON.parse(localStorage.getItem('tcl_master_clientes_listado_real')) || [];
+                let mCliente = listadoLocales.find(c => c.user === userParam.toLowerCase());
+                if(mCliente) {
+                    infoClienteAbiertoDinamico = mCliente;
+                } else {
+                    infoClienteAbiertoDinamico.nombre = userParam.toUpperCase();
+                    infoClienteAbiertoDinamico.ownerID = "custom-" + userParam;
+                    infoClienteAbiertoDinamico.user = userParam.toLowerCase();
+                    infoClienteAbiertoDinamico.dias = 365;
+                }
+                document.getElementById('login-titulo-dinamico').innerText = infoClienteAbiertoDinamico.nombre;
                 document.getElementById('bloque-login-master').classList.add('hidden');
                 document.getElementById('vista-master-admin').classList.add('hidden');
                 document.getElementById('vista-entorno-cliente').classList.remove('hidden');
             }
         };
 
-        // ENRUTADOR DE ACCESO DIRECTO NETFLIX CON BLOQUEO DE CONTRATO (SÓLO UNA VEZ POR DISPOSITIVO)
+        function validarAccesoMasterAdmin() {
+            const user = document.getElementById('master-user-field').value.trim();
+            const pass = document.getElementById('master-pass-field').value.trim();
+            if(user === "Tucocel" && pass === "Razu2020.") {
+                document.getElementById('bloque-login-master').classList.add('hidden');
+                document.getElementById('vista-master-admin').classList.remove('hidden');
+            } else { alert("❌ Credenciales Maestras Incorrectas."); }
+        }
+
         function comprobarEstatusContratoClienteLogin() {
             const user = document.getElementById('comercio-user-field').value.trim().toLowerCase();
             const pass = document.getElementById('comercio-pass-field').value.trim();
             if(!user || !pass) return alert("Inserte credenciales.");
 
-            // Si es la primera vez que inicia sesión en este navegador, abre el onboarding del contrato
+            let listadoLocales = JSON.parse(localStorage.getItem('tcl_master_clientes_listado_real')) || [];
+            let loginExitoso = listadoLocales.find(c => c.user === user && c.pass === pass);
+            
+            if(user === "citymovil" && pass === "Razu2026.") {
+                loginExitoso = { id: "demo-1", ownerID: "demo-1", nombre: "City Movil", user: "citymovil", pass: "Razu2026.", dias: 365, tlf: "04141234567" };
+            }
+
+            if(!loginExitoso) return alert("❌ Credenciales del terminal de caja inválidas.");
+            
+            infoClienteAbiertoDinamico = loginExitoso;
+            document.getElementById('login-titulo-dinamico').innerText = infoClienteAbiertoDinamico.nombre;
+
             let contratoAceptado = localStorage.getItem(`tcl_contrato_sign_${user}`);
             if (!contratoAceptado) {
                 document.getElementById('cli-bloque-login').classList.add('hidden');
@@ -623,153 +680,266 @@
             }
         }
 
-        // MOTOR DE ENVÍO DE CONTRATO COMPILADO AL EMAIL DEL DUEÑO (RESPALDO LEGAL FIJO)
-        function procesarFirmaDigitalKYCOnboarding() {
-            const user = document.getElementById('comercio-user-field').value.trim().toLowerCase();
+        function procesarFirmaDigitalKYCOnsemblingDirecto() {
+            const user = infoClienteAbiertoDinamico.user;
             const fileInput = document.getElementById('kyc-file-input');
-            
-            if (fileInput.files.length === 0) {
-                return alert("⚠️ REQUERIMIENTO OBLIGATORIO:\n\nDebe adjuntar la foto de su Cédula o RIF Comercial para poder validar el contrato y activar su terminal de caja.");
-            }
+            if (fileInput.files.length === 0) return alert("⚠️ Error: Debe adjuntar la foto nítida de su Cédula o RIF.");
 
-            // Graba la aceptación inalterable en la boveda local
             localStorage.setItem(`tcl_contrato_sign_${user}`, 'SIGNED_' + new Date().getTime());
-            
-            // Inyectar en la bódvea central de expedientes máster de forma liviana
             let listaContratos = JSON.parse(localStorage.getItem('tcl_master_boveda_contratos')) || [];
-            listaContratos.push({ user: user, fecha: new Date().toLocaleString(), estatus: 'FIRMADO DIGITALMENTE' });
+            listaContratos.push({ user: user, fecha: new Date().toLocaleString(), estatus: 'CONTRATO FIRMADO DIGITALMENTE' });
             localStorage.setItem('tcl_master_boveda_contratos', JSON.stringify(listaContratos));
 
-            let alertContrato = `📄 --- RESPALDO JURÍDICO DE BÓVEDA TCL ---\n\nContrato firmado digitalmente por la credencial ID: ${user.toUpperCase()}\nExpediente archivado con éxito.\nCopia digital de Cédula/RIF enviada de forma transparente a movistarcordero@gmail.com.\n\nEl terminal se ha desbloqueado correctamente.`;
-            alert(alertContrato);
-
+            alert("🔒 Contrato verificado electrónicamente. Terminal habilitado.");
             document.getElementById('pantalla-onboarding-contrato-kyc').classList.add('hidden');
             desbloquearPantallaFacturacionReal();
+        }
+
+        function desbloquearPantallaFacturacionReal() {
+            document.getElementById('cli-bloque-login').classList.add('hidden'); 
+            document.getElementById('cli-bloque-sistema').classList.remove('hidden');
+            document.getElementById('cli-panel-nombre').innerText = infoClienteAbiertoDinamico.nombre;
+            if(!esEntradaForzadaMaster) document.getElementById('label-boton-salida-dinamico').innerText = "Cerrar Sesion";
+            document.getElementById('cli-panel-dias-conteo').innerText = `${infoClienteAbiertoDinamico.dias} Dias`;
+            
+            const id = infoClienteAbiertoDinamico.ownerID;
+            productosInventarioBD = JSON.parse(localStorage.getItem(`${id}_stock_db`)) || [];
+            gastosBD = JSON.parse(localStorage.getItem(`${id}_gastos_db`)) || [];
+            facturasEmitidasBD = JSON.parse(localStorage.getItem(`${id}_facturas_db`)) || [];
+            correlativoNotaGlobal = parseInt(localStorage.getItem(`${id}_correlativo_val`)) || 1;
+            
+            document.body.className = "bg-slate-50 text-slate-800 min-h-screen transition-all duration-300";
+            document.getElementById('ticket-correlativo-display').innerText = `Nota #${String(correlativoNotaGlobal).padStart(3, '0')}`;
+            
+            renderizarCamposImeiDinamicosPorCantidad();
+            calcularTotalesSimulados();
+            actualizarListaInventarioInterna();
+            actualizarListaGastosInterna();
+            actualizarListaReportesInterna();
+        }
+
+        // FUNCIÓN CORREGIDA: ABRE Y CARGA LOS DATOS DEL CLIENTE EN EL MODAL DE CONFIGURACIÓN
+        function abrirConfiguracionCliente(id, nombre, rif, tlf, dir, redes, garantia, user, pass, dias) {
+            idSeleccionadoActual = id;
+            diasSimuladosValor = parseInt(dias) || 365;
+            
+            document.getElementById('cfg-modal-titulo').innerText = "⚙️ Configurar Cliente";
+            
+            // Restablecer vista de inputs protegidos
+            const inputs = ['cfg-nombre', 'cfg-rif', 'cfg-tlf', 'cfg-redes', 'cfg-dir', 'cfg-pass'];
+            inputs.forEach(idField => {
+                const el = document.getElementById(idField);
+                el.setAttribute('readonly', 'true');
+                el.className = "w-full bg-transparent p-2 text-xs font-bold text-slate-400 focus:outline-none";
+            });
+
+            document.getElementById('cfg-nombre').value = nombre || "";
+            document.getElementById('cfg-rif').value = rif || "N/A";
+            document.getElementById('cfg-tlf').value = tlf || "";
+            document.getElementById('cfg-dir').value = dir || "";
+            document.getElementById('cfg-redes').value = redes || "";
+            document.getElementById('cfg-garantia').value = garantia || "Garantia activa.";
+            document.getElementById('cfg-user').value = user || "";
+            document.getElementById('cfg-user').disabled = true;
+            document.getElementById('cfg-pass').value = pass || "";
+            document.getElementById('cfg-dias-display').innerText = `${diasSimuladosValor} Dias`;
+            
+            let urlBase = window.location.href.split('?')[0];
+            document.getElementById('cfg-link-url').value = `${urlBase}?user=${user}`;
+            
+            marcarBotonTiempoActivo(diasSimuladosValor);
+            recalcularConversionesSaas();
+            
+            document.getElementById('modal-config-master').classList.remove('hidden');
+        }
+
+        function cerrarConfiguracionCliente() {
+            document.getElementById('modal-config-master').classList.add('hidden');
+        }
+
+        function liberarInputEdicionCustom(idField) {
+            const el = document.getElementById(idField);
+            el.removeAttribute('readonly');
+            el.className = "w-full bg-slate-950 border border-blue-500 p-2 text-xs font-bold text-white focus:outline-none rounded-xl";
+        }
+
+        function autoGenerarIdUsuarioBloqueado() {
+            const nombre = document.getElementById('cfg-nombre').value;
+            const userClean = nombre.trim().toLowerCase().replace(/[^a-z0-9]/g, '');
+            if(!document.getElementById('cfg-user').disabled) {
+                document.getElementById('cfg-user').value = userClean;
+                document.getElementById('cfg-link-url').value = `${window.location.href.split('?')[0]}?user=${userClean}`;
+            }
+        }
+
+        function filterCleanInternationalPhone(phone) {
+            let cl = phone.replace(/\D/g, '');
+            if(!cl.startsWith('58')) { cl = '58' + cl.replace(/^0+/, ''); }
+            return cl;
+        }
+
+        function copiarLinkPortapapelesDemo() {
+            const linkField = document.getElementById('cfg-link-url');
+            linkField.select();
+            linkField.setSelectionRange(0, 99999);
+            navigator.clipboard.writeText(linkField.value);
+            alert("🔗 Enlace único copiado al portapapeles.");
+        }
+
+        function guardarTarifasGlobalesMaster() {
+            localStorage.setItem('tcl_price_custom_m1', document.getElementById('tarifa-m1').value);
+            localStorage.setItem('tcl_price_custom_m3', document.getElementById('tarifa-m3').value);
+            localStorage.setItem('tcl_price_custom_m6', document.getElementById('tarifa-m6').value);
+            localStorage.setItem('tcl_price_custom_m12', document.getElementById('tarifa-m12').value);
+            alert("🔒 Tarifas globales actualizadas.");
+            document.getElementById('modal-editor-tarifas').classList.add('hidden');
+            recalcularConversionesSaas();
+        }
+
+        // ESTABILIZADO: CALCULA LAS DIVISAS DE LAS CUOTAS SIN CRASHEAR SI FALTA UN ELEMENTO EN PANTALLA
+        function recalcularConversionesSaas() {
+            const tCOP = parseFloat(document.getElementById('master-tasa-cop').value) || 3600;
+            const tBs = parseFloat(document.getElementById('master-tasa-bs').value) || 40;
+            
+            let cuotaBaseUSD = 25;
+            if(diasSimuladosValor === 30) cuotaBaseUSD = parseFloat(localStorage.getItem('tcl_price_custom_m1')) || 25;
+            if(diasSimuladosValor === 90) cuotaBaseUSD = parseFloat(localStorage.getItem('tcl_price_custom_m3')) || 60;
+            if(diasSimuladosValor === 180) cuotaBaseUSD = parseFloat(localStorage.getItem('tcl_price_custom_m6')) || 90;
+            if(diasSimuladosValor === 365) cuotaBaseUSD = parseFloat(localStorage.getItem('tcl_price_custom_m12')) || 160;
+
+            if(document.getElementById('cfg-monto-saas')) document.getElementById('cfg-monto-saas').value = cuotaBaseUSD;
+            if(document.getElementById('master-display-usd')) document.getElementById('master-display-usd').innerText = `$${cuotaBaseUSD} USDT`;
+            if(document.getElementById('master-display-cop')) document.getElementById('master-display-cop').innerText = `${(cuotaBaseUSD * tCOP).toLocaleString('es-ES')} COP`;
+            if(document.getElementById('master-display-bs')) document.getElementById('master-display-bs').innerText = `${(cuotaBaseUSD * tBs).toLocaleString('es-ES')} Bs`;
+        }
+
+        function dispararContratoWhatsAppSimulado() {
+            const nombre = document.getElementById('cfg-nombre').value.trim();
+            const user = document.getElementById('cfg-user').value.trim();
+            const pass = document.getElementById('cfg-pass').value.trim();
+            const tlf = filterCleanInternationalPhone(document.getElementById('cfg-tlf').value.trim());
+            const dias = diasSimuladosValor;
+            const link = document.getElementById('cfg-link-url').value;
+            const monto = document.getElementById('cfg-monto-saas').value;
+
+            if(!nombre || !user || !tlf) return alert("Complete los campos.");
+
+            const msg = `🚀 *NOTIFICACIÓN DE ACTIVACIÓN SaaS — INVENTARIO MÁSTER 2026*\n\nEstimado cliente de *${nombre.toUpperCase()}*,\n\nSu servidor dedicado ha sido activado.\n\n🔒 *CREDENCIALES ÚNICAS:* \n▪️ *Link Acceso:* ${link}\n▪️ *Usuario ID:* ${user}\n▪️ *Contraseña:* ${pass}\n▪️ *Vigencia:* ${dias} Días\n▪️ *Canon Pago:* $${monto} USDT\n\n⚠️ _Al ingresar por primera vez se requiere la validación de su firma y soporte de RIF/Cédula en el Onboarding digital._\n\nInfraestructura Tecnológica Distribuida por *Tucocel C.A.* 💻`;
+            window.open(`https://api.whatsapp.com/send?phone=${tlf}&text=${encodeURIComponent(msg)}`, '_blank');
+        }
+
+        function dispararReciboRenovacionWhatsApp() {
+            const nombre = document.getElementById('cfg-nombre').value.trim();
+            const tlf = filterCleanInternationalPhone(document.getElementById('cfg-tlf').value.trim());
+            const dias = diasSimuladosValor;
+            const monto = document.getElementById('cfg-monto-saas').value;
+
+            if(!nombre || !tlf) return alert("Complete los datos del cliente.");
+
+            const msg = `♻️ *RECIBO DE RENOVACIÓN DE LICENCIA SaaS — INVENTARIO MÁSTER*\n\nHola, administrador de *${nombre.toUpperCase()}*,\n\nSu terminal de mostrador ha sido extendido exitosamente.\n\n📈 *DETALLES:* \n▪️ *Plazo Adicionado:* +${dias} Días Activos\n▪️ *Monto Liquidado:* $${monto} USDT\n▪️ *Estatus Servidor:* ONLINE 🔒\n\nGracias por su fidelidad. Su base de datos local continúa resguardada de forma transparente.\n\nSoporte Oficial: *Tucocel C.A.*`;
+            window.open(`https://api.whatsapp.com/send?phone=${tlf}&text=${encodeURIComponent(msg)}`, '_blank');
+        }
+
+        function procesarCambioContraseñaAutonomaCliente() {
+            const nuevaClave = document.getElementById('auto-cli-new-pass').value.trim();
+            if(!nuevaClave || nuevaClave.length < 4) return alert("Ingrese una contraseña segura (mínimo 4 caracteres).");
+            
+            let listadoLocales = JSON.parse(localStorage.getItem('tcl_master_clientes_listado_real')) || [];
+            let uIndex = listadoLocales.findIndex(c => c.ownerID === infoClienteAbiertoDinamico.ownerID);
+            
+            if(uIndex !== -1) {
+                listadoLocales[uIndex].pass = nuevaClave;
+                localStorage.setItem('tcl_master_clientes_listado_real', JSON.stringify(listadoLocales));
+            }
+            infoClienteAbiertoDinamico.pass = nuevaClave;
+            document.getElementById('modal-autogestion-password-cliente').classList.add('hidden');
+            document.getElementById('auto-cli-new-pass').value = "";
+            alert("🔒 Contraseña actualizada exitosamente para auditoría interna.");
+        }
+
+        function guardarDatosClienteSimulados() {
+            const nombre = document.getElementById('cfg-nombre').value.trim();
+            const user = document.getElementById('cfg-user').value.trim().toLowerCase().replace(/[^a-z0-9]/g, '');
+            const pass = document.getElementById('cfg-pass').value.trim();
+            const tlf = document.getElementById('cfg-tlf').value.trim();
+            const dir = document.getElementById('cfg-dir').value.trim();
+            const redes = document.getElementById('cfg-redes').value.trim();
+            const rif = document.getElementById('cfg-rif').value.trim();
+
+            if(!nombre || !user || !pass) return alert("Por favor complete los datos.");
+            
+            let listadoLocales = JSON.parse(localStorage.getItem('tcl_master_clientes_listado_real')) || [];
+            let obj = { id: idSeleccionadoActual, ownerID: idSeleccionadoActual, nombre, user, pass, tlf, dir, redes, rif, dias: diasSimuladosValor, garantia: "Garantia de soporte tecnico activo." };
+            
+            let indexMatch = listadoLocales.findIndex(c => c.id === idSeleccionadoActual);
+            if(indexMatch !== -1) {
+                listadoLocales[indexMatch] = obj;
+            } else {
+                listadoLocales.push(obj);
+            }
+            
+            localStorage.setItem('tcl_master_clientes_listado_real', JSON.stringify(listadoLocales));
+            alert("🔒 Datos sincronizados en el servidor local de forma inalterable.");
+            cerrarConfiguracionCliente();
+            rebuildMosaicoDesdeCeroStorage();
+        }
+
+        function rebuildMosaicoDesdeCeroStorage() {
+            const grid = document.getElementById('mosaico-clientes-grid');
+            if(!grid) return;
+            let listadoLocales = JSON.parse(localStorage.getItem('tcl_master_clientes_listado_real')) || [];
+            
+            const cardsAntiguas = grid.querySelectorAll('div[id^="card-"]');
+            cardsAntiguas.forEach(c => c.remove());
+            
+            listadoLocales.forEach(c => {
+                const card = document.createElement('div');
+                card.id = `card-${c.id}`;
+                card.className = "bg-slate-900 border border-slate-800/80 rounded-3xl p-5 flex flex-col justify-between hover:border-blue-500/40 transition-all group relative overflow-hidden";
+                card.innerHTML = `
+                    <div class="absolute top-4 right-4 flex items-center gap-1.5 z-10"><span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span></div>
+                    <div>
+                        <div class="w-14 h-14 bg-slate-950 border border-slate-800 rounded-2xl flex items-center justify-center p-2 mb-3 shadow-inner"><i class="fa-solid fa-store text-xl text-purple-400"></i></div>
+                        <h3 class="font-black text-white text-base tracking-tight group-hover:text-blue-400 transition-colors">${c.nombre}</h3>
+                        <p class="text-[9px] text-slate-500 font-bold font-mono tracking-wider mt-0.5 uppercase">ID: ${c.user}</p>
+                        <div class="mt-3 space-y-1 bg-slate-950/60 p-3 rounded-xl border border-slate-850 text-xs font-medium text-slate-400">
+                            <p class="flex justify-between font-mono"><span class="text-slate-500">Suscripcion:</span> <span class="text-slate-300 font-bold">${c.dias} Dias</span></p>
+                            <p class="flex justify-between font-mono"><span class="text-slate-500">Estado:</span> <span class="text-emerald-400 font-bold">Activo</span></p>
+                        </div>
+                    </div>
+                    <div class="mt-5 pt-3 border-t border-slate-800/60 flex gap-2">
+                        <button onclick="abrirConfiguracionCliente('${c.id}', '${c.nombre.replace(/'/g, "\\'")}', '${(c.rif || '').replace(/'/g, "\\'")}', '${c.tlf || ''}', '${c.dir.replace(/'/g, "\\'")}', '${c.redes || ''}', 'Garantia activa.', '${c.user}', '${c.pass}', '${c.dias}')" class="w-1/2 bg-slate-800 text-slate-200 text-xs font-bold py-2.5 rounded-xl">Configurar</button>
+                        <button onclick="forzarEntradaClienteDirecta('${c.nombre.replace(/'/g, "\\'")}', 'Garantia estándar.', ${c.dias}, '${c.id}', '${c.tlf || ''}', '${(c.rif || '').replace(/'/g, "\\'")}', '${c.dir.replace(/'/g, "\\'")}')" class="w-1/2 bg-blue-600 text-white text-xs font-black py-2.5 rounded-xl uppercase tracking-wider">Entrar</button>
+                    </div>`;
+                grid.insertBefore(card, grid.lastElementChild);
+            });
+            
+            const totalCards = document.querySelectorAll('#mosaico-clientes-grid > div[id^="card-"]').length;
+            document.getElementById('global-clientes-count').innerText = totalCards;
         }
 
         function abrirBovedaContratosMasterModal() {
             const contenedor = document.getElementById('contenedor-expedientes-lista-master');
             let listaContratos = JSON.parse(localStorage.getItem('tcl_master_boveda_contratos')) || [];
+            contenedor.innerHTML = "";
             
             if (listaContratos.length === 0) {
                 contenedor.innerHTML = `<p class="text-center text-slate-500 italic py-6 text-xs">La bóveda de contratos digital se encuentra vacía momentáneamente.</p>`;
             } else {
-                contenedor.innerHTML = "";
                 listaContratos.forEach(c => {
                     const div = document.createElement('div');
                     div.className = "bg-slate-950 border border-slate-850 p-4 rounded-2xl flex items-center justify-between text-xs font-medium text-slate-400";
                     div.innerHTML = `
                         <div>
                             <h4 class="font-black text-white text-sm uppercase">${c.user}</h4>
-                            <p class="text-[10px] text-slate-500 font-mono font-bold uppercase mt-0.5">Estatus: ${c.estatus}</p>
                             <p class="text-[10px] text-emerald-400 mt-1 font-mono flex items-center gap-1"><i class="fa-solid fa-calendar-check"></i> Firmado el: ${c.fecha}</p>
                         </div>
-                        <button onclick="alert('📄 EXPEDIENTE COMERCIAL CERTIFICADO:\\n\\nDistribuidora: ${c.user.toUpperCase()}\\nFecha Firma: ${c.fecha}\\nEstatus: CONTRATO ACTIVO Y FIRMADO\\nSoporte Cédula: Archivado en la nube.')" class="bg-slate-900 border border-slate-800 px-4 py-2 rounded-xl text-[10px] font-black text-slate-200 uppercase tracking-wide">Ver Expediente</button>
+                        <button onclick="alert('📄 EXPEDIENTE COMERCIAL CERTIFICADO:\\n\\nDistribuidora: ${c.user.toUpperCase()}\\nFecha Firma: ${c.fecha}\\nEstatus: CONTRATO ACTIVO\\nSoporte Cédula: Archivado de forma inalterable.')" class="bg-slate-900 border border-slate-800 px-4 py-2 rounded-xl text-[10px] font-black text-slate-200 uppercase tracking-wide">Ver Expediente</button>
                     `;
                     contenedor.appendChild(div);
                 });
             }
             document.getElementById('modal-boveda-contratos-master').classList.remove('hidden');
-        }
-
-        function guardarTarifasMasterCustom() {
-            const m1 = parseFloat(document.getElementById('tarifa-m1').value) || 25;
-            const m3 = parseFloat(document.getElementById('tarifa-m3').value) || 60;
-            const m6 = parseFloat(document.getElementById('tarifa-m6').value) || 90;
-            const m12 = parseFloat(document.getElementById('tarifa-m12').value) || 160;
-
-            localStorage.setItem('tcl_price_custom_m1', m1);
-            localStorage.setItem('tcl_price_custom_m3', m3);
-            localStorage.setItem('tcl_price_custom_m6', m6);
-            localStorage.setItem('tcl_price_custom_m12', m12);
-
-            recalcularConversionesSaas();
-            document.getElementById('modal-editor-tarifas').classList.add('hidden');
-            alert("🔒 Tarifas del Catálogo actualizadas exitosamente en el servidor local.");
-        }
-
-        function validarAccesoMasterAdmin() {
-            const user = document.getElementById('master-user-field').value.trim();
-            const pass = document.getElementById('master-pass-field').value.trim();
-            if(user === "Tucocel" && pass === "Razu2020.") {
-                desactivarEscudoProteccionCodigo(); 
-                document.getElementById('bloque-login-master').classList.add('hidden');
-                document.getElementById('vista-master-admin').classList.remove('hidden');
-            } else {
-                alert("❌ Acceso Denegado. Credenciales Maestras Incorrectas.");
-            }
-        }
-
-        // RECONSTRUCCIÓN DEL GENERADOR INTERNO DE ENLACES INDEPENDIENTES (FIXED)
-        function autoGenerarIdUsuarioBloqueado() {
-            const nombre = document.getElementById('cfg-nombre').value;
-            const userClean = nombre.trim().toLowerCase().replace(/[^a-z0-9]/g, '');
-            document.getElementById('cfg-user').value = userClean;
-            
-            let actualHref = window.location.href.split('?')[0];
-            if (actualHref.startsWith('content:') || actualHref.startsWith('file:') || !actualHref.includes('tcl-Saas')) {
-                actualHref = "https://tucocel.github.io/tcl-Saas/";
-            }
-            document.getElementById('cfg-link-url').value = `${actualHref}?user=${userClean}`;
-        }
-
-        function recalcularConversionesSaas() {
-            const dias = diasSimuladosValor;
-            const tCOP = parseFloat(document.getElementById('master-tasa-cop').value) || 3600;
-            const tBs = parseFloat(document.getElementById('master-tasa-bs').value) || 40;
-            const basePrice = parseFloat(localStorage.getItem('tcl_price_custom_m1')) || 25;
-
-            localStorage.setItem('tcl_saas_tasa_cop', tCOP);
-            localStorage.setItem('tcl_saas_tasa_bs', tBs);
-
-            let usd = basePrice;
-            if(dias === 90) usd = parseFloat(localStorage.getItem('tcl_price_custom_m3')) || 60;
-            else if(dias === 180) usd = parseFloat(localStorage.getItem('tcl_price_custom_m6')) || 90;
-            else if(dias === 365) usd = parseFloat(localStorage.getItem('tcl_price_custom_m12')) || 160;
-
-            const inputMonto = document.getElementById('cfg-monto-saas');
-            if(inputMonto) inputMonto.value = usd;
-
-            document.getElementById('master-display-usd').innerText = `$${Math.round(usd)}`;
-            document.getElementById('master-display-cop').innerText = `${Math.round(usd * tCOP).toLocaleString('es-ES')} COP`;
-            document.getElementById('master-display-bs').innerText = `${(usd * tBs).toFixed(2)} Bs`;
-        }
-
-        function obtenerLinkProduccionReal() {
-            let actualHref = window.location.href.split('?')[0];
-            if (actualHref.startsWith('content:') || actualHref.startsWith('file:') || !actualHref.includes('tcl-Saas')) {
-                return "https://tucocel.github.io/tcl-Saas/?ver=propuesta"; 
-            }
-            return `${actualHref}?ver=propuesta`;
-        }
-
-        function enviarPropuestaComercialWhatsAppDirecta() {
-            const urlPropuesta = obtenerLinkProduccionReal();
-            const txtWhatsApp = `Saludos, estimado cliente, te paso la propuesta de nuestro sistema interno de facturación y control de inventario con generación de nota de entrega.\n\nTe invitamos formalmente a explorar nuestra presentación corporativa interactiva y conocer todas las herramientas exclusivas que llevarán tu local al siguiente nivel con soporte total desde tu teléfono o computadora:\n\n🌐 INGRESA A LA PROPUESTA CON UN CLIC AQUÍ:\n${urlPropuesta}\n\nInfraestructura tecnológica y resguardo digital prestado bajo licencia exclusiva por Tucocel C.A. & @publionlinemk. 🚀`;
-
-            const linkEnvio = `https://api.whatsapp.com/send?text=${encodeURIComponent(txtWhatsApp)}`;
-            window.open(linkEnvio, '_blank');
-        }
-
-        function cerrarConfiguracionCliente() { document.getElementById('modal-config-master').classList.add('hidden'); }
-
-        function abrirConfiguracionCliente(id, nombre, rif, tlf, dir, redes, garantia, user, pass, dias) {
-            idSeleccionadoActual = id; diasSimuladosValor = parseInt(dias) || 365;
-            document.getElementById('cfg-modal-titulo').innerText = `Configurar: ${nombre}`;
-            document.getElementById('cfg-nombre').value = nombre; document.getElementById('cfg-rif').value = rif;
-            document.getElementById('cfg-tlf').value = tlf; document.getElementById('cfg-dir').value = dir;
-            document.getElementById('cfg-redes').value = redes; document.getElementById('cfg-garantia').value = garantia;
-            document.getElementById('cfg-user').value = user; document.getElementById('cfg-pass').value = pass;
-            document.getElementById('cfg-dias-display').innerText = `${diasSimuladosValor} Dias`;
-            
-            let actualHref = window.location.href.split('?')[0];
-            if (actualHref.startsWith('content:') || actualHref.startsWith('file:') || !actualHref.includes('tcl-Saas')) {
-                actualHref = "https://tucocel.github.io/tcl-Saas/";
-            }
-            document.getElementById('cfg-link-url').value = `${actualHref}?user=${user}`;
-            
-            marcarBotonTiempoActivo(diasSimuladosValor); recalcularConversionesSaas();
-            document.getElementById('modal-config-master').classList.remove('hidden');
         }
 
         function asignarDiasSimulador(amount, boton) {
@@ -789,53 +959,24 @@
             });
         }
 
-        function copiarLinkPortapapelesDemo() {
-            const inputLink = document.getElementById('cfg-link-url'); inputLink.select(); document.execCommand('copy');
-            alert(`🔒 Enlace Comercial Copiado con Éxito!`);
-        }
-
         function abrirModalCrearPerfil() {
-            idSeleccionadoActual = "nuevo-" + new Date().getTime(); diasSimuladosValor = 365;
+            idSeleccionadoActual = "perfil-" + new Date().getTime(); diasSimuladosValor = 365;
             document.getElementById('cfg-modal-titulo').innerText = "➕ Crear Entorno SaaS";
+            
+            const inputs = ['cfg-nombre', 'cfg-rif', 'cfg-tlf', 'cfg-redes', 'cfg-dir', 'cfg-pass'];
+            inputs.forEach(id => {
+                const el = document.getElementById(id);
+                el.removeAttribute('readonly');
+                el.className = "w-full bg-slate-950 border border-slate-800 p-2.5 rounded-xl text-xs font-bold text-white focus:outline-none";
+            });
+
             document.getElementById('cfg-nombre').value = ""; document.getElementById('cfg-rif').value = "";
             document.getElementById('cfg-tlf').value = ""; document.getElementById('cfg-dir').value = "";
-            document.getElementById('cfg-redes').value = ""; document.getElementById('cfg-garantia').value = "Garantia de soporte tecnico remoto activo ante fallas de carga del sistema, resguardo de inventario local en la nube.";
-            document.getElementById('cfg-user').value = "distribuidora_x"; document.getElementById('cfg-user').disabled = false;
-            document.getElementById('cfg-pass').value = "889900"; document.getElementById('cfg-dias-display').innerText = "365 Dias";
+            document.getElementById('cfg-redes').value = ""; document.getElementById('cfg-garantia').value = "Garantia de soporte tecnico remoto activo ante fallas de carga.";
+            document.getElementById('cfg-user').value = "tienda_id"; document.getElementById('cfg-user').disabled = false;
+            document.getElementById('cfg-pass').value = "123456"; document.getElementById('cfg-dias-display').innerText = "365 Dias";
             marcarBotonTiempoActivo(365); recalcularConversionesSaas();
             document.getElementById('modal-config-master').classList.remove('hidden');
-        }
-
-        function guardarDatosClienteSimulados() {
-            const nombre = document.getElementById('cfg-nombre').value.trim();
-            const user = document.getElementById('cfg-user').value.trim().toLowerCase().replace(/[^a-z0-9]/g, '');
-            if(!nombre || !user) return alert("Complete los datos requeridos.");
-            
-            if(!idSeleccionadoActual.startsWith('demo-')) {
-                const grid = document.getElementById('mosaico-clientes-grid');
-                const nuevaCard = document.createElement('div');
-                nuevaCard.id = `card-${idSeleccionadoActual}`;
-                nuevaCard.className = "bg-slate-900 border border-slate-800/80 rounded-3xl p-5 flex flex-col justify-between hover:border-blue-500/40 transition-all group relative overflow-hidden";
-                nuevaCard.innerHTML = `
-                    <div class="absolute top-4 right-4 flex items-center gap-1.5 z-10"><span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span></div>
-                    <div>
-                        <div class="w-14 h-14 bg-slate-950 border border-slate-800 rounded-2xl flex items-center justify-center p-2 mb-3 shadow-inner"><i class="fa-solid fa-store text-xl text-purple-400"></i></div>
-                        <h3 class="font-black text-white text-base tracking-tight group-hover:text-blue-400 transition-colors">${nombre}</h3>
-                        <p class="text-[9px] text-slate-500 font-bold font-mono tracking-wider mt-0.5 uppercase">ID: ${user}</p>
-                        <div class="mt-3 space-y-1 bg-slate-950/60 p-3 rounded-xl border border-slate-850 text-xs font-medium text-slate-400">
-                            <p class="flex justify-between font-mono"><span class="text-slate-500">Suscripcion:</span> <span class="text-slate-300 font-bold">${diasSimuladosValor} Dias</span></p>
-                            <p class="flex justify-between font-mono"><span class="text-slate-500">Estado:</span> <span class="text-emerald-400 font-bold">Activo</span></p>
-                        </div>
-                    </div>
-                    <div class="mt-5 pt-3 border-t border-slate-800/60 flex gap-2">
-                        <button onclick="abrirConfiguracionCliente('${idSeleccionadoActual}', '${nombre}', '', '', '', '', 'Garantia de soporte remoto.', '${user}', '123456', '${diasSimuladosValor}')" class="w-1/2 bg-slate-800 text-slate-200 text-xs font-bold py-2.5 rounded-xl">Configurar</button>
-                        <button onclick="forzarEntradaClienteDirecta('${nombre}', 'Garantia estándar.', ${diasSimuladosValor}, '${user}', '04140000000', '', '')" class="w-1/2 bg-blue-600 text-white text-xs font-black py-2.5 rounded-xl uppercase tracking-wider">Entrar</button>
-                    </div>`;
-                grid.insertBefore(nuevaCard, grid.lastElementChild);
-            }
-            alert("Operacion guardada."); cerrarConfiguracionCliente();
-            const totalCards = document.querySelectorAll('#mosaico-clientes-grid > div[id^="card-"]').length;
-            document.getElementById('global-clientes-count').innerText = totalCards;
         }
 
         function forzarEntradaClienteDirecta(nombre, garantia, dias, ownerID, tlf, rif, dir) {
@@ -843,26 +984,9 @@
             document.getElementById('login-titulo-dinamico').innerText = nombre; esEntradaForzadaMaster = true; 
             document.getElementById('label-boton-salida-dinamico').innerText = "Regresar al Panel Administrativo";
             document.getElementById('bloque-login-master').classList.add('hidden');
-            document.getElementById('vista-master-admin').classList.add('hidden'); document.getElementById('vista-entorno-cliente').classList.remove('hidden');
-        }
-
-        function desbloquearPantallaFacturacionReal() {
-            document.getElementById('cli-bloque-login').classList.add('hidden'); document.getElementById('cli-bloque-sistema').classList.remove('hidden');
-            document.getElementById('cli-panel-nombre').innerText = infoClienteAbiertoDinamico.nombre;
-            if(!esEntradaForzadaMaster) document.getElementById('label-boton-salida-dinamico').innerText = "Cerrar Sesion";
-            document.getElementById('cli-panel-dias-conteo').innerText = `${infoClienteAbiertoDinamico.dias} Dias`;
-            
-            // JALAR BASE DE DATOS EXCLUSIVA DE ESTE USUARIO (EVITAR SANGRE DE DATOS / CRUCES ESTILO NETFLIX)
-            const id = infoClienteAbiertoDinamico.ownerID;
-            productosInventarioBD = JSON.parse(localStorage.getItem(`${id}_stock_db`)) || [];
-            gastosBD = JSON.parse(localStorage.getItem(`${id}_gastos_db`)) || [];
-            facturasEmitidasBD = JSON.parse(localStorage.getItem(`${id}_facturas_db`)) || [];
-            correlativoNotaGlobal = parseInt(localStorage.getItem(`${id}_correlativo_val`)) || 1;
-            
-            document.body.className = "bg-slate-50 text-slate-800 min-h-screen transition-all duration-300";
-            document.getElementById('ticket-correlativo-display').innerText = `Nota #${String(correlativoNotaGlobal).padStart(3, '0')}`;
-            renderizarCamposImeiDinamicosPorCantidad();
-            calcularTotalesSimulados();
+            document.getElementById('vista-master-admin').classList.add('hidden'); 
+            document.getElementById('vista-entorno-cliente').classList.remove('hidden');
+            desbloquearPantallaFacturacionReal();
         }
 
         function ejecutarBotonSalidaInteligente() {
@@ -905,21 +1029,29 @@
             }
         }
 
-        function cambiarMetodoCajaCarga(tipo) {
-            métodoCargaActual = tipo;
-            document.getElementById('tab-btn-manual').className = tipo === 'manual' ? "bg-blue-600 text-white font-black text-[10px] py-1.5 rounded-xl uppercase" : "bg-slate-100 text-slate-500 font-bold text-[10px] py-1.5 rounded-xl uppercase";
-            document.getElementById('tab-btn-catalogo').className = tipo === 'catalogo' ? "bg-blue-600 text-white font-black text-[10px] py-1.5 rounded-xl uppercase" : "bg-slate-100 text-slate-500 font-bold text-[10px] py-1.5 rounded-xl uppercase";
-            document.getElementById('bloque-carga-manual').classList.toggle('hidden', tipo !== 'manual');
-            document.getElementById('bloque-carga-catalogo').classList.toggle('hidden', tipo !== 'catalogo');
-            if(tipo === 'catalogo') actualizarGridInventarioPOS();
+        function cambiarMetodoCajaCarga(metodo) {
+            métodoCargaActual = metodo;
+            document.getElementById('tab-btn-manual').className = metodo === 'manual' ? "bg-blue-600 text-white font-black text-[10px] py-1.5 rounded-xl uppercase" : "bg-slate-100 text-slate-500 font-bold text-[10px] py-1.5 rounded-xl uppercase";
+            document.getElementById('tab-btn-catalogo').className = metodo === 'catalogo' ? "bg-blue-600 text-white font-black text-[10px] py-1.5 rounded-xl uppercase" : "bg-slate-100 text-slate-500 font-bold text-[10px] py-1.5 rounded-xl uppercase";
+            
+            document.getElementById('bloque-carga-manual').classList.toggle('hidden', metodo !== 'manual');
+            document.getElementById('bloque-carga-catalogo').classList.toggle('hidden', metodo !== 'catalogo');
+            if(metodo === 'catalogo') actualizarGridInventarioPOS();
         }
 
         function cambiarCategoriaFormularioInventario(cat) {
             categoriaInventarioCarga = cat;
             document.getElementById('inv-btn-cat-telefonos').className = cat === 'telefonos' ? "bg-purple-600 text-white font-black text-[10px] py-2 rounded-xl uppercase" : "bg-slate-100 text-slate-500 font-bold text-[10px] py-2 rounded-xl uppercase";
             document.getElementById('inv-btn-cat-otros').className = cat === 'otros' ? "bg-purple-600 text-white font-black text-[10px] py-2 rounded-xl uppercase" : "bg-slate-100 text-slate-500 font-bold text-[10px] py-2 rounded-xl uppercase";
+            
             document.getElementById('inv-campos-telefonos').classList.toggle('hidden', cat !== 'telefonos');
             document.getElementById('inv-campos-otros').classList.toggle('hidden', cat !== 'otros');
+        }
+
+        function jalarArticlePOSInventarioClick(nombre, precio) {
+            document.getElementById('manual-prod-nombre').value = nombre;
+            document.getElementById('manual-prod-precio').value = precio;
+            cambiarMetodoCajaCarga('manual');
         }
 
         function activarPestañaPos(modulo) {
@@ -941,8 +1073,8 @@
             let itemAgrupado = { nombre: producto, cantidad: cantidad, precioUnitario: Math.round(precio), imeis: [] };
             if(esCelular) {
                 for(let i = 1; i <= cantidad; i++) {
-                    let imei1 = document.querySelector(`.imei-field-p-${i}`)?.value.trim().substring(0,15) || 'Sin IMEI';
-                    let imei2 = document.querySelector(`.imei-field-s-${i}`)?.value.trim().substring(0,15) || '';
+                    let imei1 = document.querySelector(`.imei-field-p-${i}`)?.value.trim() || 'Sin IMEI';
+                    let imei2 = document.querySelector(`.imei-field-s-${i}`)?.value.trim() || '';
                     let str = `IMEI: ${imei1}`; if(imei2) str += ` / SIM 2: ${imei2}`;
                     itemAgrupado.imeis.push(str);
                 }
@@ -953,15 +1085,11 @@
             document.getElementById('contenedor-imeis-dinamicos').innerHTML = ""; calcularTotalesSimulados();
         }
 
-        function jalarArticuloCatalogoAlTicket(nombre, precio) {
-            ticketProductos.push({ nombre: nombre, cantidad: 1, precioUnitario: Math.round(precio), imeis: [] }); 
-            calcularTotalesSimulados();
-        }
-
         function calcularTotalesSimulados() {
             const contenedor = document.getElementById('desglose-productos-ticket');
             const tCOP = parseFloat(document.getElementById('tasa-cop').value) || 3900;
             const tBs = parseFloat(document.getElementById('tasa-bs').value) || 40;
+            if(!contenedor) return;
             if(ticketProductos.length === 0) {
                 contenedor.innerHTML = `<p class="text-center text-slate-400 py-4 italic">Mesa vacia.</p>`;
                 document.getElementById('total-usd').innerText = "$0";
@@ -998,13 +1126,24 @@
             productosInventarioBD.push({ id: 'p-' + new Date().getTime(), nombre: descFinal, costo: Math.round(costo), precio: Math.round(precio) });
             document.getElementById('inv-prod-costo').value = ""; document.getElementById('inv-prod-precio').value = "";
             actualizarListaInventarioInterna();
-            
             const id = infoClienteAbiertoDinamico.ownerID;
             localStorage.setItem(`${id}_stock_db`, JSON.stringify(productosInventarioBD));
         }
 
+        function registrarGastoCaja() {
+            const desc = document.getElementById('gasto-descripcion').value.trim(); const monto = parseFloat(document.getElementById('gasto-monto').value);
+            const moneda = document.getElementById('gasto-moneda').value; if(!desc || isNaN(monto)) return alert("Inserte datos.");
+            gastosBD.push({ desc: desc, monto: Math.round(monto), moneda: moneda });
+            document.getElementById('gasto-descripcion').value = ""; document.getElementById('gasto-monto').value = "";
+            actualizarListaGastosInterna();
+            const id = infoClienteAbiertoDinamico.ownerID;
+            localStorage.setItem(`${id}_gastos_db`, JSON.stringify(gastosBD));
+            actualizarListaReportesInterna();
+        }
+
         function actualizarListaInventarioInterna() {
             const box = document.getElementById('inv-lista-productos-box');
+            if(!box) return;
             if(productosInventarioBD.length === 0) { box.innerHTML = `<p class="text-center text-slate-400 text-xs italic py-4">Inventario vacio.</p>`; return; }
             box.innerHTML = "";
             productosInventarioBD.forEach(p => {
@@ -1016,6 +1155,7 @@
 
         function actualizarGridInventarioPOS() {
             const grid = document.getElementById('grid-productos-inventario-pos');
+            if(!grid) return;
             if(productosInventarioBD.length === 0) { grid.innerHTML = `<p class="text-center text-slate-400 py-4 italic text-[10px] col-span-2">Inventario vacio.</p>`; return; }
             grid.innerHTML = "";
             productosInventarioBD.forEach(p => {
@@ -1026,28 +1166,9 @@
             });
         }
 
-        function jalarArticlePOSInventarioClick(nombre, precio) {
-            let esCel = confirm(`¿Este equipo requiere registrar serial IMEI para la Nota?`);
-            if(esCel) {
-                let imei = prompt("Escriba el serial IMEI:");
-                if(imei) ticketProductos.push({ nombre: nombre, cantidad: 1, precioUnitario: Math.round(precio), imeis: [`IMEI: ${imei}`] });
-                calcularTotalesSimulados();
-            } else { jalarArticuloCatalogoAlTicket(nombre, precio); }
-        }
-
-        function registrarGastoCaja() {
-            const desc = document.getElementById('gasto-descripcion').value.trim(); const monto = parseFloat(document.getElementById('gasto-monto').value);
-            const moneda = document.getElementById('gasto-moneda').value; if(!desc || isNaN(monto)) return alert("Inserte datos.");
-            gastosBD.push({ desc: desc, monto: Math.round(monto), moneda: moneda });
-            document.getElementById('gasto-descripcion').value = ""; document.getElementById('gasto-monto').value = "";
-            actualizarListaGastosInterna();
-            
-            const id = infoClienteAbiertoDinamico.ownerID;
-            localStorage.setItem(`${id}_gastos_db`, JSON.stringify(gastosBD));
-        }
-
         function actualizarListaGastosInterna() {
             const box = document.getElementById('gastos-lista-box');
+            if(!box) return;
             if(gastosBD.length === 0) { box.innerHTML = `<p class="text-center text-slate-400 italic py-2">Sin egresos.</p>`; return; }
             box.innerHTML = "";
             gastosBD.forEach(g => {
@@ -1063,8 +1184,10 @@
 
         function actualizarListaReportesInterna(filtroQuery = "") {
             const box = document.getElementById('reportes-notas-lista-box');
+            if(!box) return;
+            const tCOP = parseFloat(document.getElementById('tasa-cop').value) || 3900;
             let sumVentas = facturasEmitidasBD.reduce((acc, curr) => curr.status === 'EMITIDA' ? acc + curr.total : acc, 0);
-            let sumGastos = gastosBD.reduce((acc, curr) => curr.moneda === 'USD' ? acc + curr.monto : acc, 0);
+            let sumGastos = gastosBD.reduce((acc, curr) => curr.moneda === 'USD' ? acc + curr.monto : (curr.moneda === 'COP' ? acc + (curr.monto / tCOP) : acc), 0);
             document.getElementById('rep-total-ventas-val').innerText = `$${Math.round(sumVentas)}`;
             document.getElementById('rep-total-gastos-val').innerText = `$${Math.round(sumGastos)}`;
             
@@ -1079,62 +1202,6 @@
                 card.innerHTML = `<div class="flex justify-between items-center font-mono"><b>Nota #${String(f.correlativo).padStart(3, '0')}</b> ${badge}</div><p class="text-slate-500 font-medium">Receptor: ${f.cliente} | RIF: ${f.rif} | Total: <span class="font-black text-slate-800 font-mono">$${Math.round(f.total)}</span></p>${botones}`;
                 box.appendChild(card);
             });
-        }
-
-        function anularFacturaHistorialConNotaCredito(id) {
-            if(confirm("⚠️ ALERTA DE SEGURIDAD INTERNA\n\n¿Esta seguro de que desea anular esta nota de despacho? Se generara una Nota de Credito que asentara el balance en cero para su contabilidad.")) {
-                const f = facturasEmitidasBD.find(fact => fact.id === id);
-                if(f) { 
-                    f.status = 'ANULADA'; 
-                    alert("Nota de Credito procesada con éxito."); 
-                    actualizarListaReportesInterna();
-                    const uid = infoClienteAbiertoDinamico.ownerID;
-                    localStorage.setItem(`${uid}_facturas_db`, JSON.stringify(facturasEmitidasBD));
-                }
-            }
-        }
-
-        function reimprimirFacturaHistorial(id) {
-            const f = facturasEmitidasBD.find(fact => fact.id === id);
-            if(f) {
-                const txt = buildFacturaTextRaw(f.cliente, f.rif, f.tlf, f.dir, f.productos, f.total);
-                document.getElementById('modal-nota-header-color').className = "bg-slate-950 px-4 py-3 text-white flex justify-between items-center font-bold text-xs uppercase tracking-wide";
-                document.getElementById('whatsapp-nota-content').innerText = txt;
-                document.getElementById('modal-whatsapp-nota').classList.remove('hidden');
-                setTimeout(() => { window.print(); }, 400);
-            }
-        }
-
-        function reenviarWhatsAppHistorial(id) {
-            const f = facturasEmitidasBD.find(fact => fact.id === id);
-            if(f) {
-                const txt = buildWhatsAppTextRaw(f.cliente, f.rif, f.tlf, f.dir, f.productos, f.total);
-                document.getElementById('modal-nota-header-color').className = "bg-emerald-600 px-4 py-3 text-white flex justify-between items-center font-bold text-xs uppercase tracking-wide";
-                document.getElementById('whatsapp-nota-content').innerText = txt;
-                document.getElementById('modal-whatsapp-nota').classList.remove('hidden');
-                let urlLink = `https://api.whatsapp.com/send?text=${encodeURIComponent(txt)}`;
-                if(f.tlf && f.tlf !== "") { urlLink = `https://api.whatsapp.com/send?phone=${f.tlf}&text=${encodeURIComponent(txt)}`; }
-                window.open(urlLink, '_blank');
-            }
-        }
-
-        function ejecutarCierreCajaPeriodo(tipo) {
-            let sumVentas = facturasEmitidasBD.reduce((acc, curr) => curr.status === 'EMITIDA' ? acc + curr.total : acc, 0);
-            let sumGastos = gastosBD.reduce((acc, curr) => curr.moneda === 'USD' ? acc + curr.monto : acc, 0);
-            let neto = sumVentas - sumGastos;
-            if(confirm(`📊 BALANCÉ CIERRE DE ${tipo.toUpperCase()}\n\nVentas: $${Math.round(sumVentas)}\nGastos: $${Math.round(sumGastos)}\nNeto: $${Math.round(neto)}\n\n¿Asentar balance?`)) {
-                if(tipo === 'dia') { gastosBD = []; }
-                else { gastosBD = []; facturasEmitidasBD = []; correlativoNotaGlobal = 1; }
-                
-                const id = infoClienteAbiertoDinamico.ownerID;
-                localStorage.setItem(`${id}_stock_db`, JSON.stringify(productosInventarioBD));
-                localStorage.setItem(`${id}_gastos_db`, JSON.stringify(gastosBD));
-                localStorage.setItem(`${id}_facturas_db`, JSON.stringify(facturasEmitidasBD));
-                localStorage.setItem(`${id}_correlativo_val`, correlativoNotaGlobal);
-                
-                actualizarListaReportesInterna();
-                document.getElementById('ticket-correlativo-display').innerText = `Nota #${String(correlativoNotaGlobal).padStart(3, '0')}`;
-            }
         }
 
         function buildFacturaTextRaw(cliente, rif, tlf, dir, productos, total) {
@@ -1165,7 +1232,8 @@
 
             facturasEmitidasBD.push({ id: 'f-'+new Date().getTime(), correlativo: correlativoNotaGlobal, cliente: cl, rif: rf, tlf: tlf, dir: dir, productos: [...ticketProductos], total: acumuladoUSD, status: 'EMITIDA' });
             const txt = buildFacturaTextRaw(cl, rf, tlf, dir, ticketProductos, acumuladoUSD);
-            document.getElementById('modal-nota-header-color').className = "bg-slate-950 px-4 py-3 text-white flex justify-between items-center font-bold text-xs uppercase tracking-wide";
+            
+            document.getElementById('contenedor-impresion-termica-fijo').innerText = txt;
             document.getElementById('whatsapp-nota-content').innerText = txt;
             document.getElementById('modal-whatsapp-nota').classList.remove('hidden');
             
@@ -1175,9 +1243,9 @@
             correlativoNotaGlobal++;
             localStorage.setItem(`${uid}_facturas_db`, JSON.stringify(facturasEmitidasBD));
             localStorage.setItem(`${uid}_correlativo_val`, correlativoNotaGlobal);
-
             limpiarTicketCompleto();
             document.getElementById('ticket-correlativo-display').innerText = `Nota #${String(correlativoNotaGlobal).padStart(3, '0')}`;
+            actualizarListaReportesInterna();
         }
 
         function enviarFacturaWhatsAppClienteSimulada() {
@@ -1189,7 +1257,7 @@
 
             facturasEmitidasBD.push({ id: 'f-'+new Date().getTime(), correlativo: correlativoNotaGlobal, cliente: cl, rif: rf, tlf: tlf, dir: dir, productos: [...ticketProductos], total: acumuladoUSD, status: 'EMITIDA' });
             const txt = buildWhatsAppTextRaw(cl, rf, tlf, dir, ticketProductos, acumuladoUSD);
-            document.getElementById('modal-nota-header-color').className = "bg-emerald-600 px-4 py-3 text-white flex justify-between items-center font-bold text-xs uppercase tracking-wide";
+            
             document.getElementById('whatsapp-nota-content').innerText = txt;
             document.getElementById('modal-whatsapp-nota').classList.remove('hidden');
             
@@ -1201,9 +1269,90 @@
             correlativoNotaGlobal++;
             localStorage.setItem(`${uid}_facturas_db`, JSON.stringify(facturasEmitidasBD));
             localStorage.setItem(`${uid}_correlativo_val`, correlativoNotaGlobal);
-
             limpiarTicketCompleto();
             document.getElementById('ticket-correlativo-display').innerText = `Nota #${String(correlativoNotaGlobal).padStart(3, '0')}`;
+            actualizarListaReportesInterna();
+        }
+
+        function anularFacturaHistorialConNotaCredito(id) {
+            if(confirm("⚠️ ALERTA DE SEGURIDAD INTERNA\n\n¿Esta seguro de que desea anular esta nota?")) {
+                const f = facturasEmitidasBD.find(fact => fact.id === id);
+                if(f) { 
+                    f.status = 'ANULADA'; 
+                    alert("Nota de Credito contable procesada."); 
+                    actualizarListaReportesInterna();
+                    const uid = infoClienteAbiertoDinamico.ownerID;
+                    localStorage.setItem(`${uid}_facturas_db`, JSON.stringify(facturasEmitidasBD));
+                }
+            }
+        }
+
+        function reimprimirFacturaHistorial(id) {
+            const f = facturasEmitidasBD.find(fact => fact.id === id);
+            if(f) {
+                const txt = buildFacturaTextRaw(f.cliente, f.rif, f.tlf, f.dir, f.productos, f.total);
+                document.getElementById('contenedor-impresion-termica-fijo').innerText = txt;
+                document.getElementById('whatsapp-nota-content').innerText = txt;
+                document.getElementById('modal-whatsapp-nota').classList.remove('hidden');
+                setTimeout(() => { window.print(); }, 400);
+            }
+        }
+
+        function reenviarWhatsAppHistorial(id) {
+            const f = facturasEmitidasBD.find(fact => fact.id === id);
+            if(f) {
+                const txt = buildWhatsAppTextRaw(f.cliente, f.rif, f.tlf, f.dir, f.productos, f.total);
+                document.getElementById('whatsapp-nota-content').innerText = txt;
+                document.getElementById('modal-whatsapp-nota').classList.remove('hidden');
+                let urlLink = `https://api.whatsapp.com/send?text=${encodeURIComponent(txt)}`;
+                if(f.tlf && f.tlf !== "") { urlLink = `https://api.whatsapp.com/send?phone=${f.tlf}&text=${encodeURIComponent(txt)}`; }
+                window.open(urlLink, '_blank');
+            }
+        }
+
+        function enviarReporteCierreDiarioWhatsAppDueño() {
+            let sumVentas = facturasEmitidasBD.reduce((acc, curr) => curr.status === 'EMITIDA' ? acc + curr.total : acc, 0);
+            let sumGastos = gastosBD.reduce((acc, curr) => curr.moneda === 'USD' ? acc + curr.monto : acc, 0);
+            let neto = sumVentas - sumGastos;
+            
+            const msg = `📊 *CIERRE DIARIO DE CAJA — ${infoClienteAbiertoDinamico.nombre.toUpperCase()}*\n\n▪️ *Ventas Totales:* $${Math.round(sumVentas)}\n▪️ *Gastos Totales:* $${Math.round(sumGastos)}\n📦 *Balance Neto:* $${Math.round(neto)}\n\n🔒 _Reporte administrativo resguardado localmente._`;
+            let urlLink = `https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`;
+            if(infoClienteAbiertoDinamico.tlf) { urlLink = `https://api.whatsapp.com/send?phone=${filterCleanInternationalPhone(infoClienteAbiertoDinamico.tlf)}&text=${encodeURIComponent(msg)}`; }
+            window.open(urlLink, '_blank');
+        }
+
+        function ejecutarCierreCajaPeriodo(tipo) {
+            let sumVentas = facturasEmitidasBD.reduce((acc, curr) => curr.status === 'EMITIDA' ? acc + curr.total : acc, 0);
+            let sumGastos = gastosBD.reduce((acc, curr) => curr.moneda === 'USD' ? acc + curr.monto : acc, 0);
+            let neto = sumVentas - sumGastos;
+            if(confirm(`📊 BALANCÉ CIERRE DE ${tipo.toUpperCase()}\n\nVentas: $${Math.round(sumVentas)}\nGastos: $${Math.round(sumGastos)}\nNeto: $${Math.round(neto)}\n\n¿Asentar turno?`)) {
+                if(tipo === 'dia') { gastosBD = []; }
+                else { gastosBD = []; facturasEmitidasBD = []; correlativoNotaGlobal = 1; }
+                
+                const id = infoClienteAbiertoDinamico.ownerID;
+                localStorage.setItem(`${id}_stock_db`, JSON.stringify(productosInventarioBD));
+                localStorage.setItem(`${id}_gastos_db`, JSON.stringify(gastosBD));
+                localStorage.setItem(`${id}_facturas_db`, JSON.stringify(facturasEmitidasBD));
+                localStorage.setItem(`${id}_correlativo_val`, correlativoNotaGlobal);
+                
+                actualizarListaReportesInterna();
+                document.getElementById('ticket-correlativo-display').innerText = `Nota #${String(correlativoNotaGlobal).padStart(3, '0')}`;
+            }
+        }
+
+        function calcularAhorroInteractivoVenta(val) {
+            document.getElementById('val-sim-notas').innerText = val + " Notas";
+            let hrs = Math.round(val * 0.032);
+            document.getElementById('val-sim-tiempo').innerText = hrs + " Horas";
+            let usd = Math.round(val * 0.07);
+            document.getElementById('val-sim-dinero').innerText = "$" + usd + ".00 USD";
+        }
+
+        function enviarPropuestaComercialWhatsAppDirecta() {
+            let urlBase = window.location.href.split('?')[0];
+            let linkPropuesta = `${urlBase}?ver=propuesta`;
+            const msg = `💼 *INVITACIÓN COMERCIAL PREMIUM — INVENTARIO MÁSTER 2026*\n\nHola, te presento la plataforma SaaS definitiva para control de stock, marcas de telefonía con IMEI y despacho automatizado para mostrador.\n\n🌐 *Ver Dossier Interactivo:* ${linkPropuesta}\n\nInfraestructura y distribución oficial por *Tucocel C.A.* 💻`;
+            window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`, '_blank');
         }
     </script>
 </body>
