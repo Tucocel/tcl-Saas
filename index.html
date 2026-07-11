@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TCL INVENTARIO MÁSTER — Control de Stock y Despacho</title>
+    <title>TCL INVENTARIO MÁSTER — Control de Stock, Despacho y Ventas</title>
     
     <!-- METADATOS DE TARJETA DIGITAL CORPORATIVA PARA WHATSAPP (OPEN GRAPH) -->
     <meta property="og:title" content="TCL INVENTARIO MÁSTER — Propuesta Oficial 2026">
@@ -200,7 +200,7 @@
                     <div class="bg-slate-900 p-4 rounded-3xl border border-slate-800 grid grid-cols-3 gap-2 text-center text-[10px] font-bold text-slate-300">
                         <div class="bg-slate-950 p-2 rounded-xl border border-slate-850"><i class="fa-solid fa-boxes-stacked block text-purple-400 text-base mb-1"></i> Stock</div>
                         <div class="bg-slate-950 p-2 rounded-xl border border-slate-850"><i class="fa-solid fa-hand-holding-dollar block text-blue-400 text-base mb-1"></i> Abonos</div>
-                        <div class="bg-slate-950 p-2 rounded-xl border border-slate-850"><i class="fa-solid fa-chart-pie block text-emerald-400 text-base mb-1"></i> Arqueos</div>
+                        <div class="bg-slate-950 p-2 rounded-xl border border-emerald-500/20 block text-emerald-400"><i class="fa-solid fa-chart-pie block text-emerald-400 text-base mb-1"></i> Arqueos</div>
                     </div>
                 </div>
                 <div class="md:col-span-5 space-y-4 text-justify">
@@ -269,10 +269,10 @@
             <div class="bg-slate-900 border border-slate-800 p-4 rounded-3xl grid grid-cols-1 sm:grid-cols-3 gap-3 items-center">
                 <div class="bg-slate-950 p-2 rounded-xl border border-slate-850"><span class="block text-[8px] text-slate-500 font-bold uppercase">Tasa COP (Mostrador)</span><input type="number" id="master-tasa-cop" value="3600" class="w-full bg-transparent font-black text-xs text-amber-400 focus:outline-none"></div>
                 <div class="bg-slate-950 p-2 rounded-xl border border-slate-850"><span class="block text-[8px] text-slate-500 font-bold uppercase">Tasa Bs (Mostrador)</span><input type="number" id="master-tasa-bs" value="40" class="w-full bg-transparent font-black text-xs text-emerald-400 focus:outline-none"></div>
-                <div class="bg-slate-950 p-2 rounded-xl border border-slate-850"><span class="block text-[8px] text-slate-500 font-bold uppercase">Nueva Clave Máster</span><input type="password" id="master-new-password-field" placeholder="Razu2020." class="w-full bg-transparent font-black text-xs text-blue-400 focus:outline-none"><button onclick="procesarChangeMasterPassGlobal()" class="text-[8px] bg-blue-600 text-white font-bold px-2 py-0.5 rounded uppercase mt-1 block">Actualizar Clave</button></div>
+                <div class="bg-slate-950 p-2 rounded-xl border border-slate-850"><span class="block text-[8px] text-slate-500 font-bold uppercase">Nueva Clave Máster</span><input type="password" id="master-new-password-field" placeholder="Razu2020." class="w-full bg-transparent font-black text-xs text-blue-400 focus:outline-none"><button onclick="guardarTarifasGlobalesMaster()" class="text-[8px] bg-blue-600 text-white font-bold px-2 py-0.5 rounded uppercase mt-1 block">Actualizar Clave</button></div>
             </div>
 
-            <!-- BOTONERAS SUPREMAS EN DOS COLUMNAS CON IDENTIFICADORES RECONECTADOS -->
+            <!-- BOTONERAS SUPREMAS REDUCIDAS EN DOS COLUMNAS -->
             <div class="bg-slate-900 border border-slate-800 p-4 rounded-3xl space-y-3">
                 <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-wider flex items-center gap-1.5"><i class="fa-solid fa-share-nodes text-blue-400"></i> Administración Operativa Global</h4>
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-2">
@@ -307,7 +307,7 @@
             </div>
         </div>
 
-        <!-- MODAL REGISTRO/EDICIÓN MÁSTER MASA MADRE ORIGINAL -->
+        <!-- MODAL REGISTRO/EDICIÓN MÁSTER — ADAPTADO FIJO AL DISEÑO REAL DE TU VIDEO MASA MADRE -->
         <div id="modal-config-master" class="fixed inset-0 bg-slate-950/95 backdrop-blur-sm z-50 p-4 overflow-y-auto hidden flex items-center justify-center">
             <div class="bg-[#0f172a]/95 border border-slate-800 w-full max-w-md rounded-3xl overflow-hidden shadow-2xl flex flex-col p-6 space-y-4 glow-border">
                 <div class="flex justify-between items-center pb-2 border-b border-slate-800">
@@ -453,7 +453,7 @@
                         <div class="bg-slate-950 p-4 rounded-xl border border-slate-850 space-y-3 font-sans text-[11px] leading-relaxed">
                             <h3 class="font-black text-white text-center uppercase tracking-wide border-b border-slate-850 pb-2">CONTRATO DE ARRENDAMIENTO DE INFRAESTRUCTURA TECNOLÓGICA — TUCOCEL</h3>
                             <p>Conste por el presente documento privado, el <b>CONTRATO DE ARRENDAMIENTO DE SOFTWARE BAJO LA MODALIDAD DE SUSCRIPCIÓN (SaaS)</b>, el cual se suscribe de mutuo acuerdo bajo las siguientes condiciones generales:</p>
-                            <p><b>PRIMERA: DE LAS PARTES.</b> Por una parte, la firma comercial legalizada e independiente de tecnología denominada comercialmente como <b>tucocel</b>, actuando de forma autónoma bajo su respectivo RIF de control mercantil, quien en lo sucesivo se denominará "EL PROVEEDOR". Por la otra parte, la representación comercial o persona natural detallada al pie de este documento, quien en lo sucesivo se denominará "EL ARRENDATARIO".</p>
+                            <p><b>PRIMERA: DE LAS PARTES.</b> Por una parte, la firma comercial legalizada e independiente de tecnología denominada comercialmente como <b>tucocel</b>, actuando de forma autónoma bajo su respectivo RIF de control mercantil, quien en lo sucesivo se denominará "EL PROVEEDOR". Por la otra parte, la representation comercial o persona natural detallada al pie de este documento, quien en lo sucesivo se denominará "EL ARRENDATARIO".</p>
                             <p><b>SEGUNDA: DEL OBJETO DEL CONTRATO.</b> EL PROVEEDOR otorga en carácter de Arrendamiento Temporal Protegido (Suscripción Alquilada) el acceso y uso de la infraestructura tecnológica de la plataforma denominada "TCL INVENTARIO MÁSTER", cuyo objeto único es la gestión, auditoría y control de inventario interno, ordenación de stock y emisión de comprobantes informativos de despacho o entrega de mercancía de forma centralizada.</p>
                             <p><b>TERCERA: DE LA NATURALEZA ADMINISTRATIVA INTERNA (BLINDAJE FISCAL).</b> EL ARRENDATARIO declara aceptar de forma expresa e irrevocable que El Sistema es una herramienta contable interna. No es, ni pretende sustituir, un sistema de facturación fiscal homologado o regulado por el SENIAT. Todos los comprobantes de mostrador llevan impresa la leyenda de Comprobante administrativo interno de despacho sin valor fiscal. EL ARRENDATARIO asume la obligación única de facturar mediante canales autorizados de ley.</p>
                             <p><b>CUARTA: DEL DESLINDE DE RESPONSABILIDAD LEGAL Y PENAL.</b> EL ARRENDATARIO es el único custodio de la información. EL PROVEEDOR no se hace responsable civil, administrativa ni penalmente por montos, márgenes de ganancia, procedencia de seriales electrónicos o IMEI cargados al sistema.</p>
@@ -724,7 +724,7 @@
             document.getElementById('cfg-rango').value = rango || "CLIENTE";
             document.getElementById('cfg-rubro').value = rubro || "TECNOLOGIA";
             document.getElementById('cfg-dias-display').innerText = `${diasSimuladosValor} Días`;
-            document.getElementById('cfg-link-url').value = `${window.location.href.split('?')[0]}?user=${user}`;
+            document.getElementById('cfg-link-url').value = `https://tucocel.github.io/tcl-Saas/?user=${user}`;
             
             document.getElementById('btn-guardar-cliente-saas').onclick = async function() {
                 await ejecutarGuardadoEdicionExistenteObra();
@@ -895,7 +895,7 @@
             let cleanTlf = tlf.replace(/\D/g, ''); if(!cleanTlf.startsWith('58')) cleanTlf = '58' + cleanTlf;
             
             let texto = `🛍️ *${infoClienteAbiertoDinamico.nombre}*\n🧾 *COMPROBANTE DE DESPACHO*\nNota #${String(correlativoNotaGlobal).padStart(3, '0')} | Vendedor: ${vendedor.toUpperCase()}\n\n📋 *Artículos:*\n`;
-            ticketProductos.forEach(p => { texto += `▪️ ${p.cantidad}x ${p.nombre} — $${Math.round(p.precioUnitario * p.cantidad)}\n`; });
+            ticketProductos.forEach(p => { texto += `▪️ ${p.cantidad}x ${p.nombre} -> $${Math.round(p.precioUnitario * p.cantidad)}\n`; });
             texto += `\n💰 *Totales Multimoneda:*\n💵 *REF:* $${Math.round(acumuladoUSD)} USD\n🇨🇴 *COP:* ${Math.round(acumuladoUSD * parseFloat(document.getElementById('tasa-cop').value)).toLocaleString()} Pesos\n🔒 Control Interno Tucocel C.A.`;
             window.open(`https://api.whatsapp.com/send?phone=${cleanTlf}&text=${encodeURIComponent(texto)}`, '_blank');
         };
@@ -910,7 +910,7 @@
             const vendedor = document.getElementById('ticket-vendedor').value.trim();
             if(!vendedor) return alert("⚠️ Ingrese nombre de cajero responsable.");
             
-            facturasEmitidasBD.push({ correlativo: correlativoNotaGlobal, cliente: document.getElementById('ticket-cliente').value || "General", productos: [...ticketProductos], total: acumuladoUSD, status: 'EMITIDA', vendedor: vendedor, condicion: document.getElementById('ticket-condicion-pago').value });
+            facturasEmitidasBD.push({ id: 'f-'+new Date().getTime(), correlativo: correlativoNotaGlobal, cliente: document.getElementById('ticket-cliente').value || "General", productos: [...ticketProductos], total: acumuladoUSD, status: 'EMITIDA', vendedor: vendedor, condicion: document.getElementById('ticket-condicion-pago').value });
             correlativoNotaGlobal++; ticketProductos = []; calcularTotalesSimulados();
             document.getElementById('ticket-correlativo-display').innerText = `Nota #${String(correlativoNotaGlobal).padStart(3, '0')}`;
             
@@ -919,25 +919,21 @@
         };
 
         window.enviarPropuestaComercialWhatsAppDirecta = function() {
-            let link = `${window.location.href.split('?')[0]}?ver=propuesta`;
             let msg = `*TCL INVENTARIO MÁSTER — Propuesta Oficial 2026*\n`;
             msg += `Sistema interno de control de stock, administración de inventarios y despacho inmediato. Infraestructura tecnológica prestada por Tucocel C.A.\n\n`;
-            msg += `🔗 tucocel.github.io\n\n`;
             msg += `Saludos, estimado cliente, te paso la propuesta de nuestro sistema interno de facturación y control de inventario con generación de nota de entrega.\n\n`;
             msg += `Te invitamos formalmente a explorar nuestra presentación corporativa interactiva y conocer todas las herramientas exclusivas que llevarán tu local al siguiente nivel con soporte total desde tu teléfono o computadora:\n\n`;
-            msg += `🌐 INGRESA A LA PROPUESTA CON UN CLIC AQUÍ:\n${link}\n\n`;
+            msg += `🌐 INGRESA A LA PROPUESTA CON UN CLIC AQUÍ:\nhttps://tucocel.github.io/tcl-Saas/?ver=propuesta\n\n`;
             msg += `Infraestructura tecnológica y resguardo digital prestado bajo licencia exclusiva por Tucocel C.A. & @publionlinemk. 🚀`;
             window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`, '_blank');
         };
 
         window.enviarCatalogoVisualWhatsAppDirecto = function() {
-            let link = `${window.location.href.split('?')[0]}?ver=catalogo`;
             let msg = `*TCL INVENTARIO MÁSTER — Catálogo Oficial de Experiencia*\n`;
             msg += `Sistema interno de control de stock, administración de inventarios y despacho inmediato. Infraestructura tecnológica prestada por Tucocel C.A.\n\n`;
-            msg += `🔗 tucocel.github.io\n\n`;
             msg += `Saludos, estimado cliente, te presentamos el catálogo de servicios que ofrece el sistema para la modernización integral de tu mostrador.\n\n`;
             msg += `Te invitamos formalmente a explorar nuestra galería visual interactiva y conocer cómo opera el software real en vivo: impresión térmica compacta, envío estético por WhatsApp, módulos multimoneda y protección total anti-apagones:\n\n`;
-            msg += `🌐 INGRESA AL CATÁLOGO CON UN CLIC AQUÍ:\n${link}\n\n`;
+            msg += `🌐 INGRESA AL CATÁLOGO CON UN CLIC AQUÍ:\nhttps://tucocel.github.io/tcl-Saas/?ver=catalogo\n\n`;
             msg += `Infraestructura tecnológica y resguardo digital prestado bajo licencia exclusiva por Tucocel C.A. & @publionlinemk. 🚀`;
             window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`, '_blank');
         };
@@ -947,8 +943,37 @@
             const userClean = nombre.trim().toLowerCase().replace(/[^a-z0-9]/g, '');
             if(document.getElementById('cfg-modal-titulo').innerText.includes("CREAR")) {
                 document.getElementById('cfg-user').value = userClean;
-                document.getElementById('cfg-link-url').value = `${window.location.href.split('?')[0]}?user=${userClean}`;
+                document.getElementById('cfg-link-url').value = `https://tucocel.github.io/tcl-Saas/?user=${userClean}`;
             }
+        };
+
+        window.copiarLinkPortapapelesDemo = function() {
+            const linkField = document.getElementById('cfg-link-url');
+            linkField.select(); navigator.clipboard.writeText(linkField.value);
+            alert("🔗 Enlace único copiado.");
+        };
+
+        window.dispararContratoWhatsAppSimulado = function() {
+            const nombre = document.getElementById('cfg-nombre').value.trim();
+            const user = document.getElementById('cfg-user').value.trim();
+            const pass = document.getElementById('cfg-pass').value.trim();
+            const tlf = document.getElementById('cfg-tlf').value.trim();
+            if(!nombre || !user) return alert("Complete los datos.");
+            let cleanTlf = tlf.replace(/\D/g, ''); if(!cleanTlf.startsWith('58')) cleanTlf = '58' + cleanTlf;
+            
+            let linkAcceso = `https://tucocel.github.io/tcl-Saas/?user=${user}`;
+            const msg = `🛍️ *BIENVENIDO A TCL INVENTARIO MÁSTER*\n\nEstimado cliente *${nombre.toUpperCase()}*, su terminal de control interno y administración multimoneda ha sido *ACTIVADO* con éxito. 🔒\n\n📌 *CREDENCIALES OFICIALES DE ACCESO:*\n🌐 *Enlace único:* ${linkAcceso}\n👤 *Usuario ID:* ${user}\n🔑 *Contraseña:* ${pass}\n📅 *Vigencia contratada:* ${diasSimuladosValor} Días Activos\n\n_Infraestructura tecnológica y blindaje digital provisto bajo licencia privada por Tucocel C.A. & @publionlinemk._`;
+            window.open(`https://api.whatsapp.com/send?phone=${cleanTlf}&text=${encodeURIComponent(msg)}`, '_blank');
+        };
+
+        window.dispararReciboRenovacionWhatsApp = function() {
+            const nombre = document.getElementById('cfg-nombre').value.trim();
+            const tlf = document.getElementById('cfg-tlf').value.trim();
+            if(!nombre) return alert("Seleccione un cliente.");
+            let cleanTlf = tlf.replace(/\D/g, ''); if(!cleanTlf.startsWith('58')) cleanTlf = '58' + cleanTlf;
+            
+            const msg = `🔄 *RENOVACIÓN DE SERVICIO CONTRATADO — TCL*\n\nEstimado cliente *${nombre.toUpperCase()}*, le informamos que hemos recibido su liquidación correspondiente. Su membresía de uso para la plataforma privada ha sido *RENOVADA* de forma satisfactoria. 🎉\n\n⏳ *ESTATUS ACTUALIZADO DE TERMINAL:*\n📅 *Días abonados:* +${diasSimuladosValor} Días de Cobertura\n🔒 *Base de datos:* Sincronizada y resguardada de forma inalterable.\n\n_Agradecemos su confianza comercial. Infraestructura de mostrador distribuida por Tucocel C.A. & @publionlinemk._`;
+            window.open(`https://api.whatsapp.com/send?phone=${cleanTlf}&text=${encodeURIComponent(msg)}`, '_blank');
         };
 
         window.limpiarTicketCompleto = function() { ticketProductos = []; calcularTotalesSimulados(); };
@@ -969,4 +994,4 @@
         };
     </script>
 </body>
-    </html>
+                                </html>
