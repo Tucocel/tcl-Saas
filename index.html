@@ -282,8 +282,8 @@
                         <span class="text-[9px] text-blue-400 font-extrabold tracking-widest uppercase bg-blue-500/10 border border-blue-500/20 px-3 py-1 rounded-full inline-block">Infraestructura Tucocel C.A.</span>
                     </div>
                     <form onsubmit="event.preventDefault(); validarAccesoMasterAdmin();" class="space-y-4 text-xs">
-                        <div class="space-y-1"><label class="text-[10px] font-bold text-slate-400 uppercase ml-1"><i class="fa-solid fa-user-shield text-[10px] mr-1"></i> Credencial Admin</label><input type="text" id="master-user-field" name="username" autocomplete="username" class="w-full bg-slate-950 border border-slate-800 px-4 py-3 rounded-xl text-white font-bold font-mono focus:outline-none focus:border-blue-500"></div>
-                        <div class="space-y-1"><label class="text-[10px] font-bold text-slate-400 uppercase ml-1"><i class="fa-solid fa-lock text-[10px] mr-1"></i> Contraseña Maestra</label><input type="password" id="master-pass-field" name="password" autocomplete="current-password" class="w-full bg-slate-950 border border-slate-800 px-4 py-3 rounded-xl text-white font-bold font-mono focus:outline-none focus:border-blue-500"></div>
+                        <div class="space-y-1"><label class="text-[10px] font-bold text-slate-400 uppercase ml-1"><i class="fa-solid fa-user-shield text-[10px] mr-1"></i> Credencial Admin</label><input type="text" id="master-user-field" name="username" autocomplete="username" class="w-full bg-slate-900 border border-slate-800 px-4 py-3 rounded-xl text-white font-bold font-mono focus:outline-none focus:border-blue-500"></div>
+                        <div class="space-y-1"><label class="text-[10px] font-bold text-slate-400 uppercase ml-1"><i class="fa-solid fa-lock text-[10px] mr-1"></i> Contraseña Maestra</label><input type="password" id="master-pass-field" name="password" autocomplete="current-password" class="w-full bg-slate-900 border border-slate-800 px-4 py-3 rounded-xl text-white font-bold font-mono focus:outline-none focus:border-blue-500"></div>
                         <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white text-xs font-black py-3.5 rounded-xl uppercase tracking-wider shadow">Desbloquear Servidores</button>
                     </form>
                 </div>
@@ -703,8 +703,25 @@
         </div>
     </div>
 
-    <!-- REGLA JS DE LÓGICA CORE INTEGRAL BLINDADA -->
-    <script>
+    <!-- REGLA JS DE LÓGICA CORE INTEGRAL BLINDADA CONECTADA A TU FIREBASE CORPORATIVO -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getFirestore, doc, setDoc, getDoc, collection, addDoc, getDocs, query, orderBy, limit, deleteDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+        // ASOCIACIÓN ESTRUCTURAL DIRECTA AL TANQUE DE DATOS CENTRAL DE TU CORREO DE GOOGLE
+        const firebaseConfig = {
+          apiKey: "AIzaSyDytP_5UQyyRUT7wPC2bDIYz5t70z_pQV4",
+          authDomain: "tucocel-vitrina.firebaseapp.com",
+          projectId: "tucocel-vitrina",
+          storageBucket: "tucocel-vitrina.firebasestorage.app",
+          messagingSenderId: "1033621613862",
+          appId: "1:1033621613862:web:c279d663418a5cb0c5e5e7",
+          measurementId: "G-B1T7B1R1HB"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
         let idSeleccionadoActual = null; let diasSimuladosValor = 365;
         let métodoCargaActual = "manual"; let categoriaInventarioCarga = "telefonos"; let esEntradaForzadaMaster = false;
         let ticketProductos = []; let acumuladoUSD = 0;
@@ -721,7 +738,7 @@
         }
         activarEscudoProteccionCodigo();
 
-        window.onload = function() {
+        window.onload = async function() {
             const urlParams = new URLSearchParams(window.location.search);
             const verPropuesta = urlParams.get('ver');
             const userParam = urlParams.get('user');
@@ -742,11 +759,11 @@
                 return; 
             }
 
-            rebuildMosaicoDesdeCeroStorage();
+            await rebuildMosaicoDesdeCeroStorage();
             recalcularConversionesSaas();
 
             if(userParam) {
-                let listadoLocales = JSON.parse(localStorage.getItem('tcl_master_clientes_listado_real')) || [];
+                let listadoLocales = await obtenerClientesDesdeFirebase();
                 let mCliente = listadoLocales.find(c => c.user === userParam.toLowerCase());
                 if(mCliente) {
                     infoClienteAbiertoDinamico = mCliente;
@@ -761,7 +778,48 @@
             }
         };
 
-        function toggleLógicaCondicionCaja() {
+        // ENRUTADOR DE ADQUISICIÓN DE CUENTAS RESPALDADAS EN LA NUBE SOBERANA DE FIREBASE
+        async function obtenerClientesDesdeFirebase() {
+            try {
+                const docSnap = await getDoc(doc(db, "tcl_saas_data", "registro_clientes_global"));
+                if (docSnap.exists()) { return docSnap.data().lista || []; }
+            } catch(e) { console.error(e); }
+            return [];
+        }
+
+        async function guardarClientesEnFirebase(lista) {
+            try { await setDoc(doc(db, "tcl_saas_data", "registro_clientes_global"), { lista: lista }); } catch(e) { console.error(e); }
+        }
+
+        async function pullDatosPerfilDesdeServidor() {
+            const id = infoClienteAbiertoDinamico.ownerID ? infoClienteAbiertoDinamico.ownerID : "default_owner";
+            try {
+                const docSnap = await getDoc(doc(db, "tcl_saas_data", `${id}_sucursal_db`));
+                if (docSnap.exists()) {
+                    const data = docSnap.data();
+                    productosInventarioBD = data.stock || [];
+                    gastosBD = data.gastos || [];
+                    facturasEmitidasBD = data.facturas || [];
+                    correlativoNotaGlobal = parseInt(data.correlativo) || 1;
+                } else {
+                    productosInventarioBD = []; gastosBD = []; facturasEmitidasBD = []; correlativoNotaGlobal = 1;
+                }
+            } catch(e) { console.error(e); }
+        }
+
+        async function pushDatosPerfilAlServidor() {
+            const id = infoClienteAbiertoDinamico.ownerID ? infoClienteAbiertoDinamico.ownerID : "default_owner";
+            try {
+                await setDoc(doc(db, "tcl_saas_data", `${id}_sucursal_db`), {
+                    stock: productosInventarioBD,
+                    gastos: gastosBD,
+                    facturas: facturasEmitidasBD,
+                    correlativo: correlativoNotaGlobal
+                });
+            } catch(e) { console.error(e); }
+        }
+
+        window.toggleLógicaCondicionCaja = function() {
             const condicion = document.getElementById('ticket-condicion-pago').value;
             const wrapCredito = document.getElementById('wrapper-campos-credito-pos');
             if(condicion === 'CREDITO') {
@@ -771,7 +829,7 @@
                 wrapCredito.classList.add('hidden');
                 document.getElementById('ticket-abono').value = "0";
             }
-        }
+        };
 
         function recalcularSaldosPendientesCaja() {
             const abono = parseFloat(document.getElementById('ticket-abono').value) || 0;
@@ -780,7 +838,7 @@
             document.getElementById('ticket-resta-display').value = `$${Math.round(resta)}`;
         }
 
-        function validarAccesoMasterAdmin() {
+        window.validarAccesoMasterAdmin = function() {
             const user = document.getElementById('master-user-field').value.trim();
             const pass = document.getElementById('master-pass-field').value.trim();
             const savedMasterPass = localStorage.getItem('tcl_pass_master_supreme') || "Razu2020.";
@@ -789,22 +847,22 @@
                 document.getElementById('bloque-login-master').classList.add('hidden');
                 document.getElementById('vista-master-admin').classList.remove('hidden');
             } else { alert("❌ Credenciales Maestras Incorrectas."); }
-        }
+        };
 
-        function procesarCambioPasswordMaster() {
+        window.procesarCambioPasswordMaster = function() {
             const newPass = document.getElementById('master-new-password-field').value.trim();
             if(newPass.length < 4) return alert("Ingrese una contraseña maestra válida.");
             localStorage.setItem('tcl_pass_master_supreme', newPass);
             alert("🔒 Contraseña Suprema de Administrador actualizada.");
             document.getElementById('master-new-password-field').value = "";
-        }
+        };
 
-        function comprobarEstatusContratoClienteLogin() {
+        window.comprobarEstatusContratoClienteLogin = async function() {
             const user = document.getElementById('comercio-user-field').value.trim().toLowerCase();
             const pass = document.getElementById('comercio-pass-field').value.trim();
             if(!user || !pass) return alert("Inserte credenciales.");
 
-            let listadoLocales = JSON.parse(localStorage.getItem('tcl_master_clientes_listado_real')) || [];
+            let listadoLocales = await obtenerClientesDesdeFirebase();
             let loginExitoso = listadoLocales.find(c => c.user === user && c.pass === pass);
             
             if(user === "tucocel" && (pass === "Razu2026." || pass === "Razu2020.")) {
@@ -822,18 +880,18 @@
                 document.getElementById('cli-panel-reglas-fijas').classList.add('hidden');
                 document.getElementById('pantalla-onboarding-contrato-kyc').classList.remove('hidden');
             } else {
-                desbloquearPantallaFacturacionReal();
+                await desbloquearPantallaFacturacionReal();
             }
-        }
+        };
 
-        function procesarFirmaDigitalKYCOnsemblingDirecto() {
+        window.procesarFirmaDigitalKYCOnsemblingDirecto = function() {
             const user = infoClienteAbiertoDinamico.user;
             const fileInput = document.getElementById('kyc-file-input');
             if (fileInput.files.length === 0) return alert("⚠️ Error: Debe adjuntar la foto nítida de su Cédula o RIF.");
 
             const file = fileInput.files[0];
             const reader = new FileReader();
-            reader.onloadend = function() {
+            reader.onloadend = async function() {
                 const base64Data = reader.result;
                 localStorage.setItem(`tcl_contrato_sign_${user}`, 'SIGNED_' + new Date().getTime());
                 localStorage.setItem(`tcl_contrato_foto_${user}`, base64Data);
@@ -844,12 +902,12 @@
 
                 alert("🔒 Contrato verificado electrónicamente. Terminal habilitado.");
                 document.getElementById('pantalla-onboarding-contrato-kyc').classList.add('hidden');
-                desbloquearPantallaFacturacionReal();
+                await desbloquearPantallaFacturacionReal();
             };
             reader.readAsDataURL(file);
-        }
+        };
 
-        function desbloquearPantallaFacturacionReal() {
+        async function desbloquearPantallaFacturacionReal() {
             document.getElementById('cli-bloque-login').classList.add('hidden'); 
             document.getElementById('cli-panel-reglas-fijas').classList.add('hidden');
             document.getElementById('cli-bloque-sistema').classList.remove('hidden');
@@ -863,11 +921,7 @@
             }
             document.getElementById('cli-panel-dias-conteo').innerText = `${infoClienteAbiertoDinamico.dias} Días`;
             
-            const id = infoClienteAbiertoDinamico.ownerID ? infoClienteAbiertoDinamico.ownerID : "default_owner";
-            productosInventarioBD = JSON.parse(localStorage.getItem(`${id}_stock_db`)) || [];
-            gastosBD = JSON.parse(localStorage.getItem(`${id}_gastos_db`)) || [];
-            facturasEmitidasBD = JSON.parse(localStorage.getItem(`${id}_facturas_db`)) || [];
-            correlativoNotaGlobal = parseInt(localStorage.getItem(`${id}_correlativo_val`)) || 1;
+            await pullDatosPerfilDesdeServidor();
             
             document.body.className = "bg-slate-50 text-slate-800 min-h-screen transition-all duration-300";
             document.getElementById('ticket-correlativo-display').innerText = `Nota #${String(correlativoNotaGlobal).padStart(3, '0')}`;
@@ -877,23 +931,23 @@
                 document.getElementById('wrapper-checkbox-imei-caja').classList.add('hidden');
                 document.getElementById('manual-prod-es-celular').checked = false;
                 document.getElementById('wrapper-tabs-categoria-stock').classList.add('hidden');
-                cambiarCategoriaFormularioInventario('otros');
+                window.cambiarCategoriaFormularioInventario('otros');
             } else {
                 document.getElementById('wrapper-checkbox-imei-caja').classList.remove('hidden');
                 document.getElementById('wrapper-tabs-categoria-stock').classList.remove('hidden');
-                cambiarCategoriaFormularioInventario('telefonos');
+                window.cambiarCategoriaFormularioInventario('telefonos');
             }
 
-            renderizarCamposImeiDinamicosPorCantidad();
+            window.renderizarCamposImeiDinamicosPorCantidad();
             calcularTotalesSimulados();
             actualizarListaInventarioInterna();
             actualizarListaGastosInterna();
             actualizarListaReportesInterna();
-            activarPestañaPos('facturar');
-            toggleLógicaCondicionCaja();
+            window.activarPestañaPos('facturar');
+            window.toggleLógicaCondicionCaja();
         }
 
-        function abrirConfiguracionCliente(id, nombre, rif, tlf, dir, redes, garantia, user, pass, dias, rango, rubro) {
+        window.abrirConfiguracionCliente = function(id, nombre, rif, tlf, dir, redes, garantia, user, pass, dias, rango, rubro) {
             idSeleccionadoActual = id;
             diasSimuladosValor = parseInt(dias) || 365;
             document.getElementById('cfg-modal-titulo').innerText = "⚙️ Configurar Cliente";
@@ -928,28 +982,28 @@
             marcarBotonTiempoActivo(diasSimuladosValor);
             recalcularConversionesSaas();
             document.getElementById('modal-config-master').classList.remove('hidden');
-        }
+        };
 
-        function cerrarConfiguracionCliente() {
+        window.cerrarConfiguracionCliente = function() {
             document.getElementById('modal-config-master').classList.add('hidden');
-        }
+        };
 
-        function liberarInputEdicionCustom(idField) {
+        window.liberarInputEdicionCustom = function(idField) {
             const el = document.getElementById(idField);
             if (el) {
                 el.removeAttribute('readonly');
                 el.className = "w-full bg-slate-950 border border-blue-500 p-2 text-xs font-bold text-white focus:outline-none rounded-xl";
             }
-        }
+        };
 
-        function autoGenerarIdUsuarioBloqueado() {
+        window.autoGenerarIdUsuarioBloqueado = function() {
             const nombre = document.getElementById('cfg-nombre').value;
             const userClean = nombre.trim().toLowerCase().replace(/[^a-z0-9]/g, '');
             if(!document.getElementById('cfg-user').disabled) {
                 document.getElementById('cfg-user').value = userClean;
                 document.getElementById('cfg-link-url').value = `${window.location.href.split('?')[0]}?user=${userClean}`;
             }
-        }
+        };
 
         function filterCleanInternationalPhone(phone) {
             let cl = phone.replace(/\D/g, '');
@@ -957,14 +1011,14 @@
             return cl;
         }
 
-        function copiarLinkPortapapelesDemo() {
+        window.copiarLinkPortapapelesDemo = function() {
             const linkField = document.getElementById('cfg-link-url');
             linkField.select();
             navigator.clipboard.writeText(linkField.value);
             alert("🔗 Enlace único copiado.");
-        }
+        };
 
-        function guardarTarifasGlobalesMaster() {
+        window.guardarTarifasGlobalesMaster = function() {
             localStorage.setItem('tcl_price_custom_m1', document.getElementById('tarifa-m1').value);
             localStorage.setItem('tcl_price_custom_m3', document.getElementById('tarifa-m3').value);
             localStorage.setItem('tcl_price_custom_m6', document.getElementById('tarifa-m6').value);
@@ -972,7 +1026,7 @@
             alert("🔒 Tarifas globales actualizadas.");
             document.getElementById('modal-editor-tarifas').classList.add('hidden');
             recalcularConversionesSaas();
-        }
+        };
 
         function recalcularConversionesSaas() {
             const tCOP = parseFloat(document.getElementById('master-tasa-cop').value) || 3600;
@@ -987,26 +1041,23 @@
             if(document.getElementById('cfg-monto-saas')) document.getElementById('cfg-monto-saas').value = cuotaBaseUSD;
         }
 
-        function ejecutarBotonEliminarCuentaSaasCompleto() {
+        window.ejecutarBotonEliminarCuentaSaasCompleto = async function() {
             if(confirm("🚨 CRÍTICO: ¿Está seguro de eliminar esta cuenta? Se perderán todos sus inventarios definitivamente.")) {
-                let listadoLocales = JSON.parse(localStorage.getItem('tcl_master_clientes_listado_real')) || [];
+                let listadoLocales = await obtenerClientesDesdeFirebase();
                 listadoLocales = listadoLocales.filter(c => c.id !== idSeleccionadoActual);
-                localStorage.setItem('tcl_master_clientes_listado_real', JSON.stringify(listadoLocales));
+                await guardarClientesEnFirebase(listadoLocales);
                 
-                localStorage.removeItem(`${idSeleccionadoActual}_stock_db`);
-                localStorage.removeItem(`${idSeleccionadoActual}_gastos_db`);
-                localStorage.removeItem(`${idSeleccionadoActual}_facturas_db`);
-                localStorage.removeItem(`${idSeleccionadoActual}_correlativo_val`);
+                try { await deleteDoc(doc(db, "tcl_saas_data", `${idSeleccionadoActual}_sucursal_db`)); } catch(e) { console.error(e); }
                 localStorage.removeItem(`tcl_contrato_sign_${idSeleccionadoActual}`);
                 localStorage.removeItem(`tcl_contrato_foto_${idSeleccionadoActual}`);
                 
-                alert("Cuenta purgada del disco local.");
-                cerrarConfiguracionCliente();
-                rebuildMosaicoDesdeCeroStorage();
+                alert("Cuenta purgada de la infraestructura en la nube.");
+                window.cerrarConfiguracionCliente();
+                await rebuildMosaicoDesdeCeroStorage();
             }
-        }
+        };
 
-        function guardarDatosClienteSimulados() {
+        window.guardarDatosClienteSimulados = async function() {
             const nombre = document.getElementById('cfg-nombre').value.trim();
             const user = document.getElementById('cfg-user').value.trim().toLowerCase().replace(/[^a-z0-9]/g, '');
             const pass = document.getElementById('cfg-pass').value.trim();
@@ -1019,7 +1070,7 @@
 
             if(!nombre || !user || !pass) return alert("Por favor complete los datos.");
             
-            let listadoLocales = JSON.parse(localStorage.getItem('tcl_master_clientes_listado_real')) || [];
+            let listadoLocales = await obtenerClientesDesdeFirebase();
             let obj = { id: idSeleccionadoActual, ownerID: idSeleccionadoActual, nombre, user, pass, tlf, dir, redes, rif, dias: diasSimuladosValor, garantia: "Garantia activa.", rango: rango, rubro: rubro };
             
             let indexMatch = listadoLocales.findIndex(c => c.id === idSeleccionadoActual);
@@ -1029,16 +1080,16 @@
                 listadoLocales.push(obj);
             }
             
-            localStorage.setItem('tcl_master_clientes_listado_real', JSON.stringify(listadoLocales));
+            await guardarClientesEnFirebase(listadoLocales);
             alert("🔒 Servidor Sincronizado.");
-            cerrarConfiguracionCliente();
-            rebuildMosaicoDesdeCeroStorage();
-        }
+            window.cerrarConfiguracionCliente();
+            await rebuildMosaicoDesdeCeroStorage();
+        };
 
-        function rebuildMosaicoDesdeCeroStorage() {
+        async function rebuildMosaicoDesdeCeroStorage() {
             const grid = document.getElementById('mosaico-clientes-grid');
             if(!grid) return;
-            let listadoLocales = JSON.parse(localStorage.getItem('tcl_master_clientes_listado_real')) || [];
+            let listadoLocales = await obtenerClientesDesdeFirebase();
             
             const cardsAntiguas = grid.querySelectorAll('div[id^="card-"]');
             cardsAntiguas.forEach(c => c.remove());
@@ -1059,10 +1110,17 @@
                         </div>
                     </div>
                     <div class="mt-5 pt-3 border-t border-slate-800/60 flex gap-2">
-                        <button onclick="abrirConfiguracionCliente('${c.id}', '${c.nombre.replace(/'/g, "\\'")}', '${(c.rif || '').replace(/'/g, "\\'")}', '${c.tlf || ''}', '${c.dir.replace(/'/g, "\\'")}', '${c.redes || ''}', 'Garantia activa.', '${c.user}', '${c.pass}', '${c.dias}', '${c.rango || 'CLIENTE'}', '${c.rubro || 'TECNOLOGIA'}')" class="w-1/2 bg-slate-800 text-slate-200 text-xs font-bold py-2.5 rounded-xl">Configurar</button>
-                        <button onclick="forzarEntradaClienteDirecta('${c.nombre.replace(/'/g, "\\'")}', 'Garantia activa.', ${c.dias}, '${c.id}', '${c.tlf || ''}', '${(c.rif || '').replace(/'/g, "\\'")}', '${c.dir.replace(/'/g, "\\'")}', '${c.rango || 'CLIENTE'}', '${c.rubro || 'TECNOLOGIA'}')" class="w-1/2 bg-blue-600 text-white text-xs font-black py-2.5 rounded-xl uppercase tracking-wider">Entrar</button>
+                        <button id="btn-cfg-card-${c.id}" class="w-1/2 bg-slate-800 text-slate-200 text-xs font-bold py-2.5 rounded-xl">Configurar</button>
+                        <button id="btn-ent-card-${c.id}" class="w-1/2 bg-blue-600 text-white text-xs font-black py-2.5 rounded-xl uppercase tracking-wider">Entrar</button>
                     </div>`;
                 grid.insertBefore(card, grid.lastElementChild);
+
+                document.getElementById(`btn-cfg-card-${c.id}`).onclick = function() {
+                    window.abrirConfiguracionCliente(c.id, c.nombre, c.rif, c.tlf, c.dir, c.redes, 'Garantia activa.', c.user, c.pass, c.dias, c.rango, c.rubro);
+                };
+                document.getElementById(`btn-ent-card-${c.id}`).onclick = function() {
+                    window.forzarEntradaClienteDirecta(c.nombre, 'Garantia activa.', c.dias, c.id, c.tlf, c.rif, c.dir, c.rango, c.rubro);
+                };
             });
             
             if (document.getElementById('global-clientes-count')) {
@@ -1070,7 +1128,7 @@
             }
         }
 
-        function dispararContratoWhatsAppSimulado() {
+        window.dispararContratoWhatsAppSimulado = function() {
             const nombre = document.getElementById('cfg-nombre').value.trim();
             const user = document.getElementById('cfg-user').value.trim();
             const pass = document.getElementById('cfg-pass').value.trim();
@@ -1087,9 +1145,9 @@
             let urlLink = `https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`;
             if(tlf) { urlLink = `https://api.whatsapp.com/send?phone=${filterCleanInternationalPhone(tlf)}&text=${encodeURIComponent(msg)}`; }
             window.open(urlLink, '_blank');
-        }
+        };
 
-        function dispararReciboRenovacionWhatsApp() {
+        window.dispararReciboRenovacionWhatsApp = function() {
             const nombre = document.getElementById('cfg-nombre').value.trim();
             const user = document.getElementById('cfg-user').value.trim();
             const tlf = document.getElementById('cfg-tlf').value.trim();
@@ -1102,9 +1160,9 @@
             let urlLink = `https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`;
             if(tlf) { urlLink = `https://api.whatsapp.com/send?phone=${filterCleanInternationalPhone(tlf)}&text=${encodeURIComponent(msg)}`; }
             window.open(urlLink, '_blank');
-        }
+        };
 
-        function abrirBovedaContratosMasterModal() {
+        window.abrirBovedaContratosMasterModal = function() {
             const contenedor = document.getElementById('contenedor-expedientes-lista-master');
             let listaContratos = JSON.parse(localStorage.getItem('tcl_master_boveda_contratos')) || [];
             contenedor.innerHTML = "";
@@ -1124,20 +1182,21 @@
                             <p class="text-[10px] text-emerald-400 mt-0.5 font-mono"><i class="fa-solid fa-calendar-check"></i> Firmado: ${c.fecha}</p>
                             ${fotoHtml}
                         </div>
-                        <button onclick="window.print()" class="bg-slate-900 border border-slate-800 px-4 py-2 rounded-xl text-[10px] font-black text-slate-200 uppercase tracking-wide"><i class="fa-solid fa-print"></i> Imprimir Expediente</button>
+                        <button id="btn-prn-exp-${c.user}" class="bg-slate-900 border border-slate-800 px-4 py-2 rounded-xl text-[10px] font-black text-slate-200 uppercase tracking-wide"><i class="fa-solid fa-print"></i> Imprimir Expediente</button>
                     `;
                     contenedor.appendChild(div);
+                    document.getElementById(`btn-prn-exp-${c.user}`).onclick = function() { window.print(); };
                 });
             }
             document.getElementById('modal-boveda-contratos-master').classList.remove('hidden');
-        }
+        };
 
-        function asignarDiasSimulador(amount, boton) {
+        window.asignarDiasSimulador = function(amount, boton) {
             diasSimuladosValor = amount; document.getElementById('cfg-dias-display').innerText = `${diasSimuladosValor} Días`;
             document.querySelectorAll('.tiempo-btn').forEach(btn => btn.className = "tiempo-btn bg-slate-900 border border-slate-800 text-slate-300 text-[9px] py-2 font-bold rounded-lg");
             boton.className = "tiempo-btn bg-purple-600 text-white text-[9px] py-2 font-black rounded-lg shadow";
             recalcularConversionesSaas();
-        }
+        };
 
         function marcarBotonTiempoActivo(dias) {
             document.querySelectorAll('.tiempo-btn').forEach(btn => {
@@ -1146,7 +1205,7 @@
             });
         }
 
-        function abrirModalCrearPerfil() {
+        window.abrirModalCrearPerfil = function() {
             idSeleccionadoActual = "perfil-" + new Date().getTime(); diasSimuladosValor = 365;
             document.getElementById('cfg-modal-titulo').innerText = "➕ Crear Entorno SaaS";
             
@@ -1173,9 +1232,9 @@
             if (document.getElementById('cfg-rubro')) document.getElementById('cfg-rubro').value = "TECNOLOGIA";
             marcarBotonTiempoActivo(365); recalcularConversionesSaas();
             document.getElementById('modal-config-master').classList.remove('hidden');
-        }
+        };
 
-        function forzarEntradaClienteDirecta(nombre, garantia, dias, ownerID, tlf, rif, dir, rango, rubro) {
+        window.forzarEntradaClienteDirecta = async function(nombre, garantia, dias, ownerID, tlf, rif, dir, rango, rubro) {
             infoClienteAbiertoDinamico = { id: ownerID, ownerID, nombre, garantia, dias, tlf, rif, dir, rango, rubro, user: ownerID.replace('perfil-','') };
             document.getElementById('login-titulo-dinamico').innerText = nombre; esEntradaForzadaMaster = true; 
             document.getElementById('label-boton-salida-dinamico').innerText = "Regresar Panel";
@@ -1183,15 +1242,11 @@
             document.getElementById('vista-master-admin').classList.add('hidden'); 
             document.getElementById('entorno-aplicacion-core').classList.remove('hidden');
             document.getElementById('vista-entorno-cliente').classList.remove('hidden');
-            desbloquearPantallaFacturacionReal();
-        }
+            await desbloquearPantallaFacturacionReal();
+        };
 
-        function ejecutarBotonSalidaInteligente() {
-            const id = infoClienteAbiertoDinamico.ownerID ? infoClienteAbiertoDinamico.ownerID : "default_owner";
-            localStorage.setItem(`${id}_stock_db`, JSON.stringify(productosInventarioBD));
-            localStorage.setItem(`${id}_gastos_db`, JSON.stringify(gastosBD));
-            localStorage.setItem(`${id}_facturas_db`, JSON.stringify(facturasEmitidasBD));
-            localStorage.setItem(`${id}_correlativo_val`, correlativoNotaGlobal);
+        window.ejecutarBotonSalidaInteligente = async function() {
+            await pushDatosPerfilAlServidor();
 
             document.getElementById('cli-bloque-sistema').classList.add('hidden');
             document.body.className = "bg-slate-950 text-slate-100 min-h-screen transition-all duration-300";
@@ -1208,9 +1263,9 @@
                 document.getElementById('cli-bloque-login').classList.remove('hidden');
                 document.getElementById('cli-panel-reglas-fijas').classList.remove('hidden');
             }
-        }
+        };
 
-        function ejecutarDescargaBackupExpressManualStock() {
+        window.ejecutarDescargaBackupExpressManualStock = function() {
             const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(productosInventarioBD));
             const downloadAnchor = document.createElement('a');
             downloadAnchor.setAttribute("href", dataStr);
@@ -1218,9 +1273,9 @@
             document.body.appendChild(downloadAnchor);
             downloadAnchor.click();
             downloadAnchor.remove();
-        }
+        };
 
-        function toggleSegundoImeiRow(checkbox, index) {
+        window.toggleSegundoImeiRow = function(checkbox, index) {
             const wrap = checkbox.closest('div').nextElementSibling.nextElementSibling;
             if (wrap) {
                 wrap.classList.toggle('hidden', !checkbox.checked); 
@@ -1229,9 +1284,9 @@
                     if (inp) inp.value = "";
                 }
             }
-        }
+        };
 
-        function renderizarCamposImeiDinamicosPorCantidad() {
+        window.renderizarCamposImeiDinamicosPorCantidad = function() {
             const contenedor = document.getElementById('contenedor-imeis-dinamicos');
             if(!contenedor) return;
             const esCelular = document.getElementById('manual-prod-es-celular').checked;
@@ -1242,47 +1297,50 @@
                 const block = document.createElement('div'); block.className = "bg-amber-50/60 p-2 rounded-xl border border-amber-200 space-y-1";
                 block.innerHTML = `
                     <div class="flex justify-between items-center"><span class="text-[9px] font-black text-amber-700 uppercase">Equipo #${i}</span>
-                    <label class="flex items-center gap-1"><input type="checkbox" class="w-3 h-3 accent-amber-600" onchange="toggleSegundoImeiRow(this, ${i})"><span class="text-[8.5px] font-bold text-slate-500 uppercase">¿Dual SIM?</span></label></div>
-                    <input type="text" placeholder="IMEI principal o 4 dígitos" class="imei-field-p-${i} w-full bg-white border px-2 py-1 rounded-lg text-xs font-mono">
-                    <div class="wrapper-segundo-imei-box hidden"><input type="text" placeholder="SIM 2 IMEI" class="imei-field-s-${i} w-full bg-white border px-2 py-1 rounded-lg text-xs font-mono mt-1"></div>
+                    <label class="flex items-center gap-1"><input type="checkbox" id="chk-dual-${i}" class="w-3 h-3 accent-amber-600"><span class="text-[8.5px] font-bold text-slate-500 uppercase">¿Dual SIM?</span></label></div>
+                    <input type="text" id="imei-p-${i}" placeholder="IMEI principal o 4 dígitos" class="w-full bg-white border px-2 py-1 rounded-lg text-xs font-mono">
+                    <div id="wrap-sim2-${i}" class="wrapper-segundo-imei-box hidden"><input type="text" id="imei-s-${i}" placeholder="SIM 2 IMEI" class="w-full bg-white border px-2 py-1 rounded-lg text-xs font-mono mt-1"></div>
                 `;
                 contenedor.appendChild(block);
+                document.getElementById(`chk-dual-${i}`).onchange = function() {
+                    window.toggleSegundoImeiRow(this, i);
+                };
             }
-        }
+        };
 
-        function cambiarMetodoCajaCarga(metodo) {
+        window.cambiarMetodoCajaCarga = function(metodo) {
             document.getElementById('tab-btn-manual').className = metodo === 'manual' ? "bg-blue-600 text-white font-black text-[10px] py-1.5 rounded-xl uppercase" : "bg-slate-100 text-slate-500 font-bold text-[10px] py-1.5 rounded-xl uppercase";
             document.getElementById('tab-btn-catalogo').className = metodo === 'catalogo' ? "bg-blue-600 text-white font-black text-[10px] py-1.5 rounded-xl uppercase" : "bg-slate-100 text-slate-500 font-bold text-[10px] py-1.5 rounded-xl uppercase";
             document.getElementById('bloque-carga-manual').classList.toggle('hidden', metodo !== 'manual');
             document.getElementById('bloque-carga-catalogo').classList.toggle('hidden', metodo !== 'catalogo');
             if(metodo === 'catalogo') actualizarGridInventarioPOS();
-        }
+        };
 
-        function cambiarCategoriaFormularioInventario(cat) {
+        window.cambiarCategoriaFormularioInventario = function(cat) {
             categoriaInventarioCarga = cat;
             document.getElementById('inv-btn-cat-telefonos').className = cat === 'telefonos' ? "bg-purple-600 text-white font-black text-[10px] py-2 rounded-xl uppercase" : "bg-slate-100 text-slate-500 font-bold text-[10px] py-2 rounded-xl uppercase";
             document.getElementById('inv-btn-cat-otros').className = cat === 'otros' ? "bg-purple-600 text-white font-black text-[10px] py-2 rounded-xl uppercase" : "bg-slate-100 text-slate-500 font-bold text-[10px] py-2 rounded-xl uppercase";
             document.getElementById('inv-campos-telefonos').classList.toggle('hidden', cat !== 'telefonos');
             document.getElementById('inv-campos-otros').classList.toggle('hidden', cat !== 'otros');
-        }
+        };
 
-        function jalarArticlePOSInventarioClick(nombre, precio) {
+        window.jalarArticlePOSInventarioClick = function(nombre, precio) {
             document.getElementById('manual-prod-nombre').value = nombre;
             document.getElementById('manual-prod-precio').value = precio;
             document.getElementById('manual-prod-moneda').value = "USD"; 
-            cambiarMetodoCajaCarga('manual');
-        }
+            window.cambiarMetodoCajaCarga('manual');
+        };
 
-        function activarPestañaPos(modulo) {
+        window.activarPestañaPos = function(modulo) {
             document.getElementById('panel-seccion-facturar').classList.add('hidden'); document.getElementById('panel-seccion-inventario').classList.add('hidden');
             document.getElementById('panel-seccion-gastos').classList.add('hidden'); document.getElementById('panel-seccion-reportes').classList.add('hidden');
             if(modulo === 'facturar') document.getElementById('panel-seccion-facturar').classList.remove('hidden');
             if(modulo === 'inventario') { document.getElementById('panel-seccion-inventario').classList.remove('hidden'); actualizarListaInventarioInterna(); }
             if(modulo === 'gastos') document.getElementById('panel-seccion-gastos').classList.remove('hidden');
             if(modulo === 'reportes') { document.getElementById('panel-seccion-reportes').classList.remove('hidden'); actualizarListaReportesInterna(); }
-        }
+        };
 
-        function agregarArticuloManualTicket() {
+        window.agregarArticuloManualTicket = function() {
             const producto = document.getElementById('manual-prod-nombre').value.trim();
             const cantidad = parseInt(document.getElementById('manual-prod-cantidad').value) || 1;
             const precioRaw = parseFloat(document.getElementById('manual-prod-precio').value);
@@ -1306,8 +1364,8 @@
 
             if(esCelular) {
                 for(let i = 1; i <= cantidad; i++) {
-                    let imei1 = document.querySelector(`.imei-field-p-${i}`)?.value.trim() || 'Sin IMEI';
-                    let imei2 = document.querySelector(`.imei-field-s-${i}`)?.value.trim() || '';
+                    let imei1 = document.getElementById(`imei-p-${i}`)?.value.trim() || 'Sin IMEI';
+                    let imei2 = document.getElementById(`imei-s-${i}`)?.value.trim() || '';
                     let str = `IMEI: ${imei1}`; if(imei2) str += ` / SIM 2: ${imei2}`;
                     itemAgrupado.imeis.push(str);
                 }
@@ -1317,7 +1375,7 @@
             document.getElementById('manual-prod-cantidad').value = "1"; document.getElementById('manual-prod-es-celular').checked = false;
             document.getElementById('contenedor-imeis-dinamicos').innerHTML = ""; 
             calcularTotalesSimulados();
-        }
+        };
 
         function calcularTotalesSimulados() {
             const contenedor = document.getElementById('desglose-productos-ticket');
@@ -1349,7 +1407,7 @@
 
         function limpiarTicketCompleto() { ticketProductos = []; calcularTotalesSimulados(); }
 
-        function guardarProductoEnInventario() {
+        window.guardarProductoEnInventario = async function() {
             let descFinal = ""; const costo = parseFloat(document.getElementById('inv-prod-costo').value) || 0;
             const precio = parseFloat(document.getElementById('inv-prod-precio').value) || 0;
             if(precio <= 0) return alert("Coloque precio.");
@@ -1365,18 +1423,18 @@
             productosInventarioBD.push({ id: 'p-' + new Date().getTime(), nombre: descFinal, costo: Math.round(costo), precio: Math.round(precio) });
             document.getElementById('inv-prod-costo').value = ""; document.getElementById('inv-prod-precio').value = "";
             actualizarListaInventarioInterna();
-            localStorage.setItem(`${infoClienteAbiertoDinamico.ownerID}_stock_db`, JSON.stringify(productosInventarioBD));
-        }
+            await pushDatosPerfilAlServidor();
+        };
 
-        function registrarGastoCaja() {
+        window.registrarGastoCaja = async function() {
             const desc = document.getElementById('gasto-descripcion').value.trim(); const monto = parseFloat(document.getElementById('gasto-monto').value);
             const moneda = document.getElementById('gasto-moneda').value; if(!desc || isNaN(monto)) return alert("Inserte datos.");
             gastosBD.push({ desc: desc, monto: Math.round(monto), moneda: moneda });
             document.getElementById('gasto-descripcion').value = ""; document.getElementById('gasto-monto').value = "";
             actualizarListaGastosInterna();
-            localStorage.setItem(`${infoClienteAbiertoDinamico.ownerID}_gastos_db`, JSON.stringify(gastosBD));
+            await pushDatosPerfilAlServidor();
             actualizarListaReportesInterna();
-        }
+        };
 
         function actualizarListaInventarioInterna() {
             const box = document.getElementById('inv-lista-productos-box');
@@ -1396,10 +1454,13 @@
             if(productosInventarioBD.length === 0) { grid.innerHTML = `<p class="text-center text-slate-400 py-4 italic text-[10px] col-span-2">Inventario vacío.</p>`; return; }
             grid.innerHTML = "";
             productosInventarioBD.forEach(p => {
-                const btn = document.createElement('button'); btn.setAttribute('onclick', `jalarArticlePOSInventarioClick('${p.nombre.replace(/'/g, "\\'")}', ${p.precio})`);
+                const btn = document.createElement('button'); btn.id = `pos-inv-${p.id}`;
                 btn.className = "bg-slate-50 border p-2 rounded-xl text-left hover:bg-white h-14 overflow-hidden flex flex-col justify-between";
                 btn.innerHTML = `<span class="text-[9px] font-bold text-slate-700 truncate block w-full">${p.nombre}</span><span class="text-xs font-black text-blue-600 font-mono">$${Math.round(p.precio)}</span>`;
                 grid.appendChild(btn);
+                document.getElementById(`pos-inv-${p.id}`).onclick = function() {
+                    window.jalarArticlePOSInventarioClick(p.nombre, p.precio);
+                };
             });
         }
 
@@ -1414,10 +1475,10 @@
             });
         }
 
-        function filtrarHistorialFacturasPorDocumento() {
+        window.filtrarHistorialFacturasPorDocumento = function() {
             const query = document.getElementById('master-buscador-historial').value.trim().toLowerCase();
             actualizarListaReportesInterna(query);
-        }
+        };
 
         function actualizarListaReportesInterna(filtroQuery = "") {
             const box = document.getElementById('reportes-notes-lista-box');
@@ -1458,21 +1519,27 @@
                 
                 let txtVendedorBox = f.vendedor ? `<span class="block text-[9.5px] text-slate-500 font-bold">Vendedor: ${f.vendedor.toUpperCase()}</span>` : "";
                 let currentActiveRange = (infoClienteAbiertoDinamico && infoClienteAbiertoDinamico.rango) ? infoClienteAbiertoDinamico.rango : "CLIENTE";
-                let btnEliminarMasterPruebas = (currentActiveRange === 'MASTER') ? `<button onclick="eliminarRegistroFacturaDefinitivoMasterPrueba('${f.id}')" class="bg-red-600 text-white text-[9px] font-black px-2 py-1 rounded-md uppercase ml-1"><i class="fa-solid fa-trash"></i> Purgar</button>` : '';
-                let botones = f.status === 'ANULADA' ? btnEliminarMasterPruebas : `<div class="flex gap-1 pt-1 justify-end border-t border-slate-100"><button onclick="reimprimirFacturaHistorial('${f.id}')" class="bg-slate-900 text-white text-[9px] font-black px-2 py-1 rounded-md uppercase"><i class="fa-solid fa-print"></i> Impresora</button><button onclick="reenviarWhatsAppHistorial('${f.id}')" class="bg-emerald-600 text-white text-[9px] font-black px-2 py-1 rounded-md uppercase"><i class="fa-brands fa-whatsapp"></i> WhatsApp</button><button onclick="anularFacturaHistorialConNotaCredito('${f.id}')" class="bg-red-500/10 text-red-600 text-[9px] font-black px-2 py-1 rounded-md uppercase border border-red-500/20">Anular</button>${btnEliminarMasterPruebas}</div>`;
+                let btnEliminarMasterPruebas = (currentActiveRange === 'MASTER') ? `<button id="pur-fact-${f.id}" class="bg-red-600 text-white text-[9px] font-black px-2 py-1 rounded-md uppercase ml-1"><i class="fa-solid fa-trash"></i> Purgar</button>` : '';
+                
+                let botones = f.status === 'ANULADA' ? btnEliminarMasterPruebas : `<div class="flex gap-1 pt-1 justify-end border-t border-slate-100"><button id="prn-fact-${f.id}" class="bg-slate-900 text-white text-[9px] font-black px-2 py-1 rounded-md uppercase"><i class="fa-solid fa-print"></i> Impresora</button><button id="wa-fact-${f.id}" class="bg-emerald-600 text-white text-[9px] font-black px-2 py-1 rounded-md uppercase"><i class="fa-brands fa-whatsapp"></i> WhatsApp</button><button id="anl-fact-${f.id}" class="bg-red-500/10 text-red-600 text-[9px] font-black px-2 py-1 rounded-md uppercase border border-red-500/20">Anular</button>${btnEliminarMasterPruebas}</div>`;
                 
                 card.innerHTML = `<div class="flex justify-between items-center font-mono"><b>Nota #${String(f.correlativo).padStart(3, '0')}</b> ${badge}</div><p class="text-slate-500 font-medium">Receptor: ${f.cliente} | RIF: ${f.rif} | Total: <span class="font-black text-slate-800 font-mono">$${Math.round(f.total)}</span></p>${txtVendedorBox}${botones}`;
                 box.appendChild(card);
+
+                if(document.getElementById(`prn-fact-${f.id}`)) document.getElementById(`prn-fact-${f.id}`).onclick = function() { window.reimprimirFacturaHistorial(f.id); };
+                if(document.getElementById(`wa-fact-${f.id}`)) document.getElementById(`wa-fact-${f.id}`).onclick = function() { window.reenviarWhatsAppHistorial(f.id); };
+                if(document.getElementById(`anl-fact-${f.id}`)) document.getElementById(`anl-fact-${f.id}`).onclick = function() { window.anularFacturaHistorialConNotaCredito(f.id); };
+                if(document.getElementById(`pur-fact-${f.id}`)) document.getElementById(`pur-fact-${f.id}`).onclick = function() { window.eliminarRegistroFacturaDefinitivoMasterPrueba(f.id); };
             });
         }
 
-        function eliminarRegistroFacturaDefinitivoMasterPrueba(id) {
+        window.eliminarRegistroFacturaDefinitivoMasterPrueba = async function(id) {
             if(confirm("🔑 CONTROL MÁSTER SUPREMO:\n¿Desea borrar esta factura de pruebas permanentemente?")) {
                 facturasEmitidasBD = facturasEmitidasBD.filter(f => f.id !== id);
-                localStorage.setItem(`${infoClienteAbiertoDinamico.ownerID}_facturas_db`, JSON.stringify(facturasEmitidasBD));
+                await pushDatosPerfilAlServidor();
                 actualizarListaReportesInterna();
             }
-        }
+        };
 
         function buildFacturaTextRaw(cliente, rif, tlf, dir, productos, total, vendedor, condicion, monedaRecibida, abono, resta, diasCredito, correlativoForzado = null) {
             const tCOP = parseFloat(document.getElementById('tasa-cop')?.value) || 3900;
@@ -1511,7 +1578,7 @@
             return `🛍️ *${infoClienteAbiertoDinamico.nombre.toUpperCase()} — COMPROBANTE DE DESPACHO*\n\n👤 *Cliente:* ${cliente}\n🪪 *RIF:* ${rif}\n\n${strCondicion}\n*ARTÍCULOS:*\n${cuerpoText}\n💰 *TOTALES MULTIMONEDA:*\n💵 REF: $${Math.round(total)}\n🇨🇴 COP: ${Math.round(total * tCOP).toLocaleString('es-ES')} COP\n🇻🇪 Bs: ${(total * tBs).toLocaleString('es-ES', {minimumFractionDigits:2})} Bs\n\n🔒 _Servicio de Control Interno Descentralizado. Esta nota detalla funciones de Auditoría de Personal Obligatoria y Carga Multimoneda Fluida adaptada al mostrador por Tucocel C.A. & @publionlinemk._`;
         }
 
-        function procesarImpresionTicket() {
+        window.procesarImpresionTicket = async function() {
             if(ticketProductos.length === 0) return alert("Mesa vacía.");
             const vendedor = document.getElementById('ticket-vendedor').value.trim();
             if(!vendedor) return alert("⚠️ Error crítico: Debe ingresar el nombre de la vendedora o cajero para auditar la operación de forma obligatoria.");
@@ -1537,17 +1604,15 @@
             setTimeout(() => { window.print(); }, 400);
 
             correlativoNotaGlobal++;
-            const ownerId = infoClienteAbiertoDinamico.ownerID ? infoClienteAbiertoDinamico.ownerID : "default_owner";
-            localStorage.setItem(`${ownerId}_facturas_db`, JSON.stringify(facturasEmitidasBD));
-            localStorage.setItem(`${ownerId}_correlativo_val`, correlativoNotaGlobal);
+            await pushDatosPerfilAlServidor();
             limpiarTicketCompleto();
             document.getElementById('ticket-correlativo-display').innerText = `Nota #${String(correlativoNotaGlobal).padStart(3, '0')}`;
             document.getElementById('ticket-vendedor').value = "";
             document.getElementById('ticket-abono').value = "0";
             actualizarListaReportesInterna();
-        }
+        };
 
-        function enviarFacturaWhatsAppClienteSimulada() {
+        window.enviarFacturaWhatsAppClienteSimulada = async function() {
             if(ticketProductos.length === 0) return alert("Mesa vacía.");
             const vendedor = document.getElementById('ticket-vendedor').value.trim();
             if(!vendedor) return alert("⚠️ Error crítico: Debe ingresar el nombre de la vendedora o cajero para auditar la operación de forma obligatoria.");
@@ -1574,30 +1639,27 @@
             window.open(urlLink, '_blank');
 
             correlativoNotaGlobal++;
-            const ownerId = infoClienteAbiertoDinamico.ownerID ? infoClienteAbiertoDinamico.ownerID : "default_owner";
-            localStorage.setItem(`${ownerId}_facturas_db`, JSON.stringify(facturasEmitidasBD));
-            localStorage.setItem(`${ownerId}_correlativo_val`, correlativoNotaGlobal);
+            await pushDatosPerfilAlServidor();
             limpiarTicketCompleto();
             document.getElementById('ticket-correlativo-display').innerText = `Nota #${String(correlativoNotaGlobal).padStart(3, '0')}`;
             document.getElementById('ticket-vendedor').value = "";
             document.getElementById('ticket-abono').value = "0";
             actualizarListaReportesInterna();
-        }
+        };
 
-        function anularFacturaHistorialConNotaCredito(id) {
+        window.anularFacturaHistorialConNotaCredito = async function(id) {
             if(confirm("⚠️ ALERTA DE SEGURIDAD INTERNA\n\n¿Está seguro de que desea procesar la anulación contable de esta nota?")) {
                 const f = facturasEmitidasBD.find(fact => fact.id === id);
                 if(f) { 
                     f.status = 'ANULADA'; 
                     alert("Nota de Crédito asentada."); 
+                    await pushDatosPerfilAlServidor();
                     actualizarListaReportesInterna();
-                    const ownerId = infoClienteAbiertoDinamico.ownerID ? infoClienteAbiertoDinamico.ownerID : "default_owner";
-                    localStorage.setItem(`${ownerId}_facturas_db`, JSON.stringify(facturasEmitidasBD));
                 }
             }
-        }
+        };
 
-        function reimprimirFacturaHistorial(id) {
+        window.reimprimirFacturaHistorial = function(id) {
             const f = facturasEmitidasBD.find(fact => fact.id === id);
             if(f) {
                 const txt = buildFacturaTextRaw(f.cliente, f.rif, f.tlf, f.dir, f.productos, f.total, f.vendedor || "General", f.condicion || "CONTADO", f.monedaRecibida || "USD", f.abono || 0, f.resta || 0, f.diasCredito || 5, f.correlativo);
@@ -1606,9 +1668,9 @@
                 document.getElementById('modal-whatsapp-nota').classList.remove('hidden');
                 setTimeout(() => { window.print(); }, 400);
             }
-        }
+        };
 
-        function reenviarWhatsAppHistorial(id) {
+        window.reenviarWhatsAppHistorial = function(id) {
             const f = facturasEmitidasBD.find(fact => fact.id === id);
             if(f) {
                 const txt = buildWhatsAppTextRaw(f.cliente, f.rif, f.tlf, f.dir, f.productos, f.total, f.vendedor || "General", f.condicion || "CONTADO", f.monedaRecibida || "USD", f.abono || 0, f.resta || 0, f.diasCredito || 5, f.correlativo);
@@ -1618,9 +1680,9 @@
                 if(f.tlf && f.tlf !== "") { urlLink = `https://api.whatsapp.com/send?phone=${filterCleanInternationalPhone(f.tlf)}&text=${encodeURIComponent(txt)}`; }
                 window.open(urlLink, '_blank');
             }
-        }
+        };
 
-        function enviarReporteCierreDiarioWhatsAppDueño() {
+        window.enviarReporteCierreDiarioWhatsAppDueño = function() {
             let sumVentas = facturasEmitidasBD.reduce((acc, curr) => {
                 if (curr.status === 'EMITIDA') {
                     if (curr.condicion === 'CREDITO') return acc + curr.abono;
@@ -1635,9 +1697,9 @@
             let urlLink = `https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`;
             if(infoClienteAbiertoDinamico.tlf) { urlLink = `https://api.whatsapp.com/send?phone=${filterCleanInternationalPhone(infoClienteAbiertoDinamico.tlf)}&text=${encodeURIComponent(msg)}`; }
             window.open(urlLink, '_blank');
-        }
+        };
 
-        function ejecutarCierreCajaPeriodo(tipo) {
+        window.ejecutarCierreCajaPeriodo = async function(tipo) {
             let sumVentas = facturasEmitidasBD.reduce((acc, curr) => {
                 if (curr.status === 'EMITIDA') {
                     if (curr.condicion === 'CREDITO') return acc + curr.abono;
@@ -1651,52 +1713,47 @@
                 if(tipo === 'dia') { gastosBD = []; }
                 else { gastosBD = []; facturasEmitidasBD = []; correlativoNotaGlobal = 1; }
                 
-                const id = infoClienteAbiertoDinamico.ownerID ? infoClienteAbiertoDinamico.ownerID : "default_owner";
-                localStorage.setItem(`${id}_stock_db`, JSON.stringify(productosInventarioBD));
-                localStorage.setItem(`${id}_gastos_db`, JSON.stringify(gastosBD));
-                localStorage.setItem(`${id}_facturas_db`, JSON.stringify(facturasEmitidasBD));
-                localStorage.setItem(`${id}_correlativo_val`, correlativoNotaGlobal);
-                
+                await pushDatosPerfilAlServidor();
                 actualizarListaReportesInterna();
                 document.getElementById('ticket-correlativo-display').innerText = `Nota #${String(correlativoNotaGlobal).padStart(3, '0')}`;
             }
-        }
+        };
 
-        function calcularAhorroInteractivoVenta(val) {
+        window.calcularAhorroInteractivoVenta = function(val) {
             if (document.getElementById('val-sim-notas')) document.getElementById('val-sim-notas').innerText = val + " Notas";
             let hrs = Math.round(val * 0.032);
             if (document.getElementById('val-sim-tiempo')) document.getElementById('val-sim-tiempo').innerText = hrs + " Horas";
             let usd = Math.round(val * 0.07);
             if (document.getElementById('val-sim-dinero')) document.getElementById('val-sim-dinero').innerText = "$" + usd + ".00 USD";
-        }
+        };
 
-        function enviarPropuestaComercialWhatsAppDirecta() {
+        window.enviarPropuestaComercialWhatsAppDirecta = function() {
             let urlBase = window.location.href.split('?')[0];
             let linkPropuesta = `${urlBase}?ver=propuesta`;
             
             const msg = `Saludos, estimado cliente, te paso la propuesta de nuestro sistema interno de facturación y control de inventario con generación de nota de entrega.\n\nTe invitamos formalmente a explorar nuestra presentación corporativa interactiva y conocer todas las herramientas exclusivas que llevarán tu local al siguiente nivel con soporte total desde tu teléfono o computadora:\n\n🌐 INGRESA A LA PROPUESTA CON UN CLIC AQUÍ:\n${linkPropuesta}\n\nInfraestructura tecnológica y resguardo digital prestado bajo licencia exclusiva por Tucocel C.A. & @publionlinemk. 🚀`;
             
             window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`, '_blank');
-        }
+        };
 
-        function procesarCambioContraseñaAutonomaCliente() {
+        window.procesarChangeContraseñaAutonomaCliente = window.procesarCambioContraseñaAutonomaCliente = async function() {
             const newPass = document.getElementById('auto-cli-new-pass').value.trim();
             if(newPass.length < 4) return alert("Ingrese una contraseña válida.");
             
-            let listadoLocales = JSON.parse(localStorage.getItem('tcl_master_clientes_listado_real')) || [];
+            let listadoLocales = await obtenerClientesDesdeFirebase();
             let indexMatch = listadoLocales.findIndex(c => c.id === infoClienteAbiertoDinamico.id);
             
             if(indexMatch !== -1) {
                 listadoLocales[indexMatch].pass = newPass;
                 infoClienteAbiertoDinamico.pass = newPass;
-                localStorage.setItem('tcl_master_clientes_listado_real', JSON.stringify(listadoLocales));
+                await guardarClientesEnFirebase(listadoLocales);
                 alert("🔒 Contraseña de Caja actualizada con éxito.");
                 document.getElementById('modal-autogestion-password-cliente').classList.add('hidden');
                 document.getElementById('auto-cli-new-pass').value = "";
             } else {
                 alert("Error: No se pudo localizar el perfil del cliente.");
             }
-        }
+        };
     </script>
 </body>
-                                                                                     </html>
+            </html>
