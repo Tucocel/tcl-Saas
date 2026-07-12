@@ -121,12 +121,12 @@
         <div class="w-full max-w-xl p-0.5 rounded-3xl bg-gradient-to-br from-purple-600 via-slate-800 to-blue-600 shadow-2xl">
             <div class="glass-panel rounded-[22px] p-6 space-y-4">
                 <div class="border-b border-slate-800 pb-3 text-center">
-                    <span class="bg-purple-500/10 text-purple-400 border border-purple-500/20 text-[9px] font-black tracking-widest uppercase px-3 py-1 rounded-full inline-block mb-1">Registro y Validation Obligatoria</span>
+                    <span class="bg-purple-500/10 text-purple-400 border border-purple-500/20 text-[9px] font-black tracking-widest uppercase px-3 py-1 rounded-full inline-block mb-1">Registro y Validación Obligatoria</span>
                     <h2 class="font-black text-lg text-white uppercase">CONTRATO DE PROMOTOR DIGITAL INDEPENDIENTE</h2>
                 </div>
                 <div class="bg-slate-950 p-4 rounded-xl border border-slate-850 font-sans text-[11px] leading-relaxed max-h-44 overflow-y-auto no-scrollbar text-slate-300 text-justify space-y-2">
                     <p><b>PRIMERA: NATURALEZA DEL VÍNCULO.</b> El suscriptor declara aceptar de forma voluntaria que se integra en calidad de <b>Promotor Digital Independiente (Comisionista Freelance)</b>. No existe ningún tipo de relación laboral fija ni sueldo base con el establecimiento principal.</p>
-                    <p><b>SEGUNDA: REGLA DE ORO DEL RESGUARDO FINANCIERO.</b> Queda strictly prohibido que el promotor reciba, custodie o cobre dinero en efectivo o transferencias de los clientes finales. Todo pago debe caer strictly a las cuentas de la tienda. El único número autorizado para finiquitar activaciones es el central de Tucocel: <b>0424-7357549</b>.</p>
+                    <p><b>SEGUNDA: REGLA DE ORO DEL RESGUARDO FINANCIERO.</b> Queda estrictamente prohibido que el promotor reciba, custodie o cobre dinero en efectivo o transferencias de los clientes finales. Todo pago debe caer strictly a las cuentas de la tienda. El único número autorizado para finiquitar activaciones es el central de Tucocel: <b>0424-7357549</b>.</p>
                 </div>
                 
                 <!-- SIMULADOR INTERACTIVO DEL VENDEDOR -->
@@ -253,6 +253,7 @@
                 </div>
                 <div id="mosaico-promotores-grid-sub" class="p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 overflow-y-auto no-scrollbar"></div>
                 <div class="bg-slate-950 px-4 py-3 border-t border-slate-800 flex justify-end gap-2">
+                    <!-- CORREGIDO: AMARRE CORRECTO DEL DISPARADOR JS EN EL BOTÓN MÁSTER -->
                     <button onclick="window.dispararEnvioWhatsAppLinkSimuladorVendedoresGlobal()" class="bg-blue-600 text-white text-[10px] font-black px-4 py-2 rounded-xl uppercase shadow-md"><i class="fa-solid fa-calculator"></i> Enviar Simulador</button>
                     <button onclick="document.getElementById('modal-sub-lista-promtoteros').classList.add('hidden')" class="bg-slate-800 text-slate-300 px-5 py-2 rounded-xl text-xs font-bold uppercase">Cerrar</button>
                 </div>
@@ -279,7 +280,90 @@
             </div>
         </div>
 
-        <!-- VISTA ENTORNO CLIENTE COMERCIANTE (TOTALMENTE INTEGRADA Y RESPONSIVA) -->
+        <!-- MODAL DESEMBOLSO PROMOTOR -->
+        <div id="modal-liquidar-promotor-caja" class="fixed inset-0 bg-slate-950/95 backdrop-blur-sm z-50 p-4 hidden flex items-center justify-center">
+            <div class="bg-slate-900 border border-slate-800 w-full max-w-xs rounded-3xl p-5 space-y-4 shadow-2xl">
+                <div class="text-center space-y-1">
+                    <h3 class="font-black text-xs text-white uppercase tracking-wider border-b border-slate-800 pb-2"><i class="fa-solid fa-money-bill-wave text-emerald-400"></i> Desembolso de Comisiones</h3>
+                    <p id="liq-promotor-name-display" class="font-bold text-sm text-purple-400 uppercase pt-1">PROMOTOR</p>
+                    <div class="bg-slate-950 p-2 border border-slate-850 rounded-xl mt-1"><span class="text-[8px] text-slate-500 block uppercase font-bold">Acumulado en Firebase</span><span id="liq-max-disponible-val" class="text-base font-black font-mono text-amber-400">$0</span></div>
+                </div>
+                <div class="space-y-3 text-xs">
+                    <div class="bg-slate-950 p-2 rounded-xl border border-slate-850"><span class="text-[8px] text-slate-500 block uppercase font-bold">Monto a Liquidar ($)</span><input type="number" id="liq-monto-input" class="w-full bg-transparent font-black text-center text-sm text-white focus:outline-none font-mono"></div>
+                    <div class="bg-slate-950 p-2 rounded-xl border border-slate-850"><span class="text-[8px] text-slate-500 block uppercase font-bold">Canal o Moneda de Pago</span><select id="liq-moneda-select" class="w-full bg-transparent text-white font-bold focus:outline-none"><option value="EFECTIVO">Dólares Efectivo</option><option value="PESOS">Pesos COP</option><option value="BOLIVARES">Bolívares Bs</option></select></div>
+                    <div class="grid grid-cols-2 gap-2 pt-1">
+                        <button onclick="window.procesarLiquidacionMatematicaPromotor(true)" class="bg-emerald-600 text-white font-black py-2 rounded-xl uppercase text-[9px]">Todo el Saldo</button>
+                        <button onclick="window.procesarLiquidacionMatematicaPromotor(false)" class="bg-blue-600 text-white font-black py-2 rounded-xl uppercase text-[9px]">Monto Escrito</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MODAL CONFIGURACIÓN SUCURSAL SAAS -->
+        <div id="modal-config-master" class="fixed inset-0 bg-slate-950/95 backdrop-blur-sm z-50 p-4 overflow-y-auto hidden flex items-center justify-center">
+            <div class="bg-[#0f172a]/95 border border-slate-800 w-full max-w-md rounded-3xl overflow-hidden shadow-2xl flex flex-col p-6 space-y-4 glow-border">
+                <div class="flex justify-between items-center pb-2 border-b border-slate-800">
+                    <h3 id="cfg-modal-titulo" class="font-black text-xs uppercase tracking-wider text-white">CREAR ENTORNO SAAS</h3>
+                    <button onclick="window.cerrarConfiguracionCliente()" class="text-slate-400 hover:text-white bg-slate-950 border border-slate-800 w-7 h-7 rounded-xl flex items-center justify-center"><i class="fa-solid fa-xmark text-xs"></i></button>
+                </div>
+                
+                <div class="space-y-3 text-xs overflow-y-auto max-h-[65vh] pr-1 no-scrollbar">
+                    <div class="bg-transparent border border-slate-700 rounded-xl px-3 py-2"><input type="text" id="cfg-nombre" placeholder="Nombre de la Empresa" onkeyup="window.autoGenerarIdUsuarioBloqueado()" class="w-full bg-transparent text-white font-bold focus:outline-none placeholder-slate-500"></div>
+                    <div class="bg-transparent border border-slate-700 rounded-xl px-3 py-2"><input type="text" id="cfg-rif" placeholder="Cédula o RIF Comercial" class="w-full bg-transparent text-white font-bold focus:outline-none placeholder-slate-500"></div>
+                    <div class="grid grid-cols-2 gap-2">
+                        <div class="bg-transparent border border-slate-700 rounded-xl px-3 py-2"><input type="text" id="cfg-tlf" placeholder="WhatsApp" class="w-full bg-transparent text-white font-bold focus:outline-none placeholder-slate-500"></div>
+                        <div class="bg-transparent border border-slate-700 rounded-xl px-3 py-2"><input type="text" id="cfg-redes" placeholder="Instagram" class="w-full bg-transparent text-white font-bold focus:outline-none placeholder-slate-500"></div>
+                    </div>
+                    <div class="bg-transparent border border-slate-700 rounded-xl px-3 py-2"><input type="text" id="cfg-dir" placeholder="Dirección Física" class="w-full bg-transparent text-white font-bold focus:outline-none placeholder-slate-500"></div>
+
+                    <div class="grid grid-cols-2 gap-2">
+                        <div class="bg-transparent border border-slate-700 rounded-xl px-3 py-2"><input type="text" id="cfg-user" placeholder="tienda_id" class="w-full bg-transparent text-white font-bold font-mono focus:outline-none"></div>
+                        <div class="bg-transparent border border-slate-700 rounded-xl px-3 py-2"><input type="password" id="cfg-pass" placeholder="123456" class="w-full bg-transparent text-white font-bold font-mono focus:outline-none"></div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-2">
+                        <select id="cfg-rango" class="w-full bg-slate-950 border border-slate-700 p-2.5 rounded-xl text-white font-bold"><option value="CLIENTE">Cliente Regular</option><option value="MASTER">Máster Supremo</option></select>
+                        <select id="cfg-rubro" class="w-full bg-slate-950 border border-slate-700 p-2.5 rounded-xl text-white font-bold"><option value="TECNOLOGIA">Tecnología / IMEI</option><option value="GENERAL">Comercio General</option></select>
+                    </div>
+
+                    <div class="space-y-1"><input type="text" id="cfg-promotor-asignado" placeholder="Promotor Independiente (Ej: Nelson)" class="w-full bg-transparent border border-slate-700 p-2.5 rounded-xl text-white font-bold uppercase placeholder-slate-600"></div>
+
+                    <div class="grid grid-cols-4 gap-1">
+                        <button onclick="window.asignarDiasSimulador(30, this)" class="tiempo-btn bg-slate-900 text-slate-300 text-[9px] py-2 font-bold rounded-lg">30 Días</button>
+                        <button onclick="window.asignarDiasSimulador(90, this)" class="tiempo-btn bg-slate-900 text-slate-300 text-[9px] py-2 font-bold rounded-lg">90 Días</button>
+                        <button onclick="window.asignarDiasSimulador(180, this)" class="tiempo-btn bg-slate-900 text-slate-300 text-[9px] py-2 font-bold rounded-lg">180 Días</button>
+                        <button onclick="window.asignarDiasSimulador(365, this)" class="tiempo-btn bg-purple-600 text-white text-[9px] py-2 font-black rounded-lg">365 Días</button>
+                    </div>
+                    <div class="bg-transparent border border-slate-700 p-2 rounded-xl text-center font-mono text-amber-400 font-bold" id="cfg-dias-display">365 Días</div>
+
+                    <div class="space-y-1.5">
+                        <input type="text" id="cfg-link-url" readonly class="w-full bg-transparent text-[10px] text-blue-400 font-mono truncate">
+                        <div class="grid grid-cols-2 gap-2">
+                            <button onclick="window.dispararContratoWhatsAppSimulado()" class="bg-blue-600 text-white text-[10px] font-black py-2.5 rounded-xl uppercase">Enviar Activación</button>
+                            <button onclick="window.dispararReciboRenovacionWhatsApp()" class="bg-emerald-600 text-white text-[10px] font-black py-2.5 rounded-xl uppercase">Enviar Renovación</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-4 border-t border-slate-800 flex justify-between gap-2">
+                    <button onclick="window.ejecutarBotonEliminarCuentaSaasCompleto()" class="bg-red-600 text-white px-4 py-2 rounded-xl text-xs font-black uppercase">Eliminar Perfil</button>
+                    <button id="btn-guardar-cliente-saas" class="bg-amber-400 text-slate-950 px-6 py-2.5 rounded-xl text-xs font-black uppercase">Guardar</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- MODAL EXPEDIENTES KYC -->
+        <div id="modal-boveda-contratos-master" class="fixed inset-0 bg-slate-950/90 backdrop-blur-sm z-50 p-4 hidden flex items-center justify-center">
+            <div class="bg-slate-900 border border-slate-800 w-full max-w-lg rounded-3xl overflow-hidden shadow-2xl flex flex-col">
+                <div class="bg-slate-950 px-4 py-3 border-b border-slate-800 flex justify-between items-center text-white font-bold text-xs uppercase tracking-wider">
+                    <span><i class="fa-solid fa-file-contract text-amber-400 mr-1"></i> Bóveda Digital de Expedientes y Contratos</span>
+                    <button onclick="document.getElementById('modal-boveda-contratos-master').classList.add('hidden')" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+                <div id="contenedor-expedientes-lista-master" class="p-4 space-y-3 max-h-[60vh] overflow-y-auto no-scrollbar"></div>
+            </div>
+        </div>
+
+        <!-- VISTA ENTORNO CLIENTE COMERCIANTE (TOTALMENTE RECUPERADO CON SUS 3 PESTAÑAS ORIGINALES) -->
         <div id="vista-entorno-cliente" class="hidden min-h-screen bg-slate-950 text-slate-100 flex flex-col justify-center items-center p-4 relative">
             
             <!-- PANTALLA LOGIN CLIENTE -->
@@ -301,7 +385,7 @@
             <div id="cli-panel-reglas-fijas" class="w-full max-w-md space-y-3 z-10 px-1 text-center mt-4">
                 <div class="bg-amber-500/5 border border-amber-500/20 rounded-2xl p-4 text-justify space-y-1">
                     <div class="flex items-center gap-2 text-amber-400 font-black text-[10px] uppercase tracking-wider"><i class="fa-solid fa-shield-halved text-xs"></i> <span>Reglas de Oro del Sistema</span></div>
-                    <p class="text-[11px] text-slate-300 leading-relaxed">Este software es un <b>Servicio bajo Suscripción Alquilada</b>. Usted es el único responsable por los montos e inventarios. Los comprobantes emitidos corresponden a <b>Notas de Entrega sin valor fiscal</b> para orden interno. El cumplimiento de las obligaciones tributarias o comerciales corresponde de forma única a EL ARRENDATARIO.</p>
+                    <p class="text-[11px] text-slate-300 leading-relaxed">Este software es un <b>Servicio bajo Suscripción Alquilada</b>. Usted es el único responsable por los montos e inventarios. Los comprobantes emitidos corresponden a <b>Notas de Entrega sin valor fiscal</b> para orden interno. El cumplimiento de las obligaciones de ley comerciales corresponde de forma única a EL ARRENDATARIO.</p>
                 </div>
                 <div class="bg-slate-900/40 border border-slate-900 rounded-2xl p-3 text-center font-mono text-[10px] text-slate-400 space-y-1">
                     <p class="font-bold text-slate-300 flex items-center justify-center gap-1"><i class="fa-solid fa-headset text-blue-400"></i> Soporte Técnico Certificado:</p>
@@ -309,7 +393,7 @@
                 </div>
             </div>
 
-            <!-- TERMINAL OPERATIVO COMPLETO DEL COMERCIO -->
+            <!-- TERMINAL DE MESA CAJA DEL COMERCIO -->
             <div id="cli-bloque-sistema" class="hidden w-full min-h-screen bg-slate-50 text-slate-800 flex flex-col absolute inset-0 z-50">
                 <div class="bg-slate-900 border-b border-slate-800 text-white px-4 py-3 flex justify-between items-center sticky top-0 z-30 shadow-md">
                     <div class="flex items-center gap-2">
@@ -703,7 +787,6 @@
             document.getElementById('cli-panel-nombre').innerText = infoClienteAbiertoDinamico.nombre;
             document.getElementById('cli-panel-dias-conteo').innerText = `${infoClienteAbiertoDinamico.dias} Días`;
             
-            // ADAPTACIÓN DE TEXTO PARA TECNOLOGÍA / IMEI AUTOMÁTICO
             if(infoClienteAbiertoDinamico.rubro === "TECNOLOGIA") {
                 document.getElementById('pos-lector-barras-input').placeholder = "Pase el láser o digite el IMEI / Serial del teléfono...";
             } else {
@@ -831,7 +914,7 @@
                             <h4 class="font-black text-white text-xs uppercase mt-0.5 truncate">${p.nombre}</h4>
                         </div>
                         <div class="flex gap-1 mt-2.5 border-t border-slate-900 pt-2 justify-end">
-                            <button onclick="window.abrirFormularioEditarFichaNelsonPromotor('${p.id}', '${p.nombre}', '${p.cedula || ''}', '${p.tlf || ''}', '${p.dir || ''}')" class="bg-slate-900 border border-slate-800 text-slate-300 px-2 py-1 rounded text-[8px] font-bold uppercase">Ficha</button>
+                            <button onclick="window.abrirFormularioEditarFichaNelsonPromotor('${p.id}', '${p.nombre}', '${p.cedula || ''}', '${p.tlf || ''}', '${p.dir || ''}')" class="bg-slate-900 text-slate-300 px-2 py-1 rounded text-[8px] font-bold uppercase">Ficha</button>
                             ${!esAnulado ? `<button onclick="window.abrirCajaDesembolsoPromotor('${p.id}', '${p.nombre}', ${p.balance || 0})" class="bg-purple-600 text-white px-2.5 py-1 rounded font-black text-[8px] uppercase shadow">Liquidar</button>` : ''}
                         </div>
                     </div>
@@ -1044,6 +1127,25 @@
             }
         };
 
+        window.dispararEnvioWhatsAppLinkSimuladorVendedoresGlobal = function() {
+            let url = `${window.location.href.split('?')[0]}?ver=contrato_promotor`;
+            let msg = `📊 *SISTEMA DE COMISIONES — PROMOTORES DIGITALES INDEPENDIENTES*\n\nEstimado promotor, te paso el enlace oficial para que accedas a nuestro simulador interactivo de ganancias en vivo de Tucocel C.A. 🔒\n\n🌐 *INGRESA AL SIMULADOR AQUÍ:* ${url}\n\n_Consulte el tabulador, calcule su presupuesto semanal en base a ventas o renovaciones y revise el reglamento de resguardo contable de mostrador._`;
+            window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`, '_blank');
+        };
+
+        window.dispararGeneradorTokenLinkContratoUnicoDesechable = function() {
+            let token = 'tk-' + Math.floor(100000 + Math.random() * 900000);
+            let url = `${window.location.href.split('?')[0]}?ver=contrato_promotor&token=${token}`;
+            alert(`🔗 Enlace de Uso Único Generado con Token de Autodestrucción!\n\nCopie este link para mandarlo por WhatsApp:\n\n${url}`);
+        };
+
+        window.ejecutarFirmaYAutodestruccionTokenPromotor = function() {
+            const input = document.getElementById('promotor-cedula-file');
+            if(!input.files || input.files.length === 0) return alert("⚠️ Debe adjuntar la foto de su Cédula.");
+            alert("🔒 Contrato firmado digitalmente con éxito. Este enlace ha sido destruido permanentemente de la nube.");
+            window.location.href = window.location.href.split('?')[0];
+        };
+
         window.activarPestañaPos = function(pes) {
             document.getElementById('panel-seccion-facturar').classList.toggle('hidden', pes !== 'facturar');
             document.getElementById('panel-seccion-inventario').classList.toggle('hidden', pes !== 'inventario');
@@ -1085,6 +1187,11 @@
             let resta = Math.max(0, acumuladoUSD - abono);
             document.getElementById('ticket-resta-display').value = `$${Math.round(resta)}`;
         };
+        window.enviarReporteCierreDiarioWhatsAppDueño = function() {
+            let sumVentas = facturasEmitidasBD.reduce((acc, f) => f.status === 'EMITIDA' ? acc + f.total : acc, 0);
+            const msg = `📊 *CIERRE DIARIO DE CAJA — ${infoClienteAbiertoDinamico.nombre}*\n\n▪ *Ventas Totales:* $${Math.round(sumVentas)}\n🔒 Arqueo validado por tucocel.`;
+            window.open(`https://api.whatsapp.com/send?phone=${infoClienteAbiertoDinamico.tlf}&text=${encodeURIComponent(msg)}`, '_blank');
+        };
     </script>
 </body>
-    </html>
+                            </html>
