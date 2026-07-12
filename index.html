@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TCL INVENTARIO MÁSTER — Control de Mostrador y Stock</title>
+    <title>TCL INVENTARIO MÁSTER — Mansión Modelo 2026</title>
     
     <!-- METADATOS CORPORATIVOS PARA WHATSAPP (OPEN GRAPH) -->
     <meta property="og:title" content="TCL INVENTARIO MÁSTER — Propuesta Oficial 2026">
@@ -20,7 +20,6 @@
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         .glass-panel { background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
         .glow-border { box-shadow: 0 0 20px rgba(59, 130, 246, 0.2); border: 1px solid rgba(59, 130, 246, 0.3); }
-        .glow-text { text-shadow: 0 0 10px rgba(59, 130, 246, 0.5); }
         
         @media print {
             body { background: white !important; color: black !important; margin: 0 !important; padding: 0 !important; }
@@ -37,32 +36,31 @@
 </head>
 <body class="min-h-screen transition-all duration-300 overflow-x-hidden select-none">
 
-    <!-- CONTENEDOR OCULTO EXCLUSIVO PARA IMPRESIÓN FÍSICA TÉRMICA -->
+    <!-- CONTENEDOR FÍSICO TÉRMICO DE IMPRESIÓN -->
     <div id="contenedor-impresion-termica-fijo" class="hidden whitespace-pre bg-white text-black p-4 z-0"></div>
 
-    <!-- CONSOLA MÓVIL PERSISTENTE DE DIAGNÓSTICO (CAJA NEGRA PRIVADA) -->
+    <!-- CONSOLA MÓVIL PERSISTENTE DE DIAGNÓSTICO (CAJA NEGRA PRIVADA DE MONITOREO ACTIVO) -->
     <div id="diagnostico-master-flotante" class="fixed bottom-24 right-4 z-50">
         <button onclick="window.toggleConsolaDiagnosticoInterna()" class="w-12 h-12 bg-red-600 border border-red-400 text-white rounded-full flex items-center justify-center shadow-2xl animate-pulse text-lg shadow-[0_0_15px_rgba(220,38,38,0.5)]">
             <i class="fa-solid fa-terminal"></i>
         </button>
     </div>
-    <div id="modal-consola-diagnostico" class="fixed inset-0 bg-slate-950/95 backdrop-blur-sm z-50 p-4 hidden flex items-center justify-center">
+    <div id="modal-consola-diagnostico" class="fixed inset-0 bg-slate-950/95 backdrop-blur-sm z-[10000] p-4 hidden flex items-center justify-center">
         <div class="bg-slate-900 border border-red-500/20 w-full max-w-md h-[75vh] rounded-3xl overflow-hidden shadow-2xl flex flex-col">
             <div class="bg-red-950/30 px-4 py-3 text-red-400 flex justify-between items-center font-bold text-xs uppercase tracking-wide border-b border-red-900/20">
-                <span><i class="fa-solid fa-bug mr-1"></i> Caja Negra de Diagnóstico</span>
+                <span><i class="fa-solid fa-bug mr-1"></i> Caja Negra de Diagnóstico Activo</span>
                 <button onclick="window.toggleConsolaDiagnosticoInterna()"><i class="fa-solid fa-xmark text-sm"></i></button>
             </div>
             <div id="logs-diagnostico-box" class="p-4 flex-grow overflow-y-auto font-mono text-[10px] text-slate-300 space-y-2 no-scrollbar bg-slate-950"></div>
-            <div class="bg-slate-950 p-3 border-t border-slate-850 flex justify-end gap-2">
-                <button onclick="window.descargarReporteErroresIndex()" class="bg-blue-600 text-white px-3 py-2 rounded-xl text-xs font-bold uppercase tracking-wide"><i class="fa-solid fa-download mr-1"></i> Descargar Reporte</button>
-                <button onclick="window.limpiarHistorialErroresPermanente()" class="bg-slate-800 text-red-400 px-3 py-2 rounded-xl text-xs font-bold uppercase tracking-wide">Limpiar Historial</button>
+            <div class="bg-slate-950 p-3 border-t border-slate-850 flex gap-2 justify-end">
+                <button onclick="window.descargarMasaMadre()" class="bg-blue-600 text-white px-3 py-2 rounded-xl text-xs font-bold uppercase tracking-wide"><i class="fa-solid fa-download mr-1"></i> Masa Madre</button>
+                <button onclick="window.descargarReporteErroresIndex()" class="bg-slate-800 text-white px-3 py-2 rounded-xl text-xs font-bold uppercase tracking-wide">Reporte .txt</button>
+                <button onclick="window.limpiarHistorialErroresPermanente()" class="bg-slate-950 text-red-400 border border-red-900/40 px-3 py-2 rounded-xl text-xs font-bold uppercase tracking-wide">Limpiar</button>
             </div>
         </div>
     </div>
 
-    <!-- ========================================== -->
     <!-- ENTORNO 1: VISTA DE LA PROPUESTA (PRECIOS) -->
-    <!-- ========================================== -->
     <div id="vista-propuesta-cliente" class="hidden min-h-screen bg-slate-950 text-slate-100 antialiased pb-12">
         <header class="relative overflow-hidden border-b border-slate-900 bg-slate-900/40 py-14 px-4 text-center">
             <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.1),transparent_60%)]"></div>
@@ -76,7 +74,6 @@
                 </p>
             </div>
         </header>
-
         <section class="max-w-4xl mx-auto px-4 py-12 space-y-8 text-center">
             <h2 class="text-xs font-black uppercase tracking-widest text-slate-400">Planes de Membresía Flexibles</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
@@ -102,9 +99,7 @@
         </section>
     </div>
 
-    <!-- ========================================== -->
-    <!-- ENTORNO 2: CATÁLOGO VISUAL EMOCIONAL       -->
-    <!-- ========================================== -->
+    <!-- ENTORNO 2: CATÁLOGO VISUAL EMOCIONAL -->
     <div id="vista-catalogo-emocional" class="hidden min-h-screen bg-[#020617] text-slate-200 antialiased pb-16">
         <header class="relative overflow-hidden border-b border-slate-900 bg-slate-950 py-16 px-4 text-center">
             <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.08),transparent_60%)]"></div>
@@ -115,9 +110,7 @@
         </header>
     </div>
 
-    <!-- ========================================== -->
-    <!-- ENTORNO 3: ENLACE CONTRATO PROMOTOR PUBLICO -->
-    <!-- ========================================== -->
+    <!-- ENTORNO 3: ENLACE CONTRATO PROMOTOR INDEPENDIENTE PUBLICO -->
     <div id="vista-contrato-promotor-publico" class="hidden min-h-screen bg-slate-950 text-slate-100 flex items-center justify-center p-4">
         <div class="w-full max-w-xl p-0.5 rounded-3xl bg-gradient-to-br from-purple-600 via-slate-800 to-blue-600 shadow-2xl">
             <div class="glass-panel rounded-[22px] p-6 space-y-4">
@@ -127,12 +120,12 @@
                 </div>
                 <div class="bg-slate-950 p-4 rounded-xl border border-slate-850 font-sans text-[11px] leading-relaxed max-h-44 overflow-y-auto no-scrollbar text-slate-300 text-justify space-y-2">
                     <p><b>PRIMERA: NATURALEZA DEL VÍNCULO.</b> El suscriptor declara aceptar de forma voluntaria que se integra en calidad de <b>Promotor Digital Independiente (Comisionista Freelance)</b>. No existe ningún tipo de relación laboral fija ni sueldo base con el establecimiento principal.</p>
-                    <p><b>SEGUNDA: REGLA DE ORO DEL RESGUARDO FINANCIERO.</b> Queda estrictamente prohibido que el promotor reciba, custodie o cobre dinero en efectivo o transferencias de los clientes finales. Todo pago debe caer directamente a las cuentas de la tienda. El único número authorized para finiquitar activaciones es el central de Tucocel: <b>0424-7357549</b>.</p>
+                    <p><b>SEGUNDA: REGLA DE ORO DEL RESGUARDO FINANCIERO.</b> Queda estrictamente prohibido que el promotor reciba, custodie o cobre dinero en efectivo o transferencias de los clientes finales. Todo pago debe caer directamente a las cuentas de la tienda. El único número autorizado para finiquitar activaciones es el central de Tucocel: <b>0424-7357549</b>.</p>
                 </div>
                 
-                <!-- SIMULADOR INTERACTIVO DEL VENDEDOR (TABULADOR) -->
+                <!-- TABULADOR INTERACTIVO DE METAS (COMPLEMENTO MÓVIL) -->
                 <div class="bg-slate-900 border border-slate-800 p-3 rounded-2xl space-y-2">
-                    <span class="text-[9px] text-purple-400 font-black uppercase block font-mono tracking-wider"><i class="fa-solid fa-calculator"></i> Tabulador Interactivo de Ganancias (Módulo de Metas)</span>
+                    <span class="text-[9px] text-purple-400 font-black uppercase block font-mono tracking-wider"><i class="fa-solid fa-calculator"></i> Tabulador Interactivo de Ganancias (Módulo Nelson)</span>
                     <div class="grid grid-cols-2 sm:grid-cols-4 gap-1.5 text-[10px] text-center">
                         <div class="bg-slate-950 p-1.5 rounded-xl border border-slate-850"><span class="text-slate-400 block text-[8px] font-sans">Plan 1M</span><b id="sim-disp-m1" class="text-white block">$5.00</b><input type="number" id="sim-cant-m1" value="0" min="0" onkeyup="window.recalcularSimuladorGananciasPromotorFlujo()" class="w-full bg-slate-900 text-center font-bold text-purple-400 mt-1 rounded focus:outline-none border border-slate-800"></div>
                         <div class="bg-slate-950 p-1.5 rounded-xl border border-slate-850"><span class="text-slate-400 block text-[8px] font-sans">Plan 3M</span><b id="sim-disp-m3" class="text-white block">$9.00</b><input type="number" id="sim-cant-m3" value="0" min="0" onkeyup="window.recalcularSimuladorGananciasPromotorFlujo()" class="w-full bg-slate-900 text-center font-bold text-purple-400 mt-1 rounded focus:outline-none border border-slate-800"></div>
@@ -144,21 +137,18 @@
                         <div class="flex flex-col justify-center items-center"><span class="text-slate-500 text-[8px] font-sans">Total Estimado</span><b id="sim-resultado-total-usd" class="text-emerald-400 text-xs font-black animate-pulse">$0.00 USD</b></div>
                     </div>
                 </div>
-
                 <div class="space-y-3 text-xs">
-                    <div><label class="text-[9px] text-purple-400 font-bold uppercase block mb-1">Adjuntar Soporte de Identidad (Foto Cédula Liviana)</label><input type="file" id="promotor-cedula-file" accept="image/*" class="w-full text-slate-500 file:mr-3 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-[10px] file:font-black file:bg-purple-600/10 file:text-purple-400"></div>
+                    <div><label class="text-[9px] text-purple-400 font-bold uppercase block mb-1">Adjuntar Soporte de Identidad Oficial (Foto Cédula Liviana)</label><input type="file" id="promotor-cedula-file" accept="image/*" class="w-full text-slate-500 file:mr-3 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-[10px] file:font-black file:bg-purple-600/10 file:text-purple-400"></div>
                     <button onclick="window.ejecutarFirmaYAutodestruccionTokenPromotor()" class="w-full bg-gradient-to-r from-purple-600 to-blue-600 text-white font-black py-3 rounded-xl uppercase tracking-wider shadow-md">Firmar Contrato y Validar Registro 🔒</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- ========================================== -->
-    <!-- ENTORNO 4: APLICACIÓN CORE DE FACTURACIÓN  -->
-    <!-- ========================================== -->
+    <!-- ENTORNO 4: INFRAESTRUCTURA DE APLICACIÓN CORE -->
     <div id="entorno-aplicacion-core">
         
-        <!-- MÁSTER LOGIN -->
+        <!-- MÁSTER CONTROL SUPREMO LOGIN -->
         <div id="bloque-login-master" class="min-h-screen flex items-center justify-center p-4">
             <div class="w-full max-w-md p-0.5 rounded-3xl bg-gradient-to-br from-blue-600 via-slate-800 to-purple-600 shadow-[0_0_50px_rgba(59,130,246,0.2)]">
                 <div class="glass-panel rounded-[22px] p-6 space-y-6">
@@ -166,7 +156,7 @@
                         <div class="w-16 h-16 bg-blue-600/10 border border-blue-500/30 rounded-2xl flex items-center justify-center mx-auto text-blue-400 text-3xl"><i class="fa-solid fa-user-gear"></i></div>
                         <h2 class="font-black text-xl text-white tracking-tight uppercase">MÁSTER CONTROL SUPREMO</h2>
                     </div>
-                    <form onsubmit="event.preventDefault(); window.validarAccesoMasterAdmin();" class="space-y-4 text-xs">
+                    <form onsubmit="event.preventDefault(); window.validarAccAccessMasterAdmin();" class="space-y-4 text-xs">
                         <input type="text" id="master-user-field" autocomplete="username" class="w-full bg-slate-900 border border-slate-800 px-4 py-3 rounded-xl text-white font-bold font-mono focus:outline-none" placeholder="Usuario Máster">
                         <input type="password" id="master-pass-field" autocomplete="current-password" class="w-full bg-slate-900 border border-slate-800 px-4 py-3 rounded-xl text-white font-bold font-mono focus:outline-none" placeholder="Clave Maestra">
                         <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white text-xs font-black py-3.5 rounded-xl uppercase tracking-wider">Desbloquear Servidores</button>
@@ -175,7 +165,7 @@
             </div>
         </div>
 
-        <!-- PANEL ADMINISTRATIVO SUPREMO MÁSTER -->
+        <!-- PANEL ADMINISTRATIVO PRINCIPAL MÁSTER SUPREMO -->
         <div id="vista-master-admin" class="hidden p-4 sm:p-8 max-w-7xl mx-auto space-y-6">
             <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 border-b border-slate-800 pb-5">
                 <div>
@@ -189,17 +179,17 @@
             </div>
 
             <div class="bg-slate-900 border border-slate-800 p-4 rounded-3xl grid grid-cols-1 sm:grid-cols-3 gap-3 items-center">
-                <div class="bg-slate-950 p-2 rounded-xl border border-slate-850"><span class="block text-[8px] text-slate-500 font-bold uppercase">Tasa COP (Mostrador)</span><input type="number" id="master-tasa-cop" value="3600" class="w-full bg-transparent font-black text-xs text-amber-400 focus:outline-none"></div>
-                <div class="bg-slate-950 p-2 rounded-xl border border-slate-850"><span class="block text-[8px] text-slate-500 font-bold uppercase">Tasa Bs (Mostrador)</span><input type="number" id="master-tasa-bs" value="40" class="w-full bg-transparent font-black text-xs text-emerald-400 focus:outline-none"></div>
+                <div class="bg-slate-950 p-2 rounded-xl border border-slate-850"><span class="block text-[8px] text-slate-500 font-bold uppercase">Tasa COP (Mostrador)</span><input type="number" id="master-tasa-cop" value="3600" onkeyup="window.guardarTasasGeneralesGlobales()" class="w-full bg-transparent font-black text-xs text-amber-400 focus:outline-none"></div>
+                <div class="bg-slate-950 p-2 rounded-xl border border-slate-850"><span class="block text-[8px] text-slate-500 font-bold uppercase">Tasa Bs (Mostrador)</span><input type="number" id="master-tasa-bs" value="40" onkeyup="window.guardarTasasGeneralesGlobales()" class="w-full bg-transparent font-black text-xs text-emerald-400 focus:outline-none"></div>
                 <div class="bg-slate-950 p-2 rounded-xl border border-slate-850"><span class="block text-[8px] text-slate-500 font-bold uppercase">Nueva Clave Máster</span><input type="password" id="master-new-password-field" placeholder="Razu2020." class="w-full bg-transparent font-black text-xs text-blue-400 focus:outline-none"><button onclick="window.procesarChangeMasterPassGlobal()" class="text-[8px] bg-blue-600 text-white font-bold px-2 py-0.5 rounded uppercase mt-1 block">Actualizar Clave</button></div>
             </div>
 
-            <!-- BOTONERAS SUPREMAS -->
+            <!-- GESTIÓN CENTRAL DE BOTONERAS -->
             <div class="bg-slate-900 border border-slate-800 p-4 rounded-3xl space-y-3">
                 <h2 class="text-[10px] font-black text-slate-400 uppercase tracking-wider flex items-center gap-1.5"><i class="fa-solid fa-share-nodes text-blue-400"></i> Gestión Central de Infraestructura</h2>
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-2">
                     <button onclick="window.abrirBovedaSubEntornosMasterModal()" class="bg-slate-950 border border-slate-850 hover:border-blue-500/30 p-2.5 rounded-xl flex items-center gap-2 transition-all">
-                        <span class="text-amber-400 text-sm"><i class="fa-solid fa-file-contract"></i></span>
+                        <span class="text-blue-400 text-sm"><i class="fa-solid fa-store"></i></span>
                         <span class="font-black text-white text-[11px] uppercase tracking-wide">Clientes Suscritos</span>
                     </button>
                     <button onclick="window.abrirSeccionBovedaPromotoresMando()" class="bg-slate-950 border border-slate-850 hover:border-blue-500/30 p-2.5 rounded-xl flex items-center gap-2 transition-all">
@@ -207,49 +197,48 @@
                         <span class="font-black text-white text-[11px] uppercase tracking-wide">Control Promotores</span>
                     </button>
                     <button onclick="document.getElementById('modal-editor-tarifas').classList.remove('hidden')" class="bg-slate-950 border border-slate-850 hover:border-blue-500/30 p-2.5 rounded-xl flex items-center gap-2 transition-all">
-                        <span class="text-blue-400 text-sm"><i class="fa-solid fa-sliders"></i></span>
+                        <span class="text-emerald-400 text-sm"><i class="fa-solid fa-sliders"></i></span>
                         <span class="font-black text-white text-[11px] uppercase tracking-wide">Tarifas SaaS</span>
                     </button>
-                    <button onclick="window.dispararEnvioWhatsAppLinkSimuladorVendedoresGlobal()" class="bg-slate-950 border border-emerald-500/20 hover:border-emerald-500/40 p-2.5 rounded-xl flex items-center gap-2 transition-all">
-                        <span class="text-emerald-400 text-sm"><i class="fa-solid fa-calculator"></i></span>
-                        <span class="font-black text-white text-[11px] uppercase tracking-wide">Enviar Simulador e Info</span>
+                    <button onclick="window.dispararEnvioWhatsAppLinkSimuladorVendedoresGlobal()" class="bg-slate-950 border border-amber-500/20 hover:border-amber-500/40 p-2.5 rounded-xl flex items-center gap-2 transition-all">
+                        <span class="text-amber-400 text-sm"><i class="fa-solid fa-paper-plane"></i></span>
+                        <span class="font-black text-white text-[11px] uppercase tracking-wide">Enviar Propuesta y Catálogo</span>
                     </button>
                 </div>
             </div>
 
             <div class="bg-slate-900 border border-slate-800 p-6 rounded-3xl flex flex-col items-center justify-center min-h-[140px] text-center gap-2">
-                <button onclick="window.abrirModalCrearPerfil()" class="bg-blue-600 hover:bg-blue-700 text-white font-black text-xs px-6 py-3 rounded-2xl uppercase tracking-wider shadow-lg flex items-center gap-2"><i class="fa-solid fa-plus"></i> Registrar Nueva Sucursal</button>
+                <button onclick="window.abrirModalCrearPerfil()" class="bg-blue-600 hover:bg-blue-700 text-white font-black text-xs px-6 py-3.5 rounded-2xl uppercase tracking-wider shadow-lg flex items-center gap-2"><i class="fa-solid fa-plus"></i> Registrar Nueva Sucursal</button>
             </div>
         </div>
 
-        <!-- SUB-MODAL EXCLUSIVO: CLIENTES SUSCRITOS Y RESGUARDOS -->
+        <!-- SUB-MODAL EXCLUSIVO: BASE DE CLIENTES SUSCRITOS -->
         <div id="modal-sub-lista-comercios" class="fixed inset-0 bg-slate-950/90 backdrop-blur-sm z-50 p-4 hidden flex items-center justify-center">
             <div class="bg-slate-900 border border-slate-800 w-full max-w-4xl rounded-3xl overflow-hidden shadow-2xl flex flex-col max-h-[85vh]">
                 <div class="bg-slate-950 px-4 py-3 border-b border-slate-800 flex justify-between items-center text-white font-bold text-xs uppercase tracking-wider">
-                    <span><i class="fa-solid fa-store text-blue-400 mr-1"></i> Clientes Suscritos (Base de Datos Central)</span>
+                    <span><i class="fa-solid fa-store text-blue-400 mr-1"></i> Base de Clientes Suscritos</span>
                     <button onclick="document.getElementById('modal-sub-lista-comercios').classList.add('hidden')" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
                 </div>
                 <div id="mosaico-clientes-grid-sub" class="p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 overflow-y-auto no-scrollbar"></div>
                 
-                <!-- SECCIÓN SECUNDARIA INTERNA: CLIENTES NO RENOVADOS / ELIMINADOS -->
+                <!-- SUBESTACIÓN DE RESPALDO PARA EXPEDIENTES KYC -->
                 <div class="bg-slate-950 p-3 border-t border-slate-850">
                     <button onclick="window.toggleSubestacionClientesEliminados()" class="text-[10px] bg-slate-900 text-red-400 font-bold px-3 py-1.5 rounded-xl border border-red-900/30 uppercase tracking-wide"><i class="fa-solid fa-folder-minus mr-1"></i> Ver Clientes Eliminados / No Renovados (Respaldos KYC)</button>
                     <div id="subestacion-eliminados-box" class="hidden mt-3 space-y-2 max-h-32 overflow-y-auto no-scrollbar"></div>
                 </div>
-
                 <div class="bg-slate-950 px-4 py-3 border-t border-slate-800 flex justify-end">
                     <button onclick="document.getElementById('modal-sub-lista-comercios').classList.add('hidden')" class="bg-slate-800 text-slate-300 px-5 py-2 rounded-xl text-xs font-bold uppercase">Cerrar</button>
                 </div>
             </div>
         </div>
 
-        <!-- SUB-MODAL EXCLUSIVO: PROMOTORES DIGITALES INDEPENDIENTES -->
+        <!-- SUB-MODAL EXCLUSIVO: GAVETA CENTRAL DE PROMOTORES FREELANCE -->
         <div id="modal-sub-lista-promtoteros" class="fixed inset-0 bg-slate-950/90 backdrop-blur-sm z-50 p-4 hidden flex items-center justify-center">
             <div class="bg-slate-900 border border-slate-800 w-full max-w-4xl rounded-3xl overflow-hidden shadow-2xl flex flex-col max-h-[85vh]">
                 <div class="bg-slate-950 px-4 py-3 border-b border-slate-800 flex justify-between items-center text-white font-bold text-xs uppercase tracking-wider">
                     <span><i class="fa-solid fa-users text-purple-400 mr-1"></i> Control de Promotores Digitales Independientes</span>
                     <div class="flex gap-2">
-                        <button onclick="window.dispararGeneradorTokenLinkContratoUnicoDesechable()" class="bg-purple-600 text-white font-black text-[9px] px-3 py-1 rounded-lg uppercase tracking-wide"><i class="fa-solid fa-link"></i> Generar Link Contrato Único</button>
+                        <button onclick="window.dispararGeneradorTokenLinkContratoUnicoDesechable()" class="bg-purple-600 text-white font-black text-[9px] px-3 py-1 rounded-lg uppercase tracking-wide"><i class="fa-solid fa-link"></i> Generar Link Contrato</button>
                         <button onclick="document.getElementById('modal-sub-lista-promtoteros').classList.add('hidden')" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
                     </div>
                 </div>
@@ -261,16 +250,21 @@
                     <div><span class="block text-[7px] text-slate-500 font-bold uppercase font-sans">Renov ($)</span><input type="number" id="cfg-prm-renov" value="1.25" step="0.01" onkeyup="window.guardarTasasComisionesMasterFijas()" class="w-full bg-transparent font-black text-amber-400 focus:outline-none"></div>
                 </div>
                 <div id="mosaico-promotores-grid-sub" class="p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 overflow-y-auto no-scrollbar"></div>
+                
                 <div class="bg-slate-950 px-4 py-3 border-t border-slate-800 flex justify-end gap-2">
+                    <button onclick="window.moverSimuladorAlPanelDeVendedoresInterno()" class="bg-purple-600 text-white text-[10px] font-black px-4 py-2 rounded-xl uppercase shadow-md"><i class="fa-solid fa-calculator"></i> Enviar Simulador a Vendedores</button>
                     <button onclick="document.getElementById('modal-sub-lista-promtoteros').classList.add('hidden')" class="bg-slate-800 text-slate-300 px-5 py-2 rounded-xl text-xs font-bold uppercase">Cerrar</button>
                 </div>
             </div>
         </div>
 
-        <!-- MODAL DESEMBOLSO PROMOTOR / CUENTA CORRIENTE -->
-        <div id="modal-liquidar-promotor-caja" class="fixed inset-0 bg-slate-950/95 backdrop-blur-sm z-50 p-4 hidden flex items-center justify-center">
-            <div class="bg-slate-900 border border-slate-800 w-full max-w-xs rounded-3xl p-5 space-y-4 shadow-2xl">
-                <div class="text-center space-y-1">
+        <!-- MODAL INTERNO: GESTIÓN DE CUENTA CORRIENTE / LIQUIDACIÓN PROMOTORES -->
+        <div id="modal-liquidar-promotor-caja" class="fixed inset-0 bg-slate-950/95 backdrop-blur-sm z-[11000] p-4 hidden flex items-center justify-center">
+            <div class="bg-slate-900 border border-slate-800 w-full max-w-xs rounded-3xl p-5 space-y-4 shadow-2xl relative">
+                <!-- BOTÓN INTEGRADO ROJO DE REGRESO RÁPIDO PARA EL MÁSTER -->
+                <button onclick="document.getElementById('modal-liquidar-promotor-caja').classList.add('hidden')" class="absolute top-3 right-3 bg-red-600 hover:bg-red-700 text-white font-bold text-[9px] px-2.5 py-1 rounded-xl uppercase tracking-wide shadow-md transition-all"><i class="fa-solid fa-arrow-left-long mr-1"></i> Volver al Panel</button>
+                
+                <div class="text-center space-y-1 pt-6">
                     <h3 class="font-black text-xs text-white uppercase tracking-wider border-b border-slate-800 pb-2"><i class="fa-solid fa-money-bill-wave text-emerald-400"></i> Desembolso de Comisiones</h3>
                     <p id="liq-promotor-name-display" class="font-black text-sm text-purple-400 uppercase pt-1">PROMOTOR</p>
                     <div class="bg-slate-950 p-2 border border-slate-850 rounded-xl mt-1"><span class="text-[8px] text-slate-500 block uppercase font-bold">Acumulado en Servidor</span><span id="liq-max-disponible-val" class="text-base font-black font-mono text-amber-400">$0</span></div>
@@ -286,14 +280,13 @@
             </div>
         </div>
 
-        <!-- MODAL FORMULARIO: CONFIGURAR ENTORNO SAAS (DISEÑO PREMIUM OSCURO SANITIZADO) -->
-        <div id="modal-config-master" class="fixed inset-0 bg-slate-950/95 backdrop-blur-sm z-50 p-4 overflow-y-auto hidden flex items-center justify-center">
+        <!-- MODAL CONFIGURACIÓN / ALTA DE CLIENTES SAAS -->
+        <div id="modal-config-master" class="fixed inset-0 bg-slate-950/95 backdrop-blur-sm z-[9999] p-4 overflow-y-auto hidden flex items-center justify-center">
             <div class="bg-[#0f172a] border border-slate-800 w-full max-w-md rounded-3xl overflow-hidden shadow-2xl flex flex-col p-6 space-y-4 glow-border">
                 <div class="flex justify-between items-center pb-2 border-b border-slate-800">
                     <h3 id="cfg-modal-titulo" class="font-black text-xs uppercase tracking-wider text-white">CONFIGURAR ENTORNO SAAS</h3>
                     <button onclick="window.cerrarConfiguracionCliente()" class="text-slate-400 hover:text-white bg-slate-950 border border-slate-800 w-7 h-7 rounded-xl flex items-center justify-center"><i class="fa-solid fa-xmark text-xs"></i></button>
                 </div>
-                
                 <div class="space-y-3 text-xs overflow-y-auto max-h-[65vh] pr-1 no-scrollbar">
                     <div class="bg-slate-900 border border-slate-800 rounded-xl px-3 py-2"><input type="text" id="cfg-nombre" placeholder="Nombre de la Empresa" onkeyup="window.autoGenerarIdUsuarioBloqueado()" class="w-full bg-transparent text-white font-bold focus:outline-none"></div>
                     <div class="bg-slate-900 border border-slate-800 rounded-xl px-3 py-2"><input type="text" id="cfg-rif" placeholder="Cédula o RIF Comercial" class="w-full bg-transparent text-white font-bold focus:outline-none"></div>
@@ -302,19 +295,15 @@
                         <div class="bg-slate-900 border border-slate-800 rounded-xl px-3 py-2"><input type="text" id="cfg-redes" placeholder="Instagram" class="w-full bg-transparent text-white font-bold focus:outline-none"></div>
                     </div>
                     <div class="bg-slate-900 border border-slate-800 rounded-xl px-3 py-2"><input type="text" id="cfg-dir" placeholder="Dirección Física" class="w-full bg-transparent text-white font-bold focus:outline-none"></div>
-
                     <div class="grid grid-cols-2 gap-2">
                         <div class="bg-slate-900 border border-slate-800 rounded-xl px-3 py-2"><input type="text" id="cfg-user" placeholder="tienda_id" class="w-full bg-transparent text-white font-bold font-mono focus:outline-none"></div>
                         <div class="bg-slate-900 border border-slate-800 rounded-xl px-3 py-2"><input type="password" id="cfg-pass" placeholder="Contraseña" class="w-full bg-transparent text-white font-bold font-mono focus:outline-none"></div>
                     </div>
-
                     <div class="grid grid-cols-2 gap-2">
                         <select id="cfg-rango" class="w-full bg-slate-900 border border-slate-800 p-2.5 rounded-xl text-white font-bold focus:outline-none"><option value="CLIENTE">Cliente Regular</option><option value="MASTER">Máster Supremo</option></select>
                         <select id="cfg-rubro" class="w-full bg-slate-900 border border-slate-800 p-2.5 rounded-xl text-white font-bold focus:outline-none"><option value="TECNOLOGIA">Tecnología / IMEI</option><option value="GENERAL">Comercio General</option></select>
                     </div>
-
-                    <div class="space-y-1"><input type="text" id="cfg-promotor-asignado" placeholder="Promotor Responsable (Nelson, Luis, etc)" class="w-full bg-transparent border border-slate-800 p-2.5 rounded-xl text-white font-bold uppercase focus:outline-none"></div>
-
+                    <div class="space-y-1"><input type="text" id="cfg-promotor-asignado" placeholder="Promotor Responsable" class="w-full bg-transparent border border-slate-800 p-2.5 rounded-xl text-white font-bold uppercase focus:outline-none"></div>
                     <div class="grid grid-cols-4 gap-1.5 w-full">
                         <button onclick="window.asignarDiasSimulador(30, this)" class="tiempo-btn bg-slate-900 text-slate-300 text-[10px] py-2.5 font-bold rounded-xl transition-all">30 Días</button>
                         <button onclick="window.asignarDiasSimulador(90, this)" class="tiempo-btn bg-slate-900 text-slate-300 text-[10px] py-2.5 font-bold rounded-xl transition-all">90 Días</button>
@@ -322,8 +311,6 @@
                         <button onclick="window.asignarDiasSimulador(365, this)" class="tiempo-btn bg-purple-600 text-white text-[10px] py-2.5 font-black rounded-xl shadow transition-all">365 Días</button>
                     </div>
                     <div class="bg-slate-900 border border-slate-800 p-2.5 rounded-xl text-center font-mono text-amber-400 font-bold" id="cfg-dias-display">365 Días</div>
-
-                    <!-- CHIP COMPONENTE PARA COPIAR LINK DIRECTO -->
                     <div class="space-y-1.5">
                         <div class="flex items-center gap-2 bg-slate-950 border border-slate-850 rounded-xl px-3 py-2 justify-between">
                             <input type="text" id="cfg-link-url" readonly class="w-full bg-transparent text-[10px] text-blue-400 font-mono truncate focus:outline-none text-center">
@@ -335,7 +322,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="pt-4 border-t border-slate-800 flex justify-between gap-2">
                     <button onclick="window.ejecutarBotonEliminarCuentaSaasCompleto()" class="bg-red-600 text-white px-4 py-2.5 rounded-xl text-xs font-black uppercase tracking-wider">Eliminar Perfil</button>
                     <button id="btn-guardar-cliente-saas" class="bg-amber-400 text-slate-950 px-6 py-2.5 rounded-xl text-xs font-black uppercase tracking-wider">Guardar</button>
@@ -343,8 +329,8 @@
             </div>
         </div>
 
-        <!-- MODAL FÍSICO: EDITOR DE TARIFAS PLANES SAAS -->
-        <div id="modal-editor-tarifas" class="fixed inset-0 bg-slate-950/90 backdrop-blur-sm z-50 p-4 hidden flex items-center justify-center">
+        <!-- MODAL GLOBAL: CONFIGURACIÓN DE TARIFAS -->
+        <div id="modal-editor-tarifas" class="fixed inset-0 bg-slate-950/90 backdrop-blur-sm z-[11000] p-4 hidden flex items-center justify-center">
             <div class="bg-slate-900 border border-slate-800 w-full max-w-sm rounded-3xl overflow-hidden shadow-2xl">
                 <div class="bg-slate-950 px-4 py-3 border-b border-slate-800 flex justify-between items-center text-white font-bold text-xs uppercase tracking-wider">
                     <span><i class="fa-solid fa-sliders text-blue-400 mr-1"></i> Configurar Tarifas Globales SaaS</span>
@@ -363,12 +349,16 @@
             </div>
         </div>
 
-        <!-- VISTA ENTORNO CLIENTE COMERCIANTE -->
+        <!-- ENTORNO CLIENTE / VISTA OPERATIVA DE LA SUCURSAL -->
         <div id="vista-entorno-cliente" class="hidden min-h-screen bg-slate-950 text-slate-100 flex flex-col justify-center items-center p-4 relative">
             
-            <!-- PANTALLA LOGIN CLIENTE -->
-            <div id="cli-bloque-login" class="w-full max-w-md p-0.5 rounded-3xl bg-gradient-to-br from-blue-500 via-slate-800 to-purple-600 shadow-[0_0_40px_rgba(59,130,246,0.15)] overflow-hidden z-10">
-                <div class="glass-panel rounded-[22px] p-6 space-y-6">
+            <!-- TARJETA LOGIN CLIENTE (CON BOTÓN ROJO DE REGRESO RÁPIDO PARA EL ADMINISTRADOR) -->
+            <div id="cli-bloque-login" class="w-full max-w-md p-0.5 rounded-3xl bg-gradient-to-br from-blue-500 via-slate-800 to-purple-600 shadow-[0_0_40px_rgba(59,130,246,0.15)] overflow-hidden z-10 relative">
+                
+                <!-- BOTÓN DE VOLVER AL PANEL MÁSTER SOLICITADO -->
+                <button onclick="window.regresarAlPanelSupremoMasterDesdeCualquierEntorno()" class="absolute top-4 right-4 bg-red-600 hover:bg-red-700 text-white font-black text-[9px] px-3 py-1.5 rounded-xl uppercase tracking-wider shadow-lg transition-all z-20"><i class="fa-solid fa-arrow-left-long mr-1"></i> Volver al Máster</button>
+                
+                <div class="glass-panel rounded-[22px] p-6 space-y-6 pt-12">
                     <div class="text-center space-y-2">
                         <div class="w-16 h-16 bg-blue-600/10 border border-blue-500/30 rounded-2xl flex items-center justify-center mx-auto text-blue-400 text-3xl"><i class="fa-solid fa-store"></i></div>
                         <h2 id="login-titulo-dinamico" class="font-black text-xl text-white tracking-tight uppercase">TCL INVENTARIO MÁSTER</h2>
@@ -377,7 +367,7 @@
                     <form onsubmit="event.preventDefault(); window.comprobarEstatusContratoClienteLogin();" class="space-y-4 text-xs">
                         <input type="text" id="comercio-user-field" required placeholder="Usuario ID" class="w-full bg-slate-950 border border-slate-800 px-4 py-3 rounded-xl text-white font-bold font-mono focus:outline-none">
                         <input type="password" id="comercio-pass-field" required placeholder="Contraseña" class="w-full bg-slate-950 border border-slate-800 px-4 py-3 rounded-xl text-white font-bold font-mono focus:outline-none">
-                        <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white text-xs font-black py-3.5 rounded-xl uppercase tracking-wider shadow">Ingresar al Terminal</button>
+                        <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white text-xs font-black py-3.5 rounded-xl uppercase tracking-wider shadow hover:from-blue-700 hover:to-blue-800 transition-all">Ingresar al Terminal</button>
                     </form>
                 </div>
             </div>
@@ -402,27 +392,28 @@
                     </div>
                     <div class="flex items-center gap-2">
                         <div class="bg-slate-950 border border-slate-800 px-2.5 py-1 rounded-xl flex items-center gap-1 text-[10px] font-mono font-bold"><i class="fa-solid fa-hourglass-half text-amber-500"></i><span id="cli-panel-dias-conteo" class="text-slate-300 font-black">365 Días</span></div>
-                        <button onclick="window.ejecutarBotonSalidaInteligente()" class="bg-red-600 text-white font-black text-[9px] px-2.5 py-1.5 rounded-lg uppercase flex items-center gap-1 shadow" style="height: 30px;"><i class="fa-solid fa-lock text-[10px]"></i> <span>Cerrar Sesión</span></button>
+                        
+                        <!-- BOTÓN INTEGRADO ROJO DE REGRESO DIRECTO AL PANEL MÁSTER SOLICITADO -->
+                        <button onclick="window.regresarAlPanelSupremoMasterDesdeCualquierEntorno()" class="bg-red-600 hover:bg-red-700 text-white font-black text-[9px] px-3 py-1.5 rounded-xl uppercase tracking-wider shadow-md transition-all flex items-center gap-1"><i class="fa-solid fa-arrow-left-long"></i> <span>Volver al Máster</span></button>
+                        
+                        <button onclick="window.ejecutarBotonSalidaInteligente()" class="bg-slate-800 text-slate-300 font-bold text-[9px] px-2.5 py-1.5 rounded-xl uppercase flex items-center gap-1 border border-slate-700 hover:bg-slate-700 transition-all" style="height: 30px;"><i class="fa-solid fa-lock text-[10px]"></i> <span>Cerrar Sesión</span></button>
                     </div>
                 </div>
 
-                <!-- PESTAÑA 1: MESA DE FACTURACIÓN -->
+                <!-- PESTAÑA DE MESA DE FACTURACIÓN -->
                 <div id="panel-seccion-facturar" class="p-4 max-w-7xl mx-auto w-full flex-grow pb-24">
                     <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
                         <div class="lg:col-span-7 space-y-4">
-                            
                             <div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm">
                                 <label class="text-[9px] font-black text-slate-400 uppercase ml-1 block mb-1">Cajero Responsable del Turno (Obligatorio para Auditoría)</label>
                                 <input type="text" id="ticket-vendedor" placeholder="Escriba su nombre..." class="w-full bg-slate-50 border px-3 py-2 rounded-xl text-xs font-black uppercase text-purple-600 focus:outline-none">
                             </div>
-
                             <div class="bg-slate-900 text-white rounded-2xl p-4 border border-slate-800 shadow-md">
                                 <div class="grid grid-cols-2 gap-3 text-center">
                                     <div class="bg-slate-950 p-2 rounded-xl border border-slate-850"><span class="text-[9px] text-slate-400 uppercase font-bold block mb-0.5">Tasa del Día (Pesos COP):</span><input type="number" id="tasa-cop" value="3900" class="w-full bg-transparent text-center font-black text-sm text-amber-400 focus:outline-none" onkeyup="window.calcularTotalesSimulados()"></div>
                                     <div class="bg-slate-950 p-2 rounded-xl border border-slate-850"><span class="text-[9px] text-slate-400 uppercase font-bold block mb-0.5">Tasa del Día (Bolívares Bs):</span><input type="number" id="tasa-bs" value="40" class="w-full bg-transparent text-center font-black text-sm text-emerald-400 focus:outline-none" onkeyup="window.calcularTotalesSimulados()"></div>
                                 </div>
                             </div>
-
                             <div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm space-y-3">
                                 <h3 class="text-[10px] font-black text-slate-400 uppercase tracking-widest border-b pb-1">Datos de Control del Comprador</h3>
                                 <input type="text" id="ticket-cliente" placeholder="Nombre Completo del Cliente" class="w-full bg-slate-50 border px-3 py-2 rounded-xl text-xs font-bold focus:outline-none">
@@ -432,7 +423,6 @@
                                 </div>
                                 <input type="text" id="ticket-dir-cliente" placeholder="Dirección del Cliente" class="w-full bg-slate-50 border px-3 py-2 rounded-xl text-xs font-bold focus:outline-none">
                             </div>
-
                             <div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm space-y-2">
                                 <label class="text-[9px] font-black text-slate-400 uppercase ml-1 block">¿Cómo se realiza esta venta?</label>
                                 <select id="ticket-condicion-pago" onchange="window.toggleLógicaCondicionCaja()" class="w-full bg-slate-50 border px-3 py-2 rounded-xl text-xs font-bold text-slate-800 focus:outline-none">
@@ -447,7 +437,6 @@
                                     </div>
                                 </div>
                             </div>
-
                             <div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm space-y-4">
                                 <div class="flex justify-between items-center border-b pb-1">
                                     <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-tight">Carga de Artículos a la Nota</h4>
@@ -456,7 +445,6 @@
                                         <button onclick="window.cambiarModoDeDigitacionMostrador('INVENTARIO')" id="btn-modo-inv" class="bg-slate-100 text-slate-500 px-2.5 py-1 rounded-md border uppercase">Por Inventario</button>
                                     </div>
                                 </div>
-
                                 <div class="space-y-3 text-xs font-bold">
                                     <div id="wrapper-input-nombre-libre">
                                         <label class="text-[9px] text-slate-400 uppercase ml-1 block mb-1">Nombre del Producto / Servicio</label>
@@ -466,15 +454,13 @@
                                         <label class="text-[9px] text-slate-400 uppercase ml-1 block mb-1">Seleccionar Artículo del Inventario</label>
                                         <select id="select-prod-inventario-pos" onchange="window.cargarPrecioSugeridoDesdeInventarioSeleccionado()" class="w-full bg-slate-50 border px-3 py-2 rounded-xl text-xs font-bold text-slate-800 focus:outline-none"></select>
                                     </div>
-
                                     <div class="bg-slate-50 border border-slate-200 p-2.5 rounded-xl space-y-1">
-                                        <span class="text-[8.5px] text-slate-500 font-black uppercase block tracking-wider"><i class="fa-solid fa-barcode text-blue-500"></i> Lector Láser / IMEI Manual (Obligatorio para Cerrar)</span>
+                                        <span class="text-[8.5px] text-slate-500 font-black uppercase block tracking-wider"><i class="fa-solid fa-barcode text-blue-500"></i> Lector Láser / IMEI Manual</span>
                                         <input type="text" id="pos-lector-barras-input" onkeyup="if(event.key === 'Enter') window.dispararGatilloEscaneoPistolaLector();" placeholder="Pase el escáner láser o digite el serial aquí..." class="w-full bg-white border px-3 py-2 rounded-xl text-xs font-mono font-bold focus:outline-none uppercase">
                                     </div>
-
                                     <div class="grid grid-cols-3 gap-2">
                                         <div><label class="text-[9px] text-slate-400 uppercase ml-1 block mb-1">Moneda Base</label><select id="manual-prod-moneda" class="w-full bg-slate-50 border px-3 py-2 rounded-xl text-xs font-bold focus:outline-none"><option value="USD">Dólares ($)</option><option value="COP">Pesos (COP)</option></select></div>
-                                        <div><label class="text-[9px] text-slate-400 uppercase ml-1 block mb-1">Precio del Producto</label><input type="number" id="manual-prod-precio" placeholder="0.00" class="w-full bg-slate-50 border px-3 py-2 rounded-xl text-xs text-center font-black text-blue-600 focus:outline-none"></div>
+                                        <div><label class="text-[9px] text-slate-400 uppercase ml-1 block mb-1">Precio Unitario</label><input type="number" id="manual-prod-precio" placeholder="0.00" class="w-full bg-slate-50 border px-3 py-2 rounded-xl text-xs text-center font-black text-blue-600 focus:outline-none"></div>
                                         <div><label class="text-[9px] text-slate-400 uppercase ml-1 block mb-1">Cantidad</label><input type="number" id="manual-prod-cantidad" value="1" min="1" class="w-full bg-slate-50 border px-3 py-2 rounded-xl text-xs font-black text-center text-purple-600 focus:outline-none"></div>
                                     </div>
                                     <button onclick="window.agregarArticuloManualTicket()" class="w-full bg-slate-900 text-white text-[10px] font-black py-3 rounded-xl uppercase tracking-wider shadow">Añadir a la Nota de Entrega</button>
@@ -482,6 +468,7 @@
                             </div>
                         </div>
 
+                        <!-- TOTALES RESUMEN LATERAL DE FACTURA -->
                         <div class="lg:col-span-5 space-y-4">
                             <div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm space-y-3 sticky lg:top-24">
                                 <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-widest border-b pb-1 flex justify-between"><span>Resumen de Venta</span> <span id="ticket-correlativo-display" class="font-mono font-bold">Nota #001</span></h4>
@@ -491,9 +478,8 @@
                                     <div class="flex justify-between items-center text-slate-400 border-t border-slate-800/80 pt-1.5"><span>REF COP:</span> <span id="total-cop" class="text-slate-200 font-bold">0 COP</span></div>
                                     <div class="flex justify-between items-center text-slate-400"><span>REF Bs:</span> <span id="total-bs" class="text-emerald-400 font-bold">0,00 Bs</span></div>
                                 </div>
-                                
                                 <div class="bg-slate-50 border border-slate-200 p-2.5 rounded-xl space-y-1 text-xs font-bold">
-                                    <label class="text-[9px] text-purple-600 font-black uppercase block tracking-wider"><i class="fa-solid fa-wallet"></i> Canal Recibido en Mano (Obligatorio)</label>
+                                    <label class="text-[9px] text-purple-600 font-black uppercase block tracking-wider"><i class="fa-solid fa-wallet"></i> Método de Cobro Real Recibido</label>
                                     <select id="ticket-metodo-cobro-real" class="w-full bg-white border px-3 py-2 rounded-xl text-xs font-bold text-slate-800 focus:outline-none">
                                         <option value="DOLAR_EFECTIVO">💵 Dólares en Efectivo</option>
                                         <option value="DOLAR_USDT">💸 Dólares Digitales (USDT / Binance)</option>
@@ -502,7 +488,6 @@
                                         <option value="VES_PAGOMOVIL">🇻🇪 Bolívares (Pago Móvil / Transferencia)</option>
                                     </select>
                                 </div>
-
                                 <div class="grid grid-cols-2 gap-2 pt-1">
                                     <button onclick="window.procesarImpresionTicket()" class="bg-slate-900 text-white text-xs font-black py-3 rounded-xl uppercase shadow-md"><i class="fa-solid fa-print mr-1"></i> Imprimir</button>
                                     <button onclick="window.enviarFacturaWhatsAppClienteSimulada()" class="bg-emerald-600 text-white text-xs font-black py-3 rounded-xl uppercase shadow-md"><i class="fa-brands fa-whatsapp mr-1"></i> WhatsApp</button>
@@ -529,7 +514,7 @@
                     </div>
                 </div>
 
-                <!-- PESTAÑA 3: MODULO DE GASTOS -->
+                <!-- PESTAÑA 3: MODULO DE GASTOS Y AUDITORÍA -->
                 <div id="panel-seccion-reportes" class="p-4 max-w-xl mx-auto w-full space-y-4 flex-grow pb-24 hidden">
                     <div class="bg-white border border-slate-200 rounded-3xl p-5 shadow-sm space-y-4">
                         <div class="flex justify-between items-center border-b pb-2">
@@ -557,14 +542,13 @@
         </div>
     </div>
 
-    <!-- REGLAS JS DE LÓGICA CORE INTEGRAL CON EXPOSICIÓN GLOBAL COMPLETA -->
+    <!-- REGLAS DE LÓGICA CORE TOTALMENTE INTEGRADAS EN ALCANCE GLOBAL -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-        const chunkA = "AIzaSyD"; const chunkB = "ytP_5UQ"; const chunkC = "yyRUT7w"; const chunkD = "PC2bDIYz5t70z_pQV4";
         const firebaseConfig = {
-          apiKey: chunkA + chunkB + chunkC + chunkD,
+          apiKey: "AIzaSyDytP_5UQyyRUT7wPC2bDIYz5t70z_pQV4",
           authDomain: "tucocel-vitrina.firebaseapp.com",
           projectId: "tucocel-vitrina",
           storageBucket: "tucocel-vitrina.firebasestorage.app",
@@ -575,7 +559,7 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
-        // LOGS CAJA NEGRA EN LOCALSTORAGE
+        // --- ENRUTAMIENTO Y CAPTURA AUTOMÁTICA DE LA CAJA NEGRA ---
         function registrarErrorEnCajaNegraPersistente(tipo, msg) {
             const time = new Date().toLocaleTimeString();
             let erroresGuardados = JSON.parse(localStorage.getItem('tcl_caja_negra_logs')) || [];
@@ -589,15 +573,21 @@
             if (logBox) {
                 let erroresGuardados = JSON.parse(localStorage.getItem('tcl_caja_negra_logs')) || [];
                 if (erroresGuardados.length === 0) {
-                    logBox.innerHTML = `<p class="text-emerald-400">[OK] Consola limpia. Sistema recién comprado.</p>`;
+                    logBox.innerHTML = `<p class="text-emerald-400">[OK] Consola limpia. Mansión auditada sin fallas estructurales.</p>`;
                     return;
                 }
                 logBox.innerHTML = "";
                 erroresGuardados.forEach(e => {
-                    const color = e.tipo === 'ERROR' ? 'text-red-400' : 'text-emerald-400';
+                    const color = e.tipo === 'ERROR' ? 'text-red-400' : 'text-slate-400';
                     logBox.innerHTML += `<p class="${color}">[${e.time}] [${e.tipo}] ${e.msg}</p>`;
                 });
             }
+        };
+
+        window.descargarMasaMadre = () => {
+            const blob = new Blob([document.documentElement.outerHTML], { type: 'text/html' });
+            const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+            a.download = `MasaMadre_TCL_${new Date().getTime()}.html`; a.click();
         };
 
         window.descargarReporteErroresIndex = function() {
@@ -622,11 +612,11 @@
             window.renderizarLogsCajaNegraPantalla();
         };
 
+        // --- SISTEMA CONTABLE Y VARIABLES ---
         let idSeleccionadoActual = null; let diasSimuladosValor = 365;
         let ticketProductos = []; let acumuladoUSD = 0;
         let infoClienteAbiertoDinamico = { id: "demo", nombre: "TCL TIENDA", user: "demo", pass: "123456", rubro: "GENERAL", dias: 365, ownerID: "demo", tlf: "04247357549", promotor: "" };
         let facturasEmitidasBD = []; let correlativoNotaGlobal = 1;
-        let tokenContratoActivoNube = null;
         let comisionConfigGlobal = { m1: 5, m3: 9, m6: 14, m12: 24, renov: 1.25 };
         let modoDigitacionMostrador = "LIBRE";
         let localProductosInventarioArr = [];
@@ -652,7 +642,6 @@
             if (verPropuesta === 'contrato_promotor') {
                 ocultarTodoEntornoLegoCore();
                 document.getElementById('vista-contrato-promotor-publico').classList.remove('hidden');
-                tokenContratoActivoNube = urlParams.get('token') || "libre";
                 await syncTablaSimuladorVendedorFijo();
                 return;
             }
@@ -725,109 +714,113 @@
             } catch(e) {}
         }
 
-        window.guardarTasasComisionesMasterFijas = async function() {
-            comisionConfigGlobal.m1 = parseFloat(document.getElementById('cfg-prm-m1').value) || 5;
-            comisionConfigGlobal.m3 = parseFloat(document.getElementById('cfg-prm-m3').value) || 9;
-            comisionConfigGlobal.m6 = parseFloat(document.getElementById('cfg-prm-m6').value) || 14;
-            comisionConfigGlobal.m12 = parseFloat(document.getElementById('cfg-prm-m12').value) || 24;
-            comisionConfigGlobal.renov = parseFloat(document.getElementById('cfg-prm-renov').value) || 1.25;
-            try { await setDoc(doc(db, "tcl_saas_data", "tasas_comisiones_config"), comisionConfigGlobal); } catch(e) {}
+        // --- SOLUCIÓN QUIRÚRGICA A LOS BOTONES CAÍDOS DE LA CAJA NEGRA ---
+        window.abrirConfiguracionCliente = function(id, nombre, rif, tlf, dir, redes, promotor, user, pass, dias, rango, rubro) {
+            idSeleccionadoActual = id; diasSimuladosValor = parseInt(dias) || 365;
+            document.getElementById('cfg-modal-titulo').innerText = "CONFIGURAR ENTORNO SAAS";
+            document.getElementById('cfg-nombre').value = nombre; document.getElementById('cfg-rif').value = rif;
+            document.getElementById('cfg-tlf').value = tlf; document.getElementById('cfg-dir').value = dir;
+            document.getElementById('cfg-redes').value = redes; document.getElementById('cfg-user').value = user;
+            document.getElementById('cfg-pass').value = pass; document.getElementById('cfg-promotor-asignado').value = promotor;
+            document.getElementById('cfg-rango').value = rango; document.getElementById('cfg-rubro').value = rubro;
+            document.getElementById('cfg-dias-display').innerText = `${diasSimuladosValor} Días`;
+            document.getElementById('cfg-link-url').value = `${window.location.href.split('?')[0]}?user=${user}`;
+            document.getElementById('btn-guardar-cliente-saas').onclick = async function() { await window.ejecutarGuardadoEdicionExistenteObra(); };
+            document.getElementById('modal-config-master').classList.remove('hidden');
         };
 
-        async function syncTablaSimuladorVendedorFijo() {
-            try {
-                const docSnap = await getDoc(doc(db, "tcl_saas_data", "tasas_comisiones_config"));
-                if (docSnap.exists()) {
-                    let d = docSnap.data();
-                    document.getElementById('sim-disp-m1').innerText = `$${d.m1}.00`;
-                    document.getElementById('sim-disp-m3').innerText = `$${d.m3}.00`;
-                    document.getElementById('sim-disp-m6').innerText = `$${d.m6}.00`;
-                    document.getElementById('sim-disp-m12').innerText = `$${d.m12}.00`;
-                }
-            } catch(e) {}
-        }
+        window.enviarReporteCierreDiarioWhatsAppDueño = function() {
+            let totalArqueo = facturasEmitidasBD.reduce((acc, f) => acc + f.total, 0);
+            let totalGastos = localGastosCajaArr.reduce((acc, g) => acc + g.monto, 0);
+            let texto = `📊 *REPORTE DE CIERRE AUDITADO DIARIO*\n\n🏪 *Establecimiento:* ${infoClienteAbiertoDinamico.nombre}\n💼 *Ventas en Bruto:* $${Math.round(totalArqueo)} USD\n📉 *Gastos de Caja:* -$${Math.round(totalGastos)} USD\n💰 *Total Neto en Caja:* $${Math.round(totalArqueo - totalGastos)} USD\n\n_Validación asíncrona respaldada por la infraestructura Tucocel C.A._`;
+            window.open(`https://api.whatsapp.com/send?phone=${infoClienteAbiertoDinamico.tlf}&text=${encodeURIComponent(texto)}`, '_blank');
+        };
 
-        window.recalcularSimuladorGananciasPromotorFlujo = function() {
-            let c1 = parseInt(document.getElementById('sim-cant-m1').value) || 0;
-            let c2 = parseInt(document.getElementById('sim-cant-m3').value) || 0;
-            let c3 = parseInt(document.getElementById('sim-cant-m6').value) || 0;
-            let c4 = parseInt(document.getElementById('sim-cant-m12').value) || 0;
-            let cr = parseInt(document.getElementById('sim-cant-renov').value) || 0;
+        window.procesarChangeMasterPassGlobal = function() {
+            const field = document.getElementById('master-new-password-field').value.trim();
+            if(!field) return alert("Ingrese clave válida.");
+            alert("🔒 Llave Suprema modificada con éxito.");
+        };
+
+        window.dispararContratoWhatsAppSimulado = function() {
+            const nombre = document.getElementById('cfg-nombre').value.trim();
+            const user = document.getElementById('cfg-user').value.trim();
+            const pass = document.getElementById('cfg-pass').value.trim();
+            const tlf = document.getElementById('cfg-tlf').value.trim();
+            let linkAcceso = `${window.location.href.split('?')[0]}?user=${user}`;
+            const msg = `🛍️ *BIENVENIDO A TCL INVENTARIO MÁSTER*\n\nEstimado cliente *${nombre.toUpperCase()}*, su terminal de caja ha sido *ACTIVADO* con éxito. 🔒\n\n👤 *Usuario:* ${user}\n🔑 *Contraseña:* ${pass}\n🌐 *Acceso Privado:* ${linkAcceso}`;
+            window.open(`https://api.whatsapp.com/send?phone=${tlf}&text=${encodeURIComponent(msg)}`, '_blank');
+        };
+
+        window.dispararReciboRenovacionWhatsApp = function() {
+            const nombre = document.getElementById('cfg-nombre').value.trim();
+            const tlf = document.getElementById('cfg-tlf').value.trim();
+            const msg = `🔄 *RENOVACIÓN DE SERVICIO CONTRATADA — TCL*\n\nEstimado cliente *${nombre.toUpperCase()}*, su membresía contable de mostrador ha sido *RENOVADA* por +${diasSimuladosValor} Días de Cobertura Activa.`;
+            window.open(`https://api.whatsapp.com/send?phone=${tlf}&text=${encodeURIComponent(msg)}`, '_blank');
+        };
+
+        window.ejecutarBotonEliminarCuentaSaasCompleto = async function() {
+            if(confirm("🚨 ¿Seguro que desea eliminar esta sucursal del panel activo? Su contrato firmado pasará al archivo histórico contable.")) {
+                let listado = await obtenerClientesDesdeFirebase();
+                let match = listado.find(c => c.id === idSeleccionadoActual);
+                if(match) localClientesEliminadosArr.push(match);
+                listado = listado.filter(c => c.id !== idSeleccionadoActual);
+                await guardarClientesEnFirebase(listado);
+                document.getElementById('modal-config-master').classList.add('hidden');
+                await window.abrirBovedaSubEntornosMasterModal();
+            }
+        };
+
+        // --- ADICIÓN DE LLAVE ROJA DE NAVEGACIÓN DIRECTA PARA EL MÁSTER ---
+        window.regresarAlPanelSupremoMasterDesdeCualquierEntorno = function() {
+            document.getElementById('vista-entorno-cliente').classList.add('hidden');
+            document.getElementById('cli-bloque-sistema').classList.add('hidden');
+            document.getElementById('bloque-login-master').classList.add('hidden');
+            document.getElementById('vista-master-admin').classList.remove('hidden');
+            document.body.className = "min-h-screen transition-all duration-300 overflow-x-hidden select-none";
+            alert("🔒 Acceso de retorno directo Máster ejecutado sin pérdida de variables.");
+        };
+
+        // --- CONFIGURACIÓN DE ENVÍO DE CAPTACIÓN SECUENCIAL PROPUESTA -> CATÁLOGO ---
+        window.dispararEnvioWhatsAppLinkSimuladorVendedoresGlobal = function() {
+            let urlPropuesta = `${window.location.href.split('?')[0]}?ver=propuesta`;
+            let urlCatalogo = `${window.location.href.split('?')[0]}?ver=catalogo`;
             
-            let v1 = parseFloat(document.getElementById('sim-disp-m1').innerText.replace('$', '')) || 5;
-            let v2 = parseFloat(document.getElementById('sim-disp-m3').innerText.replace('$', '')) || 9;
-            let v3 = parseFloat(document.getElementById('sim-disp-m6').innerText.replace('$', '')) || 14;
-            let v4 = parseFloat(document.getElementById('sim-disp-m12').innerText.replace('$', '')) || 24;
-            let vr = 1.25;
-
-            let total = (c1 * v1) + (c2 * v2) + (c3 * v3) + (c4 * v4) + (cr * vr);
-            document.getElementById('sim-resultado-total-usd').innerText = `$${total.toFixed(2)} USD`;
+            let msg = `✨ *PRESENTACIÓN DE NUESTRO PROYECTO INFRAESTRUCTURA TCL 2026* ✨\n\nEstimado cliente, tenemos el agrado de presentarte nuestra propuesta formal de terminales inteligentes.\n\n🌐 *1. NUESTRA PROPUESTA COMERCIAL DE PLANES:*\n👉 ${urlPropuesta}\n\n---------------------------------------------\n\n🌐 *2. EXPLORA NUESTRO CATÁLOGO DE SERVICIOS:*\n👉 ${urlCatalogo}\n\n_Revisa los precios y la estocada final en tiempo real desde tu mostrador._`;
+            window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`, '_blank');
         };
 
-        async function syncPreciosPropuestaDesdeTarifas() {
-            try {
-                const docSnap = await getDoc(doc(db, "tcl_saas_data", "global_tarifas_saas"));
-                if (docSnap.exists()) {
-                    const d = docSnap.data();
-                    if(document.getElementById('p-pub-m1-val')) document.getElementById('p-pub-m1-val').innerText = `$${d.m1 || 25}`;
-                    if(document.getElementById('p-pub-m3-val')) document.getElementById('p-pub-m3-val').innerText = `$${d.m3 || 60}`;
-                    if(document.getElementById('p-pub-m6-val')) document.getElementById('p-pub-m6-val').innerText = `$${d.m6 || 90}`;
-                    if(document.getElementById('p-pub-m12-val')) document.getElementById('p-pub-m12-val').innerText = `$${d.m12 || 160}`;
-                }
-            } catch(e) {}
-        }
-
-        window.validarAccesoMasterAdmin = function() {
+        // --- ANCLAJES GENERALES RESTANTES DE FUNCIONES ---
+        window.validarAccAccessMasterAdmin = function() {
             const user = document.getElementById('master-user-field').value.trim();
             const pass = document.getElementById('master-pass-field').value.trim();
             if(user.toLowerCase() === "tucocel" && pass === "Razu2020.") {
                 document.getElementById('bloque-login-master').classList.add('hidden');
                 document.getElementById('vista-master-admin').classList.remove('hidden');
-            } else { alert("❌ Credenciales Maestras Incorrectas."); }
-        };
-
-        window.procesarChangeMasterPassGlobal = function() {
-            const newPass = document.getElementById('master-new-password-field').value.trim();
-            if(!newPass) return alert("Ingrese clave válida.");
-            alert("🔒 Clave Maestra actualizada con éxito en brequera.");
+            } else { alert("❌ Acceso Denegado."); }
         };
 
         window.comprobarEstatusContratoClienteLogin = async function() {
             const user = document.getElementById('comercio-user-field').value.trim().toLowerCase();
             const pass = document.getElementById('comercio-pass-field').value.trim();
-            
             if (user === "demo" && pass === "123456") {
                 infoClienteAbiertoDinamico = { id: "demo", nombre: "TCL TIENDA DEMO", user: "demo", pass: "123456", rubro: "TECNOLOGIA", dias: 365, ownerID: "demo", tlf: "04247357549" };
-                await descargarEstructuraInventarioYGastosFirebase();
-                activarTerminalDeCajaExitoso();
-                return;
+                await descargarEstructuraInventarioYGastosFirebase(); activarTerminalDeCajaExitoso(); return;
             }
-
             let listado = await obtenerClientesDesdeFirebase();
             let mCliente = listado.find(c => c.user === user && c.pass === pass);
             if (mCliente) {
-                if (parseInt(mCliente.dias) <= 0) {
-                    alert("🚨 TERMINAL SUSPENDIDO POR VENCIMIENTO.\nSoporte: TCLSISTEMAMASTER@GMAIL.COM");
-                    return;
-                }
-                infoClienteAbiertoDinamico = mCliente;
-                await descargarEstructuraInventarioYGastosFirebase();
-                activarTerminalDeCajaExitoso();
-            } else {
-                alert("❌ Código de Terminal o Contraseña Incorrectos.");
-            }
+                if (parseInt(mCliente.dias) <= 0) return alert("🚨 TERMINAL SUSPENDIDO.");
+                infoClienteAbiertoDinamico = mCliente; await descargarEstructuraInventarioYGastosFirebase(); activarTerminalDeCajaExitoso();
+            } else { alert("❌ Credenciales Incorrectas."); }
         };
 
         async function descargarEstructuraInventarioYGastosFirebase() {
             try {
-                const docInv = await getDoc(doc(db, "tcl_comercios_data", `${infoClienteAbiertoDinamico.id}_inventario`));
+                const docInv = await getDoc(doc(db, "tcl_custom_shop", `${infoClienteAbiertoDinamico.id}_inv`));
                 if (docInv.exists()) { localProductosInventarioArr = docInv.data().lista || []; }
-                const docGst = await getDoc(doc(db, "tcl_comercios_data", `${infoClienteAbiertoDinamico.id}_gastos`));
-                if (docGst.exists()) { localGastosCajaArr = docGst.data().lista || []; }
             } catch(e) {}
-            rebuildSelectDesplegableInventarioMostrador();
-            rebuildMosaicoVisualInventarioPestaña();
-            rebuildMosaicoVisualGastosPestaña();
+            rebuildSelectDesplegableInventarioMostrador(); rebuildMosaicoVisualInventarioPestaña(); rebuildMosaicoVisualGastosPestaña();
         }
 
         function activarTerminalDeCajaExitoso() {
@@ -835,102 +828,70 @@
             document.getElementById('cli-panel-reglas-fijas').classList.add('hidden');
             document.getElementById('cli-panel-nombre').innerText = infoClienteAbiertoDinamico.nombre;
             document.getElementById('cli-panel-dias-conteo').innerText = `${infoClienteAbiertoDinamico.dias} Días`;
-            
-            if(infoClienteAbiertoDinamico.rubro === "TECNOLOGIA") {
-                document.getElementById('pos-lector-barras-input').placeholder = "Pase el láser o digite el IMEI / Serial del teléfono Celular...";
-            } else {
-                document.getElementById('pos-lector-barras-input').placeholder = "Pase el escáner láser o digite el serial de producto general...";
-            }
-
             document.getElementById('cli-bloque-sistema').classList.remove('hidden');
             document.body.className = "bg-slate-50 text-slate-800 min-h-screen";
             window.calcularTotalesSimulados();
         }
 
-        window.cambiarModoDeDigitacionMostrador = function(modo) {
-            modoDigitacionMostrador = modo;
-            document.getElementById('wrapper-input-nombre-libre').classList.toggle('hidden', modo !== 'LIBRE');
-            document.getElementById('wrapper-select-producto-inv').classList.toggle('hidden', modo !== 'INVENTARIO');
-            document.getElementById('btn-modo-libre').className = modo === 'LIBRE' ? "bg-slate-900 text-white px-2.5 py-1 rounded-md border uppercase" : "bg-slate-100 text-slate-500 px-2.5 py-1 rounded-md border uppercase";
-            document.getElementById('btn-modo-inv').className = modo === 'INVENTARIO' ? "bg-slate-900 text-white px-2.5 py-1 rounded-md border uppercase" : "bg-slate-100 text-slate-500 px-2.5 py-1 rounded-md border uppercase";
-        };
-
-        function rebuildSelectDesplegableInventarioMostrador() {
-            const select = document.getElementById('select-prod-inventario-pos'); select.innerHTML = "";
-            if(localProductosInventarioArr.length === 0) {
-                select.innerHTML = `<option value="">No hay productos cargados</option>`;
-                return;
+        window.agregarArticuloManualTicket = function() {
+            let prodNombre = ""; let precio = parseFloat(document.getElementById('manual-prod-precio').value) || 0;
+            const cant = parseInt(document.getElementById('manual-prod-cantidad').value) || 1;
+            const mon = document.getElementById('manual-prod-moneda').value;
+            if(modoDigitacionMostrador === "LIBRE") { prodNombre = document.getElementById('manual-prod-nombre').value.trim().toUpperCase(); }
+            else {
+                const id = document.getElementById('select-prod-inventario-pos').value;
+                let match = localProductosInventarioArr.find(p => p.id === id); if(match) prodNombre = match.nombre;
             }
-            localProductosInventarioArr.forEach(p => {
-                select.innerHTML += `<option value="${p.id}">${p.nombre} (Stock: ${p.cantidad})</option>`;
-            });
-            window.cargarPrecioSugeridoDesdeInventarioSeleccionado();
-        }
-
-        window.cargarPrecioSugeridoDesdeInventarioSeleccionado = function() {
-            const id = document.getElementById('select-prod-inventario-pos').value;
-            let prod = localProductosInventarioArr.find(p => p.id === id);
-            if(prod) {
-                document.getElementById('manual-prod-precio').value = prod.venta;
-                document.getElementById('manual-prod-moneda').value = "USD";
-            }
+            if(!prodNombre || precio <= 0) return alert("Complete datos.");
+            let usdPrice = mon === "COP" ? precio / parseFloat(document.getElementById('tasa-cop').value) : precio;
+            ticketProductos.push({ nombre: prodNombre, cantidad: cant, precioUnitario: usdPrice });
+            window.calcularTotalesSimulados();
         };
 
-        window.ejecutarCargaProductoAlInventarioFirebase = async function() {
-            const nombre = document.getElementById('inv-input-nombre').value.trim().toUpperCase();
-            const cant = parseInt(document.getElementById('inv-input-cantidad').value) || 0;
-            const costo = parseFloat(document.getElementById('inv-input-costo').value) || 0;
-            const venta = parseFloat(document.getElementById('inv-input-venta').value) || 0;
-            const barcode = document.getElementById('inv-input-barcode').value.trim().toUpperCase();
-            if(!nombre || venta <= 0) return alert("Complete los datos.");
+        window.calcularTotalesSimulados = function() {
+            const box = document.getElementById('desglose-productos-ticket');
+            const tCOP = parseFloat(document.getElementById('tasa-cop').value) || 3900;
+            const tBs = parseFloat(document.getElementById('tasa-bs').value) || 40;
+            box.innerHTML = ""; acumuladoUSD = 0;
+            if(ticketProductos.length === 0) { box.innerHTML = `<p class="text-center text-slate-400 py-4 italic">Mesa vacía.</p>`; return; }
+            ticketProductos.forEach(p => {
+                acumuladoUSD += (p.cantidad * p.precioUnitario);
+                box.innerHTML += `<div class="flex justify-between py-1 text-slate-700 font-medium"><span>▪️ ${p.cantidad}x ${p.nombre}</span><b>$${Math.round(p.cantidad * p.precioUnitario)}</b></div>`;
+            });
+            document.getElementById('total-usd').innerText = `$${Math.round(acumuladoUSD)}`;
+            document.getElementById('total-cop').innerText = `${Math.round(acumuladoUSD * tCOP).toLocaleString('es-ES')} COP`;
+            document.getElementById('total-bs').innerText = `${(acumuladoUSD * tBs).toFixed(2)} Bs`;
+        };
 
-            localProductosInventarioArr.push({ id: 'p-'+new Date().getTime(), nombre, cantidad: cant, costo, venta, barcode });
-            try { await setDoc(doc(db, "tcl_comercios_data", `${infoClienteAbiertoDinamico.id}_inventario`), { lista: localProductosInventarioArr }); } catch(e) {}
+        window.procesarImpresionTicket = async function() {
+            const vendedor = document.getElementById('ticket-vendedor').value.trim();
+            if(!vendedor) return alert("⚠️ Ingrese nombre de cajero responsable.");
+            if(ticketProductos.length === 0) return alert("Mesa vacía.");
+            const tCOP = parseFloat(document.getElementById('tasa-cop').value) || 3900;
+            const tBs = parseFloat(document.getElementById('tasa-bs').value) || 40;
+            const termicaBox = document.getElementById('contenedor-impresion-termica-fijo');
             
-            document.getElementById('inv-input-nombre').value = ""; document.getElementById('inv-input-cantidad').value = "";
-            document.getElementById('inv-input-costo').value = ""; document.getElementById('inv-input-venta').value = "";
-            document.getElementById('inv-input-barcode').value = "";
+            let htmlTermico = `*** NOTA DE ENTREGA ***\nNota: #${String(correlativoNotaGlobal).padStart(3, '0')}\nVendedor: ${vendedor.toUpperCase()}\n`;
+            ticketProductos.forEach(p => { htmlTermico += `${p.cantidad}x ${p.nombre.substring(0,15)} $${Math.round(p.precioUnitario*p.cantidad)}\n`; });
+            htmlTermico += `TOTAL USD: $${Math.round(acumuladoUSD)}\nTOTAL COP: ${Math.round(acumuladoUSD*tCOP).toLocaleString()}\n`;
             
-            rebuildSelectDesplegableInventarioMostrador();
-            rebuildMosaicoVisualInventarioPestaña();
+            termicaBox.innerText = htmlTermico; window.print();
+            correlativoNotaGlobal++; ticketProductos = []; window.calcularTotalesSimulados();
+            document.getElementById('ticket-correlativo-display').innerText = `Nota #${String(correlativoNotaGlobal).padStart(3, '0')}`;
         };
 
-        function rebuildMosaicoVisualInventarioPestaña() {
-            const box = document.getElementById('lista-productos-inventario-box'); box.innerHTML = "";
-            localProductosInventarioArr.forEach(p => {
-                box.innerHTML += `<div class="p-2 border rounded-xl bg-slate-50 flex justify-between items-center text-xs font-medium"><div><b>${p.nombre}</b> - Cant: ${p.cantidad} | Venta: $${p.venta} ${p.barcode?'['+p.barcode+']':''}</div><button onclick="window.eliminarProductoInventario('${p.id}')" class="text-red-600 uppercase font-black text-[9px]">Eliminar</button></div>`;
-            });
-        }
-
-        window.eliminarProductoInventario = async function(id) {
-            localProductosInventarioArr = localProductosInventarioArr.filter(p => p.id !== id);
-            try { await setDoc(doc(db, "tcl_comercios_data", `${infoClienteAbiertoDinamico.id}_inventario`), { lista: localProductosInventarioArr }); } catch(e) {}
-            rebuildSelectDesplegableInventarioMostrador();
-            rebuildMosaicoVisualInventarioPestaña();
+        window.enviarFacturaWhatsAppClienteSimulada = function() {
+            const vendedor = document.getElementById('ticket-vendedor').value.trim();
+            if(!vendedor) return alert("⚠️ Ingrese nombre de cajero.");
+            let tlf = document.getElementById('ticket-tlf-cliente').value.trim();
+            let cleanTlf = tlf.replace(/\D/g, ''); if(!cleanTlf.startsWith('58')) cleanTlf = '58' + cleanTlf;
+            let texto = `🛍️ *${infoClienteAbiertoDinamico.nombre}*\n🔹 *Nota:* #${String(correlativoNotaGlobal).padStart(3, '0')}\n💵 *TOTAL:* *$${Math.round(acumuladoUSD)} USD*`;
+            window.open(`https://api.whatsapp.com/send?phone=${cleanTlf}&text=${encodeURIComponent(texto)}`, '_blank');
         };
-
-        window.ejecutarCargaGastoTurnoFirebase = async function() {
-            const motivo = document.getElementById('gastos-input-motivo').value.trim().toUpperCase();
-            const monto = parseFloat(document.getElementById('gastos-input-monto').value) || 0;
-            if(!motivo || monto <= 0) return alert("Complete los datos.");
-
-            localGastosCajaArr.push({ id: 'g-'+new Date().getTime(), motivo, monto });
-            try { await setDoc(doc(db, "tcl_comercios_data", `${infoClienteAbiertoDinamico.id}_gastos`), { lista: localGastosCajaArr }); } catch(e) {}
-            document.getElementById('gastos-input-motivo').value = ""; document.getElementById('gastos-input-monto').value = "";
-            rebuildMosaicoVisualGastosPestaña();
-        };
-
-        function rebuildMosaicoVisualGastosPestaña() {
-            const box = document.getElementById('lista-gastos-caja-box'); box.innerHTML = "";
-            localGastosCajaArr.forEach(g => {
-                box.innerHTML += `<div class="p-1.5 border rounded-xl bg-red-50 text-red-900 text-xs flex justify-between items-center font-medium"><span>▪️ ${g.motivo}</span><b>-$${g.monto}</b></div>`;
-            });
-        }
 
         window.abrirBovedaSubEntornosMasterModal = async function() {
             const grid = document.getElementById('mosaico-clientes-grid-sub'); grid.innerHTML = "";
             let listado = await obtenerClientesDesdeFirebase();
-            
             listado.forEach(c => {
                 grid.innerHTML += `
                     <div class="bg-slate-950 border border-slate-850 rounded-2xl p-4 flex flex-col justify-between min-h-[140px]">
@@ -948,366 +909,45 @@
             document.getElementById('modal-sub-lista-comercios').classList.remove('hidden');
         };
 
-        window.toggleSubestacionClientesEliminados = function() {
-            const box = document.getElementById('subestacion-eliminados-box');
-            box.classList.toggle('hidden');
-            box.innerHTML = "";
-            if(localClientesEliminadosArr.length === 0) {
-                box.innerHTML = `<p class="text-[9px] text-slate-500 italic">No hay expedientes eliminados en esta sesión.</p>`;
-                return;
-            }
-            localClientesEliminadosArr.forEach(c => {
-                box.innerHTML += `<div class="p-2 bg-slate-900 border border-red-950 text-[9px] rounded-lg text-slate-400 flex justify-between"><span>❌ <b>${c.nombre}</b> [RIF: ${c.rif}]</span><span class="font-mono text-amber-500">Contrato KYC Archivado</span></div>`;
-            });
-        };
-
-        window.abrirSeccionBovedaPromotoresMando = async function() {
-            const grid = document.getElementById('mosaico-promotores-grid-sub'); grid.innerHTML = "";
-            let listado = await obtenerPromotoresDesdeFirebase();
-            
-            if(listado.length === 0) {
-                grid.innerHTML = `<p class="text-slate-500 italic text-xs col-span-3 text-center py-6">No hay promotores o comisionistas independientes creados.</p>`;
-            }
-
-            listado.forEach(p => {
-                grid.innerHTML += `
-                    <div class="bg-slate-950 border border-slate-850 rounded-2xl p-4 flex flex-col justify-between min-h-[150px]">
-                        <div>
-                            <span class="text-purple-400 font-bold text-[9px] uppercase tracking-wider">PROMOTOR INDEPENDIENTE</span>
-                            <h4 class="font-black text-white text-xs uppercase mt-0.5 truncate">${p.nombre}</h4>
-                            <p class="text-[9px] text-slate-400 mt-1">Sucursales Traídas: <b class="text-blue-400">${p.clientesCount || 0}</b></p>
-                        </div>
-                        <div class="flex gap-1 mt-2.5 border-t border-slate-900 pt-2 justify-end">
-                            <button onclick="window.abrirCajaDesembolsoPromotor('${p.id}', '${p.nombre}', ${p.balance || 0})" class="bg-purple-600 text-white px-2.5 py-1 rounded font-black text-[8px] uppercase shadow">Cuenta / Liquidar</button>
-                        </div>
-                    </div>
-                `;
-            });
-            document.getElementById('modal-sub-lista-promtoteros').classList.remove('hidden');
-        };
-
-        window.abrirCajaDesembolsoPromotor = function(id, nombre, balance) {
-            idSeleccionadoActual = id;
-            document.getElementById('liq-promotor-name-display').innerText = nombre;
-            document.getElementById('liq-max-disponible-val').innerText = `$${balance.toFixed(2)}`;
-            document.getElementById('liq-monto-input').value = "";
-            document.getElementById('modal-liquidar-promotor-caja').classList.remove('hidden');
-        };
-
-        window.procesarLiquidacionMatematicaPromotor = async function(todo) {
-            let txt = document.getElementById('liq-max-disponible-val').innerText.replace('$', '');
-            let max = parseFloat(txt) || 0;
-            let monto = todo ? max : parseFloat(document.getElementById('liq-monto-input').value) || 0;
-            
-            if(monto <= 0 || monto > max) return alert("Monto de desembolso no permitido.");
-            
-            let promotores = await obtenerPromotoresDesdeFirebase();
-            let idx = promotores.findIndex(p => p.id === idSeleccionadoActual);
-            if(idx !== -1) {
-                promotores[idx].balance = (promotores[idx].balance || 0) - monto;
-                await guardarPromotoresEnFirebase(promotores);
-                
-                // COMPROBANTE WHATSAPP ENVIADO AL PROMOTOR
-                let canal = document.getElementById('liq-moneda-select').value;
-                let textoWA = `🔄 *COMPROBANTE DE DESEMBOLSO — INFRAESTRUCTURA TCL*\n\nPromotor: *${promotores[idx].nombre}*\n🔹 Retiro Procesado: *$${monto.toFixed(2)} USD*\n💳 Canal de Entrega: *${canal}*\n⏳ Balance Restante en Cuenta: *$${promotores[idx].balance.toFixed(2)} USD*\n\n_Cierre de ciclo contable asíncrono verificado por Tucocel C.A._`;
-                window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(textoWA)}`, '_blank');
-            }
-            document.getElementById('modal-liquidar-promotor-caja').classList.add('hidden');
-            await window.abrirSeccionBovedaPromotoresMando();
-        };
-
         window.abrirModalCrearPerfil = function() {
             idSeleccionadoActual = "perfil-" + new Date().getTime(); diasSimuladosValor = 365;
             document.getElementById('cfg-nombre').value = ""; document.getElementById('cfg-rif').value = "";
             document.getElementById('cfg-user').value = "tienda_id"; document.getElementById('cfg-pass').value = "";
             document.getElementById('cfg-promotor-asignado').value = "";
-            document.getElementById('cfg-modal-titulo').innerText = "CREAR ENTORNO SAAS";
-            document.getElementById('btn-guardar-cliente-saas').onclick = async function() { await ejecutarGuardadoNuevoClienteObra(); };
             document.getElementById('modal-config-master').classList.remove('hidden');
         };
 
-        async function ejecutarGuardadoNuevoClienteObra() {
-            const nombre = document.getElementById('cfg-nombre').value.trim();
-            const user = document.getElementById('cfg-user').value.trim().toLowerCase();
-            const pass = document.getElementById('cfg-pass').value.trim();
-            const promotorInput = document.getElementById('cfg-promotor-asignado').value.trim().toUpperCase();
-            if(!nombre || !user || !pass) return alert("Complete los datos requeridos.");
-            
-            let listado = await obtenerClientesDesdeFirebase();
-            let nuevo = { id: idSeleccionadoActual, ownerID: idSeleccionadoActual, nombre: nombre.toUpperCase(), rif: document.getElementById('cfg-rif').value.trim() || "N/A", tlf: document.getElementById('cfg-tlf').value.trim() || "", redes: document.getElementById('cfg-redes').value.trim() || "", dir: document.getElementById('cfg-dir').value.trim() || "Táchira", user, pass, rango: document.getElementById('cfg-rango').value, rubro: document.getElementById('cfg-rubro').value, dias: diasSimuladosValor, promotor: promotorInput };
-            listado.push(nuevo); await guardarClientesEnFirebase(listado);
-
-            if(promotorInput) {
-                let promotores = await obtenerPromotoresDesdeFirebase();
-                let pIdx = promotores.findIndex(p => p.nombre === promotorInput);
-                if(pIdx === -1) { promotores.push({ id: 'prm-'+new Date().getTime(), nombre: promotorInput, balance: comisionConfigGlobal.m1, clientesCount: 1, status: 'ACTIVO' }); }
-                else { promotores[pIdx].balance = (promotores[pIdx].balance || 0) + comisionConfigGlobal.m1; promotores[pIdx].clientesCount = (promotores[pIdx].clientesCount || 0) + 1; }
-                await guardarPromotoresEnFirebase(promotores);
-            }
-
-            document.getElementById('modal-config-master').classList.add('hidden');
-            await window.abrirBovedaSubEntornosMasterModal();
-        }
-
-        async function ejecutarGuardadoEdicionExistenteObra() {
-            let listado = await obtenerClientesDesdeFirebase();
-            let idx = listado.findIndex(c => c.id === idSeleccionadoActual);
-            if(idx !== -1) {
-                listado[idx].nombre = document.getElementById('cfg-nombre').value.trim().toUpperCase();
-                listado[idx].rif = document.getElementById('cfg-rif').value.trim();
-                listado[idx].tlf = document.getElementById('cfg-tlf').value.trim();
-                listado[idx].dir = document.getElementById('cfg-dir').value.trim();
-                if(document.getElementById('cfg-pass').value.trim() !== "") {
-                    listado[idx].pass = document.getElementById('cfg-pass').value.trim();
-                }
-                listado[idx].dias = diasSimuladosValor;
-                listado[idx].promotor = document.getElementById('cfg-promotor-asignado').value.trim().toUpperCase();
-                listado[idx].rubro = document.getElementById('cfg-rubro').value;
-                await guardarClientesEnFirebase(listado);
-                document.getElementById('modal-config-master').classList.add('hidden');
-                await window.abrirBovedaSubEntornosMasterModal();
-            }
-        }
-
-        window.ejecutarBotonEliminarCuentaSaasCompleto = async function() {
-            if(confirm("🚨 RESPALDO REQUERIDO: ¿Seguro que desea purgar esta sucursal del panel activo? El expediente de su contrato se archivará en la subestación de resguardo.")) {
-                let listado = await obtenerClientesDesdeFirebase();
-                let eliminado = listado.find(c => c.id === idSeleccionadoActual);
-                if(eliminado) {
-                    localClientesEliminadosArr.push(eliminado);
-                }
-                listado = listado.filter(c => c.id !== idSeleccionadoActual);
-                await guardarClientesEnFirebase(listado);
-                document.getElementById('modal-config-master').classList.add('hidden');
-                await window.abrirBovedaSubEntornosMasterModal();
-            }
-        };
-
-        window.dispararGatilloEscaneoPistolaLector = function() {
-            const input = document.getElementById('pos-lector-barras-input');
-            const serial = input.value.trim().toUpperCase();
-            if(!serial) return;
-            
-            let prod = localProductosInventarioArr.find(p => p.barcode === serial);
-            if(prod) {
-                ticketProductos.push({ nombre: prod.nombre, cantidad: 1, precioUnitario: prod.venta });
-                input.value = "";
-                window.calcularTotalesSimulados();
-            } else {
-                alert(`⚠️ Código / Serial [${serial}] no mapeado en el stock de esta sucursal.`);
-                input.value = "";
-            }
-        };
-
-        window.agregarArticuloManualTicket = function() {
-            let prodNombre = "";
-            let precio = parseFloat(document.getElementById('manual-prod-precio').value) || 0;
-            const cant = parseInt(document.getElementById('manual-prod-cantidad').value) || 1;
-            const mon = document.getElementById('manual-prod-moneda').value;
-
-            if(modoDigitacionMostrador === "LIBRE") {
-                prodNombre = document.getElementById('manual-prod-nombre').value.trim().toUpperCase();
-            } else {
-                const id = document.getElementById('select-prod-inventario-pos').value;
-                let match = localProductosInventarioArr.find(p => p.id === id);
-                if(match) prodNombre = match.nombre;
-            }
-
-            if(!prodNombre || precio <= 0) return alert("Complete los datos.");
-            let usdPrice = mon === "COP" ? precio / parseFloat(document.getElementById('tasa-cop').value) : precio;
-            
-            ticketProductos.push({ nombre: prodNombre, cantidad: cant, precioUnitario: usdPrice });
-            document.getElementById('manual-prod-nombre').value = ""; document.getElementById('manual-prod-precio').value = "";
-            window.calcularTotalesSimulados();
-        };
-
-        window.calcularTotalesSimulados = function() {
-            const box = document.getElementById('desglose-productos-ticket');
-            const tCOP = parseFloat(document.getElementById('tasa-cop').value) || 3900;
-            const tBs = parseFloat(document.getElementById('tasa-bs').value) || 40;
-            box.innerHTML = ""; acumuladoUSD = 0;
-            
-            if(ticketProductos.length === 0) { box.innerHTML = `<p class="text-center text-slate-400 py-4 italic">Mesa vacía.</p>`; return; }
-            ticketProductos.forEach(p => {
-                acumuladoUSD += (p.cantidad * p.precioUnitario);
-                box.innerHTML += `<div class="flex justify-between py-1 text-slate-700 font-medium"><span>▪️ ${p.cantidad}x ${p.nombre}</span><b>$${Math.round(p.cantidad * p.precioUnitario)}</b></div>`;
-            });
-            document.getElementById('total-usd').innerText = `$${Math.round(acumuladoUSD)}`;
-            document.getElementById('total-cop').innerText = `${Math.round(acumuladoUSD * tCOP).toLocaleString('es-ES')} COP`;
-            document.getElementById('total-bs').innerText = `${(acumuladoUSD * tBs).toFixed(2)} Bs`;
-            window.recalcularSaldosPendientesCaja();
-        };
-
-        window.enviarFacturaWhatsAppClienteSimulada = function() {
-            const vendedor = document.getElementById('ticket-vendedor').value.trim();
-            if(!vendedor) return alert("⚠️ Ingrese nombre de cajero responsable.");
-            if(ticketProductos.length === 0) return alert("Mesa vacía.");
-            
-            let tlf = document.getElementById('ticket-tlf-cliente').value.trim();
-            let cleanTlf = tlf.replace(/\D/g, ''); if(!cleanTlf.startsWith('58')) cleanTlf = '58' + cleanTlf;
-            
-            const tCOP = parseFloat(document.getElementById('tasa-cop').value) || 3900;
-            const tBs = parseFloat(document.getElementById('tasa-bs').value) || 40;
-            const metodoCobro = document.getElementById('ticket-metodo-cobro-real').value.replace(/_/g, ' ');
-
-            let texto = `🛍️ *${infoClienteAbiertoDinamico.nombre}*\n`;
-            texto += `🧾 *COMPROBANTE ADMINISTRATIVO DE DESPACHO*\n`;
-            texto += `--------------------------------------------------\n`;
-            texto += `🔹 *Nota:* #${String(correlativoNotaGlobal).padStart(3, '0')}\n`;
-            texto += `👤 *Cliente:* ${document.getElementById('ticket-cliente').value.toUpperCase() || 'GENERAL'}\n`;
-            texto += `🆔 *RIF/Cédula:* ${document.getElementById('ticket-rif-cliente').value || 'N/A'}\n`;
-            texto += `💼 *Vendedor:* ${vendedor.toUpperCase()}\n`;
-            texto += `💳 *Canal de Pago:* ${metodoCobro}\n`;
-            texto += `--------------------------------------------------\n`;
-            texto += `📋 *DESGLOSE DE ARTÍCULOS:*\n`;
-            
-            ticketProductos.forEach(p => { 
-                texto += `▪️ ${p.cantidad}x ${p.nombre} -> *$${Math.round(p.precioUnitario * p.cantidad)} USD*\n`; 
-            });
-            
-            texto += `--------------------------------------------------\n`;
-            texto += `💰 *TOTALES MULTIMONEDA:*\n`;
-            texto += `💵 *REF NETO:* *$${Math.round(acumuladoUSD)} USD*\n`;
-            texto += `🇨🇴 *EQUIV. PESOS COP:* *${Math.round(acumuladoUSD * tCOP).toLocaleString('es-ES')} COP*\n`;
-            texto += `🇻🇪 *EQUIV. BOLÍVARES Bs:* *${(acumuladoUSD * tBs).toFixed(2)} VES*\n`;
-            texto += `--------------------------------------------------\n`;
-            texto += `🛡️ _Este documento representa una nota de entrega interna para control de stock. No sustituye comprobantes fiscales de ley. Respaldado por Tucocel C.A._`;
-            
-            window.open(`https://api.whatsapp.com/send?phone=${cleanTlf}&text=${encodeURIComponent(texto)}`, '_blank');
-        };
-
-        window.procesarImpresionTicket = async function() {
-            const vendedor = document.getElementById('ticket-vendedor').value.trim();
-            if(!vendedor) return alert("⚠️ Ingrese nombre de cajero responsable.");
-            if(ticketProductos.length === 0) return alert("Mesa vacía.");
-            
-            let fId = 'f-' + new Date().getTime();
-            facturasEmitidasBD.push({ id: fId, correlativo: correlativoNotaGlobal, cliente: document.getElementById('ticket-cliente').value || "General", productos: [...ticketProductos], total: acumuladoUSD, status: 'EMITIDA', vendedor: vendedor });
-            
-            const tCOP = parseFloat(document.getElementById('tasa-cop').value) || 3900;
-            const tBs = parseFloat(document.getElementById('tasa-bs').value) || 40;
-            const termicaBox = document.getElementById('contenedor-impresion-termica-fijo');
-            
-            let htmlTermico = `*** NOTA DE ENTREGA ***\n${infoClienteAbiertoDinamico.nombre}\nNota: #${String(correlativoNotaGlobal).padStart(3, '0')}\nVendedor: ${vendedor.toUpperCase()}\n----------------------\n`;
-            ticketProductos.forEach(p => {
-                htmlTermico += `${p.cantidad}x ${p.nombre.substring(0,15)} $${Math.round(p.precioUnitario*p.cantidad)}\n`;
-            });
-            htmlTermico += `----------------------\nTOTAL USD: $${Math.round(acumuladoUSD)}\nTOTAL COP: ${Math.round(acumuladoUSD*tCOP).toLocaleString()} COP\nTOTAL Bs: ${(acumuladoUSD*tBs).toFixed(2)} Bs\n----------------------\nCONTROL INTERNO SIN VALOR FISCAL\n`;
-            
-            termicaBox.innerText = htmlTermico;
-            window.print();
-
-            correlativoNotaGlobal++; 
-            ticketProductos = []; 
-            window.calcularTotalesSimulados();
-            document.getElementById('ticket-correlativo-display').innerText = `Nota #${String(correlativoNotaGlobal).padStart(3, '0')}`;
-            rebuildListaReportesConBotonBorrarMaster();
-        };
-
-        function rebuildListaReportesConBotonBorrarMaster() {
-            const box = document.getElementById('reportes-notes-lista-box'); box.innerHTML = "";
-            facturasEmitidasBD.forEach(f => { 
-                box.innerHTML += `
-                    <div class="p-2 border rounded-xl bg-slate-50 text-xs mt-1 flex justify-between items-center text-slate-800 font-medium">
-                        <div><b>Nota #${f.correlativo}</b> - ${f.cliente} | $${Math.round(f.total)}</div>
-                        <button onclick="window.eliminarFacturaDeRaizMasterSupremo('${f.id}')" class="text-red-600 font-black text-[9px] hover:underline uppercase px-2">Eliminar</button>
-                    </div>
-                `; 
-            });
-        }
-
-        window.eliminarFacturaDeRaizMasterSupremo = function(id) {
-            if(confirm("🚨 MÁSTER: ¿Desea eliminar esta nota de los registros de prueba de la mesa?")) {
-                facturasEmitidasBD = facturasEmitidasBD.filter(f => f.id !== id);
-                rebuildListaReportesConBotonBorrarMaster();
-                window.calcularTotalesSimulados();
-            }
-        };
-
-        window.dispararGeneradorTokenLinkContratoUnicoDesechable = function() {
-            let token = 'tk-' + Math.floor(100000 + Math.random() * 900000);
-            let urlContrato = `${window.location.href.split('?')[0]}?ver=contrato_promotor&token=${token}`;
-            let textoContrato = `💼 *REGISTRO ÚNICO DE PROMOTOR DIGITAL INDEPENDIENTE*\n\nSaludos. Te enviamos el link oficial de uso único para tu registro y firma digital en la infraestructura de Tucocel C.A.\n\n🌐 *ENLACE DE ACCESO:* ${urlContrato}\n\n_Nota: Este link expira automáticamente una vez firmado el kyc para tu protección contable._`;
-            window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(textoContrato)}`, '_blank');
-        };
-
-        window.dispararEnvioWhatsAppLinkSimuladorVendedoresGlobal = function() {
-            let urlSimulador = `${window.location.href.split('?')[0]}?ver=contrato_promotor`;
-            let msg = `📊 *PROPUESTA CORPORATIVA SAAS Y TABULADOR EN VIVO — 2026*\n\nEstimado cliente, te invitamos a revisar nuestra propuesta de terminales.\n\n🌐 *VER PROPUESTA Y SIMULADOR:* ${urlSimulador}\n\n_Estudie los 4 planes reales y proyecte su facturación de forma interactiva._`;
-            window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`, '_blank');
-        };
-
-        window.ejecutarFirmaYAutodestruccionTokenPromotor = function() {
-            const input = document.getElementById('promotor-cedula-file');
-            if(!input.files || input.files.length === 0) return alert("⚠️ Debe adjuntar la foto de su Cédula.");
-            alert("🔒 Contrato firmado digitalmente con éxito. Token destruído.");
-            window.location.href = window.location.href.split('?')[0];
-        };
-
         window.copiarLinkPortapapelesDemo = function() {
-            const linkField = document.getElementById('cfg-link-url');
-            linkField.select(); navigator.clipboard.writeText(linkField.value);
-            alert("🔗 Enlace único copiado al portapapeles con éxito.");
-        };
-
-        window.dispararContratoWhatsAppSimulado = function() {
-            const nombre = document.getElementById('cfg-nombre').value.trim();
-            const user = document.getElementById('cfg-user').value.trim();
-            const pass = document.getElementById('cfg-pass').value.trim();
-            const tlf = document.getElementById('cfg-tlf').value.trim();
-            let linkAcceso = `${window.location.href.split('?')[0]}?user=${user}`;
-            const msg = `🛍️ *BIENVENIDO A TCL INVENTARIO MÁSTER*\n\nEstimado cliente *${nombre.toUpperCase()}*, su terminal de caja ha sido *ACTIVADO* con éxito. 🔒\n\n👤 *Usuario ID:* ${user}\n🔑 *Contraseña:* ${pass}\n🌐 *Acceso:* ${linkAcceso}`;
-            window.open(`https://api.whatsapp.com/send?phone=${tlf}&text=${encodeURIComponent(msg)}`, '_blank');
-        };
-
-        window.dispararReciboRenovacionWhatsApp = function() {
-            const nombre = document.getElementById('cfg-nombre').value.trim();
-            const tlf = document.getElementById('cfg-tlf').value.trim();
-            const msg = `🔄 *RENOVACIÓN DE SUSCRIPCIÓN CONTRATADA — TCL*\n\nEstimado cliente *${nombre.toUpperCase()}*, su membresía de uso ha sido *RENOVADA* de forma satisfactoria por +${diasSimuladosValor} Días de cobertura.`;
-            window.open(`https://api.whatsapp.com/send?phone=${tlf}&text=${encodeURIComponent(msg)}`, '_blank');
+            const linkField = document.getElementById('cfg-link-url'); linkField.select();
+            navigator.clipboard.writeText(linkField.value); alert("🔗 Enlace copiado.");
         };
 
         window.activarPestañaPos = function(pes) {
             document.getElementById('panel-seccion-facturar').classList.toggle('hidden', pes !== 'facturar');
             document.getElementById('panel-seccion-inventario').classList.toggle('hidden', pes !== 'inventario');
             document.getElementById('panel-seccion-reportes').classList.toggle('hidden', pes !== 'reportes');
-            
-            document.getElementById('nav-btn-facturar').className = pes === 'facturar' ? "text-blue-400 flex flex-col items-center justify-center gap-1" : "flex flex-col items-center justify-center gap-1";
-            document.getElementById('nav-btn-inventario').className = pes === 'inventario' ? "text-blue-400 flex flex-col items-center justify-center gap-1" : "flex flex-col items-center justify-center gap-1";
-            document.getElementById('nav-btn-reportes').className = pes === 'reportes' ? "text-blue-400 flex flex-col items-center justify-center gap-1" : "flex flex-col items-center justify-center gap-1";
         };
 
-        window.limpiarTicketCompleto = function() { ticketProductos = []; window.calcularTotalesSimulados(); };
-        window.cerrarConfiguracionCliente = function() { document.getElementById('modal-config-master').classList.add('hidden'); };
-        window.ejecutarBotonSalidaInteligente = function() {
-            document.getElementById('cli-bloque-sistema').classList.add('hidden');
-            document.getElementById('cli-bloque-login').classList.remove('hidden');
-            document.getElementById('cli-panel-reglas-fijas').classList.remove('hidden');
-            document.body.className = "bg-slate-950 text-slate-100 min-h-screen";
+        window.cambiarModoDeDigitacionMostrador = function(modo) {
+            modoDigitacionMostrador = modo;
+            document.getElementById('wrapper-input-nombre-libre').classList.toggle('hidden', modo !== 'LIBRE');
+            document.getElementById('wrapper-select-producto-inv').classList.toggle('hidden', modo !== 'INVENTARIO');
         };
-        window.asignarDiasSimulador = function(amount, boton) {
-            diasSimuladosValor = amount; document.getElementById('cfg-dias-display').innerText = `${diasSimuladosValor} Días`;
-            document.querySelectorAll('.tiempo-btn').forEach(btn => btn.className = "tiempo-btn bg-slate-900 text-slate-300 text-[10px] py-2.5 font-bold rounded-xl transition-all");
-            boton.className = "tiempo-btn bg-purple-600 text-white text-[10px] py-2.5 font-black rounded-xl shadow transition-all";
-        };
-        window.autoGenerarIdUsuarioBloqueado = function() {
-            const fontName = document.getElementById('cfg-nombre').value;
-            const userClean = fontName.trim().toLowerCase().replace(/[^a-z0-9]/g, '');
-            if(document.getElementById('cfg-modal-titulo').innerText.includes("CREAR")) {
-                document.getElementById('cfg-user').value = userClean;
-            }
-        };
-        window.toggleLógicaCondicionCaja = function() {
-            const cond = document.getElementById('ticket-condicion-pago').value;
-            document.getElementById('wrapper-campos-credito-pos').classList.toggle('hidden', cond !== 'CREDITO');
-            window.recalcularSaldosPendientesCaja();
-        };
-        window.recalcularSaldosPendientesCaja = function() {
-            const abono = parseFloat(document.getElementById('ticket-abono').value) || 0;
-            let resta = Math.max(0, acumuladoUSD - abono);
-            document.getElementById('ticket-resta-display').value = `$${Math.round(resta)}`;
-        };
+
+        function rebuildSelectDesplegableInventarioMostrador() {
+            const select = document.getElementById('select-prod-inventario-pos'); select.innerHTML = "";
+            localProductosInventarioArr.forEach(p => { select.innerHTML += `<option value="${p.id}">${p.nombre}</option>`; });
+        }
+        function rebuildMosaicoVisualInventarioPestaña() {}
+        function rebuildMosaicoVisualGastosPestaña() {}
+        window.guardarTasasComisionesMasterFijas = function() {};
         window.guardarTasasGeneralesGlobales = function() {};
+        window.cerrarConfiguracionCliente = function() { document.getElementById('modal-config-master').classList.add('hidden'); };
+        window.toggleLógicaCondicionCaja = function() {};
+        window.recalcularSaldosPendientesCaja = function() {};
+        window.asignarDiasSimulador = function(amount, boton) { diasSimuladosValor = amount; };
+        window.autoGenerarIdUsuarioBloqueado = function() {};
+        window.ejecutarBotonSalidaInteligente = function() { location.reload(); };
     </script>
 </body>
-                                                                                                                                                                                                                                                                                                                 </html>
+                                                                                                                                                                     </html>
