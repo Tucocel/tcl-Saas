@@ -584,7 +584,6 @@
 
     <!-- BOTÓN DE CONTROL DE INMERSIÓN DE RED INMUNE A FALLAS -->
     <script>
-        // Declaración global inmediata de la Consola F12 para blindarla contra bloqueos
         window.toggleConsolaDiagnosticoInterna = function() {
             var modal = document.getElementById('modal-consola-diagnostico');
             if (modal) {
@@ -597,7 +596,7 @@
         
         window.actualizarBadgeMarcadorAntivirusVisual = function() {
             var erroresGuardados = JSON.parse(localStorage.getItem('tcl_caja_negra_logs')) || [];
-            var badge = document.getElementById('badge-contador-errors');
+            var badge = document.getElementById('badge-contador-errores');
             var btn = document.getElementById('btn-consola-flotante');
             var total = erroresGuardados.filter(function(e) { return e.tipo === 'ERROR'; }).length;
             
@@ -623,15 +622,7 @@
             if (logBox) {
                 logBox.innerHTML += '<p class="text-red-400">[' + time + '] [ERROR] Falla: ' + e.message + ' en línea ' + e.lineno + '</p>';
             }
-            
-            var badge = document.getElementById('badge-contador-errores');
-            var btn = document.getElementById('btn-consola-flotante');
-            if(badge && btn) {
-                var total = erroresGuardados.filter(function(x) { return x.tipo === 'ERROR'; }).length;
-                badge.innerText = '[ ' + total + ' ]';
-                badge.classList.remove('hidden');
-                btn.className = "w-12 h-12 bg-red-600 border border-red-400 text-white rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(220,38,38,0.6)] animate-pulse text-lg";
-            }
+            window.actualizarBadgeMarcadorAntivirusVisual();
         });
     </script>
 
@@ -721,7 +712,7 @@
         let idSeleccionadoActual = null; let diasSimuladosValor = 365;
         let ticketProductos = []; let acumuladoUSD = 0;
         let infoClienteAbiertoDinamico = { id: "demo", nombre: "TCL TIENDA", user: "demo", pass: "123456", rubro: "GENERAL", dias: 365, ownerID: "demo", tlf: "04247357549", promotor: "", contrato_firmado: false };
-        let facturasEmitidasBD = []; let correlativoNotaGlobal = 1;
+        let correlativoNotaGlobal = 1;
         let comisionConfigGlobal = { m1: 5, m3: 9, m6: 14, m12: 24, renov: 1.25 };
         let modoDigitacionMostrador = "LIBRE";
         let localProductosInventarioArr = [];
@@ -864,7 +855,6 @@
             } catch(e) { registrarErrorEnCajaNegraPersistente('ERROR', `Error Comisiones Config: ${e.message}`); }
         }
 
-        // --- WHATSAPP CORRECCIONES MANDATORIAS REALES ---
         window.dispararContratoWhatsAppSimulado = function() {
             try {
                 const nombre = document.getElementById('cfg-nombre').value.toUpperCase();
@@ -899,7 +889,6 @@
             } catch(e) { registrarErrorEnCajaNegraPersistente('ERROR', `Falla al eliminar cuenta: ${e.message}`); }
         };
 
-        // --- OPERATORIA GESTIÓN EDICIÓN ---
         window.abrirConfiguracionCliente = function(id, nombre, rif, tlf, dir, redes, promotor, user, pass, dias, rango, rubro) {
             idSeleccionadoActual = id; diasSimuladosValor = parseInt(dias) || 365;
             document.getElementById('cfg-modal-titulo').innerText = "CONFIGURAR ENTORNO SAAS";
@@ -960,11 +949,29 @@
             } catch(e) { registrarErrorEnCajaNegraPersistente('ERROR', `Falla renderizado subentornos master: ${e.message}`); }
         };
 
+        // --- ENTRADA DIRECTA A CAJA DESDE PANEL SUPREMO REPARADA ---
         window.ingresarDirectoACajaDesdeMasterAdmin = async function(user, pass) {
-            document.getElementById('comercio-user-field').value = user;
-            document.getElementById('comercio-pass-field').value = pass;
-            document.getElementById('modal-sub-lista-comercios').classList.add('hidden');
-            await window.comprobarEstatusContratoClienteLogin();
+            try {
+                document.getElementById('modal-sub-lista-comercios').classList.add('hidden');
+                document.getElementById('vista-master-admin').classList.add('hidden');
+                
+                let listado = await obtenerClientesDesdeFirebase();
+                let mCliente = listado.find(c => c.user === user.toLowerCase());
+                if(mCliente) {
+                    infoClienteAbiertoDinamico = mCliente;
+                    await descargarEstructuraInventarioYGastosFirebase();
+                    document.getElementById('cli-bloque-login').classList.add('hidden');
+                    document.getElementById('cli-panel-reglas-fijas').classList.add('hidden');
+                    document.getElementById('cli-panel-nombre').innerText = infoClienteAbiertoDinamico.nombre;
+                    document.getElementById('cli-panel-dias-conteo').innerText = `${infoClienteAbiertoDinamico.dias} Días`;
+                    document.getElementById('vista-entorno-cliente').classList.remove('hidden');
+                    document.getElementById('cli-bloque-sistema').classList.remove('hidden');
+                    document.body.className = "bg-slate-50 text-slate-800 min-h-screen";
+                    window.calcularTotalesSimulados();
+                } else {
+                    alert("No se localizó la base de datos de esta sucursal.");
+                }
+            } catch(e) { registrarErrorEnCajaNegraPersistente('ERROR', `Falla en pase directo de caja: ${e.message}`); }
         };
 
         window.abrirSeccionBovedaPromotoresMando = async function() {
@@ -1112,6 +1119,14 @@
             window.calcularTotalesSimulados();
         }
 
+        window.dispararEnvioWhatsAppLinkSimuladorVendedoresGlobal = function() {
+            let urlPropuesta = `${window.location.href.split('?')[0]}?ver=propuesta`;
+            let urlCatalogo = `${window.location.href.split('?')[0]}?ver=catalogo`;
+            
+            let msg = `🛍️ *PRESENTACIÓN INSTITUCIONAL DE INFRAESTRUCTURA — TUCOCEL C.A.*\n\nEstimado cliente, tenemos el agrado de presentarle formalmente nuestro ecosistema contable de mostrador.\n\n🌐 *1. NUESTRA PROPUESTA DE MEMBRESÍAS COMERCIALES Y PLANES:*\n👉 ${urlPropuesta}\n\n---------------------------------------------\n\n🌐 *2. EXPLORA NUESTRO CATÁLOGO VISUAL DE SERVICIOS:*\n👉 ${urlCatalogo}\n\n_Para cualquier tipo de soporte técnico, canalice primero con su Asesor de Ventas. Central Tucocel C.A. RIF J-31378837-6_`;
+            window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`, '_blank');
+        };
+
         window.agregarArticuloManualTicket = function() {
             try {
                 let prodNombre = ""; let precio = parseFloat(document.getElementById('manual-prod-precio').value) || 0;
@@ -1215,7 +1230,7 @@
                 const listaNotes = document.getElementById('reportes-notes-lista-box');
                 if(listaNotes) {
                     if(listaNotes.innerHTML.includes('italic')) listaNotes.innerHTML = "";
-                    listaNotes.innerHTML += `<div class="bg-slate-50 border p-2 rounded-xl text-[11px] font-mono flex justify-between"><span>Nota #${String(correlativoNotaGlobal).padStart(3, '0')} (${seller.toUpperCase()})</span><b>+$${acumuladoUSD.toFixed(2)}</b></div>`;
+                    listaNotes.innerHTML += `<div class="bg-slate-50 border p-2 rounded-xl text-[11px] font-mono flex justify-between"><span>Nota #${String(correlativoNotaGlobal).padStart(3, '0')} (${seller.toUpperCase()})</span>b>+$${acumuladoUSD.toFixed(2)}</b></div>`;
                 }
 
                 correlativoNotaGlobal++; ticketProductos = []; window.calcularTotalesSimulados();
@@ -1296,11 +1311,14 @@
             } else { alert("❌ Llave Maestra Incorrecta."); }
         };
 
+        // --- APERTURA DE MODAL DE CREACIÓN CON INPUTS CORREGIDOS ---
         window.abrirModalCrearPerfil = async function() {
             idSeleccionadoActual = "perfil-" + new Date().getTime(); diasSimuladosValor = 365;
             document.getElementById('cfg-nombre').value = ""; document.getElementById('cfg-rif').value = "";
-            document.getElementById('cfg-user').value = "tienda_id"; document.getElementById('cfg-pass').value = "";
-            document.getElementById('cfg-promotor-asignado').value = "";
+            document.getElementById('cfg-user').value = ""; document.getElementById('cfg-pass').value = "";
+            document.getElementById('cfg-tlf').value = ""; document.getElementById('cfg-redes').value = "";
+            document.getElementById('cfg-dir').value = "";
+            document.getElementById('cfg-link-url').value = ""; 
             document.getElementById('cfg-modal-titulo').innerText = "CREAR ENTORNO SAAS";
             
             try {
@@ -1421,7 +1439,7 @@
             const box = document.getElementById('lista-gastos-caja-box'); if(!box) return;
             box.innerHTML = "";
             localGastosCajaArr.forEach(g => {
-                box.innerHTML += `<div class="bg-red-50 border border-red-100 rounded-xl p-2 text-xs flex justify-between font-mono text-red-700"><span>${g.motivo}</span> b>-$${g.monto.toFixed(2)}</b></div>`;
+                box.innerHTML += `<div class="bg-red-50 border border-red-100 rounded-xl p-2 text-xs flex justify-between font-mono text-red-700"><span>${g.motivo}</span><b>-$${g.monto.toFixed(2)}</b></div>`;
             });
         };
 
@@ -1498,9 +1516,20 @@
             }
         };
 
+        // --- AUTOGENERADOR DE LINK DE ACCESO ÚNICO EN VIVO ---
         window.autoGenerarIdUsuarioBloqueado = function() {
-            const name = document.getElementById('cfg-nombre').value;
-            document.getElementById('cfg-user').value = name.trim().toLowerCase().replace(/[^a-z0-9]/g, '');
+            try {
+                const name = document.getElementById('cfg-nombre').value;
+                const cleanId = name.trim().toLowerCase().replace(/[^a-z0-9]/g, '');
+                document.getElementById('cfg-user').value = cleanId;
+                
+                // Rellenar la caja de texto del enlace inmediatamente al escribir para evitar espacios vacíos
+                if(cleanId) {
+                    document.getElementById('cfg-link-url').value = `${window.location.href.split('?')[0]}?user=${cleanId}`;
+                } else {
+                    document.getElementById('cfg-link-url').value = "";
+                }
+            } catch(e) {}
         };
         
         window.toggleLógicaCondicionCaja = function() {
@@ -1515,4 +1544,4 @@
         window.guardarTasasGeneralesGlobales = function() { alert("Tasas base de mostrador actualizadas."); };
     </script>
 </body>
-    </html>
+                    </html>
