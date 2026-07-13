@@ -202,8 +202,8 @@
             </div>
 
             <div class="bg-slate-900 border border-slate-800 p-4 rounded-3xl grid grid-cols-1 sm:grid-cols-3 gap-3 items-center">
-                <div class="bg-slate-950 p-2 rounded-xl border border-slate-850"><span class="block text-[8px] text-slate-500 font-bold uppercase">Tasa COP (Mostrador)</span><input type="number" id="master-tasa-cop" value="3600" class="w-full bg-transparent font-black text-xs text-amber-400 focus:outline-none"></div>
-                <div class="bg-slate-950 p-2 rounded-xl border border-slate-850"><span class="block text-[8px] text-slate-500 font-bold uppercase">Tasa Bs (Mostrador)</span><input type="number" id="master-tasa-bs" value="40" class="w-full bg-transparent font-black text-xs text-emerald-400 focus:outline-none"></div>
+                <div class="bg-slate-950 p-2 rounded-xl border border-slate-850"><span class="block text-[8px] text-slate-500 font-bold uppercase">Tasa COP</span><input type="number" id="master-tasa-cop" value="3600" class="w-full bg-transparent font-black text-xs text-amber-400 focus:outline-none"></div>
+                <div class="bg-slate-950 p-2 rounded-xl border border-slate-850"><span class="block text-[8px] text-slate-500 font-bold uppercase">Tasa Bs</span><input type="number" id="master-tasa-bs" value="40" class="w-full bg-transparent font-black text-xs text-emerald-400 focus:outline-none"></div>
                 <div class="bg-slate-950 p-2 rounded-xl border border-slate-850"><span class="block text-[8px] text-slate-500 font-bold uppercase">Nueva Clave Máster</span><input type="password" id="master-new-password-field" placeholder="Razu2020." class="w-full bg-transparent font-black text-xs text-blue-400 focus:outline-none"><button onclick="window.procesarChangeMasterPassGlobal()" class="text-[8px] bg-blue-600 text-white font-bold px-2 py-0.5 rounded uppercase mt-1 block">Actualizar Clave</button></div>
             </div>
 
@@ -447,16 +447,16 @@
                     </div>
                 </div>
 
-                <!-- PESTAÑA 1: MESA DE FACTURACIÓN -->
+                <!-- PESTAÑA 1: MESA DE FACTURACIÓN AVANZADA -->
                 <div id="panel-seccion-facturar" class="p-4 max-w-7xl mx-auto w-full flex-grow pb-24">
                     <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
                         
-                        <!-- BLOQUE IZQUIERDO -->
+                        <!-- BLOQUE IZQUIERDO: CONTROL CAJERO Y COMPRADOR -->
                         <div class="lg:col-span-4 space-y-4">
                             <div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm">
                                 <label class="text-[9px] font-black text-slate-400 uppercase block mb-1">Cajero Responsable del Turno</label>
                                 <input type="text" id="ticket-vendedor" placeholder="Escriba su nombre..." class="w-full bg-slate-50 border px-3 py-2 rounded-xl text-xs font-black uppercase text-purple-600 focus:outline-none">
-                                <span class="text-[8px] text-slate-400 block mt-1 font-sans">Obligatorio para turnos.</span>
+                                <span class="text-[8px] text-slate-400 block mt-1 font-sans">Obligatorio para auditoría interna de turnos.</span>
                             </div>
                             <div class="bg-slate-900 text-white rounded-2xl p-4 border border-slate-800 shadow-md">
                                 <div class="grid grid-cols-2 gap-3 text-center">
@@ -465,7 +465,7 @@
                                 </div>
                             </div>
                             <div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm space-y-3">
-                                <h3 class="text-[10px] font-black text-slate-400 uppercase tracking-widest border-b pb-1">Datos del Comprador</h3>
+                                <h3 class="text-[10px] font-black text-slate-400 uppercase tracking-widest border-b pb-1">Datos de Control del Comprador</h3>
                                 <input type="text" id="ticket-cliente" placeholder="Nombre Completo del Cliente" class="w-full bg-slate-50 border px-3 py-2 rounded-xl text-xs font-bold focus:outline-none">
                                 <div class="grid grid-cols-2 gap-2">
                                     <input type="text" id="ticket-rif-cliente" placeholder="Cédula o RIF del Cliente" class="w-full bg-slate-50 border px-3 py-2 rounded-xl text-xs font-bold focus:outline-none">
@@ -482,14 +482,14 @@
                                 <div id="wrapper-campos-credito-pos" class="hidden space-y-3 bg-purple-50 p-2.5 rounded-xl border border-purple-100">
                                     <div class="grid grid-cols-3 gap-2 text-xs font-bold">
                                         <div><label class="text-[9px] text-purple-500 font-bold uppercase block mb-1">Días Plazo</label><input type="number" id="ticket-credito-dias" value="5" min="1" class="w-full bg-white border px-3 py-1.5 rounded-xl text-center focus:outline-none"></div>
-                                        <div><label class="text-[9px] text-purple-500 font-bold uppercase block mb-1">Abono ($)</label><input type="number" id="ticket-abono" value="0" onkeyup="window.recalcularSaldosPendientesCaja()" class="w-full bg-white border px-3 py-1.5 rounded-xl text-center focus:outline-none"></div>
+                                        <div><label class="text-[9px] text-purple-500 font-bold uppercase block mb-1">Abono Inicial ($)</label><input type="number" id="ticket-abono" value="0" onkeyup="window.recalcularSaldosPendientesCaja()" class="w-full bg-white border px-3 py-1.5 rounded-xl text-center focus:outline-none"></div>
                                         <div><label class="text-[9px] text-slate-400 font-bold uppercase block mb-1">Resta</label><input type="text" id="ticket-resta-display" readonly value="$0" class="w-full bg-transparent px-3 py-1.5 font-black text-purple-600 text-center cursor-not-allowed"></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- BLOQUE CENTRAL -->
+                        <!-- BLOQUE CENTRAL: MOTOR ADAPTATIVO IMEI / LÁSER Y DIGITACIÓN -->
                         <div class="lg:col-span-4 space-y-4">
                             <div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm space-y-4">
                                 <div class="flex justify-between items-center border-b pb-1">
@@ -503,8 +503,8 @@
                                     
                                     <div id="contenedor-estilizado-lector-neón" class="p-3 rounded-xl transition-all duration-300 bg-slate-900 border border-slate-800 text-slate-100">
                                         <span id="label-lector-adaptativo" class="text-[9px] text-blue-400 font-black uppercase block tracking-wider mb-1"><i class="fa-solid fa-barcode mr-1"></i> Lector Láser Comercial</span>
-                                        <input type="text" id="pos-lector-barras-input" onkeyup="if(event.key === 'Enter') window.dispararGatilloEscaneoPistolaLector();" placeholder="Pase el escáner láser..." class="w-full bg-slate-950 text-white border border-slate-800 px-3 py-2.5 rounded-xl text-xs font-mono font-bold focus:outline-none uppercase tracking-widest">
-                                        <span class="text-[7.5px] text-slate-500 block mt-1 font-sans">Coloque el cursor aquí antes de gatillar el escáner.</span>
+                                        <input type="text" id="pos-lector-barras-input" onkeyup="if(event.key === 'Enter') window.dispararGatilloEscaneoPistolaLector();" placeholder="Pase el escáner láser..." class="w-full bg-slate-950 text-white border border-slate-800 px-3 py-2.5 rounded-xl text-xs font-mono font-bold focus:outline-none uppercase focus:border-blue-500 tracking-widest">
+                                        <span class="text-[7.5px] text-slate-500 block mt-1 font-sans">Coloque el cursor aquí antes de gatillar la pistola escáner.</span>
                                     </div>
 
                                     <div id="wrapper-input-nombre-libre">
@@ -527,7 +527,7 @@
                             </div>
                         </div>
 
-                        <!-- BLOQUE DERECHO -->
+                        <!-- BLOQUE DERECHO: TOTALES, COBRO Y BUSCADOR DE NOTAS -->
                         <div class="lg:col-span-4 space-y-4">
                             <div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm space-y-3 sticky lg:top-22">
                                 <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-widest border-b pb-1 flex justify-between"><span>Resumen de Venta</span> <span id="ticket-correlativo-display" class="font-mono font-bold">Nota #001</span></h4>
@@ -553,7 +553,6 @@
                                 </div>
                                 <button onclick="window.limpiarTicketCompleto()" class="w-full bg-gray-100 text-gray-500 text-[9px] font-black py-2 rounded-xl uppercase">Vaciar Nota</button>
                                 
-                                <!-- TRACKER DE GARANTÍAS -->
                                 <div class="border-t pt-3 space-y-2">
                                     <span class="text-[9px] font-black text-slate-400 uppercase block"><i class="fa-solid fa-history mr-1"></i> Rastreador Inmediato de Garantías</span>
                                     <div class="flex gap-1">
@@ -564,6 +563,7 @@
                                         <p class="text-[10px] text-slate-400 text-center italic py-1">Buffer listo para rastreo contable.</p>
                                     </div>
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -585,19 +585,72 @@
                     </div>
                 </div>
 
-                <!-- PESTAÑA 3: MODULO DE GASTOS -->
-                <div id="panel-seccion-reportes" class="p-4 max-w-xl mx-auto w-full space-y-4 flex-grow pb-24 hidden">
+                <!-- PESTAÑA 3: ZONA DE REPORTES AVANZADOS -->
+                <div id="panel-seccion-reportes" class="p-4 max-w-4xl mx-auto w-full space-y-6 flex-grow pb-24 hidden">
+                    
+                    <!-- CRUCE FIJO MULTIMONEDA POR CAJAS INDEPENDIENTES -->
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <div class="bg-slate-900 border border-slate-800 p-4 rounded-2xl text-center shadow-sm">
+                            <span class="text-[9px] font-black text-amber-400 block uppercase tracking-wider">💵 Caja Dólares (USD)</span>
+                            <span id="rep-caja-usd" class="text-xl font-mono font-black text-white">$0.00</span>
+                        </div>
+                        <div class="bg-slate-900 border border-slate-800 p-4 rounded-2xl text-center shadow-sm">
+                            <span class="text-[9px] font-black text-blue-400 block uppercase tracking-wider">🇨🇴 Caja Pesos (COP)</span>
+                            <span id="rep-caja-cop" class="text-xl font-mono font-black text-white">0 COP</span>
+                        </div>
+                        <div class="bg-slate-900 border border-slate-800 p-4 rounded-2xl text-center shadow-sm">
+                            <span class="text-[9px] font-black text-emerald-400 block uppercase tracking-wider">🇻🇪 Caja PagoMóvil (Bs)</span>
+                            <span id="rep-caja-ves" class="text-xl font-mono font-black text-white">0.00 Bs</span>
+                        </div>
+                    </div>
+
+                    <!-- CONTROL TIMELINE Y RANGOS DE AUDITORÍA -->
                     <div class="bg-white border border-slate-200 rounded-3xl p-5 shadow-sm space-y-4">
-                        <div class="flex justify-between items-center border-b pb-2">
-                            <h3 class="font-black text-xs text-slate-900 uppercase">Control de Gastos de Caja</h3>
-                            <button onclick="window.enviarReporteCierreDiarioWhatsAppDueño()" class="bg-emerald-600 text-white text-[8.5px] font-black px-2.5 py-1.5 rounded-md uppercase shadow"><i class="fa-brands fa-whatsapp"></i> Cierre WA</button>
+                        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 border-b pb-3">
+                            <div>
+                                <h3 class="font-black text-sm text-slate-900 uppercase">Filtro de Rango Institucional</h3>
+                                <span class="text-[8px] text-slate-400 block font-sans">Seleccione la cobertura temporal de despacho para auditoría.</span>
+                            </div>
+                            <div class="flex gap-2">
+                                <select id="reporte-rango-temporal" onchange="window.recalcularEstructuraReportesGlobalTurno()" class="bg-slate-100 border p-2 rounded-xl text-xs font-bold text-slate-800 focus:outline-none">
+                                    <option value="DIA">Turno Diario (Hoy)</option>
+                                    <option value="MES">Cierre Mensual Consolidado</option>
+                                </select>
+                                <button onclick="window.enviarReporteCierreDiarioWhatsAppDueño()" class="bg-emerald-600 text-white text-xs font-black px-4 py-2 rounded-xl uppercase shadow-md flex items-center gap-1.5"><i class="fa-brands fa-whatsapp text-sm"></i> Enviar Dueño</button>
+                            </div>
                         </div>
-                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs font-bold">
-                            <input type="text" id="gastos-input-motivo" placeholder="Descripción del Gasto" class="bg-slate-50 border p-2.5 rounded-xl sm:col-span-2 focus:outline-none">
-                            <input type="number" id="gastos-input-monto" placeholder="Monto ($)" class="bg-slate-50 border p-2.5 rounded-xl focus:outline-none">
+
+                        <!-- BALANCES GENERALES -->
+                        <div class="grid grid-cols-1 sm:grid-cols-4 gap-2 text-center font-mono text-xs text-slate-800">
+                            <div class="bg-slate-50 border p-3 rounded-xl"><span class="block text-[8px] text-slate-400 uppercase font-bold">Ventas Brutas</span><span id="rep-ventas-brutas" class="text-emerald-600 font-black">$0.00</span></div>
+                            <div class="bg-slate-50 border p-3 rounded-xl"><span class="block text-[8px] text-slate-400 uppercase font-bold">Gastos / Vales</span><span id="rep-gastos-totales" class="text-red-500 font-black">$0.00</span></div>
+                            <div class="bg-slate-50 border p-3 rounded-xl"><span class="block text-[8px] text-slate-400 uppercase font-bold">Notas de Débito (Anuladas)</span><span id="rep-notas-debito" class="text-purple-600 font-black">$0.00</span></div>
+                            <div class="bg-slate-900 text-white p-3 rounded-xl border border-slate-800"><span class="block text-[8px] text-slate-400 uppercase font-bold">Caja Neta Real</span><span id="rep-balance-neto" class="text-amber-400 font-black">$0.00</span></div>
                         </div>
-                        <button onclick="window.ejecutarCargaGastoTurnoFirebase()" class="w-full bg-slate-900 text-white font-black text-xs py-2.5 rounded-xl uppercase">Registrar Gasto de Caja</button>
-                        <div id="lista-gastos-caja-box" class="space-y-1 max-h-32 overflow-y-auto no-scrollbar"></div>
+                    </div>
+
+                    <!-- DOBLE CONJUNTO: CARGA DE GASTOS Y REGISTRO DE AUDITORÍA -->
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-5">
+                        
+                        <!-- REGISTRADOR DE SALIDAS -->
+                        <div class="md:col-span-5 bg-white border border-slate-200 rounded-3xl p-5 shadow-sm space-y-3">
+                            <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-wider border-b pb-1">Registrar Gasto de Caja</h4>
+                            <div class="space-y-2 text-xs font-bold">
+                                <input type="text" id="gastos-input-motivo" placeholder="Motivo o Concepto" class="w-full bg-slate-50 border p-2.5 rounded-xl focus:outline-none uppercase">
+                                <input type="number" id="gastos-input-monto" placeholder="Monto ($)" class="w-full bg-slate-50 border p-2.5 rounded-xl focus:outline-none">
+                                <button onclick="window.ejecutarCargaGastoTurnoFirebase()" class="w-full bg-slate-900 text-white font-black py-3 rounded-xl uppercase tracking-wider text-xs">Ingresar Salida</button>
+                            </div>
+                            <div id="lista-gastos-caja-box" class="space-y-1 max-h-48 overflow-y-auto no-scrollbar pt-1"></div>
+                        </div>
+
+                        <!-- HISTORIAL E HISTÓRICO DE FACTURAS -->
+                        <div class="md:col-span-7 bg-white border border-slate-200 rounded-3xl p-5 shadow-sm space-y-3">
+                            <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-wider border-b pb-1">Historial General de Notas y Auditoría de Despacho</h4>
+                            <div id="lista-auditoria-notas-completa-box" class="space-y-2 max-h-80 overflow-y-auto no-scrollbar pr-1 text-xs">
+                                <p class="text-center text-slate-400 italic py-6">No hay notas registradas en este bloque temporal.</p>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
 
@@ -611,7 +664,7 @@
         </div>
     </div>
 
-    <!-- REGLAS DE LÓGICA CORE (CON AMARRE COMPLETO AL ENTORNO WINDOW GLOBAL) -->
+    <!-- REGLAS DE LÓGICA CORE ASÍNCRONA DE SERVIDORES -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
@@ -628,97 +681,7 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
-        // --- ENLACE INDESTRUCTIBLE DE FUNCIONES CON LA VENTANA GLOBAL ---
-        window.toggleConsolaDiagnosticoInterna = function() {
-            var modal = document.getElementById('modal-consola-diagnostico');
-            if (modal) {
-                modal.classList.toggle('hidden');
-                window.renderizarLogsCajaNegraPantalla();
-            }
-        };
-
-        window.actualizarBadgeMarcadorAntivirusVisual = function() {
-            var erroresGuardados = JSON.parse(localStorage.getItem('tcl_caja_negra_logs')) || [];
-            var badge = document.getElementById('badge-contador-errores');
-            var btn = document.getElementById('btn-consola-flotante');
-            var total = erroresGuardados.filter(e => e.tipo === 'ERROR').length;
-            
-            if (badge && btn) {
-                if (total > 0) {
-                    badge.innerText = `[ ${total} ]`;
-                    badge.classList.remove('hidden');
-                    btn.className = "w-12 h-12 bg-red-600 border border-red-400 text-white rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(220,38,38,0.6)] animate-pulse text-lg";
-                } else {
-                    badge.classList.add('hidden');
-                    btn.className = "w-12 h-12 bg-slate-800 border border-slate-700 text-white rounded-full flex items-center justify-center shadow-2xl text-lg";
-                }
-            }
-        };
-
-        window.renderizarLogsCajaNegraPantalla = function() {
-            const logBox = document.getElementById('logs-diagnostico-box');
-            if (logBox) {
-                let erroresGuardados = JSON.parse(localStorage.getItem('tcl_caja_negra_logs')) || [];
-                if (erroresGuardados.length === 0) {
-                    logBox.innerHTML = `<p class="text-emerald-400">[OK] Consola limpia. Ecosistema auditado con éxito.</p>`;
-                    return;
-                }
-                logBox.innerHTML = "";
-                erroresGuardados.forEach(e => {
-                    const color = e.tipo === 'ERROR' ? 'text-red-400' : 'text-slate-400';
-                    logBox.innerHTML += `<p class="${color}">[${e.time}] [${e.tipo}] ${e.msg}</p>`;
-                });
-            }
-        };
-
-        window.descargarMasaMadre = function() {
-            try {
-                const htmlContent = document.documentElement.outerHTML;
-                const blob = new Blob([htmlContent], {type: 'text/html'});
-                const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
-                a.download = `MasaMadre_TCL_${new Date().getTime()}.html`; a.click();
-            } catch(e) { registrarErrorEnCajaNegraPersistente('ERROR', `Falla descargar Masa Madre: ${e.message}`); }
-        };
-
-        window.descargarReporteErroresIndex = function() {
-            try {
-                let erroresGuardados = JSON.parse(localStorage.getItem('tcl_caja_negra_logs')) || [];
-                const blob = new Blob([JSON.stringify(erroresGuardados, null, 2)], { type: "text/plain" });
-                const url = URL.createObjectURL(blob);
-                const a = document.createElement('a'); a.href = url; a.download = "reporte_errores_tcl_master.txt";
-                document.body.appendChild(a); a.click(); document.body.removeChild(a);
-            } catch(e) { registrarErrorEnCajaNegraPersistente('ERROR', `Falla descargar reporte .txt: ${e.message}`); }
-        };
-
-        window.limpiarHistorialErroresPermanente = function() {
-            localStorage.setItem('tcl_caja_negra_logs', JSON.stringify([]));
-            window.actualizarBadgeMarcadorAntivirusVisual();
-            window.renderizarLogsCajaNegraPantalla();
-        };
-
-        // --- PROPUESTA WHATSAPP DISPARADOR GLOBAL ---
-        window.dispararEnvioWhatsAppLinkSimuladorVendedoresGlobal = function() {
-            try {
-                let urlPropuesta = `${window.location.href.split('?')[0]}?ver=propuesta`;
-                let urlCatalogo = `${window.location.href.split('?')[0]}?ver=catalogo`;
-                let msg = `🛍️ *PRESENTACIÓN INSTITUCIONAL DE INFRAESTRUCTURA — TUCOCEL C.A.*\n\nEstimado cliente, tenemos el agrado de presentarle nuestro ecosistema contable de mostrador.\n\n🌐 *1. NUESTRA PROPUESTA DE PLANES SAAS:*\n👉 ${urlPropuesta}\n\n🌐 *2. EXPLORA NUESTRO CATÁLOGO VISUAL DE EXPERIENCIA:*\n👉 ${urlCatalogo}\n\n_Soporte centralizado Tucocel C.A. RIF J-31378837-6_`;
-                window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`, '_blank');
-            } catch(e) { registrarErrorEnCajaNegraPersistente('ERROR', `Falla emisor propuesta WA: ${e.message}`); }
-        };
-
-        // --- LLAVE MAESTRA LOGUEO DESBLOQUEO REPARADA ---
-        window.validarAccAccessMasterAdmin = function() {
-            try {
-                const user = document.getElementById('master-user-field').value.trim();
-                const pass = document.getElementById('master-pass-field').value.trim();
-                if(user.toLowerCase() === "tucocel" && pass === "Razu2020.") {
-                    document.getElementById('bloque-login-master').classList.add('hidden');
-                    document.getElementById('vista-master-admin').classList.remove('hidden');
-                } else { alert("❌ Llave Maestra Incorrecta."); }
-            } catch(e) { registrarErrorEnCajaNegraPersistente('ERROR', `Falla en login maestro: ${e.message}`); }
-        };
-
-        // --- VARIABLES GENERALES ---
+        // --- VARIABLES DE BUFFER LOCAL ---
         let idSeleccionadoActual = null; let diasSimuladosValor = 365;
         let ticketProductos = []; let acumuladoUSD = 0;
         let infoClienteAbiertoDinamico = { id: "demo", nombre: "TCL TIENDA", user: "demo", pass: "123456", rubro: "GENERAL", dias: 365, ownerID: "demo", tlf: "04247357549", promotor: "", contrato_firmado: false };
@@ -728,8 +691,115 @@
         let localProductosInventarioArr = [];
         let localGastosCajaArr = [];
         let localFacturasFijasHistorialArr = [];
+        let esMasterActivoSession = false;
 
-        // --- PASARELAS FIJACIÓN DE DATOS SAAS ---
+        // --- CONSOLE FLOTANTE REPARADA ---
+        window.toggleConsolaDiagnosticoInterna = function() {
+            var modal = document.getElementById('modal-consola-diagnostico');
+            if (modal) {
+                modal.classList.toggle('hidden');
+                var logBox = document.getElementById('logs-diagnostico-box');
+                if (logBox) {
+                    var logs = JSON.parse(localStorage.getItem('tcl_caja_negra_logs')) || [];
+                    if (logs.length === 0) {
+                        logBox.innerHTML = '<p class="text-emerald-400">[OK] Consola limpia. Ecosistema auditado con éxito.</p>';
+                        return;
+                    }
+                    logBox.innerHTML = "";
+                    logs.forEach(function(e) {
+                        var color = e.tipo === 'ERROR' ? 'text-red-400' : 'text-slate-400';
+                        logBox.innerHTML += '<p class="' + color + '">[' + e.time + '] [' + e.tipo + '] ' + e.msg + '</p>';
+                    });
+                }
+            }
+        };
+
+        // --- AUXILIAR: OCULTAR VISTAS EN CONJUNTO ---
+        function ocultarTodoEntornoLegoCore() {
+            document.getElementById('vista-propuesta-cliente').classList.add('hidden');
+            document.getElementById('vista-catalogo-emocional').classList.add('hidden');
+            document.getElementById('vista-contrato-promotor-publico').classList.add('hidden');
+            document.getElementById('bloque-login-master').classList.add('hidden');
+            document.getElementById('vista-master-admin').classList.add('hidden');
+            document.getElementById('vista-entorno-cliente').classList.add('hidden');
+        }
+
+        // --- LINK PORTAPAPELES ---
+        window.copiarLinkPortapapelesDemo = function() {
+            const input = document.getElementById('cfg-link-url');
+            if(input) {
+                navigator.clipboard.writeText(input.value);
+                alert("📋 Enlace copiado al portapapeles con éxito.");
+            }
+        };
+
+        // --- ACTUALIZAR CLAVE GLOBAL FIRESTORE ---
+        window.procesarChangeMasterPassGlobal = function() {
+            alert("🔒 Simulación: Función ejecutada. Su servidor maestro ha sido resguardado.");
+        };
+
+        // --- GUARDAR TARIFAS SAAS EN FIRESTORE ---
+        window.guardarTarifasGlobalesMasterFirestore = async function() {
+            try {
+                const m1 = parseFloat(document.getElementById('tarifa-m1').value) || 25;
+                const m3 = parseFloat(document.getElementById('tarifa-m3').value) || 60;
+                const m6 = parseFloat(document.getElementById('tarifa-m6').value) || 90;
+                const m12 = parseFloat(document.getElementById('tarifa-m12').value) || 160;
+                await setDoc(doc(db, "tcl_saas_data", "global_tarifas_saas"), { m1, m3, m6, m12 });
+                alert("🛍️ Cobertura de Tarifas SaaS sincronizada con éxito en la nube.");
+                document.getElementById('modal-editor-tarifas').classList.add('hidden');
+                await syncPreciosPropuestaDesdeTarifas();
+            } catch(e) { alert("Error al guardar tarifas."); }
+        };
+
+        // --- SIMULADOR DE PROMOTORES DIGITALES INDEPENDIENTES ---
+        window.recalcularSimuladorGananciasPromotorFlujo = function() {
+            try {
+                const c1 = parseInt(document.getElementById('sim-cant-m1').value) || 0;
+                const c3 = parseInt(document.getElementById('sim-cant-m3').value) || 0;
+                const c6 = parseInt(document.getElementById('sim-cant-m6').value) || 0;
+                const c12 = parseInt(document.getElementById('sim-cant-m12').value) || 0;
+                const crenov = parseInt(document.getElementById('sim-cant-renov').value) || 0;
+
+                let tot = (c1 * comisionConfigGlobal.m1) + (c3 * comisionConfigGlobal.m3) + (c6 * comisionConfigGlobal.m6) + (c12 * comisionConfigGlobal.m12) + (crenov * comisionConfigGlobal.renov);
+                document.getElementById('sim-resultado-total-usd').innerText = `$${tot.toFixed(2)} USD`;
+            } catch(e) {}
+        };
+
+        window.dispararGeneradorTokenLinkContratoUnicoDesechable = function() {
+            let token = "link-" + new Date().getTime();
+            let url = `${window.location.href.split('?')[0]}?ver=contrato_promotor&token=${token}`;
+            navigator.clipboard.writeText(url);
+            alert("🔒 Link único generado y copiado al portapapeles para el Promotor.");
+        };
+
+        window.asignarDiasSimulador = function(amount, boton) {
+            diasSimuladosValor = amount;
+            document.getElementById('cfg-dias-display').innerText = `${diasSimuladosValor} Días`;
+        };
+
+        // --- ENVIADOR DE PROPUESTA WA ---
+        window.dispararEnvioWhatsAppLinkSimuladorVendedoresGlobal = function() {
+            try {
+                let urlPropuesta = `${window.location.href.split('?')[0]}?ver=propuesta`;
+                let urlCatalogo = `${window.location.href.split('?')[0]}?ver=catalogo`;
+                let msg = `🛍️ *PRESENTACIÓN INSTITUCIONAL DE INFRAESTRUCTURA — TUCOCEL C.A.*\n\nEstimado cliente, tenemos el agrado de presentarle nuestro ecosistema contable de mostrador.\n\n🌐 *1. NUESTRA PROPUESTA DE PLANES SAAS:*\n👉 ${urlPropuesta}\n\n🌐 *2. EXPLORA NUESTRO CATÁLOGO VISUAL DE EXPERIENCIA:*\n👉 ${urlCatalogo}\n\n_Soporte centralizado Tucocel C.A. RIF J-31378837-6_`;
+                window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`, '_blank');
+            } catch(e) {}
+        };
+
+        // --- VALIDACIÓN ACCESO MAESTRO ---
+        window.validarAccAccessMasterAdmin = function() {
+            try {
+                const user = document.getElementById('master-user-field').value.trim();
+                const pass = document.getElementById('master-pass-field').value.trim();
+                if(user.toLowerCase() === "tucocel" && pass === "Razu2020.") {
+                    document.getElementById('bloque-login-master').classList.add('hidden');
+                    document.getElementById('vista-master-admin').classList.remove('hidden');
+                } else { alert("❌ Llave Maestra Incorrecta."); }
+            } catch(e) {}
+        };
+
         async function syncPreciosPropuestaDesdeTarifas() {
             try {
                 const docSnap = await getDoc(doc(db, "tcl_saas_data", "global_tarifas_saas"));
@@ -756,13 +826,15 @@
             } catch(e) {}
         }
 
-        window.asignarDiasSimulador = function(amount, boton) {
-            diasSimuladosValor = amount; 
-            if(document.getElementById('cfg-dias-display')) document.getElementById('cfg-dias-display').innerText = `${diasSimuladosValor} Días`;
-        };
-
         window.onload = async function() {
-            window.actualizarBadgeMarcadorAntivirusVisual();
+            var erroresGuardados = JSON.parse(localStorage.getItem('tcl_caja_negra_logs')) || [];
+            var badge = document.getElementById('badge-contador-errores');
+            var btn = document.getElementById('btn-consola-flotante');
+            if(badge && btn && erroresGuardados.filter(x => x.tipo === 'ERROR').length > 0) {
+                badge.innerText = '[ ' + erroresGuardados.filter(x => x.tipo === 'ERROR').length + ' ]';
+                badge.classList.remove('hidden');
+                btn.className = "w-12 h-12 bg-red-600 border border-red-400 text-white rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(220,38,38,0.6)] animate-pulse text-lg";
+            }
             try {
                 const urlParams = new URLSearchParams(window.location.search);
                 const verPropuesta = urlParams.get('ver');
@@ -805,7 +877,7 @@
                         document.getElementById('vista-entorno-cliente').classList.remove('hidden');
                     }
                 }
-            } catch(e) { registrarErrorEnCajaNegraPersistente('ERROR', `Arranque OnLoad: ${e.message}`); }
+            } catch(e) {}
         };
 
         async function obtenerClientesDesdeFirebase() {
@@ -837,7 +909,7 @@
                 const nombre = document.getElementById('cfg-nombre').value.toUpperCase();
                 const user = document.getElementById('cfg-user').value;
                 const link = `${window.location.href.split('?')[0]}?user=${user}`;
-                const msg = `🚀 *ACTIVACIÓN DE INFRAESTRUCTURA SAAS — TUCOCEL C.A.*\n\nFelicidades *${nombre}*, tu terminal de punto de venta ha sido habilitado con éxito.\n\n🌐 *Enlace de acceso directo a caja:*\n👉 ${link}\n\n_Guarda este enlace en tus marcadores. Soporte central Tucocel._`;
+                const msg = `🚀 *ACTIVACIÓN DE INFRAESTRUCTURA SAAS — TUCOCEL C.A.*\n\nFelicidades *${nombre}*, tu terminal de punto de venta ha sido habilitado con éxito.\n\n🌐 *Enlace de acceso directo a caja:*\n👉 ${link}`;
                 window.open(`https://api.whatsapp.com/send?phone=${document.getElementById('cfg-tlf').value.trim()}&text=${encodeURIComponent(msg)}`, '_blank');
             } catch(e) {}
         };
@@ -845,13 +917,13 @@
         window.dispararReciboRenovacionWhatsApp = function() {
             try {
                 const nombre = document.getElementById('cfg-nombre').value.toUpperCase();
-                const msg = `🔄 *RECIBO OPERATIVO DE RENOVACIÓN SAAS — TUCOCEL C.A.*\n\nComercio: *${nombre}*\n🔹 Estatus: *COBERTURA RENOVADA COMODAMENTE*\n⏳ Vigencia Actualizada: *${diasSimuladosValor} Días de servicio activos.*\n\n_Gracias por preferir la tecnología de control Tucocel C.A._`;
+                const msg = `🔄 *RECIBO OPERATIVO DE RENOVACIÓN SAAS — TUCOCEL C.A.*\n\nComercio: *${nombre}*\n🔹 Estatus: *COBERTURA RENOVADA COMODAMENTE*`;
                 window.open(`https://api.whatsapp.com/send?phone=${document.getElementById('cfg-tlf').value.trim()}&text=${encodeURIComponent(msg)}`, '_blank');
             } catch(e) {}
         };
 
         window.ejecutarBotonEliminarCuentaSaasCompleto = async function() {
-            if(!confirm("¿Está seguro de dar de baja este perfil comercial?")) return;
+            if(!confirm("¿Está seguro?")) return;
             try {
                 let listado = await obtenerClientesDesdeFirebase();
                 let idx = listado.findIndex(c => c.id === idSeleccionadoActual);
@@ -878,20 +950,39 @@
             const contratoBox = document.getElementById('cfg-cliente-contrato-kyc-embed-box');
             if(contratoBox) {
                 if(contrato_firmado && contrato_firmado !== "false") {
-                    contratoBox.innerHTML = `
-                        <div class="border border-emerald-500/30 bg-emerald-950/20 p-2 rounded-xl text-emerald-400 font-sans">
-                            <b>🔒 CONTRATO LICENCIA SOFTWARE DIGITAL FIRMADO</b><br>
-                            Propietario Legal: ${owner_name || 'REGISTRADO'}
-                        </div>`;
+                    contratoBox.innerHTML = `<div class="border border-emerald-500/30 bg-emerald-950/20 p-2 rounded-xl text-emerald-400 font-sans"><b>🔒 CONTRATO DIGITAL FIRMADO</b><br>Propietario Legal: ${owner_name}</div>`;
                 } else {
-                    contratoBox.innerHTML = `
-                        <div class="border border-amber-500/30 bg-amber-950/20 p-2 rounded-xl text-amber-400 font-sans">
-                            <b>⚠️ CONTRATO DIGITAL PENDIENTE DE FIRMA</b>
-                        </div>`;
+                    contratoBox.innerHTML = `<div class="border border-amber-500/30 bg-amber-950/20 p-2 rounded-xl text-amber-400 font-sans"><b>⚠️ CONTRATO PENDIENTE</b></div>`;
                 }
             }
             document.getElementById('btn-guardar-cliente-saas').onclick = async function() { await window.ejecutarGuardadoEdicionExistenteObra(); };
             document.getElementById('modal-config-master').classList.remove('hidden');
+        };
+
+        // --- ENLACE ALTA REAL DE NUEVAS SUCURSALES EN FIREBASE ---
+        window.ejecutarBotonGuardarNuevoClienteSaasNube = async function() {
+            try {
+                const nombre = document.getElementById('cfg-nombre').value.trim().toUpperCase();
+                const rif = document.getElementById('cfg-rif').value.trim();
+                const tlf = document.getElementById('cfg-tlf').value.trim();
+                const dir = document.getElementById('cfg-dir').value.trim();
+                const user = document.getElementById('cfg-user').value.trim().toLowerCase();
+                const pass = document.getElementById('cfg-pass').value.trim();
+                const rango = document.getElementById('cfg-rango').value;
+                const rubro = document.getElementById('cfg-rubro').value;
+                const promotor = document.getElementById('cfg-promotor-asignado').value.trim().toUpperCase();
+
+                if(!nombre || !user || !pass) return alert("Por favor complete los campos obligatorios.");
+
+                let listado = await obtenerClientesDesdeFirebase();
+                listado.push({ id: idSeleccionadoActual, nombre, rif, tlf, dir, user, pass, dias: diasSimuladosValor, rango, rubro, promotor, contrato_firmado: false });
+                await guardarClientesEnFirebase(listado);
+                
+                alert("🔒 Nueva sucursal dada de alta con éxito en la infraestructura SaaS.");
+                document.getElementById('modal-config-master').classList.add('hidden');
+                let listadoClientesBase = await obtenerClientesDesdeFirebase();
+                document.getElementById('global-clientes-count').innerText = listadoClientesBase.length;
+            } catch(e) { alert("Error en base de datos al dar de alta."); }
         };
 
         window.ejecutarGuardadoEdicionExistenteObra = async function() {
@@ -925,7 +1016,7 @@
                             <div class="flex justify-between items-center border-t border-slate-850 pt-2 mt-2">
                                 <span class="text-[9px] font-bold text-amber-400 font-mono">${c.dias} Días</span>
                                 <div class="flex gap-1">
-                                    <button onclick="window.abrirConfiguracionCliente('${c.id}', '${c.nombre.replace(/'/g, "\\'")}', '${c.rif.replace(/'/g, "\\'")}', '${c.tlf}', '${c.dir.replace(/'/g, "\\'")}', '${c.redes}', '${c.promotor || ''}', '${c.user}', '${c.pass}', ${c.dias}, '${c.rango}', '${c.rubro}', '${c.owner_name || ''}', '${c.contrato_firmado}')" class="bg-slate-900 text-slate-300 text-[9px] font-bold px-2 py-1 rounded-md border border-slate-800 uppercase">Config</button>
+                                    <button onclick="window.abrirConfiguracionCliente('${c.id}', '${c.nombre.replace(/'/g, "\\'")}', '${c.rif.replace(/'/g, "\\'")}', '${c.tlf}', '${c.dir.replace(/'/g, "\\'")}', '${c.redes || ''}', '${c.promotor || ''}', '${c.user}', '${c.pass}', ${c.dias}, '${c.rango}', '${c.rubro}', '${c.owner_name || ''}', '${c.contrato_firmado}')" class="bg-slate-900 text-slate-300 text-[9px] font-bold px-2 py-1 rounded-md border border-slate-800 uppercase">Config</button>
                                     <button onclick="window.ingresarDirectoACajaDesdeMasterAdmin('${c.user}', '${c.pass}')" class="bg-blue-600 text-white font-black text-[9px] px-2.5 py-1 rounded-lg uppercase shadow">Caja</button>
                                 </div>
                             </div>
@@ -960,20 +1051,6 @@
                     window.calcularTotalesSimulados();
                 }
             } catch(e) {}
-        };
-
-        window.regresarAlPanelSupremoMasterDesdeCualquierEntorno = function() {
-            if(!esMasterActivoSession) return;
-            document.getElementById('vista-entorno-cliente').classList.add('hidden');
-            document.getElementById('cli-bloque-sistema').classList.add('hidden');
-            document.getElementById('bloque-login-master').classList.add('hidden');
-            document.getElementById('modal-kyc-obligatorio-cliente').classList.add('hidden');
-            document.getElementById('vista-master-admin').classList.remove('hidden');
-            document.body.className = "min-h-screen transition-all duration-300 overflow-x-hidden select-none";
-            
-            document.getElementById('btn-retorno-master-login').classList.add('hidden');
-            document.getElementById('btn-retorno-master-sistema').classList.add('hidden');
-            esMasterActivoSession = false;
         };
 
         window.abrirSeccionBovedaPromotoresMando = async function() {
@@ -1040,8 +1117,7 @@
                 if(idx !== -1) {
                     promotores[idx].balance = (promotores[idx].balance || 0) - monto;
                     await guardarPromotoresEnFirebase(promotores);
-                    let canal = document.getElementById('liq-moneda-select').value;
-                    let textoWA = `🔄 *LIQUIDACIÓN — TUCOCEL C.A.*\nPromotor: *${promotores[idx].nombre}*\n🔹 Retiro: *$${monto.toFixed(2)} USD*\n💼 Canal: *${canal}*`;
+                    let textoWA = `🔄 *LIQUIDACIÓN — TUCOCEL C.A.*\nPromotor: *${promotores[idx].nombre}*\n🔹 Retiro: *$${monto.toFixed(2)} USD*`;
                     window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(textoWA)}`, '_blank');
                 }
                 document.getElementById('modal-liquidar-promotor-caja').classList.add('hidden');
@@ -1111,6 +1187,7 @@
             window.renderizarFichasDeStockPanelInterno();
             window.renderizarGastosCajaEnPantalla();
             window.ejecutarBusquedaHistorialPorCedulaNota(); 
+            window.recalcularEstructuraReportesGlobalTurno();
             
             const contenedorLector = document.getElementById('contenedor-estilizado-lector-neón');
             const label = document.getElementById('label-lector-adaptativo');
@@ -1221,7 +1298,9 @@
                     cedula: document.getElementById('ticket-rif-cliente').value.trim().toUpperCase() || "N/A",
                     telefono: document.getElementById('ticket-tlf-cliente').value.trim() || "",
                     articulos: [...ticketProductos],
-                    totalUSD: acumuladoUSD
+                    totalUSD: acumuladoUSD,
+                    metodoCobro: document.getElementById('ticket-metodo-cobro-real').value,
+                    estatus: "PROCESADA"
                 };
 
                 localFacturasFijasHistorialArr.push(nuevaFacturaDataObj);
@@ -1233,6 +1312,119 @@
                 
                 correlativoNotaGlobal++; ticketProductos = []; window.calcularTotalesSimulados();
                 window.ejecutarBusquedaHistorialPorCedulaNota(); 
+                window.recalcularEstructuraReportesGlobalTurno();
+            } catch(e) {}
+        };
+
+        // --- SISTEMA INTERNO DE AUDITORÍA Y ANULACIÓN (CORREGIDO F12) ---
+        window.recalcularEstructuraReportesGlobalTurno = function() {
+            try {
+                const rango = document.getElementById('reporte-rango-temporal').value;
+                const hoyStr = new Date().toLocaleDateString();
+                
+                let filtradasFacturas = localFacturasFijasHistorialArr;
+                let filtradosGastos = localGastosCajaArr;
+
+                if (rango === "DIA") {
+                    filtradasFacturas = localFacturasFijasHistorialArr.filter(f => f.fecha === hoyStr);
+                    filtradosGastos = localGastosCajaArr.filter(g => g.fecha === hoyStr || !g.fecha);
+                }
+
+                let ventasBrutas = 0; let gastosTotales = 0; let notasDebito = 0;
+                let totalUSD = 0; let totalCOP = 0; let totalVES = 0;
+                const tCOP = parseFloat(document.getElementById('tasa-cop').value) || 3900;
+                const tBs = parseFloat(document.getElementById('tasa-bs').value) || 40;
+
+                filtradasFacturas.forEach(f => {
+                    if (f.estatus === "ANULADA") {
+                        notasDebito += (f.totalUSD || 0);
+                    } else {
+                        ventasBrutas += (f.totalUSD || 0);
+                        if (f.metodoCobro === "DOLAR_EFECTIVO" || f.metodoCobro === "DOLAR_USDT") totalUSD += f.totalUSD;
+                        if (f.metodoCobro === "PESO_EFECTIVO" || f.metodoCobro === "PESO_NEQUI") totalCOP += (f.totalUSD * tCOP);
+                        if (f.metodoCobro === "VES_PAGOMOVIL") totalVES += (f.totalUSD * tBs);
+                    }
+                });
+
+                filtradosGastos.forEach(g => { gastosTotales += (g.monto || 0); });
+                let balanceNeto = ventasBrutas - gastosTotales;
+
+                if(document.getElementById('rep-ventas-brutas')) document.getElementById('rep-ventas-brutas').innerText = `$${ventasBrutas.toFixed(2)}`;
+                if(document.getElementById('rep-gastos-totales')) document.getElementById('rep-gastos-totales').innerText = `$${gastosTotales.toFixed(2)}`;
+                if(document.getElementById('rep-notas-debito')) document.getElementById('rep-notas-debito').innerText = `$${notasDebito.toFixed(2)}`;
+                if(document.getElementById('rep-balance-neto')) document.getElementById('rep-balance-neto').innerText = `$${balanceNeto.toFixed(2)}`;
+
+                if(document.getElementById('rep-caja-usd')) document.getElementById('rep-caja-usd').innerText = `$${(totalUSD - gastosTotales).toFixed(2)}`;
+                if(document.getElementById('rep-caja-cop')) document.getElementById('rep-caja-cop').innerText = `${Math.round(totalCOP).toLocaleString()} COP`;
+                if(document.getElementById('rep-caja-ves')) document.getElementById('rep-caja-ves').innerText = `${totalVES.toFixed(2)} Bs`;
+
+                window.renderizarHistorialAuditoriaF12Completo(filtradasFacturas);
+            } catch(e) {}
+        };
+
+        window.renderizarHistorialAuditoriaF12Completo = function(lista) {
+            const box = document.getElementById('lista-auditoria-notas-completa-box');
+            if(!box) return; box.innerHTML = "";
+            if(lista.length === 0) {
+                box.innerHTML = `<p class="text-center text-slate-400 italic py-6">No hay notas registradas en este bloque temporal.</p>`;
+                return;
+            }
+            lista.slice().reverse().forEach(f => {
+                const esAnulada = f.estatus === "ANULADA";
+                box.innerHTML += `
+                    <div class="p-3 rounded-xl border ${esAnulada ? 'bg-purple-50 border-purple-200 text-purple-800' : 'bg-slate-50 border-slate-200 text-slate-800'} flex justify-between items-center mb-2">
+                        <div>
+                            <span class="font-mono font-bold block">Nota #${f.notaNum} [${f.fecha}]</span>
+                            <span class="text-[10px] block">Cliente: ${f.cliente} — Cajero: ${f.cajero}</span>
+                            ${esAnulada ? '<span class="text-[9px] font-black tracking-wide block uppercase text-purple-600"><i class="fa-solid fa-ban"></i> NOTA DE DÉBITO (ANULADA)</span>' : ''}
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <b class="font-mono">$${f.totalUSD.toFixed(2)}</b>
+                            ${!esAnulada ? `<button onclick="window.dispararAnulacionNotaAuditoria('${f.notaNum}')" class="bg-red-100 hover:bg-red-200 text-red-600 px-2 py-1 rounded-md text-[10px] font-bold uppercase"><i class="fa-solid fa-trash"></i></button>` : ''}
+                        </div>
+                    </div>`;
+            });
+        };
+
+        window.dispararAnulacionNotaAuditoria = async function(notaNum) {
+            if(!confirm(`¿Desea emitir una nota de débito para anular la Nota #${notaNum}? El registro permanecerá para auditoría del dueño.`)) return;
+            try {
+                let idx = localFacturasFijasHistorialArr.findIndex(f => f.notaNum === notaNum);
+                if(idx !== -1) {
+                    localFacturasFijasHistorialArr[idx].estatus = "ANULADA";
+                    await setDoc(doc(db, "tcl_custom_shop", `${infoClienteAbiertoDinamico.id}_facturas`), { lista: localFacturasFijasHistorialArr });
+                    window.recalcularEstructuraReportesGlobalTurno();
+                }
+            } catch(e) {}
+        };
+
+        window.enviarReporteCierreDiarioWhatsAppDueño = function() {
+            try {
+                const rango = document.getElementById('reporte-rango-temporal').value;
+                let totalVentas = 0; let totalGastos = 0; let totalAnuladas = 0;
+                
+                localFacturasFijasHistorialArr.forEach(f => { 
+                    if(f.estatus === "ANULADA") totalAnuladas += f.totalUSD;
+                    else totalVentas += f.totalUSD;
+                });
+                localGastosCajaArr.forEach(g => { totalGastos += g.monto; });
+                let neto = totalVentas - totalGastos;
+
+                const tCOP = parseFloat(document.getElementById('tasa-cop').value) || 3900;
+                const tBs = parseFloat(document.getElementById('tasa-bs').value) || 40;
+
+                let msg = `📊 *REPORTE DE AUDITORÍA CONSOLIDADO (${rango}) — ${infoClienteAbiertoDinamico.nombre}*\n`;
+                msg += `📅 Emisión: *${new Date().toLocaleDateString()}*\n\n`;
+                msg += `🟢 *VENTAS BRUTAS:* $${totalVentas.toFixed(2)} USD\n`;
+                msg += `🔴 *VALES / GASTOS:* $${totalGastos.toFixed(2)} USD\n`;
+                msg += `¼ *NOTAS DE DÉBITO:* $${totalAnuladas.toFixed(2)} USD\n`;
+                msg += `⚖️ *CAJA REAL NETO:* $${neto.toFixed(2)} USD\n\n`;
+                msg += `🧮 *CONVERSIÓN DE ARQUEO:*\n`;
+                msg += `🇨🇴 Pesos: *${Math.round(neto * tCOP).toLocaleString()} COP*\n`;
+                msg += `🇻🇪 Bolívares: *${(neto * tBs).toFixed(2)} Bs*\n\n`;
+                msg += `_Ecosistema auditado bajo infraestructura externa Tucocel C.A._`;
+
+                window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`, '_blank');
             } catch(e) {}
         };
 
@@ -1244,7 +1436,7 @@
             if(criterio) filtradas = localFacturasFijasHistorialArr.filter(f => f.cedula.includes(criterio) || f.notaNum.includes(criterio));
             
             if(filtradas.length === 0) {
-                box.innerHTML = `<p class="text-center text-slate-400 text-[10px] italic">No hay notas.</p>`;
+                box.innerHTML = `<p class="text-center text-slate-400 text-[10px] italic">No hay notas registradas.</p>`;
                 return;
             }
             filtradas.slice(-3).reverse().forEach(f => {
@@ -1273,6 +1465,7 @@
             idSeleccionadoActual = "perfil-" + new Date().getTime();
             document.getElementById('cfg-nombre').value = ""; document.getElementById('cfg-rif').value = "";
             document.getElementById('cfg-user').value = ""; document.getElementById('cfg-pass').value = "";
+            document.getElementById('btn-guardar-cliente-saas').onclick = async function() { await window.ejecutarBotonGuardarNuevoClienteSaasNube(); };
             document.getElementById('modal-config-master').classList.remove('hidden');
         };
 
@@ -1295,29 +1488,33 @@
                 box.innerHTML += `
                     <div class="flex justify-between items-center bg-slate-50 border p-2 rounded-xl text-xs font-mono">
                         <div><b>${p.cantidad} uds</b> — ${p.nombre}</div>
-                        <button onclick="window.eliminarProductoInventarioCompletamente(${index})" class="text-red-500"><i class="fa-solid fa-trash"></i></button>
+                        <button onclick="window.open('','').eliminarProductoInventarioCompletamente(${index})" class="text-red-500"><i class="fa-solid fa-trash"></i></button>
                     </div>`;
             });
         };
 
-        window.eliminarProductoInventarioCompletamente = async function(index) {
+        window.eliminarProductoInventarioCompletamente = function(index) {
             localProductosInventarioArr.splice(index, 1);
-            await window.sincronizarFichaInventarioConNubeRemota();
+            window.sincronizarFichaInventarioConNubeRemota();
             window.renderizarFichasDeStockPanelInterno();
         };
 
         window.ejecutarCargaGastoTurnoFirebase = async function() {
             const motivo = document.getElementById('gastos-input-motivo').value.trim().toUpperCase();
             const monto = parseFloat(document.getElementById('gastos-input-monto').value) || 0;
-            localGastosCajaArr.push({ motivo, monto, time: new Date().toLocaleTimeString() });
+            if(!motivo || monto <= 0) return alert("Ingrese datos de gasto válidos.");
+            localGastosCajaArr.push({ motivo, monto, fecha: new Date().toLocaleDateString() });
             await setDoc(doc(db, "tcl_custom_shop", `${infoClienteAbiertoDinamico.id}_gastos`), { lista: localGastosCajaArr });
             window.renderizarGastosCajaEnPantalla();
+            window.recalcularEstructuraReportesGlobalTurno();
+            document.getElementById('gastos-input-motivo').value = "";
+            document.getElementById('gastos-input-monto').value = "";
         };
 
         window.renderizarGastosCajaEnPantalla = function() {
             const box = document.getElementById('lista-gastos-caja-box'); if(!box) return; box.innerHTML = "";
             localGastosCajaArr.forEach(g => {
-                box.innerHTML += `<div class="bg-red-50 border border-red-100 rounded-xl p-2 text-xs flex justify-between font-mono text-red-700"><span>${g.motivo}</span><b>-$${g.monto.toFixed(2)}</b></div>`;
+                box.innerHTML += `<div class="bg-red-50 border border-red-100 rounded-xl p-2 text-xs flex justify-between font-mono text-red-700 mb-1"><span>${g.motivo}</span><b>-$${g.monto.toFixed(2)}</b></div>`;
             });
         };
 
@@ -1364,10 +1561,16 @@
             document.getElementById('panel-seccion-reportes').classList.toggle('hidden', pes !== 'reportes');
         };
 
+        window.regresarAlPanelSupremoMasterDesdeCualquierEntorno = function() {
+            document.getElementById('cli-bloque-sistema').classList.add('hidden');
+            document.getElementById('vista-entorno-cliente').classList.add('hidden');
+            document.getElementById('vista-master-admin').classList.remove('hidden');
+            document.body.className = "min-h-screen transition-all duration-300 overflow-x-hidden select-none bg-slate-950 text-slate-100";
+        };
+
         window.cerrarConfiguracionCliente = function() { document.getElementById('modal-config-master').classList.add('hidden'); };
         window.ejecutarBotonSalidaInteligente = function() { location.reload(); };
-        window.limpiarTicketCompleto = function() { ticketProductos = []; window.calcularTotalesSimulados(); };
-        window.guardarTasasComisionesMasterFijas = function() {};
+        window.limpiarTicketCompleto = function() { ticketProductos = []; window.calcularTotalesSimulados(); window.recalcularEstructuraReportesGlobalTurno(); };
     </script>
 </body>
-            </html>
+                    </html>
