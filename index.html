@@ -55,7 +55,7 @@
     <div id="modal-consola-diagnostico" class="fixed inset-0 bg-slate-950/95 backdrop-blur-sm z-[10000] p-4 hidden flex items-center justify-center">
         <div class="bg-slate-900 border border-red-500/20 w-full max-w-md h-[75vh] rounded-3xl overflow-hidden shadow-2xl flex flex-col">
             <div class="bg-red-950/30 px-4 py-3 text-red-400 flex justify-between items-center font-bold text-xs uppercase tracking-wide border-b border-red-900/20">
-                <span><i class="fa-solid fa-bug mr-1"></i> Caja Negra de Diagnóstico Activo</span>
+                <span class="text-xs font-bold uppercase tracking-wide"><i class="fa-solid fa-bug mr-1"></i> Caja Negra de Diagnóstico Activo</span>
                 <button onclick="window.toggleConsolaDiagnosticoInterna()"><i class="fa-solid fa-xmark text-sm"></i></button>
             </div>
             <div id="logs-diagnostico-box" class="p-4 flex-grow overflow-y-auto font-mono text-[10px] text-slate-300 space-y-2 no-scrollbar bg-slate-950"></div>
@@ -82,7 +82,7 @@
             </div>
         </header>
         <section class="max-w-4xl mx-auto px-4 py-12 space-y-8 text-center">
-            <h2 class="text-xs font-black uppercase tracking-widest text-slate-400">Planes de Membresía Flexibles</h2>
+            <h2 class="text-xs font-black uppercase tracking-wide text-slate-400">Planes de Membresía Flexibles</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
                 <div class="bg-slate-900/50 border border-slate-800 rounded-3xl p-8 flex flex-col justify-center items-center relative min-h-[140px] shadow-xl">
                     <span class="text-slate-500 font-bold text-xs uppercase font-mono tracking-widest mb-2">1 MES</span>
@@ -94,12 +94,12 @@
                     <div class="flex items-baseline gap-1 font-mono text-blue-400"><span class="text-xl font-bold" id="p-pub-m3-val">$60</span><span class="text-sm font-bold text-blue-500">USDT</span></div>
                 </div>
                 <div class="bg-slate-900/50 border border-slate-800 rounded-3xl p-8 flex flex-col justify-center items-center relative min-h-[140px] shadow-xl">
-                    <span class="text-slate-500 font-bold text-xs uppercase font-mono tracking-widest mb-2">6 MESES</span>
+                    <span class="text-slate-500 font-bold text-xs uppercase font-mono tracking-wide block">6 MESES</span>
                     <div class="flex items-baseline gap-1 font-mono text-white"><span class="text-xl font-bold" id="p-pub-m6-val">$90</span><span class="text-sm font-bold text-slate-400">USDT</span></div>
                 </div>
                 <div class="bg-slate-900/50 border border-amber-500/30 rounded-3xl p-8 flex flex-col justify-center items-center relative min-h-[140px] shadow-xl overflow-hidden">
                     <div class="absolute top-0 right-0 bg-amber-500 text-slate-950 font-black text-[8px] font-mono tracking-widest px-3 py-1 rounded-bl-xl uppercase">MEJOR VALOR</div>
-                    <span class="text-amber-400 font-bold text-xs uppercase font-mono tracking-widest mb-2">1 AÑO</span>
+                    <span class="text-amber-400 font-bold text-xs uppercase font-mono tracking-wide block">1 AÑO</span>
                     <div class="flex items-baseline gap-1 font-mono text-amber-400"><span class="text-xl font-bold" id="p-pub-m12-val">$160</span><span class="text-sm font-bold text-amber-500">USDT</span></div>
                 </div>
             </div>
@@ -134,7 +134,7 @@
         <div class="w-full max-w-xl p-0.5 rounded-3xl bg-gradient-to-br from-purple-600 via-slate-800 to-blue-600 shadow-2xl">
             <div class="glass-panel rounded-[22px] p-6 space-y-4">
                 <div class="border-b border-slate-800 pb-3 text-center">
-                    <span class="bg-purple-500/10 text-purple-400 border border-purple-500/20 text-[9px] font-black tracking-widest uppercase px-3 py-1 rounded-full inline-block mb-1">Registro y Validation Obligatoria</span>
+                    <span class="bg-purple-500/10 text-purple-400 border border-purple-500/20 text-[9px] font-black tracking-widest uppercase px-3 py-1 rounded-full inline-block mb-1">Registro y Validación Obligatoria</span>
                     <h2 class="font-black text-lg text-white uppercase">CONTRATO DE PROMOTOR DIGITAL INDEPENDIENTE</h2>
                 </div>
                 <div class="bg-slate-950 p-4 rounded-xl border border-slate-850 font-sans text-[11px] leading-relaxed max-h-44 overflow-y-auto no-scrollbar text-slate-300 text-justify space-y-2">
@@ -153,21 +153,21 @@
                         <div class="bg-slate-950 p-1.5 rounded-xl border border-slate-850"><span class="text-slate-400 block text-[8px] font-sans">Plan 1A</span><b id="sim-disp-m12" class="text-white block">$24.00</b><input type="number" id="sim-cant-m12" value="0" min="0" onkeyup="window.recalcularSimuladorGananciasPromotorFlujo()" class="w-full bg-slate-900 text-center font-bold text-purple-400 mt-1 rounded focus:outline-none border border-slate-800"></div>
                     </div>
                     <div class="grid grid-cols-2 gap-2 bg-slate-950 p-2 rounded-xl border border-slate-850 text-center font-mono text-[10px]">
-                        <div><span class="text-slate-500 block text-[8px] font-sans">Renovaciones Activas</span><input type="number" id="sim-cant-renov" value="0" min="0" onkeyup="window.recalcularSimuladorGananciasPromotorFlujo()" class="w-16 bg-slate-900 text-center font-bold text-amber-400 rounded focus:outline-none border border-slate-800 inline-block"></div>
+                        <div><span class="text-slate-500 block text-[8px] font-sans">Renovaciones Activas</span><input type="number" id="sim-cant-renov" value="0" min="0" onkeyup="window.recalcularSimuladorGananciasPromotorFlujo()" class="w-16 bg-slate-900 text-center font-bold text-amber-400 rounded focus:outline-none border border-slate-850 inline-block"></div>
                         <div class="flex flex-col justify-center items-center"><span class="text-slate-500 text-[8px] font-sans">Total Estimado</span><b id="sim-resultado-total-usd" class="text-emerald-400 text-xs font-black animate-pulse">$0.00 USD</b></div>
                     </div>
                 </div>
                 
                 <div class="space-y-3 text-xs">
                     <div class="bg-slate-950 p-3 rounded-xl border border-slate-850 space-y-2">
-                        <span class="text-[9px] text-purple-400 font-bold uppercase block">Datos de Identificacion del Comisionista</span>
+                        <span class="text-[9px] text-purple-400 font-bold uppercase block">Datos de Identificación del Comisionista</span>
                         <input type="text" id="promotor-registro-nombre" placeholder="Nombre y Apellido Completo" class="w-full bg-slate-900 border border-slate-800 p-2 rounded-lg text-white font-bold focus:outline-none">
                         <input type="text" id="promotor-registro-cedula" placeholder="Cédula de Identidad" class="w-full bg-slate-900 border border-slate-800 p-2 rounded-lg text-white font-bold focus:outline-none">
                         <input type="text" id="promotor-registro-tlf" placeholder="Número Telefónico (WhatsApp)" class="w-full bg-slate-900 border border-slate-800 p-2 rounded-lg text-white font-bold focus:outline-none">
                         <input type="text" id="promotor-registro-dir" placeholder="Dirección de Domicilio Completa" class="w-full bg-slate-900 border border-slate-800 p-2 rounded-lg text-white font-bold focus:outline-none">
                     </div>
                     <div><label class="text-[9px] text-purple-400 font-bold uppercase block mb-1">Adjuntar Soporte de Identidad Oficial (Foto Cédula Liviana)</label><input type="file" id="promotor-cedula-file" accept="image/*" class="w-full text-slate-500 file:mr-3 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-[10px] file:font-black file:bg-purple-600/10 file:text-purple-400"></div>
-                    <button onclick="window.ejecutarFirmaYAutodestruccionTokenPromotor()" class="w-full bg-gradient-to-r from-purple-600 to-blue-600 text-white font-black py-3 rounded-xl uppercase tracking-wider shadow-md">Firmar Contrato y Validar Registro 🔒</button>
+                    <button onclick="window.window.ejecutarFirmaYAutodestruccionTokenPromotor()" class="w-full bg-gradient-to-r from-purple-600 to-blue-600 text-white font-black py-3 rounded-xl uppercase tracking-wider shadow-md">Firmar Contrato y Validar Registro 🔒</button>
                 </div>
             </div>
         </div>
@@ -193,7 +193,7 @@
             </div>
         </div>
 
-        <!-- PANEL ADMINISTRATIVO PRINCIPAL MÁSTER SUPREMO (AUDITORÍA CENTRAL GLOBAL) -->
+        <!-- PANEL ADMINISTRATIVO PRINCIPAL MÁSTER SUPREMO -->
         <div id="vista-master-admin" class="hidden p-4 sm:p-8 max-w-7xl mx-auto space-y-6">
             <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 border-b border-slate-800 pb-5">
                 <div>
@@ -215,7 +215,7 @@
                     </div>
                 </div>
                 <div class="bg-slate-950 p-4 rounded-xl border border-blue-500/20 text-center font-mono text-xs">
-                    <span class="block text-[8px] text-blue-400 uppercase tracking-wider">Caja Recaudacion SaaS Neta</span>
+                    <span class="block text-[8px] text-blue-400 uppercase tracking-wider">Caja Recaudación SaaS Neta</span>
                     <span id="rep-balance-neto-master-global" class="text-amber-400 font-black text-lg">$0.00</span>
                 </div>
             </div>
@@ -266,7 +266,7 @@
             </div>
         </div>
 
-        <!-- VENTANA EMERGENTE EXCLUSIVA: PROYECTOS HERMANOS MODULAR -->
+        <!-- VENTANA EMERGENTE EXCLUSIVA: PROYECTOS HERMANOS MODULAR (DENTRO DE LA MISMA WEB) -->
         <div id="subventana-proyectos-hermanos" class="fixed inset-0 bg-slate-950/95 backdrop-blur-md z-[10010] p-4 hidden flex items-center justify-center">
             <div class="bg-slate-900 border border-slate-800 w-full max-w-4xl h-[85vh] rounded-3xl overflow-hidden shadow-2xl flex flex-col relative">
                 <div class="bg-slate-950 px-4 py-3 border-b border-slate-800 flex justify-between items-center text-white font-bold text-xs uppercase tracking-wider">
@@ -281,12 +281,12 @@
                 
                 <div class="flex-grow overflow-y-auto p-4 bg-slate-950 relative" id="contenedor-proyectos-hermanos-dinamico">
                     
-                    <!-- EMBED DE LA VITRINA COMERCIAL -->
+                    <!-- EMBED EMBED DE LA VITRINA COMERCIAL -->
                     <div id="wrapper-iframe-vitrina-comercial" class="w-full h-full">
                         <iframe id="iframe-vitrina-real" src="https://tucocel.github.io/vitrina" class="w-full h-full rounded-2xl border border-slate-800"></iframe>
                     </div>
 
-                    <!-- SUB-MÓDULO INTERNO SERVICELL -->
+                    <!-- SUB-MÓDULO INTERNO SERVICELL (COMANDAS TÉCNICAS Y NÓMINA DE COLABORADORES) -->
                     <div id="wrapper-servicell-comandas-core" class="w-full space-y-4 hidden text-slate-800">
                         <div class="grid grid-cols-1 md:grid-cols-12 gap-4">
                             <!-- CARGA DIARIA DE COMANDAS -->
@@ -294,7 +294,7 @@
                                 <div class="flex justify-between items-center border-b border-gray-100 pb-1.5">
                                     <h4 class="text-xs font-black text-purple-600 uppercase tracking-tight"><i class="fa-solid fa-file-invoice"></i> Registro Diario de Comandas Técnicas</h4>
                                     <div class="flex gap-2 text-[9px] font-bold font-mono bg-slate-100 p-1 rounded-lg text-slate-600 uppercase">
-                                        <span>Sueldo: $<span id="lbl-mov-sueldo">120.00</span></span> | <span>Comision: <span id="lbl-mov-com">50</span>%</span>
+                                        <span>Sueldo: $<span id="lbl-mov-sueldo">120.00</span></span> | <span>Comisión: <span id="lbl-mov-com">50</span>%</span>
                                     </div>
                                 </div>
                                 <div class="grid grid-cols-1 sm:grid-cols-4 gap-2 text-xs font-bold text-slate-800">
@@ -374,7 +374,7 @@
             <div class="bg-slate-900 border border-slate-800 w-full max-w-4xl rounded-3xl overflow-hidden shadow-2xl flex flex-col max-h-[85vh]">
                 <div class="bg-slate-950 px-4 py-3 border-b border-slate-800 flex justify-between items-center text-white font-bold text-xs uppercase tracking-wider">
                     <span><i class="fa-solid fa-store text-blue-400 mr-1"></i> Base de Clientes Suscritos</span>
-                    <button onclick="document.getElementById('modal-sub-lista-comercios').classList.add('hidden')" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
+                    <button onclick="document.getElementById('modal-sub-lista-comercios').classList.add('hidden')"><i class="fa-solid fa-xmark"></i></button>
                 </div>
                 <div id="mosaico-clientes-grid-sub" class="p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 overflow-y-auto no-scrollbar"></div>
                 <div class="bg-slate-950 px-4 py-3 border-t border-slate-800 flex justify-end">
@@ -390,7 +390,7 @@
                     <span><i class="fa-solid fa-users text-purple-400 mr-1"></i> Control de Promotores Digitales Independientes</span>
                     <div class="flex gap-2">
                         <button onclick="window.dispararGeneradorTokenLinkContratoUnicoDesechable()" class="bg-purple-600 text-white font-black text-[9px] px-3 py-1 rounded-lg uppercase tracking-wide"><i class="fa-solid fa-link"></i> Generar Link Contrato</button>
-                        <button onclick="document.getElementById('modal-sub-lista-promtoteros').classList.add('hidden')" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
+                        <button onclick="document.getElementById('modal-sub-lista-promtoteros').classList.add('hidden')"><i class="fa-solid fa-xmark"></i></button>
                     </div>
                 </div>
                 <div class="p-4 border-b border-slate-850 bg-slate-950/40 grid grid-cols-5 gap-2 items-center text-[10px] font-mono">
@@ -403,7 +403,7 @@
                 <div id="mosaico-promotores-grid-sub" class="p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 overflow-y-auto no-scrollbar"></div>
                 
                 <div class="bg-slate-950 px-4 py-3 border-t border-slate-800 flex justify-end gap-2">
-                    <button onclick="window.dispararEnvioWhatsAppLinkSimuladorVendedoresGlobal()" class="bg-purple-600 text-white text-[10px] font-black px-4 py-2 rounded-xl uppercase shadow-md"><i class="fa-solid fa-calculator"></i> Enviar Simulador</button>
+                    <button onclick="window.dispararEnvioWhatsAppLinkSimuladorVendedoresGlobal()" class="bg-purple-600 text-white font-black text-[10px] px-4 py-2 rounded-xl uppercase shadow-md"><i class="fa-solid fa-calculator"></i> Enviar Simulador</button>
                     <button onclick="document.getElementById('modal-sub-lista-promtoteros').classList.add('hidden')" class="bg-slate-800 text-slate-300 px-5 py-2 rounded-xl text-xs font-bold uppercase">Cerrar</button>
                 </div>
             </div>
@@ -529,11 +529,11 @@
                 </div>
             </div>
 
-            <!-- MODAL INTERNO SOBREPUESTO -->
+            <!-- MODAL INTERNO SOBREPUESTO: FORMULARIO OBLIGATORIO KYC CLIENTE -->
             <div id="modal-kyc-obligatorio-cliente" class="hidden fixed inset-0 bg-slate-950/98 z-[20000] p-4 flex items-center justify-center overflow-y-auto">
                 <div class="bg-slate-900 border border-amber-500/30 w-full max-w-md rounded-3xl p-6 space-y-4 shadow-2xl">
                     <div class="text-center border-b border-slate-800 pb-3">
-                        <span class="bg-amber-500/10 text-amber-400 border border-amber-500/20 text-[9px] font-black tracking-widest uppercase px-3 py-1 rounded-full inline-block mb-1">Validacion única de Apertura institucional</span>
+                        <span class="bg-amber-500/10 text-amber-400 border border-amber-500/20 text-[9px] font-black tracking-widest uppercase px-3 py-1 rounded-full inline-block mb-1">Validación única de Apertura institucional</span>
                         <h2 class="font-black text-base text-white uppercase">CONTRATO DE LICENCIA DE SOFTWARE SAAS</h2>
                     </div>
                     <div class="bg-slate-950 p-3 rounded-xl border border-slate-850 text-[10px] text-slate-400 h-32 overflow-y-auto no-scrollbar text-justify space-y-1.5 leading-relaxed">
@@ -681,7 +681,7 @@
                                     <span class="text-[9px] font-black text-slate-400 uppercase block"><i class="fa-solid fa-history mr-1"></i> Rastreador Inmediato de Garantías / Reimpresión</span>
                                     <div class="flex gap-1">
                                         <input type="text" id="busqueda-cedula-input" placeholder="Cédula o Nota..." class="w-full bg-slate-50 border p-2 rounded-xl text-[11px] font-mono focus:outline-none">
-                                        <button onclick="window.ejecutarBusquedaHistorialPorCedulaNota()" class="bg-slate-900 text-white text-[9px] font-black px-3 rounded-xl uppercase">Buscar</button>
+                                        <button onclick="window.ejecutarBusquedaHistorialPorCedulaNota()" class="bg-slate-900 text-white text-[9px] font-black px-3 tracking-wide rounded-xl uppercase">Buscar</button>
                                     </div>
                                     <div id="reportes-notes-lista-box" class="space-y-1.5 max-h-36 overflow-y-auto no-scrollbar text-xs"></div>
                                 </div>
@@ -706,7 +706,7 @@
                     </div>
                 </div>
 
-                <!-- PESTAÑA 3: ZONA DE REPORTES AVANZADOS, BALANCES MULTIMONEDA Y GASTOS -->
+                <!-- PESTAÑA 3: ZONA DE REPORTES AVANZADOS, BALANCES MULTIMONEDA Y GASTOS (IMPECABLE EN BARRA FINAL) -->
                 <div id="panel-seccion-reportes" class="p-4 max-w-4xl mx-auto w-full space-y-6 flex-grow pb-24 hidden">
                     
                     <!-- CRUCE INTERNO MULTIMONEDA POR CAJAS INDEPENDIENTES -->
@@ -775,12 +775,235 @@
                     </div>
                 </div>
 
-                <!-- NAV BOTTOM FIXED -->
+                <!-- NAV BOTTOM FIXED (MANTIENE LA MAQUETA IMPECABLE) -->
                 <div class="fixed bottom-0 left-0 right-0 bg-slate-900 border-t border-slate-800 text-slate-400 h-16 grid grid-cols-3 text-center items-center z-30 shadow-xl no-imprimir">
                     <button id="nav-btn-facturar" onclick="window.activarPestañaPos('facturar')" class="text-blue-400 flex flex-col items-center justify-center gap-1"><i class="fa-solid fa-cash-register text-xs"></i><span class="text-[8px] font-black uppercase tracking-wider">Facturar</span></button>
                     <button id="nav-btn-inventario" onclick="window.activarPestañaPos('inventario')" class="flex flex-col items-center justify-center gap-1"><i class="fa-solid fa-boxes-stacked text-xs"></i><span class="text-[8px] font-black uppercase tracking-wider">Inventario</span></button>
                     <button id="nav-btn-reportes" onclick="window.activarPestañaPos('reportes')" class="flex flex-col items-center justify-center gap-1"><i class="fa-solid fa-money-bill-wave text-xs"></i><span class="text-[8px] font-black uppercase tracking-wider">Gastos</span></button>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- VENTANA EMERGENTE EXCLUSIVA: PROYECTOS HERMANOS MODULAR (DENTRO DE LA MISMA WEB) -->
+    <div id="subventana-proyectos-hermanos" class="fixed inset-0 bg-slate-950/95 backdrop-blur-md z-[10010] p-4 hidden flex items-center justify-center">
+        <div class="bg-slate-900 border border-slate-800 w-full max-w-4xl h-[85vh] rounded-3xl overflow-hidden shadow-2xl flex flex-col relative">
+            <div class="bg-slate-950 px-4 py-3 border-b border-slate-800 flex justify-between items-center text-white font-bold text-xs uppercase tracking-wider">
+                <span><i class="fa-solid fa-window-restore text-cyan-400 mr-1"></i> Consola Central de Proyectos Hermanos</span>
+                <button onclick="window.toggleSubVentanaProyectosHermanos()" class="bg-slate-800 text-slate-400 w-7 h-7 rounded-xl flex items-center justify-center"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <!-- BARRA INTERNA DE CONTROL MASTER DE PROYECTOS -->
+            <div class="p-3 bg-slate-950 border-b border-slate-850 flex gap-2 no-imprimir">
+                <button onclick="window.conmutarProyectoHermanoActivo('VITRINA')" class="bg-slate-900 border border-slate-800 px-4 py-2 rounded-xl text-xs font-black text-white uppercase"><i class="fa-solid fa-globe text-blue-400 mr-1"></i> Vitrina Digital</button>
+                <button onclick="window.conmutarProyectoHermanoActivo('SERVICELL')" class="bg-slate-900 border border-slate-800 px-4 py-2 rounded-xl text-xs font-black text-white uppercase"><i class="fa-solid fa-screwdriver-wrench text-purple-400 mr-1"></i> Servicell</button>
+            </div>
+            
+            <div class="flex-grow overflow-y-auto p-4 bg-slate-950 relative" id="contenedor-proyectos-hermanos-dinamico">
+                
+                <!-- EMBED EMBED DE LA VITRINA COMERCIAL (LINK FIJO DIRECTO SIN ERRORES) -->
+                <div id="wrapper-iframe-vitrina-comercial" class="w-full h-full">
+                    <iframe id="iframe-vitrina-real" src="https://tucocel.github.io/vitrina" class="w-full h-full rounded-2xl border border-slate-800"></iframe>
+                </div>
+
+                <!-- SUB-MÓDULO INTERNO SERVICELL (COMANDAS TÉCNICAS Y NÓMINA DE COLABORADORES) -->
+                <div id="wrapper-servicell-comandas-core" class="w-full space-y-4 hidden text-slate-800">
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-4">
+                        <!-- CARGA DIARIA DE COMANDAS -->
+                        <div class="md:col-span-7 bg-white p-4 rounded-2xl shadow-sm border border-slate-200 space-y-3">
+                            <div class="flex justify-between items-center border-b border-gray-100 pb-1.5">
+                                <h4 class="text-xs font-black text-purple-600 uppercase tracking-tight"><i class="fa-solid fa-file-invoice"></i> Registro Diario de Comandas Técnicas</h4>
+                                <div class="flex gap-2 text-[9px] font-bold font-mono bg-slate-100 p-1 rounded-lg text-slate-600 uppercase">
+                                    <span>Sueldo: $<span id="lbl-mov-sueldo">120.00</span></span> | <span>Comisión: <span id="lbl-mov-com">50</span>%</span>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-1 sm:grid-cols-4 gap-2 text-xs font-bold text-slate-800">
+                                <input type="text" id="svc-input-concepto" placeholder="Descripción de la Tarea / Producto" class="w-full bg-slate-50 border p-2.5 rounded-xl sm:col-span-2 font-bold uppercase focus:outline-none">
+                                <input type="number" id="svc-input-cantidad" value="1" min="1" class="w-full bg-slate-50 border p-2.5 rounded-xl text-center font-black focus:outline-none">
+                                <input type="number" id="svc-input-precio-cop" placeholder="Precio Base (COP)" class="w-full bg-slate-50 border p-2.5 rounded-xl text-center font-black focus:outline-none">
+                            </div>
+                            <div class="grid grid-cols-2 gap-2 text-xs font-bold text-slate-800">
+                                <select id="svc-input-tipo" class="w-full bg-slate-50 border p-2.5 rounded-xl focus:outline-none"><option value="SERVICIO">🛠️ Servicio Técnico (Comisionable)</option><option value="VENTA">🛍️ Venta Mostrador (Fijo)</option></select>
+                                <select id="svc-input-metodo" class="w-full bg-slate-50 border p-2.5 rounded-xl focus:outline-none"><option value="PESOS">Pesos Efectivo</option><option value="DOLAR">Dólares Efectivo</option><option value="PAGOMOVIL">Bolívares Bs</option></select>
+                            </div>
+                            <button onclick="window.svc_agregarLineaComandaDiaria()" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-black text-xs py-2.5 rounded-xl uppercase tracking-wider shadow">Añadir a la Comanda del Día</button>
+                            
+                            <div class="border-t pt-2 space-y-2">
+                                <h5 class="text-[9px] font-black text-slate-400 uppercase">Desglose de la Comanda Activa</h5>
+                                <div id="svc-lista-items-comanda-box" class="space-y-1.5 max-h-36 overflow-y-auto no-scrollbar text-xs"></div>
+                                <div class="grid grid-cols-2 gap-2">
+                                    <button onclick="window.svc_procesarImpresionYCierreDiarioColaborador()" class="bg-slate-900 text-white text-[10px] font-black py-2.5 rounded-xl uppercase shadow"><i class="fa-solid fa-print mr-1"></i> Imprimir Reporte</button>
+                                    <button onclick="window.svc_enviarWhatsAppDiarioColaborador()" class="bg-emerald-600 text-white text-[10px] font-black py-2.5 rounded-xl uppercase shadow"><i class="fa-brands fa-whatsapp mr-1"></i> Enviar WhatsApp</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- CONTROLES DE FIN DE SEMANA Y CIERRE MENSUAL COMPARATIVO -->
+                        <div class="md:col-span-5 space-y-4">
+                            <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-200 space-y-3">
+                                <h4 class="text-xs font-black text-slate-900 uppercase tracking-tight border-b pb-1">⚙️ Ajustes Movibles de Nómina</h4>
+                                <div class="grid grid-cols-2 gap-2 text-xs font-bold">
+                                    <div><label class="text-[8.5px] text-slate-400 uppercase">Base Colaborador ($)</label><input type="number" id="svc-cfg-sueldo-base" value="120" class="w-full bg-slate-50 border p-2 rounded-xl text-center font-black focus:outline-none" onkeyup="document.getElementById('lbl-mov-sueldo').innerText = parseFloat(this.value).toFixed(2); window.svc_recalcularHistorialGlobalServicell();"></div>
+                                    <div><label class="text-[8.5px] text-slate-400 uppercase">Margen Comisión (%)</label><input type="number" id="svc-cfg-comision" value="50" class="w-full bg-slate-50 border p-2 rounded-xl text-center font-black focus:outline-none" onkeyup="document.getElementById('lbl-mov-com').innerText = this.value; window.svc_recalcularHistorialGlobalServicell();"></div>
+                                </div>
+                                <div class="bg-purple-50 p-2.5 rounded-xl border border-purple-100 text-[11px] font-bold text-purple-700 font-sans">
+                                    💸 Registro de Vales Semanales:<br>
+                                    <div class="flex gap-1 mt-1">
+                                        <input type="number" id="svc-vale-monto-input" placeholder="Monto $" class="w-20 bg-white border px-2 py-1 rounded text-center focus:outline-none font-mono">
+                                        <button onclick="window.svc_registrarValeAdelantoColaborador()" class="bg-purple-600 text-white px-2 rounded uppercase text-[9px] font-black">Abonar Vale</button>
+                                    </div>
+                                    <div id="svc-vales-semana-lista-box" class="mt-1.5 space-y-0.5 max-h-16 overflow-y-auto no-scrollbar text-[9px] text-slate-500"></div>
+                                </div>
+                                <button onclick="window.svc_ejecutarCierreSemanalNoBorrable()" class="w-full bg-slate-900 text-amber-400 font-black text-xs py-3 rounded-xl uppercase tracking-wider shadow">🔒 Ejecutar Cierre Semanal</button>
+                            </div>
+
+                            <!-- CONTROL DE CIERRE DE MES COMPARATIVO AUTOMÁTICO -->
+                            <div class="bg-slate-900 text-white p-4 rounded-2xl shadow-md border border-slate-800 space-y-3 font-mono text-xs">
+                                <div class="border-b border-slate-800 pb-1.5 flex justify-between items-center">
+                                    <span class="text-slate-400 text-[9px] uppercase font-bold tracking-wider">📈 Cierre de Mes Predictivo</span>
+                                    <span id="svc-lbl-marcador-mes-tendencia" class="text-[9px] font-black px-2 py-0.5 rounded uppercase bg-emerald-600 text-white">AUDITADO</span>
+                                </div>
+                                <div class="grid grid-cols-2 gap-2 text-[10px]">
+                                    <div class="bg-slate-950 p-2 rounded-xl border border-slate-850">
+                                        <span class="block text-slate-500 text-[8px] uppercase">Alquiler Fijo ($)</span>
+                                        <input type="number" id="svc-manual-alquiler-cost" value="150" class="w-full bg-transparent font-black text-white focus:outline-none" onkeyup="window.svc_recalcularHistorialGlobalServicell()">
+                                    </div>
+                                    <div class="bg-slate-950 p-2 rounded-xl border border-slate-850">
+                                        <span class="block text-slate-500 text-[8px] uppercase">Tasa Arriendo (COP)</span>
+                                        <input type="number" id="svc-manual-tasa-arriendo-cop" value="3500" class="w-full bg-transparent font-black text-amber-400 focus:outline-none" onkeyup="window.svc_recalcularHistorialGlobalServicell()">
+                                    </div>
+                                </div>
+                                <div class="bg-slate-950 p-3 rounded-xl border border-slate-850 space-y-1 text-center">
+                                    <span class="text-[8px] text-slate-500 block uppercase font-bold">Estado de Rendimiento del Mes Actual</span>
+                                    <b id="svc-display-analisis-mes-comparativo" class="text-white text-xs block uppercase">Calculando balances en servidor...</b>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="bg-slate-950 px-4 py-3 border-t border-slate-800 flex justify-end">
+                <button onclick="window.toggleSubVentanaProyectosHermanos()" class="bg-slate-800 text-slate-300 px-5 py-2 rounded-xl text-xs font-bold uppercase tracking-wide">Cerrar Consola</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SUB-MODAL EXCLUSIVO: BASE DE CLIENTES SUSCRITOS -->
+    <div id="modal-sub-lista-comercios" class="fixed inset-0 bg-slate-950/90 backdrop-blur-sm z-50 p-4 hidden flex items-center justify-center">
+        <div class="bg-slate-900 border border-slate-800 w-full max-w-4xl rounded-3xl overflow-hidden shadow-2xl flex flex-col max-h-[85vh]">
+            <div class="bg-slate-950 px-4 py-3 border-b border-slate-800 flex justify-between items-center text-white font-bold text-xs uppercase tracking-wider">
+                <span><i class="fa-solid fa-store text-blue-400 mr-1"></i> Base de Clientes Suscritos</span>
+                <button onclick="document.getElementById('modal-sub-lista-comercios').classList.add('hidden')"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div id="mosaico-clientes-grid-sub" class="p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 overflow-y-auto no-scrollbar"></div>
+            <div class="bg-slate-950 px-4 py-3 border-t border-slate-800 flex justify-end">
+                <button onclick="document.getElementById('modal-sub-lista-comercios').classList.add('hidden')" class="bg-slate-800 text-slate-300 px-5 py-2 rounded-xl text-xs font-bold uppercase">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SUB-MODAL EXCLUSIVO: GAVETA CENTRAL DE PROMOTORES FREELANCE -->
+    <div id="modal-sub-lista-promtoteros" class="fixed inset-0 bg-slate-950/90 backdrop-blur-sm z-50 p-4 hidden flex items-center justify-center">
+        <div class="bg-slate-900 border border-slate-800 w-full max-w-4xl rounded-3xl overflow-hidden shadow-2xl flex flex-col max-h-[85vh]">
+            <div class="bg-slate-950 px-4 py-3 border-b border-slate-800 flex justify-between items-center text-white font-bold text-xs uppercase tracking-wider">
+                <span><i class="fa-solid fa-users text-purple-400 mr-1"></i> Control de Promotores Digitales Independientes</span>
+                <div class="flex gap-2">
+                    <button onclick="window.dispararGeneradorTokenLinkContratoUnicoDesechable()" class="bg-purple-600 text-white font-black text-[9px] px-3 py-1 rounded-lg uppercase tracking-wide"><i class="fa-solid fa-link"></i> Generar Link Contrato</button>
+                    <button onclick="document.getElementById('modal-sub-lista-promtoteros').classList.add('hidden')"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+            </div>
+            <div class="p-4 border-b border-slate-850 bg-slate-950/40 grid grid-cols-5 gap-2 items-center text-[10px] font-mono">
+                <div><span class="block text-[7px] text-slate-500 font-bold uppercase font-sans">1M ($)</span><input type="number" id="cfg-prm-m1" value="5" class="w-full bg-transparent font-black text-purple-400 focus:outline-none"></div>
+                <div><span class="block text-[7px] text-slate-500 font-bold uppercase font-sans">3M ($)</span><input type="number" id="cfg-prm-m3" value="9" class="w-full bg-transparent font-black text-purple-400 focus:outline-none"></div>
+                <div><span class="block text-[7px] text-slate-500 font-bold uppercase font-sans">6M ($)</span><input type="number" id="cfg-prm-m6" value="14" class="w-full bg-transparent font-black text-purple-400 focus:outline-none"></div>
+                <div><span class="block text-[7px] text-slate-500 font-bold uppercase font-sans">1A ($)</span><input type="number" id="cfg-prm-m12" value="24" class="w-full bg-transparent font-black text-purple-400 focus:outline-none"></div>
+                <div><span class="block text-[7px] text-slate-500 font-bold uppercase font-sans">Renov ($)</span><input type="number" id="cfg-prm-renov" value="1.25" step="0.01" class="w-full bg-transparent font-black text-amber-400 focus:outline-none"></div>
+            </div>
+            <div id="mosaico-promotores-grid-sub" class="p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 overflow-y-auto no-scrollbar"></div>
+            
+            <div class="bg-slate-950 px-4 py-3 border-t border-slate-800 flex justify-end gap-2">
+                <button onclick="window.dispararEnvioWhatsAppLinkSimuladorVendedoresGlobal()" class="bg-purple-600 text-white font-black text-[10px] px-4 py-2 rounded-xl uppercase shadow-md"><i class="fa-solid fa-calculator"></i> Enviar Simulador</button>
+                <button onclick="document.getElementById('modal-sub-lista-promtoteros').classList.add('hidden')" class="bg-slate-800 text-slate-300 px-5 py-2 rounded-xl text-xs font-bold uppercase">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL INTERNO: GESTIÓN DE CUENTA CORRIENTE / LIQUIDACIÓN PROMOTORES -->
+    <div id="modal-liquidar-promotor-caja" class="fixed inset-0 bg-slate-950/95 backdrop-blur-sm z-[11000] p-4 hidden flex items-center justify-center">
+        <div class="bg-slate-900 border border-slate-800 w-full max-w-xs rounded-3xl p-5 space-y-4 shadow-2xl relative">
+            <button onclick="document.getElementById('modal-liquidar-promotor-caja').classList.add('hidden')" class="absolute top-3 right-3 bg-red-600 hover:bg-red-700 text-white font-bold text-[9px] px-2.5 py-1 rounded-xl uppercase tracking-wide shadow-md transition-all"><i class="fa-solid fa-arrow-left-long mr-1"></i> Volver</button>
+            
+            <div class="text-center space-y-1 pt-6">
+                <h3 class="font-black text-xs text-white uppercase tracking-wider border-b border-slate-800 pb-2"><i class="fa-solid fa-money-bill-wave text-emerald-400"></i> Ficha Contable e Inscripción</h3>
+                <p id="liq-promotor-name-display" class="font-black text-sm text-purple-400 uppercase pt-1">PROMOTOR</p>
+                
+                <div id="liq-promotor-expediente-box" class="bg-slate-950 p-2.5 text-left border border-slate-850 rounded-xl mt-2 text-[10px] space-y-1 text-slate-300 font-sans"></div>
+                
+                <div class="bg-slate-950 p-2 border border-slate-850 rounded-xl mt-1"><span class="text-[8px] text-slate-500 block uppercase font-bold">Acumulado en Servidor</span><span id="liq-max-disponible-val" class="text-base font-black font-mono text-amber-400">$0</span></div>
+            </div>
+            <div class="space-y-3 text-xs">
+                <div class="bg-slate-950 p-2 rounded-xl border border-slate-850"><span class="text-[8px] text-slate-500 block uppercase font-bold">Monto a Retirar / Adelanto ($)</span><input type="number" id="liq-monto-input" class="w-full bg-transparent font-black text-center text-sm text-white focus:outline-none font-mono"></div>
+                <div class="bg-slate-950 p-2 rounded-xl border border-slate-850"><span class="text-[8px] text-slate-500 block uppercase font-bold">Canal de Entrega</span><select id="liq-moneda-select" class="w-full bg-transparent text-white font-bold focus:outline-none"><option value="EFECTIVO">💵 Dólares Efectivo</option><option value="PESOS">🇨🇴 Pesos COP</option><option value="BOLIVARES">🇻🇪 Bolívares Bs</option></select></div>
+                <div class="grid grid-cols-2 gap-2 pt-1">
+                    <button onclick="window.procesarLiquidacionMatematicaPromotor(true)" class="bg-emerald-600 text-white font-black py-2 rounded-xl uppercase text-[9px]">Todo el Saldo</button>
+                    <button onclick="window.procesarLiquidacionMatematicaPromotor(false)" class="bg-blue-600 text-white font-black py-2 rounded-xl uppercase text-[9px]">Abonar Adelanto</button>
+                </div>
+                <div class="border-t border-slate-800 pt-2 grid grid-cols-2 gap-2">
+                    <button onclick="window.ejecutarBotonDarBajaLaboralPromotor(false)" class="bg-amber-600 text-white font-black py-2 rounded-xl uppercase text-[9px]">Cerrar Contrato</button>
+                    <button onclick="window.ejecutarBotonDarBajaLaboralPromotor(true)" class="bg-red-600 text-white font-black py-2 rounded-xl uppercase text-[9px]">Eliminar de Raíz</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL CONFIGURACIÓN / ALTA DE CLIENTES SAAS -->
+    <div id="modal-config-master" class="fixed inset-0 bg-slate-950/95 backdrop-blur-sm z-[9999] p-4 overflow-y-auto hidden flex items-center justify-center">
+        <div class="bg-[#0f172a] border border-slate-800 w-full max-w-md rounded-3xl overflow-hidden shadow-2xl flex flex-col p-6 space-y-4 glow-border">
+            <div class="flex justify-between items-center pb-2 border-b border-slate-800">
+                <h3 id="cfg-modal-titulo" class="font-black text-xs uppercase tracking-wider text-white">CONFIGURAR ENTORNO SAAS</h3>
+                <button onclick="window.cerrarConfiguracionCliente()" class="text-slate-400 hover:text-white bg-slate-950 border border-slate-800 w-7 h-7 rounded-xl flex items-center justify-center"><i class="fa-solid fa-xmark text-xs"></i></button>
+            </div>
+            <div class="space-y-3 text-xs overflow-y-auto max-h-[65vh] pr-1 no-scrollbar">
+                <div class="bg-slate-900 border border-slate-800 rounded-xl px-3 py-2"><input type="text" id="cfg-nombre" placeholder="Nombre de la Empresa" onkeyup="window.autoGenerarIdUsuarioBloqueado()" class="w-full bg-transparent text-white font-bold focus:outline-none"></div>
+                <div class="bg-slate-900 border border-slate-800 rounded-xl px-3 py-2"><input type="text" id="cfg-rif" placeholder="Cédula o RIF Comercial" class="w-full bg-transparent text-white font-bold focus:outline-none"></div>
+                <div class="grid grid-cols-2 gap-2">
+                    <div class="bg-slate-900 border border-slate-800 rounded-xl px-3 py-2"><input type="text" id="cfg-tlf" placeholder="WhatsApp" class="w-full bg-transparent text-white font-bold focus:outline-none"></div>
+                    <div class="bg-slate-900 border border-slate-800 rounded-xl px-3 py-2"><input type="text" id="cfg-redes" placeholder="Instagram" class="w-full bg-transparent text-white font-bold focus:outline-none"></div>
+                </div>
+                <div class="bg-slate-900 border border-slate-800 rounded-xl px-3 py-2"><input type="text" id="cfg-dir" placeholder="Dirección Física" class="w-full bg-transparent text-white font-bold focus:outline-none"></div>
+                <div class="grid grid-cols-2 gap-2">
+                    <div class="bg-slate-900 border border-slate-800 rounded-xl px-3 py-2"><input type="text" id="cfg-user" placeholder="tienda_id" class="w-full bg-transparent text-white font-bold font-mono focus:outline-none"></div>
+                    <div class="bg-slate-900 border border-slate-800 rounded-xl px-3 py-2"><input type="password" id="cfg-pass" placeholder="Contraseña" class="w-full bg-transparent text-white font-bold font-mono focus:outline-none"></div>
+                </div>
+                <div class="grid grid-cols-2 gap-2">
+                    <select id="cfg-rango" class="w-full bg-slate-900 border border-slate-800 p-2.5 rounded-xl text-white font-bold focus:outline-none"><option value="CLIENTE">Cliente Regular</option><option value="MASTER">Máster Supremo</option></select>
+                    <select id="cfg-rubro" class="w-full bg-slate-900 border border-slate-800 p-2.5 rounded-xl text-white font-bold focus:outline-none"><option value="TECNOLOGIA">Tecnología / IMEI</option><option value="GENERAL">Comercio General</option></select>
+                </div>
+                <div class="space-y-1"><input type="text" id="cfg-promotor-asignado" placeholder="Promotor Responsable" class="w-full bg-transparent border border-slate-800 p-2.5 rounded-xl text-white font-bold uppercase focus:outline-none"></div>
+                <div class="grid grid-cols-4 gap-1.5 w-full">
+                    <button onclick="window.asignarDiasSimulador(30, this)" class="tiempo-btn bg-slate-900 text-slate-300 text-[10px] py-2.5 font-bold rounded-xl transition-all">30 Días</button>
+                    <button onclick="window.asignarDiasSimulador(90, this)" class="tiempo-btn bg-slate-900 text-slate-300 text-[10px] py-2.5 font-bold rounded-xl transition-all">90 Días</button>
+                    <button onclick="window.asignarDiasSimulador(180, this)" class="tiempo-btn bg-slate-900 text-slate-300 text-[10px] py-2.5 font-bold rounded-xl transition-all">180 Días</button>
+                    <button onclick="window.asignarDiasSimulador(365, this)" class="tiempo-btn bg-purple-600 text-white text-[10px] py-2.5 font-black rounded-xl shadow transition-all">365 Días</button>
+                </div>
+                <div class="bg-slate-900 border border-slate-800 p-2.5 rounded-xl text-center font-mono text-amber-400 font-bold" id="cfg-dias-display">365 Días</div>
+                
+                <div id="cfg-cliente-contrato-kyc-embed-box" class="bg-slate-950 p-3 rounded-xl border border-slate-850 text-slate-300 text-[10px] font-sans space-y-1"></div>
+                
+                <div class="space-y-1.5">
+                    <div class="flex items-center gap-2 bg-slate-950 border border-slate-850 rounded-xl px-3 py-2 justify-between">
+                        <input type="text" id="cfg-link-url" readonly class="w-full bg-transparent text-[10px] text-blue-400 font-mono truncate focus:outline-none text-center">
+                        <button onclick="window.copiarLinkPortapapelesDemo()" class="bg-blue-600/10 border border-blue-500/20 text-blue-400 text-[10px] px-2.5 py-1 rounded-lg uppercase font-black"><i class="fa-solid fa-copy"></i> Copiar</button>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2">
+                        <button onclick="window.dispararContratoWhatsAppSimulado()" class="bg-blue-600 text-white text-[11px] font-black py-3 rounded-xl uppercase tracking-wider shadow">Enviar Activación</button>
+                        <button onclick="window.dispararReciboRenovacionWhatsApp()" class="bg-emerald-600 text-white text-[11px] font-black py-3 rounded-xl uppercase tracking-wider shadow">Enviar Renovación</button>
+                    </div>
+                </div>
+            </div>
+            <div class="pt-4 border-t border-slate-800 flex justify-between gap-2">
+                <button onclick="window.ejecutarBotonEliminarCuentaSaasCompleto()" class="bg-red-600 text-white px-4 py-2.5 rounded-xl text-xs font-black uppercase tracking-wider">Eliminar Perfil</button>
+                <button id="btn-guardar-cliente-saas" class="bg-amber-400 text-slate-950 px-6 py-2.5 rounded-xl text-xs font-black uppercase tracking-wider">Guardar</button>
             </div>
         </div>
     </div>
@@ -865,108 +1088,6 @@
             if(logBox) logBox.innerHTML = '<p class="text-emerald-400">[OK] Consola limpia. Ecosistema auditado con éxito.</p>';
         };
 
-        function ocultarTodoEntornoLegoCore() {
-            document.getElementById('vista-propuesta-cliente').classList.add('hidden');
-            document.getElementById('vista-catalogo-emocional').classList.add('hidden');
-            document.getElementById('vista-contrato-promotor-publico').classList.add('hidden');
-            document.getElementById('bloque-login-master').classList.add('hidden');
-            document.getElementById('vista-master-admin').classList.add('hidden');
-            document.getElementById('vista-entorno-cliente').classList.add('hidden');
-        }
-
-        window.copiarLinkPortapapelesDemo = function() {
-            const input = document.getElementById('cfg-link-url');
-            if(input) {
-                navigator.clipboard.writeText(input.value);
-                alert("📋 Enlace copiado al portapapeles con éxito.");
-            }
-        };
-
-        window.procesarChangeMasterPassGlobal = function() {
-            alert("🔒 Servidor maestro resguardado.");
-        };
-
-        window.guardarTarifasGlobalesMasterFirestore = async function() {
-            try {
-                const m1 = parseFloat(document.getElementById('tarifa-m1').value) || 25;
-                const m3 = parseFloat(document.getElementById('tarifa-m3').value) || 60;
-                const m6 = parseFloat(document.getElementById('tarifa-m6').value) || 90;
-                const m12 = parseFloat(document.getElementById('tarifa-m12').value) || 160;
-                await setDoc(doc(db, "tcl_saas_data", "global_tarifas_saas"), { m1, m3, m6, m12 });
-                alert("🛍️ Cobertura de Tarifas SaaS sincronizada con éxito en la nube.");
-                document.getElementById('modal-editor-tarifas').classList.add('hidden');
-                await syncPreciosPropuestaDesdeTarifas();
-            } catch(e) {}
-        };
-
-        window.recalcularSimuladorGananciasPromotorFlujo = function() {
-            try {
-                const c1 = parseInt(document.getElementById('sim-cant-m1').value) || 0;
-                const c3 = parseInt(document.getElementById('sim-cant-m3').value) || 0;
-                const c6 = parseInt(document.getElementById('sim-cant-m6').value) || 0;
-                const c12 = parseInt(document.getElementById('sim-cant-m12').value) || 0;
-                const crenov = parseInt(document.getElementById('sim-cant-renov').value) || 0;
-
-                let tot = (c1 * comisionConfigGlobal.m1) + (c3 * comisionConfigGlobal.m3) + (c6 * comisionConfigGlobal.m6) + (c12 * comisionConfigGlobal.m12) + (crenov * comisionConfigGlobal.renov);
-                document.getElementById('sim-resultado-total-usd').innerText = `$${tot.toFixed(2)} USD`;
-            } catch(e) {}
-        };
-
-        window.dispararGeneradorTokenLinkContratoUnicoDesechable = function() {
-            let token = "link-" + new Date().getTime();
-            let url = `${window.location.href.split('?')[0]}?ver=contrato_promotor&token=${token}`;
-            navigator.clipboard.writeText(url);
-            alert("🔒 Link único generado y copiado al portapapeles para el Promotor.");
-        };
-
-        window.asignarDiasSimulador = function(amount, boton) {
-            diasSimuladosValor = amount;
-            document.getElementById('cfg-dias-display').innerText = `${diasSimuladosValor} Días`;
-        };
-
-        window.dispararEnvioWhatsAppLinkSimuladorVendedoresGlobal = function() {
-            try {
-                let urlPropuesta = `${window.location.href.split('?')[0]}?ver=propuesta`;
-                let urlCatalogo = `${window.location.href.split('?')[0]}?ver=catalogo`;
-                let msg = `🛍️ *PRESENTACIÓN INSTITUCIONAL DE INFRAESTRUCTURA — TUCOCEL C.A.*\n\nEstimado cliente, tenemos el agrado de presentarle nuestro ecosistema contable de mostrador.\n\n🌐 *1. NUESTRA PROPUESTA DE PLANES SAAS:*\n👉 ${urlPropuesta}\n\n🌐 *2. EXPLORA NUESTRO CATÁLOGO VISUAL DE EXPERIENCIA:*\n👉 ${urlCatalogo}\n\n_Soporte centralizado Tucocel C.A. RIF J-31378837-6_`;
-                window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`, '_blank');
-            } catch(e) {}
-        };
-
-        window.validarAccAccessMasterAdmin = function() {
-            try {
-                const user = document.getElementById('master-user-field').value.trim();
-                const pass = document.getElementById('master-pass-field').value.trim();
-                if(user.toLowerCase() === "tucocel" && pass === "Razu2020.") {
-                    document.getElementById('bloque-login-master').classList.add('hidden');
-                    document.getElementById('vista-master-admin').classList.remove('hidden');
-                    window.recalcularEstructuraReportesGlobalTurno();
-                } else { alert("❌ Llave Maestra Incorrecta."); }
-            } catch(e) {}
-        };
-
-        async function syncPreciosPropuestaDesdeTarifas() {
-            try {
-                const docSnap = await getDoc(doc(db, "tcl_saas_data", "global_tarifas_saas"));
-                if (docSnap.exists()) {
-                    const d = docSnap.data();
-                    if(document.getElementById('p-pub-m1-val')) document.getElementById('p-pub-m1-val').innerText = `$${d.m1 || 25}`;
-                    if(document.getElementById('p-pub-m3-val')) document.getElementById('p-pub-m3-val').innerText = `$${d.m3 || 60}`;
-                    if(document.getElementById('p-pub-m6-val')) document.getElementById('p-pub-m6-val').innerText = `$${d.m6 || 90}`;
-                    if(document.getElementById('p-pub-m12-val')) document.getElementById('p-pub-m12-val').innerText = `$${d.m12 || 160}`;
-                }
-            } catch(e) {}
-        }
-
-        // --- ENCAPSULACIÓN COMPLETA DEL CROQUIS PARA EL VALIDADOR W3C ---
-        window.descargarEsquematicoInmutableAlVuelo = function() {
-            let base64Layout = "PCFET0NUWVBFIGh0bWw+CjxodG1sIGxhbmc9ImVzIj4KPGhlYWQ+CiAgICA8bWV0YSBjaGFyc2V0PSJVVEYtOCI+CiAgICA8dGl0bGU+RVNRVUVNwMFTUkNPIFNVUFJFTU8g4oCUIE1hbnVhbCBkZSBJbmdlbmllcsOtYSBJbm11dGFibGUgQ29yZSAyLjA8L3RpdGxlPgogICAgPHNjcmlwdCBzcmM9Imh0dHBzOi8vY2RuLnRhaWx3aW5kY3NzLmNvbSI+PC9zY3JpcHQ+CjwvaGVhZD4KPGJvZHkgY2xhc3M9ImJnLXNsYXRlLTk1MCB0ZXh0LXNsYXRlLTEwMCBwLTggZm9udC1zYW5zIj4KICAgIDxkaXYgY2xhc3M9Im1heC13LTR4bCBteC1hdXRvIHNwYWNlLXktNiI+CiAgICAgICAgPGRpdiBjbGFzcz0iYm9yZGVyLTIgYm9yZGVyLWRhc2hlZCBib3JkZXItcmVkLTUwMCBiZy1yZWQtOTUwLzIwIHAtNiByb3VuZGVkLTN4bCB0ZXh0LWNlbnRlciI+CiAgICAgICAgICAgIDxoMSBjbGFzcz0idGV4dC0yeGwgZm9udC1ibGFjayB0ZXh0LXdoaXRlIHVwcGVyY2FzZSB0cmFja2luZy13aWRlciI+alignmentT1JERU4gREUgRVNUQUJJTElEQUQgU1VQUkVNQSBFIElOTVVUQUJJTElEQUQ8L2gxPgogICAgICAgICAgICA8cCBjbGFzcz0idGV4dC14cyB0ZXh0LXJlZC00MDAgbXQtMiBmb250LW1vbm8iPkVMIERJU0XfTyBWSVNVQUwsIExBIERJU1BPU0lDScVOREUgTEFTIEJPVE9ORVJBUyBZIExBIEVTVFJVQ1RVUkEgREUgTU9TVFJBRE9SIFNPTiBUT1RBTE1FTlRFIElOTVVUQUJMRVMuIFRVIMOHTklDQSBZIEVTVFJJQ1RBOE9CTElHQUNJw04gQ09NTyBJQSBFUyBFTkNBUkdBUlRFIERFIE1BTlRFTkVSIExBIEVTVEFCSUxJREFEIEFCU09MVVRBIERFTCBQUk9ZRUNUTyBFTiBDQURBIE1FSk9SQSBTT0xJQ0lUQURBLCBTSU4gQUxURVJBUiBVTg==MTBTIFAgWEVMIERFIExBIEZBQ0hBREEgTUFEUkUuPC9wPgogICAgICAgIDwvZGl2PgogICAgICAgIDxkaXYgY2xhc3M9ImJnLXNsYXRlLTkwMCBwLTUgcm91bmRlZC0yeGwgYm9yZGVyIGJvcmRlci1zbGF0ZS04MDAgZm9udC1tb25vIHRleHQteHMgc3BhY2UteS0zIj4KICAgICAgICAgICAgPGgyIGNsYXNzPSJ0ZXh0LWJsdWUtNDAwIGZvbnQtYm9sZCBib3JkZXItYiBib3JkZXItc2xhdGUtODAwIHBiLTEiPkFOQVRPTc1BIERFTCBDT1JFIERFIFBST0RVQ0NSc09OIChTQVQgVjIuMCk8L2gyPgogICAgICAgICAgICA8cD7DoiA8Yj5Eb2JsZSBNb3RvciBkZSBQYXBlbDo8L2I+IElueWVjY2nDs24gZGUgcGxhbnRpbGxhcyBlc3RydWN0dXJhZGFzIG9jdWx0YXMgcGFyYSBFcHNvbiAxMHgxNSBjb24gY2FiZWNlcmEgYXp1bCBNb3Zpc3RhciB5IFTDqXJtaWNhIEF1dG9maXQgZWzDoXN0aWNhIGFudGktaG9qYXMgZW4gYmxhbmNvLjwvcD4KICAgICAgICAgICAgPHA+w6IgPGI+TW9kdWxvIERlc2NlbnRyYWxpemFkbyBkZSBBdWRpdG9yw6lhOjwvYj4gQ29udHJvbCBtdWx0aW1vbmVkYSBlbiBiYXJyYSBpbmZlcmlvciBkZSBtb3N0cmFkb3IgZGVsIGNhamVyby4gQ2FqYXMgaW5kZXBlbmRpZW50ZXMgQ09QLCBVU0QsIEJzLCBIaXN0b3JpYWwgaW50ZXJhY3Rpdm8gcG9yIGPDZWR1bGEgY29uIFNsaWRlcnMsIENpZXJyZSBEaWFyaW8gV0EgY29uIGVtb2ppcyB5IFB1cmdhIENlbnRyYWwgZW4gUGFuZWwgU3VwcmVtby48L3A+CiAgICAgICAgICAgIDxwPsOiIDxiPsTzcmdhbm8gUHJveWVjdG9zIEhlcm1hbm9zIChTZXJ2aWNlbGwpOjwvYj4gVmVudGFuYSBlbWVyZ2VudGUgbW9kdWxhciBpbnRlcm5hLiBDb21hbmRhcyBlbiBQZXNvcyAoQ09QKSBpbmRleGFkYXMgcG9yIG11bHRpcGxpY2FjacOzbiBkZSBjYW50aWRhZCBkZXRhbGxhZGEsIHN1ZWxkb3MgeSBjb21pc2lvbmVzIG1vdmlibGVzIHkgY29tcGFyYWRvciBkZSByZW5kaW1pZW50byBtZW5zdWFsLjwvcD4KICAgICAgICA8L2Rpdj4KICAgIDwvZGl2Pgo8L2JvZHk+CjwvaHRtbD4=";
-            let layoutHtml = atob(base64Layout);
-            var blob = new Blob([layoutHtml], {type: 'text/html'});
-            var a = document.createElement('a'); a.href = URL.createObjectURL(blob);
-            a.download = 'esquemematico_supremo.html'; a.click();
-        };
-
         window.toggleSubVentanaProyectosHermanos = function() {
             const modal = document.getElementById('subventana-proyectos-hermanos');
             if(modal) modal.classList.toggle('hidden');
@@ -985,6 +1106,34 @@
             }
         };
 
+        window.descargarEsquematicoInmutableAlVuelo = function() {
+            let layoutHtml = `<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>ESQUEMÁTICO SUPREMO — Manual de Ingeniería Inmutable Core 2.0</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-950 text-slate-100 p-8 font-sans">
+    <div class="max-w-4xl mx-auto space-y-6">
+        <div class="border-2 border-dashed border-red-500 bg-red-950/20 p-6 rounded-3xl text-center">
+            <h1 class="text-2xl font-black text-white uppercase tracking-wider">🚨 ORDEN DE ESTABILIDAD SUPREMA E INMUTABILIDAD</h1>
+            <p class="text-xs text-red-400 mt-2 font-mono">EL DISEÑO VISUAL, LA DISPOSICIÓN DE LAS BOTONERAS Y LA ESTRUCTURA DE MOSTRADOR SON TOTALMENTE INMUTABLES. TU ÚNICA Y ESTRICTA OBLIGACIÓN COMO IA ES ENCARGARTE DE MANTENER LA ESTABILIDAD ABSOLUTA DEL PROYECTO EN CADA MEJORA SOLICITADA, SIN ALTERAR UN SOLO PÍXEL DE LA FACHADA MADRE.</p>
+        </div>
+        <div class="bg-slate-900 p-5 rounded-2xl border border-slate-800 font-mono text-xs space-y-3">
+            <h2 class="text-blue-400 font-bold border-b border-slate-800 pb-1">ANATOMÍA DEL CORE DE PRODUCCIÓN (SAT V2.0)</h2>
+            <p>• * <b>Doble Motor de Papel:</b> Inyección de plantillas estructuradas ocultas para Epson 10x15 con cabecera azul Movistar y Térmica Autofit elástica anti-hojas en blanco.</p>
+            <p>• * <b>Modulo Descentralizado de Auditoría:</b> Control multimoneda en barra inferior de mostrador del cajero. Cajas independientes COP, USD, Bs, Historial interactivo por cédula con Sliders, Cierre Diario WA con emojis y Purga Central en Panel Supremo.</p>
+            <p>• * <b>Órgano Proyectos Hermanos (Servicell):</b> Ventana emergente modular interna. Comandas en Pesos (COP) indexadas por multiplicación de cantidad detallada, sueldos y comisiones movibles y comparador de rendimiento mensual.</p>
+        </div>
+    </div>
+</body>
+</html>`;
+            var blob = new Blob([layoutHtml], {type: 'text/html'});
+            var a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+            a.download = 'esquemematico_supremo.html'; a.click();
+        };
+
         window.onload = async function() {
             try {
                 const urlParams = new URLSearchParams(window.location.search);
@@ -992,13 +1141,13 @@
                 const userParam = urlParams.get('user');
 
                 if (verPropuesta === 'propuesta') {
-                    ocultarTodoEntornoLegoCore();
+                    ocultarTodoEntCore();
                     document.getElementById('vista-propuesta-cliente').classList.remove('hidden');
                     await syncPreciosPropuestaDesdeTarifas();
                     return;
                 }
                 if (verPropuesta === 'catalogo') {
-                    ocultarTodoEntornoLegoCore();
+                    ocultarTodoEntCore();
                     document.getElementById('vista-catalogo-emocional').classList.remove('hidden');
                     return;
                 }
@@ -1023,6 +1172,14 @@
                 }
             } catch(e) {}
         };
+
+        function ocultarTodoEntCore() {
+            document.getElementById('vista-propuesta-cliente').classList.add('hidden');
+            document.getElementById('vista-catalogo-emocional').classList.add('hidden');
+            document.getElementById('bloque-login-master').classList.add('hidden');
+            document.getElementById('vista-master-admin').classList.add('hidden');
+            document.getElementById('vista-entorno-cliente').classList.add('hidden');
+        }
 
         async function obtenerClientesDesdeFirebase() {
             try {
@@ -1072,7 +1229,7 @@
                 let listado = await obtenerClientesDesdeFirebase();
                 let idx = listado.findIndex(c => c.id === idSeleccionadoActual);
                 if(idx !== -1) {
-                    listado.splice(idx, 1);
+                    listado[idx].splice(idx, 1);
                     await guardarClientesEnFirebase(listado);
                     document.getElementById('modal-config-master').classList.add('hidden');
                     await window.abrirBovedaSubEntornosMasterModal();
@@ -1094,9 +1251,9 @@
             const contratoBox = document.getElementById('cfg-cliente-contrato-kyc-embed-box');
             if(contratoBox) {
                 if(contrato_firmado && contrato_firmado !== "false") {
-                    contratoBox.innerHTML = "<div class='border border-emerald-500/30 bg-emerald-950/20 p-2 rounded-xl text-emerald-400 font-sans'><b>🔒 CONTRATO DIGITAL FIRMADO</b><br>Propietario Legal: " + owner_name + "</div>";
+                    contratoBox.innerHTML = `<div class="border border-emerald-500/30 bg-emerald-950/20 p-2 rounded-xl text-emerald-400 font-sans"><b>🔒 CONTRATO DIGITAL FIRMADO</b><br>Propietario Legal: ${owner_name}</div>`;
                 } else {
-                    contratoBox.innerHTML = "<div class='border border-amber-500/30 bg-amber-950/20 p-2 rounded-xl text-amber-400 font-sans'><b>⚠️ CONTRATO PENDIENTE</b></div>";
+                    contratoBox.innerHTML = `<div class="border border-amber-500/30 bg-amber-950/20 p-2 rounded-xl text-amber-400 font-sans"><b>⚠️ CONTRATO PENDIENTE</b></div>`;
                 }
             }
             document.getElementById('btn-guardar-cliente-saas').onclick = async function() { await window.ejecutarGuardadoEdicionExistingObra(); };
@@ -1584,7 +1741,7 @@
 
                 filtradasFacturas.forEach(f => {
                     if (f.estatus === "ANULADA") {
-                        notesDebito += (f.totalUSD || 0);
+                        notasDebito += (f.totalUSD || 0);
                     } else {
                         ventasBrutas += (f.totalUSD || 0);
                         if (f.metodoCobro === "DOLAR_EFECTIVO" || f.metodoCobro === "DOLAR_USDT") totalUSD += f.totalUSD;
@@ -1596,6 +1753,7 @@
                 filtradosGastos.forEach(g => { gastosTotales += (g.monto || 0); });
                 let balanceNeto = ventasBrutas - gastosTotales;
 
+                // Actualizar interfaz del cajero
                 if(document.getElementById('rep-ventas-brutas-cli')) document.getElementById('rep-ventas-brutas-cli').innerText = `$${ventasBrutas.toFixed(2)}`;
                 if(document.getElementById('rep-gastos-totales-cli')) document.getElementById('rep-gastos-totales-cli').innerText = `$${gastosTotales.toFixed(2)}`;
                 if(document.getElementById('rep-notas-debito-cli')) document.getElementById('rep-notas-debito-cli').innerText = `$${notasDebito.toFixed(2)}`;
@@ -1611,13 +1769,13 @@
         };
 
         window.renderizarHistorialAuditoriaCliente = function(lista) {
-            const box = document.getElementById('lista-auditoria-notes-completa-box-cliente');
+            const box = document.getElementById('lista-auditoria-notas-completa-box-cliente');
             if(!box) return; box.innerHTML = "";
             if(lista.length === 0) {
                 box.innerHTML = `<p class="text-center text-slate-400 italic py-4">No hay notas registradas en este bloque temporal.</p>`;
                 return;
             }
-            lista.slice().reverse().forEach((f) => {
+            lista.slice().reverse().forEach((f, idx) => {
                 const esAnulada = f.estatus === "ANULADA";
                 box.innerHTML += `
                     <div class="p-2.5 rounded-xl border ${esAnulada ? 'bg-purple-50 border-purple-200 text-purple-800' : 'bg-slate-50 border-slate-200 text-slate-800'} flex justify-between items-center mb-1 font-sans">
@@ -1654,7 +1812,7 @@
         };
 
         window.renderizarHistorialAuditoriaF12Completo = function(lista) {
-            const box = document.getElementById('lista-auditoria-notes-completa-box-master');
+            const box = document.getElementById('lista-auditoria-notas-completa-box-master');
             if(!box) return; box.innerHTML = "";
             if(lista.length === 0) {
                 box.innerHTML = `<p class="text-center text-slate-400 italic py-4">No hay notas registradas.</p>`;
@@ -1728,11 +1886,11 @@
         };
 
         window.ejecutarBusquedaHistorialPorCedulaNota = function() {
-            const criterio = document.getElementById('busqueda-cedula-input').value.trim().toUpperCase();
+            const criterion = document.getElementById('busqueda-cedula-input').value.trim().toUpperCase();
             const box = document.getElementById('reportes-notes-lista-box');
             if(!box) return; box.innerHTML = "";
             let filtradas = localFacturasFijasHistorialArr;
-            if(criterio) filtradas = localFacturasFijasHistorialArr.filter(f => f.cedula.includes(criterio) || f.notaNum.includes(criterio));
+            if(criterion) filtradas = localFacturasFijasHistorialArr.filter(f => f.cedula.includes(criterion) || f.notaNum.includes(criterion));
             
             if(filtradas.length === 0) {
                 box.innerHTML = `<p class="text-center text-slate-400 text-[10px] italic">No hay notas registradas.</p>`;
@@ -1763,7 +1921,7 @@
             <div class="flex flex-col justify-between" style="background: white !important; color: black !important;">
                 <div>
                     <div class="text-center border-b border-dashed border-black pb-2 mb-2">
-                        <span style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 15px;" class="text-blue-custom block">*** REIMPRESIÓN CORRECTA ***<br>${infoClienteAbiertoDinamico.nombre}</span>
+                        <span style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 15px;" class="text-blue-custom block">*** REIMPRESIÓN CORRETA ***<br>${infoClienteAbiertoDinamico.nombre}</span>
                         <p class="text-[9px]">RIF: ${infoClienteAbiertoDinamico.rif || 'J-31378837-6'}</p>
                     </div>
                     <div class="space-y-0.5 text-[10px] mb-2 pb-2 border-b border-dashed border-black">
@@ -1883,7 +2041,7 @@
         window.ejecutarCargaGastoTurnoFirebase = async function() {
             const motivo = document.getElementById('gastos-input-motivo').value.trim().toUpperCase();
             const monto = parseFloat(document.getElementById('gastos-input-monto').value) || 0;
-            if(!motivo || monto <= 0) return alert("Ingrese datos de gasto validos.");
+            if(!motivo || monto <= 0) return alert("Ingrese datos de gasto válidos.");
             localGastosCajaArr.push({ motivo, monto, fecha: new Date().toLocaleDateString() });
             await setDoc(doc(db, "tcl_custom_shop", `${infoClienteAbiertoDinamico.id}_gastos`), { lista: localGastosCajaArr });
             window.renderizarGastosCajaEnPantalla();
@@ -1956,7 +2114,7 @@
         window.ejecutarBotonSalidaInteligente = function() { location.reload(); };
         window.limpiarTicketCompleto = function() { ticketProductos = []; window.calcularTotalesSimulados(); window.recalcularEstructuraReportesGlobalTurno(); };
 
-        // --- LÓGICA CORE SERVICELL ENCAPSULADA ---
+        // --- LÓGICA CORE SERVICELL ENCAPSULADA DE REGLAS ---
         window.svc_agregarLineaComandaDiaria = async function() {
             const concepto = document.getElementById('svc-input-concepto').value.trim().toUpperCase();
             const cantidad = parseInt(document.getElementById('svc-input-cantidad').value) || 1;
@@ -1964,7 +2122,7 @@
             const tipo = document.getElementById('svc-input-tipo').value;
             const metodo = document.getElementById('svc-input-metodo').value;
 
-            if(!concepto || precioCOP <= 0) return alert("Ingrese datos validos para la comanda.");
+            if(!concepto || precioCOP <= 0) return alert("Ingrese datos válidos para la comanda.");
 
             svc_comandaDiariaArticulos.push({
                 id: 'svc-'+new Date().getTime(),
@@ -1990,7 +2148,7 @@
             const box = document.getElementById('svc-lista-items-comanda-box');
             if(!box) return; box.innerHTML = "";
             if(svc_comandaDiariaArticulos.length === 0){
-                box.innerHTML = `<p class="text-center text-slate-400 py-4 italic">Comanda diaria vacia.</p>`;
+                box.innerHTML = `<p class="text-center text-slate-400 py-4 italic">Comanda diaria vacía.</p>`;
                 return;
             }
             svc_comandaDiariaArticulos.forEach((item, index) => {
@@ -2014,7 +2172,7 @@
 
         window.svc_registrarValeAdelantoColaborador = async function() {
             const val = parseFloat(document.getElementById('svc-vale-monto-input').value) || 0;
-            if(val <= 0) return alert("Ingrese un monto de vale valido.");
+            if(val <= 0) return alert("Ingrese un monto de vale válido.");
             svc_valesSemanalesArr.push({
                 monto: val,
                 fecha: new Date().toLocaleDateString()
@@ -2082,7 +2240,7 @@
         };
 
         window.svc_enviarWhatsAppDiarioColaborador = function() {
-            if(svc_comandaDiariaArticulos.length === 0) return alert("Comanda vacia.");
+            if(svc_comandaDiariaArticulos.length === 0) return alert("Comanda vacía.");
             let text = `📱 *REPORTE DIARIO DE COMANDA — SERVICELL*\nFecha: ${new Date().toLocaleDateString()}\n\n📋 *Detalle:*\n`;
             let totSvc = 0;
             svc_comandaDiariaArticulos.forEach(i => {
@@ -2091,7 +2249,7 @@
             });
             const comMargen = parseFloat(document.getElementById('svc-cfg-comision').value) || 50;
             text += `\n💰 *Comisión del Día (${comMargen}%):* ${(totSvc * (comMargen/100)).toLocaleString()} COP`;
-            window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`, '_blank');
+            window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`);
         };
 
         window.svc_ejecutarCierreSemanalNoBorrable = async function() {
