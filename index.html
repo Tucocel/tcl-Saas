@@ -113,12 +113,12 @@
         <main class="max-w-4xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-8">
             <div class="bg-slate-900/40 border border-slate-800 rounded-2xl p-4 flex flex-col items-center justify-center min-h-[200px]">
                 <i class="fa-solid fa-cash-register text-3xl text-blue-400 mb-2"></i>
-                <h3 class="text-white font-bold uppercase text-sm">Punto de Venta Inteligente</h3>
+                <h2 class="text-white font-bold uppercase text-sm">Punto de Venta Inteligente</h2>
                 <p class="text-xs text-slate-400 text-center mt-1">Impresión de facturas térmicas y control multimonedas automatizado.</p>
             </div>
             <div class="bg-slate-900/40 border border-slate-800 rounded-2xl p-4 flex flex-col items-center justify-center min-h-[200px]">
                 <i class="fa-solid fa-boxes-stacked text-3xl text-purple-400 mb-2"></i>
-                <h3 class="text-white font-bold uppercase text-sm">Control de Stock e IMEI</h3>
+                <h2 class="text-white font-bold uppercase text-sm">Control de Stock e IMEI</h2>
                 <p class="text-xs text-slate-400 text-center mt-1">Búsqueda rápida por lector láser o seriales telefónicos específicos.</p>
             </div>
         </main>
@@ -465,7 +465,7 @@
                                 </div>
                             </div>
                             <div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm space-y-3">
-                                <h3 class="text-[10px] font-black text-slate-400 uppercase tracking-widest border-b pb-1">Datos de Control del Comprador</h3>
+                                <h2 class="font-black text-slate-400 uppercase tracking-widest border-b pb-1 text-xs">Datos de Control del Comprador</h2>
                                 <input type="text" id="ticket-cliente" placeholder="Nombre Completo del Cliente" class="w-full bg-slate-50 border px-3 py-2 rounded-xl text-xs font-bold focus:outline-none">
                                 <div class="grid grid-cols-2 gap-2">
                                     <input type="text" id="ticket-rif-cliente" placeholder="Cédula o RIF del Cliente" class="w-full bg-slate-50 border px-3 py-2 rounded-xl text-xs font-bold focus:outline-none">
@@ -608,7 +608,7 @@
                     <div class="bg-white border border-slate-200 rounded-3xl p-5 shadow-sm space-y-4">
                         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 border-b pb-3">
                             <div>
-                                <h3 class="font-black text-sm text-slate-900 uppercase">Filtro de Rango Institucional</h3>
+                                <h2 class="font-black text-slate-900 uppercase text-xs">Filtro de Rango Institucional</h2>
                                 <span class="text-[8px] text-slate-400 block font-sans">Seleccione la cobertura temporal de despacho para auditoría.</span>
                             </div>
                             <div class="flex gap-2">
@@ -693,7 +693,7 @@
         let localFacturasFijasHistorialArr = [];
         let esMasterActivoSession = false;
 
-        // --- CONSOLE FLOTANTE REPARADA ---
+        // --- AMARRE TOTAL DE LA BOTONERA DE LA CONSOLA AL WINDOW GLOBAL ---
         window.toggleConsolaDiagnosticoInterna = function() {
             var modal = document.getElementById('modal-consola-diagnostico');
             if (modal) {
@@ -712,6 +712,31 @@
                     });
                 }
             }
+        };
+
+        window.descargarMasaMadre = function() {
+            var htmlContent = document.documentElement.outerHTML;
+            var blob = new Blob([htmlContent], {type: 'text/html'});
+            var a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+            a.download = 'MasaMadre_TCL_' + new Date().getTime() + '.html'; a.click();
+        };
+
+        window.descargarReporteErroresIndex = function() {
+            var erroresGuardados = JSON.parse(localStorage.getItem('tcl_caja_negra_logs')) || [];
+            var blob = new Blob([JSON.stringify(erroresGuardados, null, 2)], { type: "text/plain" });
+            var url = URL.createObjectURL(blob);
+            var a = document.createElement('a'); a.href = url; a.download = "reporte_errores_tcl_master.txt";
+            document.body.appendChild(a); a.click(); document.body.removeChild(a);
+        };
+
+        window.limpiarHistorialErroresPermanente = function() {
+            localStorage.setItem('tcl_caja_negra_logs', JSON.stringify([]));
+            var badge = document.getElementById('badge-contador-errores');
+            var btn = document.getElementById('btn-consola-flotante');
+            if(badge) badge.classList.add('hidden');
+            if(btn) btn.className = "w-12 h-12 bg-slate-800 border border-slate-700 text-white rounded-full flex items-center justify-center shadow-2xl text-lg";
+            var logBox = document.getElementById('logs-diagnostico-box');
+            if(logBox) logBox.innerHTML = '<p class="text-emerald-400">[OK] Consola limpia. Ecosistema auditado con éxito.</p>';
         };
 
         // --- AUXILIAR: OCULTAR VISTAS EN CONJUNTO ---
@@ -941,7 +966,7 @@
             document.getElementById('cfg-modal-titulo').innerText = "CONFIGURAR ENTORNO SAAS";
             document.getElementById('cfg-nombre').value = nombre; document.getElementById('cfg-rif').value = rif;
             document.getElementById('cfg-tlf').value = tlf; document.getElementById('cfg-dir').value = dir;
-            document.getElementById('cfg-redes').value = redes; document.getElementById('cfg-user').value = user;
+            document.getElementById('cfg-redes').value = redes || ''; document.getElementById('cfg-user').value = user;
             document.getElementById('cfg-pass').value = pass; document.getElementById('cfg-promotor-asignado').value = promotor;
             document.getElementById('cfg-rango').value = rango; document.getElementById('cfg-rubro').value = rubro;
             document.getElementById('cfg-dias-display').innerText = `${diasSimuladosValor} Días`;
@@ -955,7 +980,7 @@
                     contratoBox.innerHTML = `<div class="border border-amber-500/30 bg-amber-950/20 p-2 rounded-xl text-amber-400 font-sans"><b>⚠️ CONTRATO PENDIENTE</b></div>`;
                 }
             }
-            document.getElementById('btn-guardar-cliente-saas').onclick = async function() { await window.ejecutarGuardadoEdicionExistenteObra(); };
+            document.getElementById('btn-guardar-cliente-saas').onclick = async function() { await window.ejecutarGuardadoEdicionExistingObra(); };
             document.getElementById('modal-config-master').classList.remove('hidden');
         };
 
@@ -985,7 +1010,7 @@
             } catch(e) { alert("Error en base de datos al dar de alta."); }
         };
 
-        window.ejecutarGuardadoEdicionExistenteObra = async function() {
+        window.ejecutarGuardadoEdicionExistingObra = async function() {
             try {
                 let listado = await obtenerClientesDesdeFirebase();
                 let idx = listado.findIndex(c => c.id === idSeleccionadoActual);
@@ -1171,6 +1196,15 @@
             } catch(e) {}
         };
 
+        function rebuildSelectDesplegableInventarioMostrador() {
+            const select = document.getElementById('select-prod-inventario-pos');
+            if(!select) return;
+            select.innerHTML = "";
+            localProductosInventarioArr.forEach(p => {
+                select.innerHTML += `<option value="${p.id}">${p.nombre} ($${p.venta})</option>`;
+            });
+        }
+
         async function descargarEstructuraInventarioYGastosFirebase() {
             try {
                 const docInv = await getDoc(doc(db, "tcl_custom_shop", `${infoClienteAbiertoDinamico.id}_inv`));
@@ -1316,7 +1350,7 @@
             } catch(e) {}
         };
 
-        // --- SISTEMA INTERNO DE AUDITORÍA Y ANULACIÓN (CORREGIDO F12) ---
+        // --- SISTEMA INTERNO DE AUDITORÍA Y ANULACIÓN ---
         window.recalcularEstructuraReportesGlobalTurno = function() {
             try {
                 const rango = document.getElementById('reporte-rango-temporal').value;
@@ -1417,7 +1451,7 @@
                 msg += `📅 Emisión: *${new Date().toLocaleDateString()}*\n\n`;
                 msg += `🟢 *VENTAS BRUTAS:* $${totalVentas.toFixed(2)} USD\n`;
                 msg += `🔴 *VALES / GASTOS:* $${totalGastos.toFixed(2)} USD\n`;
-                msg += `¼ *NOTAS DE DÉBITO:* $${totalAnuladas.toFixed(2)} USD\n`;
+                msg += `🟣 *NOTAS DE DÉBITO:* $${totalAnuladas.toFixed(2)} USD\n`;
                 msg += `⚖️ *CAJA REAL NETO:* $${neto.toFixed(2)} USD\n\n`;
                 msg += `🧮 *CONVERSIÓN DE ARQUEO:*\n`;
                 msg += `🇨🇴 Pesos: *${Math.round(neto * tCOP).toLocaleString()} COP*\n`;
@@ -1488,7 +1522,7 @@
                 box.innerHTML += `
                     <div class="flex justify-between items-center bg-slate-50 border p-2 rounded-xl text-xs font-mono">
                         <div><b>${p.cantidad} uds</b> — ${p.nombre}</div>
-                        <button onclick="window.open('','').eliminarProductoInventarioCompletamente(${index})" class="text-red-500"><i class="fa-solid fa-trash"></i></button>
+                        <button onclick="window.eliminarProductoInventarioCompletamente(${index})" class="text-red-500"><i class="fa-solid fa-trash"></i></button>
                     </div>`;
             });
         };
