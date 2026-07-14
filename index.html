@@ -1769,7 +1769,6 @@
                 select.innerHTML += `<option value="${p.id}">${p.nombre} ($${p.venta})</option>`;
             });
         }
-// --- INICIAR AQUÍ: PRINCIPIO DEL BLOQUE 2-B ---
         async function descargarEstructuraInventarioYGastosFirebase() {
             try {
                 const docInv = await getDoc(doc(db, "tcl_custom_shop", `${infoClienteAbiertoDinamico.id}_inv`));
@@ -2612,6 +2611,5 @@
     </script>
 </body>
 </html>
-<!-- FIN DEL ARCHIVO INMUTABLE MADRE 2026 -->
        
 
