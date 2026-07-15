@@ -22,19 +22,21 @@
         .glow-border { box-shadow: 0 0 25px rgba(59, 130, 246, 0.25); border: 1px solid rgba(59, 130, 246, 0.4); }
         .glow-text { text-shadow: 0 0 10px rgba(59, 130, 246, 0.5); }
         
-        /* REGLAS DE ORO DE IMPRESIÓN PURA ADAPTABLE (HP / EPSON 10x15 O TÉRMICA AUTOFIT) */
+        /* REGLAS DE ORO DE IMPRESIÓN PURA ADAPTABLE COMPACTA (HP / EPSON / TÉRMICA) */
         @media print {
             body { background: white !important; color: black !important; margin: 0 !important; padding: 0 !important; }
             body * { display: none !important; visibility: hidden !important; }
             #contenedor-impresion-termica-fijo, #contenedor-impresion-termica-fijo * { display: block !important; visibility: visible !important; }
             #contenedor-impresion-termica-fijo { 
-                position: absolute; left: 0; top: 0; width: 10cm !important; height: auto !important;
-                background: white !important; color: black !important; margin: 0 !important; padding: 0.3cm !important; 
-                font-family: 'Courier New', Courier, monospace; font-size: 11px; line-height: 1.3; 
+                position: absolute; left: 0; top: 0; width: 10cm !important; min-height: 10cm !important; height: auto !important;
+                background: white !important; color: black !important; margin: 0 !important; padding: 0.1cm !important; 
+                font-family: 'Courier New', Courier, monospace; font-size: 11px; line-height: 1.3; page-break-inside: avoid;
             }
+            .text-blue-custom { color: #1e40af !important; }
+            .text-red-custom { color: #dc2626 !important; }
         }
-        .text-blue-custom { color: #003366 !important; }
-        .text-red-custom { color: #cc3333 !important; }
+        .text-blue-custom { color: #1e40af; }
+        .text-red-custom { color: #dc2626; }
     </style>
 </head>
 <body class="min-h-screen transition-all duration-300 overflow-x-hidden select-none bg-slate-950 text-slate-100">
@@ -42,7 +44,7 @@
     <!-- CONTENEDOR TEMPLATE OCULTO PARA INYECCIÓN DE FACTURACIÓN PREMIUM EN HARDWARE -->
     <div id="contenedor-impresion-termica-fijo" class="hidden whitespace-pre bg-white text-black p-4 z-0"></div>
 
-    <!-- CONSOLA MÓVIL PERSISTENTE DE DIAGNÓSTICO -->
+    <!-- CONSOLA MÓVIL PERSISTENTE DE DIAGNÓSTICO (ESCANEO DE ERRORES AUTOMÁTICO EN DETECCION ACTIVA) -->
     <div id="diagnostico-master-flotante" class="fixed bottom-24 right-4 z-[10005] flex flex-col items-center gap-1">
         <div id="badge-contador-errores" class="bg-red-500 text-white font-black text-[10px] px-2 py-0.5 rounded-full shadow-lg border border-red-400 animate-bounce hidden">0</div>
         <button id="btn-consola-flotante" onclick="window.toggleConsolaDiagnosticoInterna()" class="w-12 h-12 bg-slate-800 border border-slate-700 text-white rounded-full flex items-center justify-center shadow-2xl text-lg transition-all duration-300">
@@ -56,8 +58,8 @@
                 <span><i class="fa-solid fa-bug mr-1"></i> Caja Negra de Diagnóstico Activo</span>
                 <button onclick="window.toggleConsolaDiagnosticoInterna()"><i class="fa-solid fa-xmark text-sm"></i></button>
             </div>
-            <div id="logs-diagnostico-box" class="p-4 flex-grow overflow-y-auto font-mono text-[10px] text-slate-300 space-y-2 no-scrollbar bg-slate-950"><p class="text-emerald-400">[OK] Consola limpia. Ecosistema auditado con éxito de pie a cabeza.</p></div>
-            <div class="bg-slate-950 p-3 border-t border-slate-850 flex gap-2 justify-end">
+            <div id="logs-diagnostico-box" class="p-4 flex-grow overflow-y-auto font-mono text-[10px] text-slate-300 space-y-2 no-scrollbar bg-slate-950"><p class="text-emerald-400">[OK] Consola limpia. Ecosistema auditado con éxito de pie a cabeza de forma automática.</p></div>
+            <div id="box-controles-descarga-segura" class="bg-slate-950 p-3 border-t border-slate-850 flex gap-2 justify-end hidden">
                 <button onclick="window.descargarMasaMadre()" class="bg-blue-600 text-white px-3 py-2 rounded-xl text-xs font-bold uppercase tracking-wide"><i class="fa-solid fa-download mr-1"></i> Masa Madre</button>
                 <button onclick="window.descargarReporteErroresIndex()" class="bg-slate-800 text-white px-3 py-2 rounded-xl text-xs font-bold uppercase tracking-wide">Reporte .txt</button>
                 <button onclick="window.limpiarHistorialErroresPermanente()" class="bg-slate-950 text-red-400 border border-red-900/40 px-3 py-2 rounded-xl text-xs font-bold uppercase tracking-wide">Limpiar</button>
@@ -82,10 +84,6 @@
                     <p>• <b>Doble Motor de Papel:</b> Inyección de plantillas estructuradas ocultas para Epson 10x15 con cabecera azul Movistar y Térmica Autofit elástica anti-hojas en blanco sin saltos de página erróneos.</p>
                     <p>• <b>Arquitectura SaaS Descentralizada:</b> Distribución inteligente tipo Netflix por perfiles protegidos. Cada sucursal almacena y aísla de forma automatizada sus inventarios, movimientos contables y reportes multimoneda independientes.</p>
                     <p>• <b>Órgano Proyectos Hermanos (Servicell):</b> Ventana emergente modular interna con comandos técnicos en Pesos (COP) calculados mediante multiplicación exacta de cantidad detallada, sueldos base y comisiones movibles.</p>
-                </div>
-                <div class="bg-slate-950/60 p-3.5 rounded-xl border border-slate-850 space-y-1">
-                    <span class="text-[10px] text-amber-400 font-bold block uppercase tracking-wider">📊 Estado y Mapeo en Vivo del Server Central:</span>
-                    <p class="font-mono text-[11px] text-slate-400">🔹 Ecosistema: Conectado a tucocel-vitrina.firebaseapp.com<br>🔹 Sincronización Contable: 4 Botoneras active sin lag lineal.</p>
                 </div>
             </div>
             <div class="bg-slate-950 px-5 py-4 border-t border-slate-800 flex justify-between gap-2">
@@ -121,7 +119,7 @@
                 <div class="space-y-1.5">
                     <h4 class="font-black text-xs uppercase tracking-wider text-white text-center sm:text-left">Operación 100% Legítima y Segura</h4>
                     <p class="text-slate-300 text-xs leading-relaxed">
-                        <strong>TCL Inventario Máster</strong> actúa estrictamente como un software privado para la optimización contable, organization de almacenes y verificación interna. La plataforma emite de forma limpia <strong>Notas de Despacho sin valor fiscal</strong>, permitiendo un control milimétrico de tus activos, cajas y reportes de forma autónoma sin interferir ni sustituir los requerimientos tributarios de tu comercio.
+                        <strong>TCL Inventario Máster</strong> actúa strictly como un software privado para la optimización contable, organización de almacenes y verificación interna. La plataforma emite de forma limpia <strong>Notas de Despacho sin valor fiscal</strong>, permitiendo un control milimétrico de tus activos, cajas y reportes de forma autónoma sin interferir ni sustituir los requerimientos tributarios de tu comercio.
                     </p>
                 </div>
             </div>
@@ -198,8 +196,8 @@
             <!-- SIMULADOR INTERACTIVO PREMIUM -->
             <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 space-y-4">
                 <div class="text-center sm:text-left">
-                    <h4 class="text-xs font-black uppercase text-amber-400 tracking-wide"><i class="fa-solid fa-chart-line mr-1"></i> Simulador Interactivo de Rentabilidad TCL</h4>
-                    <p class="text-[11px] text-slate-400">Desliza el medidor para calcular cuántas horas operativas y costos de papelería te ahorra el sistema mensualmente.</p>
+                    <h4 class="text-xs font-black uppercase text-amber-400 tracking-wide"><i class="fa-solid fa-chart-line mr-1"></i> Simulador Interactivo de Rentabilidad Comercial (Para Clientes)</h4>
+                    <p class="text-[11px] text-slate-400">📊 **¿Para qué sirve este panel?** Permite a los comercios calcular en tiempo real el ahorro mensual en horas operativas de mano de obra y costos netos de papelería física que se obtiene al automatizar el mostrador con TCL.</p>
                 </div>
                 <div class="space-y-2">
                     <input type="range" id="simulador-notas" min="100" max="2000" value="500" step="50" oninput="window.calcularAhorroInteractivoVenta(this.value)" class="w-full accent-blue-600 bg-slate-950 h-2 rounded-lg cursor-pointer">
@@ -250,25 +248,8 @@
                         <span class="block text-[10px] text-amber-400 font-bold uppercase mb-1">1 Año</span><b class="text-amber-400 text-base font-black" id="p-pub-m12-val">$160 USDT</b>
                     </div>
                 </div>
-
-                <div class="space-y-3 max-w-xl mx-auto pt-2">
-                    <span class="text-[9px] font-black text-slate-500 uppercase tracking-widest block">Canales de Liquidación Soportados</span>
-                    <div class="grid grid-cols-3 sm:grid-cols-6 gap-2 text-[10px] font-bold text-slate-400">
-                        <div class="bg-slate-900 border border-slate-850 p-2 rounded-xl flex flex-col items-center gap-1"><i class="fa-solid fa-mobile-screen text-emerald-400 text-sm"></i> Pago Móvil</div>
-                        <div class="bg-slate-900 border border-slate-850 p-2 rounded-xl flex flex-col items-center gap-1"><i class="fa-solid fa-money-bill-1 text-green-500 text-sm"></i> Efectivo $</div>
-                        <div class="bg-slate-900 border border-slate-850 p-2 rounded-xl flex flex-col items-center gap-1"><i class="fa-solid fa-flag text-amber-500 text-sm"></i> Pesos COP</div>
-                        <div class="bg-slate-900 border border-slate-850 p-2 rounded-xl flex flex-col items-center gap-1"><i class="fa-solid fa-wallet text-purple-400 text-sm"></i> Nequi</div>
-                        <div class="bg-slate-900 border border-slate-850 p-2 rounded-xl flex flex-col items-center gap-1"><i class="fa-solid fa-heart text-pink-400 text-sm"></i> Zinli</div>
-                        <div class="bg-slate-900 border border-slate-850 p-2 rounded-xl flex flex-col items-center gap-1"><i class="fa-solid fa-coins text-yellow-400 text-sm"></i> Binance</div>
-                    </div>
-                </div>
             </div>
         </section>
-
-        <footer class="py-8 px-4 text-center text-[10px] text-slate-500 font-medium border-t border-slate-900 space-y-1">
-            <p>Infraestructura Tecnológica Desarrollada y Distribuida por Tucocel C.A.</p>
-            <p>Soporte Técnico Exclusivo e Integraciones de Automatización: <span class="text-slate-400 font-bold">@publionlinemk</span></p>
-        </footer>
     </div>
 
     <!-- ENTORNO 2: VISTA DEL CATÁLOGO REAL VISUAL DE EXPERIENCIA -->
@@ -282,21 +263,8 @@
                 <h1 class="text-3xl sm:text-4xl font-black tracking-tight text-white uppercase tracking-wide">
                     MIRA EL SISTEMA <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400 glow-text">EN ACCIÓN</span>
                 </h1>
-                <p class="text-white text-xs sm:text-sm max-w-xl mx-auto font-semibold leading-relaxed">
-                    Descubra por qué nuestra plataforma es la herramienta definitiva para modernizar su mostrador, asegurar sus ingresos y agilizar la atención al cliente de forma infalible.
-                </p>
             </div>
         </header>
-
-        <!-- TEXTO DE DESLINDE DE RESPONSABILIDAD TRIBUTARIA LEGAL VENEZUELA -->
-        <section class="max-w-4xl mx-auto px-4 pt-6">
-            <div class="bg-red-950/20 border border-red-500/30 rounded-3xl p-5 text-justify space-y-1 shadow-lg">
-                <div class="flex items-center gap-2 text-red-400 font-black text-[10px] uppercase tracking-wider"><i class="fa-solid fa-building-columns"></i> <span>🛡️ Aclaratoria Institucional de Licencia</span></div>
-                <p class="text-[11px] text-slate-300 leading-relaxed font-medium">
-                    <strong>TCL Inventario Máster</strong> es una infraestructura digital privada destinada exclusivamente al control logístico, arqueos de caja y auditoría interna de mercancías. Cada comercio es única y legalmente responsable del uso de esta plataforma. El sistema <strong>no emite facturas fiscales</strong> ni exime al establecimiento de cumplir con las normativas tributarias vigentes dictadas por las leyes de la República Bolivariana de Venezuela ante el SENIAT.
-                </p>
-            </div>
-        </section>
 
         <main class="max-w-5xl mx-auto px-4 py-12 space-y-16">
             <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center border-b border-slate-900 pb-12">
@@ -308,9 +276,6 @@
                     <p class="text-slate-200 text-xs leading-relaxed font-medium">
                         Deje atrás los formatos gigantescos e incómodos. El sistema adapta el texto de forma automatizada y milimétrica para tickeras térmicas estándar de mostrador (80mm) o dispositivos portátiles por Bluetooth (58mm). Genere un comprobante administrativo elegante con desglose multimoneda exacto y corte limpio en la hoja física.
                     </p>
-                    <div class="bg-slate-900/60 border border-slate-850 p-3 rounded-2xl text-[11px] text-white font-medium">
-                        💡 <strong>Ahorro Directo:</strong> Reduzca más de un 50% en gastos de resmas de papel tradicionales utilizando rollos de impresión térmica continuos.
-                    </div>
                 </div>
                 <div class="md:col-span-7 order-1 md:order-2">
                     <div class="bg-slate-900 p-3 rounded-3xl border border-slate-800 shadow-2xl relative overflow-hidden group">
@@ -320,267 +285,18 @@
                                 <div class="bg-white text-slate-900 p-4 rounded shadow-2xl font-mono text-[9px] w-56 transform rotate-2 max-h-64 overflow-y-auto no-scrollbar border border-gray-300">
                                     <p class="text-center font-bold text-[11px]">*** NOTA DE ENTREGA ***</p>
                                     <p class="text-center font-bold">BODEGÓN LA EXCELENCIA</p>
-                                    <p class="text-center text-[8px] -mt-1">Control Interno Administrativo</p>
-                                    <p class="mt-2">Nota: #042 | Fecha: 11/07/2026</p>
-                                    <p>Cajero: MARTA SILVA (AUDITADO)</p>
                                     <p class="border-t border-dashed border-gray-400 pt-1 mt-1">2x Harina PAN Premium    $2.00</p>
                                     <p>1x Ron Añejo Especial    $12.00</p>
                                     <p class="border-t border-dashed border-gray-400 pt-1 mt-1">TOTAL REF:             $14.00</p>
                                     <p class="text-emerald-700 font-bold">TOTAL COP:           54.600 COP</p>
                                     <p class="text-blue-700 font-bold">TOTAL VES:             560.00 Bs</p>
-                                    <p class="border-t border-dashed border-gray-400 pt-1 mt-2 text-center text-[7px] italic text-gray-500">Documento interno para control de inventario y despacho.</p>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center border-b border-slate-900 pb-12">
-                <div class="md:col-span-7">
-                    <div class="bg-slate-900 p-3 rounded-3xl border border-slate-800 shadow-2xl relative overflow-hidden group">
-                        <div class="w-full h-72 sm:h-80 bg-slate-950 rounded-2xl overflow-hidden flex items-center justify-center p-4">
-                            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&auto=format&fit=crop&q=80" alt="Soporte WhatsApp Digital" class="w-full h-full object-cover rounded-xl opacity-85">
-                            <div class="absolute inset-4 bg-emerald-950/50 rounded-xl flex items-center justify-center p-4">
-                                <div class="w-64 bg-[#efeae2] rounded-2xl p-2.5 shadow-2xl space-y-2">
-                                    <div class="bg-[#128c7e] text-white p-2 rounded-t-xl -mx-2.5 -mt-2.5 flex items-center gap-2 text-[10px] font-bold">
-                                        <div class="w-5 h-5 bg-white/20 rounded-full flex items-center justify-center"><i class="fa-solid fa-store text-[9px]"></i></div>
-                                        <div><span>Notificación Comercial</span><span class="block text-[7px] font-medium text-emerald-200">En línea</span></div>
-                                    </div>
-                                    <div class="bg-white p-2.5 rounded-xl border border-gray-200 shadow-sm text-[9.5px] text-slate-880 font-medium leading-relaxed font-sans relative">
-                                        <p class="font-bold text-emerald-700">🛍️ BODEGÓN LA EXCELENCIA</p>
-                                        <p class="font-bold mt-1">🧾 COMPROBANTE DE DESPACHO</p>
-                                        <p class="text-slate-500 text-[8px]">Nota #042 | Vendedor: MARTA</p>
-                                        <p class="mt-1.5 border-t pt-1 border-gray-100 font-bold text-emerald-600">📋 Artículos:</p>
-                                        <p class="pl-1">▪ 2x Harina PAN Premium -&gt; $2</p>
-                                        <p class="pl-1">▪ 1x Ron Añejo Especial -&gt; $12</p>
-                                        <p class="mt-1.5 border-t pt-1 border-gray-100 font-bold text-emerald-600">💰 Totales Multimoneda:</p>
-                                        <p class="font-bold">💵 REF: $14.00 USD</p>
-                                        <p class="font-bold">🇨🇴 COP: 54.600 Pesos</p>
-                                        <p class="font-bold">🇻🇪 VES: 560.00 Bolívares</p>
-                                        <span class="absolute bottom-1 right-2 text-[7px] text-gray-400">12:34 p. m. ✓✓</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="md:col-span-5 space-y-4 text-justify">
-                    <div class="inline-flex items-center gap-2 text-emerald-400 font-black text-[10px] tracking-widest uppercase bg-emerald-500/10 border border-emerald-500/20 px-3 py-1 rounded-md">
-                        <i class="fa-solid fa-paper-plane"></i> Despacho Digital
-                    </div>
-                    <h3 class="text-xl font-extrabold text-white uppercase tracking-tight">Envío Estético Inmediato a WhatsApp</h3>
-                    <p class="text-slate-200 text-xs leading-relaxed font-medium">
-                        Eleve la reputación de su marca entregando una experiencia premium. Con un solo toque en la pantalla de facturación, el software procesa el despacho y dispara un mensaje corporativo impecable con emojis organizados y conversión cambiaria al WhatsApp del comprador, operando perfectamente desde computadoras o celulares.
-                    </p>
-                    <div class="bg-slate-900/60 border border-slate-850 p-3 rounded-2xl text-[11px] text-white font-medium">
-                        ✨ <strong>Efecto Fidelización:</strong> Sorprenda a sus clientes enviándoles su comprobante digital al instante, manteniendo su negocio moderno e innovador.
-                    </div>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center border-b border-slate-900 pb-12">
-                <div class="md:col-span-5 space-y-4 text-justify order-2 md:order-1">
-                    <div class="inline-flex items-center gap-2 text-purple-400 font-black text-[10px] tracking-widest uppercase bg-purple-500/10 border border-purple-500/20 px-3 py-1 rounded-md">
-                        <i class="fa-solid fa-sliders"></i> Panel Adaptable
-                    </div>
-                    <h3 class="text-xl font-extrabold text-white uppercase tracking-tight">Interfaz Camaleónica Inteligente Multirrubro</h3>
-                    <p class="text-slate-200 text-xs leading-relaxed font-medium">
-                        Un sistema que se transforma al instante según las necesidades del negocio. Cuenta con un **Modo Tecnológico Avanzado** que añade soporte nativo para rastreo de seriales multi-IMEI y configuraciones Dual SIM de telefonía móvil. 
-                    </p>
-                    <p class="text-slate-200 text-xs leading-relaxed font-medium">
-                        ¿Su negocio es de otro rubro? Con un clic el sistema pasa a **Modo Comercio General** (bodegones, farmacias, licores, charcuterías), ocultando por completo las palabras e inputs de celulares para brindarle al cajero un entorno de carga limpio, rápido y libre de confusiones.
-                    </p>
-                </div>
-                <div class="md:col-span-7 order-1 md:order-2">
-                    <div class="bg-slate-900 p-3 rounded-3xl border border-slate-800 shadow-2xl relative overflow-hidden group">
-                        <div class="w-full h-72 sm:h-80 bg-slate-950 rounded-2xl overflow-hidden flex items-center justify-center p-4">
-                            <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=800&auto=format&fit=crop&q=80" alt="Interfaz Camaleónica" class="w-full h-full object-cover rounded-xl opacity-80">
-                            <div class="absolute inset-4 bg-slate-950/80 rounded-xl flex items-center justify-center p-4">
-                                <div class="w-76 bg-slate-900 border border-slate-800 rounded-2xl p-4 font-sans text-xs space-y-2 shadow-2xl">
-                                    <span class="text-[8px] bg-purple-600/20 text-purple-400 border border-purple-500/30 px-2 py-0.5 rounded font-black uppercase tracking-wider block w-max">Giro Tecnológico Activado</span>
-                                    <div class="bg-slate-950 p-2 rounded-xl border border-slate-850 space-y-1 font-mono text-[9px]">
-                                        <p class="text-white">📱 Equipo #1: SAMSUNG GALAXY A55</p>
-                                        <p class="text-amber-400 pl-2">▫ IMEI 1: 354678110923456</p>
-                                        <p class="text-amber-400 pl-2">▫ IMEI 2: 354678110923457 (DUAL SIM)</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center border-b border-slate-900 pb-12">
-                <div class="md:col-span-7">
-                    <div class="bg-slate-900 p-3 rounded-3xl border border-slate-800 shadow-2xl relative overflow-hidden group">
-                        <div class="w-full h-72 sm:h-80 bg-slate-950 rounded-2xl overflow-hidden flex items-center justify-center p-4">
-                            <img src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=800&auto=format&fit=crop&q=80" alt="Métodos de pago" class="w-full h-full object-cover rounded-xl opacity-80">
-                            <div class="absolute inset-4 bg-slate-950/80 rounded-xl flex items-center justify-center p-4">
-                                <div class="w-80 bg-slate-900 border border-slate-800 rounded-2xl p-4 font-sans space-y-3 text-xs">
-                                    <div class="flex justify-between items-center border-b border-slate-800 pb-1.5 font-bold text-white text-[10px] uppercase">
-                                        <span>Auditoría de Caja</span><span class="text-purple-400">Parámetros POS</span>
-                                    </div>
-                                    <div class="grid grid-cols-2 gap-2 text-[10px]">
-                                        <div class="bg-slate-950 p-2 rounded-xl border border-slate-850">
-                                            <span class="text-[7.5px] text-slate-400 font-bold uppercase block mb-0.5">Condición de Venta</span>
-                                            <span class="font-black text-purple-400 uppercase">🔹 CRÉDITO ASENTADO</span>
-                                        </div>
-                                        <div class="bg-slate-950 p-2 rounded-xl border border-slate-850">
-                                            <span class="text-[7.5px] text-slate-400 font-bold uppercase block mb-0.5">Vía de Liquidación</span>
-                                            <span class="font-black text-emerald-400 uppercase">💵 MULTIMONEDA</span>
-                                        </div>
-                                    </div>
-                                    <div class="bg-slate-950 p-3 rounded-xl border border-purple-900/40 space-y-1 font-mono text-[10.5px]">
-                                        <div class="flex justify-between text-white"><span>Total Neto Venta:</span> <span class="font-black">$120</span></div>
-                                        <div class="flex justify-between text-emerald-400 font-bold"><span>Abono Recibido:</span> <span class="font-black">-$40</span></div>
-                                        <div class="flex justify-between text-amber-400 font-bold border-t border-slate-800 pt-1 mt-1"><span>SALDO PENDIENTE:</span> <span class="font-black">$80</span></div>
-                                        <div class="flex justify-between text-purple-400 text-[9px] font-bold"><span>Plazo Otorgado:</span> <span>15 DÍAS VIGENTES</span></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="md:col-span-5 space-y-4 text-justify">
-                    <div class="inline-flex items-center gap-2 text-amber-400 font-black text-[10px] tracking-widest uppercase bg-amber-500/10 border border-amber-500/20 px-3 py-1 rounded-md">
-                        <i class="fa-solid fa-wallet"></i> Flexibilidad Financiera
-                    </div>
-                    <h3 class="text-xl font-extrabold text-white uppercase tracking-tight">Métodos de Pago y Control de Contado o Crédito</h3>
-                    <p class="text-white text-xs leading-relaxed font-medium">
-                        No limite las formas de pago de sus clientes. El software le permite al cajero seleccionar instantáneamente cómo cancela el comprador en la mesa de venta, soportando de forma nativa Dólares en Efectivo, Pesos COP, Bolívares, Zinli, Nequi o Binance.
-                    </p>
-                    <p class="text-white text-xs leading-relaxed font-medium">
-                        Gestione de forma impecable las cuentas por cobrar. Separe con un clic las operaciones de Contado de los despachos a Crédito/Pendientes. El sistema registra el abono inicial dejado en el mostrador, calcula saldos restantes de forma matemática e indica los días de plazo otorgados de forma infalible.
-                    </p>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center border-b border-slate-900 pb-12">
-                <div class="md:col-span-5 space-y-4 text-justify order-2 md:order-1">
-                    <div class="inline-flex items-center gap-2 text-blue-400 font-black text-[10px] tracking-widest uppercase bg-blue-500/10 border border-blue-500/20 px-3 py-1 rounded-md">
-                        <i class="fa-solid fa-calculator"></i> Conversión Cambiaria
-                    </div>
-                    <h3 class="text-xl font-extrabold text-white uppercase tracking-tight">Facturación Adaptable según la Moneda de sus Productos</h3>
-                    <p class="text-white text-xs leading-relaxed font-medium">
-                        Diseñado especialmente para comercios que manejan inventarios con estructuras de costos mezcladas. El cajero puede elegir de manera libre en qué moneda base procesará el artículo (Pesos, Dólares o Bolívares) según como tenga marcados los precios en su stock físico.
-                    </p>
-                    <div class="bg-slate-900/60 border border-slate-850 p-3 rounded-2xl text-[11px] text-white font-medium">
-                        🎛️ <strong>Cálculo Automático:</strong> El software realiza la conversión en milisegundos basándose en la tasa de control diario configurada, garantizando que el ticket final refleje el desglose equivalente exacto en las tres monedas sin demoras.
-                    </div>
-                </div>
-                <div class="md:col-span-7 order-1 md:order-2">
-                    <div class="bg-slate-900 p-3 rounded-3xl border border-slate-800 shadow-2xl relative overflow-hidden group">
-                        <div class="w-full h-72 sm:h-80 bg-slate-950 rounded-2xl overflow-hidden flex items-center justify-center p-4">
-                            <img src="https://images.unsplash.com/photo-1621416894569-0f39ed31d247?w=800&auto=format&fit=crop&q=80" alt="Precios Multimoneda" class="w-full h-full object-cover rounded-xl opacity-80">
-                            <div class="absolute inset-4 bg-slate-950/80 rounded-xl flex items-center justify-center p-4">
-                                <div class="w-72 bg-slate-900 border border-slate-800 rounded-2xl p-4 font-sans space-y-3 text-xs">
-                                    <div class="flex justify-between items-center border-b border-slate-800 pb-1.5 font-bold text-white text-[10px] uppercase">
-                                        <span>Moneda del Inventario</span><span class="text-blue-400">Entrada POS</span>
-                                    </div>
-                                    <div class="space-y-2">
-                                        <div class="bg-slate-950 p-2 rounded-xl border border-blue-500/30 flex justify-between items-center">
-                                            <span class="text-white font-bold">Moneda Base Seleccionada:</span>
-                                            <span class="bg-blue-600 text-white font-black px-2 py-0.5 rounded text-[9px] uppercase tracking-wider">🇨🇴 PESOS (COP)</span>
-                                        </div>
-                                        <div class="p-2 bg-slate-950/50 rounded-xl text-center border border-slate-850 text-[10px] font-mono text-slate-300">
-                                            Mesa de venta activa: el sistema unifica las tasas configuradas en el mostrador para desglosar subtotales exactos al segundo.
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center border-b border-slate-900 pb-12">
-                <div class="md:col-span-7">
-                    <div class="bg-slate-900 p-3 rounded-3xl border border-slate-800 shadow-2xl relative overflow-hidden group">
-                        <div class="w-full h-72 sm:h-80 bg-slate-950 rounded-2xl overflow-hidden flex items-center justify-center p-4">
-                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&auto=format&fit=crop&q=80" alt="Reporte de Cierre Diario" class="w-full h-full object-cover rounded-xl opacity-80">
-                            <div class="absolute inset-4 bg-slate-950/80 rounded-xl flex items-center justify-center p-4">
-                                <div class="w-80 bg-slate-900 border border-slate-800 rounded-2xl p-3.5 font-sans space-y-2.5 text-xs text-left">
-                                    <div class="flex justify-between items-center border-b border-slate-800 pb-1.5 text-white font-bold text-[9px] uppercase tracking-wider">
-                                        <span>Cierre de Caja Consolidado</span><span class="text-emerald-400">Balance Exitoso</span>
-                                    </div>
-                                    <div class="bg-slate-950 p-2 rounded-xl border border-slate-850 space-y-1 font-mono text-[9.5px] text-slate-300">
-                                        <p class="text-white font-bold uppercase border-b border-slate-900 pb-0.5 mb-1 text-[8.5px] text-purple-400">📦 DETALLE DE MERCANCÍA VENDIDA:</p>
-                                        <p>• 14x Harina Pan Premium</p>
-                                        <p>• 04x Arroz Blanco Bodegón</p>
-                                        <p>• 02x Aceite Vegetal 1L</p>
-                                        <p class="text-white font-bold uppercase border-b border-slate-900 pb-0.5 pt-1.5 mb-1 text-[8.5px] text-emerald-400">💰 COBROS Y RESPONSABLES EN TURNO:</p>
-                                        <p>• Efectivo USD Recibido: $48.00</p>
-                                        <p>• Transferencia COP Recibida: 180.000 COP</p>
-                                        <p class="text-[8px] text-slate-500 font-bold border-t border-slate-800 pt-1 mt-1">RESPONSABLE CAJA: CAJERO_MARTA (SESIÓN AUDITADA)</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="md:col-span-5 space-y-4 text-justify">
-                    <div class="inline-flex items-center gap-2 text-blue-400 font-black text-[10px] tracking-widest uppercase bg-blue-500/10 border border-blue-500/20 px-3 py-1 rounded-md">
-                        <i class="fa-solid fa-chart-pie"></i> Control de Auditoría
-                    </div>
-                    <h3 class="text-xl font-extrabold text-white uppercase tracking-tight">Reporte de Cierre Diario Detallado y Auditado</h3>
-                    <p class="text-white text-xs leading-relaxed font-medium">
-                        La pantalla definitiva que le permite al dueño del comercio dormir tranquilo. Visualice al final de la jornada el desglose exacto de los productos vendidos, manteniendo un rastreo milimétrico sobre las salidas de mercancía en stock.
-                    </p>
-                    <div class="bg-slate-900/60 border border-slate-850 p-3 rounded-2xl text-[11px] text-white font-medium space-y-1.5">
-                        <p>📊 <strong class="text-emerald-400 uppercase text-[9px] tracking-wider block">Auditoría Suprema de Caja:</strong></p>
-                        <p>El reporte le detalla con exactitud matemática cómo se cobraron los fondos (monto exacto ingresado en efectivo, abonos o transferencias) y quién fue la persona responsable de emitir cada factura, bloqueando descuidos o fraudes.</p>
                     </div>
                 </div>
             </div>
         </main>
-
-        <section class="max-w-4xl mx-auto px-4 mt-6">
-            <div class="p-0.5 rounded-3xl bg-gradient-to-br from-blue-600 to-purple-600 shadow-[0_0_30px_rgba(59,130,246,0.15)] overflow-hidden">
-                <div class="bg-slate-950 rounded-[22px] p-6 sm:p-8 text-center space-y-4 relative overflow-hidden">
-                    <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(147,51,234,0.1),transparent_50%)]"></div>
-                    <div class="relative z-10 space-y-3">
-                        <span class="bg-amber-500/10 text-amber-400 border border-amber-500/20 text-[10px] font-black tracking-widest uppercase px-4 py-1 rounded-full font-mono">
-                            ⭐ OPERACIÓN HISTÓRICA: IMPARABLE
-                        </span>
-                        <h3 class="text-xl sm:text-2xl font-black text-white uppercase tracking-wide">MOVILIDAD CONTINUA FRENTE A CUALQUIER APAGÓN</h3>
-                        <p class="text-white text-xs sm:text-sm max-w-2xl mx-auto leading-relaxed text-justify sm:text-center font-medium">
-                            Nuestra infraestructura rompe las cadenas de las computadoras fijas tradicionales. Si el mostrador se queda a oscuras o falla la conectividad por cables del local, la venta nunca se detiene. Su personal saca un teléfono celular, abre su link único y sigue facturando, desglosando métodos de pago y consultando el stock centralizado gracias a las líneas de datos independientes del dispositivo móvil. El sistema sigue en marcha en cualquier circunstancia.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="max-w-4xl mx-auto px-4 pt-16 text-center">
-            <div class="p-0.5 rounded-3xl bg-gradient-to-r from-blue-600 via-indigo-900 to-purple-600 glow-border overflow-hidden">
-                <div class="bg-slate-950 rounded-[22px] p-8 space-y-6 relative overflow-hidden">
-                    <div class="absolute inset-0 bg-[radial-gradient(circle_at_bottom,rgba(59,130,246,0.12),transparent_60%)]"></div>
-                    <div class="relative z-10 space-y-4">
-                        <div class="w-14 h-14 bg-blue-600/10 border border-blue-500/20 rounded-2xl flex items-center justify-center mx-auto text-blue-400 text-2xl shadow-xl">
-                            <i class="fa-solid fa-rocket animate-bounce"></i>
-                        </div>
-                        <h2 class="text-xl sm:text-3xl font-black text-white uppercase tracking-tight leading-tight">
-                            No administre su negocio a ciegas.<br>
-                            Súbase a la infraestructura que automatiza su éxito.
-                        </h2>
-                        <p class="text-slate-200 text-xs sm:text-sm max-w-2xl mx-auto font-semibold leading-relaxed text-justify sm:text-center">
-                            TCL Inventario Máster no es un gasto, es el escudo definitivo que protege su caja, organiza su stock físico y profesionaliza su mostrador desde cualquier celular o PC. No arriesgue sus cuentas ni dependa de sistemas obsoletos; tome el control absoluto de sus operaciones hoy mismo.
-                        </p>
-                        <div class="pt-4">
-                            <div class="bg-gradient-to-r from-blue-600 via-blue-700 to-purple-600 text-white font-black text-xs sm:text-sm px-8 py-4 rounded-2xl uppercase tracking-wider shadow-2xl border border-blue-400/30 inline-block transition-all transform hover:scale-[1.02] duration-300">
-                                🚀 activa tu suscripción ahora mismo y evoluciona con TCL INVENTARIO MÁSTER
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <footer class="py-8 px-4 text-center text-[10px] text-white font-bold space-y-1 mt-12 border-t border-slate-900/60">
-            <p class="text-white font-extrabold uppercase tracking-wide">Infraestructura Tecnológica y Demostraciones del Producto Distribuidas por Tucocel C.A.</p>
-            <p class="text-slate-200 font-mono text-[9px] tracking-wider mt-0.5">© 2026 Todos los Derechos Reservados. Automatización y Diseño por @publionlinemk.</p>
-        </footer>
     </div>
 
     <!-- ENTORNO 3: ENLACE CONTRATO PROMOTOR INDEPENDIENTE PUBLICO -->
@@ -588,7 +304,7 @@
         <div class="w-full max-w-xl p-0.5 rounded-3xl bg-gradient-to-br from-purple-600 via-slate-800 to-blue-600 shadow-2xl">
             <div class="glass-panel rounded-[22px] p-6 space-y-4">
                 <div class="border-b border-slate-800 pb-3 text-center">
-                    <span class="bg-purple-500/10 text-purple-400 border border-purple-500/20 text-[9px] font-black tracking-widest uppercase px-3 py-1 rounded-full inline-block mb-1">Registro y Validation Obligatoria</span>
+                    <span class="bg-purple-500/10 text-purple-400 border border-purple-500/20 text-[9px] font-black tracking-widest uppercase px-3 py-1 rounded-full inline-block mb-1">Registro y Validación Obligatoria</span>
                     <h2 class="font-black text-lg text-white uppercase">CONTRATO DE PROMOTOR DIGITAL INDEPENDIENTE</h2>
                 </div>
                 <div class="bg-slate-950 p-4 rounded-xl border border-slate-850 font-sans text-[11px] leading-relaxed max-h-44 overflow-y-auto no-scrollbar text-slate-300 text-justify space-y-2">
@@ -599,7 +315,10 @@
                 
                 <!-- TABULADOR INTERACTIVO DE METAS -->
                 <div class="bg-slate-900 border border-slate-800 p-3 rounded-2xl space-y-2">
-                    <span class="text-[9px] text-purple-400 font-black uppercase block font-mono tracking-wider"><i class="fa-solid fa-calculator"></i> Tabulador Interactivo de Ganancias</span>
+                    <div class="text-center sm:text-left mb-1">
+                        <span class="text-[9px] text-purple-400 font-black uppercase block font-mono tracking-wider"><i class="fa-solid fa-calculator"></i> Tabulador Interactivo de Ganancias (Para Vendedores)</span>
+                        <p class="text-[10px] text-slate-400">📊 **¿Para qué sirve este panel?** Te permite simular y proyectar de manera exacta tus ganancias netas acumuladas en tiempo real en base a los planes SaaS de control interno que logres captar al mes.</p>
+                    </div>
                     <div class="grid grid-cols-2 sm:grid-cols-4 gap-1.5 text-[10px] text-center">
                         <div class="bg-slate-950 p-1.5 rounded-xl border border-slate-855"><span class="text-slate-400 block text-[8px] font-sans">Plan 1M</span><b id="sim-disp-m1" class="text-white block">$5.00</b><input type="number" id="sim-cant-m1" value="0" min="0" onkeyup="window.recalcularSimuladorGananciasPromotorFlujo()" class="w-full bg-slate-900 text-center font-bold text-purple-400 mt-1 rounded focus:outline-none border border-slate-880"></div>
                         <div class="bg-slate-950 p-1.5 rounded-xl border border-slate-855"><span class="text-slate-400 block text-[8px] font-sans">Plan 3M</span><b id="sim-disp-m3" class="text-white block">$9.00</b><input type="number" id="sim-cant-m3" value="0" min="0" onkeyup="window.recalcularSimuladorGananciasPromotorFlujo()" class="w-full bg-slate-900 text-center font-bold text-purple-400 mt-1 rounded focus:outline-none border border-slate-880"></div>
@@ -614,14 +333,14 @@
                 
                 <div class="space-y-3 text-xs">
                     <div class="bg-slate-950 p-3 rounded-xl border border-slate-850 space-y-2">
-                        <span class="text-[9px] text-purple-400 font-bold uppercase block">Datos de Identificación del Comisionista</span>
+                        <span class="text-[9px] text-purple-400 font-bold uppercase block">Datos de Identificación de Registro</span>
                         <input type="text" id="promotor-registro-nombre" placeholder="Nombre y Apellido Completo" class="w-full bg-slate-900 border border-slate-800 p-2 rounded-lg text-white font-bold focus:outline-none">
                         <input type="text" id="promotor-registro-cedula" placeholder="Cédula de Identidad" class="w-full bg-slate-900 border border-slate-800 p-2 rounded-lg text-white font-bold focus:outline-none">
-                        <input type="text" id="promotor-registro-tlf" placeholder="Número Telefónico (WhatsApp)" class="w-full bg-slate-900 border border-slate-800 p-2 rounded-lg text-white font-bold focus:outline-none">
+                        <input type="text" id="promotor-registro-tlf" placeholder="Número de Celular (WhatsApp)" class="w-full bg-slate-900 border border-slate-800 p-2 rounded-lg text-white font-bold focus:outline-none">
                         <input type="text" id="promotor-registro-dir" placeholder="Dirección de Domicilio Completa" class="w-full bg-slate-900 border border-slate-800 p-2 rounded-lg text-white font-bold focus:outline-none">
                     </div>
-                    <div><label class="text-[9px] text-purple-400 font-bold uppercase block mb-1">Adjuntar Soporte de Identidad Oficial (Foto Cédula Liviana)</label><input type="file" id="promotor-cedula-file" accept="image/*" class="w-full text-slate-500 file:mr-3 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-[10px] file:font-black file:bg-purple-600/10 file:text-purple-400"></div>
-                    <button onclick="window.ejecutarFirmaYAutodestruccionTokenPromotor()" class="w-full bg-gradient-to-r from-purple-600 to-blue-600 text-white font-black py-3 rounded-xl uppercase tracking-wider shadow-md">Firmar Contrato y Validar Registro 🔒</button>
+                    <div><label class="text-[9px] text-purple-400 font-bold uppercase block mb-1">Adjuntar Foto Nítida y Liviana de tu Cédula</label><input type="file" id="promotor-cedula-file" accept="image/*" class="w-full text-slate-500 file:mr-3 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-[10px] file:font-black file:bg-purple-600/10 file:text-purple-400"></div>
+                    <button onclick="window.ejecutarFirmaYAutodestruccionTokenPromotor()" class="w-full bg-gradient-to-r from-purple-600 to-blue-600 text-white font-black py-3 rounded-xl uppercase tracking-wider shadow-md">Completar Registro Electrónico 🔒</button>
                 </div>
             </div>
         </div>
@@ -660,12 +379,10 @@
                 </div>
             </div>
 
-            <!-- FILTRO DE AUDITORÍA SÚPER PANEL MÁSTER -->
             <div class="bg-slate-900 border border-slate-800 p-5 rounded-3xl space-y-4">
                 <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 border-b border-slate-800 pb-3">
                     <div>
                         <h2 class="text-white font-black text-sm uppercase tracking-wider">📊 Consolidado Central del Servidor de Suscripciones</h2>
-                        <span class="text-[8.5px] text-slate-400 block font-sans">Monitoreo de balances recaudados globales por membresía.</span>
                     </div>
                 </div>
                 <div class="bg-slate-950 p-4 rounded-xl border border-blue-500/20 text-center font-mono text-xs">
@@ -739,12 +456,12 @@
                                         <span>Sueldo: $<span id="lbl-mov-sueldo">120.00</span></span> | <span>Comisión: <span id="lbl-mov-com">50</span>%</span>
                                     </div>
                                 </div>
-                                <div class="grid grid-cols-1 sm:grid-cols-4 gap-2 text-xs font-bold text-slate-850">
+                                <div class="grid grid-cols-1 sm:grid-cols-4 gap-2 text-xs font-bold text-slate-855">
                                     <input type="text" id="svc-input-concepto" placeholder="Descripción de la Tarea / Producto" class="w-full bg-slate-50 border p-2.5 rounded-xl sm:col-span-2 font-bold uppercase focus:outline-none">
                                     <input type="number" id="svc-input-cantidad" value="1" min="1" class="w-full bg-slate-50 border p-2.5 rounded-xl text-center font-black focus:outline-none">
                                     <input type="number" id="svc-input-precio-cop" placeholder="Precio Base (COP)" class="w-full bg-slate-50 border p-2.5 rounded-xl text-center font-black focus:outline-none">
                                 </div>
-                                <div class="grid grid-cols-2 gap-2 text-xs font-bold text-slate-850">
+                                <div class="grid grid-cols-2 gap-2 text-xs font-bold text-slate-855">
                                     <select id="svc-input-tipo" class="w-full bg-slate-50 border p-2.5 rounded-xl focus:outline-none"><option value="SERVICIO">🛠️ Servicio Técnico (Comisionable)</option><option value="VENTA">🛍️ Venta Mostrador (Fijo)</option></select>
                                     <select id="svc-input-metodo" class="w-full bg-slate-50 border p-2.5 rounded-xl focus:outline-none"><option value="PESOS">Pesos Efectivo</option><option value="DOLAR">Dólares Efectivo</option><option value="PAGOMOVIL">Bolívares Bs</option></select>
                                 </div>
@@ -1128,7 +845,7 @@
                 <div id="panel-seccion-inventario-gasto" class="p-4 max-w-xl mx-auto w-full space-y-4 flex-grow pb-24 hidden">
                     <div class="bg-white border border-slate-200 rounded-3xl p-5 shadow-sm space-y-3">
                         <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-wider border-b pb-1">Registrar Gasto de Caja</h4>
-                        <div class="space-y-2 text-xs font-bold text-slate-880">
+                        <div class="space-y-2 text-xs font-bold text-slate-800">
                             <input type="text" id="gastos-input-motivo" placeholder="Descripción del Gasto" class="w-full bg-slate-50 border p-2.5 rounded-xl focus:outline-none uppercase">
                             <input type="number" id="gastos-input-monto" placeholder="Monto ($)" class="w-full bg-slate-50 border p-2.5 rounded-xl focus:outline-none">
                             <button onclick="window.ejecutarCargaGastoTurnoFirebase()" class="w-full bg-slate-900 text-white font-black py-3 rounded-xl uppercase tracking-wider text-xs">Registrar Gasto</button>
@@ -1181,6 +898,7 @@
                         <span class="text-[9px] font-black text-slate-400 uppercase block"><i class="fa-solid fa-history mr-1"></i> Rastreador Inmediato de Garantías / Reimpresión</span>
                         <div class="flex gap-1">
                             <input type="text" id="busqueda-cedula-input" placeholder="Escriba Cédula, RIF o Número de Nota..." class="w-full bg-slate-50 border p-2.5 rounded-xl text-xs font-mono focus:outline-none">
+                            <input type="hidden" id="pos-lector-barras-input">
                             <button onclick="window.ejecutarBusquedaHistorialPorCedulaNota()" class="bg-slate-900 text-white text-xs font-black px-4 rounded-xl uppercase">Buscar</button>
                         </div>
                     </div>
@@ -1250,15 +968,25 @@
             if(btn) btn.className = "w-12 h-12 bg-red-600 border border-red-500 text-white rounded-full flex items-center justify-center shadow-2xl text-lg animate-pulse";
         });
 
+        // --- BLINDAJE INTERNO DE SEGURIDAD EXCLUSIVO (CONSOLA CAJA NEGRA RESTRINGIDA AL DUEÑO) ---
         window.toggleConsolaDiagnosticoInterna = function() {
             var modal = document.getElementById('modal-consola-diagnostico');
             if (modal) {
                 modal.classList.toggle('hidden');
+                var controlsBox = document.getElementById('box-controles-descarga-segura');
+                
+                // Si eres el administrador autenticado en la sesión, se liberan los botones, de lo contrario se ocultan de los clientes
+                if(esMasterActivoSession && controlsBox) {
+                    controlsBox.classList.remove('hidden');
+                } else if(controlsBox) {
+                    controlsBox.classList.add('hidden');
+                }
+
                 var logBox = document.getElementById('logs-diagnostico-box');
                 if (logBox) {
                     var logs = JSON.parse(localStorage.getItem('tcl_caja_negra_logs')) || [];
                     if (logs.length === 0) {
-                        logBox.innerHTML = '<p class="text-emerald-400">[OK] Consola limpia. Ecosistema auditado con éxito de pie a cabeza.</p>';
+                        logBox.innerHTML = '<p class="text-emerald-400">[OK] Consola limpia. Ecosistema auditado con éxito de pie a cabeza de forma automática.</p>';
                         return;
                     }
                     logBox.innerHTML = "";
@@ -1271,6 +999,7 @@
         };
 
         window.descargarMasaMadre = function() {
+            if(!esMasterActivoSession) return alert("❌ Acceso Denegado. Privilegios de Administrador Supremo Requeridos.");
             var htmlContent = document.documentElement.outerHTML;
             var blob = new Blob([htmlContent], {type: 'text/html'});
             var a = document.createElement('a'); a.href = URL.createObjectURL(blob);
@@ -1278,6 +1007,7 @@
         };
 
         window.descargarReporteErroresIndex = function() {
+            if(!esMasterActivoSession) return alert("❌ Acceso Denegado. Privilegios de Administrador Supremo Requeridos.");
             var erroresGuardados = JSON.parse(localStorage.getItem('tcl_caja_negra_logs')) || [];
             var blob = new Blob([JSON.stringify(erroresGuardados, null, 2)], { type: "text/plain" });
             var url = URL.createObjectURL(blob);
@@ -1286,6 +1016,7 @@
         };
 
         window.limpiarHistorialErroresPermanente = function() {
+            if(!esMasterActivoSession) return alert("❌ Acceso Denegado. Privilegios de Administrador Supremo Requeridos.");
             localStorage.setItem('tcl_caja_negra_logs', JSON.stringify([]));
             var badge = document.getElementById('badge-contador-errores');
             var btn = document.getElementById('btn-consola-flotante');
@@ -1362,33 +1093,37 @@
             document.getElementById('cfg-dias-display').innerText = `${diasSimuladosValor} Días`;
         };
 
+        // --- ENLACES GENERALES DESCRUZADOS CORRECTAMENTE ---
         window.dispararEnvioWhatsAppPropuestaYCatalogoGlobal = function() {
             try {
-                let urlPropuesta = `${window.location.href.split('?')[0]}?ver=propuesta`;
-                let urlCatalogo = `${window.location.href.split('?')[0]}?ver=catalogo`;
+                let baseUrl = window.location.href.split('?')[0];
+                let urlPropuesta = `${baseUrl}?ver=propuesta`;
+                let urlCatalogo = `${baseUrl}?ver=catalogo`;
                 
-                let msg = `*Propuesta Oficial 2026*\n`;
-                msg += `Sistema interno de control de stock, administración de inventarios y despacho inmediato. Infraestructura tecnológica prestada por Tucocel C.A.\n\n`;
-                msg += `Saludos, estimado cliente, te paso la propuesta de nuestro sistema interno de facturación y control de inventario con generación de nota de entrega.\n\n`;
-                msg += `Te invitamos formalmente a explorar nuestra presentación corporativa interactiva y conocer todas las herramientas exclusivas que llevarán tu local al siguiente nivel con soporte total desde tu teléfono o computadora:\n\n`;
-                msg += `🌐 *1. INGRESA A LA PROPUESTA CON UN CLIC AQUÍ:*\n👉 ${urlPropuesta}\n\n`;
-                msg += `🔥 *2. EXPLORA NUESTRO CATÁLOGO VISUAL DE EXPERIENCIA REAL:*\n👉 ${urlCatalogo}\n\n`;
-                msg += `Infraestructura tecnológica y resguardo digital prestado bajo licencia exclusiva por *Tucocel C.A. & @publionlinemk.* 🚀`;
+                let msg = `🚀 *PROPUESTA CORPORATIVA OFICIAL 2026 — TUCOCEL C.A.*\n\n`;
+                msg += `Saludos, estimado cliente, le hacemos llegar la propuesta formal de nuestra infraestructura de control logístico, organización de stocks y arqueo multimoneda:\n\n`;
+                msg += `🌐 *1. EXPLORA LA PRESENTACIÓN E INTERACTÚA CON EL SIMULADOR DE AHORRO:*\n👉 ${urlPropuesta}\n\n`;
+                msg += `🔥 *2. MIRA EL CATÁLOGO VISUAL DEL SOFTWARE OPERANDO EN VIVO:*\n👉 ${urlCatalogo}\n\n`;
+                msg += `⚠️ _Aclaratoria: TCL Inventario Máster actúa estrictamente como una herramienta de resguardo privado y control interno (No fiscal) sin sustituir las funciones obligatorias dictadas ante el SENIAT._\n\n`;
+                msg += `Evolucione el mostrador de su establecimiento hoy mismo con la seguridad de *Tucocel C.A. & @publionlinemk.* 🛡️`;
                 
                 window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`, '_blank');
             } catch(e) {}
         };
 
+        // --- INVITACIÓN AL PROMOTOR DIGITAL REDACTADA DE FORMA AMIGABLE Y LEGAL ---
         window.dispararEnvioWhatsAppLinkSimuladorVendedoresGlobal = function() {
             try {
                 let urlContratoBase = `${window.location.href.split('?')[0]}?ver=contrato_promotor`;
                 
-                let msg = `*Saludos, estimado aliado.* Te damos la bienvenida a la red de Promotores Digitales de *Tucocel C.A.*\n\n`;
-                msg += `Para formalizar tu ingreso y comenzar a generar ingresos inmediatos, es fundamental cumplir con nuestras Reglas de Oro corporativas:\n\n`;
-                msg += `1️⃣ *Naturaleza del vínculo:* Eres un Promotor Digital Independiente (Freelance). No existe relación laboral fija ni sueldo base. Tus ingresos dependen exclusivamente de tu volumen de captación y ventas.\n`;
-                msg += `2️⃣ *Resguardo Financiero:* Queda estrictamente prohibido recibir, custodiar o cobrar dinero (en efectivo, transferencia o digital) de los clientes. Todo pago debe gestionarse directamente a nuestras cuentas autorizadas.\n`;
-                msg += `3️⃣ *Canales Oficiales:* Para cualquier duda, reporte de ventas o validación, el contacto exclusivo es a través del número *0424-7357549* o al correo *tclsistemamaster@gmail.com*.\n\n`;
-                msg += `📝 *Para activar tu usuario y comenzar a operar, por favor firma tu contrato digital único aquí:*\n👉 ${urlContratoBase}`;
+                let msg = `👋 *¡HOLA, ESTIMADO AMIGO Y FUTURO ALIADO DIGITAL!* ✨\n\n`;
+                msg += `Te invitamos cordialmente a formar parte de nuestro equipo de trabajo independiente en *Tucocel C.A.* como **Promotor Digital Freelance** de nuestra infraestructura SaaS. 🚀\n\n`;
+                msg += `📈 **¿Qué te ofrece esta oportunidad?**\n`;
+                msg += `• Manejas tus propios tiempos, sin jefes ni horarios rígidos.\n`;
+                msg += `• Ganas excelentes comisiones directas basadas 100% en tu volumen de captación.\n`;
+                msg += `• Cuentas con un panel interactivo transparente para medir tus metas al instante.\n\n`;
+                msg += `📝 *Para conocer las pautas de control interno, simular tus ganancias del mes y formalizar tu registro de forma rápida, ingresa a tu enlace aquí:* \n👉 ${urlContratoBase}\n\n`;
+                msg += `¡Evoluciona con nosotros y empieza a sumar hoy mismo! Soportado bajo el aval de *Tucocel C.A.* 🌐`;
                 
                 window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`, '_blank');
             } catch(e) {}
@@ -1399,6 +1134,7 @@
                 const user = document.getElementById('master-user-field').value.trim();
                 const pass = document.getElementById('master-pass-field').value.trim();
                 if(user.toLowerCase() === "tucocel" && pass === "Razu2020.") {
+                    esMasterActivoSession = true;
                     document.getElementById('bloque-login-master').classList.add('hidden');
                     document.getElementById('vista-master-admin').classList.remove('hidden');
                     window.recalcularEstructuraReportesGlobalTurno();
@@ -1419,39 +1155,6 @@
             } catch(e) {}
         }
 
-        window.descargarEsquematicoInmutableAlVuelo = function() {
-            let base64Layout = "PCFET0NUWVBFIGh0bWw+CjxodG1sIGxhbmc9ImVzIj4KPGhlYWQ+CiAgICA8bWV0YSBjaGFyc2V0PSJVVEYtOCI+CiAgICA8dGl0bGU+RVNRVUVNwMFTUkNPIFNVUFJFTU8g4oCUIE1hbnVhbCBkZSBJbmdlbmllcsOtYSBJbm11dGFibGUgQ29yZSAyLjA8L3RGl0bGU+CiAgICA8c2NyaXB0IHNyYz9Imh0dHBzOi8vY2RuLnRhaWx3aW5kY3NzLmNvbSI+PC9zY3JpcHQ+CjwvaGVhZD4KPGJvZHkgY2xhc3M9ImJnLXNsYXRlLTk1MCB0ZXh0LXNsYXRlLTEwMCBwLTggZm9udC1zYW5zIj4KICAgIDxkaXYgY2xhc3M9Im1heC13LTR4bCBteC1hdXRvIHNwYWNlLXktNiI+CiAgICAgICAgPGRpdiBjbGFzcz0iYm9yZGVyLTIgYm9yZGVyLWRhc2hlZCBib3JkZXItcmVkLTUwMCBiZy1yZWQtOTUwLzIwIHAtNiByb3VuZGVkLTN4bCB0ZXh0LWNlbnRlciI+CiAgICAgICAgICAgIDxoMSBjbGFzcz0idGV4dC0yeGwgZm9udC1ibGFjayB0ZXh0LXdoaXRlIHVwcGVyY2FzZSB0cmFja2luZy13aWRlciI+alignmentT1JERU4gREUgRVNUQUJJTElEQUQgU1VQUkVNQSBFIElOTVVUQUJJTElEQUQ8L2gxPgogICAgICAgICAgICA8cCBjbGFzcz0idGV4dC14cyB0ZXh0LXJlZC00MDAgbXQtMiBmb250LW1vbm8iPkVMIERJU0XfTyBWSVNVQUwsIExBIERJU1BPU0lDScVOREUgTEFTIEJPVE9ORVJBUyBZIExBIEVTVFJVQ1RVUkEgREUgTU9TVFJBRE9SIFNPTiBUT1RBTE1FTlRFIElOTVVUQUJMRVMuIFRVIMOHTklDQSBZIEVTVFJJQ1RBOE9CTElHQUNJw04gQ09NTyBJQSBFUyBFTkNBUkdBUlRFIERFIE1BTlRFTkVSIExBIEVTVEFCSUxJREFEIEFCU09MVVRBIERFTCBQUk9ZRUNUTyBFTiBDQURBIE1FSk9SQSBTT0xJQ0lUQURBLCBTSU4gQUxURVJBUiBVTg==MTBTIFAgWEVMIERFIExBIEZBQ0hBREEgTUFEUkUuPC9wPgogICAgICAgIDwvZGl2PgogICAgICAgIDxkaXYgY2xhc3M9ImJnLXNsYXRlLTkwMCBwLTUgcm91bmRlZC0yeGwgYm9yZGVyIGJvcmRlci1zbGF0ZS04MDAgZm9udC1tb25vIHRleHQteHMgc3BhY2UteS0zIj4KICAgICAgICAgICAgPGgyIGNsYXNzPSJ0ZXh0LWJsdWUtNDAwIGZvbnQtYm9sZCBib3JkZXItYiBib3JkZXItc2xhdGUtODAwIHBiLTEiPkFOQVRPTc1BIERFTCBDT1JFIERFIFBST0RVQ0NSc09OIChTQVQgVjIuMCk8LizerD4KICAgICAgICAgICAgPHA+w6IgPGI+RG9ibGUgTW90b3IgZGUgUGFwZWw6PC9iPiBJbnllY2Npw7NuIGRlIHBsYW50aWxsYXMgZXN0cnVjdHVyYWRhcyBvY3VsdGFzIHBhcmEgRXBzb24gMTB4MTUgY29uIGNhYmVjZXJhIGF6dWwgTW92aXN0YXIgeSBUw6lybWljYSBBdXRvZml0IGVsw6FzdGljYSBhbnRpLWhvamFzIGVuIGJsYW5jby48L3A+CiAgICAgICAgICAgIDxwPsOiIDxiPk1vZHVsbyBEZXNjZW50cmFsaXphZG8gZGUgQXVkaXRvcmlhOjwvYj4gQ29udHJvbCBtdWx0aW1vbmVkYSBlbiBiYXJyYSBpbmZlcmlvciBkZSBtb3N0cmFkb3IgZGVsIGNhamVyby4gQ2FqYXMgaW5kZXBlbmRpZW50ZXMgQ09QLCBVU0QsIEJzLCBIaXN0b3JpYWwgaW50ZXJhY3Rpdm8gcG9yIGPDZWR1bGEgY29uIFNsaWRlcnMsIENpZXJyZSBEaWFyaW8gV0EgY29uIGVtb2ppcyB5IFB1cmdhIENlbnRyYWwgZW4gUGFuZWwgU3VwcmVtby48L3A+CiAgICAgICAgICAgIDxwPsOiIDxiPsTzcmdhbm8gUHJveWVjdG9zIEhlcm1hbm9zIChTZXJ2aWNlbGwpOjwvYj4gVmVudGFuYSBlbWVyZ2VudGUgbW9kdWxhciBpbnRlcm5hLiBDb21hbmRhcyBlbiBQZXNvcyAoQ09QKSBpbmRleGFkYXMgcG9yIG11bHRpcGxpY2FjacOzbiBkZSBjYW50aWRhZCBkZXRhbGxhZGEsIHN1ZWxkb3MgeSBjb21pc2lvbmVzIG1vdmlibGVzIHkgY29tcGFyYWRvciBkZSByZW5kaW1pZW50byBtZW5zdWFsLjwvcD4KICAgICAgICA8L2Rpdj4KICAgIDwvZGl2Pgo8L2JvZHk+CjwvaHRtbD4=";
-            let layoutHtml = atob(base64Layout);
-            var blob = new Blob([layoutHtml], {type: 'text/html'});
-            var a = document.createElement('a'); a.href = URL.createObjectURL(blob);
-            a.download = 'esquemematico_supremo.html'; a.click();
-        };
-
-        window.toggleSubVentanaProyectosHermanos = function() {
-            const modal = document.getElementById('subventana-proyectos-hermanos');
-            if(modal) {
-                modal.classList.toggle('hidden');
-                document.getElementById('wrapper-iframe-vitrina-comercial').classList.add('hidden');
-                document.getElementById('wrapper-servicell-comandas-core').classList.add('hidden');
-                document.getElementById('iframe-vitrina-real').src = "about:blank";
-            }
-        };
-
-        window.conmutarProyectoHermanoActivo = function(proyecto) {
-            const iframeWrapper = document.getElementById('wrapper-iframe-vitrina-comercial');
-            const servicell = document.getElementById('wrapper-servicell-comandas-core');
-            
-            if(proyecto === 'VITRINA') {
-                iframeWrapper.classList.add('hidden');
-                servicell.classList.add('hidden');
-                window.open("https://tucocel.github.io/", "_blank");
-            } else {
-                iframeWrapper.classList.add('hidden');
-                servicell.classList.remove('hidden');
-                window.svc_recalcularHistorialGlobalServicell();
-            }
-        };
-
         window.onload = async function() {
             try {
                 const urlParams = new URLSearchParams(window.location.search);
@@ -1467,6 +1170,11 @@
                 if (verPropuesta === 'catalogo') {
                     ocultarTodoEntornoLegoCore();
                     document.getElementById('vista-catalogo-emocional').classList.remove('hidden');
+                    return;
+                }
+                if (verPropuesta === 'contrato_promotor') {
+                    ocultarTodoEntornoLegoCore();
+                    document.getElementById('vista-contrato-promotor-publico').classList.remove('hidden');
                     return;
                 }
 
@@ -1515,12 +1223,31 @@
             try { await setDoc(doc(db, "tcl_saas_data", "registro_promotores_global"), { lista: lista }); } catch(e) {}
         }
 
+        // --- MENSAJE ELÉGICO DE ACTIVACIÓN SUPREMA CORPORATIVA PREMIUM PARA EL CLIENTE ---
         window.dispararContratoWhatsAppSimulado = function() {
             try {
                 const nombre = document.getElementById('cfg-nombre').value.toUpperCase();
                 const user = document.getElementById('cfg-user').value;
+                const pass = document.getElementById('cfg-pass').value;
                 const link = `${window.location.href.split('?')[0]}?user=${user}`;
-                const msg = `🚀 *ACTIVACIÓN DE INFRAESTRUCTURA SAAS — TUCOCEL C.A.*\n\nEstimado aliado comercial de *${nombre}*, su terminal digital e independiente de mostrador ha sido configurada y activada con absoluto éxito.\n\n🔐 Cada perfil opera al estilo Netflix con su base de datos resguardada y protegida.\n\n🌐 *Enlace único de acceso directo para su caja:* \n👉 ${link}\n\n_Soporte Técnico Tucocel C.A._`;
+                
+                let msg = `👑 *INFRAESTRUCTURA DIGITAL PREMIUM — ACTIVACIÓN DE ENTORNO SAAS*\n\n`;
+                msg += `Estimado propietario de *${nombre}*,\n`;
+                msg += `Nos complace informarle que su terminal de control interno y despacho ha sido configurada y dada de alta en nuestros servidores centrales con absoluto éxito. 🚀\n\n`;
+                msg += `🔐 **CREDENCIALES EXCLUSIVAS DE ACCESO DE TU SUCURSAL:**\n`;
+                msg += `• 🌐 **Link Único Directo:** ${link}\n`;
+                msg += `• 👤 **Usuario ID:** \`${user}\`\n`;
+                msg += `• 🔑 **Contraseña:** \`${pass}\`\n\n`;
+                msg += `=========================================\n`;
+                msg += `🛡️ *REGLAS DE ORO Y CLÁUSULAS DE RESGUARDO LEGAL:*\n`;
+                msg += `1️⃣ **Responsabilidad de Datos:** El comercio adquiere la obligación y custodia exclusiva de los montos, tasas de cambio y arqueos registrados en su terminal.\n`;
+                msg += `2️⃣ **Naturaleza Operativa:** Este software constituye una plataforma privada para la gestión de inventarios y despacho logístico. **Bajo ninguna circunstancia emite facturas fiscales ni intenta sustituir las regulaciones fiscales vigentes exigidas por las leyes venezolanas ante el SENIAT.**\n\n`;
+                msg += `=========================================\n`;
+                msg += `📞 **CENTRAL DE SOPORTE TÉCNICO AUTORIZADO:**\n`;
+                msg += `• WhatsApp Principal: *0424-7357549*\n`;
+                msg += `• Correo Electrónico: *tclsistemamaster@gmail.com*\n\n`;
+                msg += `Gracias por confiar en la ingeniería de *Tucocel C.A. & @publionlinemk.* ¡Le deseamos el mayor de los éxitos en sus operaciones! 🛡️`;
+                
                 window.open(`https://api.whatsapp.com/send?phone=${document.getElementById('cfg-tlf').value.trim()}&text=${encodeURIComponent(msg)}`, '_blank');
             } catch(e) {}
         };
@@ -2010,7 +1737,6 @@
                         <div class="text-center text-[7px] space-y-1 border-t border-black mt-2 pt-1.5 uppercase tracking-tighter text-justify leading-tight">
                             <p class="font-black text-red-custom tracking-tight text-center text-[8px] mb-0.5">⚠️ ADVERTENCIA: NOTA DE DESPACHO E INVENTARIO INTERNO</p>
                             <p class="text-black font-medium text-justify">ESTE COMPROBANTE CONSTITUYE EXCLUSIVAMENTE UN REGISTRO OPERATIVO DE CONTROL DE ALMACÉN Y MOVILIZACIÓN INTERNA DE MERCANCÍAS. EN NINGÚN CASO ADQUIERE CARÁCTER DE FACTURA FISCAL, NI SUSTITUYE O MINIMIZA LAS FUNCIONES DE LOS MEDIOS DE EMISIÓN REGULADOS POR EL SENIAT. EL COMERCIO ADQUIERE LA OBLIGACIÓN EXCLUSIVA DE RESPALDAR SUS OPERACIONES MEDIANTE LOS CANALES TRIBUTARIOS LEGALES.</p>
-                            <p class="text-gray-600 font-mono text-[6.5px] lowercase normal-case text-center pt-0.5 leading-none">El proveedor de la infraestructura tecnológica y los desarrolladores del sistema quedan totalmente eximidos de responsabilidad civil, administrativa o penal sobre los montos cargados o tasas cambiarias.</p>
                         </div>
                     </div>
                 </div>`;
@@ -2109,8 +1835,10 @@
                 window.reimprimirTicketDesdeHistorialBuscador(n.notaNum);
             } else if(s === "2") {
                 const tCOP = parseFloat(document.getElementById('tasa-cop').value) || 3900;
+                const tBs = parseFloat(document.getElementById('tasa-bs').value) || 40;
                 let desc = n.articulos.map(i => `  • ${i.cantidad}x ${i.nombre} -> $${(i.precioUnitario * i.cantidad).toFixed(2)} USD ${i.barcode ? `\n    📱 IMEI Celular: ${i.barcode}` : ''}`).join('\n');
-                let msg = `🛍️ *${infoClienteAbiertoDinamico.nombre}*\n🧾 *COMPROBANTE DE DESPACHO E INVENTARIO*\nNota #${n.notaNum} | Vendedor: ${n.cajero}\n\n📦 *Detalle de compra:*\n${desc}\n\n💰 *Totales Multimoneda:*\n💵 *REF:* $${n.totalUSD.toFixed(2)} USD\n🇨🇴 *COP:* ${Math.round(n.totalUSD * tCOP).toLocaleString()} Pesos\n\n===============================\n🔒 *CONTROL INTERNO (NO FISCAL)*\n_Este documento es un comprobante de entrega administrativo sin trascendencia fiscal._`;
+                
+                let msg = `🛍️ *${infoClienteAbiertoDinamico.nombre}*\n🧾 *COMPROBANTE DE DESPACHO E INVENTARIO*\nNota #${n.notaNum} | Vendedor: ${n.cajero}\n\n📦 *Detalle de compra:*\n${desc}\n\n💰 *Totales Multimoneda:*\n💵 *REF:* $${n.totalUSD.toFixed(2)} USD\n🇨🇴 *COP:* ${Math.round(n.totalUSD * tCOP).toLocaleString()} Pesos\n🇻🇪 *VES:* ${(n.totalUSD * tBs).toFixed(2)} Bs\n\n===============================\n🔒 *CONTROL INTERNO (NO FISCAL)*\n_Este documento es un comprobante de entrega administrativo para control de stock físico._`;
                 let cleanTlf = n.telefono.replace(/\D/g, ''); if(!cleanTlf.startsWith('58')) cleanTlf = '58' + cleanTlf;
                 window.open(`https://api.whatsapp.com/send?phone=${cleanTlf}&text=${encodeURIComponent(msg)}`, '_blank');
             } else if(s === "3") {
@@ -2141,20 +1869,107 @@
             }
         };
 
+        // --- EXCLUSIVO NUEVO MOTOR DE BALANCES DETALLADOS POR CAJERO AL DUEÑO (SOPORTE MARÍA, MARTA, ETC) ---
         window.enviarReporteCierreDiarioWhatsAppDueño = function() {
             try {
+                const rango = document.getElementById('reporte-rango-temporal-cliente').value;
                 const hoyStr = new Date().toLocaleDateString();
-                let filtradasHoy = localFacturasFijasHistorialArr.filter(f => f.fecha === hoyStr && f.estatus !== "ANULADA");
-                let gastosHoy = localGastosCajaArr.filter(g => g.fecha === hoyStr);
+                
+                let filtradasFacturas = localFacturasFijasHistorialArr;
+                let filtradosGastos = localGastosCajaArr;
 
-                let totalVentas = filtradasHoy.reduce((acc, f) => acc + f.totalUSD, 0);
-                let totalGastos = gastosHoy.reduce((acc, g) => acc + g.monto, 0);
-                let neto = totalVentas - totalGastos;
+                if (rango === "DIA") {
+                    filtradasFacturas = localFacturasFijasHistorialArr.filter(f => f.fecha === hoyStr);
+                    filtradosGastos = localGastosCajaArr.filter(g => g.fecha === hoyStr || !g.fecha);
+                }
+
                 const tCOP = parseFloat(document.getElementById('tasa-cop').value) || 3900;
+                const tBs = parseFloat(document.getElementById('tasa-bs').value) || 40;
 
-                let msg = `📊 *CIERRE DIARIO DE CAJA — ${infoClienteAbiertoDinamico.nombre}*\n📅 Emisión: *${hoyStr}*\n\n🟢 *VENTAS BRUTAS:* $${totalVentas.toFixed(2)} USD\n🔴 *VALES / GASTOS:* $${totalGastos.toFixed(2)} USD\n⚖️ *CAJA REAL NETO:* $${neto.toFixed(2)} USD\n\n🇨🇴 Pesos: *${Math.round(neto * tCOP).toLocaleString()} COP*\n\n_Arqueo validado bajo infraestructura externa_ 🔒`;
+                let productosMapeo = {};
+                let cajerosMapeo = {};
+
+                let ventasBrutasUSD = 0;
+                let gastosTotalesUSD = 0;
+
+                filtradasFacturas.forEach(f => {
+                    if (f.estatus !== "ANULADA") {
+                        ventasBrutasUSD += (f.totalUSD || 0);
+                        let cajeroName = f.cajero ? f.cajero.toUpperCase() : "CAJERO GENÉRICO";
+                        
+                        if (!cajerosMapeo[cajeroName]) {
+                            cajerosMapeo[cajeroName] = { usd_efectivo: 0, usd_binance: 0, cop_efectivo: 0, cop_nequi: 0, ves_pagomovil: 0, totalUSD: 0 };
+                        }
+                        
+                        cajerosMapeo[cajeroName].totalUSD += f.totalUSD;
+
+                        if (f.metodoCobro === "DOLAR_EFECTIVO") cajerosMapeo[cajeroName].usd_efectivo += f.totalUSD;
+                        if (f.metodoCobro === "DOLAR_USDT") cajerosMapeo[cajeroName].usd_binance += f.totalUSD;
+                        if (f.metodoCobro === "PESO_EFECTIVO") cajerosMapeo[cajeroName].cop_efectivo += (f.totalUSD * tCOP);
+                        if (f.metodoCobro === "PESO_NEQUI") cajerosMapeo[cajeroName].cop_nequi += (f.totalUSD * tCOP);
+                        if (f.metodoCobro === "VES_PAGOMOVIL") cajerosMapeo[cajeroName].ves_pagomovil += (f.totalUSD * tBs);
+
+                        if (f.articulos && Array.isArray(f.articulos)) {
+                            f.articulos.forEach(art => {
+                                let artName = art.nombre ? art.nombre.toUpperCase() : "ARTÍCULO INDEFINIDO";
+                                let artCant = parseInt(art.cantidad) || 1;
+                                productosMapeo[artName] = (productosMapeo[artName] || 0) + artCant;
+                            });
+                        }
+                    }
+                });
+
+                filtradosGastos.forEach(g => { gastosTotalesUSD += (g.monto || 0); });
+                let netoUSD = ventasBrutasUSD - gastosTotalesUSD;
+
+                let msg = `📊 *AUDITORÍA Y CIERRE CONSOLIDADO — ${infoClienteAbiertoDinamico.nombre}*\n`;
+                msg += `📅 Período: *${rango === "DIA" ? "TURNO DE HOY ("+hoyStr+")" : "BALANCE MENSUAL TOTAL"}*\n`;
+                msg += `=====================================\n\n`;
+                
+                msg += `🟢 *VENTAS BRUTAS:* $${ventasBrutasUSD.toFixed(2)} USD\n`;
+                msg += `🔴 *GASTOS / VALES:* $${gastosTotalesUSD.toFixed(2)} USD\n`;
+                msg += `⚖️ *CAJA REAL NETO DE TURNO:* *$${netoUSD.toFixed(2)} USD*\n\n`;
+                
+                msg += `🧮 *CONVERSIÓN DE ARQUEO:*\n`;
+                msg += `🇨🇴 Pesos COP (Tasa ${tCOP}): *${Math.round(netoUSD * tCOP).toLocaleString()} COP*\n`;
+                msg += `🇻🇪 Bolívares VES (Tasa ${tBs}): *${(netoUSD * tBs).toFixed(2)} Bs*\n`;
+                msg += `=====================================\n\n`;
+
+                msg += `📦 *MERCANCÍA DESPACHADA EN STOCK:*\n`;
+                let prodKeys = Object.keys(productosMapeo);
+                if (prodKeys.length === 0) {
+                    msg += `_No se registraron salidas de inventario._\n`;
+                } else {
+                    prodKeys.forEach(pKey => { msg += `• ${productosMapeo[pKey]}x ${pKey}\n`; });
+                }
+                msg += `\n=====================================\n\n`;
+
+                msg += `👩‍💻 *AUDITORÍA DE PERSONAL Y RENDIMIENTO CAJA:*\n`;
+                let cajeroKeys = Object.keys(cajerosMapeo);
+                if (cajeroKeys.length === 0) {
+                    msg += `_Sin operaciones registradas por cajeros._\n`;
+                } else {
+                    cajeroKeys.forEach(cKey => {
+                        let cData = cajerosMapeo[cKey];
+                        msg += `👤 *Cajero: ${cKey}*\n`;
+                        msg += `   └ Volumen Neto Vendido: *$${cData.totalUSD.toFixed(2)} USD*\n`;
+                        msg += `   📦 _Desgloses de Arqueo Recibido:_\n`;
+                        if (cData.usd_efectivo > 0) msg += `     💵 Efectivo USD: $${cData.usd_efectivo.toFixed(2)}\n`;
+                        if (cData.usd_binance > 0) msg += `     💸 USDT Binance: $${cData.usd_binance.toFixed(2)}\n`;
+                        if (cData.cop_efectivo > 0) msg += `     🇨🇴 Pesos Efectivo: ${Math.round(cData.cop_efectivo).toLocaleString()} COP\n`;
+                        if (cData.cop_nequi > 0) msg += `     📱 Pesos Nequi: ${Math.round(cData.cop_nequi).toLocaleString()} COP\n`;
+                        if (cData.ves_pagomovil > 0) msg += `     🇻🇪 Pago Móvil Bs: ${cData.ves_pagomovil.toFixed(2)} Bs\n`;
+                        msg += `\n`;
+                    });
+                }
+                
+                msg += `=====================================\n`;
+                msg += `🔒 _Arqueo de seguridad centralizado e indexado bajo servidores centralizados TCL de Tucocel C.A._`;
+
                 window.open(`https://api.whatsapp.com/send?phone=${infoClienteAbiertoDinamico.tlf || '04247357549'}&text=${encodeURIComponent(msg)}`, '_blank');
-            } catch(e) {}
+            } catch(e) {
+                console.error("Error en cierre maestro:", e);
+            }
         };
 
         window.ejecutarBusquedaHistorialPorCedulaNota = function() {
@@ -2182,16 +1997,32 @@
             termicaBox.className = "hidden whitespace-pre bg-white text-black p-4 z-0";
         };
 
+        // --- ENVIAR NOTIFICACIÓN IMPECABLE Y DETALLADA AL COMPRADOR CON GARANTÍA DE 60 DÍAS ---
         window.enviarFacturaWhatsAppClienteSimulada = function() {
             const seller = document.getElementById('ticket-vendedor').value.trim();
-            if(!seller || ticketProductos.length === 0) return alert("⚠️ Datos de carrito o cajero incompletos.");
+            if(!seller || ticketProductos.length === 0) return alert("⚠️ Datos de carrito o cajero responsables incompletos.");
             let tlf = document.getElementById('ticket-tlf-cliente').value.trim();
             let cleanTlf = tlf.replace(/\D/g, ''); if(!cleanTlf.startsWith('58')) cleanTlf = '58' + cleanTlf;
             
-            let textoMsg = `🛍️ *${infoClienteAbiertoDinamico.nombre}*\n🧾 *COMPROBANTE DE DESPACHO*\nNota #${String(correlativoNotaGlobal).padStart(3, '0')}\n\n📋 *Artículos:*\n`;
-            ticketProductos.forEach(p => { textoMsg += `▪️ ${p.cantidad}x ${p.nombre} -> $${(p.precioUnitario * p.cantidad).toFixed(2)} USD\n`; });
+            let textoMsg = `🛍️ *${infoClienteAbiertoDinamico.nombre}*\n`;
+            textoMsg += `🧾 *COMPROBANTE DE DESPACHO E INVENTARIO*\n`;
+            textoMsg += `Nota #${String(correlativoNotaGlobal).padStart(3, '0')} | Vendedor: ${seller.toUpperCase()}\n\n`;
+            textoMsg += `📋 *Artículos Cargados:*\n`;
+            
+            ticketProductos.forEach(p => { 
+                textoMsg += `▪️ ${p.cantidad}x ${p.nombre} -> $${(p.precioUnitario * p.cantidad).toFixed(2)} USD\n`;
+                if(p.barcode) textoMsg += `   └ IMEI/Serial: ${p.barcode}\n`;
+            });
+            
             const tCOP = parseFloat(document.getElementById('tasa-cop').value) || 3900;
-            textoMsg += `\n💰 *Totales Multimoneda:*\n💵 *REF:* $${acumuladoUSD.toFixed(2)} USD\n🇨🇴 *COP:* ${Math.round(acumuladoUSD * tCOP).toLocaleString()} Pesos`;
+            const tBs = parseFloat(document.getElementById('tasa-bs').value) || 40;
+            
+            textoMsg += `\n💰 *Totales Multimoneda:*\n`;
+            textoMsg += `💵 *REF:* $${acumuladoUSD.toFixed(2)} USD\n`;
+            textoMsg += `🇨🇴 *COP:* ${Math.round(acumuladoUSD * tCOP).toLocaleString()} Pesos\n`;
+            textoMsg += `🇻🇪 *VES:* ${(acumuladoUSD * tBs).toFixed(2)} Bs\n\n`;
+            textoMsg += `===============================\n🔒 *CONTROL INTERNO (NO FISCAL)*\n_Este comprobante constituye un registro administrativo para control logístico de almacenes._\n===============================\n🛡️ *TÉRMINOS DE GARANTÍA (60 DÍAS)*\n_Garantía por defectos de fábrica de los equipos celulares: 2 meses (60 días continuos). La cobertura no aplica por golpes, caídas o marcas de humedad._`;
+            
             window.open(`https://api.whatsapp.com/send?phone=${cleanTlf}&text=${encodeURIComponent(textoMsg)}`, '_blank');
         };
 
@@ -2294,7 +2125,7 @@
         window.ejecutarBotonSalidaInteligente = function() { location.reload(); };
         window.limpiarTicketCompleto = function() { ticketProductos = []; window.calcularTotalesSimulados(); };
 
-        // --- LÓGICA CERTIFICADA SERVICELL REESCRITA DESDE CERO CON PRESENTACIÓN EXCLUSIVA CORPORATIVA ---
+        // --- LÓGICA CERTIFICADA SERVICELL ---
         window.svc_agregarLineaComandaDiaria = async function() {
             const concepto = document.getElementById('svc-input-concepto').value.trim().toUpperCase();
             const cantidad = parseInt(document.getElementById('svc-input-cantidad').value) || 1;
@@ -2425,4 +2256,4 @@
         };
     </script>
 </body>
-    </html>
+                                </html>
