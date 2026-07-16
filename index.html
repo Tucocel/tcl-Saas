@@ -79,7 +79,7 @@
             
             <div class="space-y-4 max-h-[60vh] overflow-y-auto pr-1 no-scrollbar text-xs">
                 <!-- INFRAESTRUCTURA DEL CLIENTE -->
-                <div class="bg-slate-950 p-3 border border-slate-850 rounded-2xl space-y-2">
+                <div class="bg-slate-950 p-3 border border-slate-855 rounded-2xl space-y-2">
                     <span class="text-[9px] font-black text-blue-400 uppercase tracking-widest block"><i class="fa-solid fa-store"></i> Ecosistema del Cliente (Mostrador)</span>
                     <div class="grid grid-cols-2 gap-2">
                         <button onclick="window.abrirRutaEstaticaDinamica('propuesta')" class="w-full bg-slate-900 border border-slate-800 p-2.5 rounded-xl text-white font-bold uppercase text-[10px] flex items-center justify-between"><span>Ver Propuesta</span><i class="fa-solid fa-eye text-[9px]"></i></button>
@@ -117,7 +117,7 @@
             <div class="p-6 overflow-y-auto no-scrollbar space-y-5 font-sans text-xs leading-relaxed text-slate-300">
                 <div class="border-2 border-dashed border-red-500 bg-red-950/20 p-4 rounded-2xl text-center">
                     <h3 class="text-sm font-black text-white uppercase tracking-wider">🚨 ORDEN DE ESTABILIDAD SUPREMA E INMUTABILIDAD</h3>
-                    <p class="text-[11px] text-red-400 mt-1 font-mono">EL DISEÑO VISUAL, LA DISPOSICIÓN DE LAS BOTONERAS Y LA ESTRUCTURA DE MOSTRADOR SON TOTALMENTE INMUTABLES. TU ÚNICA Y ESTRICTA OBLIGACIÓN COMO IA ES ENCARGARTE DE MANTENER LA ESTABILIDAD ABSOLUTA DEL PROYECTO EN CADA MEJORA SOLICITADA, SIN ALTERAR UN SOLO PÍXEL DE LA FACHADA MADRE.</p>
+                    <p class="text-[11px] text-red-400 mt-1 font-mono">EL DISEÑO VISUAL, LA DISPOSICIÓN DE LAS BOTONERAS E ESTRUCTURA DE MOSTRADOR SON TOTALMENTE INMUTABLES. TU ÚNICA Y ESTRICTA OBLIGACIÓN COMO IA ES ENCARGARTE DE MANTENER LA ESTABILIDAD ABSOLUTA DEL PROYECTO EN CADA MEJORA SOLICITADA, SIN ALTERAR UN SOLO PÍXEL DE LA FACHADA MADRE.</p>
                 </div>
             </div>
             <div class="bg-slate-950 px-5 py-4 border-t border-slate-800 flex justify-end">
@@ -580,7 +580,7 @@
                         <div class="grid grid-cols-1 sm:grid-cols-4 gap-2 text-center font-mono text-xs text-slate-800">
                             <div class="bg-slate-50 border p-3 rounded-xl"><span class="block text-[8px] text-slate-400 uppercase font-bold">Ventas Brutas</span><span id="rep-ventas-brutas-cli" class="text-emerald-600 font-black">$0.00</span></div>
                             <div class="bg-slate-50 border p-3 rounded-xl"><span class="block text-[8px] text-slate-400 uppercase font-bold">Gastos / Vales</span><span id="rep-gastos-totales-cli" class="text-red-500 font-black">$0.00</span></div>
-                            <div class="bg-slate-50 border p-3 rounded-xl"><span class="block text-[8px] text-slate-400 uppercase font-bold">Notas Débito (Anuladas)</span><span id="rep-notas-debito-cli" class="text-purple-600 font-black">$0.00</span></div>
+                            <div class="bg-slate-50 border p-3 rounded-xl"><span class="block text-[8px] text-slate-400 uppercase font-bold">Notas Débito (Anuladas)</span><span id="rep-notes-debito-cli" class="text-purple-600 font-black">$0.00</span></div>
                             <div class="bg-slate-900 text-white p-3 rounded-xl border border-slate-800"><span class="block text-[8px] text-slate-400 uppercase font-bold">Caja Neta Real</span><span id="rep-balance-neto-cli" class="text-amber-400 font-black">$0.00</span></div>
                         </div>
                     </div>
@@ -913,6 +913,31 @@
                 document.getElementById('modal-config-master').classList.add('hidden');
                 await window.abrirBovedaSubEntornosMasterModal();
             }
+        };
+
+        window.ejecutarBotonEliminarCuentaSaasCompleto = async function() {
+            if(!confirm("¿Está seguro de que desea eliminar permanentemente este perfil de sucursal?")) return;
+            let listado = await obtenerClientesDesdeFirebase();
+            let filtrados = listado.filter(c => c.id !== idSeleccionadoActual);
+            await guardarClientesEnFirebase(filtrados);
+            alert("🗑️ Sucursal eliminada de los servidores.");
+            document.getElementById('modal-config-master').classList.add('hidden');
+            await window.abrirBovedaSubEntornosMasterModal();
+        };
+
+        window.copiarLinkPortapapelesDemo = function() {
+            const input = document.getElementById('cfg-link-url');
+            if (input) {
+                input.select();
+                input.setSelectionRange(0, 99999);
+                navigator.clipboard.writeText(input.value);
+                alert("📋 ¡Enlace copiado al portapapeles con éxito!");
+            }
+        };
+
+        window.abrirModalPropuestaCentral = function() {
+            const modal = document.getElementById('modal-central-propuestas');
+            if (modal) modal.classList.remove('hidden');
         };
 
         window.abrirSeccionBovedaPromotoresMando = async function() {
@@ -1286,7 +1311,7 @@
             const tCOP = parseFloat(document.getElementById('tasa-cop').value) || 3900;
             const tBs = parseFloat(document.getElementById('tasa-bs').value) || 40;
 
-            let msg = "📊 *CIERRE DIARIO — " + infoClienteAbiertoDinamico.nombre + "*\n🟢 *VENTAS BRUTAS:* $" + totalVentas.toFixed(2) + " USD\n🔴 *GASTOS:* $" + totalGastos.toFixed(2) + " USD\n⚖️ *NETO REAL:* $" + neto.toFixed(2) + " USD\n🇨🇴 *COP:* " + Math.round(neto * tCOP).toLocaleString() + " Pesos\n🔒 _Validado bajo infraestructura externa Tucocel C.A._";
+            let msg = "📊 *CIERRE DIARIO — " + infoClienteAbiertoDinamico.nombre + "*\n🟢 *VENTAS BRUTAS:* $" + totalVentas.toFixed(2) + " USD\n🔴 *GASTOS:* $" + totalGastos.toFixed(2) + " USD\n⚖️ *NETO REAL:* $" + neto.toFixed(2) + " USD\nCN *COP:* " + Math.round(neto * tCOP).toLocaleString() + " Pesos\n🔒 _Validado bajo infraestructura externa Tucocel C.A._";
             window.open("https://api.whatsapp.com/send?phone=" + (infoClienteAbiertoDinamico.tlf || '04247357549') + "&text=" + encodeURIComponent(msg), '_blank');
         };
 
@@ -1325,20 +1350,30 @@
         async function descargarEstructuraInventarioYGastosFirebase() {
             try {
                 const docInv = await getDoc(doc(db, "tcl_custom_shop", infoClienteAbiertoDinamico.id + "_inv"));
-                if (docInv.exists()) { localProductosInventarioArr = docInv.data().lista || []; }
-                const docGas = await getDoc(doc(db, "tcl_custom_shop", infoClienteAbiertoDinamico.id + "_gastos"));
-                if (docGas.exists()) { localGastosCajaArr = docGas.data().lista || []; }
-                const docFac = await getDoc(doc(db, "tcl_custom_shop", infoClienteAbiertoDinamico.id + "_facturas"));
-                if (docFac.exists()) { localFacturasFijasHistorialArr = docFac.data().lista || []; correlativoNotaGlobal = localFacturasFijasHistorialArr.length + 1; }
+                if (docInv.exists()) { localProductosInventarioArr = docInv.data().lista || []; } else { localProductosInventarioArr = []; }
+            } catch(e) { localProductosInventarioArr = []; }
 
+            try {
+                const docGas = await getDoc(doc(db, "tcl_custom_shop", infoClienteAbiertoDinamico.id + "_gastos"));
+                if (docGas.exists()) { localGastosCajaArr = docGas.data().lista || []; } else { localGastosCajaArr = []; }
+            } catch(e) { localGastosCajaArr = []; }
+
+            try {
+                const docFac = await getDoc(doc(db, "tcl_custom_shop", infoClienteAbiertoDinamico.id + "_facturas"));
+                if (docFac.exists()) { localFacturasFijasHistorialArr = docFac.data().lista || []; correlativoNotaGlobal = localFacturasFijasHistorialArr.length + 1; } else { localFacturasFijasHistorialArr = []; correlativoNotaGlobal = 1; }
+            } catch(e) { localFacturasFijasHistorialArr = []; correlativoNotaGlobal = 1; }
+
+            try {
                 const docSvc = await getDoc(doc(db, "tcl_servicell_core", "data_historica"));
                 if(docSvc.exists()){
                     svc_cierresHistoricosSemanales = docSvc.data().cierres || [];
                     svc_valesSemanalesArr = docSvc.data().vales || [];
                     svc_comandaDiariaArticulos = docSvc.data().comanda_diaria || [];
+                } else {
+                    svc_cierresHistoricosSemanales = []; svc_valesSemanalesArr = []; svc_comandaDiariaArticulos = [];
                 }
             } catch(e) {
-                console.error("Error en Firebase: ", e);
+                svc_cierresHistoricosSemanales = []; svc_valesSemanalesArr = []; svc_comandaDiariaArticulos = [];
             }
             
             if(document.getElementById('select-prod-inventario-pos')) { rebuildSelectDesplegableInventarioMostrador(); }
@@ -1497,6 +1532,8 @@
         window.dispararReciboRenovacionWhatsApp = window.dispararReciboRenovacionWhatsApp;
         window.abrirConfiguracionCliente = window.abrirConfiguracionCliente;
         window.ejecutarGuardadoEdicionExistingObra = window.ejecutarGuardadoEdicionExistingObra;
+        window.ejecutarBotonEliminarCuentaSaasCompleto = window.ejecutarBotonEliminarCuentaSaasCompleto;
+        window.copiarLinkPortapapelesDemo = window.copiarLinkPortapapelesDemo;
 
         window.onload = async function() {
             try {
@@ -1542,4 +1579,4 @@
         };
     </script>
 </body>
-                                    </html>
+</html>"""
