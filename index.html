@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
+<html lang="es"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TCL INVENTARIO MÁSTER — Mansión Modelo 2026</title>
@@ -8,11 +6,13 @@
     <!-- METADATOS CORPORATIVOS PARA WHATSAPP (OPEN GRAPH) -->
     <meta property="og:title" content="🚀 Descubra TCL Inventario Máster — El Sistema Imparable">
     <meta property="og:description" content="🔥 Vea el software en acción. Facturación multimoneda fluida, impresión universal de tickets, métodos de pago, control de crédito y cierres diarios detallados desde su celular o PC. ¡Entre aquí! ✨">
-    <meta property="og:image" content="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&auto=format&fit=crop&q=80">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&amp;auto=format&amp;fit=crop&amp;q=80">
     <meta property="og:type" content="website">
     
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- LIBRERÍA LIGERA PARA EL ESCÁNER NATIVO POR CÁMARA CELULAR -->
+    <script src="https://unpkg.com/html5-qrcode"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght=400;500;600;700;800&display=swap');
         body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #020617; color: #f8fafc; }
@@ -44,7 +44,7 @@
     <!-- CONTENEDOR TEMPLATE OCULTO PARA INYECCIÓN DE FACTURACIÓN PREMIUM EN HARDWARE -->
     <div id="contenedor-impresion-termica-fijo" class="hidden whitespace-pre bg-white text-black p-4 z-0"></div>
 
-    <!-- CONSOLA MÓVIL PERSISTENTE DE DIAGNÓSTICO (ESCANEO DE ERRORES AUTOMÁTICO EN DETECCION ACTIVA) -->
+    <!-- CONSOLA MÓVIL PERSISTENTE DE DIAGNÓSTICO -->
     <div id="diagnostico-master-flotante" class="fixed bottom-24 right-4 z-[10005] flex flex-col items-center gap-1">
         <div id="badge-contador-errores" class="bg-red-500 text-white font-black text-[10px] px-2 py-0.5 rounded-full shadow-lg border border-red-400 animate-bounce hidden">0</div>
         <button id="btn-consola-flotante" onclick="window.toggleConsolaDiagnosticoInterna()" class="w-12 h-12 bg-slate-800 border border-slate-700 text-white rounded-full flex items-center justify-center shadow-2xl text-lg transition-all duration-300">
@@ -59,7 +59,7 @@
                 <button onclick="window.toggleConsolaDiagnosticoInterna()"><i class="fa-solid fa-xmark text-sm"></i></button>
             </div>
             <div id="logs-diagnostico-box" class="p-4 flex-grow overflow-y-auto font-mono text-[10px] text-slate-300 space-y-2 no-scrollbar bg-slate-950"><p class="text-emerald-400">[OK] Consola limpia. Ecosistema auditado con éxito de pie a cabeza de forma automática.</p></div>
-            <div id="box-controles-descarga-segura" class="bg-slate-950 p-3 border-t border-slate-855 flex gap-2 justify-end hidden">
+            <div id="box-controles-descarga-segura" class="bg-slate-950 p-3 border-t border-slate-855 flex gap-2 justify-end">
                 <button onclick="window.descargarMasaMadre()" class="bg-blue-600 text-white px-3 py-2 rounded-xl text-xs font-bold uppercase tracking-wide"><i class="fa-solid fa-download mr-1"></i> Masa Madre</button>
                 <button onclick="window.descargarReporteErroresIndex()" class="bg-slate-800 text-white px-3 py-2 rounded-xl text-xs font-bold uppercase tracking-wide">Reporte .txt</button>
                 <button onclick="window.limpiarHistorialErroresPermanente()" class="bg-slate-950 text-red-400 border border-red-900/40 px-3 py-2 rounded-xl text-xs font-bold uppercase tracking-wide">Limpiar</button>
@@ -89,31 +89,6 @@
             <div class="bg-slate-950 px-5 py-4 border-t border-slate-800 flex justify-between gap-2">
                 <button onclick="document.getElementById('modal-visualizador-esquematico').classList.add('hidden')" class="bg-slate-800 text-slate-300 px-5 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wide">Cerrar Catálogo</button>
                 <button onclick="window.descargarEsquematicoInmutableAlVuelo()" class="bg-blue-600 hover:bg-blue-700 text-white font-black text-xs px-5 py-2.5 rounded-xl uppercase tracking-wider shadow-md"><i class="fa-solid fa-download mr-1"></i> Descargar Archivo Eschemático (.html)</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- MODAL INTERMEDIO: IDENTIDAD PROPIA DE LA PROPUESTA Y CATÁLOGOS -->
-    <div id="modal-central-propuestas" class="fixed inset-0 bg-slate-950/90 backdrop-blur-md z-[11500] p-4 hidden flex items-center justify-center">
-        <div class="bg-slate-900 border border-slate-800 w-full max-w-sm rounded-3xl overflow-hidden shadow-2xl p-6 space-y-4">
-            <div class="flex justify-between items-center border-b border-slate-800 pb-2">
-                <h3 class="font-black text-xs uppercase tracking-wider text-white flex items-center gap-1.5">
-                    <i class="fa-solid fa-folder-open text-amber-400"></i> Gestión de Identidad Comercial
-                </h3>
-                <button onclick="document.getElementById('modal-central-propuestas').classList.add('hidden')" class="text-slate-400 hover:text-white bg-slate-950 border border-slate-800 w-7 h-7 rounded-xl flex items-center justify-center"><i class="fa-solid fa-xmark text-xs"></i></button>
-            </div>
-            <p class="text-slate-400 text-[11px] leading-relaxed">Seleccione la acción del ecosistema TCL que desea ejecutar. Los enlaces se abrirán o compartirán con su debida estructura corporativa protegida.</p>
-            <div class="flex flex-col gap-2 pt-2">
-                <button onclick="window.abrirRutaEstaticaDinamica('propuesta')" class="w-full bg-slate-950 hover:bg-slate-800 text-blue-400 text-xs font-bold py-3 px-4 rounded-xl border border-slate-855 uppercase text-left flex items-center justify-between">
-                    <span><i class="fa-solid fa-file-invoice mr-2"></i> Ver Propuesta 2026</span> <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
-                </button>
-                <button onclick="window.abrirRutaEstaticaDinamica('catalogo')" class="w-full bg-slate-950 hover:bg-slate-800 text-purple-400 text-xs font-bold py-3 px-4 rounded-xl border border-slate-855 uppercase text-left flex items-center justify-between">
-                    <span><i class="fa-solid fa-images mr-2"></i> Ver Catálogo Real</span> <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
-                </button>
-                <hr class="border-slate-800 my-1">
-                <button onclick="window.ejecutarDisparoWhatsAppPropuestaEstructurado()" class="w-full bg-gradient-to-r from-emerald-600 to-teal-600 text-white text-xs font-black py-3.5 px-4 rounded-xl uppercase tracking-wider shadow-md text-center flex items-center justify-center gap-2">
-                    <i class="fa-brands fa-whatsapp text-sm"></i> Enviar Propuesta Corporativa
-                </button>
             </div>
         </div>
     </div>
@@ -213,7 +188,7 @@
                         <h4 class="font-bold text-sm text-white uppercase tracking-tight">Buscador y Seguridad de Destino</h4>
                     </div>
                     <p class="text-slate-400 text-xs leading-relaxed text-justify">
-                        Localiza al instante cualquier comprobante antiguo ingresando el número de Cédula o RIF del cliente. Además, para evitar fugas de información, el software bloquea el destino al momento de compartir, enviando los mensajes de WhatsApp estrictamente al número telefónico original registrado en la primera transacción.
+                        Localiza al instante cualquier comprobante antiguo ingresando el número de Cédula o RIF del cliente. Además, para evitar fugas de información, el software bloquea el destino al momento de compartir, enviando los mensajes de WhatsApp strictly al número telefónico original registrado en la primera transacción.
                     </p>
                 </div>
             </div>
@@ -239,15 +214,15 @@
                 <i class="fa-solid fa-handshake-angle text-amber-500"></i> Términos de Contratación y Reglas de Uso
             </h3>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div class="bg-slate-900/40 border border-slate-855 p-4 rounded-xl space-y-1.5 text-justify">
+                <div class="bg-slate-900/40 border border-slate-850 p-4 rounded-xl space-y-1.5 text-justify">
                     <b class="text-white text-xs block uppercase tracking-tight"><i class="fa-solid fa-ban text-red-400 mr-1"></i> Modificaciones Personales</b>
                     <p class="text-slate-400 text-[11px] leading-relaxed">El software se entrega bajo la modalidad cerrada llave en mano. No se contemplan modificaciones personales a la interfaz o código de forma gratuita. Cualquier requerimiento exclusivo del comercio se cotizará como un desarrollo adicional fuera de la suscripción.</p>
                 </div>
-                <div class="bg-slate-900/40 border border-slate-855 p-4 rounded-xl space-y-1.5 text-justify">
+                <div class="bg-slate-900/40 border border-slate-850 p-4 rounded-xl space-y-1.5 text-justify">
                     <b class="text-white text-xs block uppercase tracking-tight"><i class="fa-solid fa-rotate text-blue-400 mr-1"></i> Actualizaciones Futuras</b>
                     <p class="text-slate-400 text-[11px] leading-relaxed">Nuestra infraestructura se mantiene en constante evolución para adaptarse al comercio. Todos los usuarios con membresía activa disfrutarán de actualizaciones globales, parches de seguridad y mejoras generales de rendimiento de forma 100% gratuita.</p>
                 </div>
-                <div class="bg-slate-900/40 border border-slate-855 p-4 rounded-xl space-y-1.5 text-justify">
+                <div class="bg-slate-900/40 border border-slate-850 p-4 rounded-xl space-y-1.5 text-justify">
                     <b class="text-white text-xs block uppercase tracking-tight"><i class="fa-solid fa-shop-lock text-emerald-400 mr-1"></i> Alquiler de Servicio (SaaS)</b>
                     <p class="text-slate-400 text-[11px] leading-relaxed">Bajo este acuerdo comercial no se realiza venta de propiedad intelectual ni traspaso de software. El cliente adquiere strictly el derecho de alquiler de la plataforma por el tiempo contratado, requiriendo un contrato físico impreso y firma digital para su activación.</p>
                 </div>
@@ -305,7 +280,7 @@
                 <div class="md:col-span-7 order-1 md:order-2">
                     <div class="bg-slate-900 p-3 rounded-3xl border border-slate-800 shadow-2xl relative overflow-hidden group">
                         <div class="w-full h-72 sm:h-80 bg-slate-950 rounded-2xl overflow-hidden flex items-center justify-center p-4">
-                            <img src="https://images.unsplash.com/photo-1554415707-6e8cfc93fe23?w=800&auto=format&fit=crop&q=80" alt="Ticketera de Mostrador" class="w-full h-full object-cover rounded-xl opacity-85">
+                            <img src="https://images.unsplash.com/photo-1554415707-6e8cfc93fe23?w=800&amp;auto=format&amp;fit=crop&amp;q=80" alt="Ticketera de Mostrador" class="w-full h-full object-cover rounded-xl opacity-85">
                             <div class="absolute inset-4 bg-slate-950/60 rounded-xl flex items-center justify-center p-4">
                                 <div class="bg-white text-slate-900 p-4 rounded shadow-2xl font-mono text-[9px] w-56 transform rotate-2 max-h-64 overflow-y-auto no-scrollbar border border-gray-300">
                                     <p class="text-center font-bold text-[11px]">*** NOTA DE ENTREGA ***</p>
@@ -329,7 +304,7 @@
         <div class="w-full max-w-xl p-0.5 rounded-3xl bg-gradient-to-br from-purple-600 via-slate-800 to-blue-600 shadow-2xl">
             <div class="glass-panel rounded-[22px] p-6 space-y-4">
                 <div class="border-b border-slate-800 pb-3 text-center">
-                    <span class="bg-purple-500/10 text-purple-400 border border-purple-500/20 text-[9px] font-black tracking-widest uppercase px-3 py-1 rounded-full inline-block mb-1">Registro y Validación Obligatoria</span>
+                    <span class="bg-purple-500/10 text-purple-400 border border-purple-500/20 text-[9px] font-black tracking-widest uppercase px-3 py-1 rounded-full inline-block mb-1">Registro y Validation Obligatoria</span>
                     <h2 class="font-black text-lg text-white uppercase">CONTRATO DE PROMOTOR DIGITAL INDEPENDIENTE</h2>
                 </div>
                 <div class="bg-slate-950 p-4 rounded-xl border border-slate-855 font-sans text-[11px] leading-relaxed max-h-44 overflow-y-auto no-scrollbar text-slate-300 text-justify space-y-2">
@@ -442,7 +417,7 @@
                         <span class="text-cyan-400 text-sm"><i class="fa-solid fa-window-restore"></i></span>
                         <span class="font-black text-white text-[11px] uppercase tracking-wide">Proyectos Hermanos</span>
                     </button>
-                    <button onclick="document.getElementById('modal-central-propuestas').classList.remove('hidden')" class="bg-slate-950 border border-amber-500/20 hover:border-amber-500/40 p-2.5 rounded-xl flex items-center gap-2 transition-all text-left">
+                    <button onclick="window.abrirModalPropuestaCentral()" class="bg-slate-950 border border-amber-500/20 hover:border-amber-500/40 p-2.5 rounded-xl flex items-center gap-2 transition-all text-left">
                         <span class="text-amber-400 text-sm"><i class="fa-solid fa-paper-plane text-yellow-400"></i></span>
                         <span class="font-black text-white text-[11px] uppercase tracking-wide block">ENVIAR<br>PROPUESTA</span>
                     </button>
@@ -463,7 +438,8 @@
                 </div>
                 <div class="p-3 bg-slate-950 border-b border-slate-855 flex gap-2 no-imprimir">
                     <button onclick="window.conmutarProyectoHermanoActivo('VITRINA')" class="bg-slate-900 border border-slate-800 px-4 py-2 rounded-xl text-xs font-black text-white uppercase"><i class="fa-solid fa-globe text-blue-400 mr-1"></i> Vitrina Digital</button>
-                    <button onclick="window.conmutarProyectoHermanoActivo('SERVICELL')" class="bg-slate-900 border border-slate-800 px-4 py-2 rounded-xl text-xs font-black text-white uppercase"><i class="fa-solid fa-screwdriver-wrench text-purple-400 mr-1"></i> Servicell (Nelson)</button>
+                    <button onclick="window.conmutarProyectoHermanoActivo('SERVICELL')" class="bg-slate-900 border border-slate-800 px-4 py-2 rounded-xl text-xs font-black text-white uppercase"><i class="fa-solid fa-file-invoice text-purple-400 mr-1"></i> Comanda Servicell</button>
+                    <button onclick="window.svc_abrirEnlaceRecepcionNuevaPestana()" class="bg-slate-900 border border-emerald-500/20 hover:border-emerald-500/40 px-4 py-2 rounded-xl text-xs font-black text-emerald-400 uppercase"><i class="fa-solid fa-screwdriver-wrench mr-1"></i> Recepción Servicell</button>
                 </div>
                 
                 <div class="flex-grow overflow-y-auto p-4 bg-slate-950 relative" id="contenedor-proyectos-hermanos-dinamico">
@@ -471,7 +447,7 @@
                         <iframe id="iframe-vitrina-real" src="about:blank" class="w-full h-full rounded-2xl border border-slate-800"></iframe>
                     </div>
 
-                    <!-- SISTEMA TIPO FACTURACIÓN DIARIA DE SERVICELL -->
+                    <!-- REINTEGRACIÓN DEL SISTEMA TIPO FACTURACIÓN ORIGINAL DE SERVICELL -->
                     <div id="wrapper-servicell-comandas-core" class="w-full space-y-4 hidden text-slate-800">
                         <div class="grid grid-cols-1 md:grid-cols-12 gap-4">
                             <div class="md:col-span-7 bg-white p-4 rounded-2xl shadow-sm border border-gray-200 space-y-3">
@@ -556,7 +532,7 @@
                     <span><i class="fa-solid fa-store text-blue-400 mr-1"></i> Base de Clientes Suscritos</span>
                     <button onclick="document.getElementById('modal-sub-lista-comercios').classList.add('hidden')" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
                 </div>
-                <div id="mosaico-clientes-grid-sub" class="p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 overflow-y-auto no-scrollbar"></div>
+                <div id="mosaico-clientes-grid-sub" class="p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 overflow-y-auto no-scrollbar text-slate-100"></div>
                 <div class="bg-slate-950 px-4 py-3 border-t border-slate-800 flex justify-end">
                     <button onclick="document.getElementById('modal-sub-lista-comercios').classList.add('hidden')" class="bg-slate-800 text-slate-300 px-5 py-2 rounded-xl text-xs font-bold uppercase">Cerrar</button>
                 </div>
@@ -579,7 +555,7 @@
                     <div><span class="block text-[7px] text-slate-500 font-bold uppercase font-sans">1A ($)</span><input type="number" id="cfg-prm-m12" value="24" class="w-full bg-transparent font-black text-purple-400 focus:outline-none"></div>
                     <div><span class="block text-[7px] text-slate-500 font-bold uppercase font-sans">Renov ($)</span><input type="number" id="cfg-prm-renov" value="1.25" step="0.01" class="w-full bg-transparent font-black text-amber-400 focus:outline-none"></div>
                 </div>
-                <div id="mosaico-promotores-grid-sub" class="p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 overflow-y-auto no-scrollbar"></div>
+                <div id="mosaico-promotores-grid-sub" class="p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 overflow-y-auto no-scrollbar text-slate-100"></div>
                 
                 <div class="bg-slate-950 px-4 py-3 border-t border-slate-800 flex justify-end gap-2">
                     <button onclick="window.dispararEnvioWhatsAppLinkSimuladorVendedoresGlobal()" class="bg-purple-600 text-white text-[10px] font-black px-4 py-2 rounded-xl uppercase shadow-md flex items-center gap-1.5"><i class="fa-solid fa-paper-plane text-yellow-400"></i> ENVIAR SIMULADOR DE PROMOTOR</button>
@@ -660,26 +636,6 @@
                 <div class="pt-4 border-t border-slate-800 flex justify-between gap-2">
                     <button onclick="window.ejecutarBotonEliminarCuentaSaasCompleto()" class="bg-red-600 text-white px-4 py-2.5 rounded-xl text-xs font-black uppercase tracking-wider">Eliminar Perfil</button>
                     <button id="btn-guardar-cliente-saas" class="bg-amber-400 text-slate-950 px-6 py-2.5 rounded-xl text-xs font-black uppercase tracking-wider">Guardar</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- MODAL GLOBAL: CONFIGURACIÓN DE TARIFAS -->
-        <div id="modal-editor-tarifas" class="fixed inset-0 bg-slate-950/90 backdrop-blur-sm z-[11000] p-4 hidden flex items-center justify-center">
-            <div class="bg-slate-900 border border-slate-800 w-full max-w-sm rounded-3xl overflow-hidden shadow-2xl">
-                <div class="bg-slate-950 px-4 py-3 border-b border-slate-800 flex justify-between items-center text-white font-bold text-xs uppercase tracking-wider">
-                    <span><i class="fa-solid fa-sliders text-blue-400 mr-1"></i> Configurar Tarifas Globales SaaS</span>
-                    <button onclick="document.getElementById('modal-editor-tarifas').classList.add('hidden')"><i class="fa-solid fa-xmark"></i></button>
-                </div>
-                <div class="p-4 space-y-3 text-xs text-slate-200">
-                    <div><label class="text-[9px] text-slate-500 font-bold uppercase block mb-1">Membresía 1 Mes ($)</label><input type="number" id="tarifa-m1" value="25" class="w-full bg-slate-950 border border-slate-800 p-2.5 rounded-xl font-bold font-mono text-white focus:outline-none"></div>
-                    <div><label class="text-[9px] text-slate-500 font-bold uppercase block mb-1">Membresía 3 Meses ($)</label><input type="number" id="tarifa-m3" value="60" class="w-full bg-slate-950 border border-slate-800 p-2.5 rounded-xl font-bold font-mono text-white focus:outline-none"></div>
-                    <div><label class="text-[9px] text-slate-500 font-bold uppercase block mb-1">Membresía 6 Meses ($)</label><input type="number" id="tarifa-m6" value="90" class="w-full bg-slate-950 border border-slate-800 p-2.5 rounded-xl font-bold font-mono text-white focus:outline-none"></div>
-                    <div><label class="text-[9px] text-slate-500 font-bold uppercase block mb-1">Membresía 1 Año ($)</label><input type="number" id="tarifa-m12" value="160" class="w-full bg-slate-950 border border-slate-800 p-2.5 rounded-xl font-bold font-mono text-white focus:outline-none"></div>
-                </div>
-                <div class="bg-slate-950 px-4 py-3 border-t border-slate-800 flex justify-end gap-2">
-                    <button onclick="document.getElementById('modal-editor-tarifas').classList.add('hidden')" class="bg-slate-800 text-slate-300 px-4 py-2 rounded-xl text-xs font-bold uppercase">Cancelar</button>
-                    <button onclick="window.guardarTarifasGlobalesMasterFirestore()" class="bg-blue-600 text-white px-4 py-2 rounded-xl text-xs font-black uppercase shadow">Guardar Cambios</button>
                 </div>
             </div>
         </div>
@@ -799,9 +755,15 @@
                                     </div>
                                 </div>
                                 <div class="space-y-3 text-xs font-bold">
-                                    <div id="contenedor-estilizado-lector-neón" class="p-3 rounded-xl transition-all duration-300 bg-slate-900 border border-slate-800 text-slate-100">
-                                        <span id="label-lector-adaptativo" class="text-[9px] text-blue-400 font-black uppercase block tracking-wider mb-1"><i class="fa-solid fa-barcode mr-1"></i> Lector Láser Comercial</span>
+                                    <div id="contenedor-estilizado-lector-neón" class="p-3 rounded-xl transition-all duration-300 bg-slate-900 border border-slate-800 text-slate-100 relative">
+                                        <div class="flex justify-between items-center mb-1">
+                                            <span id="label-lector-adaptativo" class="text-[9px] text-blue-400 font-black uppercase tracking-wider"><i class="fa-solid fa-barcode mr-1"></i> Lector Láser Comercial</span>
+                                            <!-- NUEVA SUPERPOTENCIA: BOTÓN PARA INICIAR ESCÁNER CON LA CÁMARA TRASERA DEL TELÉFONO -->
+                                            <button onclick="window.svc_alternarCamaraEscanerNativoCelular()" class="bg-blue-600 text-white w-6 h-6 rounded flex items-center justify-center shadow hover:bg-blue-700 transition-all"><i class="fa-solid fa-camera text-[10px]"></i></button>
+                                        </div>
                                         <input type="text" id="pos-lector-barras-input" onkeyup="if(event.key === 'Enter') window.dispararGatilloEscaneoPistolaLector();" placeholder="Pase el escáner láser..." class="w-full bg-slate-950 text-white border border-slate-880 px-3 py-2.5 rounded-xl text-xs font-mono font-bold focus:outline-none uppercase focus:border-blue-500 tracking-widest">
+                                        <!-- CONTENEDOR EN CALIENTE PARA RENDERIZAR VIDEO DE LA CÁMARA TÁCTIL -->
+                                        <div id="reader-video-cam-tcl" class="w-full h-auto mt-2 rounded-xl overflow-hidden hidden border border-slate-700"></div>
                                     </div>
                                     <div id="wrapper-input-nombre-libre">
                                         <label class="text-[9px] text-slate-400 uppercase ml-1 block mb-1">Nombre del Producto / Servicio</label>
@@ -816,6 +778,16 @@
                                         <div><label class="text-[9px] text-slate-400 uppercase ml-1 block mb-1">Precio</label><input type="number" id="manual-prod-precio" placeholder="0.00" class="w-full bg-slate-50 border px-3 py-2 rounded-xl text-xs text-center font-black text-blue-600 focus:outline-none"></div>
                                         <div><label class="text-[9px] text-slate-400 uppercase ml-1 block mb-1">Cant.</label><input type="number" id="manual-prod-cantidad" value="1" min="1" class="w-full bg-slate-50 border px-3 py-2 rounded-xl text-xs font-black text-center text-purple-600 focus:outline-none"></div>
                                     </div>
+                                    
+                                    <!-- LOGICA DE AISLAMIENTO ADAPTABLE MULTI-IMEI EXPUESTA DE FORMA SEGURA -->
+                                    <div id="wrapper-multi-imei-box-tcl" class="bg-slate-950 p-3 rounded-2xl border border-slate-850 space-y-2 hidden">
+                                        <span class="text-[8.5px] text-purple-400 font-bold uppercase tracking-wider block font-sans"><i class="fa-solid fa-mobile-screen-button"></i> Rastreo de Seriales Tecnológicos (Multi-IMEI)</span>
+                                        <div class="grid grid-cols-2 gap-2 text-[10px] font-mono">
+                                            <input type="text" id="tech-imei-1" placeholder="IMEI 1 (15 DÍGITOS)" class="w-full bg-slate-900 border border-slate-800 p-2 rounded text-white focus:outline-none uppercase">
+                                            <input type="text" id="tech-imei-2" placeholder="IMEI 2 (DUAL SIM)" class="w-full bg-slate-900 border border-slate-800 p-2 rounded text-white focus:outline-none uppercase">
+                                        </div>
+                                    </div>
+
                                     <button onclick="window.agregarArticuloManualTicket()" class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-xs font-black py-3.5 rounded-xl uppercase tracking-wider shadow-md">Añadir a la Nota de Entrega</button>
                                 </div>
                             </div>
@@ -870,7 +842,7 @@
                 <div id="panel-seccion-inventario-gasto" class="p-4 max-w-xl mx-auto w-full space-y-4 flex-grow pb-24 hidden">
                     <div class="bg-white border border-slate-200 rounded-3xl p-5 shadow-sm space-y-3">
                         <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-wider border-b pb-1">Registrar Gasto de Caja</h4>
-                        <div class="space-y-2 text-xs font-bold text-slate-880">
+                        <div class="space-y-2 text-xs font-bold text-slate-800">
                             <input type="text" id="gastos-input-motivo" placeholder="Descripción del Gasto" class="w-full bg-slate-50 border p-2.5 rounded-xl focus:outline-none uppercase">
                             <input type="number" id="gastos-input-monto" placeholder="Monto ($)" class="w-full bg-slate-50 border p-2.5 rounded-xl focus:outline-none">
                             <button onclick="window.ejecutarCargaGastoTurnoFirebase()" class="w-full bg-slate-900 text-white font-black py-3 rounded-xl uppercase tracking-wider text-xs">Registrar Gasto</button>
@@ -929,7 +901,7 @@
 
                     <div class="bg-white border border-slate-200 rounded-3xl p-5 shadow-sm space-y-3">
                         <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-wider border-b pb-1">Historial General de Notas y Garantías de Despacho</h4>
-                        <div id="lista-auditoria-notas-completa-box-cliente" class="space-y-2 max-h-80 overflow-y-auto no-scrollbar pr-1 text-xs">
+                        <div id="lista-auditoria-notas-completa-box-cliente" class="space-y-2 max-h-80 overflow-y-auto no-scrollbar pr-1 text-xs text-slate-800">
                             <p class="text-center text-slate-400 italic py-4">No hay despachos registrados.</p>
                         </div>
                     </div>
@@ -980,6 +952,9 @@
         let svc_valesSemanalesArr = [];
         let svc_cierresHistoricosSemanales = [];
 
+        // VARIABLE CONTROL DE CÁMARA TRASERA
+        let html5QrScannerInstance = null;
+
         // --- ENTORNO EN CALIENTE DE ERROR INTERCEPTOR BLINDADO ---
         window.addEventListener('error', function(e) {
             var logs = JSON.parse(localStorage.getItem('tcl_caja_negra_logs')) || [];
@@ -992,7 +967,7 @@
             if(btn) btn.className = "w-12 h-12 bg-red-600 border border-red-500 text-white rounded-full flex items-center justify-center shadow-2xl text-lg animate-pulse";
         });
 
-        // --- BLINDAJE INTERNO DE SEGURIDAD EXCLUSIVO (CONSOLA MAESTRA GLOBALES) ---
+        // --- BLINDAJE INTERNO DE SEGURIDAD EXCLUSIVO (CONSOLA CAJA NEGRA RESTRINGIDA) ---
         window.toggleConsolaDiagnosticoInterna = function() {
             var modal = document.getElementById('modal-consola-diagnostico');
             if (modal) {
@@ -1009,7 +984,7 @@
                 if (logBox) {
                     var logs = JSON.parse(localStorage.getItem('tcl_caja_negra_logs')) || [];
                     if (logs.length === 0) {
-                        logBox.innerHTML = '<p class="text-emerald-400">[OK] Consola limpia. Ecosistema auditado con éxito de pie a cabeza de forma automática.</p>';
+                        logBox.innerHTML = '<p class="text-emerald-400">[OK] Consola limpia. Ecosistema auditado con éxito.</p>';
                         return;
                     }
                     logBox.innerHTML = "";
@@ -1049,7 +1024,7 @@
             if(logBox) logBox.innerHTML = '<p class="text-emerald-400">[OK] Consola limpia. Ecosistema auditado con éxito.</p>';
         };
 
-        function ocultarTodoEntornoLegoCore() {
+        function ocultarTodoEntToggle() {
             document.getElementById('vista-propuesta-cliente').classList.add('hidden');
             document.getElementById('vista-catalogo-emocional').classList.add('hidden');
             document.getElementById('vista-contrato-promotor-publico').classList.add('hidden');
@@ -1104,11 +1079,17 @@
             document.getElementById('val-sim-dinero').innerText = "$" + dineroAhorradoPapel + ".00 USD";
         };
 
+        // --- ENVIAR CONTRATO DIRECTO A WHATSAPP CON IDENTIDAD CORPORATIVA ---
         window.dispararGeneradorTokenLinkContratoUnicoDesechable = function() {
             let token = "link-" + new Date().getTime();
-            let url = `${window.location.href.split('?')[0]}?ver=contrato_promotor&token=${token}`;
-            navigator.clipboard.writeText(url);
-            alert("🔒 Link único generado y copiado al portapapeles para el Promotor.");
+            let urlContrato = `${window.location.href.split('?')[0]}?ver=contrato_promotor&token=${token}`;
+            
+            let msg = `🔒 *SISTEMA DE CONTRATACIÓN DIGITAL — PRIVADO & SEGURO*\n\n`;
+            msg += `Estimado aliado, le presentamos la formalización de su registro institucional como *Promotor Digital Independiente* de la red de software TCL de Tucocel C.A. 🛡️\n\n`;
+            msg += `📝 *Por favor ingrese al siguiente enlace exclusivo para revisar los términos legales y completar su expediente cargando su identificación:* \n👉 ${urlContrato}\n\n`;
+            msg += `🤝 _Recuerde que este entorno opera bajo blindaje de datos centralizado y es estrictamente obligatorio para la liberación de sus comisiones en el servidor central._`;
+
+            window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`, '_blank');
         };
 
         window.asignarDiasSimulador = function(amount, boton) {
@@ -1116,13 +1097,7 @@
             document.getElementById('cfg-dias-display').innerText = `${diasSimuladosValor} Días`;
         };
 
-        // --- SISTEMA DE IDENTIDAD DE RUTAS DINÁMICAS INTERNAS DE LA CENTRAL DE MANDO ---
-        window.abrirRutaEstaticaDinamica = function(tipo) {
-            let baseUrl = window.location.href.split('?')[0];
-            window.open(`${baseUrl}?ver=${tipo}`, '_blank');
-        };
-
-        window.ejecutarDisparoWhatsAppPropuestaEstructurado = function() {
+        window.dispararEnvioWhatsAppPropuestaYCatalogoGlobal = function() {
             try {
                 let baseUrl = window.location.href.split('?')[0];
                 let urlPropuesta = `${baseUrl}?ver=propuesta`;
@@ -1136,7 +1111,6 @@
                 msg += `Evolucione el mostrador de su establecimiento hoy mismo con la seguridad de *Tucocel C.A. & @publionlinemk.* 🛡️`;
                 
                 window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`, '_blank');
-                document.getElementById('modal-central-propuestas').classList.add('hidden');
             } catch(e) {}
         };
 
@@ -1190,18 +1164,18 @@
                 const userParam = urlParams.get('user');
 
                 if (verPropuesta === 'propuesta') {
-                    ocultarTodoEntornoLegoCore();
+                    ocultarTodoEntToggle();
                     document.getElementById('vista-propuesta-cliente').classList.remove('hidden');
                     await syncPreciosPropuestaDesdeTarifas();
                     return;
                 }
                 if (verPropuesta === 'catalogo') {
-                    ocultarTodoEntornoLegoCore();
+                    ocultarTodoEntToggle();
                     document.getElementById('vista-catalogo-emocional').classList.remove('hidden');
                     return;
                 }
                 if (verPropuesta === 'contrato_promotor') {
-                    ocultarTodoEntornoLegoCore();
+                    ocultarTodoEntToggle();
                     document.getElementById('vista-contrato-promotor-publico').classList.remove('hidden');
                     return;
                 }
@@ -1334,7 +1308,7 @@
                 const pass = document.getElementById('cfg-pass').value.trim();
                 const rango = document.getElementById('cfg-rango').value;
                 const rubro = document.getElementById('cfg-rubro').value;
-                const promotor = document.getElementById('cfg-promotor-asignado').value.trim().toUpperCase();
+                const promotor = document.getElementById('cfg-promotor-asignado').value.trim().toUpperCase() || "MÁSTER";
 
                 if(!nombre || !user || !pass) return alert("Por favor complete los campos obligatorios.");
 
@@ -1342,6 +1316,14 @@
                 listado.push({ id: idSeleccionadoActual, nombre, rif, tlf, dir, user, pass, dias: diasSimuladosValor, rango, rubro, promotor, contrato_firmado: false });
                 await guardarClientesEnFirebase(listado);
                 
+                // Distribución contable e inyección de ganancias directa al balance del promotor en la nube de Firebase
+                let promotores = await obtenerPromotoresDesdeFirebase();
+                let matchP = promotores.find(p => p.nombre.toUpperCase() === promotor);
+                if(matchP) {
+                    matchP.balance = (matchP.balance || 0) + 24.00; // Plan Anual sugerido amarrado al promotor
+                    await guardarPromotoresEnFirebase(promotores);
+                }
+
                 alert("🔒 Nueva sucursal dada de alta con éxito en la infraestructura SaaS.");
                 document.getElementById('modal-config-master').classList.add('hidden');
                 let listadoClientesBase = await obtenerClientesDesdeFirebase();
@@ -1360,7 +1342,7 @@
                     listado[idx].dir = document.getElementById('cfg-dir').value.trim();
                     listado[idx].pass = document.getElementById('cfg-pass').value.trim();
                     listado[idx].dias = diasSimuladosValor;
-                    listado[idx].promotor = document.getElementById('cfg-promotor-asignado').value.trim().toUpperCase();
+                    listado[idx].promotor = document.getElementById('cfg-promotor-asignado').value.trim().toUpperCase() || "MÁSTER";
                     listado[idx].rubro = document.getElementById('cfg-rubro').value;
                     await guardarClientesEnFirebase(listado);
                     document.getElementById('modal-config-master').classList.add('hidden');
@@ -1456,43 +1438,29 @@
             document.getElementById('modal-liquidar-promotor-caja').classList.remove('hidden');
         };
 
-        window.ejecutarBotonDarBajaLaboralPromotor = async function(raiz) {
+        window.ejecutarFirmaYAutodestruccionTokenPromotor = async function() {
             try {
-                let promotores = await obtenerPromotoresDesdeFirebase();
-                let idx = promotores.findIndex(p => p.id === idSeleccionadoActual);
-                if(idx !== -1) {
-                    if(raiz) promotores.splice(idx, 1);
-                    else promotores[idx].status = 'INACTIVO';
-                    await guardarPromotoresEnFirebase(promotores);
-                    document.getElementById('modal-liquidar-promotor-caja').classList.add('hidden');
-                    await window.abrirSeccionBovedaPromotoresMando();
-                }
-            } catch(e) {}
-        };
+                const nombre = document.getElementById('promotor-registro-nombre').value.trim().toUpperCase();
+                const cedula = document.getElementById('promotor-registro-cedula').value.trim();
+                const telefono = document.getElementById('promotor-registro-tlf').value.trim();
+                const direccion = document.getElementById('promotor-registro-dir').value.trim().toUpperCase();
 
-        window.procesarLiquidacionMatematicaPromotor = async function(todo) {
-            try {
-                let txt = document.getElementById('liq-max-disponible-val').innerText.replace('$', '');
-                let max = parseFloat(txt) || 0;
-                let monto = todo ? max : parseFloat(document.getElementById('liq-monto-input').value) || 0;
-                
-                let promotores = await obtenerPromotoresDesdeFirebase();
-                let idx = promotores.findIndex(p => p.id === idSeleccionadoActual);
-                if(idx !== -1) {
-                    promotores[idx].balance = (promotores[idx].balance || 0) - monto;
-                    await guardarPromotoresEnFirebase(promotores);
-                    let textoWA = `🔄 *LIQUIDACIÓN DE ADELANTO — TUCOCEL C.A.*\nPromotor: *${promotores[idx].nombre}*\n🔹 Canal: Ficha Contable\n💵 Monto Desembolsado: *$${monto.toFixed(2)} USD*`;
-                    window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(textoWA)}`, '_blank');
-                }
-                document.getElementById('modal-liquidar-promotor-caja').classList.add('hidden');
-                await window.abrirSeccionBovedaPromotoresMando();
+                if(!nombre || !cedula) return alert("Por favor complete los campos obligatorios del contrato digital.");
+
+                let listado = await obtenerPromotoresDesdeFirebase();
+                listado.push({
+                    id: 'prm-'+new Date().getTime(),
+                    nombre, cedula, telefono, direccion,
+                    balance: 0, status: 'ACTIVO', fecha_firma: new Date().toLocaleDateString()
+                });
+                await guardarPromotoresEnFirebase(listado);
+                alert("🔒 Contrato Digital Firmado con Éxito. Su cuenta ha sido indexada en los servidores de la tienda.");
+                location.reload();
             } catch(e) {}
         };
 
         window.comprobarEstatusContratoClienteLogin = async function() {
             try {
-                document.getElementById('btn-retorno-master-login').classList.add('hidden');
-                document.getElementById('btn-retorno-master-sistema').classList.add('hidden');
                 const user = document.getElementById('comercio-user-field').value.trim().toLowerCase();
                 const pass = document.getElementById('comercio-pass-field').value.trim();
                 
@@ -1582,7 +1550,60 @@
             document.getElementById('cli-bloque-sistema').classList.remove('hidden');
             document.body.className = "bg-slate-50 text-slate-880 min-h-screen";
             window.calcularTotalesSimulados();
+
+            // Condición Camaleónica según Rubro de la Tienda
+            const imeiBox = document.getElementById('wrapper-multi-imei-box-tcl');
+            if(imeiBox) {
+                if(infoClienteAbiertoDinamico.rubro === "TECNOLOGIA") {
+                    imeiBox.classList.remove('hidden');
+                } else {
+                    imeiBox.classList.add('hidden');
+                }
+            }
         }
+
+        // --- ENLACE DIRECTO DEL MOTOR DEL ESCÁNER POR CÁMARA TRASERA CELULAR ---
+        window.svc_alternarCamaraEscanerNativoCelular = function() {
+            const containerVideo = document.getElementById('reader-video-cam-tcl');
+            if (!containerVideo) return;
+
+            if (containerVideo.classList.contains('hidden')) {
+                containerVideo.classList.remove('hidden');
+                html5QrScannerInstance = new Html5Qrcode("reader-video-cam-tcl");
+                
+                html5QrScannerInstance.start(
+                    { facingMode: "environment" }, 
+                    { fps: 10, qrbox: { width: 250, height: 250 } },
+                    (decodedText) => {
+                        // Inyección automática al capturar el código de barra o IMEI
+                        const inputPos = document.getElementById('pos-lector-barras-input');
+                        if (inputPos) {
+                            inputPos.value = decodedText;
+                            window.dispararGatilloEscaneoPistolaLector();
+                        }
+                        window.svc_apagarCamaraEscanerNativoCelular();
+                    },
+                    () => {} // Ignorar fallos de frames vacíos
+                ).catch(() => {
+                    alert("⚠️ Error al inicializar el lente óptico del dispositivo celular.");
+                    containerVideo.classList.add('hidden');
+                });
+            } else {
+                window.svc_apagarCamaraEscanerNativoCelular();
+            }
+        };
+
+        window.svc_apagarCamaraEscanerNativoCelular = function() {
+            const containerVideo = document.getElementById('reader-video-cam-tcl');
+            if (html5QrScannerInstance) {
+                html5QrScannerInstance.stop().then(() => {
+                    if (containerVideo) containerVideo.classList.add('hidden');
+                    html5QrScannerInstance = null;
+                }).catch(() => {});
+            } else if (containerVideo) {
+                containerVideo.classList.add('hidden');
+            }
+        };
 
         window.agregarArticuloManualTicket = function() {
             try {
@@ -1602,16 +1623,20 @@
                     }
                 }
                 if(!prodNombre || precio <= 0) return alert("Datos inválidos.");
+
+                // Adición complementaria de IMEI 1 e IMEI 2 si está en Modo Tecnológico
+                if(infoClienteAbiertoDinamico.rubro === "TECNOLOGIA") {
+                    const imei1 = document.getElementById('tech-imei-1').value.trim();
+                    const imei2 = document.getElementById('tech-imei-2').value.trim();
+                    if(imei1) {
+                        prodNombre += ` (IMEI 1: ${imei1} ${imei2 ? `| IMEI 2: ${imei2}` : ''})`;
+                    }
+                    document.getElementById('tech-imei-1').value = "";
+                    document.getElementById('tech-imei-2').value = "";
+                }
+
                 let usdPrice = mon === "COP" ? precio / parseFloat(document.getElementById('tasa-cop').value) : precio;
                 
-                if (modoDigitacionMostrador === "INVENTARIO") {
-                    const id = document.getElementById('select-prod-inventario-pos').value;
-                    let match = localProductosInventarioArr.find(p => p.id === id);
-                    if(match) {
-                        match.cantidad -= cant;
-                        window.sincronizarFichaInventarioConNubeRemota();
-                    }
-                }
                 ticketProductos.push({ nombre: prodNombre, cantidad: cant, precioUnitario: usdPrice, barcode: barcodeImeiFijo });
                 document.getElementById('manual-prod-nombre').value = "";
                 document.getElementById('manual-prod-precio').value = "";
@@ -1676,7 +1701,7 @@
                 if(ticketProductos.length === 0) return alert("⚠️ La mesa está vacía, no hay factura que procesar.");
                 
                 const nuevaFacturaDataObj = {
-                    notaNum: String(correlativoNotaGlobal).padStart(3, '0'),
+                    notaNum: String(localFacturasFijasHistorialArr.length + 1).padStart(3, '0'),
                     fecha: new Date().toLocaleDateString(),
                     hora: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
                     cajero: seller.toUpperCase(),
@@ -1734,7 +1759,6 @@
                                 <tr style="vertical-align: top;">
                                     <td class="pt-1">
                                         ${art.cantidad}x ${art.nombre}
-                                        ${art.barcode ? `<div class="text-[8.5px] text-gray-700 pl-2 font-mono">▫️ IMEI/TRACK: ${art.barcode}</div>` : ''}
                                     </td>
                                     <td class="text-right pt-1 font-bold">$${(art.precioUnitario * art.cantidad).toFixed(2)}</td>
                                 </tr>`;
@@ -1774,7 +1798,7 @@
                 termicaBox.innerHTML = "";
                 termicaBox.className = "hidden whitespace-pre bg-white text-black p-4 z-0";
 
-                correlativoNotaGlobal++; ticketProductos = []; window.calcularTotalesSimulados();
+                ticketProductos = []; window.calcularTotalesSimulados();
                 window.ejecutarBusquedaHistorialPorCedulaNota(); 
                 window.recalcularEstructuraReportesGlobalTurno();
             } catch(e) {}
@@ -1837,12 +1861,12 @@
                 box.innerHTML += `
                     <div class="p-2.5 rounded-xl border ${esAnulada ? 'bg-purple-50 border-purple-200 text-purple-800' : 'bg-slate-50 border-slate-200 text-slate-880'} flex justify-between items-center mb-1 font-sans">
                         <div>
-                            <span class="font-mono font-bold block text-slate-900">Nota #${f.notaNum} [${f.fecha}]</span>
-                            <span class="text-[10px] block font-medium text-slate-500">Receptor: ${f.cliente} — Cajero: ${f.cajero}</span>
+                            <span class="font-mono font-bold block">Nota #${f.notaNum} [${f.fecha}]</span>
+                            <span class="text-[10px] block font-medium">Receptor: ${f.cliente} — Cajero: ${f.cajero}</span>
                             ${esAnulada ? '<span class="text-[8.5px] font-black tracking-wide block uppercase text-purple-600"><i class="fa-solid fa-ban"></i> NOTA DE DÉBITO (ANULADA)</span>' : ''}
                         </div>
-                        <div class="flex items-center gap-1.5 text-slate-800">
-                            <b class="font-mono text-xs text-slate-900">$${f.totalUSD.toFixed(2)}</b>
+                        <div class="flex items-center gap-1.5">
+                            <b class="font-mono text-xs">$${f.totalUSD.toFixed(2)}</b>
                             <button onclick="window.solicitarAccionesNotaMostradorBoton(${localFacturasFijasHistorialArr.indexOf(f)})" class="bg-blue-600 text-white w-7 h-7 rounded-lg flex items-center justify-center text-xs shadow hover:bg-blue-700 transition-all"><i class="fa-solid fa-sliders"></i></button>
                         </div>
                     </div>`;
@@ -1863,7 +1887,7 @@
             } else if(s === "2") {
                 const tCOP = parseFloat(document.getElementById('tasa-cop').value) || 3900;
                 const tBs = parseFloat(document.getElementById('tasa-bs').value) || 40;
-                let desc = n.articulos.map(i => `  • ${i.cantidad}x ${i.nombre} -> $${(i.precioUnitario * i.cantidad).toFixed(2)} USD ${i.barcode ? `\n    📱 IMEI Celular: ${i.barcode}` : ''}`).join('\n');
+                let desc = n.articulos.map(i => `  • ${i.cantidad}x ${i.nombre} -> $${(i.precioUnitario * i.cantidad).toFixed(2)} USD`).join('\n');
                 
                 let msg = `🛍️ *${infoClienteAbiertoDinamico.nombre}*\n🧾 *COMPROBANTE DE DESPACHO E INVENTARIO*\nNota #${n.notaNum} | Vendedor: ${n.cajero}\n\n📦 *Detalle de compra:*\n${desc}\n\n💰 *Totales Multimoneda:*\n💵 *REF:* $${n.totalUSD.toFixed(2)} USD\n🇨🇴 *COP:* ${Math.round(n.totalUSD * tCOP).toLocaleString()} Pesos\n🇻🇪 *VES:* ${(n.totalUSD * tBs).toFixed(2)} Bs\n\n===============================\n🔒 *CONTROL INTERNO (NO FISCAL)*\n_Este documento es un comprobante de entrega administrativo para control de stock físico._`;
                 let cleanTlf = n.telefono.replace(/\D/g, ''); if(!cleanTlf.startsWith('58')) cleanTlf = '58' + cleanTlf;
@@ -2036,7 +2060,6 @@
             
             ticketProductos.forEach(p => { 
                 textoMsg += `▪️ ${p.cantidad}x ${p.nombre} -> $${(p.precioUnitario * p.cantidad).toFixed(2)} USD\n`;
-                if(p.barcode) textoMsg += `   └ IMEI/Serial: ${p.barcode}\n`;
             });
             
             const tCOP = parseFloat(document.getElementById('tasa-cop').value) || 3900;
@@ -2049,14 +2072,6 @@
             textoMsg += `===============================\n🔒 *CONTROL INTERNO (NO FISCAL)*\n_Este comprobante constituye un registro administrativo para control logístico de almacenes._\n===============================\n🛡️ *TÉRMINOS DE GARANTÍA (60 DÍAS)*\n_Garantía por defectos de fábrica de los equipos celulares: 2 meses (60 días continuos). La cobertura no aplica por golpes, caídas o marcas de humedad._`;
             
             window.open(`https://api.whatsapp.com/send?phone=${cleanTlf}&text=${encodeURIComponent(textoMsg)}`, '_blank');
-        };
-
-        window.abrirModalCrearPerfil = async function() {
-            idSeleccionadoActual = "perfil-" + new Date().getTime();
-            document.getElementById('cfg-nombre').value = ""; document.getElementById('cfg-rif').value = "";
-            document.getElementById('cfg-user').value = ""; document.getElementById('cfg-pass').value = "";
-            document.getElementById('btn-guardar-cliente-saas').onclick = async function() { await window.ejecutarBotonGuardarNuevoClienteSaasNube(); };
-            document.getElementById('modal-config-master').classList.remove('hidden');
         };
 
         window.ejecutarCargaProductoAlInventarioFirebase = async function() {
@@ -2207,7 +2222,7 @@
             if(svc_comandaDiariaArticulos.length === 0){ box.innerHTML = `<p class="text-center text-slate-400 py-4 italic">Comanda diaria vacía.</p>`; return; }
             svc_comandaDiariaArticulos.forEach((item, index) => {
                 box.innerHTML += `
-                    <div class="flex justify-between items-center bg-slate-50 border p-2 rounded-xl text-slate-880 text-[11px]">
+                    <div class="flex justify-between items-center bg-slate-50 border p-2 rounded-xl text-slate-880 text-[11px] mb-1">
                         <div><b>${item.cantidad}x</b> ${item.concepto} <small class="text-purple-600 font-bold">[${item.tipo}]</small></div>
                         <div class="flex items-center gap-2"><b>${item.totalCOP.toLocaleString()} COP</b><button onclick="window.svc_removerItemComandaDiaria(${index})" class="text-red-500"><i class="fa-solid fa-trash"></i></button></div>
                     </div>`;
@@ -2287,7 +2302,7 @@
 
         window.svc_ejecutarCierreSemanalNoBorrable = async function() {
             if(!confirm("¿Cerrar semana contable?")) return;
-            svc_cierresHistoricosSemanales.push({ fechaCierre: new Date().toLocaleDateString(), articulos: [...svc_comandaDiariaArticulos], vales: [...svc_valesSemanalesArr] });
+            svc_cierresHistoricosSemanales.push({ fechaCierre: new Date().toLocaleDateString(), articles: [...svc_comandaDiariaArticulos], vales: [...svc_valesSemanalesArr] });
             svc_comandaDiariaArticulos = []; svc_valesSemanalesArr = [];
             await window.svc_sincronizarEstructuraServicellNube(); window.svc_renderizarComandaDiariaMostrador(); window.svc_recalcularHistorialGlobalServicell();
             alert("🔒 Semana resguardada con éxito.");
@@ -2295,6 +2310,11 @@
 
         window.svc_sincronizarEstructuraServicellNube = async function() {
             try { await setDoc(doc(db, "tcl_servicell_core", "data_historica"), { cierres: svc_cierresHistoricosSemanales, vales: svc_valesSemanalesArr, comanda_diaria: svc_comandaDiariaArticulos }); } catch(e) {}
+        };
+
+        // EXPOSICIÓN ADICIONAL EN LA CAJA NEGRA
+        window.abrirModalPropuestaCentral = function() {
+            document.getElementById('modal-central-propuestas').classList.remove('hidden');
         };
     </script>
 </body>
