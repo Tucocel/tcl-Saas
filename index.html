@@ -59,7 +59,7 @@
                 <button onclick="window.toggleConsolaDiagnosticoInterna()"><i class="fa-solid fa-xmark text-sm"></i></button>
             </div>
             <div id="logs-diagnostico-box" class="p-4 flex-grow overflow-y-auto font-mono text-[10px] text-slate-300 space-y-2 no-scrollbar bg-slate-950"><p class="text-emerald-400">[OK] Consola limpia. Ecosistema auditado con éxito de pie a cabeza de forma automática.</p></div>
-            <div id="box-controles-descarga-segura" class="bg-slate-950 p-3 border-t border-slate-855 flex gap-2 justify-end hidden">
+            <div id="box-controles-descarga-segura" class="bg-slate-950 p-3 border-t border-slate-850 flex gap-2 justify-end hidden">
                 <button onclick="window.descargarMasaMadre()" class="bg-blue-600 text-white px-3 py-2 rounded-xl text-xs font-bold uppercase tracking-wide"><i class="fa-solid fa-download mr-1"></i> Masa Madre</button>
                 <button onclick="window.descargarReporteErroresIndex()" class="bg-slate-800 text-white px-3 py-2 rounded-xl text-xs font-bold uppercase tracking-wide">Reporte .txt</button>
                 <button onclick="window.limpiarHistorialErroresPermanente()" class="bg-slate-950 text-red-400 border border-red-900/40 px-3 py-2 rounded-xl text-xs font-bold uppercase tracking-wide">Limpiar</button>
@@ -93,31 +93,6 @@
         </div>
     </div>
 
-    <!-- MODAL INTERMEDIO: IDENTIDAD PROPIA DE LA PROPUESTA Y CATÁLOGOS -->
-    <div id="modal-central-propuestas" class="fixed inset-0 bg-slate-950/90 backdrop-blur-md z-[11500] p-4 hidden flex items-center justify-center">
-        <div class="bg-slate-900 border border-slate-800 w-full max-w-sm rounded-3xl overflow-hidden shadow-2xl p-6 space-y-4">
-            <div class="flex justify-between items-center border-b border-slate-800 pb-2">
-                <h3 class="font-black text-xs uppercase tracking-wider text-white flex items-center gap-1.5">
-                    <i class="fa-solid fa-folder-open text-amber-400"></i> Gestión de Identidad Comercial
-                </h3>
-                <button onclick="document.getElementById('modal-central-propuestas').classList.add('hidden')" class="text-slate-400 hover:text-white bg-slate-950 border border-slate-800 w-7 h-7 rounded-xl flex items-center justify-center"><i class="fa-solid fa-xmark text-xs"></i></button>
-            </div>
-            <p class="text-slate-400 text-[11px] leading-relaxed">Seleccione la acción del ecosistema TCL que desea ejecutar. Los enlaces se abrirán o compartirán con su debida estructura corporativa protegida.</p>
-            <div class="flex flex-col gap-2 pt-2">
-                <button onclick="window.abrirRutaEstaticaDinamica('propuesta')" class="w-full bg-slate-950 hover:bg-slate-800 text-blue-400 text-xs font-bold py-3 px-4 rounded-xl border border-slate-855 uppercase text-left flex items-center justify-between">
-                    <span><i class="fa-solid fa-file-invoice mr-2"></i> Ver Propuesta 2026</span> <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
-                </button>
-                <button onclick="window.abrirRutaEstaticaDinamica('catalogo')" class="w-full bg-slate-950 hover:bg-slate-800 text-purple-400 text-xs font-bold py-3 px-4 rounded-xl border border-slate-855 uppercase text-left flex items-center justify-between">
-                    <span><i class="fa-solid fa-images mr-2"></i> Ver Catálogo Real</span> <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
-                </button>
-                <hr class="border-slate-800 my-1">
-                <button onclick="window.ejecutarDisparoWhatsAppPropuestaEstructurado()" class="w-full bg-gradient-to-r from-emerald-600 to-teal-600 text-white text-xs font-black py-3.5 px-4 rounded-xl uppercase tracking-wider shadow-md text-center flex items-center justify-center gap-2">
-                    <i class="fa-brands fa-whatsapp text-sm"></i> Enviar Propuesta Corporativa
-                </button>
-            </div>
-        </div>
-    </div>
-
     <!-- ENTORNO 1: VISTA DE LA PROPUESTA PREMIUM COMPLETA -->
     <div id="vista-propuesta-cliente" class="hidden min-h-screen bg-slate-950 text-slate-100 antialiased pb-12 selection:bg-blue-600 selection:text-white">
         <header class="relative overflow-hidden border-b border-slate-900 bg-slate-900/40 py-14 px-4 text-center">
@@ -144,7 +119,7 @@
                 <div class="space-y-1.5">
                     <h4 class="font-black text-xs uppercase tracking-wider text-white text-center sm:text-left">Operación 100% Legítima y Segura</h4>
                     <p class="text-slate-300 text-xs leading-relaxed">
-                        <strong>TCL Inventario Máster</strong> actúa strictly como un software privado para la optimización contable, organización de almacenes y verificación interna. La plataforma emite de forma limpia <strong>Notas de Despacho sin valor fiscal</strong>, permitiendo un control milimétrico de tus activos, cajas y reportes de forma autónoma sin interferir ni sustituir los requerimientos tributarios de tu comercio.
+                        <strong>TCL Inventario Máster</strong> actúa strictly como un software privado para la optimización contable, organization de almacenes y verificación interna. La plataforma emite de forma limpia <strong>Notas de Despacho sin valor fiscal</strong>, permitiendo un control milimétrico de tus activos, cajas y reportes de forma autónoma sin interferir ni sustituir los requerimientos tributarios de tu comercio.
                     </p>
                 </div>
             </div>
@@ -203,7 +178,7 @@
                         <h4 class="font-bold text-sm text-white uppercase tracking-tight">Operación Local Autónoma (Anti-Apagones)</h4>
                     </div>
                     <p class="text-slate-400 text-xs leading-relaxed text-justify">
-                        Diseñado para la realidad de nuestra región. El sistema cuenta con un motor interno de resguardo autónomo que mantiene la mesa de facturación y el inventario vivos en la memoria local. Si el internet fluctúa o se corta temporalmente, tu negocio no se detiene: puedes seguir operando y, al retornar la señal, todo se unifica en la nube de forma invisible.
+                        Diseñado para la realidad de nuestra región. El sistema cuenta con un motor interno de resguardo autónomo que mantiene la mesa de facturación y el inventario vivos en la memoria local. Si el internet fluctúa o se corta temporalmente, tu negocio no se detiene: puedes seguir operando y, al retornar la señal, todo se unifica inla nube de forma invisible.
                     </p>
                 </div>
 
@@ -239,39 +214,17 @@
                 <i class="fa-solid fa-handshake-angle text-amber-500"></i> Términos de Contratación y Reglas de Uso
             </h3>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div class="bg-slate-900/40 border border-slate-855 p-4 rounded-xl space-y-1.5 text-justify">
+                <div class="bg-slate-900/40 border border-slate-850 p-4 rounded-xl space-y-1.5 text-justify">
                     <b class="text-white text-xs block uppercase tracking-tight"><i class="fa-solid fa-ban text-red-400 mr-1"></i> Modificaciones Personales</b>
                     <p class="text-slate-400 text-[11px] leading-relaxed">El software se entrega bajo la modalidad cerrada llave en mano. No se contemplan modificaciones personales a la interfaz o código de forma gratuita. Cualquier requerimiento exclusivo del comercio se cotizará como un desarrollo adicional fuera de la suscripción.</p>
                 </div>
-                <div class="bg-slate-900/40 border border-slate-855 p-4 rounded-xl space-y-1.5 text-justify">
+                <div class="bg-slate-900/40 border border-slate-850 p-4 rounded-xl space-y-1.5 text-justify">
                     <b class="text-white text-xs block uppercase tracking-tight"><i class="fa-solid fa-rotate text-blue-400 mr-1"></i> Actualizaciones Futuras</b>
                     <p class="text-slate-400 text-[11px] leading-relaxed">Nuestra infraestructura se mantiene en constante evolución para adaptarse al comercio. Todos los usuarios con membresía activa disfrutarán de actualizaciones globales, parches de seguridad y mejoras generales de rendimiento de forma 100% gratuita.</p>
                 </div>
-                <div class="bg-slate-900/40 border border-slate-855 p-4 rounded-xl space-y-1.5 text-justify">
+                <div class="bg-slate-900/40 border border-slate-850 p-4 rounded-xl space-y-1.5 text-justify">
                     <b class="text-white text-xs block uppercase tracking-tight"><i class="fa-solid fa-shop-lock text-emerald-400 mr-1"></i> Alquiler de Servicio (SaaS)</b>
                     <p class="text-slate-400 text-[11px] leading-relaxed">Bajo este acuerdo comercial no se realiza venta de propiedad intelectual ni traspaso de software. El cliente adquiere strictly el derecho de alquiler de la plataforma por el tiempo contratado, requiriendo un contrato físico impreso y firma digital para su activación.</p>
-                </div>
-            </div>
-        </main>
-
-        <section class="bg-slate-900/30 border-t border-slate-900 py-12 px-4">
-            <div class="max-w-4xl mx-auto space-y-8 text-center">
-                <div class="space-y-1">
-                    <h3 class="text-xs font-black uppercase tracking-widest text-slate-400">Planes de Membresía Flexibles</h3>
-                    <p class="text-[10px] text-slate-500 font-mono">Costos fijados en moneda digital estables basados en las tasas del día.</p>
-                </div>
-                
-                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-left font-mono">
-                    <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl text-center shadow-inner"><span class="block text-[10px] text-slate-500 font-bold uppercase mb-1">1 Mes</span><b class="text-white text-base font-black" id="p-pub-m1-val">$25 USDT</b></div>
-                    <div class="bg-slate-900 border border-blue-500/20 p-4 rounded-xl text-center shadow-md relative overflow-hidden">
-                        <div class="absolute top-0 right-0 bg-blue-500 text-slate-950 font-black text-[7px] px-1 py-0.2 uppercase">Plan Pro</div>
-                        <span class="block text-[10px] text-blue-400 font-bold uppercase mb-1">3 Meses</span><b class="text-blue-400 text-base font-black" id="p-pub-m3-val">$60 USDT</b>
-                    </div>
-                    <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl text-center shadow-inner"><span class="block text-[10px] text-slate-500 font-bold uppercase mb-1">6 Meses</span><b class="text-white text-base font-black" id="p-pub-m6-val">$90 USDT</b></div>
-                    <div class="bg-slate-900 border border-amber-500/20 p-4 rounded-xl text-center shadow-md relative overflow-hidden">
-                        <div class="absolute top-0 right-0 bg-amber-400 text-slate-950 font-black text-[7px] px-1 py-0.2 uppercase">Mejor Valor</div>
-                        <span class="block text-[10px] text-amber-400 font-bold uppercase mb-1">1 Año</span><b class="text-amber-400 text-base font-black" id="p-pub-m12-val">$160 USDT</b>
-                    </div>
                 </div>
             </div>
         </section>
@@ -299,7 +252,7 @@
                     </div>
                     <h3 class="text-xl font-extrabold text-white uppercase tracking-tight">Impresión Vertical Compacta de Alta Gama</h3>
                     <p class="text-slate-200 text-xs leading-relaxed font-medium">
-                        Deje atrás los formatos gigantescos e incómodas. El sistema adapta el texto de forma automatizada y milimétrica para tickeras térmicas estándar de mostrador (80mm) o dispositivos portátiles por Bluetooth (58mm). Genere un comprobante administrativo elegante con desglose multimoneda exacto y corte limpio en la hoja física.
+                        Deje atrás los formatos gigantescos e incómodos. El sistema adapta el texto de forma automatizada y milimétrica para tickeras térmicas estándar de mostrador (80mm) o dispositivos portátiles por Bluetooth (58mm). Genere un comprobante administrativo elegante con desglose multimoneda exacto y corte limpio en la hoja física.
                     </p>
                 </div>
                 <div class="md:col-span-7 order-1 md:order-2">
@@ -357,7 +310,7 @@
                 </div>
                 
                 <div class="space-y-3 text-xs">
-                    <div class="bg-slate-950 p-3 rounded-xl border border-slate-855 space-y-2">
+                    <div class="bg-slate-950 p-3 rounded-xl border border-slate-850 space-y-2">
                         <span class="text-[9px] text-purple-400 font-bold uppercase block">Datos de Identificación de Registro</span>
                         <input type="text" id="promotor-registro-nombre" placeholder="Nombre y Apellido Completo" class="w-full bg-slate-900 border border-slate-800 p-2 rounded-lg text-white font-bold focus:outline-none">
                         <input type="text" id="promotor-registro-cedula" placeholder="Cédula de Identidad" class="w-full bg-slate-900 border border-slate-800 p-2 rounded-lg text-white font-bold focus:outline-none">
@@ -442,7 +395,7 @@
                         <span class="text-cyan-400 text-sm"><i class="fa-solid fa-window-restore"></i></span>
                         <span class="font-black text-white text-[11px] uppercase tracking-wide">Proyectos Hermanos</span>
                     </button>
-                    <button onclick="document.getElementById('modal-central-propuestas').classList.remove('hidden')" class="bg-slate-950 border border-amber-500/20 hover:border-amber-500/40 p-2.5 rounded-xl flex items-center gap-2 transition-all text-left">
+                    <button onclick="window.dispararEnvioWhatsAppPropuestaYCatalogoGlobal()" class="bg-slate-950 border border-amber-500/20 hover:border-amber-500/40 p-2.5 rounded-xl flex items-center gap-2 transition-all text-left">
                         <span class="text-amber-400 text-sm"><i class="fa-solid fa-paper-plane text-yellow-400"></i></span>
                         <span class="font-black text-white text-[11px] uppercase tracking-wide block">ENVIAR<br>PROPUESTA</span>
                     </button>
@@ -471,7 +424,7 @@
                         <iframe id="iframe-vitrina-real" src="about:blank" class="w-full h-full rounded-2xl border border-slate-800"></iframe>
                     </div>
 
-                    <!-- SISTEMA TIPO FACTURACIÓN DIARIA DE SERVICELL -->
+                    <!-- REINTEGRACIÓN DEL SISTEMA TIPO FACTURACIÓN ORIGINAL DE SERVICELL (NELSON) -->
                     <div id="wrapper-servicell-comandas-core" class="w-full space-y-4 hidden text-slate-800">
                         <div class="grid grid-cols-1 md:grid-cols-12 gap-4">
                             <div class="md:col-span-7 bg-white p-4 rounded-2xl shadow-sm border border-gray-200 space-y-3">
@@ -870,7 +823,7 @@
                 <div id="panel-seccion-inventario-gasto" class="p-4 max-w-xl mx-auto w-full space-y-4 flex-grow pb-24 hidden">
                     <div class="bg-white border border-slate-200 rounded-3xl p-5 shadow-sm space-y-3">
                         <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-wider border-b pb-1">Registrar Gasto de Caja</h4>
-                        <div class="space-y-2 text-xs font-bold text-slate-880">
+                        <div class="space-y-2 text-xs font-bold text-slate-800">
                             <input type="text" id="gastos-input-motivo" placeholder="Descripción del Gasto" class="w-full bg-slate-50 border p-2.5 rounded-xl focus:outline-none uppercase">
                             <input type="number" id="gastos-input-monto" placeholder="Monto ($)" class="w-full bg-slate-50 border p-2.5 rounded-xl focus:outline-none">
                             <button onclick="window.ejecutarCargaGastoTurnoFirebase()" class="w-full bg-slate-900 text-white font-black py-3 rounded-xl uppercase tracking-wider text-xs">Registrar Gasto</button>
@@ -1077,7 +1030,7 @@
                 const m6 = parseFloat(document.getElementById('tarifa-m6').value) || 90;
                 const m12 = parseFloat(document.getElementById('tarifa-m12').value) || 160;
                 await setDoc(doc(db, "tcl_saas_data", "global_tarifas_saas"), { m1, m3, m6, m12 });
-                alert("🛍️ Cobertura de Tarifas SaaS sincronizada con éxito en la nube.");
+                alert("🛍️ Cobertura de Tarifas SaaS sincronizada con éxito in la nube.");
                 document.getElementById('modal-editor-tarifas').classList.add('hidden');
                 await syncPreciosPropuestaDesdeTarifas();
             } catch(e) {}
@@ -1116,13 +1069,7 @@
             document.getElementById('cfg-dias-display').innerText = `${diasSimuladosValor} Días`;
         };
 
-        // --- SISTEMA DE IDENTIDAD DE RUTAS DINÁMICAS INTERNAS DE LA CENTRAL DE MANDO ---
-        window.abrirRutaEstaticaDinamica = function(tipo) {
-            let baseUrl = window.location.href.split('?')[0];
-            window.open(`${baseUrl}?ver=${tipo}`, '_blank');
-        };
-
-        window.ejecutarDisparoWhatsAppPropuestaEstructurado = function() {
+        window.dispararEnvioWhatsAppPropuestaYCatalogoGlobal = function() {
             try {
                 let baseUrl = window.location.href.split('?')[0];
                 let urlPropuesta = `${baseUrl}?ver=propuesta`;
@@ -1136,7 +1083,6 @@
                 msg += `Evolucione el mostrador de su establecimiento hoy mismo con la seguridad de *Tucocel C.A. & @publionlinemk.* 🛡️`;
                 
                 window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`, '_blank');
-                document.getElementById('modal-central-propuestas').classList.add('hidden');
             } catch(e) {}
         };
 
@@ -1342,7 +1288,7 @@
                 listado.push({ id: idSeleccionadoActual, nombre, rif, tlf, dir, user, pass, dias: diasSimuladosValor, rango, rubro, promotor, contrato_firmado: false });
                 await guardarClientesEnFirebase(listado);
                 
-                alert("🔒 Nueva sucursal dada de alta con éxito en la infraestructura SaaS.");
+                alert("🔒 Nueva sucursal dada de alta con éxito in la infraestructura SaaS.");
                 document.getElementById('modal-config-master').classList.add('hidden');
                 let listadoClientesBase = await obtenerClientesDesdeFirebase();
                 document.getElementById('global-clientes-count').innerText = listadoClientesBase.length;
@@ -1645,7 +1591,7 @@
                     let sub = p.precioUnitario * p.cantidad; acumuladoUSD += sub;
                     box.innerHTML += `
                         <div class="flex justify-between items-center bg-slate-50 border p-2 rounded-xl text-xs text-slate-880">
-                            <div><strong>${p.cantidad}x</strong> ${p.nombre}</div>
+                            <div><strong>${p.whitespace ? '' : p.cantidad}x</strong> ${p.nombre}</div>
                             <button onclick="window.removerItemTicketMostrador(${index})" class="text-red-500"><i class="fa-solid fa-trash-can"></i></button>
                         </div>`;
                 });
@@ -1837,12 +1783,12 @@
                 box.innerHTML += `
                     <div class="p-2.5 rounded-xl border ${esAnulada ? 'bg-purple-50 border-purple-200 text-purple-800' : 'bg-slate-50 border-slate-200 text-slate-880'} flex justify-between items-center mb-1 font-sans">
                         <div>
-                            <span class="font-mono font-bold block text-slate-900">Nota #${f.notaNum} [${f.fecha}]</span>
-                            <span class="text-[10px] block font-medium text-slate-500">Receptor: ${f.cliente} — Cajero: ${f.cajero}</span>
+                            <span class="font-mono font-bold block">Nota #${f.notaNum} [${f.fecha}]</span>
+                            <span class="text-[10px] block font-medium">Receptor: ${f.cliente} — Cajero: ${f.cajero}</span>
                             ${esAnulada ? '<span class="text-[8.5px] font-black tracking-wide block uppercase text-purple-600"><i class="fa-solid fa-ban"></i> NOTA DE DÉBITO (ANULADA)</span>' : ''}
                         </div>
-                        <div class="flex items-center gap-1.5 text-slate-800">
-                            <b class="font-mono text-xs text-slate-900">$${f.totalUSD.toFixed(2)}</b>
+                        <div class="flex items-center gap-1.5">
+                            <b class="font-mono text-xs">$${f.totalUSD.toFixed(2)}</b>
                             <button onclick="window.solicitarAccionesNotaMostradorBoton(${localFacturasFijasHistorialArr.indexOf(f)})" class="bg-blue-600 text-white w-7 h-7 rounded-lg flex items-center justify-center text-xs shadow hover:bg-blue-700 transition-all"><i class="fa-solid fa-sliders"></i></button>
                         </div>
                     </div>`;
@@ -2043,7 +1989,7 @@
             const tBs = parseFloat(document.getElementById('tasa-bs').value) || 40;
             
             textoMsg += `\n💰 *Totales Multimoneda:*\n`;
-            textoMsg += `💵 *REF:* $${acumuladoUSD.toFixed(2)} USD\n`;
+            textoMsg += `💵 *REF:* $${accumuladoUSD.toFixed(2)} USD\n`;
             textoMsg += `🇨🇴 *COP:* ${Math.round(acumuladoUSD * tCOP).toLocaleString()} Pesos\n`;
             textoMsg += `🇻🇪 *VES:* ${(acumuladoUSD * tBs).toFixed(2)} Bs\n\n`;
             textoMsg += `===============================\n🔒 *CONTROL INTERNO (NO FISCAL)*\n_Este comprobante constituye un registro administrativo para control logístico de almacenes._\n===============================\n🛡️ *TÉRMINOS DE GARANTÍA (60 DÍAS)*\n_Garantía por defectos de fábrica de los equipos celulares: 2 meses (60 días continuos). La cobertura no aplica por golpes, caídas o marcas de humedad._`;
@@ -2168,7 +2114,7 @@
             } else if(proyecto === 'SERVICELL') {
                 wrapVitrina.classList.add('hidden');
                 wrapServicell.classList.remove('hidden');
-                window.svc_renderizarComandaDiariaMostrador();
+                window.svc_recalcularHistorialGlobalServicell();
             }
         };
 
