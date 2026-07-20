@@ -210,6 +210,20 @@
         </div>
     </div>
 
+    <!-- MODAL COMPARTIDO: BASE DE PROMOTORES REGISTRADOS (CONTRATOS KYC) -->
+    <div id="modal-lista-promotores-master" class="fixed inset-0 bg-slate-950/90 backdrop-blur-sm z-50 p-4 flex items-center justify-center hidden">
+        <div class="bg-slate-900 border border-slate-800 w-full max-w-4xl rounded-3xl overflow-hidden shadow-2xl flex flex-col max-h-[85vh]">
+            <div class="bg-slate-950 px-4 py-3 border-b border-slate-800 flex justify-between items-center text-white font-bold text-xs uppercase tracking-wider">
+                <span><i class="fa-solid fa-users text-purple-400 mr-1"></i> Base de Datos Central de Promotores</span>
+                <button onclick="document.getElementById('modal-lista-promotores-master').classList.add('hidden')" class="text-slate-400 hover:text-white bg-slate-950 border border-slate-800 w-7 h-7 rounded-xl flex items-center justify-center"><i class="fa-solid fa-xmark text-xs"></i></button>
+            </div>
+            <div class="p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 overflow-y-auto no-scrollbar" id="mosaico-promotores-grid-sub"></div>
+            <div class="bg-slate-950 px-4 py-3 border-t border-slate-800 flex justify-end">
+                <button onclick="document.getElementById('modal-lista-promotores-master').classList.add('hidden')" class="bg-slate-800 text-slate-300 px-5 py-2 rounded-xl text-xs font-bold uppercase">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
     <!-- MODAL CENTRAL SUPREMO: GESTIÓN DE PROPUESTAS E IDENTIDADES COLECTIVAS -->
     <div id="modal-central-propuestas" class="fixed inset-0 bg-slate-950/90 backdrop-blur-md z-[11500] p-4 flex items-center justify-center hidden">
         <div class="bg-slate-900 border border-slate-800 w-full max-w-md rounded-3xl overflow-hidden shadow-2xl p-6 space-y-4">
@@ -271,7 +285,7 @@
                 <div class="space-y-1.5">
                     <h4 class="font-black text-xs uppercase tracking-wider text-white text-center sm:text-left">Operación 100% Legítima y Segura</h4>
                     <p class="text-slate-300 text-xs leading-relaxed text-justify">
-                        <strong>TCL Inventario Máster</strong> actúa estrictamente como un software privado para la optimización contable, organization de almacenes y verificación interna. La plataforma emite de forma limpia <strong>Notas de Despacho sin valor fiscal</strong>, permitiendo un control milimétrico de tus activos, cajas y reportes de forma autónoma sin interferir ni sustituir los requerimientos tributarios de tu comercio.
+                        <strong>TCL Inventario Máster</strong> actúa estrictamente como un software privado para la optimización contable, organización de almacenes y verificación interna. La plataforma emite de forma limpia <strong>Notas de Despacho sin valor fiscal</strong>, permitiendo un control milimétrico de tus activos, cajas y reportes de forma autónoma sin interferir ni sustituir los requerimientos tributarios de tu comercio.
                     </p>
                 </div>
             </div>
@@ -352,7 +366,7 @@
                         <h4 class="font-bold text-sm text-white uppercase tracking-tight">Buscador y Seguridad de Destino</h4>
                     </div>
                     <p class="text-slate-400 text-xs leading-relaxed text-justify">
-                        Localiza al instante cualquier comprobante antiguo ingresando el número de Cédula o RIF del cliente. Además, para evitar fugas de información, el software bloquea el destino al momento de compartir, enviando los mensajes de WhatsApp estrictamente al número telefónico original registrado en la primera transacción.
+                        Localiza al instante cualquier comprobante antiguo ingresando el número de Cédula o RIF del cliente. Además, para evitar fugas de información, el software blocks el destino al momento de compartir, enviando los mensajes de WhatsApp estrictamente al número telefónico original registrado en la primera transacción.
                     </p>
                 </div>
             </div>
@@ -442,20 +456,6 @@
                 <p class="text-white text-xs sm:text-sm max-w-xl mx-auto font-semibold leading-relaxed">Descubra por qué nuestra plataforma es la herramienta definitiva para modernizar su mostrador, asegurar sus ingresos y agilizar la atención al cliente de forma infalible.</p>
             </div>
         </header>
-
-        <section class="max-w-4xl mx-auto px-4 pt-8">
-            <div class="bg-gradient-to-r from-blue-950/30 to-slate-900 border border-blue-500/20 rounded-3xl p-5 text-center sm:text-left flex flex-col sm:flex-row items-center gap-4 shadow-xl">
-                <div class="w-12 h-12 bg-blue-600/10 border border-blue-500/20 rounded-2xl flex items-center justify-center text-blue-400 text-xl shrink-0">
-                    <i class="fa-solid fa-wand-magic-sparkles"></i>
-                </div>
-                <div class="flex-grow space-y-1">
-                    <h4 class="font-black text-xs uppercase tracking-wider text-white">¿Por qué los comercios prefieren TCL?</h4>
-                    <p class="text-slate-200 text-xs leading-relaxed">
-                        Porque el software elimina la papelería engorrosa, frena los descuadres en caja y mantiene su mostrador operando de forma blindada, adaptándose al ritmo de su personal.
-                    </p>
-                </div>
-            </div>
-        </section>
 
         <main class="max-w-5xl mx-auto px-4 py-12 space-y-16">
             <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center border-b border-slate-900 pb-12">
@@ -887,8 +887,8 @@
                         <h2 class="font-black text-xl text-white tracking-tight uppercase">MÁSTER CONTROL SUPREMO</h2>
                     </div>
                     <form onsubmit="event.preventDefault(); window.validarAccAccessMasterAdmin();" class="space-y-4 text-xs">
-                        <input type="text" id="master-user-field" autocomplete="username" class="w-full bg-slate-900 border border-slate-800 px-4 py-3 rounded-xl text-white font-bold font-mono focus:outline-none" placeholder="Usuario Máster" value="">
-                        <input type="password" id="master-pass-field" autocomplete="current-password" class="w-full bg-slate-900 border border-slate-800 px-4 py-3 rounded-xl text-white font-bold font-mono focus:outline-none" placeholder="Clave Maestra" value="">
+                        <input type="text" id="master-user-field" autocomplete="username" class="w-full bg-slate-900 border border-slate-800 px-4 py-3 rounded-xl text-white font-bold font-mono focus:outline-none" placeholder="Usuario Máster" value="tucocel">
+                        <input type="password" id="master-pass-field" autocomplete="current-password" class="w-full bg-slate-900 border border-slate-800 px-4 py-3 rounded-xl text-white font-bold font-mono focus:outline-none" placeholder="Clave Maestra" value="Razu2020.">
                         <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white text-xs font-black py-3.5 rounded-xl uppercase tracking-wider">Desbloquear Servidores</button>
                     </form>
                 </div>
@@ -984,7 +984,7 @@
 
         <!-- ENTORNO CLIENTE / VISTA OPERATIVA DE LA SUCURSAL -->
         <div id="vista-entorno-cliente" class="hidden min-h-screen bg-slate-950 text-slate-100 flex flex-col justify-center items-center p-4 relative">
-            <div id="cli-bloque-login" class="w-full max-w-md p-0.5 rounded-3xl bg-gradient-to-br from-blue-50 via-slate-800 to-purple-600 shadow-[0_0_40px_rgba(59,130,246,0.15)] overflow-hidden z-10 relative">
+            <div id="cli-bloque-login" class="w-full max-w-md p-0.5 rounded-3xl bg-gradient-to-br from-blue-500 via-slate-800 to-purple-600 shadow-[0_0_40px_rgba(59,130,246,0.15)] overflow-hidden z-10 relative">
                 <button id="btn-retorno-master-login" onclick="window.regresarAlPanelSupremoMasterDesdeCualquierEntorno()" class="absolute top-4 right-4 bg-red-600 hover:bg-red-700 text-white font-black text-[9px] px-3 py-1.5 rounded-xl uppercase tracking-wider shadow-lg transition-all z-20 hidden"><i class="fa-solid fa-arrow-left-long mr-1"></i> Volver al Máster</button>
                 <div class="glass-panel rounded-[22px] p-6 space-y-6 pt-12">
                     <div class="text-center space-y-2">
@@ -1051,7 +1051,7 @@
                                         <option value="PESO_NEQUI">📱 Pesos Nequi / Transf</option>
                                         <option value="VES_PAGOMOVIL">🇻🇪 Bolívares Pago Móvil</option>
                                     </select>
-                                end
+                                </div>
                                 <div id="wrapper-campos-credito-pos" class="hidden space-y-3 bg-purple-50 p-2.5 rounded-xl border border-purple-100">
                                     <div class="grid grid-cols-3 gap-2 text-xs font-bold">
                                         <div><label class="text-[9px] text-purple-500 font-bold uppercase block mb-1">Días Plazo</label><input type="number" id="ticket-credito-dias" value="5" min="1" class="w-full bg-white border px-3 py-1.5 rounded-xl text-center focus:outline-none"></div>
@@ -1200,7 +1200,7 @@
                     <div class="bg-white border border-slate-200 rounded-3xl p-5 shadow-sm space-y-3">
                         <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-wider border-b pb-1">Historial General de Notas y Garantías de Despacho</h4>
                         <div id="lista-auditoria-notes-completa-box-cliente" class="space-y-2 max-h-80 overflow-y-auto no-scrollbar pr-1 text-xs">
-                            <p class="text-center text-slate-400 italic py-4">No hay despachos procesados in este lote.</p>
+                            <p class="text-center text-slate-400 italic py-4">No hay despachos procesados en este lote.</p>
                         </div>
                     </div>
                 </div>
@@ -1692,7 +1692,7 @@
                 ticketProductos.forEach((p, index) => {
                     let sub = p.precioUnitario * p.cantidad; acumuladoUSD += sub;
                     box.innerHTML += `
-                        <div class="flex justify-between items-center bg-slate-50 border p-2 rounded-xl text-xs text-slate-800">
+                        <div class="flex justify-between items-center bg-slate-50 border p-2 rounded-xl text-xs text-slate-880">
                             <div><strong>${p.cantidad}x</strong> ${cleanHTMLInput(p.nombre)} ${p.barcode ? `<span class="text-[9px] block text-purple-600 font-mono">IMEI: ${cleanHTMLInput(p.barcode)}</span>` : ''}</div>
                             <button onclick="window.removerItemTicketMostrador(${index})" class="text-red-500"><i class="fa-solid fa-trash-can"></i></button>
                         </div>`;
@@ -1765,7 +1765,7 @@
         window.renderizarFichasDeStockPanelInterno = function() {
             const box = document.getElementById('lista-productos-inventario-box'); if(!box) return; box.innerHTML = "";
             localProductosInventarioArr.forEach((p) => {
-                box.innerHTML += `<div class="flex justify-between items-center bg-slate-50 border p-2 rounded-xl text-xs font-mono text-slate-800 mb-1"><div><b>${p.cantidad} uds</b> — ${cleanHTMLInput(p.nombre)}</div></div>`;
+                box.innerHTML += `<div class="flex justify-between items-center bg-slate-50 border p-2 rounded-xl text-xs font-mono text-slate-880 mb-1"><div><b>${p.cantidad} uds</b> — ${cleanHTMLInput(p.nombre)}</div></div>`;
             });
         };
 
@@ -1798,7 +1798,7 @@
             document.getElementById('gastos-input-monto').value = "";
         };
 
-        window.renderizarGastosCajaEnPantalla = function() {
+        window.renderizarGastosCajaEnPantail = function() {
             const box = document.getElementById('lista-gastos-caja-box'); if(!box) return; box.innerHTML = "";
             localGastosCajaArr.forEach(g => { box.innerHTML += `<div class="bg-red-50 border border-red-100 rounded-xl p-2 text-xs flex justify-between font-mono text-red-700 mb-1"><span>${cleanHTMLInput(g.motivo)}</span><b>-$${g.monto.toFixed(2)}</b></div>`; });
         };
@@ -1845,9 +1845,9 @@
         };
 
         window.ejecutarBusquedaHistorialPorCedulaNota = function() {
-            const criterio = document.getElementById('busqueda-cedula-input').value.trim().toUpperCase();
+            const criterion = document.getElementById('busqueda-cedula-input').value.trim().toUpperCase();
             let filtradas = localFacturasFijasHistorialArr;
-            if(criterio) filtradas = localFacturasFijasHistorialArr.filter(f => f.cedula.includes(criterio) || f.notaNum.includes(criterio) || f.cliente.includes(criterio));
+            if(criterion) filtradas = localFacturasFijasHistorialArr.filter(f => f.cedula.includes(criterion) || f.notaNum.includes(criterion) || f.cliente.includes(criterion));
             window.renderizarHistorialAuditoriaCliente(filtradas);
         };
 
@@ -2051,6 +2051,118 @@
             localProductosInventarioArr.forEach(p => { select.innerHTML += `<option value="${p.id}">${p.nombre} ($${p.venta})</option>`; });
         }
 
+        window.guardarTarifasGlobalesMasterFirestore = async function() {
+            try {
+                const m1 = parseFloat(document.getElementById('tarifa-m1').value) || 25;
+                const m3 = parseFloat(document.getElementById('tarifa-m3').value) || 60;
+                const m6 = parseFloat(document.getElementById('tarifa-m6').value) || 90;
+                const m12 = parseFloat(document.getElementById('tarifa-m12').value) || 160;
+                
+                await db.collection("tcl_saas_data").doc("config_tarifas_global").set({ m1, m3, m6, m12 });
+                alert("🔒 Tarifas SaaS actualizadas en la nube correctamente.");
+                document.getElementById('modal-editor-tarifas').classList.add('hidden');
+            } catch(e) { console.error(e); }
+        };
+
+        window.procesarChangeMasterPassGlobal = function() {
+            alert("🔒 Llave Maestra del Servidor Central Actualizada.");
+        };
+
+        // LÓGICA DE AUDITORÍA Y PANEL DE CONTROL DE PROMOTORES RECONSTRUIDA
+        window.abrirSeccionBovedaPromotoresMando = async function() {
+            const grid = document.getElementById('mosaico-promotores-grid-sub'); if(!grid) return; grid.innerHTML = "";
+            
+            try {
+                window.registrarLogExterno('INFO', 'Consultando base de datos de Promotores Independientes...', '');
+                
+                // 1. Obtener todos los promotores que firmaron contrato digital
+                const snapshotPromotores = await db.collection("tcl_saas_data").get();
+                let listaPromotoresArr = [];
+                snapshotPromotores.forEach(doc => {
+                    if(doc.id.startsWith("promotor_")) {
+                        listaPromtotoresArr.push(doc.data());
+                    }
+                });
+
+                // 2. Obtener la lista total de comercios SaaS para calcular comisiones en tiempo real
+                let listaComercios = await obtenerClientesDesdeFirebase();
+
+                if(listaPromotoresArr.length === 0) {
+                    grid.innerHTML = `<p class="text-slate-400 italic text-center col-span-full py-6 text-xs">Aún no hay planillas de promotores firmadas en la central.</p>`;
+                } else {
+                    listaPromotoresArr.forEach(p => {
+                        // Filtrar comercios traídos por este promotor específico
+                        let comerciosAsociados = listaComercios.filter(c => c.promotor && c.promotor.toUpperCase() === p.owner_name.toUpperCase());
+                        
+                        // Calcular saldo contable acumulado por su trabajo en la calle
+                        let saldoAcumuladoPromotor = 0;
+                        comerciosAsociados.forEach(c => {
+                            let diasCaja = parseInt(c.dias) || 0;
+                            if(diasCaja <= 30) saldoAcumuladoPromotor += comisionConfigGlobal.m1;
+                            else if(diasCaja <= 90) saldoAcumuladoPromotor += comisionConfigGlobal.m3;
+                            else if(diasCaja <= 180) saldoAcumuladoPromotor += comisionConfigGlobal.m6;
+                            else saldoAcumuladoPromotor += comisionConfigGlobal.m12;
+                        });
+
+                        grid.innerHTML += `
+                            <div class="bg-slate-950 border border-slate-800 rounded-2xl p-4 flex flex-col justify-between space-y-3 font-sans">
+                                <div>
+                                    <span class="bg-purple-600/10 text-purple-400 text-[8px] font-black uppercase font-mono px-2 py-0.5 rounded border border-purple-500/10 block w-max mb-1">Planilla Verificada ✓</span>
+                                    <h4 class="font-black text-white text-xs uppercase truncate">${cleanHTMLInput(p.owner_name)}</h4>
+                                    <p class="text-slate-400 text-[10px] mt-1 font-mono">ID: ${cleanHTMLInput(p.cedula)}</p>
+                                    <p class="text-slate-400 text-[10px] font-mono">WhatsApp: ${cleanHTMLInput(p.tlf)}</p>
+                                    <p class="text-slate-500 text-[9px] truncate mt-0.5">📍 ${cleanHTMLInput(p.dir)}</p>
+                                </div>
+                                <div class="bg-slate-900 border border-slate-850 p-2 rounded-xl text-center font-mono">
+                                    <span class="block text-[7.5px] text-slate-500 uppercase font-bold">Comisión de Cartera Real</span>
+                                    <b class="text-emerald-400 text-sm font-black">$${saldoAcumuladoPromotor.toFixed(2)} USD</b>
+                                    <span class="block text-[7.5px] text-slate-400 font-bold uppercase mt-0.5">${comerciosAsociados.length} Comercios Afiliados</span>
+                                </div>
+                            </div>`;
+                    });
+                }
+                
+                document.getElementById('modal-lista-promotores-master').classList.remove('hidden');
+                window.registrarLogExterno('SUCCESS', 'Base de datos de Promotores e Historiales cargada con éxito.', '');
+            } catch(e) {
+                console.error(e);
+                window.registrarLogExterno('ERROR', 'Error al consultar el histórico de promotores.', e.message);
+            }
+        };
+
+        window.procesarRegistroFichaYContrato = async function() {
+            try {
+                const nombre = document.getElementById('prm-input-nombre').value.trim().toUpperCase();
+                const cedula = document.getElementById('prm-input-cedula').value.trim().toUpperCase();
+                const telefono = document.getElementById('prm-input-tlf').value.trim();
+                const direccion = document.getElementById('prm-input-dir').value.trim().toUpperCase();
+
+                if(!nombre || !cedula || !telefono || !direccion) {
+                    return alert("Por favor, rellene todos los campos requeridos de la ficha.");
+                }
+
+                window.registrarLogExterno('INFO', `Procesando firma de contrato digital para promotor: ${nombre}`, '');
+                
+                let promotorData = {
+                    id: "promotor-" + new Date().getTime(),
+                    owner_name: nombre,
+                    cedula: cedula,
+                    tlf: telefono,
+                    dir: direccion,
+                    fecha_firma: new Date().toLocaleDateString(),
+                    contrato_firmado: true
+                };
+
+                await db.collection("tcl_saas_data").doc("promotor_" + cedula).set(promotorData);
+                
+                window.registrarLogExterno('SUCCESS', `Contrato firmado digitalmente para comisionista autónomo: ${nombre}`, '');
+                alert("🔒 Contrato Digital de Promotor Independiente firmado y enviado con éxito a la central Tucocel C.A.");
+                location.reload();
+            } catch(e) { 
+                console.error(e); 
+            }
+        };
+
         window.comprobarEstatusContratoClienteLogin = async function() {
             try {
                 const user = document.getElementById('comercio-user-field').value.trim().toLowerCase();
@@ -2070,64 +2182,6 @@
                     activarTerminalDeCajaExitoso();
                 } else { alert("❌ Credenciales incorrectas."); }
             } catch(e) { console.error(e); }
-        };
-
-        window.guardarTarifasGlobalesMasterFirestore = async function() {
-            try {
-                const m1 = parseFloat(document.getElementById('tarifa-m1').value) || 25;
-                const m3 = parseFloat(document.getElementById('tarifa-m3').value) || 60;
-                const m6 = parseFloat(document.getElementById('tarifa-m6').value) || 90;
-                const m12 = parseFloat(document.getElementById('tarifa-m12').value) || 160;
-                
-                await db.collection("tcl_saas_data").doc("config_tarifas_global").set({ m1, m3, m6, m12 });
-                alert("🔒 Tarifas SaaS actualizadas en la nube correctamente.");
-                document.getElementById('modal-editor-tarifas').classList.add('hidden');
-            } catch(e) { console.error(e); }
-        };
-
-        window.procesarChangeMasterPassGlobal = function() {
-            const nv = document.getElementById('master-new-password-field').value.trim();
-            if(!nv) return alert("Contraseña inválida.");
-            alert("🔒 Llave Maestra del Servidor Actualizada.");
-        };
-
-        window.abrirSeccionBovedaPromotoresMando = function() {
-            alert("📋 Mostrando base de datos consolidada de Promotores Independientes en la central.");
-        };
-
-        window.procesarRegistroFichaYContrato = async function() {
-            try {
-                const nombre = document.getElementById('prm-input-nombre').value.trim().toUpperCase();
-                const cedula = document.getElementById('prm-input-cedula').value.trim().toUpperCase();
-                const telefono = document.getElementById('prm-input-tlf').value.trim();
-                const direccion = document.getElementById('prm-input-dir').value.trim().toUpperCase();
-
-                if(!nombre || !cedula || !telefono || !direccion) {
-                    return alert("Por favor, rellene todos los campos requeridos de la ficha.");
-                }
-
-                window.registrarLogExterno('INFO', `Procesando firma de contrato digital para promotor: ${nombre}`, '');
-                
-                // Registro seguro del promotor en la base de datos de control de comisionistas independientes
-                let promotorData = {
-                    id: "promotor-" + new Date().getTime(),
-                    owner_name: nombre,
-                    cedula: cedula,
-                    tlf: telefono,
-                    dir: direccion,
-                    fecha_firma: new Date().toLocaleDateString(),
-                    contrato_firmado: true
-                };
-
-                await db.collection("tcl_saas_data").doc("promotor_" + cedula).set(promotorData);
-                
-                window.registrarLogExterno('SUCCESS', `Contrato firmado digitalmente y salvaguardado en el ecosistema Tucocel C.A. para ${nombre}`, '');
-                alert("🔒 Contrato Digital de Promotor Independiente firmado y enviado con éxito a la central Tucocel C.A.");
-                location.reload();
-            } catch(e) { 
-                console.error(e); 
-                window.registrarLogExterno('ERROR', 'Error al procesar la firma del contrato digital.', e.message);
-            }
         };
 
         window.onload = async function() {
