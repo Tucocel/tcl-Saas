@@ -248,11 +248,13 @@
                     <span class="text-[9px] font-black text-purple-400 uppercase tracking-widest block"><i class="fa-solid fa-users"></i> Ecosistema de Promotores / Vendedores</span>
                     <div class="grid grid-cols-2 gap-2">
                         <button onclick="window.abrirRutaEstaticaDinamica('propuesta_vendedor')" class="w-full bg-slate-900 border border-slate-800 p-2.5 rounded-xl text-white font-bold uppercase text-[10px] flex items-center justify-between"><span>Ver Oportunidad</span><i class="fa-solid fa-eye text-[10px]"></i></button>
-                        <button onclick="window.ejecutarWhatsAppCompartirEstructurado('propuesta_vendedor')" class="w-full bg-purple-600 text-white p-2.5 rounded-xl font-black uppercase text-[10px] flex items-center justify-center gap-1"><i class="fa-brands fa-whatsapp"></i> Enviar</button>
+                        <!-- PARCHE #2: INTERFAZ CAMBIADA A "Propuesta para el Vendedor" -->
+                        <button onclick="window.ejecutarWhatsAppCompartirPromotor()" class="w-full bg-purple-600 text-white p-2.5 rounded-xl font-black uppercase text-[10px] flex items-center justify-center gap-1"><i class="fa-brands fa-whatsapp"></i> Propuesta para el Vendedor</button>
                     </div>
                     <div class="grid grid-cols-2 gap-2">
                         <button onclick="window.abrirRutaEstaticaDinamica('contrato_promotor')" class="w-full bg-slate-900 border border-slate-800 p-2.5 rounded-xl text-white font-bold uppercase text-[10px] flex items-center justify-between"><span>Ver Contrato</span><i class="fa-solid fa-eye text-[9px]"></i></button>
-                        <button onclick="window.ejecutarWhatsAppCompartirEstructurado('contrato_promotor')" class="w-full bg-purple-600 text-white p-2.5 rounded-xl font-black uppercase text-[10px] flex items-center justify-center gap-1"><i class="fa-brands fa-whatsapp"></i> Enviar</button>
+                        <!-- PARCHE #3: ENVÍO DE CONTRATO DESDE LA CENTRAL -->
+                        <button onclick="window.ejecutarWhatsAppCompartirContrato()" class="w-full bg-purple-600 text-white p-2.5 rounded-xl font-black uppercase text-[10px] flex items-center justify-center gap-1"><i class="fa-brands fa-whatsapp"></i> Enviar Contrato Único</button>
                     </div>
                 </div>
             </div>
@@ -285,7 +287,7 @@
                 <div class="space-y-1.5">
                     <h4 class="font-black text-xs uppercase tracking-wider text-white text-center sm:text-left">Operación 100% Legítima y Segura</h4>
                     <p class="text-slate-300 text-xs leading-relaxed text-justify">
-                        <strong>TCL Inventario Máster</strong> actúa strictly como un software privado para la optimización contable, organización de almacenes y verificación interna. La plataforma emite de forma limpia <strong>Notas de Despacho sin valor fiscal</strong>, permitiendo un control milimétrico de tus activos, cajas y reportes de forma autónoma sin interferir ni sustituir los requerimientos tributarios de tu comercio.
+                        <strong>TCL Inventario Máster</strong> actúa única y exclusivamente como un software privado para la optimización contable, organización de almacenes y verificación interna. La plataforma emite de forma limpia <strong>Notas de Despacho sin valor fiscal</strong>, permitiendo un control milimétrico de tus activos, cajas y reportes de forma autónoma sin interferir ni sustituir los requerimientos tributarios de tu comercio.
                     </p>
                 </div>
             </div>
@@ -355,7 +357,7 @@
                         <h4 class="font-bold text-sm text-white uppercase tracking-tight">Operación Local Autónoma (Anti-Apagones)</h4>
                     </div>
                     <p class="text-slate-400 text-xs leading-relaxed text-justify">
-                        Diseñado para la realidad de nuestra región. El sistema cuenta con un motor interno de resguardo autónomo que mantiene la mesa de facturación y el inventario vivos en la memoria local. Si el internet fluctúa o se corta temporalmente, tu negocio no se detiene: puedes seguir operando y, al retornar la señal, todo se sincroniza en la nube de forma invisible.
+                        Diseñado para la realidad de nuestra región. El sistema cuenta con un motor interno de resguardo autónomo que mantiene la mesa de facturación y el inventario vivos in la memoria local. Si el internet fluctúa o se corta temporalmente, tu negocio no se detiene: puedes seguir operando y, al retornar la señal, todo se sincroniza en la nube de forma invisible.
                     </p>
                 </div>
 
@@ -461,12 +463,12 @@
             <div class="space-y-3 max-w-xl mx-auto pt-2">
                 <span class="text-[9px] font-black text-slate-500 uppercase tracking-widest block">Canales de Liquidación Soportados</span>
                 <div class="grid grid-cols-3 sm:grid-cols-6 gap-2 text-[10px] font-bold text-slate-400">
-                    <div class="bg-slate-900 border border-slate-850 p-2 rounded-xl flex flex-col items-center gap-1"><i class="fa-solid fa-mobile-screen text-emerald-400 text-sm"></i> Pago Móvil</div>
-                    <div class="bg-slate-900 border border-slate-855 p-2 rounded-xl flex flex-col items-center gap-1"><i class="fa-solid fa-money-bill-1 text-green-500 text-sm"></i> Efectivo $</div>
-                    <div class="bg-slate-900 border border-slate-855 p-2 rounded-xl flex flex-col items-center gap-1"><i class="fa-solid fa-flag text-amber-500 text-sm"></i> Pesos COP</div>
-                    <div class="bg-slate-900 border border-slate-855 p-2 rounded-xl flex flex-col items-center gap-1"><i class="fa-solid fa-wallet text-purple-400 text-sm"></i> Nequi</div>
-                    <div class="bg-slate-900 border border-slate-855 p-2 rounded-xl flex flex-col items-center gap-1"><i class="fa-solid fa-heart text-pink-400 text-sm"></i> Zinli</div>
-                    <div class="bg-slate-900 border border-slate-855 p-2 rounded-xl flex flex-col items-center gap-1"><i class="fa-solid fa-coins text-yellow-400 text-sm"></i> Binance</div>
+                    <div class="bg-slate-900 border border-slate-800 p-2 rounded-xl flex flex-col items-center gap-1"><i class="fa-solid fa-mobile-screen text-emerald-400 text-sm"></i> Pago Móvil</div>
+                    <div class="bg-slate-900 border border-slate-800 p-2 rounded-xl flex flex-col items-center gap-1"><i class="fa-solid fa-money-bill-1 text-green-500 text-sm"></i> Efectivo $</div>
+                    <div class="bg-slate-900 border border-slate-800 p-2 rounded-xl flex flex-col items-center gap-1"><i class="fa-solid fa-flag text-amber-500 text-sm"></i> Pesos COP</div>
+                    <div class="bg-slate-900 border border-slate-800 p-2 rounded-xl flex flex-col items-center gap-1"><i class="fa-solid fa-wallet text-purple-400 text-sm"></i> Nequi</div>
+                    <div class="bg-slate-900 border border-slate-800 p-2 rounded-xl flex flex-col items-center gap-1"><i class="fa-solid fa-heart text-pink-400 text-sm"></i> Zinli</div>
+                    <div class="bg-slate-900 border border-slate-800 p-2 rounded-xl flex flex-col items-center gap-1"><i class="fa-solid fa-coins text-yellow-400 text-sm"></i> Binance</div>
                 </div>
             </div>
         </section>
@@ -592,7 +594,7 @@
 
             <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center border-b border-slate-900 pb-12">
                 <div class="md:col-span-5 space-y-4 text-justify order-2 md:order-1">
-                    <div class="inline-flex items-center gap-2 text-purple-400 font-black text-[10px] tracking-widest uppercase bg-purple-500/10 border border-purple-500/20 px-3 py-1 rounded-md"><i class="fa-solid fa-sliders"></i> Panel Adaptable</div>
+                    <div class="inline-flex items-center gap-2 text-purple-400 font-black text-[10px] tracking-widest uppercase bg-purple-500/10 border border-purple-500/20 px-3 py-1 rounded-md"><i class="fa-solid fa-skew"></i> Panel Adaptable</div>
                     <h3 class="text-xl font-extrabold text-white uppercase tracking-tight">Interfaz Inteligente de Doble Personalidad</h3>
                     <p class="text-slate-200 text-xs leading-relaxed font-medium">Un entorno blindado contra descuidos que transmuta su diseño para evitar enredos operativos en el mostrador. En **Modo Comercio General**, el sistema oculta los inputs de telefonía para mayor velocidad.</p>
                     <p class="text-slate-200 text-xs leading-relaxed font-medium">Al activar el **Modo Tecnológico Avanzado**, la interfaz añade soporte nativo multi-IMEI y Dual SIM, alternando drásticamente el contraste visual con alertas de color y bloqueando automáticamente los inputs innecesarios para que el cajero nunca cometa equivocaciones contables.</p>
@@ -698,7 +700,7 @@
 
             <div class="bg-amber-500/5 border border-amber-500/20 rounded-2xl p-4 text-justify space-y-2">
                 <div class="flex items-center gap-2 text-amber-400 font-black text-[11px] uppercase tracking-wider"><i class="fa-solid fa-shield-halved text-xs"></i> <span>Aviso de Transparencia Institucional</span></div>
-                <p class="text-xs text-slate-300 leading-relaxed font-medium">El presente modelo de negocios regula la actividad del Comisionista Independiente. Se deja constancia explícita de que la incorporación a este plan de trabajo externo no constituye una relación laboral fija, sueldo base ni vínculo de empleo directo con TCL Sistema Máster ni con la empresa principal Tucocel C.A.</p>
+                <p class="text-xs text-slate-300 leading-relaxed font-medium">El presente modelo de negocios regula la activity del Comisionista Independiente. Se deja constancia explícita de que la incorporación a este plan de trabajo externo no constituye una relación laboral fija, sueldo base ni vínculo de empleo directo con TCL Sistema Máster ni con la empresa principal Tucocel C.A.</p>
                 <p class="text-xs text-slate-300 leading-relaxed font-medium border-t border-slate-800/60 pt-2">Garantía y Resguardo de Liquidación: El pago de tus comisiones puede ser efectuado de forma flexible en pesos, dólares, bolívares o USDT. Como los planes están fijados en valor digital estable, si un cliente realiza su pago en bolívares, tienes la opción de recibir tus ganancias en bolívares liquidados estrictamente a la tasa USDT del día según la plataforma Binance. De esta manera, tu dinero está resguardado al cien por ciento y cobras exactamente lo que te corresponde, aplicando la misma equivalencia para pagos en pesos, dólares o divisas digitales.</p>
             </div>
 
@@ -713,14 +715,14 @@
                         <div class="w-9 h-9 bg-purple-600/10 text-purple-400 rounded-xl flex items-center justify-center text-base shrink-0 mt-0.5"><i class="fa-solid fa-wallet"></i></div>
                         <div>
                             <h3 class="font-extrabold text-white uppercase text-[11px] tracking-wider">Altas Comisiones</h3>
-                            <p class="text-slate-400 text-xs mt-1 leading-relaxed">Gana bonos fijos en dólares vendiendo un software exclusivo provisto de parches únicos como márgenes automáticos, control de proveedores y alertas de stock tipo semáforo que facilitan cierres masivos.</p>
+                            <p class="text-slate-400 text-xs mt-1 leading-relaxed">Gana bonos fijos vendiendo un software exclusivo provisto de parches únicos como márgenes automáticos, control de proveedores y alertas de stock tipo semáforo que facilitan cierres masivos.</p>
                         </div>
                     </div>
                     <div class="flex items-start gap-3 bg-slate-950/50 p-3.5 rounded-2xl border border-slate-800 shadow-inner">
                         <div class="w-9 h-9 bg-blue-600/10 text-blue-400 rounded-xl flex items-center justify-center text-base shrink-0 mt-0.5"><i class="fa-solid fa-calendar-check"></i></div>
                         <div>
                             <h3 class="font-extrabold text-white uppercase text-[11px] tracking-wider">Cobros Flexibles</h3>
-                            <p class="text-slate-400 text-xs mt-1 leading-relaxed">Tienes la opción de cobrar tu venta diaria, semanal o mensual. Tú escogeres cómo deseas recibir tu dinero.</p>
+                            <p class="text-slate-400 text-xs mt-1 leading-relaxed">Tienes la opción de cobrar tu venta diaria, semanal o mensual. Tú escogereres cómo deseas recibir tu dinero.</p>
                         </div>
                     </div>
                     <div class="flex items-start gap-3 bg-slate-950/50 p-3.5 rounded-2xl border border-slate-800 shadow-inner">
@@ -847,7 +849,16 @@
 
     <!-- VISTA 4: CONTRATO DE PROMOTOR INDEPENDIENTE LIMPIO -->
     <div id="vista-contrato-promotor-publico" class="hidden min-h-screen py-10 px-4 antialiased flex items-center justify-center">
-        <div class="w-full max-w-2xl p-0.5 rounded-3xl bg-gradient-to-br from-purple-600 via-slate-800 to-blue-600 shadow-2xl">
+        <!-- PANTALLA RESTRICCION INYECTADA POR SEGURIDAD (PARCHE #3) -->
+        <div id="pantalla-bloqueo-contrato" class="hidden bg-slate-900 border border-red-500/40 p-6 rounded-2xl text-center max-w-md w-full space-y-4 shadow-2xl">
+            <div class="w-12 h-12 bg-red-500/15 text-red-500 rounded-full flex items-center justify-center mx-auto text-xl"><i class="fa-solid fa-lock"></i></div>
+            <h2 class="text-white font-black text-sm uppercase tracking-wide">ACCESO RESTRINGIDO</h2>
+            <p class="text-slate-300 text-xs leading-relaxed">
+                Estimado aliado, este enlace ya fue utilizado para formalizar su registro de control interno y ha caducado por motivos de seguridad. Usted ya completó su contrato con éxito. Para revisar sus métricas y cargar ventas, ingrese directamente desde su panel privado de promotor.
+            </p>
+            <div class="text-[10px] text-slate-500 pt-2 border-t border-slate-800">Soporte centralizado Tucocel C.A. · RIF J-31378837-6</div>
+        </div>
+        <div id="cuerpo-formulario-contrato-kyc" class="w-full max-w-2xl p-0.5 rounded-3xl bg-gradient-to-br from-purple-600 via-slate-800 to-blue-600 shadow-2xl">
             <div class="glass-panel rounded-[22px] p-6 sm:p-8 space-y-6">
                 <div class="border-b border-slate-800 pb-4 text-center space-y-2">
                     <span class="bg-purple-500/10 text-purple-400 border border-purple-500/20 text-[10px] font-black tracking-widest uppercase px-4 py-1.5 rounded-full inline-block">CONVENIO PRIVADO DE PRESTACIÓN DE SERVICIOS DE VENDEDORES INDEPENDIENTES 2026</span>
@@ -1024,7 +1035,7 @@
                     </div>
                     <form onsubmit="event.preventDefault(); window.comprobarEstatusContratoClienteLogin();" class="space-y-4 text-xs">
                         <input type="text" id="comercio-user-field" required="" placeholder="Usuario ID" class="w-full bg-slate-950 border border-slate-800 px-4 py-3 rounded-xl text-white font-bold font-mono focus:outline-none">
-                        <input type="password" id="comercio-pass-field" required="" placeholder="Contraseña" class="w-full bg-slate-950 border border-slate-800 px-4 py-3 rounded-xl text-white font-bold font-mono focus:outline-none">
+                        <input type="password" id="comercio-pass-field" required="" placeholder="Contraseña" class="w-full bg-slate-955 border border-slate-800 px-4 py-3 rounded-xl text-white font-bold font-mono focus:outline-none">
                         <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white text-xs font-black py-3.5 rounded-xl uppercase tracking-wider shadow hover:from-blue-700 hover:to-blue-800 transition-all">Ingresar al Terminal</button>
                     </form>
                 </div>
@@ -1115,7 +1126,7 @@
                                             <span id="label-lector-adaptativo" class="text-[9px] text-blue-400 font-black uppercase block tracking-wider"><i class="fa-solid fa-barcode mr-1"></i> Lector Láser Comercial</span>
                                             <button onclick="window.svc_alternarCamaraEscanerNativoCelular()" class="bg-blue-600 text-white w-6 h-6 rounded flex items-center justify-center shadow hover:bg-blue-700 transition-all"><i class="fa-solid fa-camera text-[10px]"></i></button>
                                         </div>
-                                        <input type="text" id="pos-lector-barras-input" onkeyup="if(event.key === 'Enter') window.dispararGatilloEscaneoPistolaLector();" placeholder="Pase el escáner láser..." class="w-full bg-slate-950 text-white border border-slate-800 px-3 py-2.5 rounded-xl text-xs font-mono font-bold focus:outline-none uppercase focus:border-blue-500 tracking-widest">
+                                        <input type="text" id="pos-lector-barras-input" onkeyup="if(event.key === 'Enter') window.dispararGatilloEscaneoPistola Lector();" placeholder="Pase el escáner láser..." class="w-full bg-slate-950 text-white border border-slate-800 px-3 py-2.5 rounded-xl text-xs font-mono font-bold focus:outline-none uppercase focus:border-blue-500 tracking-widest">
                                         <div id="reader-video-cam-tcl" class="w-full h-auto mt-2 rounded-xl overflow-hidden hidden border border-slate-700"></div>
                                     </div>
                                     
@@ -1168,7 +1179,7 @@
                                         <button onclick="window.ejecutarBusquedaHistorialPorCedulaNota()" class="bg-slate-900 text-white text-[9px] font-black px-3 rounded-xl uppercase">Buscar</button>
                                     </div>
                                     <div id="reportes-notes-lista-box" class="space-y-1.5 max-h-36 overflow-y-auto no-scrollbar text-xs"></div>
-                                </div>
+                                end </div>
                             </div>
                         </div>
                     </div>
@@ -1768,7 +1779,7 @@
                 ticketProductos.forEach((p, index) => {
                     let sub = p.precioUnitario * p.cantidad; acumuladoUSD += sub;
                     box.innerHTML += `
-                        <div class="flex justify-between items-center bg-slate-50 border p-2 rounded-xl text-xs text-slate-880">
+                        <div class="flex justify-between items-center bg-slate-50 border p-2 rounded-xl text-xs text-slate-800">
                             <div><strong>${p.cantidad}x</strong> ${cleanHTMLInput(p.nombre)} ${p.barcode ? `<span class="text-[9px] block text-purple-600 font-mono">IMEI: ${cleanHTMLInput(p.barcode)}</span>` : ''}</div>
                             <button onclick="window.removerItemTicketMostrador(${index})" class="text-red-500"><i class="fa-solid fa-trash-can"></i></button>
                         </div>`;
@@ -1833,7 +1844,6 @@
         window.removerItemTicketMostrador = function(index) {
             const item = ticketProductos[index];
             if(modoDigitacionMostrador === "INVENTARIO" || item.barcode) {
-                // Devolviendo stock si correspondía a un artículo mapeado
                 let match = localProductosInventarioArr.find(p => p.nombre === item.nombre);
                 if(match) {
                     match.cantidad += item.cantidad;
@@ -1986,7 +1996,6 @@
             document.getElementById('wrapper-campos-credito-pos').classList.toggle('hidden', cond !== 'CREDITO');
         };
 
-        // PARCHE: REDISEÑO COMPLETO CAMALEÓNICO DE LA INTERFAZ ANTI-ENREDOS DE PANTALLA POS
         window.cambiarModoDeDigitacionMostrador = function(modo) {
             modoDigitacionMostrador = modo;
             const tarjetaPOS = document.getElementById('tarjeta-carga-articulos-pos');
@@ -2004,7 +2013,6 @@
                 btnLibre.className = "bg-blue-600 text-white px-2.5 py-1 rounded-md border border-blue-600 uppercase";
                 btnInv.className = "bg-slate-100 text-slate-500 px-2.5 py-1 rounded-md border uppercase";
             } else {
-                // Giro radical estético blindado
                 tarjetaPOS.className = "bg-purple-50/40 border-2 border-purple-500 rounded-2xl p-4 shadow-sm space-y-4 transition-all duration-300 shadow-lg";
                 badgeModo.innerText = "📦 Modo Stock (Descontando de Almacén Central)";
                 badgeModo.className = "bg-purple-600 text-white text-[9px] font-black uppercase px-2.5 py-1.5 rounded-lg text-center tracking-wider block animate-pulse";
@@ -2123,7 +2131,7 @@
                     <div class="p-2.5 rounded-xl border ${esAnulada ? 'bg-purple-50 border-purple-200 text-purple-800' : 'bg-slate-50 border-slate-200 text-slate-800'} flex justify-between items-center mb-1 font-sans">
                         <div>
                             <span class="font-mono font-bold block text-slate-900">Nota #${cleanHTMLInput(f.notaNum)} [${cleanHTMLInput(f.fecha)}]</span>
-                            <span class="text-[10px] block font-medium text-slate-500">Receptor: ${cleanHTMLInput(f.cliente)} — Cajero: ${cleanHTMLInput(f.cajero)}</span>
+                            <span class="text-[10px] block font-medium text-slate-500">Receptor: ${cleanHTMLInput(f.cliente)} —  Cajero: ${cleanHTMLInput(f.cajero)}</span>
                             ${esAnulada ? '<span class="text-[8.5px] font-black tracking-wide block uppercase text-purple-600"><i class="fa-solid fa-ban"></i> NOTA DE DÉBITO (ANULADA)</span>' : ''}
                         </div>
                         <div class="flex items-center gap-1.5 text-slate-800">
@@ -2244,23 +2252,76 @@
         window.descargarCopiaSeguridadCSV = function() { alert("📥 Descargando respaldo local en formato CSV."); };
         window.abrirModalPropuestaCentral = function() { document.getElementById('modal-central-propuestas').classList.remove('hidden'); };
 
+        // PARCHE #1: MENSAJE COMPARTIDO A CLIENTES DESDE CENTRAL
         window.ejecutarWhatsAppCompartirEstructurado = function() {
-            let link = `${window.location.href.split('?')[0]}?ver=propuesta`;
-            window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent('🚀 Propuesta TCL: ' + link)}`, '_blank');
+            try {
+                const urlBase = window.location.href.split('?')[0];
+                const linkPropuesta = `${urlBase}?ver=propuesta`;
+                const linkCatalogo = `${urlBase}?ver=catalogo`;
+                
+                let msg = `🛍️ *¡OPTIMICE LA GESTIÓN DE SU NEGOCIO! — INFRAESTRUCTURA INTERNA TCL*\n\n`;
+                msg += `Asegure el liderazgo empresarial y proteja sus inventarios con el entorno digital de control interno multimoneda más versátil del mercado.\n\n`;
+                msg += `✨ *Una herramienta administrativa multifuncional:*\n`;
+                msg += `Desarrollado específicamente para la organización de inventarios, auditoría de cajas y flujos de despacho en comercios de *Consumo Masivo, Retail y Comercio General* (bodegones, minimarkets, farmacias y tiendas). Además, incluye funciones avanzadas y configurables para el rastreo opcional de garantías y seriales en el sector tecnológico.\n\n`;
+                msg += `🌐 *1. CONOZCA NUESTROS PLANES Y BENEFICIOS SAAS:*\n`;
+                msg += `Descubra cómo automatizar sus reportes y resguardar sus cuentas llave en mano.\n`;
+                msg += `👉 ${linkPropuesta}\n\n`;
+                msg += `🌐 *2. EXPLORE EL CATÁLOGO VISUAL DE EXPERIENCIA:*\n`;
+                msg += `Mire el funcionamiento del asistente por cámara móvil y la estética de la impresión universal de comprobantes compactos.\n`;
+                msg += `👉 ${linkCatalogo}\n\n`;
+                msg += `⚡ _Operación continua frente a apagones, control contable de cuentas por cobrar y arqueos detallados desde su celular o PC._\n\n`;
+                msg += `=====================================\n`;
+                msg += `⚠️ *AVISO DE TRANSPARENCIA Y RESGUARDO JURÍDICO:*\n`;
+                msg += `_Este software ha sido diseñado única y exclusivamente como un sistema privado de organización contable interna, auditoría de almacenes y emisión de notas de despacho sin valor fiscal. No emite facturas legales, no realiza declaraciones tributarias ni sustituye bajo ningún concepto a las máquinas fiscales homologadas por las leyes vigentes._\n\n`;
+                msg += `_Soporte centralizado Tucocel C.A. RIF J-31378837-6_`;
+
+                window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`, '_blank');
+            } catch(e) { console.error(e); }
         };
 
-        window.dispararContratoWhatsAppSimulado = function() {
-            const name = document.getElementById('cfg-nombre').value.toUpperCase();
-            let msg = `👑 *ACTIVACIÓN SAAS — ${name}*\n🌐 Acceso: ${window.location.href.split('?')[0]}?user=${document.getElementById('cfg-user').value}`;
-            window.open(`https://api.whatsapp.com/send?phone=${document.getElementById('cfg-tlf').value.trim()}&text=${encodeURIComponent(msg)}`, '_blank');
+        // PARCHE #2: DISPARADOR PROPUESTA DE NEGOCIO PARA EL VENDEDOR (CRIOLLO - MIXTO)
+        window.ejecutarWhatsAppCompartirPromotor = function() {
+            try {
+                const urlBase = window.location.href.split('?')[0];
+                const linkPropuestaVendedor = `${urlBase}?ver=propuesta_vendedor`;
+                
+                let msg = `👋 *¡HOLA, FUTURO ALIADO DIGITAL! — EQUIPO DE PROMOTORES TCL* ✨\n\n`;
+                msg += `Te invitamos cordialmente a formar parte de nuestro equipo de trabajo como *Promotor Digital Independiente* de nuestra infraestructura SaaS. 🚀\n\n`;
+                msg += `📈 *¿Qué te ofrece esta oportunidad de negocio?*\n`;
+                msg += `• *Trabajo Mixto (Calle y Digital):* Organizas tu día para cumplir con las rutas de visitas a comercios en la calle y potenciar tus ventas publicando diariamente en tus estados y grupos de WhatsApp.\n`;
+                msg += `• *Altas Ganancias:* Ganas excelentes bonos fijos por cada captación de clientes.\n`;
+                msg += `• *Ingresos Recurrentes:* Aseguras un residual mensual por cada cliente que mantenga su membresía al día.\n`;
+                msg += `• *Caja Transparente:* Cuentas con un simulador interactivo para proyectar tus metas y ver tus resultados al instante.\n\n`;
+                msg += `📝 _Para conocer detalladamente la propuesta de negocios, las metas exigidas y revisar las pautas de control interno, ingresa a tu enlace aquí:_\n`;
+                msg += `👉 ${linkPropuestaVendedor}\n\n`;
+                msg += `¡Evoluciona con nosotros y empieza a sumar trabajando con disciplina hoy mismo! 🌐\n`;
+                msg += `_Respaldado bajo el aval de Tucocel C.A. RIF J-31378837-6_`;
+
+                window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`, '_blank');
+            } catch(e) { console.error(e); }
         };
 
-        window.dispararReciboRenovacionWhatsApp = function() {
-            const name = document.getElementById('cfg-nombre').value.toUpperCase();
-            window.open(`https://api.whatsapp.com/send?phone=${document.getElementById('cfg-tlf').value.trim()}&text=${encodeURIComponent('🔄 Renovación SaaS Exitosa: ' + name)}`, '_blank');
+        // PARCHE #3: DISPARADOR DE CONTRATO ÚNICO CON IDENTIFICADOR SEGURO
+        window.ejecutarWhatsAppCompartirContrato = function() {
+            try {
+                const urlBase = window.location.href.split('?')[0];
+                const idFicticioParaEnvio = "V" + new Date().getTime().toString().slice(-8); // Genera una huella única basada en tiempo
+                const linkContratoUnico = `${urlBase}?ver=contrato_promotor&id=${idFicticioParaEnvio}`;
+                
+                let msg = `🤝 *¡BIENVENIDO AL EQUIPO TCL, ALIADO DIGITAL!* ✨\n\n`;
+                msg += `Nos alegra muchísimo que hayas tomado la decisión de unirte a nuestro equipo de trabajo como *Promotor Digital Independiente*. Aquí venimos a ganar y a crecer juntos.\n\n`;
+                msg += `A continuación, te dejamos el enlace directo para que revises y formalices tu convenio privado.\n\n`;
+                msg += `⚠️ *POR FAVOR, LEE ESTO CON MUCHA ATENCIÓN ANTES DE FIRMAR:*\n`;
+                msg += `Dentro del sistema vas a encontrar unas *cláusulas de control interno y reglas de juego* que hemos diseñado para proteger la seriedad de la empresa y tu propio trabajo. Léelas con calma y detalladamente, ya que son de cumplimiento obligatorio para poder mantener activo tu panel de promotor.\n\n`;
+                msg += `📝 _Ingresa aquí para leer detalladamente las pautas, aceptar los términos y activar tu usuario de inmediato:_\n`;
+                msg += `👉 ${linkContratoUnico}\n\n`;
+                msg += `¡Éxito en tu ruta de captación y vamos a patear calle con disciplina! 🚀\n`;
+                msg += `_Respaldado bajo el aval de Tucocel C.A. RIF J-31378837-6_`;
+
+                window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`, '_blank');
+            } catch(e) { console.error(e); }
         };
 
-        // ENFOQUE PURISTA DE SEMÁFORO AL SELECTOR DE MOSTRADOR
         function rebuildSelectDesplegableInventarioMostrador() {
             const select = document.getElementById('select-prod-inventario-pos'); if(!select) return; select.innerHTML = "";
             localProductosInventarioArr.forEach(p => { 
@@ -2292,7 +2353,6 @@
             alert("🔒 Llave Maestra del Servidor Central Actualizada.");
         };
 
-        // LÓGICA DE CONTROL DE PROMOTORES RECONSTRUIDA
         window.abrirSeccionBovedaPromotoresMando = async function() {
             const grid = document.getElementById('mosaico-promotores-grid-sub'); if(!grid) return; grid.innerHTML = "";
             
@@ -2409,6 +2469,7 @@
                 const urlParams = new URLSearchParams(window.location.search);
                 const verPropuesta = urlParams.get('ver');
                 const userParam = urlParams.get('user');
+                const idContratoParam = urlParams.get('id');
 
                 if (verPropuesta === 'propuesta') {
                     document.getElementById('bloque-login-master').classList.add('hidden');
@@ -2427,6 +2488,23 @@
                 }
                 if (verPropuesta === 'contrato_promotor') {
                     document.getElementById('bloque-login-master').classList.add('hidden');
+                    
+                    // PARCHE #3: VALIDACIÓN AVANZADA CONTRA LA DB DE PROMOTORES YA REGISTRADOS EN FIRESTORE
+                    if(idContratoParam) {
+                        const snapVerif = await db.collection("tcl_saas_data").where("cedula", "==", idContratoParam).get();
+                        let yaExisteYFirma = false;
+                        snapshotVerif.forEach(d => { if(d.data().contrato_firmado) yaExisteYFirma = true; });
+                        
+                        // Si la consulta arroja que el identificador único o cédula ya firmó, bloqueamos vistas de inmediato
+                        if(yaExisteYFirma) {
+                            document.getElementById('cuerpo-formulario-contrato-kyc').classList.add('hidden');
+                            document.getElementById('pantalla-bloqueo-contrato').classList.remove('hidden');
+                            document.getElementById('vista-contrato-promotor-publico').classList.remove('hidden');
+                            window.registrarLogExterno('ERROR', 'Intento de reingreso a contrato.', `Enlace caducado por uso del ID Promotor: ${idContratoParam}`);
+                            return;
+                        }
+                    }
+                    
                     document.getElementById('vista-contrato-promotor-publico').classList.remove('hidden');
                     return;
                 }
