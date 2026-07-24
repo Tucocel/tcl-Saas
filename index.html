@@ -29,7 +29,7 @@
         .glow-emerald { box-shadow: 0 0 35px rgba(16, 185, 129, 0.12); }
         .glow-text { text-shadow: 0 0 10px rgba(59, 130, 246, 0.5); }
         
-        /* REGLAS DE IMPRESIÓN PURA ADAPTABLE COMPACTA CON BLINDAJE LEGAL EN ROJO */
+        /* REGLAS DE IMPRESIÓN PURA ADAPTABLE COMPACTA CON BLINDAJE LEGAL EN ROJO (MUESTRA 10x15 REAL) */
         @media print {
             body { background: white !important; color: black !important; margin: 0 !important; padding: 0 !important; }
             body * { display: none !important; visibility: hidden !important; }
@@ -758,7 +758,7 @@
 
                     <div class="bg-white border border-slate-200 rounded-3xl p-5 shadow-sm space-y-3">
                         <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-wider border-b pb-1">Historial General de Notas y Garantías de Despacho</h4>
-                        <div id="lista-auditoria-notes-completa-box-cliente" class="space-y-2 max-h-80 overflow-y-auto no-scrollbar pr-1 text-xs"><p class="text-center text-slate-400 italic py-4">No hay notas registradas en este bloque temporal.</p></div>
+                        <div id="lista-auditoria-notes-completa-box-cliente" class="space-y-2 max-h-80 overflow-y-auto no-scrollbar pr-1 text-xs"><p class="text-center text-slate-400 italic py-4">No hay notas registrada en este bloque temporal.</p></div>
                     </div>
                 </div>
 
@@ -866,7 +866,7 @@
         let ticketProductos = []; 
         let recepcionTemporalItemsArr = []; 
         let acumuladoUSD = 0;
-        let infoClienteAbiertoDinamico = { id: "demo", nombre: "TCL TIENDA", user: "demo", pass: "123456", rubro: "GENERAL", dias: 365, ownerID: "demo", tlf: "04247357549", promotor: "", contrato_firmado: false };
+        let infoClienteAbiertoDinamico = { id: "demo", nombre: "TUCOCEL C.A.", rif: "J-40392817-0", dir: "Cordero, Táchira - Venezuela", user: "demo", pass: "123456", rubro: "TECNOLOGIA", dias: 365, ownerID: "demo", tlf: "0424-7357549", promotor: "", contrato_firmado: false };
         let correlativoNotaGlobal = 1;
         let comisionConfigGlobal = { m1: 5, m3: 9, m6: 14, m12: 24, renov_m1: 1.25, renov_m3: 2.50, renov_m6: 5.00, renov_m12: 10.00 }; 
         let modoDigitacionMostrador = "LIBRE";
@@ -1288,7 +1288,7 @@
             }
         };
 
-        /* PROCESAMIENTO DE FACTURACIÓN EN MOSTRADOR */
+        /* PROCESAMIENTO DE FACTURACIÓN EN MOSTRADOR CON NUEVA IMPRESIÓN Y BLINDAJE LEGAL EN ROJO */
         window.procesarTicketFacturacionMostradorCompleto = async function() {
             const seller = $('ticket-vendedor').value.trim();
             if(!seller) return alert("⚠️ Se requiere indicar el Cajero Responsable del Turno de forma obligatoria.");
@@ -1300,14 +1300,14 @@
             const abonoInicialVal = parseFloat($('ticket-abono').value) || 0;
 
             const nuevaFacturaDataObj = {
-                notaNum: String(correlativoNotaGlobal).padStart(3, '0'),
+                notaNum: String(correlativoNotaGlobal).padStart(4, '0'),
                 fecha: new Date().toLocaleDateString(),
                 hora: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
                 cajero: seller.toUpperCase(),
                 cliente: $('ticket-cliente').value.trim().toUpperCase() || "CONSUMIDOR FINAL",
-                cedula: $('ticket-rif-cliente').value.trim().toUpperCase() || "N/A",
+                cedula: $('ticket-rif-cliente').value.trim().toUpperCase() || "V-00.000.000",
                 telefono: $('ticket-tlf-cliente').value.trim() || "",
-                direccion: $('ticket-dir-cliente').value.trim().toUpperCase() || "CORDERO, TÁCHIRA",
+                direccion: $('ticket-dir-cliente').value.trim().toUpperCase() || "MOSTRADOR CORDERO",
                 articulos: [...ticketProductos],
                 totalUSD: acumuladoUSD,
                 metodoCobro: metodoCobroVal,
@@ -1324,34 +1324,92 @@
             const tCOP = parseFloat($('tasa-cop').value) || 3900;
             const tBs = parseFloat($('tasa-bs').value) || 40;
             const termicaBox = $('contenedor-impresion-termica-fijo');
-            termicaBox.className = "block bg-white text-black p-4 z-0";
+            termicaBox.className = "block bg-white text-black p-2 z-0";
 
+            /* MOTOR DE IMPRESIÓN 10x15 CM ADAPTADO CON BLINDAJE Y ENCABEZADO AZUL */
             let stringFacturaEpsonHtml = `
-            <div class="flex flex-col justify-between" style="background: white !important; color: black !important; width: 10cm !important; min-height: 10cm !important; height: auto !important; font-family: 'Courier New', Courier, monospace; font-size: 11px; line-height: 1.3;">
+            <div class="hoja-factura flex flex-col justify-between" style="width: 10cm !important; min-height: 10cm !important; height: auto !important; background: white !important; color: black !important; font-family: 'Courier New', Courier, monospace; font-size: 11px; line-height: 1.3; padding: 0.2cm !important;">
                 <div>
-                    <div class="text-center border-b border-dashed border-black pb-2 mb-2">
-                        <span style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 16px;" class="text-blue-custom block uppercase">${cleanHTMLInput(infoClienteAbiertoDinamico.nombre)}</span>
+                    <!-- ENCABEZADO CORPORATIVO EN AZUL -->
+                    <div class="text-center space-y-0.5 border-b border-dashed border-black pb-2 mb-2">
+                        <span style="font-family: 'Plus Jakarta Sans', sans-serif;" class="font-black text-base tracking-tight block text-blue-custom uppercase">${cleanHTMLInput(infoClienteAbiertoDinamico.nombre || 'TUCOCEL C.A.')}</span>
+                        <p class="text-[9px] font-bold text-blue-custom">AGENTE AUTORIZADO MOVISTAR</p>
+                        <p class="text-[9px]">RIF: ${cleanHTMLInput(infoClienteAbiertoDinamico.rif || 'J-40392817-0')}</p>
+                        <p class="text-[9px]">${cleanHTMLInput(infoClienteAbiertoDinamico.dir || 'Cordero, Táchira - Venezuela')}</p>
+                        <p class="text-[9px]">Soporte: ${cleanHTMLInput(infoClienteAbiertoDinamico.tlf || '0424-7357549')}</p>
                     </div>
+
+                    <!-- DATOS DEL COMPROBANTE Y CLIENTE -->
                     <div class="space-y-0.5 text-[10px] mb-2 pb-2 border-b border-dashed border-black">
                         <p><strong>NOTA DE DESPACHO:</strong> #${cleanHTMLInput(nuevaFacturaDataObj.notaNum)}</p>
                         <p><strong>FECHA:</strong> ${cleanHTMLInput(nuevaFacturaDataObj.fecha)} ${cleanHTMLInput(nuevaFacturaDataObj.hora)}</p>
-                        <p><strong>CLIENTE:</strong> ${cleanHTMLInput(nuevaFacturaDataObj.cliente)}</p>
+                        <p><strong>RECEPTOR:</strong> ${cleanHTMLInput(nuevaFacturaDataObj.cliente)}</p>
+                        <p><strong>CÉDULA/RIF:</strong> ${cleanHTMLInput(nuevaFacturaDataObj.cedula)}</p>
+                        <p><strong>DIRECCIÓN:</strong> ${cleanHTMLInput(nuevaFacturaDataObj.direccion)}</p>
                         <p><strong>VENDEDOR:</strong> ${cleanHTMLInput(nuevaFacturaDataObj.cajero)}</p>
-                        <p><strong>CONDICIÓN:</strong> ${cleanHTMLInput(nuevaFacturaDataObj.condicion)}</p>
                     </div>
-                    <table class="w-full text-left text-[10px] mb-2"><tbody>`;
-            nuevaFacturaDataObj.articulos.forEach(art => {
-                stringFacturaEpsonHtml += `<tr><td>${art.cantidad}x ${cleanHTMLInput(art.nombre)}</td><td class="text-right font-bold_custom">$${(art.precioUnitario * art.cantidad).toFixed(2)}</td></tr>`;
-            });
-            stringFacturaEpsonHtml += `</tbody></table></div>
-                <div class="mt-2 border-t border-dashed border-black pt-2 text-[10px]">
-                    <div class="flex justify-between font-bold text-xs"><span>NETO USD:</span><span>$${nuevaFacturaDataObj.totalUSD.toFixed(2)}</span></div>
-                    ${nuevaFacturaDataObj.condicion === 'CREDITO' ? `<div class="flex justify-between text-purple-700"><span>ABONÓ EN MOSTRADOR:</span><span>$${nuevaFacturaDataObj.abono.toFixed(2)}</span></div><div class="flex justify-between font-bold text-purple-700"><span>SALDO RESTANTE:</span><span>$${(nuevaFacturaDataObj.totalUSD - nuevaFacturaDataObj.abono).toFixed(2)}</span></div>` : ''}
-                    <div class="flex justify-between text-gray-800"><span>REF COP:</span><span>${Math.round(nuevaFacturaDataObj.totalUSD * tCOP).toLocaleString()} COP</span></div>
-                    <div class="flex justify-between text-gray-800"><span>REF Bs:</span><span>${(nuevaFacturaDataObj.totalUSD * tBs).toFixed(2)} Bs</span></div>
-                </div></div>`;
 
-            termicaBox.innerHTML = stringFacturaEpsonHtml; window.print(); termicaBox.innerHTML = "";
+                    <!-- TABLA DINÁMICA DE PRODUCTOS CON IMEIS -->
+                    <table class="w-full text-left text-[10px] mb-2">
+                        <thead>
+                            <tr class="border-b border-black font-bold">
+                                <th class="pb-1">CANT / ARTÍCULO</th>
+                                <th class="text-right pb-1">TOTAL</th>
+                            </tr>
+                        </thead>
+                        <tbody>`;
+            
+            nuevaFacturaDataObj.articulos.forEach(art => {
+                stringFacturaEpsonHtml += `
+                    <tr class="valign-top">
+                        <td class="pt-1">
+                            ${art.cantidad}x ${cleanHTMLInput(art.nombre)}
+                            ${art.barcode ? `<div class="text-[8.5px] text-gray-700 pl-2 font-mono">▫️ IMEI / SERIAL: ${cleanHTMLInput(art.barcode)}</div>` : ''}
+                        </td>
+                        <td class="text-right pt-1 font-bold_custom">$${(art.precioUnitario * art.cantidad).toFixed(2)}</td>
+                    </tr>`;
+            });
+
+            stringFacturaEpsonHtml += `
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- SECCIÓN INFERIOR: TOTALES MULTIMONEDA Y BLINDAJE LEGAL ROJO -->
+                <div class="mt-2">
+                    <div class="border-t border-dashed border-black pt-2 space-y-0.5 text-[10px]">
+                        <div class="flex justify-between font-bold text-xs">
+                            <span>NETO USD:</span>
+                            <span>$${nuevaFacturaDataObj.totalUSD.toFixed(2)}</span>
+                        </div>
+                        ${nuevaFacturaDataObj.condicion === 'CREDITO' ? `<div class="flex justify-between text-purple-700 font-bold"><span>ABONÓ EN MOSTRADOR:</span><span>$${nuevaFacturaDataObj.abono.toFixed(2)}</span></div><div class="flex justify-between font-bold text-purple-700"><span>SALDO RESTANTE:</span><span>$${(nuevaFacturaDataObj.totalUSD - nuevaFacturaDataObj.abono).toFixed(2)}</span></div>` : ''}
+                        <div class="flex justify-between text-gray-800">
+                            <span>REF COP (Tasa ${tCOP}):</span>
+                            <span>${Math.round(nuevaFacturaDataObj.totalUSD * tCOP).toLocaleString()} COP</span>
+                        </div>
+                        <div class="flex justify-between text-gray-800">
+                            <span>REF Bs (Tasa ${tBs.toFixed(2)}):</span>
+                            <span>${(nuevaFacturaDataObj.totalUSD * tBs).toFixed(2)} Bs</span>
+                        </div>
+                    </div>
+
+                    <!-- TEXTO DE BLINDAJE LEGAL EN ROJO COMPACTO AJUSTADO -->
+                    <div class="text-center text-[7px] space-y-1 border-t border-black mt-2 pt-1.5 uppercase tracking-tighter text-justify leading-tight">
+                        <p class="font-black text-red-custom tracking-tight text-center text-[8px] mb-0.5">⚠️ ADVERTENCIA: NOTA DE DESPACHO E INVENTARIO INTERNO</p>
+                        <p class="text-black font-medium">ESTE COMPROBANTE CONSTITUYE EXCLUSIVAMENTE UN REGISTRO OPERATIVO DE CONTROL DE ALMACÉN Y MOVILIZACIÓN INTERNA DE MERCANCÍAS. EN NINGÚN CASO ADQUIERE CARÁCTER DE FACTURA FISCAL, NI SUSTITUYE O MINIMIZA LAS FUNCIONES DE LOS MEDIOS DE EMISIÓN REGULADOS POR LA PROVIDENCIA ADMINISTRATIVA VIGENTE DE LA GERENCIA DE RECAUDACIÓN TRIBUTARIA DEL SENIAT. EL COMERCIO ADQUIERE LA OBLIGACIÓN EXCLUSIVA DE RESPALDAR SUS OPERACIONES MEDIANTE LOS CANALES TRIBUTARIOS LEGALES.</p>
+                        <p class="text-gray-600 font-mono text-[6.5px] lowercase normal-case text-center pt-0.5 leading-none">El proveedor de la infraestructura tecnológica y los desarrolladores del sistema quedan totalmente eximidos de responsabilidad civil, administrativa o penal sobre los montos cargados, descripciones o tasas cambiarias aplicadas en este terminal.</p>
+                        
+                        <div class="text-[7px] text-gray-500 font-sans pt-1 border-t border-gray-200 mt-1 text-center normal-case tracking-normal">
+                            Infraestructura Tecnológica Distribuida por <strong>Tucocel C.A.</strong><br>
+                            Desarrollo y Automatización: <strong>Publi-Online-Mk</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>`;
+
+            termicaBox.innerHTML = stringFacturaEpsonHtml; 
+            window.print(); 
+            termicaBox.innerHTML = "";
             termicaBox.className = "hidden whitespace-pre bg-white text-black p-4 z-0";
             
             correlativoNotaGlobal++; 
@@ -1363,7 +1421,7 @@
             if($('ticket-abono')) $('ticket-abono').value = "0";
 
             window.calcularTotalesSimulados();
-            if($('ticket-correlativo-display')) $('ticket-correlativo-display').innerText = "Nota #" + String(correlativoNotaGlobal).padStart(3, '0');
+            if($('ticket-correlativo-display')) $('ticket-correlativo-display').innerText = "Nota #" + String(correlativoNotaGlobal).padStart(4, '0');
             window.ejecutarBusquedaHistorialPorCedulaNota(); 
             window.recalcularEstructuraReportesGlobalTurno();
         };
@@ -1378,9 +1436,9 @@
             const cond = $('ticket-condicion-pago').value;
             const abono = parseFloat($('ticket-abono').value) || 0;
             
-            const numeroNotaActual = String(correlativoNotaGlobal).padStart(3, '0');
+            const numeroNotaActual = String(correlativoNotaGlobal).padStart(4, '0');
             let textoMsg = `🛍️ *${infoClienteAbiertoDinamico.nombre}*\n🧾 *COMPROBANTE DE DESPACHO E INVENTARIO*\nNota #${numeroNotaActual} | Vendedor: ${seller.toUpperCase()}\nCondición: ${cond}\n\n📋 *Artículos:*\n`;
-            ticketProductos.forEach(p => { textoMsg += `▪ ${p.cantidad}x ${p.nombre} -> $${(p.precioUnitario * p.cantidad).toFixed(2)} USD\n`; });
+            ticketProductos.forEach(p => { textoMsg += `▪ ${p.cantidad}x ${p.nombre} -> $${(p.precioUnitario * p.cantidad).toFixed(2)} USD ${p.barcode ? `\n  📱 IMEI: ${p.barcode}` : ''}\n`; });
             if(cond === 'CREDITO') textoMsg += `\n💵 *Abono:* $${abono.toFixed(2)}\n📉 *Saldo Restante:* $${(acumuladoUSD - abono).toFixed(2)}`;
             window.open("https://api.whatsapp.com/send?phone=" + cleanTlf + "&text=" + encodeURIComponent(textoMsg), '_blank');
         };
@@ -1424,7 +1482,7 @@
             $('cli-bloque-sistema').classList.remove('hidden');
             document.body.className = "bg-slate-50 text-slate-800 min-h-screen";
             if($('ticket-correlativo-display')) {
-                $('ticket-correlativo-display').innerText = "Nota #" + String(correlativoNotaGlobal).padStart(3, '0');
+                $('ticket-correlativo-display').innerText = "Nota #" + String(correlativoNotaGlobal).padStart(4, '0');
             }
             if($('cli-panel-nombre')) {
                 $('cli-panel-nombre').innerText = infoClienteAbiertoDinamico.nombre || "Comercio";
@@ -1525,7 +1583,7 @@
             }
         };
 
-        /* MÓDULO NUEVO: MANEJO DE PROVEEDORES Y MESA DE RECEPCIÓN TIPO FACTURA */
+        /* MÓDULO DE PROVEEDORES Y MESA DE RECEPCIÓN TIPO FACTURA */
         window.renderizarDesplegableProveedoresGuardados = function() {
             const select = $('select-proveedores-frecuentes');
             if(!select) return;
@@ -1674,20 +1732,34 @@
 
             await db.collection("tcl_custom_shop").doc(infoClienteAbiertoDinamico.id + "_inv").set({ lista: localProductosInventarioArr });
             
-            /* Generar comprobante térmico de recepción */
+            /* Generar comprobante térmico corporativo de recepción */
             const termicaBox = $('contenedor-impresion-termica-fijo');
-            termicaBox.className = "block bg-white text-black p-4 z-0";
-            let htmlPrintComp = `<div style="font-family: monospace; font-size:11px;">
-                <div class="text-center font-bold">*** COMPROBANTE DE RECEPCIÓN DE MERCANCÍA ***<br>${infoClienteAbiertoDinamico.nombre}</div>
-                <hr>
-                <p>PROVEEDOR: ${cleanHTMLInput(proveedor)}</p>
-                <p>RECIBIÓ: ${cleanHTMLInput(responsable)}</p>
-                <p>FECHA: ${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}</p>
-                <hr><table>`;
+            termicaBox.className = "block bg-white text-black p-2 z-0";
+            let htmlPrintComp = `
+            <div class="hoja-factura flex flex-col justify-between" style="width: 10cm !important; min-height: 10cm !important; height: auto !important; background: white !important; color: black !important; font-family: 'Courier New', Courier, monospace; font-size: 11px; line-height: 1.3; padding: 0.2cm !important;">
+                <div>
+                    <div class="text-center space-y-0.5 border-b border-dashed border-black pb-2 mb-2">
+                        <span style="font-family: 'Plus Jakarta Sans', sans-serif;" class="font-black text-base tracking-tight block text-blue-custom uppercase">${cleanHTMLInput(infoClienteAbiertoDinamico.nombre || 'TUCOCEL C.A.')}</span>
+                        <p class="text-[9px] font-bold text-blue-custom">AGENTE AUTORIZADO MOVISTAR</p>
+                        <p class="text-[9px]">COMPROBANTE DE RECEPCIÓN DE MERCANCÍA</p>
+                    </div>
+                    <div class="space-y-0.5 text-[10px] mb-2 pb-2 border-b border-dashed border-black">
+                        <p><strong>PROVEEDOR:</strong> ${cleanHTMLInput(proveedor)}</p>
+                        <p><strong>RECEPTOR:</strong> ${cleanHTMLInput(responsable)}</p>
+                        <p><strong>FECHA:</strong> ${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}</p>
+                    </div>
+                    <table class="w-full text-left text-[10px] mb-2">
+                        <thead><tr class="border-b border-black font-bold"><th>CANT / ARTÍCULO</th><th class="text-right">TOTAL COSTO</th></tr></thead>
+                        <tbody>`;
             recepcionTemporalItemsArr.forEach((p) => {
-                htmlPrintComp += `<tr><td>${p.cantidad}x ${cleanHTMLInput(p.nombre)}</td><td class="text-right">$${(p.costo * p.cantidad).toFixed(2)}</td></tr>`;
+                htmlPrintComp += `<tr><td class="pt-1">${p.cantidad}x ${cleanHTMLInput(p.nombre)}</td><td class="text-right pt-1 font-bold">$${(p.costo * p.cantidad).toFixed(2)}</td></tr>`;
             });
-            htmlPrintComp += `</table><hr><div class="text-center">¡Entrada Registrada Correctamente!</div></div>`;
+            htmlPrintComp += `</tbody></table></div>
+                <div class="border-t border-dashed border-black pt-2 text-center text-[9px] font-bold">
+                    ¡ENTRADA DE ALMACÉN PROCESADA CON ÉXITO!
+                </div>
+            </div>`;
+            
             termicaBox.innerHTML = htmlPrintComp; window.print(); termicaBox.innerHTML = "";
             termicaBox.className = "hidden whitespace-pre bg-white text-black p-4 z-0";
 
@@ -1711,14 +1783,24 @@
 
         window.imprimirInventarioTermico = function() {
             const termicaBox = $('contenedor-impresion-termica-fijo');
-            termicaBox.className = "block bg-white text-black p-4 z-0";
-            let htmlPrint = `<div style="font-family: monospace; font-size:11px;">
-                <div class="text-center font-bold">*** INVENTARIO MÁSTER ALMACÉN ***<br>${infoClienteAbiertoDinamico.nombre}</div>
-                <hr><table>`;
+            termicaBox.className = "block bg-white text-black p-2 z-0";
+            let htmlPrint = `
+            <div class="hoja-factura flex flex-col justify-between" style="width: 10cm !important; min-height: 10cm !important; height: auto !important; background: white !important; color: black !important; font-family: 'Courier New', Courier, monospace; font-size: 11px; line-height: 1.3; padding: 0.2cm !important;">
+                <div>
+                    <div class="text-center space-y-0.5 border-b border-dashed border-black pb-2 mb-2">
+                        <span style="font-family: 'Plus Jakarta Sans', sans-serif;" class="font-black text-base tracking-tight block text-blue-custom uppercase">${cleanHTMLInput(infoClienteAbiertoDinamico.nombre || 'TUCOCEL C.A.')}</span>
+                        <p class="text-[9px] font-bold text-blue-custom">AGENTE AUTORIZADO MOVISTAR</p>
+                        <p class="text-[9px]">REPORTES DE INVENTARIO Y STOCK GENERAL</p>
+                    </div>
+                    <table class="w-full text-left text-[10px] mb-2">
+                        <thead><tr class="border-b border-black font-bold"><th>CANT / ARTÍCULO</th><th class="text-right">PRECIO</th></tr></thead>
+                        <tbody>`;
             localProductosInventarioArr.forEach((p, idx) => {
-                htmlPrint += `<tr><td>#${String(p.correlativo || (idx+1)).padStart(3,'0')} ${p.cantidad}x ${cleanHTMLInput(p.nombre)}</td><td class="text-right">$${p.venta}</td></tr>`;
+                htmlPrint += `<tr><td class="pt-1">#${String(p.correlativo || (idx+1)).padStart(3,'0')} ${p.cantidad}x ${cleanHTMLInput(p.nombre)}</td><td class="text-right pt-1 font-bold">$${p.venta}</td></tr>`;
             });
-            htmlPrint += `</table><hr><div class="text-center">Total Artículos: ${localProductosInventarioArr.length}</div></div>`;
+            htmlPrint += `</tbody></table></div>
+                <div class="border-t border-dashed border-black pt-2 text-center text-[9px]">Total Ítems en Almacén: ${localProductosInventarioArr.length}</div>
+            </div>`;
             termicaBox.innerHTML = htmlPrint; window.print(); termicaBox.innerHTML = "";
             termicaBox.className = "hidden whitespace-pre bg-white text-black p-4 z-0";
         };
@@ -2132,7 +2214,7 @@
                 }
                 await db.collection("tcl_custom_shop").doc(infoClienteAbiertoDinamico.id + "_facturas").set({ lista: localFacturasFijasHistorialArr });
                 alert("⚙️ Registro purgado con éxito. Correlativo ajustado.");
-                if($('ticket-correlativo-display')) $('ticket-correlativo-display').innerText = "Nota #" + String(correlativoNotaGlobal).padStart(3, '0');
+                if($('ticket-correlativo-display')) $('ticket-correlativo-display').innerText = "Nota #" + String(correlativoNotaGlobal).padStart(4, '0');
                 window.recalcularEstructuraReportesGlobalTurno();
             }
         };
@@ -2141,21 +2223,50 @@
             let match = localFacturasFijasHistorialArr.find(f => f.notaNum === notaNum);
             if(!match) return;
             const tCOP = parseFloat($('tasa-cop').value) || 3900;
+            const tBs = parseFloat($('tasa-bs').value) || 40;
             const termicaBox = $('contenedor-impresion-termica-fijo');
-            termicaBox.className = "block bg-white text-black p-4 z-0";
+            termicaBox.className = "block bg-white text-black p-2 z-0";
 
             let stringFacturaEpsonHtml = `
-            <div class="flex flex-col justify-between" style="background: white !important; color: black !important; width: 10cm !important; min-height: 10cm !important; height: auto !important; font-family: 'Courier New', Courier, monospace; font-size: 11px; line-height: 1.3;">
-                <div><div class="text-center border-b border-dashed border-black pb-2 mb-2"><span style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 15px;" class="text-blue-custom block">*** REIMPRESIÓN CORRECTA ***<br>${cleanHTMLInput(infoClienteAbiertoDinamico.nombre)}</span></div>
-                <p><strong>NOTA DE DESPACHO:</strong> #${cleanHTMLInput(match.notaNum)}</p>
-                <p><strong>RECEPTOR:</strong> ${cleanHTMLInput(match.cliente)}</p></div>
-                <div class="mt-2"><div class="border-t border-dashed border-black pt-2 text-xs"><span>NETO USD: $${match.totalUSD.toFixed(2)}</span><br><span>REF COP: ${Math.round(match.totalUSD * tCOP).toLocaleString()} COP</span></div></div>
+            <div class="hoja-factura flex flex-col justify-between" style="width: 10cm !important; min-height: 10cm !important; height: auto !important; background: white !important; color: black !important; font-family: 'Courier New', Courier, monospace; font-size: 11px; line-height: 1.3; padding: 0.2cm !important;">
+                <div>
+                    <div class="text-center space-y-0.5 border-b border-dashed border-black pb-2 mb-2">
+                        <span style="font-family: 'Plus Jakarta Sans', sans-serif;" class="font-black text-base tracking-tight block text-blue-custom uppercase">*** REIMPRESIÓN COMPROBANTE ***<br>${cleanHTMLInput(infoClienteAbiertoDinamico.nombre || 'TUCOCEL C.A.')}</span>
+                        <p class="text-[9px] font-bold text-blue-custom">AGENTE AUTORIZADO MOVISTAR</p>
+                    </div>
+                    <div class="space-y-0.5 text-[10px] mb-2 pb-2 border-b border-dashed border-black">
+                        <p><strong>NOTA DE DESPACHO:</strong> #${cleanHTMLInput(match.notaNum)}</p>
+                        <p><strong>FECHA:</strong> ${cleanHTMLInput(match.fecha)} ${cleanHTMLInput(match.hora || '')}</p>
+                        <p><strong>RECEPTOR:</strong> ${cleanHTMLInput(match.cliente)}</p>
+                        <p><strong>CÉDULA/RIF:</strong> ${cleanHTMLInput(match.cedula)}</p>
+                        <p><strong>DIRECCIÓN:</strong> ${cleanHTMLInput(match.direccion || 'MOSTRADOR')}</p>
+                    </div>
+                    <table class="w-full text-left text-[10px] mb-2">
+                        <thead><tr class="border-b border-black font-bold"><th>CANT / ARTÍCULO</th><th class="text-right">TOTAL</th></tr></thead>
+                        <tbody>`;
+            match.articulos.forEach(art => {
+                stringFacturaEpsonHtml += `
+                    <tr>
+                        <td class="pt-1">
+                            ${art.cantidad}x ${cleanHTMLInput(art.nombre)}
+                            ${art.barcode ? `<div class="text-[8.5px] text-gray-700 pl-2 font-mono">▫️ IMEI / SERIAL: ${cleanHTMLInput(art.barcode)}</div>` : ''}
+                        </td>
+                        <td class="text-right pt-1 font-bold_custom">$${(art.precioUnitario * art.cantidad).toFixed(2)}</td>
+                    </tr>`;
+            });
+            stringFacturaEpsonHtml += `</tbody></table></div>
+                <div class="mt-2 border-t border-dashed border-black pt-2 text-[10px]">
+                    <div class="flex justify-between font-bold text-xs"><span>NETO USD:</span><span>$${match.totalUSD.toFixed(2)}</span></div>
+                    <div class="flex justify-between text-gray-800"><span>REF COP (Tasa ${tCOP}):</span><span>${Math.round(match.totalUSD * tCOP).toLocaleString()} COP</span></div>
+                    <div class="flex justify-between text-gray-800"><span>REF Bs (Tasa ${tBs.toFixed(2)}):</span><span>${(match.totalUSD * tBs).toFixed(2)} Bs</span></div>
+                </div>
             </div>`;
+            
             termicaBox.innerHTML = stringFacturaEpsonHtml; window.print(); termicaBox.innerHTML = "";
             termicaBox.className = "hidden whitespace-pre bg-white text-black p-4 z-0";
         };
 
-        /* IMPRESIÓN TÉRMICA DE REPORTES Y CIERRES DE CAJA */
+        /* IMPRESIÓN TÉRMICA DE REPORTES Y CIERRES DE CAJA CON DISEÑO CORPORATIVO ADAPTADO */
         window.imprimirReporteCierreTermico = function() {
             try {
                 const rangoSelect = $('reporte-rango-temporal-cliente');
@@ -2179,15 +2290,16 @@
                 let netoUSD = ventasBrutasUSD - gastosTotalesUSD;
 
                 const termicaBox = $('contenedor-impresion-termica-fijo');
-                termicaBox.className = "block bg-white text-black p-4 z-0";
+                termicaBox.className = "block bg-white text-black p-2 z-0";
 
                 let htmlReportePrint = `
-                <div class="flex flex-col justify-between" style="background: white !important; color: black !important; width: 10cm !important; font-family: 'Courier New', Courier, monospace; font-size: 11px; line-height: 1.3;">
+                <div class="hoja-factura flex flex-col justify-between" style="width: 10cm !important; min-height: 10cm !important; height: auto !important; background: white !important; color: black !important; font-family: 'Courier New', Courier, monospace; font-size: 11px; line-height: 1.3; padding: 0.2cm !important;">
                     <div>
-                        <div class="text-center border-b border-dashed border-black pb-2 mb-2">
-                            <span style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 15px;" class="block uppercase">${cleanHTMLInput(infoClienteAbiertoDinamico.nombre)}</span>
-                            <span class="block text-[10px] font-bold">*** CIERRE Y ARQUEO DE CAJA ***</span>
-                            <span class="block text-[9px]">${rango === "DIA" ? "TURNO DE HOY ("+hoyStr+")" : "BALANCE MENSUAL CONSOLIDADO"}</span>
+                        <div class="text-center space-y-0.5 border-b border-dashed border-black pb-2 mb-2">
+                            <span style="font-family: 'Plus Jakarta Sans', sans-serif;" class="font-black text-base tracking-tight block text-blue-custom uppercase">${cleanHTMLInput(infoClienteAbiertoDinamico.nombre || 'TUCOCEL C.A.')}</span>
+                            <p class="text-[9px] font-bold text-blue-custom">AGENTE AUTORIZADO MOVISTAR</p>
+                            <p class="text-[10px] font-bold">*** CIERRE Y ARQUEO DE CAJA ***</p>
+                            <p class="text-[9px]">${rango === "DIA" ? "TURNO DE HOY ("+hoyStr+")" : "BALANCE MENSUAL CONSOLIDADO"}</p>
                         </div>
                         <div class="space-y-1 text-[10px] mb-2 pb-2 border-b border-dashed border-black">
                             <div class="flex justify-between"><span>VENTAS BRUTAS:</span><strong>$${ventasBrutasUSD.toFixed(2)} USD</strong></div>
@@ -2196,8 +2308,8 @@
                         </div>
                         <div class="space-y-0.5 text-[9px] border-b border-dashed border-black pb-2 mb-2">
                             <p class="font-bold uppercase">CONVERSIÓN MULTIMONEDA:</p>
-                            <div class="flex justify-between"><span>TASA COP (${tCOP}):</span><span>${Math.round(netoUSD * tCOP).toLocaleString()} COP</span></div>
-                            <div class="flex justify-between"><span>TASA Bs (${tBs}):</span><span>${(netoUSD * tBs).toFixed(2)} Bs</span></div>
+                            <div class="flex justify-between"><span>REF COP (Tasa ${tCOP}):</span><span>${Math.round(netoUSD * tCOP).toLocaleString()} COP</span></div>
+                            <div class="flex justify-between"><span>REF Bs (Tasa ${tBs.toFixed(2)}):</span><span>${(netoUSD * tBs).toFixed(2)} Bs</span></div>
                         </div>
                     </div>
                     <div class="text-center text-[8px] italic pt-1">
@@ -2241,7 +2353,7 @@
                 msg += `⚖️ *CAJA REAL NETO DE TURNO:* *$${netoUSD.toFixed(2)} USD*\n\n`;
                 msg += `🧮 *CONVERSIÓN DE ARQUEO:*\n`;
                 msg += `🇨🇴 Pesos COP (Tasa ${tCOP}): *${Math.round(netoUSD * tCOP).toLocaleString()} Pesos*\n`;
-                msg += `接地 Bolívares VES (Tasa ${tBs}): *${(netoUSD * tBs).toFixed(2)} Bs*\n`;
+                msg += `🇻🇪 Bolívares VES (Tasa ${tBs}): *${(netoUSD * tBs).toFixed(2)} Bs*\n`;
                 msg += `=====================================\n\n`;
 
                 window.open(`https://api.whatsapp.com/send?phone=${infoClienteAbiertoDinamico.tlf || '04247357549'}&text=${encodeURIComponent(msg)}`, '_blank');
@@ -2284,7 +2396,7 @@
 
                 let clienteValido = null;
                 if (user === "demo" && pass === "123456") {
-                    clienteValido = { id: "demo", nombre: "TCL TIENDA DEMO", user: "demo", pass: "123456", rubro: "TECNOLOGIA", dias: 365, tlf: "04247357549" };
+                    clienteValido = { id: "demo", nombre: "TUCOCEL C.A.", rif: "J-40392817-0", dir: "Cordero, Táchira - Venezuela", user: "demo", pass: "123456", rubro: "TECNOLOGIA", dias: 365, tlf: "0424-7357549" };
                 } else {
                     let listado = await obtenerClientesDesdeFirebase();
                     clienteValido = listado.find(c => c.user === user && c.pass === pass);
