@@ -21,17 +21,17 @@
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
 
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght=400;500;600;700;800&display=swap');
         body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #020617; color: #f8fafc; overflow-x: hidden; }
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-        .glass-panel { background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+        .glass-panel { background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
         .glow-border { box-shadow: 0 0 25px rgba(59, 130, 246, 0.25); border: 1px solid rgba(59, 130, 246, 0.4); }
         .glow-purple { box-shadow: 0 0 30px rgba(147, 51, 234, 0.15); }
         .glow-emerald { box-shadow: 0 0 35px rgba(16, 185, 129, 0.12); }
         .glow-text { text-shadow: 0 0 10px rgba(59, 130, 246, 0.5); }
         
-        /* REGLAS DE IMPRESIÓN PURA ADAPTABLE COMPACTA (HP / EPSON / TÉRMICA) */
+        /* REGLAS DE IMPRESIÓN PURA ADAPTABLE COMPACTA CON BLINDAJE LEGAL EN ROJO */
         @media print {
             body { background: white !important; color: black !important; margin: 0 !important; padding: 0 !important; }
             body * { display: none !important; visibility: hidden !important; }
@@ -170,6 +170,20 @@
     <div id="contenedor-impresion-termica-fijo" class="hidden whitespace-pre bg-white text-black p-4 z-0"></div>
     <div id="seccion-impresion-contrato" class="hidden bg-white text-black p-8 z-0"></div>
 
+    <!-- NOTIFICACIÓN FLOTANTE INSTANTÁNEA (TOAST) -->
+    <div id="toast-notificacion-flotante" class="fixed top-6 right-6 z-[12000] bg-slate-900 border border-emerald-500/40 text-white p-4 rounded-2xl shadow-2xl flex items-center gap-4 hidden transition-all duration-300">
+        <div class="w-10 h-10 bg-emerald-500/20 text-emerald-400 rounded-xl flex items-center justify-center text-lg font-black"><i class="fa-solid fa-check"></i></div>
+        <div>
+            <h4 class="font-black text-xs uppercase tracking-wider text-emerald-400">¡Mercancía Guardada con Éxito!</h4>
+            <p class="text-[10px] text-slate-300">El stock y los datos del proveedor se actualizaron en la nube.</p>
+        </div>
+        <div class="flex gap-1.5 ml-2">
+            <button onclick="window.imprimirInventarioTermico()" class="bg-slate-800 hover:bg-slate-700 text-white text-[10px] font-black px-3 py-2 rounded-xl uppercase">Imprimir</button>
+            <button onclick="window.enviarInventarioWhatsApp()" class="bg-emerald-600 hover:bg-emerald-700 text-white text-[10px] font-black px-3 py-2 rounded-xl uppercase"><i class="fa-brands fa-whatsapp"></i></button>
+            <button onclick="document.getElementById('toast-notificacion-flotante').classList.add('hidden')" class="text-slate-400 hover:text-white px-2"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+    </div>
+
     <!-- CONSOLA MÓVIL DE DIAGNÓSTICO FLOTANTE -->
     <div id="diagnostico-master-flotante" class="fixed bottom-24 right-4 z-[10005] flex flex-col items-center gap-1">
         <div id="badge-contador-errores" class="bg-red-500 text-white font-black text-[10px] px-2 py-0.5 rounded-full shadow-lg border border-red-400 animate-bounce hidden">0</div>
@@ -224,7 +238,7 @@
         </div>
     </div>
 
-    <!-- MODAL CENTRAL SUPREMO: GESTIÓN DE PROPUESTAS Y CONTRATOS RESTAURADOS 100% -->
+    <!-- MODAL CENTRAL SUPREMO: GESTIÓN DE PROPUESTAS Y CONTRATOS -->
     <div id="modal-central-propuestas" class="fixed inset-0 bg-slate-950/90 backdrop-blur-md z-[11500] p-4 flex items-center justify-center hidden">
         <div class="bg-slate-900 border border-slate-800 w-full max-w-md rounded-3xl overflow-hidden shadow-2xl p-6 space-y-4">
             <div class="flex justify-between items-center border-b border-slate-800 pb-2">
@@ -381,8 +395,8 @@
                         <h2 id="login-titulo-dinamico" class="font-black text-xl text-white tracking-tight uppercase">TCL INVENTARIO MÁSTER</h2>
                     </div>
                     <form onsubmit="event.preventDefault(); window.comprobarEstatusContratoClienteLogin();" class="space-y-4 text-xs">
-                        <input type="text" id="comercio-user-field" required="" placeholder="Usuario ID" class="w-full bg-slate-955 border border-slate-800 px-4 py-3 rounded-xl text-white font-bold font-mono focus:outline-none">
-                        <input type="password" id="comercio-pass-field" required="" placeholder="Contraseña" class="w-full bg-slate-955 border border-slate-800 px-4 py-3 rounded-xl text-white font-bold font-mono focus:outline-none">
+                        <input type="text" id="comercio-user-field" required="" placeholder="Usuario ID" class="w-full bg-slate-900 border border-slate-800 px-4 py-3 rounded-xl text-white font-bold font-mono focus:outline-none">
+                        <input type="password" id="comercio-pass-field" required="" placeholder="Contraseña" class="w-full bg-slate-900 border border-slate-800 px-4 py-3 rounded-xl text-white font-bold font-mono focus:outline-none">
                         <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white text-xs font-black py-3.5 rounded-xl uppercase tracking-wider shadow hover:from-blue-700 hover:to-blue-800 transition-all">Ingresar al Terminal</button>
                     </form>
                 </div>
@@ -532,46 +546,113 @@
                     </div>
                 </div>
 
-                <!-- SECCIÓN INVENTARIO AVANZADO CON CÁMARA Y UMBRAL AUTOMÁTICO -->
-                <div id="panel-seccion-inventario" class="p-4 max-w-4xl mx-auto w-full space-y-4 flex-grow pb-24 hidden">
-                    <div class="bg-white border border-slate-200 rounded-3xl p-5 shadow-sm space-y-4">
-                        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b pb-2 gap-2">
-                            <h3 class="font-black text-xs text-slate-900 uppercase">Carga de Productos al Stock Profesional</h3>
-                            <input type="text" id="inv-input-buscar-filtro" onkeyup="window.renderizarFichasDeStockPanelInterno()" placeholder="🔍 Buscar por nombre o proveedor..." class="bg-slate-50 border p-2 rounded-xl text-xs font-bold w-full sm:w-64 focus:outline-none">
+                <!-- SECCIÓN INVENTARIO AVANZADO -->
+                <div id="panel-seccion-inventario" class="p-4 max-w-4xl mx-auto w-full space-y-6 flex-grow pb-24 hidden">
+                    <div class="flex bg-slate-900 p-1.5 rounded-2xl border border-slate-800 text-xs font-bold text-center">
+                        <button onclick="window.cambiarSubPestañaInventario('ver')" id="subnav-btn-ver" class="flex-grow py-2.5 rounded-xl bg-blue-600 text-white uppercase tracking-wider transition-all">📦 Ver Inventario (Stock)</button>
+                        <button onclick="window.cambiarSubPestañaInventario('agregar')" id="subnav-btn-agregar" class="flex-grow py-2.5 rounded-xl text-slate-400 uppercase tracking-wider transition-all">➕ Agregar Nueva Mercancía</button>
+                    </div>
+
+                    <!-- BLOQUE 1: VER INVENTARIO -->
+                    <div id="subpanel-inventario-ver" class="bg-white border border-slate-200 rounded-3xl p-5 shadow-sm space-y-4">
+                        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b pb-3 gap-2">
+                            <div>
+                                <h3 class="font-black text-xs text-slate-900 uppercase">Inventario General Almacén (Mayor a Menor Stock)</h3>
+                                <span class="text-[9px] text-slate-400 uppercase font-mono">Control de Correlativo y Existencias</span>
+                            </div>
+                            <div class="flex gap-2 w-full sm:w-auto">
+                                <button onclick="window.imprimirInventarioTermico()" class="bg-slate-900 hover:bg-black text-white text-xs font-black px-3.5 py-2.5 rounded-xl uppercase shadow flex items-center justify-center gap-1.5 w-full sm:w-auto"><i class="fa-solid fa-print"></i> Imprimir Stock</button>
+                                <button onclick="window.enviarInventarioWhatsApp()" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-black px-3.5 py-2.5 rounded-xl uppercase shadow flex items-center justify-center gap-1.5 w-full sm:w-auto"><i class="fa-brands fa-whatsapp text-sm"></i> WhatsApp</button>
+                            </div>
                         </div>
-                        <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 text-xs font-bold">
-                            <input type="text" id="inv-input-nombre" placeholder="Nombre del Artículo" class="bg-slate-50 border p-2.5 rounded-xl sm:col-span-2 focus:outline-none">
-                            <input type="text" id="inv-input-proveedor" placeholder="Proveedor (Ej: Mayorista)" class="bg-slate-50 border p-2.5 rounded-xl focus:outline-none uppercase sm:col-span-2">
+
+                        <div class="relative">
+                            <input type="text" id="inv-input-buscar-filtro" onkeyup="window.renderizarFichasDeStockPanelInterno()" placeholder="🔍 Buscar por artículo, proveedor o serial..." class="w-full bg-slate-50 border p-3 rounded-2xl text-xs font-bold focus:outline-none">
+                        </div>
+
+                        <div id="lista-productos-inventario-box" class="space-y-2 max-h-[50vh] overflow-y-auto no-scrollbar pt-1"></div>
+                    </div>
+
+                    <!-- BLOQUE 2: AGREGAR NUEVA MERCANCÍA -->
+                    <div id="subpanel-inventario-agregar" class="bg-white border border-slate-200 rounded-3xl p-5 shadow-sm space-y-4 hidden">
+                        <div class="bg-slate-900 text-white rounded-2xl p-4 border border-slate-800 shadow-md">
+                            <div class="grid grid-cols-2 gap-3 text-center">
+                                <div class="bg-slate-950 p-2 rounded-xl border border-slate-800"><span class="text-[9px] text-slate-400 uppercase font-bold block mb-0.5">Tasa COP (Compras)</span><input type="number" id="tasa-cop-inv" value="3900" class="w-full bg-transparent text-center font-black text-sm text-amber-400 focus:outline-none"></div>
+                                <div class="bg-slate-950 p-2 rounded-xl border border-slate-800"><span class="text-[9px] text-slate-400 uppercase font-bold block mb-0.5">Tasa Bs (Compras)</span><input type="number" id="tasa-bs-inv" value="40" class="w-full bg-transparent text-center font-black text-sm text-emerald-400 focus:outline-none"></div>
+                            </div>
+                        </div>
+
+                        <div class="border-b pb-2">
+                            <h3 class="font-black text-xs text-slate-900 uppercase">Recepción de Mercancía y Registro de Compras</h3>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-bold text-slate-800">
+                            <div class="sm:col-span-2">
+                                <label class="text-[9px] font-black text-slate-400 uppercase block mb-1">Almacenista / Responsable del Ingreso *</label>
+                                <input type="text" id="inv-input-responsable" placeholder="Nombre de quien recibe la mercancía..." class="bg-slate-50 border p-2.5 rounded-xl w-full uppercase text-purple-600 focus:outline-none">
+                            </div>
+                            <div class="sm:col-span-2">
+                                <label class="text-[9px] font-black text-slate-400 uppercase block mb-1">Nombre del Artículo *</label>
+                                <input type="text" id="inv-input-nombre" placeholder="Ej: Funda Samsung A54 o Arroz 1kg" class="bg-slate-50 border p-2.5 rounded-xl w-full uppercase focus:outline-none">
+                            </div>
                             
-                            <input type="number" id="inv-input-cantidad" placeholder="Cantidad Inicial" class="bg-slate-50 border p-2.5 rounded-xl focus:outline-none">
-                            <input type="number" id="inv-input-costo" placeholder="Precio Costo ($)" onkeyup="window.calcularMargenGananciaInternoFormulario()" class="bg-slate-50 border p-2.5 rounded-xl focus:outline-none">
-                            <input type="number" id="inv-input-venta" placeholder="Precio Venta ($)" onkeyup="window.calcularMargenGananciaInternoFormulario()" class="bg-slate-50 border p-2.5 rounded-xl focus:outline-none">
-                            
+                            <div>
+                                <label class="text-[9px] font-black text-slate-400 uppercase block mb-1">Nombre del Proveedor *</label>
+                                <input type="text" id="inv-input-proveedor" placeholder="Ej: Importadora Central C.A." class="bg-slate-50 border p-2.5 rounded-xl w-full uppercase focus:outline-none">
+                            </div>
+                            <div>
+                                <label class="text-[9px] font-black text-slate-400 uppercase block mb-1">Teléfono Proveedor</label>
+                                <input type="text" id="inv-input-prov-tlf" placeholder="0424..." class="bg-slate-50 border p-2.5 rounded-xl w-full focus:outline-none">
+                            </div>
+                            <div class="sm:col-span-2">
+                                <label class="text-[9px] font-black text-slate-400 uppercase block mb-1">Dirección Proveedor</label>
+                                <input type="text" id="inv-input-prov-dir" placeholder="Ciudad, Zona Comercial..." class="bg-slate-50 border p-2.5 rounded-xl w-full uppercase focus:outline-none">
+                            </div>
+
+                            <div>
+                                <label class="text-[9px] font-black text-slate-400 uppercase block mb-1">Cantidad a Ingresar (Uds) *</label>
+                                <input type="number" id="inv-input-cantidad" placeholder="0" class="bg-slate-50 border p-2.5 rounded-xl w-full focus:outline-none">
+                            </div>
+                            <div>
+                                <label class="text-[9px] font-black text-slate-400 uppercase block mb-1">Precio Costo Unitario ($) *</label>
+                                <input type="number" id="inv-input-costo" placeholder="0.00" onkeyup="window.calcularMargenGananciaInternoFormulario()" class="bg-slate-50 border p-2.5 rounded-xl w-full focus:outline-none">
+                            </div>
+                            <div>
+                                <label class="text-[9px] font-black text-slate-400 uppercase block mb-1">Precio Venta Unitario ($) *</label>
+                                <input type="number" id="inv-input-venta" placeholder="0.00" onkeyup="window.calcularMargenGananciaInternoFormulario()" class="bg-slate-50 border p-2.5 rounded-xl w-full focus:outline-none">
+                            </div>
                             <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800 flex flex-col justify-center items-center text-center font-mono">
                                 <span class="text-[7.5px] text-slate-500 uppercase block font-bold">Margen Calculado</span>
                                 <span id="lbl-display-margen-dinamico" class="text-slate-400 font-black text-[11px]">-</span>
                             </div>
 
-                            <div class="sm:col-span-4 relative bg-slate-900 p-2.5 rounded-2xl border border-slate-800 text-white space-y-1.5">
+                            <div class="sm:col-span-2 relative bg-slate-900 p-3 rounded-2xl border border-slate-800 text-white space-y-1.5">
                                 <div class="flex justify-between items-center">
                                     <span class="text-[9px] text-blue-400 font-black uppercase"><i class="fa-solid fa-barcode mr-1"></i> Código de Barra / Serial IMEI</span>
-                                    <button onclick="window.svc_alternarCamaraEscanerInventario()" class="bg-purple-600 text-white px-2 py-1 rounded-lg text-[10px] font-black uppercase flex items-center gap-1 shadow hover:bg-purple-700 transition-all"><i class="fa-solid fa-camera"></i> Escanear Cámara</button>
+                                    <button onclick="window.svc_alternarCamaraEscanerInventario()" class="bg-purple-600 text-white px-2.5 py-1 rounded-lg text-[10px] font-black uppercase flex items-center gap-1 shadow hover:bg-purple-700 transition-all"><i class="fa-solid fa-camera"></i> Escanear Cámara</button>
                                 </div>
-                                <input type="text" id="inv-input-barcode" placeholder="Escanee o escriba el serial..." class="w-full bg-slate-950 text-white border border-slate-800 p-2.5 rounded-xl font-mono uppercase focus:outline-none text-xs">
+                                <input type="text" id="inv-input-barcode" placeholder="Pase el láser o use la cámara..." class="w-full bg-slate-950 text-white border border-slate-800 p-2.5 rounded-xl font-mono uppercase focus:outline-none text-xs">
                                 <div id="reader-video-cam-inv" class="w-full h-auto mt-2 rounded-xl overflow-hidden hidden border border-slate-700"></div>
                             </div>
                         </div>
-                        <button onclick="window.ejecutarCargaProductoAlInventarioFirebase()" class="w-full bg-slate-900 text-white font-black text-xs py-3 rounded-xl uppercase shadow">Guardar en Inventario Centralizado</button>
-                        <div id="lista-productos-inventario-box" class="space-y-2 max-h-80 overflow-y-auto no-scrollbar pt-2 border-t"></div>
+
+                        <button onclick="window.ejecutarCargaProductoAlInventarioFirebase()" class="w-full bg-slate-900 hover:bg-black text-white font-black text-xs py-3.5 rounded-xl uppercase tracking-wider shadow">Guardar y Registrar Mercancía</button>
                     </div>
+
                 </div>
 
-                <!-- SECCIÓN GASTOS Y CUENTAS POR PAGAR (CxP) -->
+                <!-- SECCIÓN GASTOS Y CxP -->
                 <div id="panel-seccion-gastos" class="p-4 max-w-4xl mx-auto w-full space-y-6 flex-grow pb-24 hidden">
+                    <div class="bg-slate-900 text-white rounded-2xl p-4 border border-slate-800 shadow-md">
+                        <div class="grid grid-cols-2 gap-3 text-center">
+                            <div class="bg-slate-950 p-2 rounded-xl border border-slate-800"><span class="text-[9px] text-slate-400 uppercase font-bold block mb-0.5">Tasa COP (Gastos)</span><input type="number" id="tasa-cop-gas" value="3900" class="w-full bg-transparent text-center font-black text-sm text-amber-400 focus:outline-none"></div>
+                            <div class="bg-slate-950 p-2 rounded-xl border border-slate-800"><span class="text-[9px] text-slate-400 uppercase font-bold block mb-0.5">Tasa Bs (Gastos)</span><input type="number" id="tasa-bs-gas" value="40" class="w-full bg-transparent text-center font-black text-sm text-emerald-400 focus:outline-none"></div>
+                        </div>
+                    </div>
                     <div class="bg-white border border-slate-200 rounded-3xl p-5 shadow-sm space-y-3">
                         <h4 class="text-xs font-black text-slate-900 uppercase tracking-wider border-b pb-2 flex items-center gap-1.5"><i class="fa-solid fa-money-bill-wave text-red-500"></i> Registrar Gasto Inmediato de Caja Chica</h4>
                         <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs font-bold text-slate-800">
-                            <input type="text" id="gastos-input-motivo" placeholder="Descripción del Gasto (Ej: Pasaje, Bolsa)" class="bg-slate-50 border p-2.5 rounded-xl focus:outline-none uppercase sm:col-span-2">
+                            <input type="text" id="gastos-input-motivo" placeholder="Descripción del Gasto" class="bg-slate-50 border p-2.5 rounded-xl focus:outline-none uppercase sm:col-span-2">
                             <input type="number" id="gastos-input-monto" placeholder="Monto ($)" class="bg-slate-50 border p-2.5 rounded-xl focus:outline-none">
                         </div>
                         <button onclick="window.ejecutarGargaGastoTurnoFirebase()" class="w-full bg-red-600 text-white font-black py-3 rounded-xl uppercase tracking-wider text-xs shadow-md">Registrar Egreso de Turno</button>
@@ -596,7 +677,7 @@
                     </div>
                 </div>
 
-                <!-- SECCIÓN REPORTES: BOTONERA RESPONSIVA MULTI-DISPOSITIVO SIN DESBORDAMIENTO -->
+                <!-- SECCIÓN REPORTES -->
                 <div id="panel-seccion-reportes" class="p-4 max-w-4xl mx-auto w-full space-y-6 flex-grow pb-24 hidden">
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                         <div class="bg-slate-900 text-white border border-slate-800 p-4 rounded-2xl text-center shadow-md">
@@ -623,7 +704,6 @@
                     </div>
 
                     <div class="bg-white border border-slate-200 rounded-3xl p-5 shadow-sm space-y-4 overflow-hidden">
-                        <!-- CABECERA ADAPTATIVA PARA MÓVILES Y COMPUTADORAS -->
                         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 border-b pb-3">
                             <div><h2 class="font-black text-slate-900 uppercase text-xs">Arqueo y Cierre Consolidado de Turno</h2></div>
                             <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 w-full sm:w-auto">
@@ -773,7 +853,26 @@
             });
         }
 
-        /* 1. CÁLCULOS MATEMÁTICOS Y RECALCULO DE SALDOS DECLARADOS EN WINDOW */
+        /* 1. DECLARACIÓN ELEVADA DE VALIDACIÓN MÁSTER PARA EVITAR TYPEERROR */
+        window.validarAccAccessMasterAdmin = function() {
+            const user = $('master-user-field').value.trim();
+            const pass = $('master-pass-field').value.trim();
+            
+            if(user.toLowerCase() === "tucocel" && pass === "Razu2020.") {
+                esMasterActivoSession = true;
+                $('bloque-login-master').classList.add('hidden');
+                $('vista-master-admin').classList.remove('hidden');
+                
+                window.habilitarBotonesSeguridadConsolaSaaS();
+                window.registrarLogExterno('SUCCESS', 'Acceso Máster verificado.', 'Sesión iniciada correctamente 🔒.');
+                window.recalcularEstructuraReportesGlobalTurno();
+            } else { 
+                window.registrarLogExterno('ERROR', 'Intento de acceso fallido.', 'Llave maestra provista incorrecta.');
+                alert("❌ Llave Maestra Incorrecta."); 
+            }
+        };
+
+        /* CÁLCULOS MATEMÁTICOS Y SALDOS CAJA */
         window.recalcularSaldosPendientesCaja = function() {
             try {
                 const total = acumuladoUSD || 0;
@@ -822,7 +921,79 @@
             } catch(e) { console.error(e); }
         };
 
-        /* FUNCIONES DE CONFIGURACIÓN SAAS MÁSTER Y ENVÍOS LOGÍSTICOS */
+        window.agregarArticuloManualTicket = function() {
+            try {
+                let nombre = "";
+                let precioUnitario = parseFloat($('manual-prod-precio') ? $('manual-prod-precio').value : 0) || 0;
+                let cantidad = parseInt($('manual-prod-cantidad') ? $('manual-prod-cantidad').value : 1) || 1;
+                let monedaBase = $('manual-prod-moneda') ? $('manual-prod-moneda').value : "USD";
+                let barcodeVal = "";
+
+                if (modoDigitacionMostrador === "LIBRE") {
+                    nombre = $('manual-prod-nombre') ? $('manual-prod-nombre').value.trim().toUpperCase() : "";
+                    if (!nombre) return alert("Por favor indique el nombre del artículo.");
+                } else {
+                    const selectInv = $('select-prod-inventario-pos');
+                    if (!selectInv || !selectInv.value) return alert("Seleccione un producto del inventario.");
+                    let match = localProductosInventarioArr.find(p => p.id === selectInv.value);
+                    if (!match) return alert("Producto no encontrado.");
+                    
+                    if (match.cantidad < cantidad) {
+                        if (!confirm(`⚠️ Stock insuficiente (${match.cantidad} uds). ¿Desea continuar de todos modos?`)) return;
+                    }
+                    nombre = match.nombre;
+                    barcodeVal = match.barcode || "";
+                }
+
+                if (precioUnitario <= 0) return alert("Indique un precio válido.");
+
+                if (monedaBase === "COP") {
+                    const tCOP = parseFloat($('tasa-cop') ? $('tasa-cop').value : 3900) || 3900;
+                    precioUnitario = precioUnitario / tCOP;
+                }
+
+                ticketProductos.push({ nombre, precioUnitario, cantidad, barcode: barcodeVal });
+                
+                if ($('manual-prod-nombre')) $('manual-prod-nombre').value = "";
+                if ($('manual-prod-precio')) $('manual-prod-precio').value = "";
+                if ($('manual-prod-cantidad')) $('manual-prod-cantidad').value = "1";
+
+                window.calcularTotalesSimulados();
+            } catch(e) { console.error("Error al agregar ítem:", e); }
+        };
+
+        window.removerItemTicketMostrador = function(index) {
+            ticketProductos.splice(index, 1);
+            window.calcularTotalesSimulados();
+        };
+
+        /* CONTROL DE SUBPESTAÑAS EN INVENTARIO (VER VS AGREGAR) */
+        window.cambiarSubPestañaInventario = function(sub) {
+            const isVer = (sub === 'ver');
+            $('subpanel-inventario-ver').classList.toggle('hidden', !isVer);
+            $('subpanel-inventario-agregar').classList.toggle('hidden', isVer);
+
+            const btnVer = $('subnav-btn-ver');
+            const btnAgregar = $('subnav-btn-agregar');
+
+            if(isVer) {
+                btnVer.className = "flex-grow py-2.5 rounded-xl bg-blue-600 text-white uppercase tracking-wider transition-all shadow";
+                btnAgregar.className = "flex-grow py-2.5 rounded-xl text-slate-400 uppercase tracking-wider transition-all";
+                window.renderizarFichasDeStockPanelInterno();
+            } else {
+                btnVer.className = "flex-grow py-2.5 rounded-xl text-slate-400 uppercase tracking-wider transition-all";
+                btnAgregar.className = "flex-grow py-2.5 rounded-xl bg-blue-600 text-white uppercase tracking-wider transition-all shadow";
+            }
+        };
+
+        window.sincronizarFichaInventarioConNubeRemota = async function() {
+            try {
+                await db.collection("tcl_custom_shop").doc(infoClienteAbiertoDinamico.id + "_inv").set({ lista: localProductosInventarioArr });
+            } catch(e) {
+                console.error("Error sincronizando inventario:", e);
+            }
+        };
+
         window.ejecutarWhatsAppCompartirPromotor = function() {
             let msg = `🚀 *OPORTUNIDAD COMERCIAL TCL INVENTARIO MÁSTER*\n\nConviértase en Promotor Oficial e incremente sus ingresos distribuyendo nuestra infraestructura de facturación y control en su región.\n\n👉 Vea la propuesta completa aquí: ${window.location.href.split('?')[0]}?ver=propuesta_vendedor`;
             window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`, '_blank');
@@ -896,24 +1067,6 @@
                     alert("🗑️ Perfil de sucursal eliminado con éxito.");
                 }
             } catch(e) { console.error(e); }
-        };
-
-        window.validarAccAccessMasterAdmin = function() {
-            const user = $('master-user-field').value.trim();
-            const pass = $('master-pass-field').value.trim();
-            
-            if(user.toLowerCase() === "tucocel" && pass === "Razu2020.") {
-                esMasterActivoSession = true;
-                $('bloque-login-master').classList.add('hidden');
-                $('vista-master-admin').classList.remove('hidden');
-                
-                window.habilitarBotonesSeguridadConsolaSaaS();
-                window.registrarLogExterno('SUCCESS', 'Acceso Máster verificado.', 'Sesión iniciada correctamente 🔒.');
-                window.recalcularEstructuraReportesGlobalTurno();
-            } else { 
-                window.registrarLogExterno('ERROR', 'Intento de acceso fallido.', 'Llave maestra provista incorrecta.');
-                alert("❌ Llave Maestra Incorrecta."); 
-            }
         };
 
         window.abrirModalCrearPerfil = function() {
@@ -1257,9 +1410,10 @@
             const box = $('lista-productos-inventario-box'); if(!box) return; box.innerHTML = "";
             const filtroTexto = $('inv-input-buscar-filtro') ? $('inv-input-buscar-filtro').value.trim().toUpperCase() : "";
 
-            let filtrados = localProductosInventarioArr;
+            let filtrados = [...localProductosInventarioArr].sort((a, b) => (b.cantidad || 0) - (a.cantidad || 0));
+
             if(filtroTexto) {
-                filtrados = localProductosInventarioArr.filter(p => p.nombre.toUpperCase().includes(filtroTexto) || (p.proveedor && p.proveedor.toUpperCase().includes(filtroTexto)));
+                filtrados = filtrados.filter(p => p.nombre.toUpperCase().includes(filtroTexto) || (p.proveedor && p.proveedor.toUpperCase().includes(filtroTexto)) || (p.correlativo && p.correlativo.toString().includes(filtroTexto)));
             }
 
             if(filtrados.length === 0) {
@@ -1267,7 +1421,8 @@
                 return;
             }
 
-            filtrados.forEach((p) => {
+            filtrados.forEach((p, idx) => {
+                const correlativoNum = p.correlativo || (idx + 1);
                 const umbralMinimo = 3;
                 let claseColorSemaforo = "bg-slate-50 border-slate-200 text-slate-800";
                 let badgeAlertaText = "";
@@ -1277,18 +1432,20 @@
                     badgeAlertaText = "⚠️ AGOTADO";
                 } else if(p.cantidad <= umbralMinimo) {
                     claseColorSemaforo = "bg-amber-50 border-amber-200 text-amber-800 font-bold";
-                    badgeAlertaText = "🚨 EXISTENCIAS CRÍTICAS (3 O MENOS)";
+                    badgeAlertaText = "🚨 EXISTENCIAS CRÍTICAS";
                 }
 
                 box.innerHTML += `
-                    <div class="flex justify-between items-center p-2.5 rounded-xl text-xs font-mono mb-1 border ${claseColorSemaforo}">
+                    <div class="flex justify-between items-center p-3 rounded-xl text-xs font-mono mb-1.5 border ${claseColorSemaforo}">
                         <div>
+                            <span class="text-[9px] font-black text-blue-600 block">ITEM #${String(correlativoNum).padStart(3, '0')}</span>
                             <b>${p.cantidad} uds</b> — ${cleanHTMLInput(p.nombre)} <span class="text-blue-600 font-bold">($${p.venta})</span>
-                            ${p.proveedor ? `<span class="text-[9px] block text-slate-500 font-sans font-bold uppercase">Proveedor: ${cleanHTMLInput(p.proveedor)}</span>` : ''}
+                            ${p.proveedor ? `<span class="text-[9px] block text-slate-500 font-sans font-bold uppercase">Proveedor: ${cleanHTMLInput(p.proveedor)} ${p.provTlf ? '('+cleanHTMLInput(p.provTlf)+')' : ''}</span>` : ''}
+                            ${p.responsable ? `<span class="text-[8.5px] block text-purple-600 font-sans font-bold uppercase">Recibió: ${cleanHTMLInput(p.responsable)}</span>` : ''}
                         </div>
-                        <div class="flex items-center gap-1.5">
+                        <div class="flex items-center gap-2">
                             ${badgeAlertaText ? `<span class="text-[8px] uppercase font-sans font-black px-2 py-0.5 rounded-md bg-white/60 shadow-sm">${badgeAlertaText}</span>` : ''}
-                            <button onclick="window.reabastecerStockProductoRapido('${p.id}')" class="bg-emerald-600 text-white font-sans font-black text-[9px] px-2 py-1 rounded-lg uppercase shadow hover:bg-emerald-700">+ Stock</button>
+                            <button onclick="window.reabastecerStockProductoRapido('${p.id}')" class="bg-emerald-600 text-white font-sans font-black text-[9px] px-2.5 py-1 rounded-lg uppercase shadow hover:bg-emerald-700">+ Stock</button>
                         </div>
                     </div>`;
             });
@@ -1319,37 +1476,77 @@
         };
 
         window.ejecutarCargaProductoAlInventarioFirebase = async function() {
+            const responsable = $('inv-input-responsable') ? $('inv-input-responsable').value.trim().toUpperCase() : "";
+            if(!responsable) return alert("⚠️ Debe indicar el nombre del Almacenista / Responsable que recibe la mercancía.");
+
             const nombre = $('inv-input-nombre').value.trim().toUpperCase();
+            const proveedor = $('inv-input-proveedor').value.trim().toUpperCase();
+            const provTlf = $('inv-input-prov-tlf') ? $('inv-input-prov-tlf').value.trim() : "";
+            const provDir = $('inv-input-prov-dir') ? $('inv-input-prov-dir').value.trim().toUpperCase() : "";
             const cantidad = parseInt($('inv-input-cantidad').value) || 0;
             const costo = parseFloat($('inv-input-costo').value) || 0;
             const venta = parseFloat($('inv-input-venta').value) || 0;
-            const proveedor = $('inv-input-proveedor').value.trim().toUpperCase() || "MAYORISTA GENERAL";
-            const minimoAlerta = 3;
             const barcode = $('inv-input-barcode').value.trim().toUpperCase();
             
-            if(!nombre || cantidad <= 0 || venta <= 0) return alert("Complete los datos requeridos para el stock.");
+            if(!nombre || !proveedor || cantidad <= 0 || venta <= 0) return alert("Complete los campos obligatorios (*).");
             
+            const nuevoCorrelativo = localProductosInventarioArr.length + 1;
+
             localProductosInventarioArr.push({ 
                 id: 'prod-'+new Date().getTime(), 
+                correlativo: nuevoCorrelativo,
+                responsable,
                 nombre, 
+                proveedor,
+                provTlf,
+                provDir,
                 cantidad, 
                 costo,
                 venta, 
-                proveedor,
-                minimoAlerta,
+                minimoAlerta: 3,
                 barcode,
                 fechaIngreso: new Date().toLocaleDateString()
             });
 
-            await window.sincronizarFichaInventarioConNubeRemota();
-            window.renderizarFichasDeStockPanelInterno();
-            rebuildSelectDesplegableInventarioMostrador();
+            await db.collection("tcl_custom_shop").doc(infoClienteAbiertoDinamico.id + "_inv").set({ lista: localProductosInventarioArr });
             
             $('inv-input-nombre').value = ""; $('inv-input-cantidad').value = "";
             $('inv-input-costo').value = ""; $('inv-input-venta').value = "";
-            $('inv-input-proveedor').value = ""; $('inv-input-barcode').value = "";
+            $('inv-input-proveedor').value = ""; $('inv-input-prov-tlf').value = "";
+            $('inv-input-prov-dir').value = ""; $('inv-input-barcode').value = "";
             $('lbl-display-margen-dinamico').innerText = "-";
             $('lbl-display-margen-dinamico').className = "text-slate-400 font-black text-[11px]";
+
+            rebuildSelectDesplegableInventarioMostrador();
+            window.cambiarSubPestañaInventario('ver');
+
+            const toast = $('toast-notificacion-flotante');
+            if(toast) {
+                toast.classList.remove('hidden');
+                setTimeout(() => { toast.classList.add('hidden'); }, 5000);
+            }
+        };
+
+        window.imprimirInventarioTermico = function() {
+            const termicaBox = $('contenedor-impresion-termica-fijo');
+            termicaBox.className = "block bg-white text-black p-4 z-0";
+            let htmlPrint = `<div style="font-family: monospace; font-size:11px;">
+                <div class="text-center font-bold">*** INVENTARIO MÁSTER ALMACÉN ***<br>${infoClienteAbiertoDinamico.nombre}</div>
+                <hr><table>`;
+            localProductosInventarioArr.forEach((p, idx) => {
+                htmlPrint += `<tr><td>#${String(p.correlativo || (idx+1)).padStart(3,'0')} ${p.cantidad}x ${cleanHTMLInput(p.nombre)}</td><td class="text-right">$${p.venta}</td></tr>`;
+            });
+            htmlPrint += `</table><hr><div class="text-center">Total Artículos: ${localProductosInventarioArr.length}</div></div>`;
+            termicaBox.innerHTML = htmlPrint; window.print(); termicaBox.innerHTML = "";
+            termicaBox.className = "hidden whitespace-pre bg-white text-black p-4 z-0";
+        };
+
+        window.enviarInventarioWhatsApp = function() {
+            let msg = `📦 *INVENTARIO DE STOCK ACTUALIZADO — ${infoClienteAbiertoDinamico.nombre}*\n\n`;
+            localProductosInventarioArr.forEach((p, idx) => { 
+                msg += `#${String(p.correlativo || (idx+1)).padStart(3,'0')} • *${p.nombre}* -> $${p.venta} USD (${p.cantidad} uds)\n`; 
+            });
+            window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`, '_blank');
         };
 
         window.svc_alternarCamaraEscanerInventario = function() {
@@ -1575,7 +1772,7 @@
                 badgeModo.innerText = "📦 Modo Stock (Descontando de Almacén Central)";
                 badgeModo.className = "bg-purple-600 text-white text-[9px] font-black uppercase px-2.5 py-1.5 rounded-lg text-center tracking-wider block animate-pulse";
                 btnLibre.className = "bg-slate-100 text-slate-500 px-2.5 py-1 rounded-md border uppercase";
-                btnInv.className = "bg-purple-600 text-white px-2.5 py-1 rounded-md border border-purple-600 uppercase";
+                btnInv.className = "bg-purple-600 text-white text-[9px] font-black uppercase px-2.5 py-1 rounded-md border border-purple-600 uppercase";
                 window.cargarPrecioSugeridoDesdeInventarioSeleccionado();
             }
         };
@@ -1610,7 +1807,7 @@
 
                 if (rango === "DIA") {
                     filtradasFacturas = localFacturasFijasHistorialArr.filter(f => f.fecha === hoyStr);
-                    filtradosGastos = localGastosCajaArr.filter(f => f.fecha === hoyStr || !f.fecha);
+                    filtradosGastos = localGastosCajaArr.filter(g => g.fecha === hoyStr || !g.fecha);
                 }
 
                 let ventasBrutas = 0; let gastosTotales = 0; let notesDebito = 0;
@@ -1852,7 +2049,7 @@
                 msg += `🔴 *GASTOS / EGRESOS:* $${gastosTotalesUSD.toFixed(2)} USD\n`;
                 msg += `⚖️ *CAJA REAL NETO DE TURNO:* *$${netoUSD.toFixed(2)} USD*\n\n`;
                 msg += `🧮 *CONVERSIÓN DE ARQUEO:*\n`;
-                msg += `¼ Pesos COP (Tasa ${tCOP}): *${Math.round(netoUSD * tCOP).toLocaleString()} Pesos*\n`;
+                msg += `🇨🇴 Pesos COP (Tasa ${tCOP}): *${Math.round(netoUSD * tCOP).toLocaleString()} Pesos*\n`;
                 msg += `🇻🇪 Bolívares VES (Tasa ${tBs}): *${(netoUSD * tBs).toFixed(2)} Bs*\n`;
                 msg += `=====================================\n\n`;
 
@@ -1861,11 +2058,17 @@
         };
 
         window.abrirRutaEstaticaDinamica = function(tipo) { window.open(`${window.location.href.split('?')[0]}?ver=${tipo}`, '_blank'); };
-        window.regresarAlPanelSupremoMasterDesdeCualquierEntorno = function() { location.reload(); };
-        window.ejecutarBotonSalidaInteligente = function() { location.reload(); };
+        window.regresarAlPanelSupremoMasterDesdeCualquierEntorno = function() {
+            sessionStorage.removeItem("tcl_active_user");
+            location.reload();
+        };
+        window.ejecutarBotonSalidaInteligente = function() {
+            sessionStorage.removeItem("tcl_active_user");
+            location.reload();
+        };
         window.cerrarConfiguracionCliente = function() { $('modal-config-master').classList.add('hidden'); };
         window.limpiarTicketCompleto = function() { ticketProductos = []; window.calcularTotalesSimulados(); };
-        window.limpiarMemoriaCacheSoporte = function() { localStorage.clear(); alert("🧹 Memoria limpia. Recargando..."); location.reload(); };
+        window.limpiarMemoriaCacheSoporte = function() { localStorage.clear(); sessionStorage.clear(); alert("🧹 Memoria limpia. Recargando..."); location.reload(); };
         window.descargarCopiaSeguridadCSV = function() { alert("📥 Descargando respaldo local en formato CSV."); };
         window.abrirModalPropuestaCentral = function() { $('modal-central-propuestas').classList.remove('hidden'); };
 
@@ -1887,17 +2090,22 @@
             try {
                 const user = $('comercio-user-field').value.trim().toLowerCase();
                 const pass = $('comercio-pass-field').value.trim();
+
+                let clienteValido = null;
                 if (user === "demo" && pass === "123456") {
-                    infoClienteAbiertoDinamico = { id: "demo", nombre: "TCL TIENDA DEMO", user: "demo", pass: "123456", rubro: "TECNOLOGIA", dias: 365, tlf: "04247357549" };
-                    await descargarEstructuraInventarioYGastosFirebase();
-                    activarTerminalDeCajaExitoso();
-                    return;
+                    clienteValido = { id: "demo", nombre: "TCL TIENDA DEMO", user: "demo", pass: "123456", rubro: "TECNOLOGIA", dias: 365, tlf: "04247357549" };
+                } else {
+                    let listado = await obtenerClientesDesdeFirebase();
+                    clienteValido = listado.find(c => c.user === user && c.pass === pass);
                 }
-                let listado = await obtenerClientesDesdeFirebase();
-                let mCliente = listado.find(c => c.user === user && c.pass === pass);
-                if (mCliente) {
-                    if (parseInt(mCliente.dias) <= 0) return alert("🚨 COBERTURA SAAS VENCIDA.");
-                    infoClienteAbiertoDinamico = mCliente;
+
+                if (clienteValido) {
+                    if (parseInt(clienteValido.dias) <= 0) return alert("🚨 COBERTURA SAAS VENCIDA.");
+                    infoClienteAbiertoDinamico = clienteValido;
+                    
+                    sessionStorage.setItem("tcl_active_user", JSON.stringify(infoClienteAbiertoDinamico));
+                    history.replaceState({}, document.title, window.location.pathname);
+
                     await descargarEstructuraInventarioYGastosFirebase();
                     activarTerminalDeCajaExitoso();
                 } else { alert("❌ Credenciales incorrectas."); }
@@ -1907,8 +2115,37 @@
         window.onload = async function() {
             try {
                 const urlParams = new URLSearchParams(window.location.search);
-                const userParam = urlParams.get('user');
+                const verParam = urlParams.get('ver');
 
+                if(verParam) {
+                    const contenedorPublico = $('vista-publica-dinamica');
+                    if(contenedorPublico) {
+                        contenedorPublico.classList.remove('hidden');
+                        if(verParam === 'propuesta') {
+                            contenedorPublico.innerHTML = `<div class="max-w-2xl mx-auto space-y-6 py-10"><h1 class="text-3xl font-black text-blue-400">🚀 Propuesta Comercial TCL Inventario Máster</h1><p class="text-slate-300">Optimice la facturación multimoneda, control de inventario y cierres diarios de su comercio con nuestra infraestructura SaaS probada y de alto rendimiento.</p><button onclick="window.close()" class="bg-blue-600 text-white font-bold px-6 py-3 rounded-xl uppercase">Cerrar Ventana</button></div>`;
+                        } else if(verParam === 'catalogo') {
+                            contenedorPublico.innerHTML = `<div class="max-w-2xl mx-auto space-y-6 py-10"><h1 class="text-3xl font-black text-emerald-400">📦 Catálogo en Vivo de Funcionalidades</h1><p class="text-slate-300">Conozca todos los módulos activos: POS multimoneda, lector por cámara, control de créditos y reportes automatizados vía WhatsApp.</p><button onclick="window.close()" class="bg-emerald-600 text-white font-bold px-6 py-3 rounded-xl uppercase">Cerrar Ventana</button></div>`;
+                        } else if(verParam === 'propuesta_vendedor') {
+                            contenedorPublico.innerHTML = `<div class="max-w-2xl mx-auto space-y-6 py-10"><h1 class="text-3xl font-black text-purple-400">💼 Oportunidad para Promotores Oficiales</h1><p class="text-slate-300">Gane comisiones recurrentes distribuyendo la plataforma de facturación más sólida del mercado en su región.</p><button onclick="window.close()" class="bg-purple-600 text-white font-bold px-6 py-3 rounded-xl uppercase">Cerrar Ventana</button></div>`;
+                        } else if(verParam === 'contrato_promotor') {
+                            contenedorPublico.innerHTML = `<div class="max-w-2xl mx-auto space-y-6 py-10"><h1 class="text-3xl font-black text-amber-400">📜 Contrato Digital de Acreditación</h1><p class="text-slate-300">Complete sus datos para formalizar su alianza comercial como promotor autorizado.</p><button onclick="window.close()" class="bg-amber-500 text-slate-950 font-black px-6 py-3 rounded-xl uppercase">Cerrar Ventana</button></div>`;
+                        }
+                        return;
+                    }
+                }
+
+                const sessionSaved = sessionStorage.getItem("tcl_active_user");
+                if (sessionSaved) {
+                    infoClienteAbiertoDinamico = JSON.parse(sessionSaved);
+                    await descargarEstructuraInventarioYGastosFirebase();
+                    $('bloque-login-master').classList.add('hidden');
+                    $('vista-master-admin').classList.add('hidden');
+                    $('vista-entorno-cliente').classList.remove('hidden');
+                    activarTerminalDeCajaExitoso();
+                    return;
+                }
+
+                const userParam = urlParams.get('user');
                 let listadoClientesBase = await obtenerClientesDesdeFirebase();
                 if($('global-clientes-count')) $('global-clientes-count').innerText = listadoClientesBase.length;
 
