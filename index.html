@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
+<html lang="es"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TCL INVENTARIO MÁSTER — Mansión Modelo 2026</title>
@@ -8,7 +6,7 @@
     <!-- METADATOS CORPORATIVOS PARA WHATSAPP (OPEN GRAPH) -->
     <meta property="og:title" content="🚀 Descubra TCL Inventario Máster — El Sistema Imparable">
     <meta property="og:description" content="🔥 Vea el software en acción. Facturación multimoneda fluida, impresión universal de tickets, métodos de pago, control de crédito y cierres diarios detallados desde su celular o PC. ¡Entre aquí! ✨">
-    <meta property="og:image" content="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&auto=format&fit=crop&q=80">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&amp;auto=format&amp;fit=crop&amp;q=80">
     <meta property="og:type" content="website">
     
     <script src="https://cdn.tailwindcss.com"></script>
@@ -210,6 +208,9 @@
         </div>
     </div>
 
+    <!-- VISTA PÚBLICA DINÁMICA DE ENLACES -->
+    <div id="vista-publica-dinamica" class="hidden min-h-screen bg-slate-950 text-slate-100 p-6"></div>
+
     <!-- MODAL: CLIENTES SUSCRITOS -->
     <div id="modal-sub-lista-comercios" class="fixed inset-0 bg-slate-950/90 backdrop-blur-sm z-50 p-4 flex items-center justify-center hidden">
         <div class="bg-slate-900 border border-slate-800 w-full max-w-4xl rounded-3xl overflow-hidden shadow-2xl flex flex-col max-h-[85vh]">
@@ -277,7 +278,7 @@
     <div id="entorno-aplicacion-core">
         
         <!-- LOGIN MÁSTER -->
-        <div id="bloque-login-master" class="min-h-screen flex items-center justify-center p-4">
+        <div id="bloque-login-master" class="min-h-screen flex items-center justify-center p-4 hidden">
             <div class="w-full max-w-md p-0.5 rounded-3xl bg-gradient-to-br from-blue-600 via-slate-800 to-purple-600 shadow-[0_0_50px_rgba(59,130,246,0.2)]">
                 <div class="glass-panel rounded-[22px] p-6 space-y-6">
                     <div class="text-center space-y-2">
@@ -421,7 +422,7 @@
                     <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
                         <div class="flex flex-col lg:col-span-4 space-y-4">
                             <div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm">
-                                <label class="text-[9px] font-black text-slate-400 uppercase block mb-1">Cajero Responsable del Turno</label>
+                                <label class="text-[9px] font-black text-slate-400 uppercase block mb-1">Cajero Responsable del Turno *</label>
                                 <input type="text" id="ticket-vendedor" placeholder="Nombre de cajero..." class="w-full bg-slate-50 border px-3 py-2 rounded-xl text-xs font-black uppercase text-purple-600 focus:outline-none">
                             </div>
                             <div class="bg-slate-900 text-white rounded-2xl p-4 border border-slate-800 shadow-md">
@@ -550,7 +551,7 @@
                 <div id="panel-seccion-inventario" class="p-4 max-w-4xl mx-auto w-full space-y-6 flex-grow pb-24 hidden">
                     <div class="flex bg-slate-900 p-1.5 rounded-2xl border border-slate-800 text-xs font-bold text-center">
                         <button onclick="window.cambiarSubPestañaInventario('ver')" id="subnav-btn-ver" class="flex-grow py-2.5 rounded-xl bg-blue-600 text-white uppercase tracking-wider transition-all">📦 Ver Inventario (Stock)</button>
-                        <button onclick="window.cambiarSubPestañaInventario('agregar')" id="subnav-btn-agregar" class="flex-grow py-2.5 rounded-xl text-slate-400 uppercase tracking-wider transition-all">➕ Agregar Nueva Mercancía</button>
+                        <button onclick="window.cambiarSubPestañaInventario('agregar')" id="subnav-btn-agregar" class="flex-grow py-2.5 rounded-xl text-slate-400 uppercase tracking-wider transition-all">➕ Recepción / Factura Compra</button>
                     </div>
 
                     <!-- BLOQUE 1: VER INVENTARIO -->
@@ -573,7 +574,7 @@
                         <div id="lista-productos-inventario-box" class="space-y-2 max-h-[50vh] overflow-y-auto no-scrollbar pt-1"></div>
                     </div>
 
-                    <!-- BLOQUE 2: AGREGAR NUEVA MERCANCÍA -->
+                    <!-- BLOQUE 2: AGREGAR NUEVA MERCANCÍA / FACTURA DE COMPRA DE PROVEEDOR -->
                     <div id="subpanel-inventario-agregar" class="bg-white border border-slate-200 rounded-3xl p-5 shadow-sm space-y-4 hidden">
                         <div class="bg-slate-900 text-white rounded-2xl p-4 border border-slate-800 shadow-md">
                             <div class="grid grid-cols-2 gap-3 text-center">
@@ -582,61 +583,95 @@
                             </div>
                         </div>
 
-                        <div class="border-b pb-2">
-                            <h3 class="font-black text-xs text-slate-900 uppercase">Recepción de Mercancía y Registro de Compras</h3>
+                        <div class="border-b pb-2 flex justify-between items-center">
+                            <h3 class="font-black text-xs text-slate-900 uppercase">🧾 Recepción de Mercancía / Factura de Proveedor</h3>
+                            <span class="text-[9px] bg-purple-100 text-purple-700 font-bold px-2.5 py-1 rounded-lg uppercase">Entrada Multi-Ítem</span>
                         </div>
 
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-bold text-slate-800">
+                        <!-- DATOS DEL PROVEEDOR Y ALMACENISTA -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-bold text-slate-800 bg-slate-50 p-3.5 rounded-2xl border border-slate-200">
                             <div class="sm:col-span-2">
-                                <label class="text-[9px] font-black text-slate-400 uppercase block mb-1">Almacenista / Responsable del Ingreso *</label>
-                                <input type="text" id="inv-input-responsable" placeholder="Nombre de quien recibe la mercancía..." class="bg-slate-50 border p-2.5 rounded-xl w-full uppercase text-purple-600 focus:outline-none">
+                                <label class="text-[9px] font-black text-purple-600 uppercase block mb-1">Almacenista / Responsable que Recibe *</label>
+                                <input type="text" id="inv-input-responsable" placeholder="Nombre del receptor en almacén..." class="bg-white border p-2.5 rounded-xl w-full uppercase text-purple-600 focus:outline-none font-black">
                             </div>
                             <div class="sm:col-span-2">
-                                <label class="text-[9px] font-black text-slate-400 uppercase block mb-1">Nombre del Artículo *</label>
-                                <input type="text" id="inv-input-nombre" placeholder="Ej: Funda Samsung A54 o Arroz 1kg" class="bg-slate-50 border p-2.5 rounded-xl w-full uppercase focus:outline-none">
+                                <label class="text-[9px] font-black text-slate-500 uppercase block mb-1">Seleccionar o Guardar Proveedor Frecuente</label>
+                                <select id="select-proveedores-frecuentes" onchange="window.autocompletarDatosProveedorSeleccionado()" class="bg-white border p-2.5 rounded-xl w-full text-slate-800 font-bold focus:outline-none">
+                                    <option value="">-- PROVEEDOR NUEVO / ESCRIBIR MANUAL --</option>
+                                </select>
                             </div>
-                            
                             <div>
                                 <label class="text-[9px] font-black text-slate-400 uppercase block mb-1">Nombre del Proveedor *</label>
-                                <input type="text" id="inv-input-proveedor" placeholder="Ej: Importadora Central C.A." class="bg-slate-50 border p-2.5 rounded-xl w-full uppercase focus:outline-none">
+                                <input type="text" id="inv-input-proveedor" placeholder="Ej: Importadora Central C.A." class="bg-white border p-2.5 rounded-xl w-full uppercase focus:outline-none">
                             </div>
                             <div>
                                 <label class="text-[9px] font-black text-slate-400 uppercase block mb-1">Teléfono Proveedor</label>
-                                <input type="text" id="inv-input-prov-tlf" placeholder="0424..." class="bg-slate-50 border p-2.5 rounded-xl w-full focus:outline-none">
+                                <input type="text" id="inv-input-prov-tlf" placeholder="0424..." class="bg-white border p-2.5 rounded-xl w-full focus:outline-none">
                             </div>
                             <div class="sm:col-span-2">
                                 <label class="text-[9px] font-black text-slate-400 uppercase block mb-1">Dirección Proveedor</label>
-                                <input type="text" id="inv-input-prov-dir" placeholder="Ciudad, Zona Comercial..." class="bg-slate-50 border p-2.5 rounded-xl w-full uppercase focus:outline-none">
+                                <input type="text" id="inv-input-prov-dir" placeholder="Ciudad, Zona Comercial..." class="bg-white border p-2.5 rounded-xl w-full uppercase focus:outline-none">
+                            </div>
+                        </div>
+
+                        <!-- MESA CARGA DE ÍTEMS DE COMPRA -->
+                        <div class="space-y-3 bg-white p-3.5 rounded-2xl border border-slate-200 text-xs font-bold text-slate-800">
+                            <span class="text-[9.5px] font-black text-blue-600 uppercase tracking-wider block border-b pb-1">➕ Añadir Ítem a la Lista de Entrada</span>
+                            
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <div class="sm:col-span-2">
+                                    <label class="text-[9px] font-black text-slate-400 uppercase block mb-1">Nombre del Artículo / Producto *</label>
+                                    <input type="text" id="inv-input-nombre" placeholder="Ej: Harina Pan 1kg o Funda Samsung A54" class="bg-slate-50 border p-2.5 rounded-xl w-full uppercase focus:outline-none font-black">
+                                </div>
+                                <div>
+                                    <label class="text-[9px] font-black text-slate-400 uppercase block mb-1">Cantidad a Ingresar (Uds) *</label>
+                                    <input type="number" id="inv-input-cantidad" placeholder="0" value="1" min="1" class="bg-slate-50 border p-2.5 rounded-xl w-full focus:outline-none text-center font-black">
+                                </div>
+                                <div>
+                                    <label class="text-[9px] font-black text-slate-400 uppercase block mb-1">Precio Costo Unitario ($) *</label>
+                                    <input type="number" id="inv-input-costo" placeholder="0.00" onkeyup="window.calcularMargenGananciaInternoFormulario()" class="bg-slate-50 border p-2.5 rounded-xl w-full focus:outline-none text-center font-bold">
+                                </div>
+                                <div>
+                                    <label class="text-[9px] font-black text-slate-400 uppercase block mb-1">Precio Venta Unitario ($) *</label>
+                                    <input type="number" id="inv-input-venta" placeholder="0.00" onkeyup="window.calcularMargenGananciaInternoFormulario()" class="bg-slate-50 border p-2.5 rounded-xl w-full focus:outline-none text-center font-black text-blue-600">
+                                </div>
+                                <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800 flex flex-col justify-center items-center text-center font-mono">
+                                    <span class="text-[7.5px] text-slate-500 uppercase block font-bold">Margen Calculado</span>
+                                    <span id="lbl-display-margen-dinamico" class="text-slate-400 font-black text-[11px]">-</span>
+                                </div>
                             </div>
 
-                            <div>
-                                <label class="text-[9px] font-black text-slate-400 uppercase block mb-1">Cantidad a Ingresar (Uds) *</label>
-                                <input type="number" id="inv-input-cantidad" placeholder="0" class="bg-slate-50 border p-2.5 rounded-xl w-full focus:outline-none">
-                            </div>
-                            <div>
-                                <label class="text-[9px] font-black text-slate-400 uppercase block mb-1">Precio Costo Unitario ($) *</label>
-                                <input type="number" id="inv-input-costo" placeholder="0.00" onkeyup="window.calcularMargenGananciaInternoFormulario()" class="bg-slate-50 border p-2.5 rounded-xl w-full focus:outline-none">
-                            </div>
-                            <div>
-                                <label class="text-[9px] font-black text-slate-400 uppercase block mb-1">Precio Venta Unitario ($) *</label>
-                                <input type="number" id="inv-input-venta" placeholder="0.00" onkeyup="window.calcularMargenGananciaInternoFormulario()" class="bg-slate-50 border p-2.5 rounded-xl w-full focus:outline-none">
-                            </div>
-                            <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800 flex flex-col justify-center items-center text-center font-mono">
-                                <span class="text-[7.5px] text-slate-500 uppercase block font-bold">Margen Calculado</span>
-                                <span id="lbl-display-margen-dinamico" class="text-slate-400 font-black text-[11px]">-</span>
-                            </div>
-
-                            <div class="sm:col-span-2 relative bg-slate-900 p-3 rounded-2xl border border-slate-800 text-white space-y-1.5">
+                            <div class="relative bg-slate-900 p-3 rounded-2xl border border-slate-800 text-white space-y-1.5">
                                 <div class="flex justify-between items-center">
-                                    <span class="text-[9px] text-blue-400 font-black uppercase"><i class="fa-solid fa-barcode mr-1"></i> Código de Barra / Serial IMEI</span>
-                                    <button onclick="window.svc_alternarCamaraEscanerInventario()" class="bg-purple-600 text-white px-2.5 py-1 rounded-lg text-[10px] font-black uppercase flex items-center gap-1 shadow hover:bg-purple-700 transition-all"><i class="fa-solid fa-camera"></i> Escanear Cámara</button>
+                                    <span class="text-[9px] text-blue-400 font-black uppercase"><i class="fa-solid fa-barcode mr-1"></i> Código de Barra / Serial IMEI (Opcional)</span>
+                                    <button onclick="window.svc_alternarCamaraEscanerInventario()" class="bg-purple-600 text-white px-2.5 py-1 rounded-lg text-[10px] font-black uppercase flex items-center gap-1 shadow hover:bg-purple-700 transition-all"><i class="fa-solid fa-camera"></i> Escanear</button>
                                 </div>
                                 <input type="text" id="inv-input-barcode" placeholder="Pase el láser o use la cámara..." class="w-full bg-slate-950 text-white border border-slate-800 p-2.5 rounded-xl font-mono uppercase focus:outline-none text-xs">
                                 <div id="reader-video-cam-inv" class="w-full h-auto mt-2 rounded-xl overflow-hidden hidden border border-slate-700"></div>
                             </div>
+
+                            <button onclick="window.agregarItemAMesaRecepcionCompra()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-black text-xs py-3 rounded-xl uppercase tracking-wider shadow flex items-center justify-center gap-1.5"><i class="fa-solid fa-plus"></i> Agregar Artículo a la Factura de Entrada</button>
                         </div>
 
-                        <button onclick="window.ejecutarCargaProductoAlInventarioFirebase()" class="w-full bg-slate-900 hover:bg-black text-white font-black text-xs py-3.5 rounded-xl uppercase tracking-wider shadow">Guardar y Registrar Mercancía</button>
+                        <!-- DESGLOSE MESA DE COMPRAS (TICKET PROVEEDOR) -->
+                        <div class="bg-slate-900 text-white p-4 rounded-2xl border border-slate-800 space-y-3 font-mono">
+                            <div class="flex justify-between items-center border-b border-slate-800 pb-2">
+                                <h4 class="text-xs font-bold text-amber-400 uppercase tracking-wider"><i class="fa-solid fa-receipt mr-1"></i> Detalle de la Factura de Recepción</h4>
+                                <span id="lbl-total-items-recepcion-compra" class="text-[10px] text-slate-400">0 Artículos</span>
+                            </div>
+                            <div id="desglose-recepcion-compra-box" class="space-y-1.5 max-h-48 overflow-y-auto no-scrollbar text-xs">
+                                <p class="text-center text-slate-500 italic py-4">Mesa de recepción vacía. Agregue artículos arriba.</p>
+                            </div>
+                            <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 flex justify-between items-center text-xs">
+                                <span>TOTAL INVERSIÓN FACTURA:</span>
+                                <b id="lbl-total-inversion-costo-recepcion" class="text-amber-400 font-extrabold text-sm">$0.00 USD</b>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                            <button onclick="window.ejecutarCargaProductoAlInventarioFirebase()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-black text-xs py-3.5 rounded-xl uppercase tracking-wider shadow flex items-center justify-center gap-2"><i class="fa-solid fa-floppy-disk"></i> Procesar Entrada y Guardar Stock</button>
+                            <button onclick="window.vaciarMesaRecepcionCompra()" class="w-full bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold text-xs py-3.5 rounded-xl uppercase">Vaciar Mesa de Compra</button>
+                        </div>
                     </div>
 
                 </div>
@@ -698,9 +733,7 @@
                         <div class="border-b pb-1 flex justify-between items-center">
                             <h4 class="text-xs font-black text-purple-700 uppercase tracking-wider flex items-center gap-1.5"><i class="fa-solid fa-hand-holding-dollar"></i> Cuentas por Cobrar Pendientes (Saldos a Crédito)</h4>
                         </div>
-                        <div id="lista-deudores-creditos-box" class="space-y-1.5 max-h-48 overflow-y-auto no-scrollbar text-xs font-mono">
-                            <p class="text-center text-slate-400 italic py-2">Sin saldos pendientes en cartera.</p>
-                        </div>
+                        <div id="lista-deudores-creditos-box" class="space-y-1.5 max-h-48 overflow-y-auto no-scrollbar text-xs font-mono"><p class="text-center text-slate-400 italic py-2">Sin saldos pendientes en cartera.</p></div>
                     </div>
 
                     <div class="bg-white border border-slate-200 rounded-3xl p-5 shadow-sm space-y-4 overflow-hidden">
@@ -725,9 +758,7 @@
 
                     <div class="bg-white border border-slate-200 rounded-3xl p-5 shadow-sm space-y-3">
                         <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-wider border-b pb-1">Historial General de Notas y Garantías de Despacho</h4>
-                        <div id="lista-auditoria-notes-completa-box-cliente" class="space-y-2 max-h-80 overflow-y-auto no-scrollbar pr-1 text-xs">
-                            <p class="text-center text-slate-400 italic py-4">No hay despachos procesados en este lote.</p>
-                        </div>
+                        <div id="lista-auditoria-notes-completa-box-cliente" class="space-y-2 max-h-80 overflow-y-auto no-scrollbar pr-1 text-xs"><p class="text-center text-slate-400 italic py-4">No hay notas registradas en este bloque temporal.</p></div>
                     </div>
                 </div>
 
@@ -833,12 +864,14 @@
         let idSeleccionadoActual = null; 
         let diasSimuladosValor = 365;
         let ticketProductos = []; 
+        let recepcionTemporalItemsArr = []; 
         let acumuladoUSD = 0;
         let infoClienteAbiertoDinamico = { id: "demo", nombre: "TCL TIENDA", user: "demo", pass: "123456", rubro: "GENERAL", dias: 365, ownerID: "demo", tlf: "04247357549", promotor: "", contrato_firmado: false };
         let correlativoNotaGlobal = 1;
         let comisionConfigGlobal = { m1: 5, m3: 9, m6: 14, m12: 24, renov_m1: 1.25, renov_m3: 2.50, renov_m6: 5.00, renov_m12: 10.00 }; 
         let modoDigitacionMostrador = "LIBRE";
         let localProductosInventarioArr = [];
+        let localProveedoresArr = []; 
         let localGastosCajaArr = [];
         let localCuentasPorPagarArr = [];
         let localFacturasFijasHistorialArr = [];
@@ -967,7 +1000,7 @@
             window.calcularTotalesSimulados();
         };
 
-        /* CONTROL DE SUBPESTAÑAS EN INVENTARIO (VER VS AGREGAR) */
+        /* CONTROL DE SUBPESTAÑAS EN INVENTARIO (VER VS AGREGAR/FACTURA COMPRA) */
         window.cambiarSubPestañaInventario = function(sub) {
             const isVer = (sub === 'ver');
             $('subpanel-inventario-ver').classList.toggle('hidden', !isVer);
@@ -983,6 +1016,7 @@
             } else {
                 btnVer.className = "flex-grow py-2.5 rounded-xl text-slate-400 uppercase tracking-wider transition-all";
                 btnAgregar.className = "flex-grow py-2.5 rounded-xl bg-blue-600 text-white uppercase tracking-wider transition-all shadow";
+                window.renderizarDesplegableProveedoresGuardados();
             }
         };
 
@@ -1254,10 +1288,11 @@
             }
         };
 
+        /* PROCESAMIENTO DE FACTURACIÓN EN MOSTRADOR */
         window.procesarTicketFacturacionMostradorCompleto = async function() {
             const seller = $('ticket-vendedor').value.trim();
-            if(!seller) return alert("Cajero requerido.");
-            if(ticketProductos.length === 0) return alert("⚠️ La mesa está vacía.");
+            if(!seller) return alert("⚠️ Se requiere indicar el Cajero Responsable del Turno de forma obligatoria.");
+            if(ticketProductos.length === 0) return alert("⚠️ La mesa de venta está vacía.");
             
             const metodoInput = $('ticket-metodo-cobro-real');
             const metodoCobroVal = metodoInput ? metodoInput.value : "DOLAR_EFECTIVO";
@@ -1318,8 +1353,19 @@
 
             termicaBox.innerHTML = stringFacturaEpsonHtml; window.print(); termicaBox.innerHTML = "";
             termicaBox.className = "hidden whitespace-pre bg-white text-black p-4 z-0";
-            correlativoNotaGlobal++; ticketProductos = []; window.calcularTotalesSimulados();
-            window.ejecutarBusquedaHistorialPorCedulaNota(); window.recalcularEstructuraReportesGlobalTurno();
+            
+            correlativoNotaGlobal++; 
+            ticketProductos = []; 
+            if($('ticket-cliente')) $('ticket-cliente').value = "";
+            if($('ticket-rif-cliente')) $('ticket-rif-cliente').value = "";
+            if($('ticket-tlf-cliente')) $('ticket-tlf-cliente').value = "";
+            if($('ticket-dir-cliente')) $('ticket-dir-cliente').value = "";
+            if($('ticket-abono')) $('ticket-abono').value = "0";
+
+            window.calcularTotalesSimulados();
+            if($('ticket-correlativo-display')) $('ticket-correlativo-display').innerText = "Nota #" + String(correlativoNotaGlobal).padStart(3, '0');
+            window.ejecutarBusquedaHistorialPorCedulaNota(); 
+            window.recalcularEstructuraReportesGlobalTurno();
         };
 
         window.procesarImpresionTicket = function() { window.procesarTicketFacturacionMostradorCompleto(); };
@@ -1344,6 +1390,9 @@
                 const docInv = await db.collection("tcl_custom_shop").doc(infoClienteAbiertoDinamico.id + "_inv").get();
                 localProductosInventarioArr = docInv.exists ? (docInv.data().lista || []) : [];
                 
+                const docProv = await db.collection("tcl_custom_shop").doc(infoClienteAbiertoDinamico.id + "_prov").get();
+                localProveedoresArr = docProv.exists ? (docProv.data().lista || []) : [];
+
                 const docGas = await db.collection("tcl_custom_shop").doc(infoClienteAbiertoDinamico.id + "_gastos").get();
                 localGastosCajaArr = docGas.exists ? (docGas.data().lista || []) : [];
 
@@ -1363,6 +1412,7 @@
             
             if($('select-prod-inventario-pos')) { rebuildSelectDesplegableInventarioMostrador(); }
             if($('lista-productos-inventario-box')) { window.renderizarFichasDeStockPanelInterno(); }
+            if($('select-proveedores-frecuentes')) { window.renderizarDesplegableProveedoresGuardados(); }
             if($('lista-gastos-caja-box')) { window.renderizarGastosCajaEnPantalla(); }
             if($('lista-cuentas-por-pagar-box')) { window.renderizarCuentasPorPagarProveedores(); }
             if($('busqueda-cedula-input')) { window.ejecutarBusquedaHistorialPorCedulaNota(); } 
@@ -1475,47 +1525,179 @@
             }
         };
 
-        window.ejecutarCargaProductoAlInventarioFirebase = async function() {
-            const responsable = $('inv-input-responsable') ? $('inv-input-responsable').value.trim().toUpperCase() : "";
-            if(!responsable) return alert("⚠️ Debe indicar el nombre del Almacenista / Responsable que recibe la mercancía.");
+        /* MÓDULO NUEVO: MANEJO DE PROVEEDORES Y MESA DE RECEPCIÓN TIPO FACTURA */
+        window.renderizarDesplegableProveedoresGuardados = function() {
+            const select = $('select-proveedores-frecuentes');
+            if(!select) return;
+            select.innerHTML = `<option value="">-- PROVEEDOR NUEVO / ESCRIBIR MANUAL --</option>`;
+            localProveedoresArr.forEach(prov => {
+                select.innerHTML += `<option value="${prov.id}">${cleanHTMLInput(prov.nombre)} ${prov.tlf ? '('+cleanHTMLInput(prov.tlf)+')' : ''}</option>`;
+            });
+        };
 
+        window.autocompletarDatosProveedorSeleccionado = function() {
+            const select = $('select-proveedores-frecuentes');
+            if(!select || !select.value) return;
+            const match = localProveedoresArr.find(p => p.id === select.value);
+            if(match) {
+                if($('inv-input-proveedor')) $('inv-input-proveedor').value = match.nombre || "";
+                if($('inv-input-prov-tlf')) $('inv-input-prov-tlf').value = match.tlf || "";
+                if($('inv-input-prov-dir')) $('inv-input-prov-dir').value = match.dir || "";
+            }
+        };
+
+        window.agregarItemAMesaRecepcionCompra = function() {
             const nombre = $('inv-input-nombre').value.trim().toUpperCase();
-            const proveedor = $('inv-input-proveedor').value.trim().toUpperCase();
-            const provTlf = $('inv-input-prov-tlf') ? $('inv-input-prov-tlf').value.trim() : "";
-            const provDir = $('inv-input-prov-dir') ? $('inv-input-prov-dir').value.trim().toUpperCase() : "";
             const cantidad = parseInt($('inv-input-cantidad').value) || 0;
             const costo = parseFloat($('inv-input-costo').value) || 0;
             const venta = parseFloat($('inv-input-venta').value) || 0;
             const barcode = $('inv-input-barcode').value.trim().toUpperCase();
-            
-            if(!nombre || !proveedor || cantidad <= 0 || venta <= 0) return alert("Complete los campos obligatorios (*).");
-            
-            const nuevoCorrelativo = localProductosInventarioArr.length + 1;
 
-            localProductosInventarioArr.push({ 
-                id: 'prod-'+new Date().getTime(), 
-                correlativo: nuevoCorrelativo,
-                responsable,
-                nombre, 
-                proveedor,
-                provTlf,
-                provDir,
-                cantidad, 
-                costo,
-                venta, 
-                minimoAlerta: 3,
-                barcode,
-                fechaIngreso: new Date().toLocaleDateString()
+            if(!nombre) return alert("⚠️ Debe indicar el nombre del producto.");
+            if(cantidad <= 0) return alert("⚠️ La cantidad debe ser mayor a 0.");
+            if(costo <= 0 || venta <= 0) return alert("⚠️ Ingrese precio de costo y precio de venta válidos.");
+
+            recepcionTemporalItemsArr.push({ nombre, cantidad, costo, venta, barcode });
+
+            $('inv-input-nombre').value = "";
+            $('inv-input-cantidad').value = "1";
+            $('inv-input-costo').value = "";
+            $('inv-input-venta').value = "";
+            $('inv-input-barcode').value = "";
+            if($('lbl-display-margen-dinamico')) {
+                $('lbl-display-margen-dinamico').innerText = "-";
+                $('lbl-display-margen-dinamico').className = "text-slate-400 font-black text-[11px]";
+            }
+
+            window.renderizarMesaRecepcionCompra();
+        };
+
+        window.renderizarMesaRecepcionCompra = function() {
+            const box = $('desglose-recepcion-compra-box');
+            if(!box) return;
+            box.innerHTML = "";
+            let inversionTotal = 0;
+
+            if(recepcionTemporalItemsArr.length === 0) {
+                box.innerHTML = `<p class="text-center text-slate-500 italic py-4">Mesa de recepción vacía. Agregue artículos arriba.</p>`;
+                if($('lbl-total-items-recepcion-compra')) $('lbl-total-items-recepcion-compra').innerText = "0 Artículos";
+                if($('lbl-total-inversion-costo-recepcion')) $('lbl-total-inversion-costo-recepcion').innerText = "$0.00 USD";
+                return;
+            }
+
+            recepcionTemporalItemsArr.forEach((item, idx) => {
+                let subcosto = item.costo * item.cantidad;
+                inversionTotal += subcosto;
+                box.innerHTML += `
+                    <div class="flex justify-between items-center bg-slate-950 p-2 rounded-xl border border-slate-800 text-xs">
+                        <div>
+                            <b class="text-amber-400">${item.cantidad}x</b> ${cleanHTMLInput(item.nombre)}
+                            <span class="block text-[9px] text-slate-400">Costo: $${item.costo.toFixed(2)} | Venta: $${item.venta.toFixed(2)} ${item.barcode ? '| Code: '+cleanHTMLInput(item.barcode) : ''}</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <b class="text-emerald-400">$${subcosto.toFixed(2)}</b>
+                            <button onclick="window.removerItemMesaRecepcion(${idx})" class="text-red-400 hover:text-red-300"><i class="fa-solid fa-trash-can"></i></button>
+                        </div>
+                    </div>`;
+            });
+
+            if($('lbl-total-items-recepcion-compra')) $('lbl-total-items-recepcion-compra').innerText = `${recepcionTemporalItemsArr.length} Artículos`;
+            if($('lbl-total-inversion-costo-recepcion')) $('lbl-total-inversion-costo-recepcion').innerText = `$${inversionTotal.toFixed(2)} USD`;
+        };
+
+        window.removerItemMesaRecepcion = function(index) {
+            recepcionTemporalItemsArr.splice(index, 1);
+            window.renderizarMesaRecepcionCompra();
+        };
+
+        window.vaciarMesaRecepcionCompra = function() {
+            recepcionTemporalItemsArr = [];
+            window.renderizarMesaRecepcionCompra();
+        };
+
+        window.ejecutarCargaProductoAlInventarioFirebase = async function() {
+            const responsable = $('inv-input-responsable') ? $('inv-input-responsable').value.trim().toUpperCase() : "";
+            if(!responsable) return alert("⚠️ Debe indicar el nombre del Almacenista / Responsable que recibe la mercancía.");
+
+            const proveedor = $('inv-input-proveedor').value.trim().toUpperCase();
+            const provTlf = $('inv-input-prov-tlf') ? $('inv-input-prov-tlf').value.trim() : "";
+            const provDir = $('inv-input-prov-dir') ? $('inv-input-prov-dir').value.trim().toUpperCase() : "";
+
+            if(!proveedor) return alert("⚠️ Debe indicar el nombre del Proveedor.");
+
+            if(recepcionTemporalItemsArr.length === 0) {
+                const nombreManual = $('inv-input-nombre').value.trim().toUpperCase();
+                const cantManual = parseInt($('inv-input-cantidad').value) || 0;
+                const costoManual = parseFloat($('inv-input-costo').value) || 0;
+                const ventaManual = parseFloat($('inv-input-venta').value) || 0;
+                const barcodeManual = $('inv-input-barcode').value.trim().toUpperCase();
+
+                if(nombreManual && cantManual > 0 && ventaManual > 0) {
+                    recepcionTemporalItemsArr.push({ nombre: nombreManual, cantidad: cantManual, costo: costoManual, venta: ventaManual, barcode: barcodeManual });
+                } else {
+                    return alert("⚠️ Cargue artículos en la mesa de recepción antes de procesar.");
+                }
+            }
+
+            /* Guardar o actualizar proveedor en la base de datos de proveedores */
+            let provExistente = localProveedoresArr.find(p => p.nombre.toUpperCase() === proveedor);
+            if(!provExistente) {
+                localProveedoresArr.push({
+                    id: 'prov-' + new Date().getTime(),
+                    nombre: proveedor,
+                    tlf: provTlf,
+                    dir: provDir
+                });
+                await db.collection("tcl_custom_shop").doc(infoClienteAbiertoDinamico.id + "_prov").set({ lista: localProveedoresArr });
+                window.renderizarDesplegableProveedoresGuardados();
+            }
+
+            /* Inyectar productos al almacén de stock */
+            recepcionTemporalItemsArr.forEach(item => {
+                const nuevoCorrelativo = localProductosInventarioArr.length + 1;
+                localProductosInventarioArr.push({ 
+                    id: 'prod-' + new Date().getTime() + Math.floor(Math.random()*1000), 
+                    correlativo: nuevoCorrelativo,
+                    responsable,
+                    nombre: item.nombre, 
+                    proveedor,
+                    provTlf,
+                    provDir,
+                    cantidad: item.cantidad, 
+                    costo: item.costo,
+                    venta: item.venta, 
+                    minimoAlerta: 3,
+                    barcode: item.barcode,
+                    fechaIngreso: new Date().toLocaleDateString()
+                });
             });
 
             await db.collection("tcl_custom_shop").doc(infoClienteAbiertoDinamico.id + "_inv").set({ lista: localProductosInventarioArr });
             
-            $('inv-input-nombre').value = ""; $('inv-input-cantidad').value = "";
+            /* Generar comprobante térmico de recepción */
+            const termicaBox = $('contenedor-impresion-termica-fijo');
+            termicaBox.className = "block bg-white text-black p-4 z-0";
+            let htmlPrintComp = `<div style="font-family: monospace; font-size:11px;">
+                <div class="text-center font-bold">*** COMPROBANTE DE RECEPCIÓN DE MERCANCÍA ***<br>${infoClienteAbiertoDinamico.nombre}</div>
+                <hr>
+                <p>PROVEEDOR: ${cleanHTMLInput(proveedor)}</p>
+                <p>RECIBIÓ: ${cleanHTMLInput(responsable)}</p>
+                <p>FECHA: ${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}</p>
+                <hr><table>`;
+            recepcionTemporalItemsArr.forEach((p) => {
+                htmlPrintComp += `<tr><td>${p.cantidad}x ${cleanHTMLInput(p.nombre)}</td><td class="text-right">$${(p.costo * p.cantidad).toFixed(2)}</td></tr>`;
+            });
+            htmlPrintComp += `</table><hr><div class="text-center">¡Entrada Registrada Correctamente!</div></div>`;
+            termicaBox.innerHTML = htmlPrintComp; window.print(); termicaBox.innerHTML = "";
+            termicaBox.className = "hidden whitespace-pre bg-white text-black p-4 z-0";
+
+            /* Limpieza del formulario y cambio de subpestaña */
+            recepcionTemporalItemsArr = [];
+            window.renderizarMesaRecepcionCompra();
+            $('inv-input-nombre').value = ""; $('inv-input-cantidad').value = "1";
             $('inv-input-costo').value = ""; $('inv-input-venta').value = "";
             $('inv-input-proveedor').value = ""; $('inv-input-prov-tlf').value = "";
             $('inv-input-prov-dir').value = ""; $('inv-input-barcode').value = "";
-            $('lbl-display-margen-dinamico').innerText = "-";
-            $('lbl-display-margen-dinamico').className = "text-slate-400 font-black text-[11px]";
 
             rebuildSelectDesplegableInventarioMostrador();
             window.cambiarSubPestañaInventario('ver');
@@ -1888,7 +2070,7 @@
                     <div class="p-2.5 rounded-xl border ${esAnulada ? 'bg-purple-50 border-purple-200 text-purple-800' : 'bg-slate-50 border-slate-200 text-slate-800'} flex justify-between items-center mb-1 font-sans">
                         <div>
                             <span class="font-mono font-bold block text-slate-900">Nota #${cleanHTMLInput(f.notaNum)} [${cleanHTMLInput(f.fecha)}]</span>
-                            <span class="text-[10px] block font-medium text-slate-500">Receptor: ${cleanHTMLInput(f.cliente)} —  Cajero: ${cleanHTMLInput(f.cajero)}</span>
+                            <span class="text-[10px] block font-medium text-slate-500">Receptor: ${cleanHTMLInput(f.cliente)} — Cajero: ${cleanHTMLInput(f.cajero)}</span>
                             ${esAnulada ? '<span class="text-[8.5px] font-black tracking-wide block uppercase text-purple-600"><i class="fa-solid fa-ban"></i> NOTA DE DÉBITO (ANULADA)</span>' : ''}
                         </div>
                         <div class="flex items-center gap-1.5 text-slate-800">
@@ -1903,7 +2085,7 @@
             const n = localFacturasFijasHistorialArr[indexRealArr];
             if(!n) return;
             
-            let promptText = `⚙️ CONTROL INTERNO DE DESPACHO — NOTA #${n.notaNum}\n\nEscriba el número de la acción requerida:\n[1] Reimprimir Comprobante\n[2] Reenviar Copia Certificada a WhatsApp\n[3] Anular Nota (Emitir Nota de Débito)`;
+            let promptText = `⚙️ CONTROL INTERNO DE DESPACHO — NOTA #${n.notaNum}\n\nEscriba el número de la acción requerida:\n[1] Reimprimir Comprobante\n[2] Reenviar Copia Certificada a WhatsApp\n[3] Anular Nota (Emitir Nota de Débito - Cajero/Dueño)`;
             if(esMasterActivoSession) { promptText += `\n[4] PURGAR DE SERVIDOR (LÍDER SUPREMO 🔒)`; }
             promptText += `\n\nPresione cancelar para salir.`;
             const s = prompt(promptText);
@@ -1916,7 +2098,8 @@
                 let desc = n.articulos.map(i => `  • ${i.cantidad}x ${i.nombre} -> $${(i.precioUnitario * i.cantidad).toFixed(2)} USD ${i.barcode ? `\n    📱 IMEI Celular: ${i.barcode}` : ''}`).join('\n');
                 
                 let msg = `🛍️ *${infoClienteAbiertoDinamico.nombre}*\n🧾 *COMPROBANTE DE DESPACHO E INVENTARIO*\nNota #${n.notaNum} | Vendedor: ${n.cajero}\n\n📦 *Detalle de compra:*\n${desc}\n\n💰 *Totales Multimoneda:*\n💵 *REF:* $${n.totalUSD.toFixed(2)} USD\n🇨🇴 *COP:* ${Math.round(n.totalUSD * tCOP).toLocaleString()} Pesos\n🇻🇪 *VES:* ${(n.totalUSD * tBs).toFixed(2)} Bs\n\n===============================\n🔒 *CONTROL INTERNO (NO FISCAL)*\n_Este documento es un comprobante de entrega administrativo para control de stock físico._`;
-                let cleanTlf = n.telefono.replace(/\D/g, ''); if(!cleanTlf.startsWith('58')) cleanTlf = '58' + cleanTlf;
+                let cleanTlf = n.telefono ? n.telefono.replace(/\D/g, '') : ''; 
+                if(cleanTlf && !cleanTlf.startsWith('58')) cleanTlf = '58' + cleanTlf;
                 window.open(`https://api.whatsapp.com/send?phone=${cleanTlf}&text=${encodeURIComponent(msg)}`, '_blank');
             } else if(s === "3") {
                 window.dispararAnulacionNotaAuditoria(n.notaNum);
@@ -1926,22 +2109,30 @@
         };
 
         window.dispararAnulacionNotaAuditoria = async function(notaNum) {
-            if(!confirm(`¿Desea emitir una nota de débito para anular la Nota #${notaNum}?`)) return;
+            if(!confirm(`¿Desea emitir una nota de débito para anular la Nota #${notaNum}? El registro se mantendrá en auditoría con su correlativo.`)) return;
             let idx = localFacturasFijasHistorialArr.findIndex(f => f.notaNum === notaNum);
             if(idx !== -1) {
                 localFacturasFijasHistorialArr[idx].estatus = "ANULADA";
                 await db.collection("tcl_custom_shop").doc(infoClienteAbiertoDinamico.id + "_facturas").set({ lista: localFacturasFijasHistorialArr });
                 window.recalcularEstructuraReportesGlobalTurno();
+                alert(`✅ Nota #${notaNum} anulada correctamente en auditoría.`);
             }
         };
 
         window.purgaSupremaAbsolutaNota = async function(notaNum) {
-            if(!confirm(`⚠️ ATENCIÓN SUPREMA: ¡Alta peligrosidad! ¿Desea eliminar la Nota #${notaNum}?`)) return;
+            if(!confirm(`⚠️ ATENCIÓN SUPREMA: ¡Acción sólo permitida para el Máster! ¿Desea ELIMINAR por completo la Nota #${notaNum} del servidor?`)) return;
             let idx = localFacturasFijasHistorialArr.findIndex(f => f.notaNum === notaNum);
             if(idx !== -1) {
                 localFacturasFijasHistorialArr.splice(idx, 1);
+                if (localFacturasFijasHistorialArr.length > 0) {
+                    const ult = localFacturasFijasHistorialArr[localFacturasFijasHistorialArr.length - 1].notaNum;
+                    correlativoNotaGlobal = parseInt(ult, 10) + 1;
+                } else {
+                    correlativoNotaGlobal = 1;
+                }
                 await db.collection("tcl_custom_shop").doc(infoClienteAbiertoDinamico.id + "_facturas").set({ lista: localFacturasFijasHistorialArr });
-                alert("⚙️ Registro purgado con éxito.");
+                alert("⚙️ Registro purgado con éxito. Correlativo ajustado.");
+                if($('ticket-correlativo-display')) $('ticket-correlativo-display').innerText = "Nota #" + String(correlativoNotaGlobal).padStart(3, '0');
                 window.recalcularEstructuraReportesGlobalTurno();
             }
         };
@@ -2050,7 +2241,7 @@
                 msg += `⚖️ *CAJA REAL NETO DE TURNO:* *$${netoUSD.toFixed(2)} USD*\n\n`;
                 msg += `🧮 *CONVERSIÓN DE ARQUEO:*\n`;
                 msg += `🇨🇴 Pesos COP (Tasa ${tCOP}): *${Math.round(netoUSD * tCOP).toLocaleString()} Pesos*\n`;
-                msg += `🇻🇪 Bolívares VES (Tasa ${tBs}): *${(netoUSD * tBs).toFixed(2)} Bs*\n`;
+                msg += `接地 Bolívares VES (Tasa ${tBs}): *${(netoUSD * tBs).toFixed(2)} Bs*\n`;
                 msg += `=====================================\n\n`;
 
                 window.open(`https://api.whatsapp.com/send?phone=${infoClienteAbiertoDinamico.tlf || '04247357549'}&text=${encodeURIComponent(msg)}`, '_blank');
@@ -2166,5 +2357,4 @@
             window.registrarLogExterno('SUCCESS', 'Ecosistema de mostrador inicializado.', 'Monitoreo activo al 100%.');
         };
     </script>
-</body>
-</html>
+</body></html>
