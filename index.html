@@ -209,7 +209,7 @@
     </div>
 
     <!-- VISTA PÚBLICA DINÁMICA DE ENLACES -->
-    <div id="vista-publica-dinamica" class="hidden min-h-screen bg-slate-950 text-slate-100 p-6"></div>
+    <div id="vista-publica-dinamica" class="hidden min-h-screen bg-slate-950 text-slate-100 p-0"></div>
 
     <!-- MODAL: CLIENTES SUSCRITOS -->
     <div id="modal-sub-lista-comercios" class="fixed inset-0 bg-slate-950/90 backdrop-blur-sm z-50 p-4 flex items-center justify-center hidden">
@@ -278,7 +278,7 @@
     <div id="entorno-aplicacion-core">
         
         <!-- LOGIN MÁSTER -->
-        <div id="bloque-login-master" class="min-h-screen flex items-center justify-center p-4 hidden">
+        <div id="bloque-login-master" class="min-h-screen flex items-center justify-center p-4">
             <div class="w-full max-w-md p-0.5 rounded-3xl bg-gradient-to-br from-blue-600 via-slate-800 to-purple-600 shadow-[0_0_50px_rgba(59,130,246,0.2)]">
                 <div class="glass-panel rounded-[22px] p-6 space-y-6">
                     <div class="text-center space-y-2">
@@ -296,7 +296,6 @@
 
         <!-- PANEL SUPREMO MÁSTER -->
         <div id="vista-master-admin" class="p-4 sm:p-8 max-w-7xl mx-auto space-y-6 hidden">
-            <!-- BLOQUE 1: ENCABEZADO Y STATUS -->
             <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 border-b border-slate-800 pb-5">
                 <div>
                     <span class="bg-blue-500/10 text-blue-400 border border-blue-500/20 text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full inline-flex items-center gap-1.5"><i class="fa-solid fa-user-shield"></i> Panel Supremo de Control</span>
@@ -308,7 +307,6 @@
                 </div>
             </div>
 
-            <!-- BLOQUE 2: CONSOLIDADO CENTRAL CAJA SAAS -->
             <div class="bg-slate-900 border border-slate-800 p-5 rounded-3xl space-y-4">
                 <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 border-b border-slate-800 pb-3">
                     <div><h2 class="text-white font-black text-sm uppercase tracking-wider">📊 Consolidado Central del Servidor de Suscripciones</h2></div>
@@ -319,7 +317,6 @@
                 </div>
             </div>
 
-            <!-- BLOQUE 3: CONTROL DE TASAS Y CLAVE -->
             <div class="bg-slate-900 border border-slate-800 p-4 rounded-3xl grid grid-cols-1 sm:grid-cols-3 gap-3 items-center">
                 <div class="bg-slate-950 p-2 rounded-xl border border-slate-800"><span class="block text-[8px] text-slate-500 font-bold uppercase">Tasa COP Global</span><input type="number" id="master-tasa-cop" value="3900" class="w-full bg-transparent font-black text-xs text-amber-400 focus:outline-none"></div>
                 <div class="bg-slate-950 p-2 rounded-xl border border-slate-800"><span class="block text-[8px] text-slate-500 font-bold uppercase">Tasa Bs Global</span><input type="number" id="master-tasa-bs" value="40" class="w-full bg-transparent font-black text-xs text-emerald-400 focus:outline-none"></div>
@@ -330,7 +327,6 @@
                 </div>
             </div>
 
-            <!-- BLOQUE 4: BOTONERAS ADMINISTRATIVAS -->
             <div class="bg-slate-900 border border-slate-800 p-4 rounded-3xl space-y-3">
                 <h2 class="text-[10px] font-black text-slate-400 uppercase tracking-wider flex items-center gap-1.5"><i class="fa-solid fa-share-nodes text-blue-400"></i> Gestión Central de Infraestructura</h2>
                 <div class="grid grid-cols-2 md:grid-cols-5 gap-2">
@@ -357,7 +353,6 @@
                 </div>
             </div>
 
-            <!-- BLOQUE 5: KIT DE SOPORTE -->
             <div class="bg-slate-900 border border-slate-800 p-4 rounded-3xl space-y-3">
                 <h2 class="text-[10px] font-black text-slate-400 uppercase tracking-wider flex items-center gap-1.5"><i class="fa-solid fa-screwdriver-wrench text-emerald-400"></i> Kit de Soporte &amp; Resguardo Administrativo</h2>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -372,7 +367,6 @@
                 </div>
             </div>
 
-            <!-- BLOQUE 6: BÓVEDA DE PURGA -->
             <div class="bg-slate-900 border border-slate-800 p-5 rounded-3xl space-y-3">
                 <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-wider border-b border-slate-800 pb-1">Bóveda Oculta de Purga del Servidor (Líder Supremo)</h4>
                 <div id="lista-auditoria-notes-completa-box-master" class="space-y-2 max-h-60 overflow-y-auto no-scrollbar text-xs">
@@ -380,7 +374,6 @@
                 </div>
             </div>
 
-            <!-- BOTÓN PRINCIPAL NUEVA SUCURSAL -->
             <div class="bg-slate-900 border border-slate-800 p-6 rounded-3xl flex flex-col items-center justify-center min-h-[140px] text-center gap-2">
                 <button onclick="window.abrirModalCrearPerfil()" class="bg-blue-600 hover:bg-blue-700 text-white font-black text-xs px-6 py-3.5 rounded-2xl uppercase tracking-wider shadow-lg flex items-center gap-2 transition-all cursor-pointer"><i class="fa-solid fa-plus"></i> Registrar Nueva Sucursal</button>
             </div>
@@ -522,7 +515,7 @@
                         <!-- DESGLOSE RESUMEN VENTA -->
                         <div class="flex flex-col lg:col-span-4 space-y-4">
                             <div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm space-y-3 sticky lg:top-22">
-                                <h3 class="text-[10px] font-black text-slate-400 uppercase tracking-widest border-b pb-1 flex justify-between"><span>Resumen de Venta</span> <span id="ticket-correlativo-display" class="font-mono font-bold">Nota #001</span></h3>
+                                <h3 class="text-[10px] font-black text-slate-400 uppercase tracking-widest border-b pb-1 flex justify-between"><span>Resumen de Venta</span> <span id="ticket-correlativo-display" class="font-mono font-bold">Nota #0001</span></h3>
                                 <div id="desglose-productos-ticket" class="space-y-2 max-h-42 overflow-y-auto text-xs text-slate-600 no-scrollbar"><p class="text-center text-slate-400 py-4 italic">Mesa vacía.</p></div>
                                 <div class="bg-slate-900 text-white p-3.5 rounded-xl font-mono text-xs">
                                     <div class="flex justify-between items-center text-sm font-black"><span>Neto USD:</span> <span id="total-usd" class="text-amber-400 font-extrabold text-base">$0</span></div>
@@ -588,7 +581,6 @@
                             <span class="text-[9px] bg-purple-100 text-purple-700 font-bold px-2.5 py-1 rounded-lg uppercase">Entrada Multi-Ítem</span>
                         </div>
 
-                        <!-- DATOS DEL PROVEEDOR Y ALMACENISTA -->
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-bold text-slate-800 bg-slate-50 p-3.5 rounded-2xl border border-slate-200">
                             <div class="sm:col-span-2">
                                 <label class="text-[9px] font-black text-purple-600 uppercase block mb-1">Almacenista / Responsable que Recibe *</label>
@@ -614,7 +606,6 @@
                             </div>
                         </div>
 
-                        <!-- MESA CARGA DE ÍTEMS DE COMPRA -->
                         <div class="space-y-3 bg-white p-3.5 rounded-2xl border border-slate-200 text-xs font-bold text-slate-800">
                             <span class="text-[9.5px] font-black text-blue-600 uppercase tracking-wider block border-b pb-1">➕ Añadir Ítem a la Lista de Entrada</span>
                             
@@ -653,7 +644,6 @@
                             <button onclick="window.agregarItemAMesaRecepcionCompra()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-black text-xs py-3 rounded-xl uppercase tracking-wider shadow flex items-center justify-center gap-1.5"><i class="fa-solid fa-plus"></i> Agregar Artículo a la Factura de Entrada</button>
                         </div>
 
-                        <!-- DESGLOSE MESA DE COMPRAS (TICKET PROVEEDOR) -->
                         <div class="bg-slate-900 text-white p-4 rounded-2xl border border-slate-800 space-y-3 font-mono">
                             <div class="flex justify-between items-center border-b border-slate-800 pb-2">
                                 <h4 class="text-xs font-bold text-amber-400 uppercase tracking-wider"><i class="fa-solid fa-receipt mr-1"></i> Detalle de la Factura de Recepción</h4>
@@ -866,7 +856,7 @@
         let ticketProductos = []; 
         let recepcionTemporalItemsArr = []; 
         let acumuladoUSD = 0;
-        let infoClienteAbiertoDinamico = { id: "demo", nombre: "TCL TIENDA", user: "demo", pass: "123456", rubro: "GENERAL", dias: 365, ownerID: "demo", tlf: "04247357549", promotor: "", contrato_firmado: false };
+        let infoClienteAbiertoDinamico = { id: "demo", nombre: "TUCOCEL C.A.", rif: "J-40392817-0", dir: "Cordero, Táchira - Venezuela", user: "demo", pass: "123456", rubro: "TECNOLOGIA", dias: 365, ownerID: "demo", tlf: "0424-7357549", promotor: "", contrato_firmado: false };
         let correlativoNotaGlobal = 1;
         let comisionConfigGlobal = { m1: 5, m3: 9, m6: 14, m12: 24, renov_m1: 1.25, renov_m3: 2.50, renov_m6: 5.00, renov_m12: 10.00 }; 
         let modoDigitacionMostrador = "LIBRE";
@@ -886,7 +876,15 @@
             });
         }
 
-        /* 1. DECLARACIÓN ELEVADA DE VALIDACIÓN MÁSTER PARA EVITAR TYPEERROR */
+        window.calcularAhorroInteractivoVenta = function(val) {
+            if($('val-sim-notas')) $('val-sim-notas').innerText = val + " Notas";
+            let horasAhorradas = Math.round(val * 0.032);
+            let dineroAhorradoPapel = Math.round(val * 0.07);
+            if($('val-sim-tiempo')) $('val-sim-tiempo').innerText = horasAhorradas + " Horas";
+            if($('val-sim-dinero')) $('val-sim-dinero').innerText = "$" + dineroAhorradoPapel + ".00 USD";
+        };
+
+        /* DECLARACIÓN ELEVADA DE VALIDACIÓN MÁSTER */
         window.validarAccAccessMasterAdmin = function() {
             const user = $('master-user-field').value.trim();
             const pass = $('master-pass-field').value.trim();
@@ -1288,7 +1286,7 @@
             }
         };
 
-        /* PROCESAMIENTO DE FACTURACIÓN EN MOSTRADOR */
+        /* PROCESAMIENTO DE FACTURACIÓN EN MOSTRADOR CON NUEVA IMPRESIÓN Y BLINDAJE LEGAL EN ROJO */
         window.procesarTicketFacturacionMostradorCompleto = async function() {
             const seller = $('ticket-vendedor').value.trim();
             if(!seller) return alert("⚠️ Se requiere indicar el Cajero Responsable del Turno de forma obligatoria.");
@@ -1300,14 +1298,14 @@
             const abonoInicialVal = parseFloat($('ticket-abono').value) || 0;
 
             const nuevaFacturaDataObj = {
-                notaNum: String(correlativoNotaGlobal).padStart(3, '0'),
+                notaNum: String(correlativoNotaGlobal).padStart(4, '0'),
                 fecha: new Date().toLocaleDateString(),
                 hora: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
                 cajero: seller.toUpperCase(),
                 cliente: $('ticket-cliente').value.trim().toUpperCase() || "CONSUMIDOR FINAL",
-                cedula: $('ticket-rif-cliente').value.trim().toUpperCase() || "N/A",
+                cedula: $('ticket-rif-cliente').value.trim().toUpperCase() || "V-00.000.000",
                 telefono: $('ticket-tlf-cliente').value.trim() || "",
-                direccion: $('ticket-dir-cliente').value.trim().toUpperCase() || "CORDERO, TÁCHIRA",
+                direccion: $('ticket-dir-cliente').value.trim().toUpperCase() || "MOSTRADOR CORDERO",
                 articulos: [...ticketProductos],
                 totalUSD: acumuladoUSD,
                 metodoCobro: metodoCobroVal,
@@ -1324,34 +1322,91 @@
             const tCOP = parseFloat($('tasa-cop').value) || 3900;
             const tBs = parseFloat($('tasa-bs').value) || 40;
             const termicaBox = $('contenedor-impresion-termica-fijo');
-            termicaBox.className = "block bg-white text-black p-4 z-0";
+            termicaBox.className = "block bg-white text-black p-2 z-0";
 
+            /* MOTOR DE IMPRESIÓN 10x15 CM ADAPTADO CON BLINDAJE Y ENCABEZADO AZUL */
             let stringFacturaEpsonHtml = `
-            <div class="flex flex-col justify-between" style="background: white !important; color: black !important; width: 10cm !important; min-height: 10cm !important; height: auto !important; font-family: 'Courier New', Courier, monospace; font-size: 11px; line-height: 1.3;">
+            <div class="hoja-factura flex flex-col justify-between" style="width: 10cm !important; min-height: 10cm !important; height: auto !important; background: white !important; color: black !important; font-family: 'Courier New', Courier, monospace; font-size: 11px; line-height: 1.3; padding: 0.2cm !important;">
                 <div>
-                    <div class="text-center border-b border-dashed border-black pb-2 mb-2">
-                        <span style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 16px;" class="text-blue-custom block uppercase">${cleanHTMLInput(infoClienteAbiertoDinamico.nombre)}</span>
+                    <!-- ENCABEZADO CORPORATIVO EN AZUL -->
+                    <div class="text-center space-y-0.5 border-b border-dashed border-black pb-2 mb-2">
+                        <span style="font-family: 'Plus Jakarta Sans', sans-serif;" class="font-black text-base tracking-tight block text-blue-custom uppercase">${cleanHTMLInput(infoClienteAbiertoDinamico.nombre || 'TUCOCEL C.A.')}</span>
+                        <p class="text-[9px] font-bold text-blue-custom">AGENTE AUTORIZADO MOVISTAR</p>
+                        <p class="text-[9px]">RIF: ${cleanHTMLInput(infoClienteAbiertoDinamico.rif || 'J-40392817-0')}</p>
+                        <p class="text-[9px]">${cleanHTMLInput(infoClienteAbiertoDinamico.dir || 'Cordero, Táchira - Venezuela')}</p>
+                        <p class="text-[9px]">Soporte: ${cleanHTMLInput(infoClienteAbiertoDinamico.tlf || '0424-7357549')}</p>
                     </div>
+
+                    <!-- DATOS DEL COMPROBANTE Y CLIENTE -->
                     <div class="space-y-0.5 text-[10px] mb-2 pb-2 border-b border-dashed border-black">
                         <p><strong>NOTA DE DESPACHO:</strong> #${cleanHTMLInput(nuevaFacturaDataObj.notaNum)}</p>
                         <p><strong>FECHA:</strong> ${cleanHTMLInput(nuevaFacturaDataObj.fecha)} ${cleanHTMLInput(nuevaFacturaDataObj.hora)}</p>
-                        <p><strong>CLIENTE:</strong> ${cleanHTMLInput(nuevaFacturaDataObj.cliente)}</p>
+                        <p><strong>RECEPTOR:</strong> ${cleanHTMLInput(nuevaFacturaDataObj.cliente)}</p>
+                        <p><strong>CÉDULA/RIF:</strong> ${cleanHTMLInput(nuevaFacturaDataObj.cedula)}</p>
+                        <p><strong>DIRECCIÓN:</strong> ${cleanHTMLInput(nuevaFacturaDataObj.direccion)}</p>
                         <p><strong>VENDEDOR:</strong> ${cleanHTMLInput(nuevaFacturaDataObj.cajero)}</p>
-                        <p><strong>CONDICIÓN:</strong> ${cleanHTMLInput(nuevaFacturaDataObj.condicion)}</p>
                     </div>
-                    <table class="w-full text-left text-[10px] mb-2"><tbody>`;
-            nuevaFacturaDataObj.articulos.forEach(art => {
-                stringFacturaEpsonHtml += `<tr><td>${art.cantidad}x ${cleanHTMLInput(art.nombre)}</td><td class="text-right font-bold_custom">$${(art.precioUnitario * art.cantidad).toFixed(2)}</td></tr>`;
-            });
-            stringFacturaEpsonHtml += `</tbody></table></div>
-                <div class="mt-2 border-t border-dashed border-black pt-2 text-[10px]">
-                    <div class="flex justify-between font-bold text-xs"><span>NETO USD:</span><span>$${nuevaFacturaDataObj.totalUSD.toFixed(2)}</span></div>
-                    ${nuevaFacturaDataObj.condicion === 'CREDITO' ? `<div class="flex justify-between text-purple-700"><span>ABONÓ EN MOSTRADOR:</span><span>$${nuevaFacturaDataObj.abono.toFixed(2)}</span></div><div class="flex justify-between font-bold text-purple-700"><span>SALDO RESTANTE:</span><span>$${(nuevaFacturaDataObj.totalUSD - nuevaFacturaDataObj.abono).toFixed(2)}</span></div>` : ''}
-                    <div class="flex justify-between text-gray-800"><span>REF COP:</span><span>${Math.round(nuevaFacturaDataObj.totalUSD * tCOP).toLocaleString()} COP</span></div>
-                    <div class="flex justify-between text-gray-800"><span>REF Bs:</span><span>${(nuevaFacturaDataObj.totalUSD * tBs).toFixed(2)} Bs</span></div>
-                </div></div>`;
 
-            termicaBox.innerHTML = stringFacturaEpsonHtml; window.print(); termicaBox.innerHTML = "";
+                    <!-- TABLA DINÁMICA DE PRODUCTOS CON IMEIS -->
+                    <table class="w-full text-left text-[10px] mb-2">
+                        <thead>
+                            <tr class="border-b border-black font-bold">
+                                <th class="pb-1">CANT / ARTÍCULO</th>
+                                <th class="text-right pb-1">TOTAL</th>
+                            </tr>
+                        </thead>
+                        <tbody>`;
+            
+            nuevaFacturaDataObj.articulos.forEach(art => {
+                stringFacturaEpsonHtml += `
+                    <tr class="valign-top">
+                        <td class="pt-1">
+                            ${art.cantidad}x ${cleanHTMLInput(art.nombre)}
+                            ${art.barcode ? `<div class="text-[8.5px] text-gray-700 pl-2 font-mono">▫️ IMEI / SERIAL: ${cleanHTMLInput(art.barcode)}</div>` : ''}
+                        </td>
+                        <td class="text-right pt-1 font-bold_custom">$${(art.precioUnitario * art.cantidad).toFixed(2)}</td>
+                    </tr>`;
+            });
+
+            stringFacturaEpsonHtml += `
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- SECCIÓN INFERIOR: TOTALES MULTIMONEDA Y BLINDAJE LEGAL ROJO -->
+                <div class="mt-2">
+                    <div class="border-t border-dashed border-black pt-2 space-y-0.5 text-[10px]">
+                        <div class="flex justify-between font-bold text-xs">
+                            <span>NETO USD:</span>
+                            <span>$${nuevaFacturaDataObj.totalUSD.toFixed(2)}</span>
+                        </div>
+                        ${nuevaFacturaDataObj.condicion === 'CREDITO' ? `<div class="flex justify-between text-purple-700 font-bold"><span>ABONÓ EN MOSTRADOR:</span><span>$${nuevaFacturaDataObj.abono.toFixed(2)}</span></div><div class="flex justify-between font-bold text-purple-700"><span>SALDO RESTANTE:</span><span>$${(nuevaFacturaDataObj.totalUSD - nuevaFacturaDataObj.abono).toFixed(2)}</span></div>` : ''}
+                        <div class="flex justify-between text-gray-800">
+                            <span>REF COP (Tasa ${tCOP}):</span>
+                            <span>${Math.round(nuevaFacturaDataObj.totalUSD * tCOP).toLocaleString()} COP</span>
+                        </div>
+                        <div class="flex justify-between text-gray-800">
+                            <span>REF Bs (Tasa ${tBs.toFixed(2)}):</span>
+                            <span>${(nuevaFacturaDataObj.totalUSD * tBs).toFixed(2)} Bs</span>
+                        </div>
+                    </div>
+
+                    <div class="text-center text-[7px] space-y-1 border-t border-black mt-2 pt-1.5 uppercase tracking-tighter text-justify leading-tight">
+                        <p class="font-black text-red-custom tracking-tight text-center text-[8px] mb-0.5">⚠️ ADVERTENCIA: NOTA DE DESPACHO E INVENTARIO INTERNO</p>
+                        <p class="text-black font-medium">ESTE COMPROBANTE CONSTITUYE EXCLUSIVAMENTE UN REGISTRO OPERATIVO DE CONTROL DE ALMACÉN Y MOVILIZACIÓN INTERNA DE MERCANCÍAS. EN NINGÚN CASO ADQUIERE CARÁCTER DE FACTURA FISCAL, NI SUSTITUYE O MINIMIZA LAS FUNCIONES DE LOS MEDIOS DE EMISIÓN REGULADOS POR LA PROVIDENCIA ADMINISTRATIVA VIGENTE DE LA GERENCIA DE RECAUDACIÓN TRIBUTARIA DEL SENIAT. EL COMERCIO ADQUIERE LA OBLIGACIÓN EXCLUSIVA DE RESPALDAR SUS OPERACIONES MEDIANTE LOS CANALES TRIBUTARIOS LEGALES.</p>
+                        <p class="text-gray-600 font-mono text-[6.5px] lowercase normal-case text-center pt-0.5 leading-none">El proveedor de la infraestructura tecnológica y los desarrolladores del sistema quedan totalmente eximidos de responsabilidad civil, administrativa o penal sobre los montos cargados, descripciones o tasas cambiarias aplicadas en este terminal.</p>
+                        
+                        <div class="text-[7px] text-gray-500 font-sans pt-1 border-t border-gray-200 mt-1 text-center normal-case tracking-normal">
+                            Infraestructura Tecnológica Distribuida por <strong>Tucocel C.A.</strong><br>
+                            Desarrollo y Automatización: <strong>Publi-Online-Mk</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>`;
+
+            termicaBox.innerHTML = stringFacturaEpsonHtml; 
+            window.print(); 
+            termicaBox.innerHTML = "";
             termicaBox.className = "hidden whitespace-pre bg-white text-black p-4 z-0";
             
             correlativoNotaGlobal++; 
@@ -1363,7 +1418,7 @@
             if($('ticket-abono')) $('ticket-abono').value = "0";
 
             window.calcularTotalesSimulados();
-            if($('ticket-correlativo-display')) $('ticket-correlativo-display').innerText = "Nota #" + String(correlativoNotaGlobal).padStart(3, '0');
+            if($('ticket-correlativo-display')) $('ticket-correlativo-display').innerText = "Nota #" + String(correlativoNotaGlobal).padStart(4, '0');
             window.ejecutarBusquedaHistorialPorCedulaNota(); 
             window.recalcularEstructuraReportesGlobalTurno();
         };
@@ -1378,9 +1433,9 @@
             const cond = $('ticket-condicion-pago').value;
             const abono = parseFloat($('ticket-abono').value) || 0;
             
-            const numeroNotaActual = String(correlativoNotaGlobal).padStart(3, '0');
+            const numeroNotaActual = String(correlativoNotaGlobal).padStart(4, '0');
             let textoMsg = `🛍️ *${infoClienteAbiertoDinamico.nombre}*\n🧾 *COMPROBANTE DE DESPACHO E INVENTARIO*\nNota #${numeroNotaActual} | Vendedor: ${seller.toUpperCase()}\nCondición: ${cond}\n\n📋 *Artículos:*\n`;
-            ticketProductos.forEach(p => { textoMsg += `▪ ${p.cantidad}x ${p.nombre} -> $${(p.precioUnitario * p.cantidad).toFixed(2)} USD\n`; });
+            ticketProductos.forEach(p => { textoMsg += `▪ ${p.cantidad}x ${p.nombre} -> $${(p.precioUnitario * p.cantidad).toFixed(2)} USD ${p.barcode ? `\n  📱 IMEI: ${p.barcode}` : ''}\n`; });
             if(cond === 'CREDITO') textoMsg += `\n💵 *Abono:* $${abono.toFixed(2)}\n📉 *Saldo Restante:* $${(acumuladoUSD - abono).toFixed(2)}`;
             window.open("https://api.whatsapp.com/send?phone=" + cleanTlf + "&text=" + encodeURIComponent(textoMsg), '_blank');
         };
@@ -1424,7 +1479,7 @@
             $('cli-bloque-sistema').classList.remove('hidden');
             document.body.className = "bg-slate-50 text-slate-800 min-h-screen";
             if($('ticket-correlativo-display')) {
-                $('ticket-correlativo-display').innerText = "Nota #" + String(correlativoNotaGlobal).padStart(3, '0');
+                $('ticket-correlativo-display').innerText = "Nota #" + String(correlativoNotaGlobal).padStart(4, '0');
             }
             if($('cli-panel-nombre')) {
                 $('cli-panel-nombre').innerText = infoClienteAbiertoDinamico.nombre || "Comercio";
@@ -1525,7 +1580,7 @@
             }
         };
 
-        /* MÓDULO NUEVO: MANEJO DE PROVEEDORES Y MESA DE RECEPCIÓN TIPO FACTURA */
+        /* MÓDULO DE PROVEEDORES Y MESA DE RECEPCIÓN TIPO FACTURA */
         window.renderizarDesplegableProveedoresGuardados = function() {
             const select = $('select-proveedores-frecuentes');
             if(!select) return;
@@ -1639,7 +1694,6 @@
                 }
             }
 
-            /* Guardar o actualizar proveedor en la base de datos de proveedores */
             let provExistente = localProveedoresArr.find(p => p.nombre.toUpperCase() === proveedor);
             if(!provExistente) {
                 localProveedoresArr.push({
@@ -1652,7 +1706,6 @@
                 window.renderizarDesplegableProveedoresGuardados();
             }
 
-            /* Inyectar productos al almacén de stock */
             recepcionTemporalItemsArr.forEach(item => {
                 const nuevoCorrelativo = localProductosInventarioArr.length + 1;
                 localProductosInventarioArr.push({ 
@@ -1674,24 +1727,36 @@
 
             await db.collection("tcl_custom_shop").doc(infoClienteAbiertoDinamico.id + "_inv").set({ lista: localProductosInventarioArr });
             
-            /* Generar comprobante térmico de recepción */
             const termicaBox = $('contenedor-impresion-termica-fijo');
-            termicaBox.className = "block bg-white text-black p-4 z-0";
-            let htmlPrintComp = `<div style="font-family: monospace; font-size:11px;">
-                <div class="text-center font-bold">*** COMPROBANTE DE RECEPCIÓN DE MERCANCÍA ***<br>${infoClienteAbiertoDinamico.nombre}</div>
-                <hr>
-                <p>PROVEEDOR: ${cleanHTMLInput(proveedor)}</p>
-                <p>RECIBIÓ: ${cleanHTMLInput(responsable)}</p>
-                <p>FECHA: ${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}</p>
-                <hr><table>`;
+            termicaBox.className = "block bg-white text-black p-2 z-0";
+            let htmlPrintComp = `
+            <div class="hoja-factura flex flex-col justify-between" style="width: 10cm !important; min-height: 10cm !important; height: auto !important; background: white !important; color: black !important; font-family: 'Courier New', Courier, monospace; font-size: 11px; line-height: 1.3; padding: 0.2cm !important;">
+                <div>
+                    <div class="text-center space-y-0.5 border-b border-dashed border-black pb-2 mb-2">
+                        <span style="font-family: 'Plus Jakarta Sans', sans-serif;" class="font-black text-base tracking-tight block text-blue-custom uppercase">${cleanHTMLInput(infoClienteAbiertoDinamico.nombre || 'TUCOCEL C.A.')}</span>
+                        <p class="text-[9px] font-bold text-blue-custom">AGENTE AUTORIZADO MOVISTAR</p>
+                        <p class="text-[9px]">COMPROBANTE DE RECEPCIÓN DE MERCANCÍA</p>
+                    </div>
+                    <div class="space-y-0.5 text-[10px] mb-2 pb-2 border-b border-dashed border-black">
+                        <p><strong>PROVEEDOR:</strong> ${cleanHTMLInput(proveedor)}</p>
+                        <p><strong>RECEPTOR:</strong> ${cleanHTMLInput(responsable)}</p>
+                        <p><strong>FECHA:</strong> ${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}</p>
+                    </div>
+                    <table class="w-full text-left text-[10px] mb-2">
+                        <thead><tr class="border-b border-black font-bold"><th>CANT / ARTÍCULO</th><th class="text-right">TOTAL COSTO</th></tr></thead>
+                        <tbody>`;
             recepcionTemporalItemsArr.forEach((p) => {
-                htmlPrintComp += `<tr><td>${p.cantidad}x ${cleanHTMLInput(p.nombre)}</td><td class="text-right">$${(p.costo * p.cantidad).toFixed(2)}</td></tr>`;
+                htmlPrintComp += `<tr><td class="pt-1">${p.cantidad}x ${cleanHTMLInput(p.nombre)}</td><td class="text-right pt-1 font-bold">$${(p.costo * p.cantidad).toFixed(2)}</td></tr>`;
             });
-            htmlPrintComp += `</table><hr><div class="text-center">¡Entrada Registrada Correctamente!</div></div>`;
+            htmlPrintComp += `</tbody></table></div>
+                <div class="border-t border-dashed border-black pt-2 text-center text-[9px] font-bold">
+                    ¡ENTRADA DE ALMACÉN PROCESADA CON ÉXITO!
+                </div>
+            </div>`;
+            
             termicaBox.innerHTML = htmlPrintComp; window.print(); termicaBox.innerHTML = "";
             termicaBox.className = "hidden whitespace-pre bg-white text-black p-4 z-0";
 
-            /* Limpieza del formulario y cambio de subpestaña */
             recepcionTemporalItemsArr = [];
             window.renderizarMesaRecepcionCompra();
             $('inv-input-nombre').value = ""; $('inv-input-cantidad').value = "1";
@@ -1711,14 +1776,24 @@
 
         window.imprimirInventarioTermico = function() {
             const termicaBox = $('contenedor-impresion-termica-fijo');
-            termicaBox.className = "block bg-white text-black p-4 z-0";
-            let htmlPrint = `<div style="font-family: monospace; font-size:11px;">
-                <div class="text-center font-bold">*** INVENTARIO MÁSTER ALMACÉN ***<br>${infoClienteAbiertoDinamico.nombre}</div>
-                <hr><table>`;
+            termicaBox.className = "block bg-white text-black p-2 z-0";
+            let htmlPrint = `
+            <div class="hoja-factura flex flex-col justify-between" style="width: 10cm !important; min-height: 10cm !important; height: auto !important; background: white !important; color: black !important; font-family: 'Courier New', Courier, monospace; font-size: 11px; line-height: 1.3; padding: 0.2cm !important;">
+                <div>
+                    <div class="text-center space-y-0.5 border-b border-dashed border-black pb-2 mb-2">
+                        <span style="font-family: 'Plus Jakarta Sans', sans-serif;" class="font-black text-base tracking-tight block text-blue-custom uppercase">${cleanHTMLInput(infoClienteAbiertoDinamico.nombre || 'TUCOCEL C.A.')}</span>
+                        <p class="text-[9px] font-bold text-blue-custom">AGENTE AUTORIZADO MOVISTAR</p>
+                        <p class="text-[9px]">REPORTES DE INVENTARIO Y STOCK GENERAL</p>
+                    </div>
+                    <table class="w-full text-left text-[10px] mb-2">
+                        <thead><tr class="border-b border-black font-bold"><th>CANT / ARTÍCULO</th><th class="text-right">PRECIO</th></tr></thead>
+                        <tbody>`;
             localProductosInventarioArr.forEach((p, idx) => {
-                htmlPrint += `<tr><td>#${String(p.correlativo || (idx+1)).padStart(3,'0')} ${p.cantidad}x ${cleanHTMLInput(p.nombre)}</td><td class="text-right">$${p.venta}</td></tr>`;
+                htmlPrint += `<tr><td class="pt-1">#${String(p.correlativo || (idx+1)).padStart(3,'0')} ${p.cantidad}x ${cleanHTMLInput(p.nombre)}</td><td class="text-right pt-1 font-bold">$${p.venta}</td></tr>`;
             });
-            htmlPrint += `</table><hr><div class="text-center">Total Artículos: ${localProductosInventarioArr.length}</div></div>`;
+            htmlPrint += `</tbody></table></div>
+                <div class="border-t border-dashed border-black pt-2 text-center text-[9px]">Total Ítems en Almacén: ${localProductosInventarioArr.length}</div>
+            </div>`;
             termicaBox.innerHTML = htmlPrint; window.print(); termicaBox.innerHTML = "";
             termicaBox.className = "hidden whitespace-pre bg-white text-black p-4 z-0";
         };
@@ -2131,8 +2206,8 @@
                     correlativoNotaGlobal = 1;
                 }
                 await db.collection("tcl_custom_shop").doc(infoClienteAbiertoDinamico.id + "_facturas").set({ lista: localFacturasFijasHistorialArr });
-                alert("⚙️ Registro purgado con éxito. Correlativo ajustado.");
-                if($('ticket-correlativo-display')) $('ticket-correlativo-display').innerText = "Nota #" + String(correlativoNotaGlobal).padStart(3, '0');
+                alert("⚙️ Registro purgado con éxito. Correlativo adjusted.");
+                if($('ticket-correlativo-display')) $('ticket-correlativo-display').innerText = "Nota #" + String(correlativoNotaGlobal).padStart(4, '0');
                 window.recalcularEstructuraReportesGlobalTurno();
             }
         };
@@ -2141,21 +2216,49 @@
             let match = localFacturasFijasHistorialArr.find(f => f.notaNum === notaNum);
             if(!match) return;
             const tCOP = parseFloat($('tasa-cop').value) || 3900;
+            const tBs = parseFloat($('tasa-bs').value) || 40;
             const termicaBox = $('contenedor-impresion-termica-fijo');
-            termicaBox.className = "block bg-white text-black p-4 z-0";
+            termicaBox.className = "block bg-white text-black p-2 z-0";
 
             let stringFacturaEpsonHtml = `
-            <div class="flex flex-col justify-between" style="background: white !important; color: black !important; width: 10cm !important; min-height: 10cm !important; height: auto !important; font-family: 'Courier New', Courier, monospace; font-size: 11px; line-height: 1.3;">
-                <div><div class="text-center border-b border-dashed border-black pb-2 mb-2"><span style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 15px;" class="text-blue-custom block">*** REIMPRESIÓN CORRECTA ***<br>${cleanHTMLInput(infoClienteAbiertoDinamico.nombre)}</span></div>
-                <p><strong>NOTA DE DESPACHO:</strong> #${cleanHTMLInput(match.notaNum)}</p>
-                <p><strong>RECEPTOR:</strong> ${cleanHTMLInput(match.cliente)}</p></div>
-                <div class="mt-2"><div class="border-t border-dashed border-black pt-2 text-xs"><span>NETO USD: $${match.totalUSD.toFixed(2)}</span><br><span>REF COP: ${Math.round(match.totalUSD * tCOP).toLocaleString()} COP</span></div></div>
+            <div class="hoja-factura flex flex-col justify-between" style="width: 10cm !important; min-height: 10cm !important; height: auto !important; background: white !important; color: black !important; font-family: 'Courier New', Courier, monospace; font-size: 11px; line-height: 1.3; padding: 0.2cm !important;">
+                <div>
+                    <div class="text-center space-y-0.5 border-b border-dashed border-black pb-2 mb-2">
+                        <span style="font-family: 'Plus Jakarta Sans', sans-serif;" class="font-black text-base tracking-tight block text-blue-custom uppercase">*** REIMPRESIÓN COMPROBANTE ***<br>${cleanHTMLInput(infoClienteAbiertoDinamico.nombre || 'TUCOCEL C.A.')}</span>
+                        <p class="text-[9px] font-bold text-blue-custom">AGENTE AUTORIZADO MOVISTAR</p>
+                    </div>
+                    <div class="space-y-0.5 text-[10px] mb-2 pb-2 border-b border-dashed border-black">
+                        <p><strong>NOTA DE DESPACHO:</strong> #${cleanHTMLInput(match.notaNum)}</p>
+                        <p><strong>FECHA:</strong> ${cleanHTMLInput(match.fecha)} ${cleanHTMLInput(match.hora || '')}</p>
+                        <p><strong>RECEPTOR:</strong> ${cleanHTMLInput(match.cliente)}</p>
+                        <p><strong>CÉDULA/RIF:</strong> ${cleanHTMLInput(match.cedula)}</p>
+                        <p><strong>DIRECCIÓN:</strong> ${cleanHTMLInput(match.direccion || 'MOSTRADOR')}</p>
+                    </div>
+                    <table class="w-full text-left text-[10px] mb-2">
+                        <thead><tr class="border-b border-black font-bold"><th>CANT / ARTÍCULO</th><th class="text-right">TOTAL</th></tr></thead>
+                        <tbody>`;
+            match.articulos.forEach(art => {
+                stringFacturaEpsonHtml += `
+                    <tr>
+                        <td class="pt-1">
+                            ${art.cantidad}x ${cleanHTMLInput(art.nombre)}
+                            ${art.barcode ? `<div class="text-[8.5px] text-gray-700 pl-2 font-mono">▫️ IMEI / SERIAL: ${cleanHTMLInput(art.barcode)}</div>` : ''}
+                        </td>
+                        <td class="text-right pt-1 font-bold_custom">$${(art.precioUnitario * art.cantidad).toFixed(2)}</td>
+                    </tr>`;
+            });
+            stringFacturaEpsonHtml += `</tbody></table></div>
+                <div class="mt-2 border-t border-dashed border-black pt-2 text-[10px]">
+                    <div class="flex justify-between font-bold text-xs"><span>NETO USD:</span><span>$${match.totalUSD.toFixed(2)}</span></div>
+                    <div class="flex justify-between text-gray-800"><span>REF COP (Tasa ${tCOP}):</span><span>${Math.round(match.totalUSD * tCOP).toLocaleString()} COP</span></div>
+                    <div class="flex justify-between text-gray-800"><span>REF Bs (Tasa ${tBs.toFixed(2)}):</span><span>${(match.totalUSD * tBs).toFixed(2)} Bs</span></div>
+                </div>
             </div>`;
+            
             termicaBox.innerHTML = stringFacturaEpsonHtml; window.print(); termicaBox.innerHTML = "";
             termicaBox.className = "hidden whitespace-pre bg-white text-black p-4 z-0";
         };
 
-        /* IMPRESIÓN TÉRMICA DE REPORTES Y CIERRES DE CAJA */
         window.imprimirReporteCierreTermico = function() {
             try {
                 const rangoSelect = $('reporte-rango-temporal-cliente');
@@ -2179,15 +2282,16 @@
                 let netoUSD = ventasBrutasUSD - gastosTotalesUSD;
 
                 const termicaBox = $('contenedor-impresion-termica-fijo');
-                termicaBox.className = "block bg-white text-black p-4 z-0";
+                termicaBox.className = "block bg-white text-black p-2 z-0";
 
                 let htmlReportePrint = `
-                <div class="flex flex-col justify-between" style="background: white !important; color: black !important; width: 10cm !important; font-family: 'Courier New', Courier, monospace; font-size: 11px; line-height: 1.3;">
+                <div class="hoja-factura flex flex-col justify-between" style="width: 10cm !important; min-height: 10cm !important; height: auto !important; background: white !important; color: black !important; font-family: 'Courier New', Courier, monospace; font-size: 11px; line-height: 1.3; padding: 0.2cm !important;">
                     <div>
-                        <div class="text-center border-b border-dashed border-black pb-2 mb-2">
-                            <span style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 15px;" class="block uppercase">${cleanHTMLInput(infoClienteAbiertoDinamico.nombre)}</span>
-                            <span class="block text-[10px] font-bold">*** CIERRE Y ARQUEO DE CAJA ***</span>
-                            <span class="block text-[9px]">${rango === "DIA" ? "TURNO DE HOY ("+hoyStr+")" : "BALANCE MENSUAL CONSOLIDADO"}</span>
+                        <div class="text-center space-y-0.5 border-b border-dashed border-black pb-2 mb-2">
+                            <span style="font-family: 'Plus Jakarta Sans', sans-serif;" class="font-black text-base tracking-tight block text-blue-custom uppercase">${cleanHTMLInput(infoClienteAbiertoDinamico.nombre || 'TUCOCEL C.A.')}</span>
+                            <p class="text-[9px] font-bold text-blue-custom">AGENTE AUTORIZADO MOVISTAR</p>
+                            <p class="text-[10px] font-bold">*** CIERRE Y ARQUEO DE CAJA ***</p>
+                            <p class="text-[9px]">${rango === "DIA" ? "TURNO DE HOY ("+hoyStr+")" : "BALANCE MENSUAL CONSOLIDADO"}</p>
                         </div>
                         <div class="space-y-1 text-[10px] mb-2 pb-2 border-b border-dashed border-black">
                             <div class="flex justify-between"><span>VENTAS BRUTAS:</span><strong>$${ventasBrutasUSD.toFixed(2)} USD</strong></div>
@@ -2196,8 +2300,8 @@
                         </div>
                         <div class="space-y-0.5 text-[9px] border-b border-dashed border-black pb-2 mb-2">
                             <p class="font-bold uppercase">CONVERSIÓN MULTIMONEDA:</p>
-                            <div class="flex justify-between"><span>TASA COP (${tCOP}):</span><span>${Math.round(netoUSD * tCOP).toLocaleString()} COP</span></div>
-                            <div class="flex justify-between"><span>TASA Bs (${tBs}):</span><span>${(netoUSD * tBs).toFixed(2)} Bs</span></div>
+                            <div class="flex justify-between"><span>REF COP (Tasa ${tCOP}):</span><span>${Math.round(netoUSD * tCOP).toLocaleString()} COP</span></div>
+                            <div class="flex justify-between"><span>REF Bs (Tasa ${tBs.toFixed(2)}):</span><span>${(netoUSD * tBs).toFixed(2)} Bs</span></div>
                         </div>
                     </div>
                     <div class="text-center text-[8px] italic pt-1">
@@ -2241,7 +2345,7 @@
                 msg += `⚖️ *CAJA REAL NETO DE TURNO:* *$${netoUSD.toFixed(2)} USD*\n\n`;
                 msg += `🧮 *CONVERSIÓN DE ARQUEO:*\n`;
                 msg += `🇨🇴 Pesos COP (Tasa ${tCOP}): *${Math.round(netoUSD * tCOP).toLocaleString()} Pesos*\n`;
-                msg += `接地 Bolívares VES (Tasa ${tBs}): *${(netoUSD * tBs).toFixed(2)} Bs*\n`;
+                msg += `🇻🇪 Bolívares VES (Tasa ${tBs}): *${(netoUSD * tBs).toFixed(2)} Bs*\n`;
                 msg += `=====================================\n\n`;
 
                 window.open(`https://api.whatsapp.com/send?phone=${infoClienteAbiertoDinamico.tlf || '04247357549'}&text=${encodeURIComponent(msg)}`, '_blank');
@@ -2284,7 +2388,7 @@
 
                 let clienteValido = null;
                 if (user === "demo" && pass === "123456") {
-                    clienteValido = { id: "demo", nombre: "TCL TIENDA DEMO", user: "demo", pass: "123456", rubro: "TECNOLOGIA", dias: 365, tlf: "04247357549" };
+                    clienteValido = { id: "demo", nombre: "TUCOCEL C.A.", rif: "J-40392817-0", dir: "Cordero, Táchira - Venezuela", user: "demo", pass: "123456", rubro: "TECNOLOGIA", dias: 365, tlf: "0424-7357549" };
                 } else {
                     let listado = await obtenerClientesDesdeFirebase();
                     clienteValido = listado.find(c => c.user === user && c.pass === pass);
@@ -2310,16 +2414,62 @@
 
                 if(verParam) {
                     const contenedorPublico = $('vista-publica-dinamica');
+                    const entornoCore = $('entorno-aplicacion-core');
+                    
+                    if(entornoCore) entornoCore.classList.add('hidden');
+                    
                     if(contenedorPublico) {
                         contenedorPublico.classList.remove('hidden');
+                        
                         if(verParam === 'propuesta') {
-                            contenedorPublico.innerHTML = `<div class="max-w-2xl mx-auto space-y-6 py-10"><h1 class="text-3xl font-black text-blue-400">🚀 Propuesta Comercial TCL Inventario Máster</h1><p class="text-slate-300">Optimice la facturación multimoneda, control de inventario y cierres diarios de su comercio con nuestra infraestructura SaaS probada y de alto rendimiento.</p><button onclick="window.close()" class="bg-blue-600 text-white font-bold px-6 py-3 rounded-xl uppercase">Cerrar Ventana</button></div>`;
+                            contenedorPublico.innerHTML = `
+                            <div class="max-w-4xl mx-auto space-y-6 py-10 px-4">
+                                <div class="text-center space-y-3">
+                                    <span class="bg-blue-500/10 text-blue-400 border border-blue-500/20 text-xs font-black px-3 py-1 rounded-full uppercase"><i class="fa-solid fa-rocket animate-pulse"></i> Presentación Corporativa 2026</span>
+                                    <h1 class="text-3xl font-black text-white uppercase">TCL INVENTARIO MÁSTER</h1>
+                                    <p class="text-amber-400 font-bold text-xs uppercase font-mono">🔒 Infraestructura SaaS de Control y Despacho Comercial</p>
+                                </div>
+                                <div class="bg-slate-900 border border-blue-500/20 p-5 rounded-3xl space-y-2 text-justify">
+                                    <h4 class="text-xs font-black text-white uppercase">Operación 100% Legítima y Segura</h4>
+                                    <p class="text-slate-300 text-xs leading-relaxed">TCL Inventario Máster actúa estrictamente como un software privado para la optimización contable, organización de almacenes y verificación interna. La plataforma emite de forma limpia <strong>Notas de Despacho sin valor fiscal</strong>, permitiendo un control milimétrico de tus activos, cajas y reportes de forma autónoma.</p>
+                                </div>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                                    <div class="bg-slate-900 border border-slate-800 p-4 rounded-2xl space-y-1"><b class="text-amber-400 block uppercase"><i class="fa-solid fa-print"></i> Impresión Suprema Universal</b><p class="text-slate-400">Autodetecta tickeras térmicas, impresoras Bluetooth u oficina (Epson, HP, Canon) ahorrando hasta 50% de papel.</p></div>
+                                    <div class="bg-slate-900 border border-slate-800 p-4 rounded-2xl space-y-1"><b class="text-emerald-400 block uppercase"><i class="fa-solid fa-paper-plane"></i> Despacho Digital Instantáneo</b><p class="text-slate-400">Envío automático de comprobantes estructurados con emojis al WhatsApp del comprador.</p></div>
+                                    <div class="bg-slate-900 border border-slate-800 p-4 rounded-2xl space-y-1"><b class="text-blue-400 block uppercase"><i class="fa-solid fa-shield-halved"></i> Protección Antifraude</b><p class="text-slate-400">Prohíbe eliminación arbitraria. Correcciones mediante Nota de Crédito Interna para auditoría transparente.</p></div>
+                                    <div class="bg-slate-900 border border-slate-800 p-4 rounded-2xl space-y-1"><b class="text-purple-400 block uppercase"><i class="fa-solid fa-barcode"></i> Multi-IMEI / Dual SIM</b><p class="text-slate-400">Rastreo especializado de seriales tecnológicos y equipos celulares.</p></div>
+                                </div>
+                                <div class="bg-slate-900 border border-slate-800 p-5 rounded-3xl space-y-3">
+                                    <h4 class="text-xs font-black text-amber-400 uppercase"><i class="fa-solid fa-chart-line mr-1"></i> Simulador de Ahorro</h4>
+                                    <input type="range" min="100" max="2000" value="500" step="50" oninput="window.calcularAhorroInteractivoVenta(this.value)" class="w-full accent-blue-600 bg-slate-950 h-2 rounded-lg cursor-pointer">
+                                    <div class="grid grid-cols-3 gap-2 text-center font-mono text-xs">
+                                        <div class="bg-slate-950 p-2 rounded-xl"><span class="block text-[8px] text-slate-500 uppercase">Volumen</span><b class="text-white" id="val-sim-notas">500 Notas</b></div>
+                                        <div class="bg-slate-950 p-2 rounded-xl"><span class="block text-[8px] text-blue-400 uppercase">Tiempo Ahorrado</span><b class="text-blue-400" id="val-sim-tiempo">16 Horas</b></div>
+                                        <div class="bg-slate-950 p-2 rounded-xl"><span class="block text-[8px] text-emerald-400 uppercase">Papel Ahorrado</span><b class="text-emerald-400" id="val-sim-dinero">$35.00 USD</b></div>
+                                    </div>
+                                </div>
+                                <div class="text-center pt-4"><button onclick="window.close()" class="bg-blue-600 hover:bg-blue-700 text-white font-black text-xs px-6 py-3 rounded-xl uppercase">Cerrar Ventana</button></div>
+                            </div>`;
                         } else if(verParam === 'catalogo') {
-                            contenedorPublico.innerHTML = `<div class="max-w-2xl mx-auto space-y-6 py-10"><h1 class="text-3xl font-black text-emerald-400">📦 Catálogo en Vivo de Funcionalidades</h1><p class="text-slate-300">Conozca todos los módulos activos: POS multimoneda, lector por cámara, control de créditos y reportes automatizados vía WhatsApp.</p><button onclick="window.close()" class="bg-emerald-600 text-white font-bold px-6 py-3 rounded-xl uppercase">Cerrar Ventana</button></div>`;
+                            contenedorPublico.innerHTML = `
+                            <div class="max-w-4xl mx-auto space-y-6 py-10 px-4">
+                                <div class="text-center space-y-2">
+                                    <span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-xs font-black px-3 py-1 rounded-full uppercase"><i class="fa-solid fa-eye text-xs animate-pulse"></i> Catálogo de Experiencia Real</span>
+                                    <h1 class="text-3xl font-black text-white uppercase">SISTEMA EN ACCIÓN</h1>
+                                    <p class="text-slate-400 text-xs">Modernice su mostrador y asegure el control total de su negocio.</p>
+                                </div>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                                    <div class="bg-slate-900 border border-slate-800 p-5 rounded-3xl space-y-2"><b class="text-amber-400 text-sm block uppercase"><i class="fa-solid fa-print"></i> Tickera Térmica Compacta</b><p class="text-slate-300">Adaptación milimétrica para tickeras de 80mm y 58mm Bluetooth con corte automático de papel.</p></div>
+                                    <div class="bg-slate-900 border border-slate-800 p-5 rounded-3xl space-y-2"><b class="text-emerald-400 text-sm block uppercase"><i class="fa-solid fa-paper-plane"></i> Comprobante WhatsApp</b><p class="text-slate-300">Mensajes corporativos elegantes con conversión cambiaria al instante.</p></div>
+                                    <div class="bg-slate-900 border border-slate-800 p-5 rounded-3xl space-y-2"><b class="text-purple-400 text-sm block uppercase"><i class="fa-solid fa-sliders"></i> Interfaz Camaleónica</b><p class="text-slate-300">Cambio rápido entre Modo Telefonía/IMEI y Modo Comercio General (Bodegones, Farmacias).</p></div>
+                                    <div class="bg-slate-900 border border-slate-800 p-5 rounded-3xl space-y-2"><b class="text-blue-400 text-sm block uppercase"><i class="fa-solid fa-wallet"></i> Contado y Crédito</b><p class="text-slate-300">Rastreo exacto de abonos iniciales, saldos pendientes y plazos de pago.</p></div>
+                                </div>
+                                <div class="text-center pt-4"><button onclick="window.close()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-black text-xs px-6 py-3 rounded-xl uppercase">Cerrar Ventana</button></div>
+                            </div>`;
                         } else if(verParam === 'propuesta_vendedor') {
-                            contenedorPublico.innerHTML = `<div class="max-w-2xl mx-auto space-y-6 py-10"><h1 class="text-3xl font-black text-purple-400">💼 Oportunidad para Promotores Oficiales</h1><p class="text-slate-300">Gane comisiones recurrentes distribuyendo la plataforma de facturación más sólida del mercado en su región.</p><button onclick="window.close()" class="bg-purple-600 text-white font-bold px-6 py-3 rounded-xl uppercase">Cerrar Ventana</button></div>`;
+                            contenedorPublico.innerHTML = `<div class="max-w-2xl mx-auto space-y-6 py-10 px-4"><h1 class="text-3xl font-black text-purple-400">💼 Oportunidad para Promotores Oficiales</h1><p class="text-slate-300 text-xs">Gane comisiones recurrentes distribuyendo la plataforma de facturación más sólida del mercado en su región.</p><button onclick="window.close()" class="bg-purple-600 text-white font-bold px-6 py-3 rounded-xl uppercase text-xs">Cerrar Ventana</button></div>`;
                         } else if(verParam === 'contrato_promotor') {
-                            contenedorPublico.innerHTML = `<div class="max-w-2xl mx-auto space-y-6 py-10"><h1 class="text-3xl font-black text-amber-400">📜 Contrato Digital de Acreditación</h1><p class="text-slate-300">Complete sus datos para formalizar su alianza comercial como promotor autorizado.</p><button onclick="window.close()" class="bg-amber-500 text-slate-950 font-black px-6 py-3 rounded-xl uppercase">Cerrar Ventana</button></div>`;
+                            contenedorPublico.innerHTML = `<div class="max-w-2xl mx-auto space-y-6 py-10 px-4"><h1 class="text-3xl font-black text-amber-400">📜 Contrato Digital de Acreditación</h1><p class="text-slate-300 text-xs">Complete sus datos para formalizar su alianza comercial como promotor autorizado.</p><button onclick="window.close()" class="bg-amber-500 text-slate-950 font-black px-6 py-3 rounded-xl uppercase text-xs">Cerrar Ventana</button></div>`;
                         }
                         return;
                     }
