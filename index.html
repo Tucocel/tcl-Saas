@@ -1329,9 +1329,9 @@
                 </div>
             </div>
 
-            <!-- FICHA DE REGISTRO -->
+            <!-- FICHA DE REGISTRO CON KYC (FOTO DE CÉDULA OBLIGATORIA) -->
             <form onsubmit="event.preventDefault(); window.procesarContratoClienteComercio();" class="space-y-4 pt-4 border-t border-slate-800 text-xs">
-                <h2 class="text-xs font-black text-purple-400 uppercase tracking-widest block"><i class="fa-solid fa-store"></i> Ficha del Establecimiento Comercial (Suscripción Activa)</h2>
+                <h2 class="text-xs font-black text-purple-400 uppercase tracking-widest block"><i class="fa-solid fa-store"></i> Ficha del Establecimiento Comercial y Verificación KYC</h2>
                 
                 <div class="space-y-3 font-bold text-white">
                     <div>
@@ -1369,6 +1369,11 @@
                                 <option value="365 DIAS">Plan 1 Año — Máster Total</option>
                             </select>
                         </div>
+                    </div>
+
+                    <div class="space-y-2 pt-2 bg-slate-950 p-3 rounded-xl border border-slate-800">
+                        <label class="text-[9px] text-purple-400 uppercase ml-1 block tracking-wider"><i class="fa-solid fa-camera"></i> Adjuntar Soporte Digital de Identidad (Foto de Cédula del Dueño/Representante) *</label>
+                        <input type="file" id="cli-file-cedula" accept="image/*" required class="w-full text-slate-400 file:mr-3 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-[10px] file:font-black file:bg-purple-600/10 file:text-purple-400 file:cursor-pointer">
                     </div>
                 </div>
 
@@ -3163,9 +3168,10 @@ window.procesarContratoClienteComercio = async function() {
             const dir = document.getElementById('cli-input-dir').value.trim().toUpperCase();
             const user = document.getElementById('cli-input-user').value.trim().toLowerCase();
             const plan = document.getElementById('cli-input-plan').value;
+            const fileInput = document.getElementById('cli-file-cedula');
 
-            if(!nombre || !rif || !tlf || !dir || !user) {
-                alert("⚠️ Todos los campos son obligatorios para formalizar el arrendamiento de la licencia.");
+            if(!nombre || !rif || !tlf || !dir || !user || !fileInput || !fileInput.files[0]) {
+                alert("⚠️ Todos los campos y la foto adjunta de la cédula son obligatorios para formalizar la licencia.");
                 return;
             }
 
