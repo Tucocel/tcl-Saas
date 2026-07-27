@@ -1167,7 +1167,7 @@
                 <span class="bg-purple-500/10 text-purple-400 border border-purple-500/20 text-[10px] font-black tracking-widest uppercase px-4 py-1.5 rounded-full inline-block">
                     CONVENIO PRIVADO DE PRESTACIÓN DE SERVICIOS DE VENDEDORES INDEPENDIENTES 2026
                 </span>
-                <h1 class="font-black text-2xl text-white tracking-tight uppercase">TCL SISTEMA MÁSTER</h1>
+                <h1 class="font-black text-2xl text-white tracking-tight uppercase">TCL TERMINAL CLIENTE</h1>
                 <p class="text-white text-xs tracking-wider font-medium">Estructura Tecnológica Prestada bajo la Responsabilidad de TUCOCEL C.A.</p>
             </div>
 
@@ -1296,7 +1296,7 @@
                 <span class="bg-purple-500/10 text-purple-400 border border-purple-500/20 text-[10px] font-black tracking-widest uppercase px-4 py-1.5 rounded-full inline-block">
                     CONTRATO DE ARRENDAMIENTO DE LICENCIA DE SOFTWARE COMERCIAL 2026
                 </span>
-                <h1 class="font-black text-2xl text-white tracking-tight uppercase">TCL SISTEMA MÁSTER</h1>
+                <h1 class="font-black text-2xl text-white tracking-tight uppercase">TCL TERMINAL CLIENTE</h1>
                 <p class="text-white text-xs tracking-wider font-medium">Estructura Tecnológica Prestada bajo la Responsabilidad de TUCOCEL C.A.</p>
             </div>
 
@@ -1336,33 +1336,33 @@
                 <div class="space-y-3 font-bold text-white">
                     <div>
                         <label class="text-[9px] text-purple-400 uppercase ml-1 block mb-1">Nombre Comercial de la Empresa / Sucursal</label>
-                        <input type="text" id="cli-input-nombre" required placeholder="Ej: INVERSIONES RICO..." class="w-full border px-4 py-3 rounded-xl focus:outline-none">
+                        <input type="text" id="cli-input-nombre" required placeholder="Ej: INVERSIONES RICO..." class="input-dark text-slate-100 font-bold">
                     </div>
                     
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                         <div>
                             <label class="text-[9px] text-purple-400 uppercase ml-1 block mb-1">Cédula o RIF del Establecimiento</label>
-                            <input type="text" id="cli-input-rif" required placeholder="Ej: J-12345678-0" class="w-full border px-4 py-3 rounded-xl focus:outline-none font-mono">
+                            <input type="text" id="cli-input-rif" required placeholder="Ej: J-12345678-0" class="input-dark font-mono text-slate-100 font-bold">
                         </div>
                         <div>
                             <label class="text-[9px] text-purple-400 uppercase ml-1 block mb-1">WhatsApp de Contacto del Dueño</label>
-                            <input type="tel" id="cli-input-tlf" required placeholder="Ej: 04147357549" class="w-full border px-4 py-3 rounded-xl focus:outline-none font-mono">
+                            <input type="tel" id="cli-input-tlf" required placeholder="Ej: 04147357549" class="input-dark font-mono text-slate-100 font-bold">
                         </div>
                     </div>
 
                     <div>
                         <label class="text-[9px] text-purple-400 uppercase ml-1 block mb-1">Dirección Física de la Tienda</label>
-                        <input type="text" id="cli-input-dir" required placeholder="Ej: Cordero, Municipio Cárdenas, Táchira..." class="w-full border px-4 py-3 rounded-xl focus:outline-none">
+                        <input type="text" id="cli-input-dir" required placeholder="Ej: Cordero, Municipio Cárdenas, Táchira..." class="input-dark text-slate-100 font-bold">
                     </div>
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                         <div>
                             <label class="text-[9px] text-purple-400 uppercase ml-1 block mb-1">Usuario Asignado de Acceso</label>
-                            <input type="text" id="cli-input-user" required placeholder="Ej: rico" class="w-full border px-4 py-3 rounded-xl focus:outline-none font-mono text-purple-400">
+                            <input type="text" id="cli-input-user" required placeholder="Ej: rico" class="input-dark font-mono text-purple-400 font-black">
                         </div>
                         <div>
                             <label class="text-[9px] text-purple-400 uppercase ml-1 block mb-1">Plan de Suscripción Contratado</label>
-                            <select id="cli-input-plan" class="w-full border px-4 py-2.5 rounded-xl focus:outline-none font-bold text-white bg-slate-950">
+                            <select id="cli-input-plan" class="input-dark font-bold text-white bg-slate-950">
                                 <option value="30 DIAS">Plan 1 Mes — Prepagado</option>
                                 <option value="90 DIAS">Plan 3 Meses — Profesional</option>
                                 <option value="180 DIAS">Plan 6 Meses — Corporativo</option>
@@ -2272,6 +2272,7 @@
                         if ($('bloque-login-master')) $('bloque-login-master').classList.add('hidden');
                         if ($('vista-entorno-cliente')) $('vista-entorno-cliente').classList.remove('hidden');
                         if ($('cli-bloque-login')) $('cli-bloque-login').classList.remove('hidden');
+                        if ($('login-titulo-dinamico')) $('login-titulo-dinamico').innerText = match.nombre || "TERMINAL DE SUCURSAL";
                         if ($('comercio-user-field')) {
                             $('comercio-user-field').value = userQuery;
                             setTimeout(() => {
