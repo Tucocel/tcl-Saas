@@ -2185,7 +2185,16 @@
                 $('entorno-aplicacion-core').classList.add('hidden');
                 if($('vista-publica-contrato-cliente')) $('vista-publica-contrato-cliente').classList.remove('hidden');
             } else if (userQuery) {
-                if ($('comercio-user-field')) $('comercio-user-field').value = userQuery;
+                // REDIRECCIÓN AUTOMÁTICA AL PANEL DE ACCESO DEL CLIENTE
+                if ($('bloque-login-master')) $('bloque-login-master').classList.add('hidden');
+                if ($('vista-entorno-cliente')) $('vista-entorno-cliente').classList.remove('hidden');
+                if ($('cli-bloque-login')) $('cli-bloque-login').classList.remove('hidden');
+                if ($('comercio-user-field')) {
+                    $('comercio-user-field').value = userQuery;
+                    setTimeout(() => {
+                        if ($('comercio-pass-field')) $('comercio-pass-field').focus();
+                    }, 300);
+                }
             }
         });
 
@@ -4231,7 +4240,6 @@
             if(cleanTlf && !cleanTlf.startsWith('58')) cleanTlf = '58' + cleanTlf;
             window.open(`https://api.whatsapp.com/send?phone=${cleanTlf}&text=${encodeURIComponent(msg)}`, '_blank');
         };
-    </script>
-
-    
-</body></html>
+    </script>  
+</body>
+</html>
