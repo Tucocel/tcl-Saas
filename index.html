@@ -496,7 +496,7 @@
 
                 <!-- BOTONERA DE CANALES DE PAGO DISPONIBLES -->
                 <div class="space-y-3 max-w-xl mx-auto pt-2">
-                    <span class="text-[9px] font-black text-slate-500 uppercase tracking-widest block">Canales de Liquidación Soportados</span>
+                    <span class="text-[9px] font-black text-slate-500 uppercase tracking-widest block">Puedes Pagar tu Servicio de Membresía con los Siguientes Medios de Pago</span>
                     <div class="grid grid-cols-3 sm:grid-cols-6 gap-2 text-[10px] font-bold text-slate-400">
                         <div class="bg-slate-900 border border-slate-800 p-2 rounded-xl flex flex-col items-center gap-1"><i class="fa-solid fa-mobile-screen text-emerald-400 text-sm"></i> Pago Móvil</div>
                         <div class="bg-slate-900 border border-slate-800 p-2 rounded-xl flex flex-col items-center gap-1"><i class="fa-solid fa-money-bill-1 text-green-500 text-sm"></i> Efectivo $</div>
@@ -2622,9 +2622,12 @@
             const contratoBox = $('cfg-cliente-contrato-kyc-embed-box');
             if(contratoBox) {
                 if(contrato_firmado && contrato_firmado !== "false") {
-                    contratoBox.innerHTML = "<div class='border border-emerald-500/30 bg-emerald-950/20 p-2 rounded-xl text-emerald-400 font-sans'><b>🔒 CONTRATO DIGITAL FIRMADO</b><br>Propietario: " + cleanHTMLInput(owner_name) + "</div>";
+                    contratoBox.innerHTML = `<div onclick="window.generarHojaBlancaContratoCliente('${id}')" class='border border-emerald-500/40 bg-emerald-950/40 hover:bg-emerald-900/40 cursor-pointer p-3 rounded-xl text-emerald-400 font-sans flex justify-between items-center transition-all shadow-md group'>
+                        <div><b class='text-xs uppercase flex items-center gap-1.5'><i class='fa-solid fa-file-contract text-emerald-400'></i> CONTRATO DIGITAL FIRMADO</b><p class='text-[9px] text-slate-300 mt-0.5'>Haga clic para ver documento completo, cédula e imprimir en hoja Carta/A4</p></div>
+                        <i class='fa-solid fa-print text-lg text-emerald-400 group-hover:scale-110 transition-transform'></i>
+                    </div>`;
                 } else {
-                    contratoBox.innerHTML = "<div class='border border-amber-500/30 bg-amber-950/20 p-2 rounded-xl text-amber-400 font-sans'><b>⚠️ CONTRATO PENDIENTE</b></div>";
+                    contratoBox.innerHTML = `<div class='border border-amber-500/30 bg-amber-950/20 p-2.5 rounded-xl text-amber-400 font-sans text-center'><b>⚠️ CONTRATO PENDIENTE DE FIRMA POR EL CLIENTE</b><p class='text-[8.5px] text-slate-400 mt-0.5'>Al ingresar por primera vez, el cliente aceptará y firmará digitalmente su contrato.</p></div>`;
                 }
             }
             $('btn-guardar-cliente-saas').onclick = async function() { await window.ejecutarGuardadoEdicionExistingObra(); };
@@ -2956,7 +2959,83 @@
             $('modal-hoja-blanca-promotor').classList.remove('hidden');
         };
 
-        window.procesarContratoClienteComercio = async function() {
+        
+        window.generarHojaBlancaContratoCliente = async function(clienteId) {
+            let listado = await obtenerClientesDesdeFirebase();
+            let c = listado.find(item => item.id === clienteId);
+            if (!c) return alert("❌ No se encontró el registro del cliente.");
+
+            const box = $('contenido-hoja-blanca-promotor');
+            if(!box) return;
+
+            const fechaFirmaStr = c.fechaFirmaContrato ? new Date(c.fechaFirmaContrato).toLocaleDateString() + ' ' + new Date(c.fechaFirmaContrato).toLocaleTimeString() : new Date().toLocaleDateString();
+
+            let htmlSheet = `
+                <div class="text-center space-y-1 border-b pb-4">
+                    <span class="bg-purple-100 text-purple-800 text-[10px] font-black px-3 py-1 rounded-full uppercase font-mono tracking-wider">CONTRATO DE ARRENDAMIENTO DE LICENCIA SAAS 2026</span>
+                    <h2 class="text-xl font-black uppercase text-slate-900 pt-1">TCL SISTEMA MÁSTER</h2>
+                    <p class="text-xs text-purple-700 font-bold uppercase">ESTRUCTURA TECNOLÓGICA PROPIEDAD DE TUCOCEL C.A. — RIF J-31378837-6</p>
+                    <p class="text-[9.5px] text-slate-500 font-mono">FECHA DE EMISIÓN / FIRMA: ${fechaFirmaStr}</p>
+                </div>
+
+                <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-2 text-xs font-sans text-slate-800">
+                    <h4 class="font-black text-purple-700 uppercase tracking-wider text-[11px] border-b pb-1">FICHA DEL ESTABLECIMIENTO COMERCIAL (LICENCIA ACTIVA)</h4>
+                    <div class="grid grid-cols-2 gap-3 font-mono text-[11px]">
+                        <div>
+                            <p><strong>COMERCIO:</strong> ${cleanHTMLInput(c.nombre)}</p>
+                            <p><strong>RIF / CÉDULA:</strong> ${cleanHTMLInput(c.rif || 'N/A')}</p>
+                            <p><strong>WHATSAPP:</strong> ${cleanHTMLInput(c.tlf || 'N/A')}</p>
+                        </div>
+                        <div>
+                            <p><strong>DIRECCIÓN:</strong> ${cleanHTMLInput(c.dir || 'N/A')}</p>
+                            <p><strong>USUARIO ID:</strong> <span class="text-purple-700 font-bold">${cleanHTMLInput(c.user)}</span></p>
+                            <p><strong>PLAN ACTIVADO:</strong> ${cleanHTMLInput(c.dias || 365)} Días de Membresía</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-3 text-slate-700 text-xs text-justify leading-relaxed font-sans border-t border-b py-4">
+                    <h4 class="font-black text-slate-900 uppercase tracking-wider text-xs text-center mb-2">CLÁUSULAS Y REGULACIONES DE LICENCIA PRIVADA</h4>
+                    <p><strong>PRIMERA: OBJETO DEL CONTRATO (ALQUILER DE SOFTWARE).</strong> El objeto del presente contrato es otorgar al cliente una licencia de uso PRIVADA, TEMPORAL Y REVOCABLE para operar el programa informático de administración de mostrador TCL Sistema Máster. Este acceso se concede bajo la modalidad de SUSCRIPCIÓN PREPAGADA ALQUILADA, por los días exactos contratados en el plan de activación, obligándose el cliente a pagar las tasas vigentes para mantener el servicio activo en el servidor central.</p>
+                    
+                    <p><strong>SEGUNDA: CONDICIÓN DEL PROGRAMA (REGLAMENTO FISCAL SENIAT EN VENEZUELA).</strong> El cliente comerciante declara estar plenamente consciente de que este software es ÚNICA Y EXCLUSIVAMENTE UN PROGRAMA DE INVENTARIO INTERNO, AUDITORÍA DE SALDOS, CONTROL DE TURNOS Y ORDENACIÓN ADMINISTRATIVA DE MOSTRADOR. BAJO NINGÚN CONCEPTO O CIRCUNSTANCIA ESTE PROGRAMA PRETENDE SUSTITUIR, EVADIR O REEMPLAZAR LOS SISTEMAS DE FACTURACIÓN FISCAL HOMOLOGADOS NI LAS MÁQUINAS FISCALES EXIGIDAS POR LAS LEYES TRIBUTARIAS VIGENTES EN LA REPÚBLICA BAJO LA REGULACIÓN DEL SENIAT. El debido cumplimiento de los deberes formales fiscales corresponde de forma única, soberana y directa a EL ARRENDATARIO.</p>
+                    
+                    <p><strong>TERCERA: RESPONSABILIDAD DE DATOS Y FLUJOS CONTABLES DE CAJA.</strong> La empresa proveedora no asume ninguna responsabilidad civil, comercial ni legal por las discrepancias contables, pérdidas de inventario, descuadres de caja, faltantes de mercancía o errores cometidos por los cajeros o encargados del cliente durante el uso del terminal. El cliente es el ÚNICO CUSTODIO Y RESPONSABLE ABSOLUTO POR LA DATA, PRECIOS, SERIALES, REPORTES DE GASTOS Y DINERO FÍSICO O DIGITAL ingresado y administrado a través de su licencia privada.</p>
+                    
+                    <p><strong>CUARTA: SUSPENSIONES POR VENCIMIENTO DE PLAN PREPAGADO.</strong> El cliente acepta que el sistema opera con un contador automático de tiempo en la nube. Al expirar los días del plan contratado, EL TERMINAL DE CAJA SE BLOQUEARÁ DE MANERA INMEDIATA E IRREVERSIBLE, impidiendo el proceso de nuevas notas de entrega en el mostrador. Para reactivar el entorno y recuperar los accesos de stock, el arrendatario debe tramitar su recibo de renovación únicamente a través del número máster oficial de soporte centralizado: 0424-7357549 o por el correo electrónico autorizado: TCLSISTEMAMASTER@GMAIL.COM.</p>
+                </div>
+
+                <div class="bg-slate-900 text-white p-4 rounded-2xl font-mono text-xs space-y-2 text-center">
+                    <div class="flex justify-center items-center gap-2 text-emerald-400 font-bold text-sm">
+                        <i class="fa-solid fa-signature"></i> CONTRATO DIGITAL FIRMADO Y VALIDADO EN LA NUBE
+                    </div>
+                    <p class="text-[10px] text-slate-400">Firmado electrónicamente por la representación legal de ${cleanHTMLInput(c.nombre)} [RIF: ${cleanHTMLInput(c.rif || 'N/A')}]</p>
+                    <p class="text-[9px] text-slate-500">Aceptación registrada bajo IP e Infraestructura Inalterable de Tucocel C.A.</p>
+                </div>
+
+                <div class="text-[8px] text-slate-500 text-center uppercase tracking-wider pt-2 font-mono">
+                    Documento de Resguardo Legal Impreso desde la Central Administrativa de Tucocel C.A. RIF J-31378837-6
+                </div>
+            `;
+
+            box.innerHTML = htmlSheet;
+
+            let cleanTlf = c.tlf ? c.tlf.replace(/\D/g, '') : '';
+            if(cleanTlf && !cleanTlf.startsWith('58')) cleanTlf = '58' + cleanTlf;
+
+            let wsMsg = `📜 *DOCUMENTO DE CONTRATO FIRMADO — ${c.nombre}*\n\nLicencia: TCL Sistema Máster\nUsuario ID: ${c.user}\nEstatus: Firmado y Vigente\n\n_Tucocel C.A. RIF J-31378837-6_`;
+
+            if($('btn-ws-hoja-promotor')) {
+                $('btn-ws-hoja-promotor').onclick = function() {
+                    window.open(`https://api.whatsapp.com/send?phone=${cleanTlf}&text=${encodeURIComponent(wsMsg)}`, '_blank');
+                };
+            }
+
+            $('modal-hoja-blanca-promotor').classList.remove('hidden');
+        };
+
+
+window.procesarContratoClienteComercio = async function() {
             const nombre = document.getElementById('cli-input-nombre').value.trim().toUpperCase();
             const rif = document.getElementById('cli-input-rif').value.trim().toUpperCase();
             const tlf = document.getElementById('cli-input-tlf').value.trim();
@@ -2997,6 +3076,16 @@
 
             alert("🔒 Contrato firmado digitalmente con éxito. Se enviará el comprobante formal a la administración.");
             window.open(`https://api.whatsapp.com/send?phone=584247357549&text=${encodeURIComponent(msg)}`, '_blank');
+
+            if (window.clienteLoginPendienteFirma) {
+                window.clienteLoginPendienteFirma.contrato_firmado = true;
+                infoClienteAbiertoDinamico = window.clienteLoginPendienteFirma;
+                window.clienteLoginPendienteFirma = null;
+                if($('vista-publica-contrato-cliente')) $('vista-publica-contrato-cliente').classList.add('hidden');
+                if($('vista-entorno-cliente')) $('vista-entorno-cliente').classList.remove('hidden');
+                await descargarEstructuraInventarioYGastosFirebase();
+                activarTerminalDeCajaExitoso();
+            }
         };
 
 
@@ -3082,6 +3171,8 @@
             window.open(`https://api.whatsapp.com/send?phone=${cleanTlf}&text=${encodeURIComponent(msg)}`, '_blank');
         };
 
+        window.clienteLoginPendienteFirma = null;
+
         window.comprobarEstatusContratoClienteLogin = async function() {
             const userVal = $('comercio-user-field').value.trim().toLowerCase();
             const passVal = $('comercio-pass-field').value.trim();
@@ -3099,6 +3190,28 @@
                 }
 
                 infoClienteAbiertoDinamico = match;
+
+                // VERIFICACIÓN DE CONTRATO OBLIGATORIO DE PRIMERA ENTRADA
+                if (!match.contrato_firmado && match.user !== "demo") {
+                    window.clienteLoginPendienteFirma = match;
+                    
+                    // Ocultar entorno cliente y mostrar pantalla de contrato de arrendamiento
+                    if($('vista-entorno-cliente')) $('vista-entorno-cliente').classList.add('hidden');
+                    if($('bloque-login-master')) $('bloque-login-master').classList.add('hidden');
+                    if($('entorno-aplicacion-core')) $('entorno-aplicacion-core').classList.add('hidden');
+                    if($('vista-publica-contrato-cliente')) $('vista-publica-contrato-cliente').classList.remove('hidden');
+
+                    // Pre-llenar ficha del contrato con los datos creados previamente por la administración
+                    if($('cli-input-nombre')) $('cli-input-nombre').value = match.nombre || '';
+                    if($('cli-input-rif')) $('cli-input-rif').value = match.rif || '';
+                    if($('cli-input-tlf')) $('cli-input-tlf').value = match.tlf || '';
+                    if($('cli-input-dir')) $('cli-input-dir').value = match.dir || '';
+                    if($('cli-input-user')) $('cli-input-user').value = match.user || '';
+
+                    alert("📜 BIENVENIDO: Al ser su primer ingreso, debe leer y aceptar el Contrato de Licencia para activar su terminal.");
+                    return;
+                }
+
                 await descargarEstructuraInventarioYGastosFirebase();
                 activarTerminalDeCajaExitoso();
             } catch(e) {
