@@ -1444,11 +1444,42 @@
     </div>
 
     <!-- MODAL: BASE DE CLIENTES SUSCRITOS -->
+    
+    <!-- MODAL DE ALERTA MATUTINA DE TASA FIJA -->
+    <div id="modal-alerta-tasa-matutina" class="fixed inset-0 bg-slate-950/90 backdrop-blur-md z-[11950] p-4 flex items-center justify-center hidden">
+        <div class="bg-slate-900 border border-amber-500/40 w-full max-w-sm rounded-3xl overflow-hidden shadow-2xl p-6 text-center space-y-4 glow-border">
+            <div class="w-16 h-16 bg-amber-500/10 border border-amber-500/20 text-amber-400 rounded-2xl flex items-center justify-center mx-auto text-3xl">
+                <i class="fa-solid fa-coins animate-bounce"></i>
+            </div>
+            <div class="space-y-1">
+                <h3 class="font-black text-sm text-white uppercase tracking-wider">Aviso Matutino de Tasa Fija</h3>
+                <p class="text-amber-400 font-bold font-mono text-xs">Apertura de Caja del Día</p>
+            </div>
+            <p class="text-slate-300 text-xs leading-relaxed text-justify">
+                Primera apertura del día detectada. Por favor verifique y fije las tasas de cambio de Pesos (COP) y Bolívares (Bs) que regirán las operaciones de hoy.
+            </p>
+            <div class="grid grid-cols-2 gap-2 bg-slate-950 p-3 rounded-2xl border border-slate-800 text-white text-xs font-mono">
+                <div>
+                    <label class="text-[8px] text-amber-400 uppercase font-bold block mb-1">Tasa COP</label>
+                    <input type="number" id="matutina-tasa-cop" class="w-full bg-slate-900 border border-slate-700 text-center font-black text-amber-400 py-1.5 rounded-xl focus:outline-none" value="3900">
+                </div>
+                <div>
+                    <label class="text-[8px] text-emerald-400 uppercase font-bold block mb-1">Tasa Bs</label>
+                    <input type="number" id="matutina-tasa-bs" class="w-full bg-slate-900 border border-slate-700 text-center font-black text-emerald-400 py-1.5 rounded-xl focus:outline-none" value="40">
+                </div>
+            </div>
+            <button onclick="window.confirmarTasasMatutinas()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-black text-xs py-3 rounded-xl uppercase tracking-wider shadow">Confirmar y Fijar Tasas 🔒</button>
+        </div>
+    </div>
+
     <div id="modal-sub-lista-comercios" class="fixed inset-0 bg-slate-950/90 backdrop-blur-sm z-50 p-4 flex items-center justify-center hidden">
         <div class="bg-slate-900 border border-slate-800 w-full max-w-4xl rounded-3xl overflow-hidden shadow-2xl flex flex-col max-h-[85vh]">
             <div class="bg-slate-950 px-4 py-3 border-b border-slate-800 flex justify-between items-center text-white font-bold text-xs uppercase tracking-wider">
                 <span><i class="fa-solid fa-store text-blue-400 mr-1"></i> Base de Clientes Suscritos</span>
                 <button onclick="document.getElementById('modal-sub-lista-comercios').classList.add('hidden')" class="text-slate-400 hover:text-white bg-slate-950 border border-slate-800 w-7 h-7 rounded-xl flex items-center justify-center"><i class="fa-solid fa-xmark text-xs"></i></button>
+            </div>
+            <div class="px-4 py-2.5 bg-slate-950 border-b border-slate-800">
+                <input type="text" id="input-buscar-cliente-master" onkeyup="window.renderizarGridClientesMasterFiltrado()" placeholder="🔍 Buscar por Empresa, Usuario ID, RIF o Promotor..." class="input-light font-mono">
             </div>
             <div class="p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 overflow-y-auto no-scrollbar" id="mosaico-clientes-grid-sub"></div>
             <div class="bg-slate-950 px-4 py-3 border-t border-slate-800 flex justify-end">
@@ -2052,7 +2083,7 @@
                     <select id="cfg-rango" class="input-dark"><option value="CLIENTE">Cliente Regular</option><option value="MASTER">Máster Supremo</option></select>
                     <select id="cfg-rubro" class="input-dark"><option value="TECNOLOGIA">Tecnología / IMEI</option><option value="GENERAL">Comercio General</option></select>
                 </div>
-                <div><input type="text" id="cfg-promotor-asignado" placeholder="Promotor Asignado" class="input-dark uppercase"></div>
+                <div><label class="text-[8px] text-slate-400 font-bold uppercase block mb-0.5">Promotor Asignado</label><select id="cfg-promotor-asignado" class="input-dark uppercase"><option value="">-- SIN PROMOTOR --</option></select></div>
                 <div class="grid grid-cols-4 gap-1.5 w-full">
                     <button onclick="window.asignarDiasSimulador(30, this)" class="tiempo-btn bg-slate-900 text-slate-300 text-[10px] py-2.5 font-bold rounded-xl transition-all">30 Días</button>
                     <button onclick="window.asignarDiasSimulador(90, this)" class="tiempo-btn bg-slate-900 text-slate-300 text-[10px] py-2.5 font-bold rounded-xl transition-all">90 Días</button>
@@ -2535,7 +2566,29 @@
             } catch(e) { console.error(e); }
         };
 
-        window.abrirModalCrearPerfil = function() {
+        
+        /* MEJORA 5: DESPLEGABLE DINÁMICO DE PROMOTORES */
+        window.cargarPromotoresDesplegableConfig = async function(valorSeleccionado = "") {
+            const selectPrm = $('cfg-promotor-asignado');
+            if(!selectPrm) return;
+            selectPrm.innerHTML = '<option value="">-- SIN PROMOTOR --</option>';
+            try {
+                const snapshotPromotores = await db.collection("tcl_saas_data").get();
+                snapshotPromotores.forEach(doc => {
+                    if(doc.id.startsWith("promotor_")) {
+                        let data = doc.data();
+                        let nombreP = data.owner_name ? data.owner_name.toUpperCase() : doc.id;
+                        let isSelected = (nombreP === valorSeleccionado.toUpperCase()) ? 'selected' : '';
+                        selectPrm.innerHTML += `<option value="${cleanHTMLInput(nombreP)}" ${isSelected}>${cleanHTMLInput(nombreP)}</option>`;
+                    }
+                });
+            } catch(e) {
+                console.error("Error al cargar desplegable de promotores:", e);
+            }
+        };
+
+        window.abrirModalCrearPerfil = async function() {
+            await window.cargarPromotoresDesplegableConfig();
             idSeleccionadoActual = "perfil-" + new Date().getTime();
             if($('cfg-nombre')) $('cfg-nombre').value = "";
             if($('cfg-rif')) $('cfg-rif').value = "";
@@ -2602,7 +2655,7 @@
             } catch(e) { console.error(e); }
         };
 
-        window.abrirConfiguracionCliente = function(id, nombre, rif, tlf, dir, redes, promotor, user, pass, dias, rango, rubro, owner_name, contrato_firmado) {
+        window.abrirConfiguracionCliente = async function(id, nombre, rif, tlf, dir, redes, promotor, user, pass, dias, rango, rubro, owner_name, contrato_firmado) {
             idSeleccionadoActual = id; 
             diasSimuladosValor = parseInt(dias) || 365;
             if($('cfg-modal-titulo')) $('cfg-modal-titulo').innerText = "CONFIGURAR ENTORNO SAAS";
@@ -2613,7 +2666,7 @@
             if($('cfg-redes')) $('cfg-redes').value = redes || ''; 
             if($('cfg-user')) $('cfg-user').value = user;
             if($('cfg-pass')) $('cfg-pass').value = pass; 
-            if($('cfg-promotor-asignado')) $('cfg-promotor-asignado').value = promotor || '';
+            await window.cargarPromotoresDesplegableConfig(promotor || '');
             if($('cfg-rango')) $('cfg-rango').value = rango || 'CLIENTE'; 
             if($('cfg-rubro')) $('cfg-rubro').value = rubro || 'GENERAL';
             if($('cfg-dias-display')) $('cfg-dias-display').innerText = `${diasSimuladosValor} Días`;
@@ -3092,9 +3145,69 @@ window.procesarContratoClienteComercio = async function() {
         window.abrirBalanceMensualModal = function() { alert("📊 Motor contable de suscripciones consolidando balances generales."); };
 
         window.abrirBovedaSubEntornosMasterModal = async function() {
+            window.listaClientesMasterCache = await obtenerClientesDesdeFirebase();
+            if ($('input-buscar-cliente-master')) $('input-buscar-cliente-master').value = "";
+            window.renderizarGridClientesMasterFiltrado();
+            $('modal-sub-lista-comercios').classList.remove('hidden');
+        };
+
+
+        /* MEJORA 3: ALERTA MATUTINA DE TASA FIJA */
+        window.verificarAlertaMatutinaTasa = function() {
+            try {
+                const hoyStr = new Date().toLocaleDateString();
+                const shopId = infoClienteAbiertoDinamico.id || 'demo';
+                const claveStorage = 'tcl_tasa_fijada_' + shopId + '_' + hoyStr;
+                if (!localStorage.getItem(claveStorage)) {
+                    const currentCop = $('tasa-cop') ? $('tasa-cop').value : 3900;
+                    const currentBs = $('tasa-bs') ? $('tasa-bs').value : 40;
+                    if ($('matutina-tasa-cop')) $('matutina-tasa-cop').value = currentCop;
+                    if ($('matutina-tasa-bs')) $('matutina-tasa-bs').value = currentBs;
+                    if ($('modal-alerta-tasa-matutina')) $('modal-alerta-tasa-matutina').classList.remove('hidden');
+                }
+            } catch(e) { console.error("Error en alerta matutina:", e); }
+        };
+
+        window.confirmarTasasMatutinas = function() {
+            try {
+                const copVal = $('matutina-tasa-cop').value;
+                const bsVal = $('matutina-tasa-bs').value;
+                if ($('tasa-cop')) $('tasa-cop').value = copVal;
+                if ($('tasa-bs')) $('tasa-bs').value = bsVal;
+                
+                const hoyStr = new Date().toLocaleDateString();
+                const shopId = infoClienteAbiertoDinamico.id || 'demo';
+                const claveStorage = 'tcl_tasa_fijada_' + shopId + '_' + hoyStr;
+                localStorage.setItem(claveStorage, 'true');
+                
+                if ($('modal-alerta-tasa-matutina')) $('modal-alerta-tasa-matutina').classList.add('hidden');
+                window.calcularTotalesSimulados();
+                alert("✅ Tasas COP/Bs fijadas con éxito para el día de hoy.");
+            } catch(e) { console.error(e); }
+        };
+
+        /* MEJORA 4: BUSCADOR EN TIEMPO REAL MÁSTER DE CLIENTES */
+        window.listaClientesMasterCache = [];
+
+        window.renderizarGridClientesMasterFiltrado = function() {
             const grid = $('mosaico-clientes-grid-sub'); if(!grid) return; grid.innerHTML = "";
-            let listado = await obtenerClientesDesdeFirebase();
+            const filtro = $('input-buscar-cliente-master') ? $('input-buscar-cliente-master').value.trim().toUpperCase() : "";
             
+            let listado = window.listaClientesMasterCache || [];
+            if (filtro) {
+                listado = listado.filter(c => 
+                    (c.nombre && c.nombre.toUpperCase().includes(filtro)) ||
+                    (c.user && c.user.toUpperCase().includes(filtro)) ||
+                    (c.rif && c.rif.toUpperCase().includes(filtro)) ||
+                    (c.promotor && c.promotor.toUpperCase().includes(filtro))
+                );
+            }
+
+            if (listado.length === 0) {
+                grid.innerHTML = `<p class="text-center text-slate-400 italic col-span-full py-8 text-xs">No se encontraron comercios que coincidan con el criterio de búsqueda.</p>`;
+                return;
+            }
+
             listado.forEach(c => {
                 const diasRestantesCalculados = window.calcularDiasRestantesSucursal(c);
                 const planOriginalTexto = c.dias ? `Plan ${c.dias} Días` : 'Plan Estándar';
@@ -3109,16 +3222,11 @@ window.procesarContratoClienteComercio = async function() {
                     textoDiasColor = "text-red-500 font-black";
                     iconoIcon = '<i class="fa-solid fa-ban text-[9px] mr-1"></i>';
                     alertCardBorder = "border-red-900/50 bg-red-950/20";
-                } else if (diasRestantesCalculados <= 3) {
-                    badgeColorClase = "bg-red-500/10 text-red-400 border-red-500/30 animate-bounce";
-                    textoDiasColor = "text-red-400 font-black";
+                } else if (diasRestantesCalculados <= 15) {
+                    badgeColorClase = "bg-red-500/20 text-red-400 border-red-500/40 animate-pulse";
+                    textoDiasColor = "text-red-500 font-black animate-pulse";
                     iconoIcon = '<i class="fa-solid fa-triangle-exclamation text-[9px] mr-1"></i>';
-                    alertCardBorder = "border-red-500/30";
-                } else if (diasRestantesCalculados <= 10) {
-                    badgeColorClase = "bg-amber-500/10 text-amber-400 border-amber-500/30";
-                    textoDiasColor = "text-amber-400 font-black";
-                    iconoIcon = '<i class="fa-solid fa-hourglass-half text-[9px] mr-1"></i>';
-                    alertCardBorder = "border-amber-500/30";
+                    alertCardBorder = "border-red-500/40 bg-red-950/20";
                 }
 
                 grid.innerHTML += `
@@ -3129,6 +3237,8 @@ window.procesarContratoClienteComercio = async function() {
                                 <span class="text-[8px] text-slate-500 uppercase font-mono">${cleanHTMLInput(c.user)}</span>
                             </div>
                             <h4 class="font-black text-white text-xs uppercase truncate pt-1">${cleanHTMLInput(c.nombre)}</h4>
+                            ${c.promotor ? `<p class="text-[8.5px] text-purple-400 font-mono">👤 Promotor: ${cleanHTMLInput(c.promotor)}</p>` : ''}
+                            ${c.rif ? `<p class="text-[8px] text-slate-500 font-mono">🆔 RIF: ${cleanHTMLInput(c.rif)}</p>` : ''}
                         </div>
                         <div class="flex justify-between items-end border-t border-slate-800/80 pt-2 mt-2">
                             <div>
@@ -3142,8 +3252,8 @@ window.procesarContratoClienteComercio = async function() {
                         </div>
                     </div>`;
             });
-            $('modal-sub-lista-comercios').classList.remove('hidden');
         };
+
 
         window.ingresarDirectoACajaDesdeMasterAdmin = async function(user, pass) {
             esMasterActivoSession = true; 
@@ -3181,15 +3291,34 @@ window.procesarContratoClienteComercio = async function() {
                 let listado = await obtenerClientesDesdeFirebase();
                 let match = listado.find(c => c.user === userVal && c.pass === passVal);
 
+                // DESTRUCCIÓN DE SESIONES FANTASMA: Si la sucursal fue eliminada desde el Máster
                 if (!match) {
                     if (userVal === "demo" && passVal === "123456") {
                         match = infoClienteAbiertoDinamico;
                     } else {
-                        return alert("❌ Credenciales de sucursal inválidas.");
+                        // Purga preventiva de memoria local y bloqueo de entrada
+                        localStorage.clear();
+                        sessionStorage.clear();
+                        window.registrarLogExterno && window.registrarLogExterno('ERROR', 'Intento de acceso a sucursal inexistente o eliminada.', userVal);
+                        return alert("🚫 ACCESO BLOQUEADO: La sucursal no existe o fue eliminada del sistema por el Administrador Máster.");
                     }
                 }
 
                 infoClienteAbiertoDinamico = match;
+
+                // CORTE INVIOLABLE EN DÍA 0: Bloqueo inmediato de acceso si los días restantes son 0 o menos
+                const diasRestantes = window.calcularDiasRestantesSucursal(match);
+                if (diasRestantes <= 0 && match.user !== "demo") {
+                    localStorage.clear();
+                    sessionStorage.clear();
+                    alert("⛔ SUSCRIPCIÓN VENCIDA (Día 0): Su periodo de servicio ha finalizado. El sistema se encuentra suspendido. Redirigiendo a soporte para renovación...");
+                    const cleanTlf = "584247357549";
+                    const msg = `🛍️ *SOLICITUD DE RENOVACIÓN DE TIENDA — ${match.nombre}*
+
+Hola Máster, mi terminal de caja ha caducado (Día 0). Necesito procesar la renovación de mi membresía. Usuario: *${match.user}*`;
+                    window.open(`https://api.whatsapp.com/send?phone=${cleanTlf}&text=${encodeURIComponent(msg)}`, '_blank');
+                    return;
+                }
 
                 // VERIFICACIÓN DE CONTRATO OBLIGATORIO DE PRIMERA ENTRADA
                 if (!match.contrato_firmado && match.user !== "demo") {
@@ -3409,6 +3538,22 @@ window.procesarContratoClienteComercio = async function() {
         }
 
         function activarTerminalDeCajaExitoso() {
+            const diasRestantes = window.calcularDiasRestantesSucursal(infoClienteAbiertoDinamico);
+
+            // CORTE INVIOLABLE EN DÍA 0: Verificación previa estricta
+            if (diasRestantes <= 0 && infoClienteAbiertoDinamico.user !== "demo") {
+                localStorage.clear();
+                sessionStorage.clear();
+                alert("⛔ SUSCRIPCIÓN VENCIDA (Día 0): El periodo de esta sucursal ha expirado. Contacte a soporte para renovar.");
+                const cleanTlf = "584247357549";
+                const msg = `🛍️ *SOLICITUD DE RENOVACIÓN DE TIENDA — ${infoClienteAbiertoDinamico.nombre}*
+
+Hola Máster, mi terminal de caja está vencido (Día 0). Necesito procesar la renovación. Usuario: *${infoClienteAbiertoDinamico.user}*`;
+                window.open(`https://api.whatsapp.com/send?phone=${cleanTlf}&text=${encodeURIComponent(msg)}`, '_blank');
+                window.location.reload();
+                return;
+            }
+
             $('cli-bloque-login').classList.add('hidden');
             $('cli-bloque-sistema').classList.remove('hidden');
             document.body.className = "bg-slate-50 text-slate-800 min-h-screen";
@@ -3419,23 +3564,25 @@ window.procesarContratoClienteComercio = async function() {
                 $('cli-panel-nombre').innerText = infoClienteAbiertoDinamico.nombre || "Tienda";
             }
             
-            const diasRestantes = window.calcularDiasRestantesSucursal(infoClienteAbiertoDinamico);
             if($('cli-panel-dias-conteo')) {
                 $('cli-panel-dias-conteo').innerText = diasRestantes > 0 ? (diasRestantes + " Días") : "VENCIDO";
-                if(diasRestantes <= 10) {
-                    $('cli-panel-dias-conteo').className = "text-amber-400 font-black animate-pulse";
+                // SEMÁFORO ROJO PARPADEANTE A LOS 15 DÍAS O MENOS
+                if(diasRestantes <= 15) {
+                    $('cli-panel-dias-conteo').className = "text-red-500 font-black animate-pulse";
                 } else {
                     $('cli-panel-dias-conteo').className = "text-slate-300 font-black";
                 }
             }
 
-            if (diasRestantes > 0 && diasRestantes <= 3) {
+            // MODAL PREVENTIVO DE ALERTA DE VENCIMIENTO (15 DÍAS O MENOS)
+            if (diasRestantes > 0 && diasRestantes <= 15) {
                 const msgBox = $('msg-alerta-dias-vencimiento');
-                if(msgBox) msgBox.innerText = `⚠️ ADVERTENCIA: A su suscripción le quedan estrictamente ${diasRestantes} día(s) de servicio activo.`;
+                if(msgBox) msgBox.innerText = `⚠️ ADVERTENCIA DE SEGURIDAD: A su suscripción le quedan estrictamente ${diasRestantes} día(s) de servicio activo. Por favor procese su renovación a tiempo.`;
                 $('modal-alerta-vencimiento-cliente').classList.remove('hidden');
             }
 
             window.cambiarModoDeDigitacionMostrador('LIBRE');
+            window.verificarAlertaMatutinaTasa();
             window.calcularTotalesSimulados();
         }
 
@@ -4285,10 +4432,12 @@ window.procesarContratoClienteComercio = async function() {
         };
 
         window.ejecutarBotonSalidaInteligente = function() {
+            document.body.className = "bg-slate-950 text-slate-100 min-h-screen";
             window.location.href = window.location.pathname;
         };
 
         window.regresarAlPanelSupremoMasterDesdeCualquierEntorno = function() {
+            document.body.className = "bg-slate-950 text-slate-100 min-h-screen";
             if($('vista-entorno-cliente')) $('vista-entorno-cliente').classList.add('hidden');
             if($('vista-master-admin')) $('vista-master-admin').classList.remove('hidden');
             if($('bloque-login-master')) $('bloque-login-master').classList.add('hidden');
@@ -4353,6 +4502,8 @@ window.procesarContratoClienteComercio = async function() {
             if(cleanTlf && !cleanTlf.startsWith('58')) cleanTlf = '58' + cleanTlf;
             window.open(`https://api.whatsapp.com/send?phone=${cleanTlf}&text=${encodeURIComponent(msg)}`, '_blank');
         };
-    </script>  
-</body>
-</html>
+    </script>
+
+    
+</body></html>
+
