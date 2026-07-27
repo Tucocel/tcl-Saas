@@ -1676,6 +1676,26 @@
                         <input type="password" id="comercio-pass-field" required="" placeholder="Contraseña" class="input-dark font-mono">
                         <button type="submit" class="btn-action-primary w-full py-3.5">Ingresar al Terminal</button>
                     </form>
+
+                <!-- AVISO INSTITUCIONAL DE LICENCIA Y SEGURIDAD -->
+                <div class="mt-4 p-3.5 bg-slate-900/90 border border-blue-500/20 rounded-2xl text-[10px] space-y-2 text-justify font-sans shadow-lg relative overflow-hidden">
+                    <div class="flex items-center gap-1.5 text-blue-400 font-extrabold uppercase tracking-wider text-[9.5px]">
+                        <i class="fa-solid fa-shield-halved text-xs"></i> <span>Aviso Institucional de Licencia y Servicio</span>
+                    </div>
+                    <p class="text-slate-300 leading-relaxed font-medium">
+                        Se informa a la representación legal de la empresa o sucursal que usted es el único custodio y responsable absoluto por la administración de precios, inventarios, cierres de caja y flujos contables dentro de esta plataforma.
+                    </p>
+                    <p class="text-slate-300 leading-relaxed font-medium border-t border-slate-800/80 pt-1.5">
+                        <strong class="text-amber-400">Modalidad SaaS:</strong> Recuerde que está adquiriendo un Servicio por Suscripción Alquilada. Este software de control de almacén interno no constituye venta de propiedad intelectual ni sustituye las obligaciones de máquinas o facturación fiscal reguladas por el SENIAT.
+                    </p>
+                    <div class="bg-slate-950/80 p-2 rounded-xl border border-slate-800 font-mono text-[9px] text-slate-400 space-y-1">
+                        <div class="flex justify-between items-center"><span class="text-slate-500 uppercase font-bold">Soporte Máster:</span> <b class="text-emerald-400 font-black">0424-7357549</b></div>
+                        <div class="flex justify-between items-center"><span class="text-slate-500 uppercase font-bold">Correo Oficial:</span> <b class="text-blue-400 font-black">tclsistemamaster@gmail.com</b></div>
+                    </div>
+                    <div class="text-[8px] text-slate-500 text-center uppercase tracking-widest pt-1 border-t border-slate-900 font-mono">
+                        Infraestructura Propiedad de Tucocel C.A. RIF J-31378837-6 🔒
+                    </div>
+                </div>
                 </div>
             </div>
 
@@ -2216,16 +2236,52 @@
                 $('entorno-aplicacion-core').classList.add('hidden');
                 if($('vista-publica-contrato-cliente')) $('vista-publica-contrato-cliente').classList.remove('hidden');
             } else if (userQuery) {
-                // REDIRECCIÓN AUTOMÁTICA AL PANEL DE ACCESO DEL CLIENTE
-                if ($('bloque-login-master')) $('bloque-login-master').classList.add('hidden');
-                if ($('vista-entorno-cliente')) $('vista-entorno-cliente').classList.remove('hidden');
-                if ($('cli-bloque-login')) $('cli-bloque-login').classList.remove('hidden');
-                if ($('comercio-user-field')) {
-                    $('comercio-user-field').value = userQuery;
-                    setTimeout(() => {
-                        if ($('comercio-pass-field')) $('comercio-pass-field').focus();
-                    }, 300);
-                }
+                // VERIFICACIÓN ESTRICTA EN SERVIDOR DE SUCURSAL Y CONTRATO AL ENTRAR POR LINK
+                (async function() {
+                    try {
+                        const listado = await obtenerClientesDesdeFirebase();
+                        const match = listado.find(c => c.user === userQuery.toLowerCase());
+                        
+                        if (!match) {
+                            localStorage.clear();
+                            sessionStorage.clear();
+                            if ($('entorno-aplicacion-core')) $('entorno-aplicacion-core').classList.add('hidden');
+                            alert("🚫 ACCESO BLOQUEADO: Esta cuenta o sucursal ha sido ELIMINADA del servidor. El enlace de acceso ya no es válido.");
+                            window.location.href = window.location.pathname;
+                            return;
+                        }
+
+                        infoClienteAbiertoDinamico = match;
+
+                        // Si la sucursal existe pero NO ha firmado contrato, forzar contrato pre-llenado
+                        if (!match.contrato_firmado) {
+                            window.clienteLoginPendienteFirma = match;
+                            if ($('entorno-aplicacion-core')) $('entorno-aplicacion-core').classList.add('hidden');
+                            if ($('vista-publica-contrato-cliente')) $('vista-publica-contrato-cliente').classList.remove('hidden');
+
+                            if ($('cli-input-nombre')) $('cli-input-nombre').value = match.nombre || '';
+                            if ($('cli-input-rif')) $('cli-input-rif').value = match.rif || '';
+                            if ($('cli-input-tlf')) $('cli-input-tlf').value = match.tlf || '';
+                            if ($('cli-input-dir')) $('cli-input-dir').value = match.dir || '';
+                            if ($('cli-input-user')) $('cli-input-user').value = match.user || '';
+                            alert("📜 BIENVENIDO: Al ser su primer ingreso, debe revisar y aceptar el Contrato de Licencia para activar su terminal.");
+                            return;
+                        }
+
+                        // Si ya está firmado, mostrar Login
+                        if ($('bloque-login-master')) $('bloque-login-master').classList.add('hidden');
+                        if ($('vista-entorno-cliente')) $('vista-entorno-cliente').classList.remove('hidden');
+                        if ($('cli-bloque-login')) $('cli-bloque-login').classList.remove('hidden');
+                        if ($('comercio-user-field')) {
+                            $('comercio-user-field').value = userQuery;
+                            setTimeout(() => {
+                                if ($('comercio-pass-field')) $('comercio-pass-field').focus();
+                            }, 300);
+                        }
+                    } catch(errQuery) {
+                        console.error("Error al validar link de acceso:", errQuery);
+                    }
+                })();
             }
         });
 
@@ -2537,7 +2593,18 @@
             let cleanTlf = tlf.replace(/\D/g, ''); if(!cleanTlf.startsWith('58')) cleanTlf = '58' + cleanTlf;
             
             const linkAcceso = `${window.location.href.split('?')[0]}?user=${user}`;
-            let msg = `🚀 ¡ACTIVACIÓN EXITOSA DE SUCURSAL! ✨\n\nBienvenido ${name} a nuestra infraestructura SaaS.\n\n🌐 Credenciales de Acceso:\n👉 Enlace: ${linkAcceso}\n👤 Usuario ID: ${user}\n🔑 Contraseña: ${pass}\n⏳ Cobertura: ${diasSimuladosValor} Días\n\n_Soporte Centralizado Tucocel C.A. RIF J-31378837-6_`;
+            let msg = `🏢 *NOTIFICACIÓN CORPORATIVA DE ACTIVACIÓN DE LICENCIA SAAS*\n\n`;
+            msg += `Estimada representación legal de *${name}*, le damos la bienvenida formal a la infraestructura informática *TCL INVENTARIO MÁSTER*.\n\n`;
+            msg += `🌐 *CREDENCIALES Y ENLACE DE ACCESO:*\n`;
+            msg += `👉 Enlace Directo: ${linkAcceso}\n`;
+            msg += `👤 Usuario ID: ${user}\n`;
+            msg += `🔑 Clave de Acceso: ${pass}\n`;
+            msg += `⏳ Cobertura del Plan: ${diasSimuladosValor} Días\n\n`;
+            msg += `--------------------------------------------------\n`;
+            msg += `⚠️ *AVISO INSTITUCIONAL DE RESPONSABILIDAD LEGAL:*\n`;
+            msg += `_Se informa que el cliente/usuario registrado es el único custodio y responsable absoluto por la administración de sus precios, resguardo de contraseñas, inventarios, cierres de caja y flujos contables generados dentro de este terminal. Al ingresar por primera vez, deberá aceptar y validar digitalmente el Contrato de Licencia Comercial._\n\n`;
+            msg += `📌 *Soporte Técnico y Central Administrativa:*\n`;
+            msg += `Tucocel C.A. RIF: J-31378837-6 | Teléfono Máster: 0424-7357549`;
             window.open(`https://api.whatsapp.com/send?phone=${cleanTlf}&text=${encodeURIComponent(msg)}`, '_blank');
         };
 
@@ -3291,53 +3358,47 @@ window.procesarContratoClienteComercio = async function() {
                 let listado = await obtenerClientesDesdeFirebase();
                 let match = listado.find(c => c.user === userVal && c.pass === passVal);
 
-                // DESTRUCCIÓN DE SESIONES FANTASMA: Si la sucursal fue eliminada desde el Máster
+                // DESTRUCCIÓN Y BLOQUEO INMEDIATO: Si la sucursal no existe o fue eliminada
                 if (!match) {
-                    if (userVal === "demo" && passVal === "123456") {
-                        match = infoClienteAbiertoDinamico;
-                    } else {
-                        // Purga preventiva de memoria local y bloqueo de entrada
-                        localStorage.clear();
-                        sessionStorage.clear();
-                        window.registrarLogExterno && window.registrarLogExterno('ERROR', 'Intento de acceso a sucursal inexistente o eliminada.', userVal);
-                        return alert("🚫 ACCESO BLOQUEADO: La sucursal no existe o fue eliminada del sistema por el Administrador Máster.");
-                    }
+                    localStorage.clear();
+                    sessionStorage.clear();
+                    window.registrarLogExterno && window.registrarLogExterno('ERROR', 'Intento de acceso a sucursal eliminada o inexistente.', userVal);
+                    alert("🚫 ESTA CUENTA O SUCURSAL HA SIDO ELIMINADA DEL SERVIDOR.\n\nEl acceso a esta licencia ha sido revocado. Para contratar o reactivar su terminal, contacte a la Administración Central.");
+                    window.location.href = window.location.pathname;
+                    return;
                 }
 
                 infoClienteAbiertoDinamico = match;
 
-                // CORTE INVIOLABLE EN DÍA 0: Bloqueo inmediato de acceso si los días restantes son 0 o menos
+                // CORTE EN DÍA 0: Bloqueo de acceso si venció el tiempo
                 const diasRestantes = window.calcularDiasRestantesSucursal(match);
-                if (diasRestantes <= 0 && match.user !== "demo") {
+                if (diasRestantes <= 0) {
                     localStorage.clear();
                     sessionStorage.clear();
                     alert("⛔ SUSCRIPCIÓN VENCIDA (Día 0): Su periodo de servicio ha finalizado. El sistema se encuentra suspendido. Redirigiendo a soporte para renovación...");
                     const cleanTlf = "584247357549";
-                    const msg = `🛍️ *SOLICITUD DE RENOVACIÓN DE TIENDA — ${match.nombre}*
-
-Hola Máster, mi terminal de caja ha caducado (Día 0). Necesito procesar la renovación de mi membresía. Usuario: *${match.user}*`;
+                    const msg = `🛍️ *SOLICITUD DE RENOVACIÓN DE TIENDA — ${match.nombre}*\n\nHola Máster, mi terminal de caja ha caducado (Día 0). Necesito procesar la renovación de mi membresía. Usuario: *${match.user}*`;
                     window.open(`https://api.whatsapp.com/send?phone=${cleanTlf}&text=${encodeURIComponent(msg)}`, '_blank');
+                    window.location.href = window.location.pathname;
                     return;
                 }
 
-                // VERIFICACIÓN DE CONTRATO OBLIGATORIO DE PRIMERA ENTRADA
-                if (!match.contrato_firmado && match.user !== "demo") {
+                // VERIFICACIÓN INVIOLABLE DE CONTRATO OBLIGATORIO PARA TODAS LAS CUENTAS
+                if (!match.contrato_firmado) {
                     window.clienteLoginPendienteFirma = match;
                     
-                    // Ocultar entorno cliente y mostrar pantalla de contrato de arrendamiento
                     if($('vista-entorno-cliente')) $('vista-entorno-cliente').classList.add('hidden');
                     if($('bloque-login-master')) $('bloque-login-master').classList.add('hidden');
                     if($('entorno-aplicacion-core')) $('entorno-aplicacion-core').classList.add('hidden');
                     if($('vista-publica-contrato-cliente')) $('vista-publica-contrato-cliente').classList.remove('hidden');
 
-                    // Pre-llenar ficha del contrato con los datos creados previamente por la administración
                     if($('cli-input-nombre')) $('cli-input-nombre').value = match.nombre || '';
                     if($('cli-input-rif')) $('cli-input-rif').value = match.rif || '';
                     if($('cli-input-tlf')) $('cli-input-tlf').value = match.tlf || '';
                     if($('cli-input-dir')) $('cli-input-dir').value = match.dir || '';
                     if($('cli-input-user')) $('cli-input-user').value = match.user || '';
 
-                    alert("📜 BIENVENIDO: Al ser su primer ingreso, debe leer y aceptar el Contrato de Licencia para activar su terminal.");
+                    alert("📜 BIENVENIDO: Para activar formalmente su terminal, debe revisar y aceptar el Contrato de Licencia Comercial.");
                     return;
                 }
 
@@ -4506,4 +4567,3 @@ Hola Máster, mi terminal de caja está vencido (Día 0). Necesito procesar la r
 
     
 </body></html>
-
