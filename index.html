@@ -42,26 +42,42 @@
         .btn-moneda-active-cop { background-color: #d97706 !important; color: white !important; border-color: #f59e0b !important; }
         .btn-moneda-active-ves { background-color: #059669 !important; color: white !important; border-color: #10b981 !important; }
 
-        /* REGLAS DE IMPRESIÓN PURA ADAPTABLE COMPACTA CON BLINDAJE LEGAL EN ROJO */
+        /* REGLAS DE IMPRESIÓN PURA OPTIMIZADA - CORREGIDAS PARA MÓVILES Y MODALES */
         @media print {
-            body { background: white !important; color: black !important; margin: 0 !important; padding: 0 !important; }
-            body * { display: none !important; visibility: hidden !important; }
-            #contenedor-impresion-termica-fijo, #contenedor-impresion-termica-fijo *, #seccion-impresion-contrato, #seccion-impresion-contrato * { display: block !important; visibility: visible !important; }
-            #contenedor-impresion-termica-fijo { 
-                position: absolute; left: 0; top: 0; width: 10cm !important; min-height: 10cm !important; height: auto !important;
-                background: white !important; color: black !important; margin: 0 !important; padding: 0.1cm !important; 
-                font-family: 'Courier New', Courier, monospace; font-size: 11px; line-height: 1.3; page-break-inside: avoid;
+            @page {
+                margin: 0;
+                size: auto;
             }
-            #seccion-impresion-contrato {
-                position: absolute; left: 0; top: 0; width: 21cm !important; height: auto !important;
-                background: white !important; color: black !important; padding: 1.5cm !important;
-                font-family: 'Arial', sans-serif; font-size: 12px; line-height: 1.5;
+            html, body {
+                background: #ffffff !important;
+                color: #000000 !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                height: auto !important;
+                overflow: visible !important;
             }
-            .text-blue-custom { color: #1e40af !important; }
-            .text-red-custom { color: #dc2626 !important; }
+            body * {
+                visibility: hidden !important;
+            }
+            #contenedor-impresion-termica-fijo,
+            #contenedor-impresion-termica-fijo * {
+                visibility: visible !important;
+            }
+            #contenedor-impresion-termica-fijo {
+                position: absolute !important;
+                left: 0 !important;
+                top: 0 !important;
+                width: 100% !important;
+                display: block !important;
+                background: #ffffff !important;
+                color: #000000 !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+            .no-imprimir {
+                display: none !important;
+            }
         }
-        .text-blue-custom { color: #1e40af; }
-        .text-red-custom { color: #dc2626; }
         .font-bold_custom { font-weight: bold !important; }
     </style>
 
@@ -301,7 +317,7 @@
             <div id="logs-diagnostico-box" class="p-4 flex-grow overflow-y-auto font-mono text-[10px] text-slate-300 space-y-2 no-scrollbar bg-slate-950">
                 <p class="text-emerald-400">[OK] Ecosistema de mostrador inicializado. <span class="text-[8px] text-slate-500 block">Monitoreo activo al 100%.</span></p>
             <p class="text-emerald-400">[6:35:37 p.m.] [SUCCESS] Módulos avanzados desbloqueados con éxito. <span class="text-[8px] text-slate-500 block">Botones de purga, limpieza y descarga autorizados para administración.</span></p><p class="text-emerald-400">[6:35:37 p.m.] [SUCCESS] Acceso Máster verificado. <span class="text-[8px] text-slate-500 block">Sesión inicializada correctamente 🔒.</span></p></div>
-            <div id="box-controles-descarga-segura" class="bg-slate-950 p-2.5 border-t border-slate-800 grid grid-cols-2 sm:grid-cols-4 gap-1.5 justify-center">
+            <div id="box-controles-descarga-segura" class="bg-slate-950 p-2.5 border-t border-slate-800 grid grid-cols-2 sm:grid-cols-4 gap-1.5 justify-center hidden">
                 <button onclick="window.copiarCodigoTextoPuroConsola()" class="bg-amber-500 text-slate-950 px-2 py-2 rounded-xl text-[10px] font-black uppercase truncate tracking-tight"><i class="fa-solid fa-copy mr-1"></i> Copiar</button>
                 <button onclick="window.descargarMasaMadre()" class="bg-blue-600 text-white px-2 py-2 rounded-xl text-[10px] font-bold uppercase truncate tracking-tight"><i class="fa-solid fa-download mr-1"></i> Código</button>
                 <button onclick="window.descargarReporteErroresIndex()" class="bg-slate-800 text-white px-2 py-2 rounded-xl text-[10px] font-bold uppercase truncate tracking-tight">Reporte .txt</button>
@@ -435,6 +451,19 @@
                 </div>
 
             </div>
+
+            
+                <!-- Beneficio 8: Cuentas Demo y Rotación de Enlaces -->
+                <div class="bg-slate-900/60 border border-amber-500/30 rounded-2xl p-5 space-y-3 shadow-inner hover:border-amber-500/50 transition-all relative overflow-hidden">
+                    <div class="absolute top-0 right-0 bg-amber-500/20 text-amber-400 text-[8px] font-black uppercase font-mono px-2 py-0.5 border-b border-l border-amber-500/30">Novedad 2026</div>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-amber-500/10 border border-amber-500/20 rounded-xl flex items-center justify-center text-amber-400 text-lg"><i class="fa-solid fa-arrows-rotate"></i></div>
+                        <h4 class="font-bold text-sm text-white uppercase tracking-tight">Accesos Demo con Rotación de Enlace</h4>
+                    </div>
+                    <p class="text-slate-400 text-xs leading-relaxed text-justify">
+                        Pruebe la plataforma con sus clientes sin riesgos. El sistema permite generar usuarios de prueba con un clic y rotar los enlaces de acceso al instante, revocando tokens antiguos para reutilizar la licencia demo con total seguridad.
+                    </p>
+                </div>
 
             <!-- Simulador de Margen de Ahorro Colectivo -->
             <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 space-y-4">
@@ -825,6 +854,40 @@
                                     <span class="bg-purple-600 text-white font-black text-[9px] px-2 py-0.5 rounded uppercase tracking-wider">CÁMARA TRASERA ACTIVA</span>
                                     <p class="text-emerald-400 font-bold text-sm pt-1">ESCANEO EXITOSO: 750103042109</p>
                                     <p class="text-slate-400 text-[10px]">Producto autodetectado: SAMSUNG GALAXY A55 128GB</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        
+            <!-- SECCIÓN 8: DEMOSTRACIÓN DE ROTACIÓN DE ENLACE Y LICENCIA DEMO -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center border-b border-slate-900 pb-12">
+                <div class="md:col-span-5 space-y-4 text-justify order-2 md:order-1">
+                    <div class="inline-flex items-center gap-2 text-amber-400 font-black text-[10px] tracking-widest uppercase bg-amber-500/10 border border-amber-500/20 px-3 py-1 rounded-md">
+                        <i class="fa-solid fa-arrows-rotate"></i> Control de Pruebas
+                    </div>
+                    <h3 class="text-xl font-extrabold text-white uppercase tracking-tight">Demostración en Vivo con Rotación de Seguridad</h3>
+                    <p class="text-slate-200 text-xs leading-relaxed font-medium">
+                        Facilite pruebas a potenciales clientes con total tranquilidad. El administrador puede rotar la URL del terminal demo en cualquier momento, cambiando instantáneamente el token de acceso para que la cuenta quede limpia y lista para una nueva demostración comercial.
+                    </p>
+                    <div class="bg-slate-900/60 border border-amber-500/30 p-3 rounded-2xl text-[11px] text-white font-medium">
+                        🔑 <strong>Seguridad Extrema:</strong> Al invalidar el token anterior, el cliente de prueba queda automáticamente bloqueado del servidor sin afectar la base de datos central.
+                    </div>
+                </div>
+                <div class="md:col-span-7 order-1 md:order-2">
+                    <div class="bg-slate-900 p-3 rounded-3xl border border-slate-800 shadow-2xl relative overflow-hidden group">
+                        <div class="w-full h-72 sm:h-80 bg-slate-950 rounded-2xl overflow-hidden flex items-center justify-center p-4 relative">
+                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&amp;auto=format&amp;fit=crop&amp;q=80" alt="Gestión de Licencias Demo" class="w-full h-full object-cover rounded-xl opacity-75">
+                            <div class="absolute inset-6 bg-slate-950/85 border border-amber-500/30 rounded-2xl flex flex-col items-center justify-center p-4 text-center space-y-3">
+                                <div class="w-12 h-12 bg-amber-500/20 border border-amber-500/40 text-amber-400 rounded-full flex items-center justify-center text-xl shadow-[0_0_20px_rgba(245,158,11,0.5)] animate-pulse">
+                                    <i class="fa-solid fa-arrows-rotate"></i>
+                                </div>
+                                <div class="font-mono text-xs space-y-1">
+                                    <span class="bg-amber-500 text-slate-950 font-black text-[9px] px-2 py-0.5 rounded uppercase tracking-wider">ROTACIÓN DE ENLACE DEMO</span>
+                                    <p class="text-emerald-400 font-bold text-sm pt-1">NUEVO TOKEN GENERADO: demo_8x9a2p</p>
+                                    <p class="text-slate-400 text-[10px]">Acceso previo deshabilitado automáticamente</p>
                                 </div>
                             </div>
                         </div>
@@ -1396,40 +1459,36 @@
     </div>
 
     <script>
-        window.procesarContratoClienteComercio = function() {
-            const nombre = document.getElementById('cli-input-nombre').value.trim().toUpperCase();
-            const rif = document.getElementById('cli-input-rif').value.trim().toUpperCase();
-            const tlf = document.getElementById('cli-input-tlf').value.trim();
-            const dir = document.getElementById('cli-input-dir').value.trim().toUpperCase();
-            const user = document.getElementById('cli-input-user').value.trim().toLowerCase();
-            const plan = document.getElementById('cli-input-plan').value;
-
-            if(!nombre || !rif || !tlf || !dir || !user) {
-                alert("⚠️ Todos los campos son obligatorios para formalizar el arrendamiento de la licencia.");
-                return;
-            }
-
-            let msg = `NUEVO CONTRATO DE LICENCIA SAAS — TCL\n`;
-            msg += `--------------------------------------------------\n`;
-            msg += `🏢 Comercio: ${nombre}\n`;
-            msg += `🆔 RIF/Cédula: ${rif}\n`;
-            msg += `📱 WhatsApp: ${tlf}\n`;
-            msg += `📍 Ubicación: ${dir}\n`;
-            msg += `👤 Usuario ID: ${user}\n`;
-            msg += `📦 Plan Activado: ${plan}\n`;
-            msg += `--------------------------------------------------\n`;
-            msg += `🔒 DECLARACIÓN LEGAL: El arrendatario acepta formalmente que el software es estrictamente para control de inventario y auditoría interna. Exime a Tucocel C.A. de responsabilidades contables y ratifica tener conocimiento de que el sistema NO sustituye las regulaciones fiscales ni las máquinas exigidas por la Ley del SENIAT en Venezuela. Acepta el bloqueo automático al expirar el tiempo contratado.\n\n`;
-            msg += `Licencia registrada bajo la infraestructura inalterable de Tucocel C.A. RIF J-31378837-6`;
-
-            window.open(`https://api.whatsapp.com/send?phone=584247357549&text=${encodeURIComponent(msg)}`, '_blank');
-        };
+        
     </script>
 
     </div>
 
 
     <!-- MODAL DE ADVERTENCIA PREVENTIVA DE VENCIMIENTO PARA COMERCIO -->
-    <div id="modal-alerta-vencimiento-cliente" class="fixed inset-0 bg-slate-950/90 backdrop-blur-md z-[11900] p-4 flex items-center justify-center hidden">
+    
+    <!-- MODAL FLOTANTE DE CONFIRMACIÓN DE ENVÍO DEMO WHATSAPP -->
+    <div id="modal-confirmar-envio-wa-demo" class="fixed inset-0 bg-slate-950/90 backdrop-blur-md z-[12500] p-4 flex items-center justify-center hidden">
+        <div class="bg-slate-900 border border-emerald-500/40 w-full max-w-sm rounded-3xl overflow-hidden shadow-2xl p-6 text-center space-y-4 glow-border">
+            <div class="w-14 h-14 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 rounded-2xl flex items-center justify-center mx-auto text-2xl">
+                <i class="fa-brands fa-whatsapp animate-bounce"></i>
+            </div>
+            <div class="space-y-1">
+                <h3 class="font-black text-sm text-white uppercase tracking-wider">Envío de Licencia Demo WhatsApp</h3>
+                <p class="text-slate-400 text-xs font-medium">Ingrese el número de WhatsApp de destino del cliente de prueba.</p>
+            </div>
+            <div class="space-y-2 text-left">
+                <label class="text-[9px] text-emerald-400 font-bold uppercase block ml-1">WhatsApp Destino Cliente *</label>
+                <input type="tel" id="input-wa-destino-demo-cliente" placeholder="Ej: 04121234567 o 584121234567" class="input-dark text-center text-sm font-mono font-bold text-white border-emerald-500/40 focus:border-emerald-400">
+            </div>
+            <div class="grid grid-cols-2 gap-2 pt-2">
+                <button onclick="document.getElementById('modal-confirmar-envio-wa-demo').classList.add('hidden')" class="bg-slate-800 text-slate-300 font-bold text-xs py-3 rounded-xl uppercase">Cancelar</button>
+                <button onclick="window.confirmarYEnviarWhatsAppDemoComercial()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-black text-xs py-3 rounded-xl uppercase tracking-wider shadow flex items-center justify-center gap-1"><i class="fa-solid fa-paper-plane"></i> Enviar</button>
+            </div>
+        </div>
+    </div>
+
+<div id="modal-alerta-vencimiento-cliente" class="fixed inset-0 bg-slate-950/90 backdrop-blur-md z-[11900] p-4 flex items-center justify-center hidden">
         <div class="bg-slate-900 border border-amber-500/40 w-full max-w-sm rounded-3xl overflow-hidden shadow-2xl p-6 text-center space-y-4 glow-border">
             <div class="w-16 h-16 bg-amber-500/10 border border-amber-500/20 text-amber-400 rounded-2xl flex items-center justify-center mx-auto text-3xl">
                 <i class="fa-solid fa-clock-rotate-left animate-pulse"></i>
@@ -1558,6 +1617,9 @@
                         <input type="password" id="master-pass-field" autocomplete="current-password" class="input-dark font-mono" placeholder="Clave Maestra" value="Razu2020.">
                         <button type="submit" class="btn-action-primary w-full py-3.5">Desbloquear Servidores</button>
                     </form>
+                    <div class="text-center pt-2">
+                        <button onclick="window.alternarModoLoginEntreMasterYCliente('CLIENTE')" class="text-[10px] text-blue-400 font-bold uppercase hover:underline"><i class="fa-solid fa-store mr-1"></i> Ir a Inicio de Sesión Sucursal / Demo</button>
+                    </div>
 
                 <!-- AVISO INSTITUCIONAL DE LICENCIA Y SEGURIDAD -->
                 <div class="mt-4 p-3.5 bg-slate-900/90 border border-blue-500/20 rounded-2xl text-[10px] space-y-2 text-justify font-sans shadow-lg relative overflow-hidden">
@@ -1681,6 +1743,9 @@
                         <input type="password" id="comercio-pass-field" required="" placeholder="Contraseña" class="input-dark font-mono">
                         <button type="submit" class="btn-action-primary w-full py-3.5">Ingresar al Terminal</button>
                     </form>
+                    <div class="text-center pt-2">
+                        <button onclick="window.alternarModoLoginEntreMasterYCliente('MASTER')" class="text-[10px] text-purple-400 font-bold uppercase hover:underline"><i class="fa-solid fa-user-shield mr-1"></i> Ir a Acceso Administrador Máster</button>
+                    </div>
 
                 <!-- AVISO INSTITUCIONAL DE LICENCIA Y SEGURIDAD -->
                 <div class="mt-4 p-3.5 bg-slate-900/90 border border-blue-500/20 rounded-2xl text-[10px] space-y-2 text-justify font-sans shadow-lg relative overflow-hidden">
@@ -1878,6 +1943,7 @@
                                 <span class="text-[9px] text-slate-400 uppercase font-mono">Existencias Reales</span>
                             </div>
                             <div class="flex gap-2 w-full sm:w-auto">
+                                <button onclick="window.verInventarioModal()" class="bg-blue-600 hover:bg-blue-700 text-white text-xs font-black px-3 py-2 rounded-xl uppercase shadow flex items-center justify-center gap-1.5 w-full sm:w-auto"><i class="fa-solid fa-eye"></i> Ver</button>
                                 <button onclick="window.imprimirInventarioTermico()" class="bg-slate-900 hover:bg-black text-white text-xs font-black px-3 py-2 rounded-xl uppercase shadow flex items-center justify-center gap-1.5 w-full sm:w-auto"><i class="fa-solid fa-print"></i> Imprimir</button>
                                 <button onclick="window.enviarInventarioWhatsApp()" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-black px-3 py-2 rounded-xl uppercase shadow flex items-center justify-center gap-1.5 w-full sm:w-auto"><i class="fa-brands fa-whatsapp text-sm"></i> WhatsApp</button>
                             </div>
@@ -1955,7 +2021,7 @@
                                     <span class="text-[8.5px] text-blue-400 font-black uppercase"><i class="fa-solid fa-barcode mr-1"></i> Código / IMEI Serial (Opcional)</span>
                                     <button onclick="window.svc_alternarCamaraEscanerInventario()" class="bg-purple-600 text-white px-2 py-0.5 rounded text-[8.5px] font-black uppercase shadow"><i class="fa-solid fa-camera mr-1"></i> Escanear</button>
                                 </div>
-                                <input type="text" id="inv-input-barcode" placeholder="Escanee código o escriba serial..." class="input-dark font-mono uppercase">
+                                <input type="text" id="inv-input-barcode" onchange="this.value=isolarIMEI1(this.value);" placeholder="Escanee código o escriba serial..." class="input-dark font-mono uppercase">
                                 <div id="reader-video-cam-inv" class="w-full h-auto mt-2 rounded-xl overflow-hidden hidden border border-slate-700"></div>
                             </div>
 
@@ -2051,11 +2117,12 @@
                     <div class="bg-white border border-slate-200 rounded-3xl p-4 shadow-sm space-y-3 overflow-hidden">
                         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 border-b pb-2">
                             <div><h2 class="font-black text-slate-900 uppercase text-xs">Arqueo y Cierre Consolidado de Turno</h2></div>
-                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 w-full sm:w-auto">
+                            <div class="grid grid-cols-1 sm:grid-cols-4 gap-2 w-full sm:w-auto">
                                 <select id="reporte-rango-temporal-cliente" onchange="window.recalcularEstructuraReportesGlobalTurno()" class="input-light">
                                     <option value="DIA">Turno Diario (Hoy)</option>
                                     <option value="MES">Consolidado Mensual</option>
                                 </select>
+                                <button onclick="window.verReporteCierreModal()" class="bg-blue-600 text-white text-xs font-black px-3 py-1.5 rounded-xl uppercase shadow flex items-center justify-center gap-1 hover:bg-blue-700 w-full"><i class="fa-solid fa-eye"></i> Ver</button>
                                 <button onclick="window.imprimirReporteCierreTermico()" class="bg-slate-900 text-white text-xs font-black px-3 py-1.5 rounded-xl uppercase shadow flex items-center justify-center gap-1 hover:bg-black w-full"><i class="fa-solid fa-print"></i> Imprimir</button>
                                 <button onclick="window.enviarReporteCierreDiarioWhatsAppDueño()" class="bg-emerald-600 text-white text-xs font-black px-3 py-1.5 rounded-xl uppercase shadow flex items-center justify-center gap-1 hover:bg-emerald-700 w-full"><i class="fa-brands fa-whatsapp text-sm"></i> WhatsApp</button>
                             </div>
@@ -2105,7 +2172,7 @@
                     <input type="password" id="cfg-pass" placeholder="Contraseña" class="input-dark font-mono">
                 </div>
                 <div class="grid grid-cols-2 gap-2">
-                    <select id="cfg-rango" class="input-dark"><option value="CLIENTE">Cliente Regular</option><option value="MASTER">Máster Supremo</option></select>
+                    <select id="cfg-rango" class="input-dark"><option value="CLIENTE">Cliente Regular</option><option value="DEMO">Cuenta Demo (Prueba)</option><option value="MASTER">Máster Supremo</option></select>
                     <select id="cfg-rubro" class="input-dark"><option value="TECNOLOGIA">Tecnología / IMEI</option><option value="GENERAL">Comercio General</option></select>
                 </div>
                 <div><label class="text-[8px] text-slate-400 font-bold uppercase block mb-0.5">Promotor Asignado</label><select id="cfg-promotor-asignado" class="input-dark uppercase"><option value="">-- SIN PROMOTOR --</option></select></div>
@@ -2124,6 +2191,9 @@
                         <input type="text" id="cfg-link-url" readonly="" class="w-full bg-transparent text-[10px] text-blue-400 font-mono truncate focus:outline-none text-center">
                         <button onclick="window.copyLinkPortapapelesDemo()" class="bg-blue-600/10 border border-blue-500/20 text-blue-400 text-[10px] px-2.5 py-1 rounded-lg uppercase font-black"><i class="fa-solid fa-copy"></i> Copiar</button>
                     </div>
+                    <div id="cfg-box-boton-rotar-link" class="hidden pt-1">
+                        <button onclick="window.ejecutarRotacionTokenLinkDemo()" class="w-full bg-amber-500/20 hover:bg-amber-500/30 text-amber-400 border border-amber-500/40 font-black text-[10px] py-2 rounded-xl uppercase tracking-wider flex items-center justify-center gap-1.5 shadow"><i class="fa-solid fa-arrows-rotate"></i> Cambiar Link (Rotar Enlace Demo)</button>
+                    </div>
                     <div class="grid grid-cols-2 gap-2">
                         <button onclick="window.dispararContratoWhatsAppSimulado()" class="w-full bg-blue-600 text-white text-[11px] font-black py-3 rounded-xl uppercase tracking-wider shadow">Enviar Activación</button>
                         <button onclick="window.dispararReciboRenovacionWhatsApp()" class="w-full bg-emerald-600 text-white text-[11px] font-black py-3 rounded-xl uppercase tracking-wider shadow">Enviar Renovación</button>
@@ -2139,6 +2209,19 @@
 
     
     <!-- MODAL VISTA FICHA HOJA BLANCA PROMOTOR (IMPRIMIR / WHATSAPP) -->
+
+    <!-- MODAL VISTA HOJA BLANCA DETALLE DE FACTURA / AUDITORÍA (FASE 3) -->
+    <div id="modal-detalle-factura-auditoria" class="fixed inset-0 bg-slate-950/90 backdrop-blur-md z-[12000] p-4 flex items-center justify-center hidden overflow-y-auto">
+        <div class="bg-white text-slate-900 border border-slate-300 w-full max-w-lg rounded-3xl overflow-hidden shadow-2xl p-6 sm:p-8 space-y-4 max-h-[90vh] overflow-y-auto no-scrollbar font-sans">
+            <div id="contenido-hoja-blanca-factura-auditoria"></div>
+            <div class="flex justify-end gap-2 border-t pt-4 no-imprimir">
+                <button onclick="document.getElementById('modal-detalle-factura-auditoria').classList.add('hidden')" class="bg-slate-200 text-slate-700 px-4 py-2 rounded-xl text-xs font-bold uppercase">Cerrar</button>
+                <button id="btn-print-modal-auditoria" class="bg-slate-900 hover:bg-black text-white px-4 py-2 rounded-xl text-xs font-black uppercase shadow flex items-center gap-1.5"><i class="fa-solid fa-print"></i> Imprimir</button>
+                <button id="btn-ws-modal-auditoria" class="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-xl text-xs font-black uppercase shadow flex items-center gap-1.5"><i class="fa-brands fa-whatsapp"></i> WhatsApp</button>
+            </div>
+        </div>
+    </div>
+
     <div id="modal-hoja-blanca-promotor" class="fixed inset-0 bg-slate-950/90 backdrop-blur-md z-[12000] p-4 flex items-center justify-center hidden overflow-y-auto">
         <div class="bg-white text-slate-900 border border-slate-300 w-full max-w-2xl rounded-3xl overflow-hidden shadow-2xl p-6 sm:p-8 space-y-6 max-h-[90vh] overflow-y-auto no-scrollbar font-sans">
             <div id="contenido-hoja-blanca-promotor"></div>
@@ -2187,6 +2270,258 @@
 
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
+
+        
+        window.ejecutarImpresionTermicaSegura = function(htmlContent) {
+            alert("⏳ MÓDULO EN PAUSA: En espera de nuevo formato de impresión.");
+        };
+
+        window.obtenerHtmlPlantillaFacturaImpresion = function(f) {
+            if (!f) return '';
+            const tCOP = parseFloat($('tasa-cop') ? $('tasa-cop').value : 3900) || 3900;
+            const tBs = parseFloat($('tasa-bs') ? $('tasa-bs').value : 40) || 40;
+            const shopNombre = (infoClienteAbiertoDinamico && infoClienteAbiertoDinamico.nombre) ? infoClienteAbiertoDinamico.nombre : 'TUCOCEL C.A.';
+            const shopRif = (infoClienteAbiertoDinamico && infoClienteAbiertoDinamico.rif) ? infoClienteAbiertoDinamico.rif : 'J-40392817-0';
+            const shopDir = (infoClienteAbiertoDinamico && infoClienteAbiertoDinamico.dir) ? infoClienteAbiertoDinamico.dir : 'Cordero, Táchira - Venezuela';
+            const shopTlf = (infoClienteAbiertoDinamico && infoClienteAbiertoDinamico.tlf) ? infoClienteAbiertoDinamico.tlf : '0424-7357549';
+
+            let itemsHtml = '';
+            if (f.articulos && Array.isArray(f.articulos)) {
+                f.articulos.forEach(art => {
+                    const cant = art.cantidad || 1;
+                    const pu = art.precioUnitario || 0;
+                    const sub = pu * cant;
+                    itemsHtml += `
+                        <tr class="valign-top">
+                            <td class="pt-1">
+                                ${cant}x ${cleanHTMLInput(art.nombre || '')}
+                                ${art.barcode ? `<div class="text-[8.5px] text-gray-700 pl-2 font-mono">▫️ IMEI: ${cleanHTMLInput(art.barcode)}</div>` : ''}
+                            </td>
+                            <td class="text-right pt-1 font-bold">$${sub.toFixed(2)}</td>
+                        </tr>`;
+                });
+            }
+
+            const totalUsd = f.totalUSD || 0;
+            const totalCop = Math.round(totalUsd * tCOP);
+            const totalVes = (totalUsd * tBs).toFixed(2);
+
+            return `
+            <div class="hoja-factura flex flex-col justify-between" style="width: 10cm !important; min-height: 10cm !important; height: auto !important; background: white !important; color: black !important; font-family: 'Courier New', Courier, monospace; font-size: 11px; line-height: 1.3; padding: 0.3cm !important; margin: 0 auto !important; page-break-inside: avoid !important;">
+                <div>
+                    <!-- ENCABEZADO CORPORATIVO EN AZUL -->
+                    <div class="text-center space-y-0.5 border-b border-dashed border-black pb-2 mb-2">
+                        <span style="font-family: 'Plus Jakarta Sans', sans-serif;" class="font-black text-base tracking-tight block text-blue-custom uppercase">${cleanHTMLInput(shopNombre)}</span>
+                        <p class="text-[9px] font-bold text-blue-custom">AGENTE AUTORIZADO MOVISTAR</p>
+                        <p class="text-[9px]">RIF: ${cleanHTMLInput(shopRif)}</p>
+                        <p class="text-[9px]">${cleanHTMLInput(shopDir)}</p>
+                        <p class="text-[9px]">Soporte: ${cleanHTMLInput(shopTlf)}</p>
+                    </div>
+
+                    <!-- DATOS DEL COMPROBANTE Y CLIENTE -->
+                    <div class="space-y-0.5 text-[10px] mb-2 pb-2 border-b border-dashed border-black">
+                        <p><strong>NOTA DE DESPACHO:</strong> #${cleanHTMLInput(f.notaNum || '0001')}</p>
+                        <p><strong>FECHA:</strong> ${cleanHTMLInput(f.fecha || '')} ${cleanHTMLInput(f.hora || '')}</p>
+                        <p><strong>CAJERO:</strong> ${cleanHTMLInput(f.cajero || 'MOSTRADOR')}</p>
+                        <p><strong>RECEPTOR:</strong> ${cleanHTMLInput(f.cliente || 'CONSUMIDOR FINAL')}</p>
+                        <p><strong>CÉDULA/RIF:</strong> ${cleanHTMLInput(f.cedula || 'V-00000000')}</p>
+                        ${f.condicion === 'CREDITO' ? `<p class="text-red-custom font-bold"><strong>CONDICIÓN:</strong> CRÉDITO (Abono: $${(f.abono||0).toFixed(2)})</p>` : ''}
+                    </div>
+
+                    <!-- TABLA DINÁMICA DE PRODUCTOS -->
+                    <table class="w-full text-left text-[10px] mb-2" style="width:100% !important; table-layout:fixed !important;">
+                        <thead>
+                            <tr class="border-b border-black font-bold">
+                                <th class="pb-1">CANT / ARTÍCULO</th>
+                                <th class="text-right pb-1">TOTAL</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${itemsHtml}
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- SECCIÓN INFERIOR: TOTALES MULTIMONEDA Y BLINDAJE LEGAL -->
+                <div class="mt-2">
+                    <div class="border-t border-dashed border-black pt-2 space-y-0.5 text-[10px]">
+                        <div class="flex justify-between font-bold text-xs">
+                            <span>NETO USD:</span>
+                            <span>$${totalUsd.toFixed(2)}</span>
+                        </div>
+                        <div class="flex justify-between text-gray-800">
+                            <span>REF COP (Tasa ${tCOP.toLocaleString()}):</span>
+                            <span>${totalCop.toLocaleString()} COP</span>
+                        </div>
+                        <div class="flex justify-between text-gray-800">
+                            <span>REF Bs (Tasa ${tBs.toFixed(2)}):</span>
+                            <span>${totalVes} Bs</span>
+                        </div>
+                    </div>
+
+                    <div class="text-center text-[7px] space-y-1 border-t border-black mt-2 pt-1.5 uppercase tracking-tighter text-justify leading-tight">
+                        <p class="font-black text-red-custom tracking-tight text-center text-[8px] mb-0.5">⚠️ ADVERTENCIA: NOTA DE DESPACHO E INVENTARIO INTERNO</p>
+                        <p class="text-black font-medium">ESTE COMPROBANTE CONSTITUYE EXCLUSIVAMENTE UN REGISTRO OPERATIVO DE CONTROL DE ALMACÉN Y MOVILIZACIÓN INTERNA DE MERCANCÍAS. EN NINGÚN CASO ADQUIERE CARÁCTER DE FACTURA FISCAL, NI SUSTITUYE O MINIMIZA LAS FUNCIONES DE LOS MEDIOS DE EMISIÓN REGULADOS POR LA PROVIDENCIA ADMINISTRATIVA VIGENTE DE LA GERENCIA DE RECAUDACIÓN TRIBUTARIA DEL SENIAT. EL COMERCIO ADQUIERE LA OBLIGACIÓN EXCLUSIVA DE RESPALDAR SUS OPERACIONES MEDIANTE LOS CANALES TRIBUTARIOS LEGALES.</p>
+                        <p class="text-gray-600 font-mono text-[6.5px] lowercase normal-case text-center pt-0.5 leading-none">El proveedor de la infraestructura tecnológica y los desarrolladores del sistema quedan totalmente eximidos de responsabilidad civil, administrativa o penal sobre los montos cargados, descripciones o tasas cambiarias aplicadas en este terminal.</p>
+                        
+                        <div class="text-[7px] text-gray-500 font-sans pt-1 border-t border-gray-200 mt-1 text-center normal-case tracking-normal">
+                            Infraestructura Tecnológica Distribuida por <strong>Tucocel C.A.</strong><br>
+                            Desarrollo y Automatización: <strong>Publi-Online-Mk</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>`;
+        };
+
+        window.enviarReporteCierreDiarioWhatsAppDueño = function() {
+            const rangoSelect = $('reporte-rango-temporal-cliente');
+            const rango = rangoSelect ? rangoSelect.value : "DIA";
+            const hoyStr = new Date().toLocaleDateString();
+
+            let filtradasFacturas = localFacturasFijasHistorialArr;
+            let filtradosGastos = localGastosCajaArr;
+
+            if (rango === "DIA") {
+                filtradasFacturas = localFacturasFijasHistorialArr.filter(f => f.fecha === hoyStr);
+                filtradosGastos = localGastosCajaArr.filter(g => g.fecha === hoyStr || !g.fecha);
+            }
+
+            const tCOP = parseFloat($('tasa-cop') ? $('tasa-cop').value : 3900) || 3900;
+            const tBs = parseFloat($('tasa-bs') ? $('tasa-bs').value : 40) || 40;
+
+            let vendedoresMap = {};
+            let ventasBrutasTotal = 0;
+            let totalNotasAnuladas = 0;
+            let recUsdEfectivo = 0, recUsdUsdt = 0, recCop = 0, recVes = 0;
+
+            filtradasFacturas.forEach(f => {
+                if (f.estatus === 'ANULADA') {
+                    totalNotasAnuladas += (f.totalUSD || 0);
+                    return;
+                }
+
+                ventasBrutasTotal += (f.totalUSD || 0);
+                const cajeroKey = (f.cajero || 'MOSTRADOR').toUpperCase();
+
+                if (!vendedoresMap[cajeroKey]) {
+                    vendedoresMap[cajeroKey] = {
+                        articulosMap: {},
+                        totalUSD: 0,
+                        countNotas: 0,
+                        metodos: { usdEfectivo: 0, usdt: 0, cop: 0, ves: 0 }
+                    };
+                }
+
+                vendedoresMap[cajeroKey].countNotas++;
+                vendedoresMap[cajeroKey].totalUSD += (f.totalUSD || 0);
+
+                if (f.metodoCobro === "DOLAR_EFECTIVO") {
+                    vendedoresMap[cajeroKey].metodos.usdEfectivo += f.totalUSD;
+                    recUsdEfectivo += f.totalUSD;
+                } else if (f.metodoCobro === "DOLAR_USDT") {
+                    vendedoresMap[cajeroKey].metodos.usdt += f.totalUSD;
+                    recUsdUsdt += f.totalUSD;
+                } else if (f.metodoCobro === "PESO_EFECTIVO" || f.metodoCobro === "PESO_NEQUI") {
+                    let subCop = f.totalUSD * tCOP;
+                    vendedoresMap[cajeroKey].metodos.cop += subCop;
+                    recCop += subCop;
+                } else if (f.metodoCobro === "VES_PAGOMOVIL") {
+                    let subVes = f.totalUSD * tBs;
+                    vendedoresMap[cajeroKey].metodos.ves += subVes;
+                    recVes += subVes;
+                }
+
+                if (f.articulos && Array.isArray(f.articulos)) {
+                    f.articulos.forEach(art => {
+                        const artNombreKey = art.nombre.toUpperCase();
+                        const cant = art.cantidad || 1;
+                        const sub = (art.precioUnitario || 0) * cant;
+
+                        if (!vendedoresMap[cajeroKey].articulosMap[artNombreKey]) {
+                            vendedoresMap[cajeroKey].articulosMap[artNombreKey] = { cantidad: 0, totalUSD: 0 };
+                        }
+                        vendedoresMap[cajeroKey].articulosMap[artNombreKey].cantidad += cant;
+                        vendedoresMap[cajeroKey].articulosMap[artNombreKey].totalUSD += sub;
+                    });
+                }
+            });
+
+            let totalGastosUSD = 0;
+            let txtGastos = "";
+            filtradosGastos.forEach(g => {
+                totalGastosUSD += (g.monto || 0);
+                txtGastos += `   ▫️ ${g.motivo}: -$${(g.monto||0).toFixed(2)} USD\n`;
+            });
+
+            const balanceNeto = ventasBrutasTotal - totalGastosUSD;
+
+            let msg = `📊 *CIERRE DIARIO Y ARQUEO DE CAJA DETALLADO*\n`;
+            msg += `🏢 *Comercio:* ${infoClienteAbiertoDinamico.nombre || 'TUCOCEL C.A.'}\n`;
+            msg += `📅 *Fecha:* ${hoyStr} | ⏰ *Hora:* ${new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}\n`;
+            msg += `----------------------------------------\n`;
+            msg += `📈 *BALANCE CONSOLIDADO:*\n`;
+            msg += `🟢 *Ventas Brutas:* $${ventasBrutasTotal.toFixed(2)} USD\n`;
+            msg += `🔴 *Gastos Caja Chica:* -$${totalGastosUSD.toFixed(2)} USD\n`;
+            msg += `🟣 *Notas Anuladas:* $${totalNotasAnuladas.toFixed(2)} USD\n`;
+            msg += `⭐ *BALANCE NETO EN CAJA:* *$${balanceNeto.toFixed(2)} USD*\n\n`;
+
+            msg += `----------------------------------------\n`;
+            msg += `💰 *RECAUDACIÓN POR MÉTODO Y MONEDA:*\n`;
+            msg += `💵 *Dólares Efectivo ($):* $${recUsdEfectivo.toFixed(2)} USD\n`;
+            msg += `🪙 *USDT / Dólar Digital:* $${recUsdUsdt.toFixed(2)} USD\n`;
+            msg += `🇨🇴 *Pesos COP:* ${Math.round(recCop).toLocaleString()} COP\n`;
+            msg += `🇻🇪 *Bolívares VES:* ${recVes.toFixed(2)} Bs\n\n`;
+
+            msg += `----------------------------------------\n`;
+            msg += `👤 *DESGLOSE INDIVIDUAL POR CAJERO Y MERCANCÍA:*\n\n`;
+
+            Object.keys(vendedoresMap).forEach(vKey => {
+                const v = vendedoresMap[vKey];
+                msg += `🎧 *CAJERO: ${vKey}* (Total: *$${v.totalUSD.toFixed(2)} USD* | ${v.countNotas} Notas)\n`;
+                msg += `📋 *Mercancía Vendida:*\n`;
+                Object.keys(v.articulosMap).forEach(aKey => {
+                    const a = v.articulosMap[aKey];
+                    msg += `   ▫️ ${a.cantidad}x ${aKey} ($${a.totalUSD.toFixed(2)})\n`;
+                });
+                msg += `💵 *Cobros Recibidos:*\n`;
+                if (v.metodos.usdEfectivo > 0) msg += `   ▪️ Efectivo USD: $${v.metodos.usdEfectivo.toFixed(2)}\n`;
+                if (v.metodos.usdt > 0) msg += `   ▪️ USDT Digital: $${v.metodos.usdt.toFixed(2)}\n`;
+                if (v.metodos.cop > 0) msg += `   ▪️ Pesos COP: ${Math.round(v.metodos.cop).toLocaleString()} COP\n`;
+                if (v.metodos.ves > 0) msg += `   ▪️ Pago Móvil VES: ${v.metodos.ves.toFixed(2)} Bs\n`;
+                msg += `\n`;
+            });
+
+            if (txtGastos) {
+                msg += `----------------------------------------\n`;
+                msg += `💸 *EGRESOS / GASTOS DE CAJA CHICA:*\n${txtGastos}\n`;
+            }
+
+            msg += `----------------------------------------\n`;
+            msg += `📌 _Auditoría contable inalterable generada por TCL Sistema Máster._`;
+
+            let cleanTlf = (infoClienteAbiertoDinamico && infoClienteAbiertoDinamico.tlf) ? infoClienteAbiertoDinamico.tlf.replace(/[^0-9]/g, '') : '584247357549';
+            if (cleanTlf && !cleanTlf.startsWith('58')) cleanTlf = '58' + cleanTlf;
+
+            window.open(`https://api.whatsapp.com/send?phone=${cleanTlf}&text=${encodeURIComponent(msg)}`, '_blank');
+        };
+
+
+        // HELPER FASE 1: AISLAMIENTO AUTOMÁTICO IMEI 1
+        function isolarIMEI1(texto) {
+            if (!texto) return '';
+            let t = String(texto).trim();
+            let matchImei1 = t.match(/IMEI\s*1\s*[:#-]?\s*([0-9A-Fa-f]{15})/i);
+            if (matchImei1 && matchImei1[1]) {
+                return matchImei1[1];
+            }
+            let tokens = t.split(/[\n,\s\/|]+/);
+            let validImeis = tokens.filter(tok => /^[0-9]{15}$/.test(tok));
+            if (validImeis.length > 0) {
+                return validImeis[0];
+            }
+            return tokens[0] || t;
+        }
+
 
         const $ = id => document.getElementById(id);
 
@@ -2257,6 +2592,11 @@
                         }
 
                         infoClienteAbiertoDinamico = match;
+
+                        // Si es Demo, bypass contrato
+                        if (match.is_demo || match.rango === 'DEMO') {
+                            match.contrato_firmado = true;
+                        }
 
                         // Si la sucursal existe pero NO ha firmado contrato, forzar contrato pre-llenado
                         if (!match.contrato_firmado) {
@@ -2342,12 +2682,13 @@
             return Math.ceil(diferenciaMs / (1000 * 60 * 60 * 24));
         };
 
-        window.validarAccAccessMasterAdmin = function() {
-            const user = $('master-user-field').value.trim();
+        window.validarAccAccessMasterAdmin = async function() {
+            const user = $('master-user-field').value.trim().toLowerCase();
             const pass = $('master-pass-field').value.trim();
             
-            if(user.toLowerCase() === "tucocel" && pass === "Razu2020.") {
+            if(user === "tucocel" && pass === "Razu2020.") {
                 esMasterActivoSession = true;
+                if($("diagnostico-master-flotante")) $("diagnostico-master-flotante").classList.remove("hidden");
                 $('bloque-login-master').classList.add('hidden');
                 $('vista-master-admin').classList.remove('hidden');
                 if($('diagnostico-master-flotante')) $('diagnostico-master-flotante').classList.remove('hidden');
@@ -2357,8 +2698,23 @@
                 window.registrarLogExterno('SUCCESS', 'Acceso Máster verificado.', 'Sesión inicializada correctamente 🔒.');
                 window.recalcularEstructuraReportesGlobalTurno();
             } else { 
-                window.registrarLogExterno('ERROR', 'Intento de inicio de sesión fallido.', 'La clave maestra proporcionada no es válida.');
-                alert("❌ Clave Maestra Incorrecta."); 
+                // Fallback check if user entered client/demo credentials on master login screen
+                try {
+                    let listado = await obtenerClientesDesdeFirebase();
+                    let match = listado.find(c => c.user === user && c.pass === pass);
+                    if(!match && user === "demo" && pass === "123456") {
+                        match = { id: "demo", nombre: "TUCOCEL C.A. (DEMO)", rif: "J-40392817-0", dir: "Cordero, Táchira", user: "demo", pass: "123456", rubro: "TECNOLOGIA", dias: 365, is_demo: true, contrato_firmado: true };
+                    }
+                    if(match) {
+                        $('comercio-user-field').value = user;
+                        $('comercio-pass-field').value = pass;
+                        window.comprobarEstatusContratoClienteLogin();
+                        return;
+                    }
+                } catch(eErr) {}
+
+                window.registrarLogExterno('ERROR', 'Intento de inicio de sesión fallido.', `Usuario intentado: ${user}`);
+                alert("❌ Credenciales incorrectas. Verifique usuario y contraseña."); 
             }
         };
 
@@ -2591,6 +2947,11 @@
         };
 
         window.dispararContratoWhatsAppSimulado = function() {
+            const rangoVal = $('cfg-rango') ? $('cfg-rango').value : '';
+            if(rangoVal === 'DEMO') {
+                window.abrirModalConfirmarWhatsAppDemo();
+                return;
+            }
             const name = $('cfg-nombre') ? $('cfg-nombre').value.trim() : "";
             const user = $('cfg-user') ? $('cfg-user').value.trim() : "";
             const pass = $('cfg-pass') ? $('cfg-pass').value.trim() : "";
@@ -2672,6 +3033,7 @@
             if($('cfg-pass')) $('cfg-pass').value = "";
             if($('cfg-promotor-asignado')) $('cfg-promotor-asignado').value = "";
             if($('cfg-rango')) $('cfg-rango').value = "CLIENTE";
+            if($('cfg-box-boton-rotar-link')) $('cfg-box-boton-rotar-link').classList.add('hidden');
             if($('cfg-rubro')) $('cfg-rubro').value = "GENERAL";
             if($('cfg-dias-display')) $('cfg-dias-display').innerText = `365 Días`;
             if($('cfg-link-url')) $('cfg-link-url').value = "";
@@ -2701,6 +3063,7 @@
                 const ahoraMs = Date.now();
                 const vencimientoMs = ahoraMs + (diasSimuladosValor * 86400000);
 
+                const is_demo = (rango === 'DEMO');
                 listado.push({ 
                     id: idSeleccionadoActual, 
                     nombre, 
@@ -2713,9 +3076,10 @@
                     fechaCreacion: ahoraMs,
                     fechaVencimiento: vencimientoMs,
                     rango, 
+                    is_demo: is_demo,
                     rubro, 
                     promotor, 
-                    contrato_firmado: false 
+                    contrato_firmado: is_demo ? true : false 
                 });
                 
                 await guardarClientesEnFirebase(listado);
@@ -2740,7 +3104,11 @@
             if($('cfg-user')) $('cfg-user').value = user;
             if($('cfg-pass')) $('cfg-pass').value = pass; 
             await window.cargarPromotoresDesplegableConfig(promotor || '');
-            if($('cfg-rango')) $('cfg-rango').value = rango || 'CLIENTE'; 
+            if($('cfg-rango')) $('cfg-rango').value = rango || 'CLIENTE';
+            if($('cfg-box-boton-rotar-link')) {
+                if(rango === 'DEMO') $('cfg-box-boton-rotar-link').classList.remove('hidden');
+                else $('cfg-box-boton-rotar-link').classList.add('hidden');
+            } 
             if($('cfg-rubro')) $('cfg-rubro').value = rubro || 'GENERAL';
             if($('cfg-dias-display')) $('cfg-dias-display').innerText = `${diasSimuladosValor} Días`;
             if($('cfg-link-url')) $('cfg-link-url').value = `${window.location.href.split('?')[0]}?user=${user}`;
@@ -2779,6 +3147,8 @@
                     listado[idx].promotor = $('cfg-promotor-asignado').value.trim().toUpperCase();
                     listado[idx].rubro = $('cfg-rubro').value;
                     listado[idx].rango = $('cfg-rango').value;
+                    listado[idx].is_demo = ($('cfg-rango').value === 'DEMO');
+                    if(listado[idx].is_demo) listado[idx].contrato_firmado = true;
                     await guardarClientesEnFirebase(listado);
                     $('modal-config-master').classList.add('hidden');
                     await window.abrirBovedaSubEntornosMasterModal();
@@ -3284,7 +3654,8 @@ window.procesarContratoClienteComercio = async function() {
 
             listado.forEach(c => {
                 const diasRestantesCalculados = window.calcularDiasRestantesSucursal(c);
-                const planOriginalTexto = c.dias ? `Plan ${c.dias} Días` : 'Plan Estándar';
+                const esCuentaDemo = c.is_demo || c.rango === 'DEMO';
+                const planOriginalTexto = esCuentaDemo ? '🧪 DEMO DE PRUEBA' : (c.dias ? `Plan ${c.dias} Días` : 'Plan Estándar');
                 
                 let badgeColorClase = "bg-emerald-500/10 text-emerald-400 border-emerald-500/20";
                 let textoDiasColor = "text-emerald-400";
@@ -3330,7 +3701,8 @@ window.procesarContratoClienteComercio = async function() {
 
 
         window.ingresarDirectoACajaDesdeMasterAdmin = async function(user, pass) {
-            esMasterActivoSession = true; 
+            esMasterActivoSession = true;
+                if($("diagnostico-master-flotante")) $("diagnostico-master-flotante").classList.remove("hidden"); 
             if($('modal-sub-lista-comercios')) $('modal-sub-lista-comercios').classList.add('hidden');
             if($('vista-master-admin')) $('vista-master-admin').classList.add('hidden');
             if($('bloque-login-master')) $('bloque-login-master').classList.add('hidden');
@@ -3365,6 +3737,11 @@ window.procesarContratoClienteComercio = async function() {
                 let listado = await obtenerClientesDesdeFirebase();
                 let match = listado.find(c => c.user === userVal && c.pass === passVal);
 
+                // Fallback automático para cuenta demo si la base de datos está limpia/inicializando
+                if (!match && userVal === "demo" && passVal === "123456") {
+                    match = { id: "demo", nombre: "TUCOCEL C.A. (DEMO)", rif: "J-40392817-0", dir: "Cordero, Táchira - Venezuela", user: "demo", pass: "123456", rubro: "TECNOLOGIA", dias: 365, ownerID: "demo", tlf: "0424-7357549", promotor: "", is_demo: true, contrato_firmado: true };
+                }
+
                 // DESTRUCCIÓN Y BLOQUEO INMEDIATO: Si la sucursal no existe o fue eliminada
                 if (!match) {
                     localStorage.clear();
@@ -3388,6 +3765,11 @@ window.procesarContratoClienteComercio = async function() {
                     window.open(`https://api.whatsapp.com/send?phone=${cleanTlf}&text=${encodeURIComponent(msg)}`, '_blank');
                     window.location.href = window.location.pathname;
                     return;
+                }
+
+                // SI ES CUENTA DEMO, IGNORAR FIRMA DE CONTRATO Y DAR ACCESO DIRECTO
+                if (match.is_demo || match.rango === 'DEMO') {
+                    match.contrato_firmado = true;
                 }
 
                 // VERIFICACIÓN INVIOLABLE DE CONTRATO OBLIGATORIO PARA TODAS LAS CUENTAS
@@ -3443,94 +3825,37 @@ window.procesarContratoClienteComercio = async function() {
                 estatus: "PROCESADA"
             };
 
-            localFacturasFijasHistorialArr.push(nuevaFacturaDataObj);
+            // CONCURRENCIA ATÓMICA MULTIUSUARIO (1 A 4 VENDEDORES) VIA FIRESTORE TRANSACTION
             try {
+                const facturasRef = db.collection("tcl_custom_shop").doc(infoClienteAbiertoDinamico.id + "_facturas");
+                await db.runTransaction(async (transaction) => {
+                    const doc = await transaction.get(facturasRef);
+                    let lista = doc.exists ? (doc.data().lista || []) : [];
+                    let nextNum = 1;
+                    if (lista.length > 0) {
+                        const ultimaNota = lista[lista.length - 1].notaNum;
+                        nextNum = parseInt(ultimaNota, 10) + 1;
+                    }
+                    nuevaFacturaDataObj.notaNum = String(nextNum).padStart(4, '0');
+                    lista.push(nuevaFacturaDataObj);
+                    transaction.set(facturasRef, { lista });
+                    localFacturasFijasHistorialArr = lista;
+                    correlativoNotaGlobal = nextNum + 1;
+                });
+            } catch(e) { 
+                console.error("Error en transacción atómica de facturación:", e);
+                // Fallback local push if offline/error
+                localFacturasFijasHistorialArr.push(nuevaFacturaDataObj);
                 await db.collection("tcl_custom_shop").doc(infoClienteAbiertoDinamico.id + "_facturas").set({ lista: localFacturasFijasHistorialArr });
-            } catch(e) { console.error(e); }
+            }
 
             const tCOP = parseFloat($('tasa-cop').value) || 3900;
             const tBs = parseFloat($('tasa-bs').value) || 40;
             const termicaBox = $('contenedor-impresion-termica-fijo');
             termicaBox.className = "block bg-white text-black p-2 z-0";
 
-            let stringFacturaEpsonHtml = `
-            <div class="hoja-factura flex flex-col justify-between" style="width: 10cm !important; min-height: 10cm !important; height: auto !important; background: white !important; color: black !important; font-family: 'Courier New', Courier, monospace; font-size: 11px; line-height: 1.3; padding: 0.2cm !important;">
-                <div>
-                    <div class="text-center space-y-0.5 border-b border-dashed border-black pb-2 mb-2">
-                        <span style="font-family: 'Plus Jakarta Sans', sans-serif;" class="font-black text-base tracking-tight block text-blue-custom uppercase">${cleanHTMLInput(infoClienteAbiertoDinamico.nombre || 'TUCOCEL C.A.')}</span>
-                        <p class="text-[9px] font-bold text-blue-custom">AGENTE AUTORIZADO MOVISTAR</p>
-                        <p class="text-[9px]">RIF: ${cleanHTMLInput(infoClienteAbiertoDinamico.rif || 'J-40392817-0')}</p>
-                        <p class="text-[9px]">${cleanHTMLInput(infoClienteAbiertoDinamico.dir || 'Cordero, Táchira - Venezuela')}</p>
-                        <p class="text-[9px]">Soporte: ${cleanHTMLInput(infoClienteAbiertoDinamico.tlf || '0424-7357549')}</p>
-                    </div>
-
-                    <div class="space-y-0.5 text-[10px] mb-2 pb-2 border-b border-dashed border-black">
-                        <p><strong>NOTA DE ENTREGA:</strong> #${cleanHTMLInput(nuevaFacturaDataObj.notaNum)}</p>
-                        <p><strong>FECHA:</strong> ${cleanHTMLInput(nuevaFacturaDataObj.fecha)} ${cleanHTMLInput(nuevaFacturaDataObj.hora)}</p>
-                        <p><strong>CLIENTE:</strong> ${cleanHTMLInput(nuevaFacturaDataObj.cliente)}</p>
-                        <p><strong>RIF/CÉDULA:</strong> ${cleanHTMLInput(nuevaFacturaDataObj.cedula)}</p>
-                        <p><strong>CAJERO:</strong> ${cleanHTMLInput(nuevaFacturaDataObj.cajero)}</p>
-                    </div>
-
-                    <table class="w-full text-left text-[10px] mb-2">
-                        <thead>
-                            <tr class="border-b border-black font-bold">
-                                <th class="pb-1">CANT / ARTÍCULO</th>
-                                <th class="text-right pb-1">TOTAL</th>
-                            </tr>
-                        </thead>
-                        <tbody>`;
-            
-            nuevaFacturaDataObj.articulos.forEach(art => {
-                stringFacturaEpsonHtml += `
-                    <tr class="valign-top">
-                        <td class="pt-1">
-                            ${art.cantidad}x ${cleanHTMLInput(art.nombre)}
-                            ${art.barcode ? `<div class="text-[8.5px] text-gray-700 pl-2 font-mono">▫️ IMEI / SERIAL: ${cleanHTMLInput(art.barcode)}</div>` : ''}
-                        </td>
-                        <td class="text-right pt-1 font-bold_custom">$${(art.precioUnitario * art.cantidad).toFixed(2)}</td>
-                    </tr>`;
-            });
-
-            stringFacturaEpsonHtml += `
-                        </tbody>
-                    </table>
-                </div>
-
-                <div class="mt-2">
-                    <div class="border-t border-dashed border-black pt-2 space-y-0.5 text-[10px]">
-                        <div class="flex justify-between font-bold text-xs">
-                            <span>NETO USD:</span>
-                            <span>$${nuevaFacturaDataObj.totalUSD.toFixed(2)}</span>
-                        </div>
-                        ${nuevaFacturaDataObj.condicion === 'CREDITO' ? `<div class="flex justify-between text-purple-700 font-bold"><span>ABONADO EN MOSTRADOR:</span><span>$${nuevaFacturaDataObj.abono.toFixed(2)}</span></div><div class="flex justify-between font-bold text-purple-700"><span>SALDO PENDIENTE:</span><span>$${(nuevaFacturaDataObj.totalUSD - nuevaFacturaDataObj.abono).toFixed(2)}</span></div>` : ''}
-                        <div class="flex justify-between text-gray-800">
-                            <span>REF COP (Tasa ${tCOP}):</span>
-                            <span>${Math.round(nuevaFacturaDataObj.totalUSD * tCOP).toLocaleString()} COP</span>
-                        </div>
-                        <div class="flex justify-between text-gray-800">
-                            <span>REF Bs (Tasa ${tBs.toFixed(2)}):</span>
-                            <span>${(nuevaFacturaDataObj.totalUSD * tBs).toFixed(2)} Bs</span>
-                        </div>
-                    </div>
-
-                    <div class="text-center text-[7px] space-y-1 border-t border-black mt-2 pt-1.5 uppercase tracking-tighter text-justify leading-tight">
-                        <p class="font-black text-red-custom tracking-tight text-center text-[8px] mb-0.5">⚠️ ADVERTENCIA: NOTA DE DESPACHO E INVENTARIO INTERNO</p>
-                        <p class="text-black font-medium">ESTE COMPROBANTE CONSTITUYE EXCLUSIVAMENTE UN REGISTRO OPERATIVO DE CONTROL DE ALMACÉN Y MOVILIZACIÓN INTERNA DE MERCANCÍAS. EN NINGÚN CASO ADQUIERE CARÁCTER DE FACTURA FISCAL, NI SUSTITUYE O MINIMIZA LAS FUNCIONES DE LOS MEDIOS DE EMISIÓN REGULADOS POR LA PROVIDENCIA ADMINISTRATIVA VIGENTE. EL COMERCIO ADQUIERE LA OBLIGACIÓN EXCLUSIVA DE RESPALDAR SUS OPERACIONES MEDIANTE CANALES TRIBUTARIOS LEGALES.</p>
-                        <p class="text-gray-600 font-mono text-[6.5px] lowercase normal-case text-center pt-0.5 leading-none">El proveedor de la infraestructura tecnológica y desarrolladores quedan totalmente eximidos de responsabilidad civil o administrativa sobre montos o tasas aplicadas en este terminal.</p>
-                        
-                        <div class="text-[7px] text-gray-500 font-sans pt-1 border-t border-gray-200 mt-1 text-center normal-case tracking-normal">
-                            Infraestructura Tecnológica Distribuida por <strong>Tucocel C.A.</strong><br>
-                            Desarrollo y Automatización: <strong>Publi-Online-Mk</strong>
-                        </div>
-                    </div>
-                </div>
-            </div>`;
-
-            termicaBox.innerHTML = stringFacturaEpsonHtml; 
-            window.print(); 
-            termicaBox.innerHTML = "";
-            termicaBox.className = "hidden whitespace-pre bg-white text-black p-4 z-0";
+            let stringFacturaEpsonHtml = window.obtenerHtmlPlantillaFacturaImpresion(nuevaFacturaDataObj);
+            window.ejecutarImpresionTermicaSegura(stringFacturaEpsonHtml);
             
             correlativoNotaGlobal++; 
             ticketProductos = []; 
@@ -3606,6 +3931,7 @@ window.procesarContratoClienteComercio = async function() {
         }
 
         function activarTerminalDeCajaExitoso() {
+            if($("diagnostico-master-flotante")) $("diagnostico-master-flotante").classList.remove("hidden");
             const diasRestantes = window.calcularDiasRestantesSucursal(infoClienteAbiertoDinamico);
 
             // CORTE INVIOLABLE EN DÍA 0: Verificación previa estricta
@@ -3623,8 +3949,11 @@ Hola Máster, mi terminal de caja está vencido (Día 0). Necesito procesar la r
             }
 
             $('cli-bloque-login').classList.add('hidden');
+            if($('bloque-login-master')) $('bloque-login-master').classList.add('hidden');
+            if($('vista-master-admin')) $('vista-master-admin').classList.add('hidden');
             $('cli-bloque-sistema').classList.remove('hidden');
             document.body.className = "bg-slate-50 text-slate-800 min-h-screen";
+            window.scrollTo(0,0);
             if($('ticket-correlativo-display')) {
                 $('ticket-correlativo-display').innerText = "Nota #" + String(correlativoNotaGlobal).padStart(4, '0');
             }
@@ -3774,7 +4103,7 @@ Hola Máster, mi terminal de caja está vencido (Día 0). Necesito procesar la r
             const cantidad = parseInt($('inv-input-cantidad').value) || 0;
             const costoIngresado = parseFloat($('inv-input-costo').value) || 0;
             const venta = parseFloat($('inv-input-venta').value) || 0;
-            const barcode = $('inv-input-barcode').value.trim().toUpperCase();
+            const barcode = isolarIMEI1($('inv-input-barcode').value.trim().toUpperCase());
 
             if(!nombre) return alert("⚠️ La descripción del artículo es obligatoria.");
             if(cantidad <= 0) return alert("⚠️ La cantidad debe ser mayor a 0.");
@@ -3942,8 +4271,7 @@ Hola Máster, mi terminal de caja está vencido (Día 0). Necesito procesar la r
                 </div>
             </div>`;
             
-            termicaBox.innerHTML = htmlPrintComp; window.print(); termicaBox.innerHTML = "";
-            termicaBox.className = "hidden whitespace-pre bg-white text-black p-4 z-0";
+            window.ejecutarImpresionTermicaSegura(htmlPrintComp);
 
             recepcionTemporalItemsArr = [];
             window.renderizarMesaRecepcionCompra();
@@ -3964,26 +4292,62 @@ Hola Máster, mi terminal de caja está vencido (Día 0). Necesito procesar la r
 
         window.imprimirInventarioTermico = function() {
             const termicaBox = $('contenedor-impresion-termica-fijo');
+            if(!termicaBox) return;
             termicaBox.className = "block bg-white text-black p-2 z-0";
+            
             let htmlPrint = `
-            <div class="hoja-factura flex flex-col justify-between" style="width: 10cm !important; min-height: 10cm !important; height: auto !important; background: white !important; color: black !important; font-family: 'Courier New', Courier, monospace; font-size: 11px; line-height: 1.3; padding: 0.2cm !important;">
+            <div class="hoja-factura" style="width: 100% !important; max-width: 20.5cm !important; min-height: 26cm !important; box-sizing: border-box !important; background: #ffffff !important; color: #000000 !important; font-family: 'Plus Jakarta Sans', Arial, sans-serif; font-size: 11px; line-height: 1.4; padding: 15px !important; margin: 0 auto !important; border: 2px solid #0f172a; border-radius: 8px; display: flex !important; flex-direction: column !important; justify-content: space-between !important; page-break-inside: avoid !important;">
                 <div>
-                    <div class="text-center space-y-0.5 border-b border-dashed border-black pb-2 mb-2">
-                        <span style="font-family: 'Plus Jakarta Sans', sans-serif;" class="font-black text-base tracking-tight block text-blue-custom uppercase">${cleanHTMLInput(infoClienteAbiertoDinamico.nombre || 'TUCOCEL C.A.')}</span>
-                        <p class="text-[9px] font-bold text-blue-custom">AGENTE AUTORIZADO MOVISTAR</p>
-                        <p class="text-[9px]">REPORTE DE INVENTARIO Y STOCK GENERAL</p>
+                    <!-- ENCABEZADO CARTA HOJA BLANCA -->
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 2.5px solid #0f172a; padding-bottom: 10px; margin-bottom: 12px;">
+                        <div style="width: 60%;">
+                            <span style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 900; font-size: 18px; color: #1e40af; text-transform: uppercase; display: block;">${cleanHTMLInput(infoClienteAbiertoDinamico.nombre || 'TUCOCEL C.A.')}</span>
+                            <p style="font-size: 11px; font-weight: 900; color: #1e40af; margin-top: 2px;">REPORTE GENERAL DE INVENTARIO Y EXISTENCIAS DE ALMACÉN</p>
+                            <p style="font-size: 9.5px; color: #334155; margin-top: 2px;">RIF: ${cleanHTMLInput(infoClienteAbiertoDinamico.rif || 'J-40392817-0')} | Dirección: ${cleanHTMLInput(infoClienteAbiertoDinamico.dir || 'Cordero, Táchira')}</p>
+                        </div>
+                        <div style="width: 36%; background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 8px; padding: 8px 10px; font-size: 9.5px; line-height: 1.4; text-align: right;">
+                            <p style="border-bottom: 1px solid #cbd5e1; padding-bottom: 2px; margin-bottom: 2px;"><strong style="color: #1e40af;">AUDITORÍA DE STOCK</strong></p>
+                            <p><strong>FECHA EMISIÓN:</strong> ${new Date().toLocaleDateString()}</p>
+                            <p><strong>HORA:</strong> ${new Date().toLocaleTimeString()}</p>
+                            <p><strong>TOTAL ARTÍCULOS:</strong> ${localProductosInventarioArr.length} Ítems</p>
+                        </div>
                     </div>
-                    <table class="w-full text-left text-[10px] mb-2">
-                        <thead><tr class="border-b border-black font-bold"><th>CANT / ARTÍCULO</th><th class="text-right">PRECIO</th></tr></thead>
+
+                    <!-- TABLA CARTA DE INVENTARIO -->
+                    <table style="width: 100% !important; table-layout: fixed !important; border-collapse: collapse !important; margin-bottom: 12px !important;">
+                        <thead>
+                            <tr style="background: #f1f5f9; border-top: 1.5px solid #0f172a; border-bottom: 1.5px solid #0f172a; font-size: 9.5px; font-weight: 800; text-transform: uppercase;">
+                                <th style="width: 12%; padding: 6px; text-align: center;">CÓDIGO</th>
+                                <th style="width: 58%; padding: 6px; text-align: left;">DESCRIPCIÓN DEL ARTÍCULO</th>
+                                <th style="width: 15%; padding: 6px; text-align: center;">CANTIDAD</th>
+                                <th style="width: 15%; padding: 6px; text-align: right;">PRECIO ($)</th>
+                            </tr>
+                        </thead>
                         <tbody>`;
             localProductosInventarioArr.forEach((p, idx) => {
-                htmlPrint += `<tr><td class="pt-1">#${String(p.correlativo || (idx+1)).padStart(3,'0')} ${p.cantidad}x ${cleanHTMLInput(p.nombre)}</td><td class="text-right pt-1 font-bold">$${p.venta}</td></tr>`;
+                htmlPrint += `
+                    <tr style="border-bottom: 1px solid #e2e8f0; font-size: 10px;">
+                        <td style="padding: 5px; text-align: center; font-family: monospace; font-weight: bold;">#${String(p.correlativo || (idx+1)).padStart(3,'0')}</td>
+                        <td style="padding: 5px; font-weight: 700;">
+                            ${cleanHTMLInput(p.nombre)}
+                            ${p.barcode ? `<div style="font-size: 8px; color: #64748b; font-family: monospace;">▫️ SERIAL/IMEI: ${cleanHTMLInput(p.barcode)}</div>` : ''}
+                        </td>
+                        <td style="padding: 5px; text-align: center; font-family: monospace; font-weight: 800; color: #1e40af;">${p.cantidad} uds</td>
+                        <td style="padding: 5px; text-align: right; font-family: monospace; font-weight: 800;">$${parseFloat(p.venta||0).toFixed(2)}</td>
+                    </tr>`;
             });
-            htmlPrint += `</tbody></table></div>
-                <div class="border-t border-dashed border-black pt-2 text-center text-[9px]">Total Artículos en Almacén: ${localProductosInventarioArr.length}</div>
+            htmlPrint += `
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- PIE DE PÁGINA CARTA -->
+                <div style="border-top: 2.5px solid #0f172a; padding-top: 10px; margin-top: 10px; text-align: center; font-size: 8px; color: #475569; font-weight: 600;">
+                    Documento Oficial de Auditoría e Inventario Físico — Emitido por TCL Inventario Máster (Tucocel C.A.)
+                </div>
             </div>`;
-            termicaBox.innerHTML = htmlPrint; window.print(); termicaBox.innerHTML = "";
-            termicaBox.className = "hidden whitespace-pre bg-white text-black p-4 z-0";
+
+            window.ejecutarImpresionTermicaSegura(htmlPrint);
         };
 
         window.enviarInventarioWhatsApp = function() {
@@ -4012,12 +4376,13 @@ Hola Máster, mi terminal de caja está vencido (Día 0). Necesito procesar la r
                     { facingMode: "environment" },
                     { fps: 10, qrbox: { width: 250, height: 150 } },
                     (decodedText) => {
-                        $('inv-input-barcode').value = decodedText;
+                        let cleanText = isolarIMEI1(decodedText);
+                        $('inv-input-barcode').value = cleanText;
                         html5QrScannerInvInstance.stop().then(() => {
                             html5QrScannerInvInstance.clear();
                             readerBox.classList.add('hidden');
                         });
-                        alert("📷 Código escaneado e inyectado con éxito: " + decodedText);
+                        alert("📷 Código / IMEI 1 aislado e inyectado con éxito: " + cleanText);
                     },
                     (errorMessage) => {}
                 ).catch(err => {
@@ -4352,15 +4717,15 @@ Hola Máster, mi terminal de caja está vencido (Día 0). Necesito procesar la r
             lista.slice().reverse().forEach((f) => {
                 const esAnulada = f.estatus === "ANULADA";
                 box.innerHTML += `
-                    <div class="p-2 rounded-xl border ${esAnulada ? 'bg-purple-50 border-purple-200 text-purple-800' : 'bg-slate-50 border-slate-200 text-slate-800'} flex justify-between items-center mb-1 font-sans">
+                    <div class="p-2.5 rounded-xl border ${esAnulada ? 'bg-purple-50 border-purple-200 text-purple-800' : 'bg-slate-50 border-slate-200 text-slate-800 hover:border-blue-400'} flex justify-between items-center mb-1.5 font-sans cursor-pointer transition-all shadow-sm group" onclick="window.verDetalleFacturaAuditoriaModal('${cleanHTMLInput(f.notaNum)}')">
                         <div>
-                            <span class="font-mono font-bold block text-slate-900">Nota #${cleanHTMLInput(f.notaNum)} [${cleanHTMLInput(f.fecha)}]</span>
-                            <span class="text-[9.5px] block font-medium text-slate-500">Cliente: ${cleanHTMLInput(f.cliente)} — Cajero: ${cleanHTMLInput(f.cajero)}</span>
+                            <span class="font-mono font-black block text-slate-900 text-xs flex items-center gap-1">Nota #${cleanHTMLInput(f.notaNum)} <span class="text-[9px] text-slate-400 font-normal">[${cleanHTMLInput(f.fecha)}]</span></span>
+                            <span class="text-[9.5px] block font-medium text-slate-600">Cliente: ${cleanHTMLInput(f.cliente)} — Cajero: ${cleanHTMLInput(f.cajero)}</span>
                             ${esAnulada ? '<span class="text-[8px] font-black tracking-wide block uppercase text-purple-600"><i class="fa-solid fa-ban"></i> NOTA DÉBITO (ANULADA)</span>' : ''}
                         </div>
-                        <div class="flex items-center gap-1.5 text-slate-800">
-                            <b class="font-mono text-xs text-slate-900">$${f.totalUSD.toFixed(2)}</b>
-                            <button onclick="window.solicitarAccionesNotaMostradorBoton(${localFacturasFijasHistorialArr.indexOf(f)})" class="bg-blue-600 text-white w-6 h-6 rounded-lg flex items-center justify-center text-[10px] shadow hover:bg-blue-700 transition-all"><i class="fa-solid fa-sliders"></i></button>
+                        <div class="flex items-center gap-2 text-slate-800">
+                            <b class="font-mono text-xs text-slate-900 font-black">$${f.totalUSD.toFixed(2)}</b>
+                            <button onclick="event.stopPropagation(); window.solicitarAccionesNotaMostradorBoton(${localFacturasFijasHistorialArr.indexOf(f)})" class="bg-blue-600 text-white w-7 h-7 rounded-lg flex items-center justify-center text-[11px] shadow hover:bg-blue-700 transition-all" title="Opciones"><i class="fa-solid fa-ellipsis-vertical"></i></button>
                         </div>
                     </div>`;
             });
@@ -4425,73 +4790,10 @@ Hola Máster, mi terminal de caja está vencido (Día 0). Necesito procesar la r
         window.reimprimirTicketDesdeHistorialBuscador = function(notaNum) {
             let match = localFacturasFijasHistorialArr.find(f => f.notaNum === notaNum);
             if(!match) return;
-            const tCOP = parseFloat($('tasa-cop').value) || 3900;
-            const tBs = parseFloat($('tasa-bs').value) || 40;
             const termicaBox = $('contenedor-impresion-termica-fijo');
             termicaBox.className = "block bg-white text-black p-2 z-0";
-
-            let stringFacturaEpsonHtml = `
-            <div class="hoja-factura flex flex-col justify-between" style="width: 10cm !important; min-height: 10cm !important; height: auto !important; background: white !important; color: black !important; font-family: 'Courier New', Courier, monospace; font-size: 11px; line-height: 1.3; padding: 0.2cm !important;">
-                <div>
-                    <div class="text-center space-y-0.5 border-b border-dashed border-black pb-2 mb-2">
-                        <span style="font-family: 'Plus Jakarta Sans', sans-serif;" class="font-black text-base tracking-tight block text-blue-custom uppercase">${cleanHTMLInput(infoClienteAbiertoDinamico.nombre || 'TUCOCEL C.A.')}</span>
-                        <p class="text-[9px] font-bold text-blue-custom">AGENTE AUTORIZADO MOVISTAR</p>
-                        <p class="text-[9px]">REIMPRESIÓN / DUPLICADO NOTA DE ENTREGA</p>
-                    </div>
-
-                    <div class="space-y-0.5 text-[10px] mb-2 pb-2 border-b border-dashed border-black">
-                        <p><strong>NOTA DE ENTREGA:</strong> #${cleanHTMLInput(match.notaNum)}</p>
-                        <p><strong>FECHA:</strong> ${cleanHTMLInput(match.fecha)} ${cleanHTMLInput(match.hora || '')}</p>
-                        <p><strong>CLIENTE:</strong> ${cleanHTMLInput(match.cliente)}</p>
-                        <p><strong>RIF/CÉDULA:</strong> ${cleanHTMLInput(match.cedula)}</p>
-                        <p><strong>CAJERO:</strong> ${cleanHTMLInput(match.cajero)}</p>
-                    </div>
-
-                    <table class="w-full text-left text-[10px] mb-2">
-                        <thead>
-                            <tr class="border-b border-black font-bold">
-                                <th class="pb-1">CANT / ARTÍCULO</th>
-                                <th class="text-right pb-1">TOTAL</th>
-                            </tr>
-                        </thead>
-                        <tbody>`;
-            
-            match.articulos.forEach(art => {
-                stringFacturaEpsonHtml += `
-                    <tr class="valign-top">
-                        <td class="pt-1">
-                            ${art.cantidad}x ${cleanHTMLInput(art.nombre)}
-                            ${art.barcode ? `<div class="text-[8.5px] text-gray-700 pl-2 font-mono">▫️ IMEI / SERIAL: ${cleanHTMLInput(art.barcode)}</div>` : ''}
-                        </td>
-                        <td class="text-right pt-1 font-bold_custom">$${(art.precioUnitario * art.cantidad).toFixed(2)}</td>
-                    </tr>`;
-            });
-
-            stringFacturaEpsonHtml += `
-                        </tbody>
-                    </table>
-                </div>
-
-                <div class="mt-2">
-                    <div class="border-t border-dashed border-black pt-2 space-y-0.5 text-[10px]">
-                        <div class="flex justify-between font-bold text-xs">
-                            <span>NETO USD:</span>
-                            <span>$${match.totalUSD.toFixed(2)}</span>
-                        </div>
-                        <div class="flex justify-between text-gray-800">
-                            <span>REF COP (Tasa ${tCOP}):</span>
-                            <span>${Math.round(match.totalUSD * tCOP).toLocaleString()} COP</span>
-                        </div>
-                        <div class="flex justify-between text-gray-800">
-                            <span>REF Bs (Tasa ${tBs.toFixed(2)}):</span>
-                            <span>${(match.totalUSD * tBs).toFixed(2)} Bs</span>
-                        </div>
-                    </div>
-                </div>
-            </div>`;
-
-            termicaBox.innerHTML = stringFacturaEpsonHtml; window.print(); termicaBox.innerHTML = "";
-            termicaBox.className = "hidden whitespace-pre bg-white text-black p-4 z-0";
+            let stringFacturaEpsonHtml = window.obtenerHtmlPlantillaFacturaImpresion(match);
+            window.ejecutarImpresionTermicaSegura(stringFacturaEpsonHtml);
         };
 
         window.limpiarTicketCompleto = function() {
@@ -4506,9 +4808,12 @@ Hola Máster, mi terminal de caja está vencido (Día 0). Necesito procesar la r
 
         window.regresarAlPanelSupremoMasterDesdeCualquierEntorno = function() {
             document.body.className = "bg-slate-950 text-slate-100 min-h-screen";
+            if($('cli-bloque-sistema')) $('cli-bloque-sistema').classList.add('hidden');
+            if($('cli-bloque-login')) $('cli-bloque-login').classList.remove('hidden');
             if($('vista-entorno-cliente')) $('vista-entorno-cliente').classList.add('hidden');
             if($('vista-master-admin')) $('vista-master-admin').classList.remove('hidden');
             if($('bloque-login-master')) $('bloque-login-master').classList.add('hidden');
+            window.scrollTo(0,0);
             window.recalcularEstructuraReportesGlobalTurno();
         };
 
@@ -4532,45 +4837,633 @@ Hola Máster, mi terminal de caja está vencido (Día 0). Necesito procesar la r
             document.body.removeChild(link);
         };
 
-        window.imprimirReporteCierreTermico = function() {
-            const termicaBox = $('contenedor-impresion-termica-fijo');
-            termicaBox.className = "block bg-white text-black p-2 z-0";
-            
-            let ventasBrutas = 0; let gastosTotales = 0;
-            localFacturasFijasHistorialArr.forEach(f => { if(f.estatus !== 'ANULADA') ventasBrutas += f.totalUSD; });
-            localGastosCajaArr.forEach(g => { gastosTotales += g.monto; });
+        window.generarHtmlStringCierreConsolidado = function() {
+            const rangoSelect = $('reporte-rango-temporal-cliente');
+            const rango = rangoSelect ? rangoSelect.value : "DIA";
+            const hoyStr = new Date().toLocaleDateString();
 
-            let htmlReport = `
-            <div class="hoja-factura flex flex-col justify-between" style="width: 10cm !important; min-height: 10cm !important; height: auto !important; background: white !important; color: black !important; font-family: 'Courier New', Courier, monospace; font-size: 11px; line-height: 1.3; padding: 0.2cm !important;">
+            let filtradasFacturas = localFacturasFijasHistorialArr;
+            let filtradosGastos = localGastosCajaArr;
+
+            if (rango === "DIA") {
+                filtradasFacturas = localFacturasFijasHistorialArr.filter(f => f.fecha === hoyStr);
+                filtradosGastos = localGastosCajaArr.filter(g => g.fecha === hoyStr || !g.fecha);
+            }
+
+            const tCOP = parseFloat($('tasa-cop') ? $('tasa-cop').value : 3900) || 3900;
+            const tBs = parseFloat($('tasa-bs') ? $('tasa-bs').value : 40) || 40;
+
+            let vendedoresMap = {};
+            let ventasBrutasTotal = 0;
+            let totalUSDInCaja = 0, totalCOPInCaja = 0, totalVESInCaja = 0;
+            let totalNotasAnuladas = 0;
+
+            filtradasFacturas.forEach(f => {
+                if(f.estatus === 'ANULADA') {
+                    totalNotasAnuladas += (f.totalUSD || 0);
+                    return;
+                }
+
+                ventasBrutasTotal += (f.totalUSD || 0);
+                const cajeroKey = (f.cajero || 'SISTEMA / MOSTRADOR').toUpperCase();
+
+                if(!vendedoresMap[cajeroKey]) {
+                    vendedoresMap[cajeroKey] = {
+                        articulosMap: {},
+                        totalUSD: 0,
+                        totalCOP: 0,
+                        totalVES: 0,
+                        metodos: { usd: 0, cop: 0, ves: 0 },
+                        countNotas: 0
+                    };
+                }
+
+                vendedoresMap[cajeroKey].countNotas++;
+                vendedoresMap[cajeroKey].totalUSD += (f.totalUSD || 0);
+
+                if (f.metodoCobro === "DOLAR_EFECTIVO" || f.metodoCobro === "DOLAR_USDT") {
+                    vendedoresMap[cajeroKey].metodos.usd += f.totalUSD;
+                    totalUSDInCaja += f.totalUSD;
+                } else if (f.metodoCobro === "PESO_EFECTIVO" || f.metodoCobro === "PESO_NEQUI") {
+                    let subCop = f.totalUSD * tCOP;
+                    vendedoresMap[cajeroKey].metodos.cop += subCop;
+                    totalCOPInCaja += subCop;
+                } else if (f.metodoCobro === "VES_PAGOMOVIL") {
+                    let subVes = f.totalUSD * tBs;
+                    vendedoresMap[cajeroKey].metodos.ves += subVes;
+                    totalVESInCaja += subVes;
+                }
+
+                if(f.articulos && Array.isArray(f.articulos)) {
+                    f.articulos.forEach(art => {
+                        const artNombreKey = art.nombre.toUpperCase();
+                        const cant = art.cantidad || 1;
+                        const sub = (art.precioUnitario || 0) * cant;
+
+                        if(!vendedoresMap[cajeroKey].articulosMap[artNombreKey]) {
+                            vendedoresMap[cajeroKey].articulosMap[artNombreKey] = { cantidad: 0, totalUSD: 0 };
+                        }
+                        vendedoresMap[cajeroKey].articulosMap[artNombreKey].cantidad += cant;
+                        vendedoresMap[cajeroKey].articulosMap[artNombreKey].totalUSD += sub;
+                    });
+                }
+            });
+
+            let totalGastosUSD = 0;
+            let htmlGastosRows = '';
+            filtradosGastos.forEach(g => {
+                totalGastosUSD += (g.monto || 0);
+                htmlGastosRows += `<tr class="border-b border-gray-200"><td class="py-1 px-2">• ${cleanHTMLInput(g.motivo)}</td><td class="text-right py-1 px-2 font-bold text-red-custom">-$${(g.monto||0).toFixed(2)} USD</td></tr>`;
+            });
+
+            let htmlVendedoresSeccion = '';
+            Object.keys(vendedoresMap).forEach(vKey => {
+                const vData = vendedoresMap[vKey];
+                let htmlItemsRows = '';
+                Object.keys(vData.articulosMap).forEach(aKey => {
+                    const aData = vData.articulosMap[aKey];
+                    htmlItemsRows += `
+                        <tr class="border-b border-gray-200 text-xs">
+                            <td class="py-1 px-2 text-center font-bold font-mono">${aData.cantidad}x</td>
+                            <td class="py-1 px-2 font-bold text-gray-900">${cleanHTMLInput(aKey)}</td>
+                            <td class="py-1 px-2 text-right font-mono font-bold_custom">$${aData.totalUSD.toFixed(2)}</td>
+                        </tr>`;
+                });
+
+                htmlVendedoresSeccion += `
+                    <div style="border: 1.5px solid #cbd5e1; border-radius: 8px; padding: 10px; margin-bottom: 12px; background-color: #f8fafc;">
+                        <div style="display: flex; justify-content: space-between; border-bottom: 2px solid #1e40af; padding-bottom: 4px; margin-bottom: 6px; font-weight: 900; font-size: 11px;">
+                            <span class="text-blue-custom">👤 CAJERO RESPONSABLE: ${cleanHTMLInput(vKey)}</span>
+                            <span>TOTAL: $${vData.totalUSD.toFixed(2)} USD (${vData.countNotas} Notas de Entrega)</span>
+                        </div>
+                        <table style="width: 100% !important; table-layout: fixed !important; border-collapse: collapse !important; margin-bottom: 6px !important;">
+                            <thead>
+                                <tr style="background: #e2e8f0; font-size: 9.5px; font-weight: 800; text-transform: uppercase;">
+                                    <th style="width: 10%; padding: 4px; text-align: center;">CANT</th>
+                                    <th style="width: 70%; padding: 4px; text-align: left;">DESCRIPCIÓN DEL PRODUCTO / SERVICIO</th>
+                                    <th style="width: 20%; padding: 4px; text-align: right;">SUBTOTAL</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${htmlItemsRows}
+                            </tbody>
+                        </table>
+                        <div style="display: flex; justify-content: space-between; font-size: 9.5px; font-family: monospace; border-top: 1px dashed #000; padding-top: 4px; margin-top: 4px;">
+                            <span>💵 DÓLARES: $${vData.metodos.usd.toFixed(2)}</span>
+                            <span>🇨🇴 PESOS COP: ${Math.round(vData.metodos.cop).toLocaleString()}</span>
+                            <span>🇻🇪 BOLÍVARES: ${vData.metodos.ves.toFixed(2)} Bs</span>
+                        </div>
+                    </div>`;
+            });
+
+            const cajaNetaRealUSD = ventasBrutasTotal - totalGastosUSD;
+
+            return `
+            <div class="hoja-factura" style="width: 100% !important; max-width: 20.5cm !important; min-height: 26cm !important; box-sizing: border-box !important; background: #ffffff !important; color: #000000 !important; font-family: 'Plus Jakarta Sans', Arial, sans-serif; font-size: 11px; line-height: 1.4; padding: 15px !important; margin: 0 auto !important; border: 2px solid #0f172a; border-radius: 10px; display: flex !important; flex-direction: column !important; justify-content: space-between !important; page-break-inside: avoid !important;">
+                
                 <div>
-                    <div class="text-center space-y-0.5 border-b border-dashed border-black pb-2 mb-2">
-                        <span style="font-family: 'Plus Jakarta Sans', sans-serif;" class="font-black text-base tracking-tight block text-blue-custom uppercase">${cleanHTMLInput(infoClienteAbiertoDinamico.nombre || 'TUCOCEL C.A.')}</span>
-                        <p class="text-[9px]">REPORTE DE ARQUEO Y CIERRE DE CAJA</p>
-                        <p class="text-[9px]">FECHA: ${new Date().toLocaleDateString()}</p>
+                    <!-- ENCABEZADO CARTA COMPLETO (ANCHO 20.5 CM) -->
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 2.5px solid #0f172a; padding-bottom: 10px; margin-bottom: 12px;">
+                        <div style="width: 60%;">
+                            <span style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 900; font-size: 18px; color: #1e40af; text-transform: uppercase; display: block;">${cleanHTMLInput(infoClienteAbiertoDinamico.nombre || 'TUCOCEL C.A.')}</span>
+                            <p style="font-size: 11px; font-weight: 900; color: #1e40af; margin-top: 2px;">REPORTES DE AUDITORÍA, ARQUEO Y CIERRE CONSOLIDADO</p>
+                            <p style="font-size: 9.5px; color: #334155; margin-top: 2px;">RIF: ${cleanHTMLInput(infoClienteAbiertoDinamico.rif || 'J-40392817-0')} | Dirección: ${cleanHTMLInput(infoClienteAbiertoDinamico.dir || 'Cordero, Táchira')}</p>
+                            <p style="font-size: 9.5px; color: #334155;">Soporte Sistema: ${cleanHTMLInput(infoClienteAbiertoDinamico.tlf || '0424-7357549')}</p>
+                        </div>
+                        <div style="width: 36%; background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 8px; padding: 8px 10px; font-size: 9.5px; line-height: 1.4; text-align: right;">
+                            <p style="border-bottom: 1px solid #cbd5e1; padding-bottom: 2px; margin-bottom: 2px;"><strong style="color: #1e40af;">REPORTE OFICIAL DE CAJA</strong></p>
+                            <p><strong>FECHA CORTE:</strong> ${hoyStr}</p>
+                            <p><strong>HORA EMISIÓN:</strong> ${new Date().toLocaleTimeString()}</p>
+                            <p><strong>PERÍODO:</strong> ${rango === 'DIA' ? 'TURNO DIARIO (HOY)' : 'CONSOLIDADO MENSUAL'}</p>
+                        </div>
                     </div>
-                    <div class="space-y-1 text-[10px]">
-                        <div class="flex justify-between"><span>VENTAS BRUTAS:</span><b>$${ventasBrutas.toFixed(2)}</b></div>
-                        <div class="flex justify-between"><span>GASTOS TOTALES:</span><b>-$${gastosTotales.toFixed(2)}</b></div>
-                        <div class="flex justify-between border-t border-black pt-1 font-bold"><span>CAJA NETA REAL:</span><b>$${(ventasBrutas - gastosTotales).toFixed(2)}</b></div>
+
+                    <!-- DESGLOSE DETALLADO POR CAJERO E ÍTEMS -->
+                    <div style="margin-bottom: 12px;">
+                        <p style="font-weight: 900; font-size: 11px; color: #1e40af; text-transform: uppercase; border-bottom: 1.5px solid #000; padding-bottom: 3px; margin-bottom: 8px;">📦 DESGLOSE GENERAL DE VENTAS POR CAJERO</p>
+                        ${htmlVendedoresSeccion || '<p style="text-align: center; font-style: italic; padding: 15px; color: #64748b;">Sin ventas registradas en este período de turno.</p>'}
+                    </div>
+
+                    <!-- EGRESOS Y GASTOS -->
+                    ${totalGastosUSD > 0 ? `
+                    <div style="border: 1.5px solid #fca5a5; background: #fff5f5; border-radius: 8px; padding: 8px; margin-bottom: 12px;">
+                        <p style="font-weight: 900; font-size: 10px; color: #dc2626; text-transform: uppercase; border-bottom: 1px solid #fca5a5; padding-bottom: 3px; margin-bottom: 6px;">🔻 EGRESOS Y GASTOS REGISTRADOS DE CAJA CHICA</p>
+                        <table style="width: 100% !important; font-size: 9.5px; font-family: monospace;">
+                            <tbody>${htmlGastosRows}</tbody>
+                        </table>
+                        <div style="display: flex; justify-content: space-between; font-weight: 900; font-size: 10.5px; color: #dc2626; border-top: 1px dashed #fca5a5; padding-top: 3px; margin-top: 6px;">
+                            <span>TOTAL GASTOS:</span>
+                            <span>-$${totalGastosUSD.toFixed(2)} USD</span>
+                        </div>
+                    </div>` : ''}
+                </div>
+
+                <!-- BLOQUE INFERIOR Y PIE DE PÁGINA ANCLADO AL FINAL DE LA HOJA CARTA -->
+                <div style="border-top: 2.5px solid #0f172a; padding-top: 10px; margin-top: 10px;">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-end;">
+                        <!-- RECUADRO BALANCE NETO (IZQUIERDA) -->
+                        <div style="width: 52%; background: #f8fafc; border: 2px solid #0f172a; border-radius: 8px; padding: 8px 12px; font-family: monospace; font-size: 10px;">
+                            <div style="display: flex; justify-content: space-between;"><span>VENTAS BRUTAS TOTALES:</span><strong style="color: #059669; font-size: 11px;">$${ventasBrutasTotal.toFixed(2)}</strong></div>
+                            <div style="display: flex; justify-content: space-between;"><span>GASTOS TOTALES CAJA:</span><strong style="color: #dc2626; font-size: 11px;">-$${totalGastosUSD.toFixed(2)}</strong></div>
+                            ${totalNotasAnuladas > 0 ? `<div style="display: flex; justify-content: space-between;"><span>NOTAS ANULADAS:</span><strong style="color: #9333ea; font-size: 11px;">-$${totalNotasAnuladas.toFixed(2)}</strong></div>` : ''}
+                            <div style="display: flex; justify-content: space-between; font-weight: 900; font-size: 13px; color: #1e40af; border-top: 1.5px solid #cbd5e1; padding-top: 4px; margin-top: 4px;">
+                                <span>CAJA NETA REAL:</span>
+                                <span>$${cajaNetaRealUSD.toFixed(2)} USD</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; font-size: 9px; color: #334155; margin-top: 3px;">
+                                <span>EFECTIVO PESOS (COP):</span>
+                                <span><strong>${Math.round(totalCOPInCaja).toLocaleString()} COP</strong></span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; font-size: 9px; color: #334155;">
+                                <span>PAGO MÓVIL / VES:</span>
+                                <span><strong>${totalVESInCaja.toFixed(2)} Bs</strong></span>
+                            </div>
+                        </div>
+
+                        <!-- FIRMAS AUDITORÍA Y RESGUARDO (DERECHA) -->
+                        <div style="width: 44%; text-align: center; font-size: 8px; text-transform: uppercase;">
+                            <div style="display: flex; justify-content: space-around; margin-bottom: 12px;">
+                                <div style="width: 45%; border-top: 1.5px solid #000; padding-top: 4px; font-weight: 800;">FIRMA CAJERO(S)</div>
+                                <div style="width: 45%; border-top: 1.5px solid #000; padding-top: 4px; font-weight: 800;">FIRMA ADMINISTRACIÓN</div>
+                            </div>
+                            <p style="font-size: 7.5px; color: #475569; font-weight: 600;">Reporte de Auditoría Generado por TCL Inventario Máster — Tucocel C.A. RIF J-31378837-6</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>`;
+        };
+
+        window.generarHtmlStringInventarioGeneral = function() {
+            let htmlPrint = `
+            <div class="hoja-factura" style="width: 100% !important; max-width: 20.5cm !important; min-height: 26cm !important; box-sizing: border-box !important; background: #ffffff !important; color: #000000 !important; font-family: 'Plus Jakarta Sans', Arial, sans-serif; font-size: 11px; line-height: 1.4; padding: 15px !important; margin: 0 auto !important; border: 2px solid #0f172a; border-radius: 8px; display: flex !important; flex-direction: column !important; justify-content: space-between !important; page-break-inside: avoid !important;">
+                <div>
+                    <!-- ENCABEZADO CARTA HOJA BLANCA -->
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 2.5px solid #0f172a; padding-bottom: 10px; margin-bottom: 12px;">
+                        <div style="width: 60%;">
+                            <span style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 900; font-size: 18px; color: #1e40af; text-transform: uppercase; display: block;">${cleanHTMLInput(infoClienteAbiertoDinamico.nombre || 'TUCOCEL C.A.')}</span>
+                            <p style="font-size: 11px; font-weight: 900; color: #1e40af; margin-top: 2px;">REPORTE GENERAL DE INVENTARIO Y EXISTENCIAS DE ALMACÉN</p>
+                            <p style="font-size: 9.5px; color: #334155; margin-top: 2px;">RIF: ${cleanHTMLInput(infoClienteAbiertoDinamico.rif || 'J-40392817-0')} | Dirección: ${cleanHTMLInput(infoClienteAbiertoDinamico.dir || 'Cordero, Táchira')}</p>
+                        </div>
+                        <div style="width: 36%; background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 8px; padding: 8px 10px; font-size: 9.5px; line-height: 1.4; text-align: right;">
+                            <p style="border-bottom: 1px solid #cbd5e1; padding-bottom: 2px; margin-bottom: 2px;"><strong style="color: #1e40af;">AUDITORÍA DE STOCK</strong></p>
+                            <p><strong>FECHA EMISIÓN:</strong> ${new Date().toLocaleDateString()}</p>
+                            <p><strong>HORA:</strong> ${new Date().toLocaleTimeString()}</p>
+                            <p><strong>TOTAL ARTÍCULOS:</strong> ${localProductosInventarioArr.length} Ítems</p>
+                        </div>
+                    </div>
+
+                    <!-- TABLA CARTA DE INVENTARIO -->
+                    <table style="width: 100% !important; table-layout: fixed !important; border-collapse: collapse !important; margin-bottom: 12px !important;">
+                        <thead>
+                            <tr style="background: #f1f5f9; border-top: 1.5px solid #0f172a; border-bottom: 1.5px solid #0f172a; font-size: 9.5px; font-weight: 800; text-transform: uppercase;">
+                                <th style="width: 12%; padding: 6px; text-align: center;">CÓDIGO</th>
+                                <th style="width: 58%; padding: 6px; text-align: left;">DESCRIPCIÓN DEL ARTÍCULO</th>
+                                <th style="width: 15%; padding: 6px; text-align: center;">CANTIDAD</th>
+                                <th style="width: 15%; padding: 6px; text-align: right;">PRECIO ($)</th>
+                            </tr>
+                        </thead>
+                        <tbody>`;
+            localProductosInventarioArr.forEach((p, idx) => {
+                htmlPrint += `
+                    <tr style="border-bottom: 1px solid #e2e8f0; font-size: 10px;">
+                        <td style="padding: 5px; text-align: center; font-family: monospace; font-weight: bold;">#${String(p.correlativo || (idx+1)).padStart(3,'0')}</td>
+                        <td style="padding: 5px; font-weight: 700;">
+                            ${cleanHTMLInput(p.nombre)}
+                            ${p.barcode ? `<div style="font-size: 8px; color: #64748b; font-family: monospace;">▫️ SERIAL/IMEI: ${cleanHTMLInput(p.barcode)}</div>` : ''}
+                        </td>
+                        <td style="padding: 5px; text-align: center; font-family: monospace; font-weight: 800; color: #1e40af;">${p.cantidad} uds</td>
+                        <td style="padding: 5px; text-align: right; font-family: monospace; font-weight: 800;">$${parseFloat(p.venta||0).toFixed(2)}</td>
+                    </tr>`;
+            });
+            htmlPrint += `
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- PIE DE PÁGINA CARTA -->
+                <div style="border-top: 2.5px solid #0f172a; padding-top: 10px; margin-top: 10px; text-align: center; font-size: 8px; color: #475569; font-weight: 600;">
+                    Documento Oficial de Auditoría e Inventario Físico — Emitido por TCL Inventario Máster (Tucocel C.A.)
+                </div>
+            </div>`;
+            return htmlPrint;
+        };
+
+        window.verReporteCierreModal = function() {
+            const htmlContent = window.generarHtmlStringCierreConsolidado();
+            const boxContenido = $('contenido-hoja-blanca-factura-auditoria');
+            if(boxContenido) boxContenido.innerHTML = htmlContent;
+
+            const btnPrint = $('btn-print-modal-auditoria');
+            if(btnPrint) btnPrint.onclick = function() { window.imprimirReporteCierreTermico(); };
+
+            const btnWs = $('btn-ws-modal-auditoria');
+            if(btnWs) btnWs.onclick = function() { window.enviarReporteCierreDiarioWhatsAppDueño(); };
+
+            const modal = $('modal-detalle-factura-auditoria');
+            if(modal) modal.classList.remove('hidden');
+        };
+
+        window.verInventarioModal = function() {
+            const htmlContent = window.generarHtmlStringInventarioGeneral();
+            const boxContenido = $('contenido-hoja-blanca-factura-auditoria');
+            if(boxContenido) boxContenido.innerHTML = htmlContent;
+
+            const btnPrint = $('btn-print-modal-auditoria');
+            if(btnPrint) btnPrint.onclick = function() { window.imprimirInventarioTermico(); };
+
+            const btnWs = $('btn-ws-modal-auditoria');
+            if(btnWs) btnWs.onclick = function() { window.enviarInventarioWhatsApp(); };
+
+            const modal = $('modal-detalle-factura-auditoria');
+            if(modal) modal.classList.remove('hidden');
+        };
+
+        window.imprimirReporteCierreTermico = function() {
+            alert("⏳ MÓDULO EN PAUSA: En espera de nuevo formato de impresión.");
+        };
+
+        window.imprimirInventarioTermico = function() {
+            alert("⏳ MÓDULO EN PAUSA: En espera de nuevo formato de impresión.");
+        };
+
+        /* ================= FUNCIONES FASE 2: GESTIÓN DE CUENTAS DEMO ================= */
+        window.ejecutarRotacionTokenLinkDemo = async function() {
+            if(!confirm("🔄 ¿Confirmar rotación de enlace de la cuenta Demo?\n\nEsta acción invalidará el acceso para el cliente anterior y generará un nuevo usuario/token único de inmediato.")) return;
+            try {
+                let listado = await obtenerClientesDesdeFirebase();
+                let idx = listado.findIndex(c => c.id === idSeleccionadoActual);
+                if(idx !== -1) {
+                    const tokenUnico = 'demo_' + Math.random().toString(36).substring(2, 8);
+                    const newPass = Math.floor(100000 + Math.random() * 900000).toString();
+                    listado[idx].user = tokenUnico;
+                    listado[idx].pass = newPass;
+                    listado[idx].fechaCreacion = Date.now();
+                    listado[idx].fechaVencimiento = Date.now() + ((parseInt(listado[idx].dias) || 7) * 86400000);
+                    
+                    await guardarClientesEnFirebase(listado);
+                    
+                    if($('cfg-user')) $('cfg-user').value = tokenUnico;
+                    if($('cfg-pass')) $('cfg-pass').value = newPass;
+                    if($('cfg-link-url')) $('cfg-link-url').value = `${window.location.href.split('?')[0]}?user=${tokenUnico}`;
+                    
+                    alert(`✅ Enlace Demo Rotado con Éxito.\n\nNuevo Usuario ID: ${tokenUnico}\nNueva Clave: ${newPass}\n\nEl cliente previo ha sido bloqueado del servidor.`);
+                }
+            } catch(e) { console.error("Error al rotar enlace demo:", e); }
+        };
+
+        window.abrirModalConfirmarWhatsAppDemo = function() {
+            const tlfFicha = $('cfg-tlf') ? $('cfg-tlf').value.trim() : "";
+            if($('input-wa-destino-demo-cliente')) $('input-wa-destino-demo-cliente').value = tlfFicha;
+            if($('modal-confirmar-envio-wa-demo')) $('modal-confirmar-envio-wa-demo').classList.remove('hidden');
+        };
+
+        window.confirmarYEnviarWhatsAppDemoComercial = function() {
+            let destTlf = $('input-wa-destino-demo-cliente') ? $('input-wa-destino-demo-cliente').value.trim() : "";
+            if(!destTlf) return alert("⚠️ Ingrese un número de WhatsApp de destino válido.");
+            
+            let cleanTlf = destTlf.replace(/\D/g, '');
+            if(!cleanTlf.startsWith('58') && cleanTlf.length === 10 && cleanTlf.startsWith('0')) cleanTlf = '58' + cleanTlf.substring(1);
+            if(!cleanTlf.startsWith('58') && cleanTlf.length === 10) cleanTlf = '58' + cleanTlf;
+
+            const name = $('cfg-nombre') ? $('cfg-nombre').value.trim() : "Estimado Cliente";
+            const user = $('cfg-user') ? $('cfg-user').value.trim() : "";
+            const pass = $('cfg-pass') ? $('cfg-pass').value.trim() : "";
+            const linkAcceso = `${window.location.href.split('?')[0]}?user=${user}`;
+
+            let msg = `✨ *BIENVENIDO A TCL INVENTARIO MÁSTER — ACCESO DEMO DE PRUEBA* ✨\n\n`;
+            msg += `Hola *${name}*, le otorgamos un acceso exclusivo de prueba para que experimente la velocidad, facturación multimoneda e impresión de nuestro sistema.\n\n`;
+            msg += `🚀 *ENLACE DIRECTO DE PRUEBA:*\n`;
+            msg += `👉 ${linkAcceso}\n\n`;
+            msg += `🔑 *CREDENCIALES ASIGNADAS:*\n`;
+            msg += `👤 Usuario ID: *${user}*\n`;
+            msg += `🔐 Clave: *${pass}*\n\n`;
+            msg += `--------------------------------------------------\n`;
+            msg += `🔥 *Transforme su mostrador y proteja su caja hoy mismo.*\n`;
+            msg += `Consulte nuestros planes oficiales y active su suscripción definitiva escribiéndonos directamente a la Administración Central.\n\n`;
+            msg += `📌 *Soporte & Ventas Directas:*\n`;
+            msg += `Tucocel C.A. RIF J-31378837-6 | WhatsApp: 0424-7357549`;
+
+            if($('modal-confirmar-envio-wa-demo')) $('modal-confirmar-envio-wa-demo').classList.add('hidden');
+            window.open(`https://api.whatsapp.com/send?phone=${cleanTlf}&text=${encodeURIComponent(msg)}`, '_blank');
+        };
+
+
+
+        /* ================= FUNCIONES FASE 3: IMPRESIÓN Y AUDITORÍA DETALLADA ================= */
+        window.obtenerHtmlPlantillaFacturaImpresion = function(facturaDataObj) {
+            const tCOP = parseFloat($('tasa-cop') ? $('tasa-cop').value : 3900) || 3900;
+            const tBs = parseFloat($('tasa-bs') ? $('tasa-bs').value : 40) || 40;
+            const shopNombre = cleanHTMLInput(infoClienteAbiertoDinamico.nombre || 'TUCOCEL C.A.');
+            const shopRif = cleanHTMLInput(infoClienteAbiertoDinamico.rif || 'J-40392817-0');
+            const shopDir = cleanHTMLInput(infoClienteAbiertoDinamico.dir || 'Cordero, Táchira - Venezuela');
+            const shopTlf = cleanHTMLInput(infoClienteAbiertoDinamico.tlf || '0424-7357549');
+
+            // Safe total USD extraction with fallbacks
+            let totalUSDVal = 0;
+            if (typeof facturaDataObj.totalUSD === 'number') {
+                totalUSDVal = facturaDataObj.totalUSD;
+            } else if (typeof facturaDataObj.total === 'number') {
+                totalUSDVal = facturaDataObj.total;
+            } else if (facturaDataObj.articulos && Array.isArray(facturaDataObj.articulos)) {
+                totalUSDVal = facturaDataObj.articulos.reduce((acc, a) => acc + ((a.precioUnitario || 0) * (a.cantidad || 1)), 0);
+            }
+
+            let htmlProdRows = '';
+            if (facturaDataObj.articulos && Array.isArray(facturaDataObj.articulos)) {
+                facturaDataObj.articulos.forEach(art => {
+                    let sub = (art.precioUnitario || 0) * (art.cantidad || 1);
+                    htmlProdRows += `
+                        <tr class="valign-top">
+                            <td class="pt-1">
+                                ${art.cantidad || 1}x ${cleanHTMLInput(art.nombre)}
+                                ${art.barcode ? `<div class="text-[8.5px] text-gray-700 pl-2 font-mono">▫️ IMEI: ${cleanHTMLInput(art.barcode)}</div>` : ''}
+                            </td>
+                            <td class="text-right pt-1 font-bold_custom">$${sub.toFixed(2)}</td>
+                        </tr>`;
+                });
+            }
+
+            const totalCOPVal = Math.round(totalUSDVal * tCOP);
+            const totalVESVal = (totalUSDVal * tBs).toFixed(2);
+            const abonoVal = parseFloat(facturaDataObj.abono) || 0;
+
+            return `
+            <div class="hoja-factura flex flex-col justify-between max-w-full mx-auto" style="width: 100% !important; max-width: 10cm !important; min-height: 10cm !important; height: auto !important; background: white !important; color: black !important; font-family: 'Courier New', Courier, monospace; font-size: 11px; line-height: 1.3; padding: 0.3cm !important; box-sizing: border-box !important;">
+                <div>
+                    <!-- ENCABEZADO CORPORATIVO EN AZUL -->
+                    <div class="text-center space-y-0.5 border-b border-dashed border-black pb-2 mb-2">
+                        <span style="font-family: 'Plus Jakarta Sans', sans-serif;" class="font-black text-base tracking-tight block text-blue-custom uppercase">${shopNombre}</span>
+                        <p class="text-[9px] font-bold text-blue-custom">AGENTE AUTORIZADO MOVISTAR</p>
+                        <p class="text-[9px]">RIF: ${shopRif}</p>
+                        <p class="text-[9px]">${shopDir}</p>
+                        <p class="text-[9px]">Soporte: ${shopTlf}</p>
+                    </div>
+
+                    <!-- DATOS DEL COMPROBANTE Y CLIENTE -->
+                    <div class="space-y-0.5 text-[10px] mb-2 pb-2 border-b border-dashed border-black">
+                        <p><strong>NOTA DE DESPACHO:</strong> #${cleanHTMLInput(facturaDataObj.notaNum)}</p>
+                        <p><strong>FECHA:</strong> ${cleanHTMLInput(facturaDataObj.fecha)} ${cleanHTMLInput(facturaDataObj.hora || '')}</p>
+                        <p><strong>RECEPTOR:</strong> ${cleanHTMLInput(facturaDataObj.cliente)}</p>
+                        <p><strong>CÉDULA/RIF:</strong> ${cleanHTMLInput(facturaDataObj.cedula)}</p>
+                        <p><strong>CAJERO:</strong> ${cleanHTMLInput(facturaDataObj.cajero)}</p>
+                    </div>
+
+                    <!-- TABLA DINÁMICA DE PRODUCTOS -->
+                    <table class="w-full text-left text-[10px] mb-2">
+                        <thead>
+                            <tr class="border-b border-black font-bold">
+                                <th class="pb-1">CANT / ARTÍCULO</th>
+                                <th class="text-right pb-1">TOTAL</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${htmlProdRows}
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- SECCIÓN INFERIOR: TOTALES MULTIMONEDA -->
+                <div class="mt-2">
+                    <div class="border-t border-dashed border-black pt-2 space-y-0.5 text-[10px]">
+                        <div class="flex justify-between font-bold text-xs">
+                            <span>NETO USD:</span>
+                            <span>$${totalUSDVal.toFixed(2)}</span>
+                        </div>
+                        ${facturaDataObj.condicion === 'CREDITO' ? `<div class="flex justify-between text-purple-700 font-bold"><span>ABONADO EN MOSTRADOR:</span><span>$${abonoVal.toFixed(2)}</span></div><div class="flex justify-between font-bold text-purple-700"><span>SALDO PENDIENTE:</span><span>$${(totalUSDVal - abonoVal).toFixed(2)}</span></div>` : ''}
+                        <div class="flex justify-between text-gray-800">
+                            <span>REF COP (Tasa ${tCOP.toLocaleString()}):</span>
+                            <span>${totalCOPVal.toLocaleString()} COP</span>
+                        </div>
+                        <div class="flex justify-between text-gray-800">
+                            <span>REF Bs (Tasa ${tBs.toFixed(2)}):</span>
+                            <span>${totalVESVal} Bs</span>
+                        </div>
+                    </div>
+
+                    <!-- TEXTO DE BLINDAJE LEGAL AJUSTADO COMPACTO DE ESQUINA A ESQUINA -->
+                    <div class="text-center text-[7.5px] space-y-1 border-t border-black mt-2 pt-1.5 uppercase tracking-tighter text-justify leading-tight">
+                        <p class="font-black text-red-custom tracking-tight text-center text-[8px] mb-0.5">⚠️ ADVERTENCIA: NOTA DE DESPACHO E INVENTARIO INTERNO</p>
+                        <p class="text-black font-medium">ESTE COMPROBANTE CONSTITUYE EXCLUSIVAMENTE UN REGISTRO OPERATIVO DE CONTROL DE ALMACÉN Y MOVILIZACIÓN INTERNA DE MERCANCÍAS. EN NINGÚN CASO ADQUIERE CARÁCTER DE FACTURA FISCAL, NI SUSTITUYE O MINIMIZA LAS FUNCIONES DE LOS MEDIOS DE EMISIÓN REGULADOS POR LA PROVIDENCIA ADMINISTRATIVA VIGENTE DE LA GERENCIA DE RECAUDACIÓN TRIBUTARIA DEL SENIAT. EL COMERCIO ADQUIERE LA OBLIGACIÓN EXCLUSIVA DE RESPALDAR SUS OPERACIONES MEDIANTE LOS CANALES TRIBUTARIOS LEGALES.</p>
+                        <p class="text-gray-600 font-mono text-[6.5px] lowercase normal-case text-center pt-0.5 leading-none">El proveedor de la infraestructura tecnológica y los desarrolladores del sistema quedan totalmente eximidos de responsabilidad civil, administrativa o penal sobre los montos cargados, descripciones o tasas cambiarias aplicadas en este terminal.</p>
+                        
+                        <div class="text-[7px] text-gray-500 font-sans pt-1 border-t border-gray-200 mt-1 text-center normal-case tracking-normal">
+                            Infraestructura Tecnológica Distribuida por <strong>Tucocel C.A.</strong><br>
+                            Desarrollo y Automatización: <strong>Publi-Online-Mk</strong>
+                        </div>
                     </div>
                 </div>
             </div>`;
-
-            termicaBox.innerHTML = htmlReport; window.print(); termicaBox.innerHTML = "";
-            termicaBox.className = "hidden whitespace-pre bg-white text-black p-4 z-0";
         };
 
-        window.enviarReporteCierreDiarioWhatsAppDueño = function() {
-            let ventasBrutas = 0; let gastosTotales = 0;
-            localFacturasFijasHistorialArr.forEach(f => { if(f.estatus !== 'ANULADA') ventasBrutas += f.totalUSD; });
-            localGastosCajaArr.forEach(g => { gastosTotales += g.monto; });
+        window.verDetalleFacturaAuditoriaModal = function(notaNum) {
+            let match = localFacturasFijasHistorialArr.find(f => f.notaNum === notaNum);
+            if(!match) return alert("❌ No se encontró el registro de la nota.");
 
-            let msg = `📊 *REPORTE DE CIERRE DIARIO — ${infoClienteAbiertoDinamico.nombre}*\n\n📅 Fecha: ${new Date().toLocaleDateString()}\n📈 Ventas Brutas: $${ventasBrutas.toFixed(2)} USD\n📉 Gastos: -$${gastosTotales.toFixed(2)} USD\n💰 Balance Neto: $${(ventasBrutas - gastosTotales).toFixed(2)} USD\n\nTotal Comprobantes Emitidos: ${localFacturasFijasHistorialArr.length}`;
-            let cleanTlf = infoClienteAbiertoDinamico.tlf ? infoClienteAbiertoDinamico.tlf.replace(/\D/g, '') : '';
-            if(cleanTlf && !cleanTlf.startsWith('58')) cleanTlf = '58' + cleanTlf;
-            window.open(`https://api.whatsapp.com/send?phone=${cleanTlf}&text=${encodeURIComponent(msg)}`, '_blank');
+            const box = $('contenido-hoja-blanca-factura-auditoria');
+            if(!box) return;
+
+            const htmlFactura = window.obtenerHtmlPlantillaFacturaImpresion(match);
+            box.innerHTML = htmlFactura;
+
+            const btnPrint = $('btn-print-modal-auditoria');
+            if(btnPrint) {
+                btnPrint.onclick = function() {
+                    window.reimprimirTicketDesdeHistorialBuscador(notaNum);
+                };
+            }
+
+            const btnWs = $('btn-ws-modal-auditoria');
+            if(btnWs) {
+                btnWs.onclick = function() {
+                    const tCOP = parseFloat($('tasa-cop').value) || 3900;
+                    const tBs = parseFloat($('tasa-bs').value) || 40;
+                    let desc = match.articulos.map(i => `  • ${i.cantidad}x ${i.nombre} -> $${(i.precioUnitario * i.cantidad).toFixed(2)} USD ${i.barcode ? `\n    📱 Serial IMEI: ${i.barcode}` : ''}`).join('\n');
+                    let msg = `🛍️ *${infoClienteAbiertoDinamico.nombre}*\n🧾 COMPROBANTE DE ENTREGA E INVENTARIO\nNota #${match.notaNum} | Cajero: ${match.cajero}\n\n📦 Detalle de Compra:\n${desc}\n\n💰 Totales Multimoneda:\n💵 REF: $${match.totalUSD.toFixed(2)} USD\n🇨🇴 COP: ${Math.round(match.totalUSD * tCOP).toLocaleString()} Pesos\n🇻🇪 VES: ${(match.totalUSD * tBs).toFixed(2)} Bs\n\n===============================\n🔒 CONTROL INTERNO (NO FISCAL)`;
+                    let cleanTlf = match.telefono ? match.telefono.replace(/\D/g, '') : '';
+                    if(cleanTlf && !cleanTlf.startsWith('58')) cleanTlf = '58' + cleanTlf;
+                    window.open(`https://api.whatsapp.com/send?phone=${cleanTlf}&text=${encodeURIComponent(msg)}`, '_blank');
+                };
+            }
+
+            $('modal-detalle-factura-auditoria').classList.remove('hidden');
         };
-    </script>
+
+
+                        window.enviarReporteCierreDiarioWhatsAppDueño = function() {
+            const rangoSelect = $('reporte-rango-temporal-cliente');
+            const rango = rangoSelect ? rangoSelect.value : "DIA";
+            const hoyStr = new Date().toLocaleDateString();
+
+            let filtradasFacturas = localFacturasFijasHistorialArr;
+            let filtradosGastos = localGastosCajaArr;
+
+            if (rango === "DIA") {
+                filtradasFacturas = localFacturasFijasHistorialArr.filter(f => f.fecha === hoyStr);
+                filtradosGastos = localGastosCajaArr.filter(g => g.fecha === hoyStr || !g.fecha);
+            }
+
+            const tCOP = parseFloat($('tasa-cop') ? $('tasa-cop').value : 3900) || 3900;
+            const tBs = parseFloat($('tasa-bs') ? $('tasa-bs').value : 40) || 40;
+
+            let vendedoresMap = {};
+            let ventasBrutasTotal = 0;
+            let totalUSDInCaja = 0, totalCOPInCaja = 0, totalVESInCaja = 0;
+            let totalNotasAnuladas = 0;
+
+            filtradasFacturas.forEach(f => {
+                if(f.estatus === 'ANULADA') {
+                    totalNotasAnuladas += (f.totalUSD || 0);
+                    return;
+                }
+
+                ventasBrutasTotal += (f.totalUSD || 0);
+                const cajeroKey = (f.cajero || 'SISTEMA / MOSTRADOR').toUpperCase();
+
+                if(!vendedoresMap[cajeroKey]) {
+                    vendedoresMap[cajeroKey] = {
+                        articulosMap: {},
+                        totalUSD: 0,
+                        metodos: { usd: 0, cop: 0, ves: 0 },
+                        countNotas: 0
+                    };
+                }
+
+                vendedoresMap[cajeroKey].countNotas++;
+                vendedoresMap[cajeroKey].totalUSD += (f.totalUSD || 0);
+
+                if (f.metodoCobro === "DOLAR_EFECTIVO" || f.metodoCobro === "DOLAR_USDT") {
+                    vendedoresMap[cajeroKey].metodos.usd += f.totalUSD;
+                    totalUSDInCaja += f.totalUSD;
+                } else if (f.metodoCobro === "PESO_EFECTIVO" || f.metodoCobro === "PESO_NEQUI") {
+                    let subCop = f.totalUSD * tCOP;
+                    vendedoresMap[cajeroKey].metodos.cop += subCop;
+                    totalCOPInCaja += subCop;
+                } else if (f.metodoCobro === "VES_PAGOMOVIL") {
+                    let subVes = f.totalUSD * tBs;
+                    vendedoresMap[cajeroKey].metodos.ves += subVes;
+                    totalVESInCaja += subVes;
+                }
+
+                if(f.articulos && Array.isArray(f.articulos)) {
+                    f.articulos.forEach(art => {
+                        const artNombreKey = art.nombre.toUpperCase();
+                        const cant = art.cantidad || 1;
+                        const sub = (art.precioUnitario || 0) * cant;
+
+                        if(!vendedoresMap[cajeroKey].articulosMap[artNombreKey]) {
+                            vendedoresMap[cajeroKey].articulosMap[artNombreKey] = { cantidad: 0, totalUSD: 0 };
+                        }
+                        vendedoresMap[cajeroKey].articulosMap[artNombreKey].cantidad += cant;
+                        vendedoresMap[cajeroKey].articulosMap[artNombreKey].totalUSD += sub;
+                    });
+                }
+            });
+
+            let totalGastosUSD = 0;
+            let textGastos = '';
+            filtradosGastos.forEach(g => {
+                totalGastosUSD += (g.monto || 0);
+                textGastos += "  🔻 " + g.motivo + " -> -$"+ (g.monto||0).toFixed(2) + " USD\n";
+            });
+
+            let textVendedores = '';
+            Object.keys(vendedoresMap).forEach(vKey => {
+                const vData = vendedoresMap[vKey];
+                textVendedores += "\n👤 *CAJERO:* " + vKey + " (" + vData.countNotas + " Notas)\n";
+                textVendedores += "📋 *Ítems Vendidos:*\n";
+                Object.keys(vData.articulosMap).forEach(aKey => {
+                    const aData = vData.articulosMap[aKey];
+                    textVendedores += "  ▫ " + aData.cantidad + "x " + aKey + " -> $" + aData.totalUSD.toFixed(2) + "\n";
+                });
+                textVendedores += "💵 *Cobrado en Turno:*\n";
+                if(vData.metodos.usd > 0) textVendedores += "  • Efectivo USD: $" + vData.metodos.usd.toFixed(2) + "\n";
+                if(vData.metodos.cop > 0) textVendedores += "  • Pesos COP: " + Math.round(vData.metodos.cop).toLocaleString() + " COP\n";
+                if(vData.metodos.ves > 0) textVendedores += "  • Bolívares VES: " + vData.metodos.ves.toFixed(2) + " Bs\n";
+                textVendedores += "💰 *Subtotal Vendedor:* $" + vData.totalUSD.toFixed(2) + " USD\n";
+            });
+
+            const cajaNetaRealUSD = ventasBrutasTotal - totalGastosUSD;
+
+            let msg = "📊 *REPORTE DE ARQUEO Y CIERRE DE TURNO*\n";
+            msg += "🏢 *Tienda:* " + (infoClienteAbiertoDinamico.nombre || 'TUCOCEL C.A.') + "\n";
+            msg += "📅 *Corte:* " + hoyStr + " " + new Date().toLocaleTimeString() + "\n";
+            msg += "--------------------------------------------------\n";
+            msg += "📦 *DETALLE POR VENDEDOR E ÍTEMS:*\n" + (textVendedores || "  _Sin ventas registradas en el período._\n") + "\n";
+            msg += "--------------------------------------------------\n";
+            if(totalGastosUSD > 0) {
+                msg += "🔻 *EGRESOS DE CAJA CHICA:*\n" + textGastos;
+                msg += "🔴 *Total Gastos:* -$"+ totalGastosUSD.toFixed(2) + " USD\n";
+                msg += "--------------------------------------------------\n";
+            }
+            msg += "💰 *CONSOLIDADO DE CAJA NETO:*\n";
+            msg += "📈 *Ventas Brutas:* $" + ventasBrutasTotal.toFixed(2) + " USD\n";
+            msg += "💵 *CAJA NETA REAL:* $" + cajaNetaRealUSD.toFixed(2) + " USD\n";
+            msg += "🇨🇴 *Recaudado COP:* " + Math.round(totalCOPInCaja).toLocaleString() + " COP\n";
+            msg += "🇻🇪 *Recaudado VES:* " + totalVESInCaja.toFixed(2) + " Bs\n";
+            if(totalNotasAnuladas > 0) msg += "🟣 *Notas Anuladas:* -$" + totalNotasAnuladas.toFixed(2) + " USD\n";
+            msg += "--------------------------------------------------\n";
+            msg += "🔒 _Reporte de Auditoría Generado por TCL Inventario Máster_\n";
+            msg += "_Tucocel C.A. RIF J-31378837-6_";
+
+            let cleanTlf = infoClienteAbiertoDinamico.tlf ? infoClienteAbiertoDinamico.tlf.replace(/\D/g, '') : '584247357549';
+            if(!cleanTlf.startsWith('58')) cleanTlf = '58' + cleanTlf;
+
+            window.open("https://api.whatsapp.com/send?phone=" + cleanTlf + "&text=" + encodeURIComponent(msg), '_blank');
+        };
+
+        window.alternarModoLoginEntreMasterYCliente = function(modo) {
+            if(modo === 'CLIENTE') {
+                if($('bloque-login-master')) $('bloque-login-master').classList.add('hidden');
+                if($('vista-entorno-cliente')) $('vista-entorno-cliente').classList.remove('hidden');
+                if($('cli-bloque-login')) $('cli-bloque-login').classList.remove('hidden');
+                if($('cli-bloque-sistema')) $('cli-bloque-sistema').classList.add('hidden');
+            } else {
+                if($('vista-entorno-cliente')) $('vista-entorno-cliente').classList.add('hidden');
+                if($('bloque-login-master')) $('bloque-login-master').classList.remove('hidden');
+            }
+        };
+</script>
 
     
 </body></html>
