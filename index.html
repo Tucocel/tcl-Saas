@@ -28,9 +28,11 @@
         .glow-text { text-shadow: 0 0 10px rgba(59, 130, 246, 0.5); }
 
         /* CLASES COMPACTAS Y LIMPIAS REUTILIZABLES */
-        .input-dark { width: 100%; background-color: #020617; border: 1px solid #1e293b; padding: 0.5rem 0.75rem; border-radius: 0.75rem; color: #ffffff; font-weight: 700; outline: none; font-size: 0.75rem; }
+                .input-dark { width: 100%; background-color: #020617; border: 1px solid #1e293b; padding: 0.5rem 0.75rem; border-radius: 0.75rem; color: #ffffff; font-weight: 700; outline: none; font-size: 0.75rem; }
+        .input-dark::placeholder { font-size: 0.65rem; font-weight: 600; text-transform: uppercase; text-overflow: ellipsis; opacity: 0.6; }
         .input-dark:focus { border-color: #3b82f6; }
         .input-light { width: 100%; background-color: #f8fafc; border: 1px solid #cbd5e1; padding: 0.45rem 0.65rem; border-radius: 0.65rem; font-size: 0.75rem; font-weight: 700; outline: none; color: #0f172a; }
+        .input-light::placeholder { font-size: 0.65rem; font-weight: 600; text-transform: uppercase; text-overflow: ellipsis; opacity: 0.6; }
         .input-light:focus { border-color: #2563eb; background-color: #ffffff; }
         .btn-action-primary { background: linear-gradient(to right, #2563eb, #1d4ed8); color: white; font-weight: 900; font-size: 0.75rem; padding: 0.65rem 1rem; border-radius: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; transition: all 0.2s; cursor: pointer; }
         .btn-action-primary:hover { opacity: 0.95; }
@@ -300,7 +302,7 @@
     </div>
 
     <!-- CONSOLA MÓVIL DE DIAGNÓSTICO FLOTANTE -->
-    <div id="diagnostico-master-flotante" class="fixed bottom-24 right-4 z-[10005] flex flex-col items-center gap-1 hidden">
+    <div id="diagnostico-master-flotante" class="fixed bottom-24 right-4 z-[10005] flex flex-col items-center gap-1">
         <div id="badge-contador-errores" class="bg-red-500 text-white font-black text-[10px] px-2 py-0.5 rounded-full shadow-lg border border-red-400 animate-bounce hidden">0</div>
         <button onclick="window.toggleConsolaDiagnosticoInterna()" id="btn-consola-flotante" class="w-12 h-12 bg-slate-800 border border-slate-700 text-white rounded-full flex items-center justify-center shadow-2xl text-lg transition-all duration-300 cursor-pointer">
             <i class="fa-solid fa-terminal"></i>
@@ -1646,90 +1648,136 @@
 
         <!-- PANEL SUPREMO MÁSTER -->
         <div id="vista-master-admin" class="hidden p-4 sm:p-8 max-w-7xl mx-auto space-y-6">
-            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 border-b border-slate-800 pb-5">
+            <!-- CABECERA Y KPIS EJECUTIVOS SUPREMOS -->
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-slate-800 pb-5">
                 <div>
-                    <span class="bg-blue-500/10 text-blue-400 border border-blue-500/20 text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full inline-flex items-center gap-1.5"><i class="fa-solid fa-user-shield"></i> Panel Supremo de Control</span>
-                    <h1 class="text-2xl font-black tracking-tight text-white mt-2 flex items-center gap-2">TCL INVENTARIO MÁSTER <span class="text-amber-400">🔒</span></h1>
+                    <span class="bg-blue-500/10 text-blue-400 border border-blue-500/20 text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full inline-flex items-center gap-1.5 shadow-sm">
+                        <i class="fa-solid fa-user-shield"></i> Central Suprema de Administración
+                    </span>
+                    <h1 class="text-2xl sm:text-3xl font-black tracking-tight text-white mt-2 flex items-center gap-2">
+                        TCL INVENTARIO MÁSTER <span class="text-amber-400">🔒</span>
+                    </h1>
                 </div>
-                <div class="flex items-center gap-3 bg-slate-900 border border-slate-800 p-2.5 rounded-2xl text-xs font-bold font-mono w-full sm:w-auto justify-between sm:justify-start">
-                    <div class="text-center px-2 border-r border-slate-800 flex-grow sm:flex-grow-0"><span class="block text-[9px] text-slate-500 uppercase tracking-wider">Clientes</span><span id="global-clientes-count" class="text-blue-400 text-base font-black">1</span></div>
-                    <div class="text-center px-2 flex-grow sm:flex-grow-0"><span class="block text-[9px] text-slate-500 tracking-wider uppercase">Servidor</span><span class="text-emerald-400 text-base font-black flex items-center justify-center gap-1">ONLINE <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span></span></div>
-                </div>
-            </div>
-
-            <div class="card-panel-dark space-y-4">
-                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 border-b border-slate-800 pb-3">
-                    <div><h2 class="text-white font-black text-sm uppercase tracking-wider">📊 Consolidado Central del Servidor de Suscripciones</h2></div>
-                </div>
-                <div class="bg-slate-950 p-4 rounded-xl border border-blue-500/20 text-center font-mono text-xs">
-                    <span class="block text-[8px] text-blue-400 uppercase tracking-wider">Caja Recaudación SaaS Neta</span>
-                    <span id="rep-balance-neto-master-global" class="text-amber-400 font-black text-lg">$0.00</span>
+                <div class="flex items-center gap-2 w-full sm:w-auto">
+                    <button onclick="window.abrirModalCrearPerfil()" class="btn-action-primary px-5 py-3 text-xs flex items-center justify-center gap-2 shadow-lg w-full sm:w-auto">
+                        <i class="fa-solid fa-plus text-sm"></i> <span>Registrar Nueva Sucursal</span>
+                    </button>
                 </div>
             </div>
 
-            <div class="card-panel-dark grid grid-cols-1 sm:grid-cols-3 gap-3 items-center">
-                <div class="bg-slate-950 p-2 rounded-xl border border-slate-800"><span class="block text-[8px] text-slate-500 font-bold uppercase">Tasa COP Global</span><input type="number" id="master-tasa-cop" value="3900" class="w-full bg-transparent font-black text-xs text-amber-400 focus:outline-none"></div>
-                <div class="bg-slate-950 p-2 rounded-xl border border-slate-800"><span class="block text-[8px] text-slate-500 font-bold uppercase">Tasa Bs Global</span><input type="number" id="master-tasa-bs" value="40" class="w-full bg-transparent font-black text-xs text-emerald-400 focus:outline-none"></div>
-                <div class="bg-slate-950 p-2 rounded-xl border border-slate-800">
-                    <span class="block text-[8px] text-slate-500 font-bold uppercase">Nueva Clave Máster</span>
-                    <input type="password" id="master-new-password-field" placeholder="Razu2020." class="w-full bg-transparent font-black text-xs text-blue-400 focus:outline-none">
-                    <button onclick="window.procesarChangeMasterPassGlobal()" class="text-[8px] bg-blue-600 text-white font-bold px-2 py-0.5 rounded uppercase mt-1 block">Actualizar Clave</button>
+            <!-- TARJETAS DE KPIS DE CABECERA (KPIs Ejecutivos) -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3.5">
+                <!-- KPI 1: Clientes Activos -->
+                <div class="bg-slate-900 border border-slate-800 p-4 rounded-2xl shadow-lg relative overflow-hidden group">
+                    <div class="absolute -right-2 -bottom-2 text-slate-800/40 text-5xl group-hover:scale-110 transition-transform"><i class="fa-solid fa-store"></i></div>
+                    <span class="text-[9px] font-black text-slate-400 uppercase tracking-wider block mb-1">Clientes / Sucursales</span>
+                    <div class="flex items-baseline gap-2">
+                        <span id="global-clientes-count" class="text-2xl font-black text-blue-400 font-mono">1</span>
+                        <span class="text-[9px] text-emerald-400 font-bold uppercase flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span> Servidor Online</span>
+                    </div>
+                </div>
+
+                <!-- KPI 2: Recaudación SaaS Neta -->
+                <div class="bg-slate-900 border border-slate-800 p-4 rounded-2xl shadow-lg relative overflow-hidden group">
+                    <div class="absolute -right-2 -bottom-2 text-slate-800/40 text-5xl group-hover:scale-110 transition-transform"><i class="fa-solid fa-sack-dollar"></i></div>
+                    <span class="text-[9px] font-black text-slate-400 uppercase tracking-wider block mb-1">Recaudación SaaS Neta</span>
+                    <span id="rep-balance-neto-master-global" class="text-2xl font-black text-amber-400 font-mono">$0.00</span>
+                </div>
+
+                <!-- KPI 3: Tasa COP Global -->
+                <div class="bg-slate-900 border border-slate-800 p-3.5 rounded-2xl shadow-lg relative overflow-hidden">
+                    <span class="text-[9px] font-black text-slate-400 uppercase tracking-wider block mb-1">Tasa COP Global</span>
+                    <div class="flex items-center bg-slate-950 px-3 py-1.5 rounded-xl border border-slate-800">
+                        <span class="text-xs font-bold text-amber-400 mr-2">🇨🇴</span>
+                        <input type="number" id="master-tasa-cop" value="3900" class="w-full bg-transparent font-black text-sm text-amber-400 focus:outline-none font-mono">
+                    </div>
+                </div>
+
+                <!-- KPI 4: Tasa Bs Global -->
+                <div class="bg-slate-900 border border-slate-800 p-3.5 rounded-2xl shadow-lg relative overflow-hidden">
+                    <span class="text-[9px] font-black text-slate-400 uppercase tracking-wider block mb-1">Tasa Bs Global</span>
+                    <div class="flex items-center bg-slate-950 px-3 py-1.5 rounded-xl border border-slate-800">
+                        <span class="text-xs font-bold text-emerald-400 mr-2">🇻🇪</span>
+                        <input type="number" id="master-tasa-bs" value="40" class="w-full bg-transparent font-black text-sm text-emerald-400 focus:outline-none font-mono">
+                    </div>
                 </div>
             </div>
 
+            <!-- CENTRAL DE COMPARTICIÓN LOGÍSTICA Y MARKETING -->
+            <div class="p-5 rounded-3xl bg-gradient-to-r from-blue-950/60 via-slate-900 to-purple-950/60 border border-blue-500/20 shadow-xl space-y-3.5">
+                <div class="flex justify-between items-center border-b border-slate-800/80 pb-2">
+                    <h2 class="text-xs font-black text-white uppercase tracking-wider flex items-center gap-2">
+                        <i class="fa-solid fa-share-nodes text-blue-400 text-sm"></i> Central de Compartición Logística y Difusión
+                    </h2>
+                    <span class="text-[9px] bg-blue-500/20 text-blue-300 border border-blue-500/30 font-extrabold uppercase px-2.5 py-0.5 rounded-full">Acceso Rápido</span>
+                </div>
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2.5">
+                    <button onclick="window.abrirBovedaSubEntornosMasterModal()" class="bg-slate-900/90 border border-slate-800 hover:border-blue-500/40 p-3 rounded-2xl flex flex-col items-center justify-center gap-1.5 text-center transition-all hover:scale-[1.02] active:scale-95 shadow-md">
+                        <span class="w-8 h-8 bg-blue-500/10 text-blue-400 rounded-xl flex items-center justify-center text-sm"><i class="fa-solid fa-store"></i></span>
+                        <span class="font-extrabold text-white text-[10px] uppercase tracking-wide">Base Clientes</span>
+                    </button>
+                    <button onclick="window.abrirSeccionBovedaPromotoresMando()" class="bg-slate-900/90 border border-slate-800 hover:border-purple-500/40 p-3 rounded-2xl flex flex-col items-center justify-center gap-1.5 text-center transition-all hover:scale-[1.02] active:scale-95 shadow-md">
+                        <span class="w-8 h-8 bg-purple-500/10 text-purple-400 rounded-xl flex items-center justify-center text-sm"><i class="fa-solid fa-users"></i></span>
+                        <span class="font-extrabold text-white text-[10px] uppercase tracking-wide">Promotores</span>
+                    </button>
+                    <button onclick="window.abrirBalanceMensualModal()" class="bg-slate-900/90 border border-slate-800 hover:border-amber-500/40 p-3 rounded-2xl flex flex-col items-center justify-center gap-1.5 text-center transition-all hover:scale-[1.02] active:scale-95 shadow-md">
+                        <span class="w-8 h-8 bg-amber-500/10 text-amber-400 rounded-xl flex items-center justify-center text-sm"><i class="fa-solid fa-chart-line"></i></span>
+                        <span class="font-extrabold text-white text-[10px] uppercase tracking-wide">Balance Mensual</span>
+                    </button>
+                    <button onclick="document.getElementById('modal-editor-tarifas').classList.remove('hidden')" class="bg-slate-900/90 border border-slate-800 hover:border-emerald-500/40 p-3 rounded-2xl flex flex-col items-center justify-center gap-1.5 text-center transition-all hover:scale-[1.02] active:scale-95 shadow-md">
+                        <span class="w-8 h-8 bg-emerald-500/10 text-emerald-400 rounded-xl flex items-center justify-center text-sm"><i class="fa-solid fa-sliders"></i></span>
+                        <span class="font-extrabold text-white text-[10px] uppercase tracking-wide">Tarifas SaaS</span>
+                    </button>
+                    <button onclick="window.abrirModalPropuestaCentral()" class="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-3 rounded-2xl flex flex-col items-center justify-center gap-1.5 text-center transition-all hover:scale-[1.02] active:scale-95 shadow-lg border border-blue-400/30 col-span-2 sm:col-span-1">
+                        <span class="w-8 h-8 bg-white/20 rounded-xl flex items-center justify-center text-sm text-yellow-300"><i class="fa-solid fa-paper-plane"></i></span>
+                        <span class="font-black text-white text-[10px] uppercase tracking-wider">Enviar Propuesta</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- BÓVEDA SEGURIDAD Y CONFIGURACIÓN MÁSTER -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- Tarjeta Seguridad y Clave -->
+                <div class="card-panel-dark space-y-3">
+                    <h3 class="text-xs font-black text-slate-300 uppercase tracking-wider flex items-center gap-1.5 border-b border-slate-800 pb-2">
+                        <i class="fa-solid fa-key text-amber-400"></i> Clave Maestra de Administrador
+                    </h3>
+                    <div class="space-y-2">
+                        <input type="password" id="master-new-password-field" placeholder="Escriba nueva clave maestra..." class="input-dark font-mono text-xs py-2.5 px-3">
+                        <button onclick="window.procesarChangeMasterPassGlobal()" class="bg-blue-600 hover:bg-blue-700 text-white font-black text-xs px-4 py-2.5 rounded-xl uppercase tracking-wider w-full shadow transition-all">
+                            Actualizar Clave Maestra
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Kit de Soporte & Resguardo -->
+                <div class="card-panel-dark space-y-3">
+                    <h3 class="text-xs font-black text-slate-300 uppercase tracking-wider flex items-center gap-1.5 border-b border-slate-800 pb-2">
+                        <i class="fa-solid fa-screwdriver-wrench text-emerald-400"></i> Kit de Soporte & Resguardo
+                    </h3>
+                    <div class="grid grid-cols-2 gap-2">
+                        <button onclick="window.limpiarMemoriaCacheSoporte()" class="bg-slate-950 border border-red-500/20 hover:border-red-500/40 p-2.5 rounded-xl flex items-center justify-center gap-2 transition-all text-center">
+                            <i class="fa-solid fa-broom text-red-400 text-sm"></i>
+                            <span class="font-bold text-white text-[10px] uppercase">Limpiar Caché</span>
+                        </button>
+                        <button onclick="window.descargarCopiaSeguridadCSV()" class="bg-slate-950 border border-emerald-500/20 hover:border-emerald-500/40 p-2.5 rounded-xl flex items-center justify-center gap-2 transition-all text-center">
+                            <i class="fa-solid fa-file-csv text-emerald-400 text-sm"></i>
+                            <span class="font-bold text-white text-[10px] uppercase">Copia CSV</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BÓVEDA OCULTA DE PURGA DEL SERVIDOR -->
             <div class="card-panel-dark space-y-3">
-                <h2 class="text-[10px] font-black text-slate-400 uppercase tracking-wider flex items-center gap-1.5"><i class="fa-solid fa-share-nodes text-blue-400"></i> Gestión Central de Infraestructura</h2>
-                <div class="grid grid-cols-2 md:grid-cols-5 gap-2">
-                    <button onclick="window.abrirBovedaSubEntornosMasterModal()" class="bg-slate-950 border border-slate-800 hover:border-blue-500/30 p-2.5 rounded-xl flex items-center gap-2 transition-all">
-                        <span class="text-blue-400 text-sm"><i class="fa-solid fa-store"></i></span>
-                        <span class="font-black text-white text-[11px] uppercase tracking-wide">Clientes Suscritos</span>
-                    </button>
-                    <button onclick="window.abrirSeccionBovedaPromotoresMando()" class="bg-slate-950 border border-slate-800 hover:border-blue-500/30 p-2.5 rounded-xl flex items-center gap-2 transition-all">
-                        <span class="text-purple-400 text-sm"><i class="fa-solid fa-users"></i></span>
-                        <span class="font-black text-white text-[11px] uppercase tracking-wide">Control Promotores</span>
-                    </button>
-                    <button onclick="window.abrirBalanceMensualModal()" class="bg-slate-950 border border-amber-500/30 p-2.5 rounded-xl flex items-center gap-2 transition-all">
-                        <span class="text-amber-400 text-sm"><i class="fa-solid fa-chart-line"></i></span>
-                        <span class="font-black text-white text-[11px] uppercase tracking-wide">Balance Mensual</span>
-                    </button>
-                    <button onclick="document.getElementById('modal-editor-tarifas').classList.remove('hidden')" class="bg-slate-950 border border-slate-800 hover:border-blue-500/30 p-2.5 rounded-xl flex items-center gap-2 transition-all">
-                        <span class="text-emerald-400 text-sm"><i class="fa-solid fa-sliders"></i></span>
-                        <span class="font-black text-white text-[11px] uppercase tracking-wide">Tarifas SaaS</span>
-                    </button>
-                    <button onclick="window.abrirModalPropuestaCentral()" class="bg-slate-950 border border-amber-500/20 hover:border-amber-500/40 p-2.5 rounded-xl flex items-center gap-2 transition-all text-left">
-                        <span class="text-amber-400 text-sm"><i class="fa-solid fa-paper-plane text-yellow-400"></i></span>
-                        <span class="font-black text-white text-[11px] uppercase tracking-wide block">ENVIAR<br>PROPUESTA</span>
-                    </button>
-                </div>
-            </div>
-
-            <div class="card-panel-dark space-y-3">
-                <h2 class="text-[10px] font-black text-slate-400 uppercase tracking-wider flex items-center gap-1.5"><i class="fa-solid fa-screwdriver-wrench text-emerald-400"></i> Kit de Soporte &amp; Resguardo Administrativo</h2>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <button onclick="window.limpiarMemoriaCacheSoporte()" class="w-full bg-slate-950 border border-red-500/20 hover:border-red-500/40 p-3 rounded-xl flex items-center justify-center gap-2 transition-all">
-                        <i class="fa-solid fa-broom text-red-400 text-lg"></i>
-                        <span class="font-black text-white text-[11px] uppercase tracking-wide">Limpiar Memoria / Caché</span>
-                    </button>
-                    <button onclick="window.descargarCopiaSeguridadCSV()" class="w-full bg-slate-950 border border-emerald-500/20 hover:border-emerald-500/40 p-3 rounded-xl flex items-center justify-center gap-2 transition-all">
-                        <i class="fa-solid fa-file-csv text-emerald-400 text-lg"></i>
-                        <span class="font-black text-white text-[11px] uppercase tracking-wide">Copia de Seguridad Local (CSV)</span>
-                    </button>
-                </div>
-            </div>
-
-            <div class="card-panel-dark space-y-3">
-                <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-wider border-b border-slate-800 pb-1">Bóveda Oculta de Purga del Servidor (Líder Supremo)</h4>
+                <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-wider border-b border-slate-800 pb-1.5 flex items-center gap-1.5">
+                    <i class="fa-solid fa-shield-virus text-red-400"></i> Bóveda de Auditoría y Purga Remota del Servidor
+                </h4>
                 <div id="lista-auditoria-notes-completa-box-master" class="space-y-2 max-h-60 overflow-y-auto no-scrollbar text-xs">
-                    <p class="text-center text-slate-400 italic py-4">Seleccione e ingrese a la caja de un comercio para habilitar el motor de purga remota.</p>
+                    <p class="text-center text-slate-400 italic py-4 font-medium">Seleccione e ingrese a la caja de un comercio para habilitar el motor de purga remota.</p>
                 </div>
             </div>
-
-            <div class="card-panel-dark flex flex-col items-center justify-center min-h-[140px] text-center gap-2">
-                <button onclick="window.abrirModalCrearPerfil()" class="btn-action-primary px-6 py-3.5 flex items-center gap-2 cursor-pointer"><i class="fa-solid fa-plus"></i> Registrar Nueva Sucursal</button>
-            </div>
-        </div>
-
-        <!-- ENTORNO CLIENTE / VISTA OPERATIVA SUCURSAL -->
+        </div><!-- ENTORNO CLIENTE / VISTA OPERATIVA SUCURSAL -->
         <div id="vista-entorno-cliente" class="hidden min-h-screen bg-slate-950 text-slate-100 flex flex-col justify-center items-center p-2 sm:p-4 relative">
             <div id="cli-bloque-login" class="w-full max-w-md p-0.5 rounded-3xl bg-gradient-to-br from-blue-500 via-slate-800 to-purple-600 shadow-[0_0_40px_rgba(59,130,246,0.15)] overflow-hidden z-10 relative">
                 <button id="btn-retorno-master-login" onclick="window.regresarAlPanelSupremoMasterDesdeCualquierEntorno()" class="absolute top-4 right-4 bg-red-600 hover:bg-red-700 text-white font-black text-[9px] px-3 py-1.5 rounded-xl uppercase tracking-wider shadow-lg transition-all z-20 hidden"><i class="fa-solid fa-arrow-left-long mr-1"></i> Volver al Máster</button>
@@ -1784,94 +1832,216 @@
                 </div>
 
                 <!-- PESTAÑA FACTURACIÓN POS -->
-                <div id="panel-seccion-facturar" class="p-2 sm:p-4 max-w-7xl mx-auto w-full flex-grow pb-24 space-y-3">
-                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 bg-white border border-slate-200 p-2.5 rounded-2xl shadow-sm items-center">
-                        <div>
-                            <label class="text-[8px] font-black text-slate-400 uppercase block mb-0.5">Cajero Turno *</label>
-                            <input type="text" id="ticket-vendedor" placeholder="Nombre de cajero..." class="input-light uppercase text-purple-700 font-black">
-                        </div>
-                        <div class="sm:col-span-2 grid grid-cols-2 gap-2 bg-slate-900 p-1.5 rounded-xl border border-slate-800 text-white">
-                            <div class="flex items-center justify-between px-2 bg-slate-950 rounded-lg border border-slate-800">
-                                <span class="text-[8px] text-slate-400 font-bold uppercase">Tasa COP</span>
-                                <input type="number" id="tasa-cop" value="3900" class="w-16 bg-transparent text-right font-black text-xs text-amber-400 focus:outline-none" onkeyup="window.calcularTotalesSimulados()">
+                <!-- PESTAÑA / MODULO LANZADOR - DASHBOARD PRINCIPAL (FASE 2) -->
+                <div id="panel-seccion-dashboard-lanzador" class="p-3 sm:p-5 max-w-7xl mx-auto w-full flex-grow pb-28 space-y-5">
+                    <!-- BANNER DE BIENVENIDA SUPERIOR -->
+                    <div class="relative overflow-hidden rounded-3xl bg-gradient-to-r from-blue-900 via-indigo-900 to-purple-900 p-5 sm:p-6 text-white shadow-xl border border-blue-500/30">
+                        <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-blue-500/10 rounded-full blur-2xl pointer-events-none"></div>
+                        <div class="relative z-10 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+                            <div class="space-y-1">
+                                <div class="inline-flex items-center gap-1.5 bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest shadow-sm">
+                                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                                    <span>Licencia Vigente</span>
+                                </div>
+                                <h1 id="dashboard-banner-nombre-negocio" class="text-xl sm:text-2xl font-black tracking-tight text-white uppercase pt-1">
+                                    MESA DE CONTROL Y DESPACHO
+                                </h1>
+                                <p class="text-slate-300 text-xs font-medium">Seleccione el módulo operativo al que desea ingresar en su turno.</p>
                             </div>
-                            <div class="flex items-center justify-between px-2 bg-slate-950 rounded-lg border border-slate-800">
-                                <span class="text-[8px] text-slate-400 font-bold uppercase">Tasa Bs</span>
-                                <input type="number" id="tasa-bs" value="40" class="w-16 bg-transparent text-right font-black text-xs text-emerald-400 focus:outline-none" onkeyup="window.calcularTotalesSimulados()">
+                            <div class="bg-slate-950/60 backdrop-blur-md border border-slate-800 p-3 rounded-2xl text-center sm:text-right w-full sm:w-auto font-mono">
+                                <span class="text-[9px] text-slate-400 font-bold uppercase tracking-wider block">Terminal Comercial</span>
+                                <span class="text-amber-400 font-black text-xs sm:text-sm">TCL INVENTARIO MÁSTER</span>
                             </div>
                         </div>
                     </div>
 
-                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-3 items-start">
-                        <div class="flex flex-col lg:col-span-7 space-y-3">
-                            <div id="tarjeta-carga-articulos-pos" class="bg-white border border-slate-200 rounded-2xl p-3 shadow-sm space-y-2.5 transition-all duration-300">
-                                <div class="flex justify-between items-center border-b pb-1">
-                                    <h3 class="text-[9.5px] font-black text-slate-400 uppercase tracking-tight">Agregar Producto a la Venta</h3>
-                                    <div class="flex gap-1 text-[8.5px] font-bold">
-                                        <button onclick="window.cambiarModoDeDigitacionMostrador('LIBRE')" id="btn-modo-libre" class="bg-blue-600 text-white px-2 py-0.5 rounded-md border uppercase transition-all">Manual</button>
-                                        <button onclick="window.cambiarModoDeDigitacionMostrador('INVENTARIO')" id="btn-modo-inv" class="bg-slate-100 text-slate-500 px-2 py-0.5 rounded-md border uppercase transition-all">Stock</button>
+                    <!-- REJILLA DE MÓDULOS (Cards Táctiles 2x3 en Móvil, 3x2 en PC) -->
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-3.5 sm:gap-4">
+                        <!-- Card 1: Registrar Ventas (POS) -->
+                        <div onclick="window.activarPestañaPos('facturar')" class="bg-gradient-to-br from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 text-white rounded-3xl p-4 sm:p-5 shadow-lg border border-blue-400/30 cursor-pointer transition-all transform hover:scale-[1.02] active:scale-95 flex flex-col justify-between min-h-[130px] sm:min-h-[150px] relative overflow-hidden group">
+                            <div class="absolute -right-2 -bottom-2 text-blue-500/20 text-6xl group-hover:scale-110 transition-transform"><i class="fa-solid fa-cash-register"></i></div>
+                            <div class="w-10 h-10 sm:w-12 sm:h-12 bg-white/20 backdrop-blur-md rounded-2xl flex items-center justify-center text-xl sm:text-2xl shadow-sm">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                            </div>
+                            <div class="space-y-0.5 relative z-10 pt-2">
+                                <h3 class="font-black text-sm sm:text-base uppercase tracking-wide leading-tight">Registrar Ventas (POS)</h3>
+                                <p class="text-[10px] text-blue-100 font-medium">Mesa de cobro e impresión</p>
+                            </div>
+                        </div>
+
+                        <!-- Card 2: Productos / Stock -->
+                        <div onclick="window.activarPestañaPos('inventario'); window.cambiarSubPestañaInventario('ver');" class="bg-slate-900 hover:bg-slate-850 text-white rounded-3xl p-4 sm:p-5 shadow-lg border border-slate-800 cursor-pointer transition-all transform hover:scale-[1.02] active:scale-95 flex flex-col justify-between min-h-[130px] sm:min-h-[150px] relative overflow-hidden group">
+                            <div class="absolute -right-2 -bottom-2 text-slate-800/40 text-6xl group-hover:scale-110 transition-transform"><i class="fa-solid fa-boxes-stacked"></i></div>
+                            <div class="w-10 h-10 sm:w-12 sm:h-12 bg-blue-500/10 border border-blue-500/20 text-blue-400 rounded-2xl flex items-center justify-center text-xl sm:text-2xl shadow-sm">
+                                <i class="fa-solid fa-box-archive"></i>
+                            </div>
+                            <div class="space-y-0.5 relative z-10 pt-2">
+                                <h3 class="font-black text-sm sm:text-base uppercase tracking-wide leading-tight">Productos / Stock</h3>
+                                <p class="text-[10px] text-slate-400 font-medium">Consultar almacén general</p>
+                            </div>
+                        </div>
+
+                        <!-- Card 3: Cargar Compras / Mercancía -->
+                        <div onclick="window.activarPestañaPos('inventario'); window.cambiarSubPestañaInventario('agregar');" class="bg-gradient-to-br from-purple-700 to-indigo-800 hover:from-purple-600 hover:to-indigo-700 text-white rounded-3xl p-4 sm:p-5 shadow-lg border border-purple-400/30 cursor-pointer transition-all transform hover:scale-[1.02] active:scale-95 flex flex-col justify-between min-h-[130px] sm:min-h-[150px] relative overflow-hidden group">
+                            <div class="absolute -right-2 -bottom-2 text-purple-400/20 text-6xl group-hover:scale-110 transition-transform"><i class="fa-solid fa-truck-ramp-box"></i></div>
+                            <div class="w-10 h-10 sm:w-12 sm:h-12 bg-white/20 backdrop-blur-md rounded-2xl flex items-center justify-center text-xl sm:text-2xl shadow-sm">
+                                <i class="fa-solid fa-file-circle-plus"></i>
+                            </div>
+                            <div class="space-y-0.5 relative z-10 pt-2">
+                                <h3 class="font-black text-sm sm:text-base uppercase tracking-wide leading-tight">Cargar Compras</h3>
+                                <p class="text-[10px] text-purple-100 font-medium">Entrada de mercancía nueva</p>
+                            </div>
+                        </div>
+
+                        <!-- Card 4: Registrar Egresos / Gastos -->
+                        <div onclick="window.activarPestañaPos('gastos')" class="bg-gradient-to-br from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white rounded-3xl p-4 sm:p-5 shadow-lg border border-red-400/30 cursor-pointer transition-all transform hover:scale-[1.02] active:scale-95 flex flex-col justify-between min-h-[130px] sm:min-h-[150px] relative overflow-hidden group">
+                            <div class="absolute -right-2 -bottom-2 text-red-400/20 text-6xl group-hover:scale-110 transition-transform"><i class="fa-solid fa-money-bill-transfer"></i></div>
+                            <div class="w-10 h-10 sm:w-12 sm:h-12 bg-white/20 backdrop-blur-md rounded-2xl flex items-center justify-center text-xl sm:text-2xl shadow-sm">
+                                <i class="fa-solid fa-hand-holding-dollar"></i>
+                            </div>
+                            <div class="space-y-0.5 relative z-10 pt-2">
+                                <h3 class="font-black text-sm sm:text-base uppercase tracking-wide leading-tight">Registrar Gastos</h3>
+                                <p class="text-[10px] text-red-100 font-medium">Egresos de caja chica</p>
+                            </div>
+                        </div>
+
+                        <!-- Card 5: Cierre de Caja -->
+                        <div onclick="window.activarPestañaPos('reportes')" class="bg-gradient-to-br from-emerald-600 to-emerald-700 hover:from-emerald-500 hover:to-emerald-600 text-white rounded-3xl p-4 sm:p-5 shadow-lg border border-emerald-400/30 cursor-pointer transition-all transform hover:scale-[1.02] active:scale-95 flex flex-col justify-between min-h-[130px] sm:min-h-[150px] relative overflow-hidden group">
+                            <div class="absolute -right-2 -bottom-2 text-emerald-400/20 text-6xl group-hover:scale-110 transition-transform"><i class="fa-solid fa-chart-line"></i></div>
+                            <div class="w-10 h-10 sm:w-12 sm:h-12 bg-white/20 backdrop-blur-md rounded-2xl flex items-center justify-center text-xl sm:text-2xl shadow-sm">
+                                <i class="fa-solid fa-calculator"></i>
+                            </div>
+                            <div class="space-y-0.5 relative z-10 pt-2">
+                                <h3 class="font-black text-sm sm:text-base uppercase tracking-wide leading-tight">Cierre de Caja</h3>
+                                <p class="text-[10px] text-emerald-100 font-medium">Arqueo y balance diario</p>
+                            </div>
+                        </div>
+
+                        <!-- Card 6: Proveedores / CxP -->
+                        <div onclick="window.activarPestañaPos('gastos')" class="bg-gradient-to-br from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 rounded-3xl p-4 sm:p-5 shadow-lg border border-amber-300/40 cursor-pointer transition-all transform hover:scale-[1.02] active:scale-95 flex flex-col justify-between min-h-[130px] sm:min-h-[150px] relative overflow-hidden group">
+                            <div class="absolute -right-2 -bottom-2 text-amber-950/20 text-6xl group-hover:scale-110 transition-transform"><i class="fa-solid fa-handshake-angle"></i></div>
+                            <div class="w-10 h-10 sm:w-12 sm:h-12 bg-slate-950/20 backdrop-blur-md rounded-2xl flex items-center justify-center text-xl sm:text-2xl shadow-sm text-slate-950">
+                                <i class="fa-solid fa-building-user"></i>
+                            </div>
+                            <div class="space-y-0.5 relative z-10 pt-2">
+                                <h3 class="font-black text-sm sm:text-base uppercase tracking-wide leading-tight">Proveedores / CxP</h3>
+                                <p class="text-[10px] text-slate-900 font-bold">Cuentas por pagar</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="panel-seccion-facturar" class="p-3 sm:p-5 max-w-7xl mx-auto w-full flex-grow pb-28 space-y-4">
+                    <!-- HEADER DE CONTROL (Cajero + Tasas COP y Bs) -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-3 bg-white border border-slate-200 p-3.5 rounded-2xl shadow-sm items-center">
+                        <div>
+                            <label class="text-[10px] font-extrabold text-slate-500 uppercase tracking-wider block mb-1">
+                                <i class="fa-solid fa-user-gear text-purple-600 mr-1"></i> Cajero de Turno *
+                            </label>
+                            <input type="text" id="ticket-vendedor" placeholder="NOMBRE DE CAJERO EN TURNO..." class="input-light uppercase text-purple-700 font-extrabold text-sm py-2.5 px-3 rounded-xl border-slate-300 focus:border-purple-600 w-full shadow-sm">
+                        </div>
+                        <div class="md:col-span-2 grid grid-cols-2 gap-2 sm:gap-3 bg-slate-900 p-2 rounded-2xl border border-slate-800 text-white">
+                            <div class="flex items-center justify-between px-2.5 py-1.5 bg-slate-950 rounded-xl border border-slate-800/80 shadow-inner overflow-hidden min-w-0">
+                                <span class="text-[9.5px] sm:text-[10px] text-amber-400 font-black uppercase tracking-wider flex items-center gap-1 shrink-0">
+                                    <i class="fa-solid fa-coins"></i> TASA COP
+                                </span>
+                                <input type="number" id="tasa-cop" value="3900" class="w-full min-w-0 bg-transparent text-right font-black text-xs sm:text-base text-amber-400 focus:outline-none pl-1 truncate" onkeyup="window.calcularTotalesSimulados()">
+                            </div>
+                            <div class="flex items-center justify-between px-2.5 py-1.5 bg-slate-950 rounded-xl border border-slate-800/80 shadow-inner overflow-hidden min-w-0">
+                                <span class="text-[9.5px] sm:text-[10px] text-emerald-400 font-black uppercase tracking-wider flex items-center gap-1 shrink-0">
+                                    <i class="fa-solid fa-money-bill-transfer"></i> TASA BS
+                                </span>
+                                <input type="number" id="tasa-bs" value="40" class="w-full min-w-0 bg-transparent text-right font-black text-xs sm:text-base text-emerald-400 focus:outline-none pl-1 truncate" onkeyup="window.calcularTotalesSimulados()">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CUERPO PRINCIPAL DE POS: CARGA Y DESGLOSE -->
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 items-start">
+                        <!-- COLUMNA IZQUIERDA: BUSCADOR, CARGA Y DATOS CLIENTE -->
+                        <div class="flex flex-col lg:col-span-7 space-y-4">
+                            <!-- TARJETA CARGA ARTÍCULOS -->
+                            <div id="tarjeta-carga-articulos-pos" class="bg-white border border-slate-200 rounded-2xl p-4 shadow-md space-y-3.5 transition-all duration-300">
+                                <div class="flex justify-between items-center border-b border-slate-100 pb-2">
+                                    <h3 class="text-xs font-black text-slate-500 uppercase tracking-wider flex items-center gap-1.5">
+                                        <i class="fa-solid fa-cart-plus text-blue-600"></i> Agregar Producto a la Venta
+                                    </h3>
+                                    <div class="flex gap-1.5 text-[10px] font-black">
+                                        <button onclick="window.cambiarModoDeDigitacionMostrador('LIBRE')" id="btn-modo-libre" class="bg-blue-600 text-white px-3 py-1 rounded-lg border border-blue-600 uppercase shadow-sm transition-all">Manual</button>
+                                        <button onclick="window.cambiarModoDeDigitacionMostrador('INVENTARIO')" id="btn-modo-inv" class="bg-slate-100 text-slate-500 px-3 py-1 rounded-lg border border-slate-200 uppercase transition-all">Stock</button>
                                     </div>
                                 </div>
 
-                                <div id="badge-advertencia-modo-pos" class="bg-slate-100 text-slate-700 text-[8.5px] font-black uppercase px-2 py-1 rounded-md border text-center tracking-wider block">
+                                <div id="badge-advertencia-modo-pos" class="bg-slate-100 text-slate-700 text-[10px] font-black uppercase px-3 py-1.5 rounded-xl border border-slate-200 text-center tracking-wider block shadow-sm">
                                     📢 Facturación Libre (Ingreso Directo)
                                 </div>
 
-                                <div class="p-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-100 relative">
-                                    <div class="flex justify-between items-center mb-1">
-                                        <span class="text-[8.5px] text-blue-400 font-black uppercase"><i class="fa-solid fa-barcode mr-1"></i> Escáner / IMEI</span>
-                                        <button onclick="window.svc_alternarCamaraEscanerNativoCelular()" class="bg-blue-600 text-white px-2 py-0.5 rounded text-[9px] font-bold uppercase shadow"><i class="fa-solid fa-camera mr-1"></i> Cámara</button>
+                                <!-- BUSCADOR / ESCÁNER UNIVERSAL TECLADO Y CÁMARA -->
+                                <div class="p-3 rounded-2xl bg-slate-900 border border-slate-800 text-slate-100 shadow-inner space-y-2">
+                                    <div class="flex justify-between items-center">
+                                        <label class="text-[10px] text-blue-400 font-black uppercase tracking-wider flex items-center gap-1">
+                                            <i class="fa-solid fa-barcode text-xs"></i> Lector de Código / IMEI
+                                        </label>
+                                        <button onclick="window.svc_alternarCamaraEscanerNativoCelular()" class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1.5 rounded-xl text-xs font-black uppercase shadow-md flex items-center gap-1.5 cursor-pointer active:scale-95 transition-all">
+                                            <i class="fa-solid fa-camera text-sm"></i> <span>Activar Cámara</span>
+                                        </button>
                                     </div>
-                                    <input type="text" id="pos-lector-barras-input" onkeyup="if(event.key === 'Enter') window.dispararGatilloEscaneoPistolaLector();" placeholder="Escriba código o use el escáner..." class="w-full bg-slate-950 text-white border border-slate-800 px-2.5 py-1.5 rounded-lg text-xs font-mono font-bold focus:outline-none uppercase focus:border-blue-500">
-                                    <div id="reader-video-cam-tcl" class="w-full h-auto mt-2 rounded-xl overflow-hidden hidden border border-slate-700"></div>
+                                    <input type="text" id="pos-lector-barras-input" onkeyup="if(event.key === 'Enter') window.dispararGatilloEscaneoPistolaLector();" placeholder="Escanee código de barras o escriba serial..." class="w-full bg-slate-950 text-white border border-slate-800 px-3 py-2.5 rounded-xl text-sm font-mono font-bold focus:outline-none uppercase focus:border-blue-500 shadow-sm">
+                                    <div id="reader-video-cam-tcl" class="w-full h-auto mt-2 rounded-2xl overflow-hidden hidden border-2 border-blue-500 shadow-2xl"></div>
                                 </div>
 
+                                <!-- CAMPOS DE CARGA DEL ARTÍCULO -->
                                 <div id="wrapper-input-nombre-libre">
-                                    <label class="text-[8.5px] text-slate-400 uppercase font-bold block mb-0.5">Descripción del Artículo / Servicio</label>
-                                    <input type="text" id="manual-prod-nombre" placeholder="Ej: Funda Silicona o Servicio Técnico" class="input-light font-black uppercase">
+                                    <label class="text-[10px] text-slate-500 uppercase font-extrabold block mb-1">Descripción del Artículo / Servicio *</label>
+                                    <input type="text" id="manual-prod-nombre" placeholder="Ej: Funda Silicona A55, Cargador Tipo C o Servicio Técnico" class="input-light font-black uppercase text-xs py-2.5 px-3 rounded-xl">
                                 </div>
                                 
                                 <div id="wrapper-select-producto-inv" class="hidden">
-                                    <label class="text-[8.5px] text-slate-400 uppercase font-bold block mb-0.5">Seleccionar del Inventario</label>
-                                    <select id="select-prod-inventario-pos" onchange="window.cargarPrecioSugeridoDesdeInventarioSeleccionado()" class="input-light text-slate-800 font-bold"></select>
+                                    <label class="text-[10px] text-slate-500 uppercase font-extrabold block mb-1">Seleccionar del Inventario *</label>
+                                    <select id="select-prod-inventario-pos" onchange="window.cargarPrecioSugeridoDesdeInventarioSeleccionado()" class="input-light text-slate-800 font-black text-xs py-2.5 px-3 rounded-xl"></select>
                                 </div>
 
-                                <div class="grid grid-cols-3 gap-2">
+                                <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
                                     <div>
-                                        <label class="text-[8.5px] text-slate-400 uppercase font-bold block mb-0.5">Moneda</label>
-                                        <select id="manual-prod-moneda" class="input-light font-bold"><option value="USD">USD ($)</option><option value="COP">COP</option></select>
+                                        <label class="text-[10px] text-slate-500 uppercase font-extrabold block mb-1">Moneda Base</label>
+                                        <select id="manual-prod-moneda" class="input-light font-black text-xs py-2.5 px-3 rounded-xl"><option value="USD">USD ($)</option><option value="COP">COP (Pesos)</option></select>
                                     </div>
                                     <div>
-                                        <label class="text-[8.5px] text-slate-400 uppercase font-bold block mb-0.5">Precio</label>
-                                        <input type="number" id="manual-prod-precio" placeholder="0.00" class="input-light text-center font-black text-blue-600">
+                                        <label class="text-[10px] text-slate-500 uppercase font-extrabold block mb-1">Precio Unitario</label>
+                                        <input type="number" id="manual-prod-precio" placeholder="0.00" class="input-light text-center font-black text-blue-600 text-sm py-2.5 px-3 rounded-xl">
                                     </div>
                                     <div>
-                                        <label class="text-[8.5px] text-slate-400 uppercase font-bold block mb-0.5">Cant.</label>
-                                        <input type="number" id="manual-prod-cantidad" placeholder="1" value="1" min="1" class="input-light text-center font-black text-purple-600">
+                                        <label class="text-[10px] text-slate-500 uppercase font-extrabold block mb-1">Cantidad</label>
+                                        <input type="number" id="manual-prod-cantidad" placeholder="1" value="1" min="1" class="input-light text-center font-black text-purple-600 text-sm py-2.5 px-3 rounded-xl">
                                     </div>
                                 </div>
 
-                                <button onclick="window.agregarArticuloManualTicket()" class="btn-action-primary w-full py-2.5 text-xs"><i class="fa-solid fa-plus mr-1"></i> Añadir a la Nota de Entrega</button>
+                                <button onclick="window.agregarArticuloManualTicket()" class="btn-action-primary w-full py-3.5 text-xs font-black rounded-xl shadow-lg flex items-center justify-center gap-2 tracking-wider">
+                                    <i class="fa-solid fa-plus text-sm"></i> AÑADIR ARTÍCULO A LA MESA DE VENTA
+                                </button>
                             </div>
 
-                            <div class="bg-white border border-slate-200 rounded-2xl p-3 shadow-sm space-y-2">
-                                <h4 class="font-black text-slate-400 uppercase tracking-widest border-b pb-0.5 text-[9px]">Datos de Control del Comprador</h4>
-                                <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
-                                    <input type="text" id="ticket-cliente" placeholder="Nombre Cliente" class="input-light uppercase">
-                                    <input type="text" id="ticket-rif-cliente" placeholder="Cédula / RIF" class="input-light uppercase">
-                                    <input type="text" id="ticket-tlf-cliente" placeholder="WhatsApp" class="input-light">
+                            <!-- DATOS DEL CLIENTE Y MÉTODOS DE PAGO -->
+                            <div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-md space-y-3">
+                                <h4 class="font-black text-slate-500 uppercase tracking-wider border-b border-slate-100 pb-1.5 text-[10px] flex items-center gap-1.5">
+                                    <i class="fa-solid fa-address-card text-purple-600"></i> Datos de Control del Comprador
+                                </h4>
+                                <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+                                    <input type="text" id="ticket-cliente" placeholder="Nombre Comercial / Cliente" class="input-light uppercase py-2.5 px-3 text-xs rounded-xl">
+                                    <input type="text" id="ticket-rif-cliente" placeholder="Cédula / RIF" class="input-light uppercase py-2.5 px-3 text-xs rounded-xl font-mono">
+                                    <input type="text" id="ticket-tlf-cliente" placeholder="WhatsApp del Cliente" class="input-light py-2.5 px-3 text-xs rounded-xl font-mono">
                                 </div>
-                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                                     <div>
-                                        <label class="text-[8px] font-black text-slate-400 uppercase block">Condición</label>
-                                        <select id="ticket-condicion-pago" onchange="window.toggleLógicaCondicionCaja()" class="input-light text-slate-800 font-bold">
-                                            <option value="CONTADO">Contado Efectivo</option>
-                                            <option value="CREDITO">Crédito / Pendiente</option>
+                                        <label class="text-[10px] font-black text-slate-500 uppercase block mb-1">Condición de Pago</label>
+                                        <select id="ticket-condicion-pago" onchange="window.toggleLógicaCondicionCaja()" class="input-light text-slate-800 font-extrabold text-xs py-2.5 px-3 rounded-xl">
+                                            <option value="CONTADO">Contado / Efectivo Instantáneo</option>
+                                            <option value="CREDITO">Crédito / Pendiente por Cobrar</option>
                                         </select>
                                     </div>
                                     <div>
-                                        <label class="text-[8px] font-black text-slate-400 uppercase block">Método de Cobro</label>
-                                        <select id="ticket-metodo-cobro-real" class="input-light text-slate-800 font-bold">
+                                        <label class="text-[10px] font-black text-slate-500 uppercase block mb-1">Método de Liquidación</label>
+                                        <select id="ticket-metodo-cobro-real" class="input-light text-slate-800 font-extrabold text-xs py-2.5 px-3 rounded-xl">
                                             <option value="DOLAR_EFECTIVO">💵 Dólares Efectivo ($)</option>
                                             <option value="DOLAR_USDT">🪙 USDT / Dólar Digital</option>
                                             <option value="PESO_EFECTIVO">🇨🇴 Pesos Colombianos (COP)</option>
@@ -1881,54 +2051,87 @@
                                     </div>
                                 </div>
 
-                                <div id="wrapper-campos-credito-pos" class="hidden space-y-2 bg-purple-50 p-2 rounded-xl border border-purple-100">
+                                <div id="wrapper-campos-credito-pos" class="hidden space-y-2 bg-purple-50/70 p-3 rounded-2xl border border-purple-200 shadow-inner">
                                     <div class="grid grid-cols-3 gap-2 text-xs font-bold">
-                                        <div><label class="text-[8px] text-purple-600 font-bold uppercase block">Días Crédito</label><input type="number" id="ticket-credito-dias" value="5" min="1" class="input-light text-center"></div>
-                                        <div><label class="text-[8px] text-purple-600 font-bold uppercase block">Abono ($)</label><input type="number" id="ticket-abono" placeholder="0.00" onkeyup="window.recalcularSaldosPendientesCaja()" class="input-light text-center"></div>
-                                        <div><label class="text-[8px] text-slate-500 font-bold uppercase block">Resta</label><input type="text" id="ticket-resta-display" readonly="" value="$0.00" class="w-full bg-transparent p-1 font-black text-purple-700 text-center cursor-not-allowed text-xs"></div>
+                                        <div>
+                                            <label class="text-[9px] text-purple-700 font-black uppercase block mb-1">Días Crédito</label>
+                                            <input type="number" id="ticket-credito-dias" value="5" min="1" class="input-light text-center py-2 text-xs rounded-xl">
+                                        </div>
+                                        <div>
+                                            <label class="text-[9px] text-purple-700 font-black uppercase block mb-1">Abono Inicial ($)</label>
+                                            <input type="number" id="ticket-abono" placeholder="0.00" onkeyup="window.recalcularSaldosPendientesCaja()" class="input-light text-center py-2 text-xs rounded-xl font-bold">
+                                        </div>
+                                        <div>
+                                            <label class="text-[9px] text-slate-500 font-black uppercase block mb-1">Resta Pendiente</label>
+                                            <input type="text" id="ticket-resta-display" readonly="" value="$0.00" class="w-full bg-transparent p-1.5 font-black text-purple-800 text-center cursor-not-allowed text-xs sm:text-sm">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="flex flex-col lg:col-span-5 space-y-3">
-                            <div class="bg-white border border-slate-200 rounded-2xl p-3 shadow-sm space-y-2.5 sticky lg:top-16">
-                                <h3 class="text-[9.5px] font-black text-slate-400 uppercase tracking-widest border-b pb-1 flex justify-between items-center">
-                                    <span>Resumen de Nota</span> 
-                                    <span id="ticket-correlativo-display" class="font-mono font-bold text-blue-600 text-xs">Nota #0001</span>
+                        <!-- COLUMNA DERECHA: PANTALLA TIPO REGISTRADORA DE TOTALES Y BOTONES GRANDES -->
+                        <div class="flex flex-col lg:col-span-5 space-y-4">
+                            <div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-md space-y-3.5 sticky lg:top-16">
+                                <h3 class="text-xs font-black text-slate-500 uppercase tracking-wider border-b border-slate-100 pb-2 flex justify-between items-center">
+                                    <span class="flex items-center gap-1.5"><i class="fa-solid fa-receipt text-blue-600"></i> Resumen de Nota</span> 
+                                    <span id="ticket-correlativo-display" class="font-mono font-extrabold text-blue-600 text-xs sm:text-sm bg-blue-50 px-2.5 py-1 rounded-lg border border-blue-200">Nota #0001</span>
                                 </h3>
 
-                                <div id="desglose-productos-ticket" class="space-y-1.5 max-h-48 overflow-y-auto text-xs text-slate-600 no-scrollbar">
-                                    <p class="text-center text-slate-400 py-4 italic">Mesa vacía.</p>
+                                <!-- MESA DE ITEMS AGREGADOS -->
+                                <div id="desglose-productos-ticket" class="space-y-2 max-h-56 overflow-y-auto text-xs text-slate-700 no-scrollbar p-1">
+                                    <p class="text-center text-slate-400 py-6 italic font-medium">Mesa vacía.</p>
                                 </div>
 
-                                <div class="bg-slate-900 text-white p-3 rounded-xl font-mono text-xs space-y-1">
-                                    <div class="flex justify-between items-center text-sm font-black"><span>Neto USD:</span> <span id="total-usd" class="text-amber-400 font-extrabold text-base">$0.00</span></div>
-                                    <div class="flex justify-between items-center text-slate-400 border-t border-slate-800 pt-1 text-[11px]"><span>REF COP:</span> <span id="total-cop" class="text-slate-200 font-bold">0 COP</span></div>
-                                    <div class="flex justify-between items-center text-slate-400 text-[11px]"><span>REF Bs:</span> <span id="total-bs" class="text-emerald-400 font-bold">0.00 Bs</span></div>
+                                <!-- TARJETA REGISTRADORA DE TOTALES CON GLASSMORPHISM Y PÍLDORAS ELEGANTES -->
+                                <div class="bg-slate-950/80 backdrop-blur-md text-white p-4.5 rounded-3xl font-mono space-y-3 shadow-2xl border border-blue-500/30 glow-border relative overflow-hidden">
+                                    <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(59,130,246,0.2),transparent_65%)]"></div>
+                                    
+                                    <div class="flex justify-between items-center relative z-10">
+                                        <span class="text-xs font-black text-slate-400 uppercase tracking-widest flex items-center gap-1.5"><i class="fa-solid fa-sack-dollar text-amber-400"></i> NETO USD:</span> 
+                                        <span id="total-usd" class="text-amber-400 font-black text-3xl sm:text-4xl tracking-tight animate-pulse glow-text">$0.00</span>
+                                    </div>
+                                    <div class="border-t border-slate-800/80 pt-2.5 grid grid-cols-2 gap-2 relative z-10 text-xs">
+                                        <div class="bg-amber-500/10 border border-amber-500/30 px-3 py-2 rounded-2xl flex flex-col justify-center items-center text-center shadow-inner">
+                                            <span class="text-[9px] font-black text-amber-400 uppercase tracking-wider flex items-center gap-1">🇨🇴 PESOS COP</span> 
+                                            <span id="total-cop" class="text-amber-300 font-black text-xs sm:text-sm mt-0.5">0 COP</span>
+                                        </div>
+                                        <div class="bg-emerald-500/10 border border-emerald-500/30 px-3 py-2 rounded-2xl flex flex-col justify-center items-center text-center shadow-inner">
+                                            <span class="text-[9px] font-black text-emerald-400 uppercase tracking-wider flex items-center gap-1">🇻🇪 BOLÍVARES BS</span> 
+                                            <span id="total-bs" class="text-emerald-300 font-black text-xs sm:text-sm mt-0.5">0.00 Bs</span>
+                                        </div>
+                                    </div>
                                 </div>
 
-                                <div class="grid grid-cols-2 gap-2">
-                                    <button id="btn-print-pos-terminal" disabled="" onclick="window.procesarImpresionTicket()" class="bg-slate-900 text-white text-xs font-black py-2.5 rounded-xl uppercase shadow opacity-40 cursor-not-allowed transition-all"><i class="fa-solid fa-print mr-1"></i> Imprimir</button>
-                                    <button id="btn-whatsapp-pos-terminal" disabled="" onclick="window.enviarFacturaWhatsAppClienteSimulada()" class="bg-emerald-600 text-white text-xs font-black py-2.5 rounded-xl uppercase shadow opacity-40 cursor-not-allowed transition-all"><i class="fa-brands fa-whatsapp mr-1"></i> WhatsApp</button>
+                                <!-- BOTONERA TÁCTIL GIGANTE DE COBRO -->
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1">
+                                    <button id="btn-print-pos-terminal" disabled="" onclick="window.procesarImpresionTicket()" class="bg-slate-900 text-white text-xs font-black py-3.5 px-4 rounded-xl uppercase shadow-lg opacity-40 cursor-not-allowed transition-all flex items-center justify-center gap-2 active:scale-95">
+                                        <i class="fa-solid fa-print text-sm"></i> <span>💵 REGISTRAR / IMPRIMIR</span>
+                                    </button>
+                                    <button id="btn-whatsapp-pos-terminal" disabled="" onclick="window.enviarFacturaWhatsAppClienteSimulada()" class="bg-emerald-600 text-white text-xs font-black py-3.5 px-4 rounded-xl uppercase shadow-lg opacity-40 cursor-not-allowed transition-all flex items-center justify-center gap-2 active:scale-95">
+                                        <i class="fa-brands fa-whatsapp text-base"></i> <span>📱 ENVIAR WHATSAPP</span>
+                                    </button>
                                 </div>
                                 
-                                <button onclick="window.limpiarTicketCompleto()" class="w-full bg-slate-100 hover:bg-slate-200 text-slate-600 text-[9px] font-black py-1.5 rounded-xl uppercase">Vaciar Mesa</button>
+                                <button onclick="window.limpiarTicketCompleto()" class="w-full bg-slate-100 hover:bg-slate-200 text-slate-600 text-[10px] font-black py-2 rounded-xl uppercase tracking-wider transition-all">
+                                    <i class="fa-solid fa-trash-arrow-up mr-1"></i> Vaciar Mesa
+                                </button>
 
-                                <div class="border-t pt-2 space-y-1.5">
-                                    <span class="text-[8.5px] font-black text-slate-400 uppercase block"><i class="fa-solid fa-history mr-1"></i> Rastreador de Garantías / Reimpresión</span>
-                                    <div class="flex gap-1">
-                                        <input type="text" id="busqueda-cedula-input" placeholder="Cédula o Nota #..." class="input-light font-mono">
-                                        <button onclick="window.ejecutarBusquedaHistorialPorCedulaNota()" class="bg-slate-900 text-white text-[9px] font-black px-2.5 rounded-xl uppercase">Buscar</button>
+                                <!-- HISTORIAL DE REIMPRESIÓN / BÚSQUEDA DE GARANTÍAS -->
+                                <div class="border-t border-slate-100 pt-3 space-y-2">
+                                    <span class="text-[10px] font-black text-slate-500 uppercase tracking-wider block flex items-center gap-1">
+                                        <i class="fa-solid fa-clock-rotate-left text-blue-600"></i> Rastreador de Garantías / Reimpresión
+                                    </span>
+                                    <div class="flex gap-1.5">
+                                        <input type="text" id="busqueda-cedula-input" placeholder="Buscar por Cédula, RIF o Nota #..." class="input-light font-mono text-xs py-2 px-3 rounded-xl flex-grow">
+                                        <button onclick="window.ejecutarBusquedaHistorialPorCedulaNota()" class="bg-slate-900 text-white text-xs font-black px-3.5 py-2 rounded-xl uppercase shadow-sm active:scale-95 transition-all">Buscar</button>
                                     </div>
-                                    <div id="reportes-notes-lista-box" class="space-y-1 max-h-32 overflow-y-auto no-scrollbar text-xs"></div>
+                                    <div id="reportes-notes-lista-box" class="space-y-1.5 max-h-36 overflow-y-auto no-scrollbar text-xs"></div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <!-- SECCIÓN DE INVENTARIO AVANZADO CON COMPRA MULTIMONEDA -->
+                </div><!-- SECCIÓN DE INVENTARIO AVANZADO CON COMPRA MULTIMONEDA -->
                 <div id="panel-seccion-inventario" class="p-3 sm:p-4 max-w-4xl mx-auto w-full space-y-4 flex-grow pb-24 hidden">
                     <div class="flex bg-slate-900 p-1.5 rounded-2xl border border-slate-800 text-xs font-bold text-center">
                         <button onclick="window.cambiarSubPestañaInventario('ver')" id="subnav-btn-ver" class="flex-grow py-2 rounded-xl bg-blue-600 text-white uppercase tracking-wider transition-all">📦 Stock General</button>
@@ -2141,74 +2344,159 @@
                     </div>
                 </div>
 
-                <!-- BARRA FIJA DE NAVEGACIÓN INFERIOR -->
-                <div class="fixed bottom-0 left-0 right-0 bg-slate-900 border-t border-slate-800 h-16 grid grid-cols-4 text-center items-center z-30 shadow-xl no-imprimir text-slate-400">
-                    <button id="nav-btn-facturar" onclick="window.activarPestañaPos('facturar')" class="text-blue-400 flex flex-col items-center justify-center gap-1"><i class="fa-solid fa-cash-register text-xs"></i><span class="text-[8px] font-black uppercase tracking-wider">Facturar</span></button>
-                    <button id="nav-btn-inventario" onclick="window.activarPestañaPos('inventario')" class="flex flex-col items-center justify-center gap-1"><i class="fa-solid fa-boxes-stacked text-xs"></i><span class="text-[8px] font-black uppercase tracking-wider">Inventario</span></button>
-                    <button id="nav-btn-gastos" onclick="window.activarPestañaPos('gastos')" class="flex flex-col items-center justify-center gap-1"><i class="fa-solid fa-money-bill-wave text-xs"></i><span class="text-[8px] font-black uppercase tracking-wider">Gastos/CxP</span></button>
-                    <button id="nav-btn-reportes" onclick="window.activarPestañaPos('reportes')" class="flex flex-col items-center justify-center gap-1"><i class="fa-solid fa-chart-line text-xs"></i><span class="text-[8px] font-black uppercase tracking-wider">Reportes</span></button>
+                <!-- BARRA FIJA DE NAVEGACIÓN INFERIOR CON ESTILO PÍLDORA RESPLANDECIENTE -->
+                <div class="fixed bottom-0 left-0 right-0 bg-slate-950/95 backdrop-blur-md border-t border-slate-800/80 h-16 grid grid-cols-5 text-center items-center z-30 shadow-2xl no-imprimir text-slate-400 px-2">
+                    <button id="nav-btn-dashboard" onclick="window.activarPestañaPos('dashboard')" class="relative flex flex-col items-center justify-center py-1.5 px-1 rounded-2xl transition-all duration-300 text-blue-400 bg-blue-600/20 border border-blue-500/30 shadow-[0_0_12px_rgba(59,130,246,0.3)]"><span class="neon-pill-top-bar absolute -top-1 w-6 h-1 bg-blue-500 rounded-full shadow-[0_0_8px_#3b82f6]"></span><i class="fa-solid fa-house text-xs"></i><span class="text-[8px] font-black uppercase tracking-wider">Inicio</span></button>
+                    <button id="nav-btn-facturar" onclick="window.activarPestañaPos('facturar')" class="relative flex flex-col items-center justify-center py-1.5 px-1 rounded-2xl transition-all duration-300"><i class="fa-solid fa-cash-register text-xs"></i><span class="text-[8px] font-black uppercase tracking-wider">Facturar</span></button>
+                    <button id="nav-btn-inventario" onclick="window.activarPestañaPos('inventario')" class="relative flex flex-col items-center justify-center py-1.5 px-1 rounded-2xl transition-all duration-300"><i class="fa-solid fa-boxes-stacked text-xs"></i><span class="text-[8px] font-black uppercase tracking-wider">Inventario</span></button>
+                    <button id="nav-btn-gastos" onclick="window.activarPestañaPos('gastos')" class="relative flex flex-col items-center justify-center py-1.5 px-1 rounded-2xl transition-all duration-300"><i class="fa-solid fa-money-bill-wave text-xs"></i><span class="text-[8px] font-black uppercase tracking-wider">Gastos/CxP</span></button>
+                    <button id="nav-btn-reportes" onclick="window.activarPestañaPos('reportes')" class="relative flex flex-col items-center justify-center py-1.5 px-1 rounded-2xl transition-all duration-300"><i class="fa-solid fa-chart-line text-xs"></i><span class="text-[8px] font-black uppercase tracking-wider">Reportes</span></button>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- MODAL DE CONFIGURACIÓN SAAS -->
-    <div id="modal-config-master" class="fixed inset-0 bg-slate-950/95 backdrop-blur-sm z-[9999] p-4 overflow-y-auto flex items-center justify-center hidden">
-        <div class="card-panel-dark w-full max-w-md flex flex-col space-y-4 glow-border">
-            <div class="flex justify-between items-center pb-2 border-b border-slate-800">
-                <h3 id="cfg-modal-titulo" class="font-black text-xs uppercase tracking-wider text-white">CONFIGURAR ENTORNO SAAS</h3>
-                <button onclick="window.cerrarConfiguracionCliente()" class="text-slate-400 hover:text-white bg-slate-950 border border-slate-800 w-7 h-7 rounded-xl flex items-center justify-center"><i class="fa-solid fa-xmark text-xs"></i></button>
+    <div id="modal-config-master" class="fixed inset-0 bg-slate-950/95 backdrop-blur-md z-[9999] p-4 overflow-y-auto flex items-center justify-center hidden">
+        <div class="card-panel-dark w-full max-w-lg flex flex-col space-y-4 glow-border shadow-2xl rounded-3xl p-5 sm:p-6">
+            <div class="flex justify-between items-center pb-3 border-b border-slate-800">
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 bg-blue-600/10 border border-blue-500/30 text-blue-400 rounded-xl flex items-center justify-center font-bold text-xs"><i class="fa-solid fa-store"></i></div>
+                    <h3 id="cfg-modal-titulo" class="font-black text-xs sm:text-sm uppercase tracking-wider text-white">ONBOARDING & CONFIGURACIÓN SAAS</h3>
+                </div>
+                <button onclick="window.cerrarConfiguracionCliente()" class="text-slate-400 hover:text-white bg-slate-950 border border-slate-800 w-8 h-8 rounded-xl flex items-center justify-center transition-colors"><i class="fa-solid fa-xmark text-sm"></i></button>
             </div>
-            <div class="space-y-3 text-xs overflow-y-auto max-h-[65vh] pr-1 no-scrollbar text-slate-200">
-                <div><input type="text" id="cfg-nombre" placeholder="Nombre de la Empresa" onkeyup="window.autoGenerarIdUsuarioBloqueado()" class="input-dark"></div>
-                <div><input type="text" id="cfg-rif" placeholder="Cédula o RIF Comercial" class="input-dark"></div>
-                <div class="grid grid-cols-2 gap-2">
-                    <input type="text" id="cfg-tlf" placeholder="Teléfono WhatsApp" class="input-dark">
-                    <input type="text" id="cfg-redes" placeholder="Instagram / Redes" class="input-dark">
-                </div>
-                <div><input type="text" id="cfg-dir" placeholder="Dirección Física" class="input-dark"></div>
-                <div class="grid grid-cols-2 gap-2">
-                    <input type="text" id="cfg-user" placeholder="id_usuario_tienda" class="input-dark font-mono">
-                    <input type="password" id="cfg-pass" placeholder="Contraseña" class="input-dark font-mono">
-                </div>
-                <div class="grid grid-cols-2 gap-2">
-                    <select id="cfg-rango" class="input-dark"><option value="CLIENTE">Cliente Regular</option><option value="DEMO">Cuenta Demo (Prueba)</option><option value="MASTER">Máster Supremo</option></select>
-                    <select id="cfg-rubro" class="input-dark"><option value="TECNOLOGIA">Tecnología / IMEI</option><option value="GENERAL">Comercio General</option></select>
-                </div>
-                <div><label class="text-[8px] text-slate-400 font-bold uppercase block mb-0.5">Promotor Asignado</label><select id="cfg-promotor-asignado" class="input-dark uppercase"><option value="">-- SIN PROMOTOR --</option></select></div>
-                <div class="grid grid-cols-4 gap-1.5 w-full">
-                    <button onclick="window.asignarDiasSimulador(30, this)" class="tiempo-btn bg-slate-900 text-slate-300 text-[10px] py-2.5 font-bold rounded-xl transition-all">30 Días</button>
-                    <button onclick="window.asignarDiasSimulador(90, this)" class="tiempo-btn bg-slate-900 text-slate-300 text-[10px] py-2.5 font-bold rounded-xl transition-all">90 Días</button>
-                    <button onclick="window.asignarDiasSimulador(180, this)" class="tiempo-btn bg-slate-900 text-slate-300 text-[10px] py-2.5 font-bold rounded-xl transition-all">180 Días</button>
-                    <button onclick="window.asignarDiasSimulador(365, this)" class="tiempo-btn bg-purple-600 text-white text-[10px] py-2.5 font-black rounded-xl shadow transition-all">365 Días</button>
-                </div>
-                <div class="bg-slate-900 border border-slate-800 p-2.5 rounded-xl text-center font-mono text-amber-400 font-bold" id="cfg-dias-display">365 Días</div>
-                
-                <div id="cfg-cliente-contrato-kyc-embed-box" class="bg-slate-950 p-3 rounded-xl border border-slate-800 text-slate-300 text-[10px] font-sans space-y-1"><div class="border border-amber-500/30 bg-amber-950/20 p-2 rounded-xl text-amber-400 font-sans"><b>⚠️ NUEVO REGISTRO PENDIENTE</b></div></div>
-                
-                <div class="space-y-1.5">
-                    <div class="flex items-center gap-2 bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 justify-between">
-                        <input type="text" id="cfg-link-url" readonly="" class="w-full bg-transparent text-[10px] text-blue-400 font-mono truncate focus:outline-none text-center">
-                        <button onclick="window.copyLinkPortapapelesDemo()" class="bg-blue-600/10 border border-blue-500/20 text-blue-400 text-[10px] px-2.5 py-1 rounded-lg uppercase font-black"><i class="fa-solid fa-copy"></i> Copiar</button>
+
+            <!-- FORMULARIO DE CREACIÓN/EDICIÓN EN 2 COLUMNAS PERFECTAMENTE AJUSTADO SIN TRUNCAMIENTOS -->
+            <div class="space-y-3.5 text-xs overflow-y-auto max-h-[72vh] pr-1 no-scrollbar text-slate-200">
+                <div class="space-y-2.5">
+                    <!-- Fila 1: Nombre de la Empresa -->
+                    <div>
+                        <div class="relative flex items-center">
+                            <span class="absolute left-3 text-slate-400 text-xs pointer-events-none"><i class="fa-solid fa-store text-blue-400"></i></span>
+                            <input type="text" id="cfg-nombre" placeholder="Nombre de la Empresa *" onkeyup="window.autoGenerarIdUsuarioBloqueado()" class="w-full bg-slate-900/90 border border-slate-700/80 pl-8 pr-2 py-2.5 rounded-2xl text-white text-[11px] font-bold focus:border-blue-500 focus:outline-none transition-all placeholder:text-slate-500 placeholder:font-bold">
+                        </div>
                     </div>
-                    <div id="cfg-box-boton-rotar-link" class="hidden pt-1">
-                        <button onclick="window.ejecutarRotacionTokenLinkDemo()" class="w-full bg-amber-500/20 hover:bg-amber-500/30 text-amber-400 border border-amber-500/40 font-black text-[10px] py-2 rounded-xl uppercase tracking-wider flex items-center justify-center gap-1.5 shadow"><i class="fa-solid fa-arrows-rotate"></i> Cambiar Link (Rotar Enlace Demo)</button>
+
+                    <!-- Fila 2: Cédula o RIF Comercial -->
+                    <div>
+                        <div class="relative flex items-center">
+                            <span class="absolute left-3 text-slate-400 text-xs pointer-events-none"><i class="fa-solid fa-id-card text-purple-400"></i></span>
+                            <input type="text" id="cfg-rif" placeholder="Cédula o RIF Comercial" class="w-full bg-slate-900/90 border border-slate-700/80 pl-8 pr-2 py-2.5 rounded-2xl text-white text-[11px] font-mono font-bold focus:border-blue-500 focus:outline-none transition-all placeholder:text-slate-500 placeholder:font-bold">
+                        </div>
                     </div>
+
+                    <!-- Fila 3: Teléfono WhatsApp | Instagram / Redes (2 columnas sin desborde) -->
                     <div class="grid grid-cols-2 gap-2">
-                        <button onclick="window.dispararContratoWhatsAppSimulado()" class="w-full bg-blue-600 text-white text-[11px] font-black py-3 rounded-xl uppercase tracking-wider shadow">Enviar Activación</button>
-                        <button onclick="window.dispararReciboRenovacionWhatsApp()" class="w-full bg-emerald-600 text-white text-[11px] font-black py-3 rounded-xl uppercase tracking-wider shadow">Enviar Renovación</button>
+                        <div class="relative flex items-center">
+                            <span class="absolute left-3 text-emerald-400 text-xs pointer-events-none"><i class="fa-brands fa-whatsapp"></i></span>
+                            <input type="text" id="cfg-tlf" placeholder="WhatsApp *" class="w-full bg-slate-900/90 border border-slate-700/80 pl-8 pr-2 py-2.5 rounded-2xl text-white text-[11px] font-mono font-bold focus:border-blue-500 focus:outline-none transition-all placeholder:text-slate-500 placeholder:font-bold">
+                        </div>
+                        <div class="relative flex items-center">
+                            <span class="absolute left-3 text-pink-400 text-xs pointer-events-none"><i class="fa-brands fa-instagram"></i></span>
+                            <input type="text" id="cfg-redes" placeholder="Instagram / Redes" class="w-full bg-slate-900/90 border border-slate-700/80 pl-8 pr-2 py-2.5 rounded-2xl text-white text-[11px] font-bold focus:border-blue-500 focus:outline-none transition-all placeholder:text-slate-500 placeholder:font-bold">
+                        </div>
+                    </div>
+
+                    <!-- Fila 4: Dirección Física -->
+                    <div>
+                        <div class="relative flex items-center">
+                            <span class="absolute left-3 text-slate-400 text-xs pointer-events-none"><i class="fa-solid fa-location-dot text-amber-400"></i></span>
+                            <input type="text" id="cfg-dir" placeholder="Dirección Física" class="w-full bg-slate-900/90 border border-slate-700/80 pl-8 pr-2 py-2.5 rounded-2xl text-white text-[11px] font-bold focus:border-blue-500 focus:outline-none transition-all placeholder:text-slate-500 placeholder:font-bold">
+                        </div>
+                    </div>
+
+                    <!-- Fila 5: id_usuario_tienda | Contraseña (2 columnas sin desborde) -->
+                    <div class="grid grid-cols-2 gap-2">
+                        <div class="relative flex items-center">
+                            <span class="absolute left-3 text-purple-400 text-xs pointer-events-none"><i class="fa-solid fa-user-gear"></i></span>
+                            <input type="text" id="cfg-user" placeholder="id_usuario *" class="w-full bg-slate-900/90 border border-purple-500/40 pl-8 pr-2 py-2.5 rounded-2xl text-purple-300 text-[11px] font-mono font-black focus:border-purple-400 focus:outline-none transition-all placeholder:text-purple-400/60 placeholder:font-bold">
+                        </div>
+                        <div class="relative flex items-center">
+                            <span class="absolute left-3 text-amber-400 text-xs pointer-events-none"><i class="fa-solid fa-lock"></i></span>
+                            <input type="password" id="cfg-pass" placeholder="Contraseña *" class="w-full bg-slate-900/90 border border-slate-700/80 pl-8 pr-2 py-2.5 rounded-2xl text-white text-[11px] font-mono font-bold focus:border-blue-500 focus:outline-none transition-all placeholder:text-slate-500 placeholder:font-bold">
+                        </div>
+                    </div>
+
+                    <!-- Fila 6: Tipo de Cliente | Rubro (2 columnas sin desborde) -->
+                    <div class="grid grid-cols-2 gap-2">
+                        <div class="relative flex items-center">
+                            <span class="absolute left-3 text-blue-400 text-xs pointer-events-none"><i class="fa-solid fa-user-shield"></i></span>
+                            <select id="cfg-rango" class="w-full bg-slate-900/90 border border-slate-700/80 pl-8 pr-1 py-2.5 rounded-2xl text-white text-[10.5px] font-bold focus:border-blue-500 focus:outline-none truncate">
+                                <option value="CLIENTE">Cliente Regular</option>
+                                <option value="DEMO">Cuenta Demo</option>
+                                <option value="MASTER">Máster Supremo</option>
+                            </select>
+                        </div>
+                        <div class="relative flex items-center">
+                            <span class="absolute left-3 text-cyan-400 text-xs pointer-events-none"><i class="fa-solid fa-sliders"></i></span>
+                            <select id="cfg-rubro" class="w-full bg-slate-900/90 border border-slate-700/80 pl-8 pr-1 py-2.5 rounded-2xl text-white text-[10.5px] font-bold focus:border-blue-500 focus:outline-none truncate">
+                                <option value="GENERAL">Comercio General</option>
+                                <option value="TECNOLOGIA">Tecnología / IMEI</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Fila 7: Promotor Asignado -->
+                    <div>
+                        <label class="text-[9px] font-black text-slate-400 uppercase tracking-wider block mb-1 pl-1">Promotor Asignado</label>
+                        <div class="relative flex items-center">
+                            <span class="absolute left-3 text-purple-400 text-xs pointer-events-none"><i class="fa-solid fa-user-tie"></i></span>
+                            <select id="cfg-promotor-asignado" class="w-full bg-slate-900/90 border border-slate-700/80 pl-8 pr-2 py-2.5 rounded-2xl uppercase text-white text-[11px] font-bold focus:border-blue-500 focus:outline-none">
+                                <option value="">-- SIN PROMOTOR --</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
+
+                <!-- PASO 2: SELECCIÓN DE DÍAS POR PÍLDORAS -->
+                <div class="bg-slate-950 p-3.5 rounded-2xl border border-slate-800/80 space-y-3">
+                    <span class="text-[10px] font-black text-amber-400 uppercase tracking-widest block flex items-center gap-1.5">
+                        <span class="w-5 h-5 bg-amber-500 text-slate-950 rounded-full flex items-center justify-center text-[9px]">2</span> Cobertura de Suscripción (Píldoras)
+                    </span>
+                    <div class="grid grid-cols-4 gap-2 w-full">
+                        <button onclick="window.asignarDiasSimulador(30, this)" class="tiempo-btn bg-slate-900 text-slate-300 text-[10px] py-3 font-extrabold rounded-xl transition-all border border-slate-800">30 Días</button>
+                        <button onclick="window.asignarDiasSimulador(90, this)" class="tiempo-btn bg-slate-900 text-slate-300 text-[10px] py-3 font-extrabold rounded-xl transition-all border border-slate-800">90 Días</button>
+                        <button onclick="window.asignarDiasSimulador(180, this)" class="tiempo-btn bg-slate-900 text-slate-300 text-[10px] py-3 font-extrabold rounded-xl transition-all border border-slate-800">180 Días</button>
+                        <button onclick="window.asignarDiasSimulador(365, this)" class="tiempo-btn bg-purple-600 text-white text-[10px] py-3 font-black rounded-xl shadow transition-all border border-purple-400">365 Días</button>
+                    </div>
+                    <div class="bg-slate-900 border border-slate-800 p-2.5 rounded-xl text-center font-mono text-amber-400 font-black text-sm" id="cfg-dias-display">365 Días Seleccionados</div>
+                </div>
+
+                <!-- PASO 3: ESTADO KYC Y DIFUSIÓN -->
+                <div class="bg-slate-950 p-3.5 rounded-2xl border border-slate-800/80 space-y-3">
+                    <span class="text-[10px] font-black text-emerald-400 uppercase tracking-widest block flex items-center gap-1.5">
+                        <span class="w-5 h-5 bg-emerald-500 text-slate-950 rounded-full flex items-center justify-center text-[9px]">3</span> Verificación KYC & Enlaces
+                    </span>
+                    
+                    <div id="cfg-cliente-contrato-kyc-embed-box" class="bg-slate-900 p-3 rounded-xl border border-slate-800 text-slate-300 text-[10px] font-sans space-y-1">
+                        <div class="border border-amber-500/30 bg-amber-950/20 p-2 rounded-xl text-amber-400 font-sans"><b>⚠️ NUEVO REGISTRO PENDIENTE</b></div>
+                    </div>
+
+                    <div class="space-y-2">
+                        <div class="flex items-center gap-2 bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 justify-between">
+                            <input type="text" id="cfg-link-url" readonly="" class="w-full bg-transparent text-[10px] text-blue-400 font-mono truncate focus:outline-none text-center font-bold">
+                            <button onclick="window.copyLinkPortapapelesDemo()" class="bg-blue-600/10 border border-blue-500/20 text-blue-400 text-[10px] px-3 py-1.5 rounded-lg uppercase font-black shrink-0 hover:bg-blue-600/20"><i class="fa-solid fa-copy"></i> Copiar</button>
+                        </div>
+                        <div id="cfg-box-boton-rotar-link" class="hidden pt-1">
+                            <button onclick="window.ejecutarRotacionTokenLinkDemo()" class="w-full bg-amber-500/20 hover:bg-amber-500/30 text-amber-400 border border-amber-500/40 font-black text-[10px] py-2.5 rounded-xl uppercase tracking-wider flex items-center justify-center gap-1.5 shadow"><i class="fa-solid fa-arrows-rotate"></i> Cambiar Link (Rotar Enlace Demo)</button>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2 pt-1">
+                            <button onclick="window.dispararContratoWhatsAppSimulado()" class="w-full bg-blue-600 hover:bg-blue-700 text-white text-[10px] font-black py-3 rounded-xl uppercase tracking-wider shadow active:scale-95 transition-all">Enviar Activación</button>
+                            <button onclick="window.dispararReciboRenovacionWhatsApp()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white text-[10px] font-black py-3 rounded-xl uppercase tracking-wider shadow active:scale-95 transition-all">Enviar Renovación</button>
+                        </div>
+                    </div>
+                </div>
+
             </div>
-            <div class="pt-4 border-t border-slate-800 flex justify-between gap-2">
-                <button onclick="window.ejecutarBotonEliminarCuentaSaasCompleto()" class="bg-red-600 text-white px-4 py-2.5 rounded-xl text-xs font-black uppercase tracking-wider">Eliminar Perfil</button>
-                <button id="btn-guardar-cliente-saas" class="bg-amber-400 text-slate-950 px-6 py-2.5 rounded-xl text-xs font-black uppercase tracking-wider">Guardar Cambios</button>
+
+            <!-- BOTONERA INFERIOR DE ACCIÓN -->
+            <div class="pt-3 border-t border-slate-800 flex justify-between gap-2.5">
+                <button onclick="window.ejecutarBotonEliminarCuentaSaasCompleto()" class="bg-red-600/20 hover:bg-red-600 text-red-400 hover:text-white border border-red-500/30 px-4 py-3 rounded-xl text-xs font-black uppercase tracking-wider transition-all">Eliminar Perfil</button>
+                <button id="btn-guardar-cliente-saas" class="bg-amber-400 hover:bg-amber-300 text-slate-950 px-6 py-3 rounded-xl text-xs font-black uppercase tracking-wider shadow-lg active:scale-95 transition-all">Guardar Cambios</button>
             </div>
         </div>
-    </div>
-
-    
-    <!-- MODAL VISTA FICHA HOJA BLANCA PROMOTOR (IMPRIMIR / WHATSAPP) -->
+    </div><!-- MODAL VISTA FICHA HOJA BLANCA PROMOTOR (IMPRIMIR / WHATSAPP) -->
 
     <!-- MODAL VISTA HOJA BLANCA DETALLE DE FACTURA / AUDITORÍA (FASE 3) -->
     <div id="modal-detalle-factura-auditoria" class="fixed inset-0 bg-slate-950/90 backdrop-blur-md z-[12000] p-4 flex items-center justify-center hidden overflow-y-auto">
@@ -2686,36 +2974,47 @@
             const user = $('master-user-field').value.trim().toLowerCase();
             const pass = $('master-pass-field').value.trim();
             
-            if(user === "tucocel" && pass === "Razu2020.") {
+            if (user === "tucocel" && pass === "Razu2020.") {
                 esMasterActivoSession = true;
-                if($("diagnostico-master-flotante")) $("diagnostico-master-flotante").classList.remove("hidden");
-                $('bloque-login-master').classList.add('hidden');
-                $('vista-master-admin').classList.remove('hidden');
-                if($('diagnostico-master-flotante')) $('diagnostico-master-flotante').classList.remove('hidden');
-                window.cargarTarifasGlobalesMasterFirestore();
+                if ($("diagnostico-master-flotante")) $("diagnostico-master-flotante").classList.remove("hidden");
+                if ($('bloque-login-master')) $('bloque-login-master').classList.add('hidden');
+                if ($('vista-master-admin')) $('vista-master-admin').classList.remove('hidden');
                 
                 window.habilitarBotonesSeguridadConsolaSaaS();
                 window.registrarLogExterno('SUCCESS', 'Acceso Máster verificado.', 'Sesión inicializada correctamente 🔒.');
-                window.recalcularEstructuraReportesGlobalTurno();
-            } else { 
-                // Fallback check if user entered client/demo credentials on master login screen
+                
                 try {
-                    let listado = await obtenerClientesDesdeFirebase();
-                    let match = listado.find(c => c.user === user && c.pass === pass);
-                    if(!match && user === "demo" && pass === "123456") {
-                        match = { id: "demo", nombre: "TUCOCEL C.A. (DEMO)", rif: "J-40392817-0", dir: "Cordero, Táchira", user: "demo", pass: "123456", rubro: "TECNOLOGIA", dias: 365, is_demo: true, contrato_firmado: true };
-                    }
-                    if(match) {
-                        $('comercio-user-field').value = user;
-                        $('comercio-pass-field').value = pass;
-                        window.comprobarEstatusContratoClienteLogin();
-                        return;
-                    }
-                } catch(eErr) {}
-
-                window.registrarLogExterno('ERROR', 'Intento de inicio de sesión fallido.', `Usuario intentado: ${user}`);
-                alert("❌ Credenciales incorrectas. Verifique usuario y contraseña."); 
+                    await window.cargarTarifasGlobalesMasterFirestore();
+                } catch (eTarifas) {
+                    window.registrarLogExterno('WARN', 'Carga de tarifas pospuesta', eTarifas.message || String(eTarifas));
+                }
+                
+                try {
+                    window.recalcularEstructuraReportesGlobalTurno();
+                } catch (eRep) {
+                    window.registrarLogExterno('WARN', 'Recálculo inicial diferido', eRep.message || String(eRep));
+                }
+                return;
             }
+            
+            try {
+                let listado = await obtenerClientesDesdeFirebase();
+                let match = listado.find(c => c.user === user && c.pass === pass);
+                if (!match && user === "demo" && pass === "123456") {
+                    match = { id: "demo", nombre: "TUCOCEL C.A. (DEMO)", rif: "J-40392817-0", dir: "Cordero, Táchira", user: "demo", pass: "123456", rubro: "TECNOLOGIA", dias: 365, is_demo: true, contrato_firmado: true };
+                }
+                if (match) {
+                    if ($('comercio-user-field')) $('comercio-user-field').value = user;
+                    if ($('comercio-pass-field')) $('comercio-pass-field').value = pass;
+                    window.comprobarEstatusContratoClienteLogin();
+                    return;
+                }
+            } catch (eErr) {
+                window.registrarLogExterno('ERROR', 'Error consultando servidor remoto', eErr.message || String(eErr));
+            }
+
+            window.registrarLogExterno('ERROR', 'Intento de inicio de sesión fallido.', `Usuario intentado: ${user}`);
+            alert("❌ Credenciales incorrectas. Verifique usuario y contraseña."); 
         };
 
         window.procesarChangeMasterPassGlobal = function() {
@@ -3730,72 +4029,69 @@ window.procesarContratoClienteComercio = async function() {
         window.clienteLoginPendienteFirma = null;
 
         window.comprobarEstatusContratoClienteLogin = async function() {
-            const userVal = $('comercio-user-field').value.trim().toLowerCase();
-            const passVal = $('comercio-pass-field').value.trim();
+            const userVal = $('comercio-user-field') ? $('comercio-user-field').value.trim().toLowerCase() : '';
+            const passVal = $('comercio-pass-field') ? $('comercio-pass-field').value.trim() : '';
 
+            let match = null;
             try {
                 let listado = await obtenerClientesDesdeFirebase();
-                let match = listado.find(c => c.user === userVal && c.pass === passVal);
-
-                // Fallback automático para cuenta demo si la base de datos está limpia/inicializando
-                if (!match && userVal === "demo" && passVal === "123456") {
-                    match = { id: "demo", nombre: "TUCOCEL C.A. (DEMO)", rif: "J-40392817-0", dir: "Cordero, Táchira - Venezuela", user: "demo", pass: "123456", rubro: "TECNOLOGIA", dias: 365, ownerID: "demo", tlf: "0424-7357549", promotor: "", is_demo: true, contrato_firmado: true };
-                }
-
-                // DESTRUCCIÓN Y BLOQUEO INMEDIATO: Si la sucursal no existe o fue eliminada
-                if (!match) {
-                    localStorage.clear();
-                    sessionStorage.clear();
-                    window.registrarLogExterno && window.registrarLogExterno('ERROR', 'Intento de acceso a sucursal eliminada o inexistente.', userVal);
-                    alert("🚫 ESTA CUENTA O SUCURSAL HA SIDO ELIMINADA DEL SERVIDOR.\n\nEl acceso a esta licencia ha sido revocado. Para contratar o reactivar su terminal, contacte a la Administración Central.");
-                    window.location.href = window.location.pathname;
-                    return;
-                }
-
-                infoClienteAbiertoDinamico = match;
-
-                // CORTE EN DÍA 0: Bloqueo de acceso si venció el tiempo
-                const diasRestantes = window.calcularDiasRestantesSucursal(match);
-                if (diasRestantes <= 0) {
-                    localStorage.clear();
-                    sessionStorage.clear();
-                    alert("⛔ SUSCRIPCIÓN VENCIDA (Día 0): Su periodo de servicio ha finalizado. El sistema se encuentra suspendido. Redirigiendo a soporte para renovación...");
-                    const cleanTlf = "584247357549";
-                    const msg = `🛍️ *SOLICITUD DE RENOVACIÓN DE TIENDA — ${match.nombre}*\n\nHola Máster, mi terminal de caja ha caducado (Día 0). Necesito procesar la renovación de mi membresía. Usuario: *${match.user}*`;
-                    window.open(`https://api.whatsapp.com/send?phone=${cleanTlf}&text=${encodeURIComponent(msg)}`, '_blank');
-                    window.location.href = window.location.pathname;
-                    return;
-                }
-
-                // SI ES CUENTA DEMO, IGNORAR FIRMA DE CONTRATO Y DAR ACCESO DIRECTO
-                if (match.is_demo || match.rango === 'DEMO') {
-                    match.contrato_firmado = true;
-                }
-
-                // VERIFICACIÓN INVIOLABLE DE CONTRATO OBLIGATORIO PARA TODAS LAS CUENTAS
-                if (!match.contrato_firmado) {
-                    window.clienteLoginPendienteFirma = match;
-                    
-                    if($('vista-entorno-cliente')) $('vista-entorno-cliente').classList.add('hidden');
-                    if($('bloque-login-master')) $('bloque-login-master').classList.add('hidden');
-                    if($('entorno-aplicacion-core')) $('entorno-aplicacion-core').classList.add('hidden');
-                    if($('vista-publica-contrato-cliente')) $('vista-publica-contrato-cliente').classList.remove('hidden');
-
-                    if($('cli-input-nombre')) $('cli-input-nombre').value = match.nombre || '';
-                    if($('cli-input-rif')) $('cli-input-rif').value = match.rif || '';
-                    if($('cli-input-tlf')) $('cli-input-tlf').value = match.tlf || '';
-                    if($('cli-input-dir')) $('cli-input-dir').value = match.dir || '';
-                    if($('cli-input-user')) $('cli-input-user').value = match.user || '';
-
-                    alert("📜 BIENVENIDO: Para activar formalmente su terminal, debe revisar y aceptar el Contrato de Licencia Comercial.");
-                    return;
-                }
-
-                await descargarEstructuraInventarioYGastosFirebase();
-                activarTerminalDeCajaExitoso();
-            } catch(e) {
-                console.error(e);
+                match = listado.find(c => c.user === userVal && c.pass === passVal);
+            } catch(eFetch) {
+                if (window.registrarLogExterno) window.registrarLogExterno('WARN', 'Error conectando a Firebase, usando cliente local', eFetch.message || String(eFetch));
             }
+
+            if (!match && userVal === "demo" && passVal === "123456") {
+                match = { id: "demo", nombre: "TUCOCEL C.A. (DEMO)", rif: "J-40392817-0", dir: "Cordero, Táchira - Venezuela", user: "demo", pass: "123456", rubro: "TECNOLOGIA", dias: 365, ownerID: "demo", tlf: "0424-7357549", promotor: "", is_demo: true, contrato_firmado: true };
+            }
+
+            if (!match) {
+                localStorage.clear();
+                sessionStorage.clear();
+                if (window.registrarLogExterno) window.registrarLogExterno('ERROR', 'Intento de acceso a sucursal inexistente.', userVal);
+                alert("🚫 ESTA CUENTA O SUCURSAL NO EXISTE O HA SIDO ELIMINADA DEL SERVIDOR.\n\nEl acceso a esta licencia ha sido revocado. Para contratar o reactivar su terminal, contacte a la Administración Central.");
+                return;
+            }
+
+            infoClienteAbiertoDinamico = match;
+
+            const diasRestantes = window.calcularDiasRestantesSucursal(match);
+            if (diasRestantes <= 0 && match.user !== "demo") {
+                localStorage.clear();
+                sessionStorage.clear();
+                alert("⛔ SUSCRIPCIÓN VENCIDA (Día 0): Su periodo de servicio ha finalizado. El sistema se encuentra suspendido. Redirigiendo a soporte para renovación...");
+                const cleanTlf = "584247357549";
+                const msg = `🛍️ *SOLICITUD DE RENOVACIÓN DE TIENDA — ${match.nombre}*\n\nHola Máster, mi terminal de caja ha caducado (Día 0). Necesito procesar la renovación de mi membresía. Usuario: *${match.user}*`;
+                window.open(`https://api.whatsapp.com/send?phone=${cleanTlf}&text=${encodeURIComponent(msg)}`, '_blank');
+                return;
+            }
+
+            if (match.is_demo || match.rango === 'DEMO') {
+                match.contrato_firmado = true;
+            }
+
+            if (!match.contrato_firmado) {
+                window.clienteLoginPendienteFirma = match;
+                if($('vista-entorno-cliente')) $('vista-entorno-cliente').classList.add('hidden');
+                if($('bloque-login-master')) $('bloque-login-master').classList.add('hidden');
+                if($('entorno-aplicacion-core')) $('entorno-aplicacion-core').classList.add('hidden');
+                if($('vista-publica-contrato-cliente')) $('vista-publica-contrato-cliente').classList.remove('hidden');
+
+                if($('cli-input-nombre')) $('cli-input-nombre').value = match.nombre || '';
+                if($('cli-input-rif')) $('cli-input-rif').value = match.rif || '';
+                if($('cli-input-tlf')) $('cli-input-tlf').value = match.tlf || '';
+                if($('cli-input-dir')) $('cli-input-dir').value = match.dir || '';
+                if($('cli-input-user')) $('cli-input-user').value = match.user || '';
+
+                alert("📜 BIENVENIDO: Para activar formalmente su terminal, debe revisar y aceptar el Contrato de Licencia Comercial.");
+                return;
+            }
+
+            try {
+                await descargarEstructuraInventarioYGastosFirebase();
+            } catch(eDescarga) {
+                if (window.registrarLogExterno) window.registrarLogExterno('WARN', 'Apertura con datos locales diferidos', eDescarga.message || String(eDescarga));
+            }
+            activarTerminalDeCajaExitoso();
         };
 
         window.procesarTicketFacturacionMostradorCompleto = async function() {
@@ -3931,7 +4227,11 @@ window.procesarContratoClienteComercio = async function() {
         }
 
         function activarTerminalDeCajaExitoso() {
-            if($("diagnostico-master-flotante")) $("diagnostico-master-flotante").classList.remove("hidden");
+            if(!esMasterActivoSession && $("diagnostico-master-flotante")) {
+                $("diagnostico-master-flotante").classList.add("hidden");
+            } else if(esMasterActivoSession && $("diagnostico-master-flotante")) {
+                $("diagnostico-master-flotante").classList.remove("hidden");
+            }
             const diasRestantes = window.calcularDiasRestantesSucursal(infoClienteAbiertoDinamico);
 
             // CORTE INVIOLABLE EN DÍA 0: Verificación previa estricta
@@ -3978,6 +4278,8 @@ Hola Máster, mi terminal de caja está vencido (Día 0). Necesito procesar la r
                 $('modal-alerta-vencimiento-cliente').classList.remove('hidden');
             }
 
+            window.activarPestañaPos('dashboard');
+            if($('dashboard-banner-nombre-negocio')) $('dashboard-banner-nombre-negocio').innerText = infoClienteAbiertoDinamico.nombre || 'MESA DE CONTROL';
             window.cambiarModoDeDigitacionMostrador('LIBRE');
             window.verificarAlertaMatutinaTasa();
             window.calcularTotalesSimulados();
@@ -4604,17 +4906,59 @@ Hola Máster, mi terminal de caja está vencido (Día 0). Necesito procesar la r
             }
         };
 
-        window.activarPestañaPos = function(pes) {
-            $('panel-seccion-facturar').classList.toggle('hidden', pes !== 'facturar');
-            $('panel-seccion-inventario').classList.toggle('hidden', pes !== 'inventario');
-            $('panel-seccion-gastos').classList.toggle('hidden', pes !== 'gastos');
-            $('panel-seccion-reportes').classList.toggle('hidden', pes !== 'reportes');
-            
-            $('nav-btn-facturar').className = (pes === 'facturar' ? 'text-blue-400 font-bold' : 'text-slate-400') + ' flex flex-col items-center justify-center gap-1';
-            $('nav-btn-inventario').className = (pes === 'inventario' ? 'text-blue-400 font-bold' : 'text-slate-400') + ' flex flex-col items-center justify-center gap-1';
-            $('nav-btn-gastos').className = (pes === 'gastos' ? 'text-blue-400 font-bold' : 'text-slate-400') + ' flex flex-col items-center justify-center gap-1';
-            $('nav-btn-reportes').className = (pes === 'reportes' ? 'text-blue-400 font-bold' : 'text-slate-400') + ' flex flex-col items-center justify-center gap-1';
-        };
+                // =================================================================
+// CONTROL DE NAVEGACIÓN TÁCTIL Y PESTAÑAS (PIEDRA Y PÍLDORA NEÓN DINÁMICA POR COLORES)
+// =================================================================
+window.activarPestañaPos = function(pes) {
+    // 1. Mostrar u ocultar el Lanzador Dashboard según la opción
+    const dashLanzador = $('panel-seccion-dashboard-lanzador');
+    if (dashLanzador) {
+        dashLanzador.classList.toggle('hidden', pes !== 'dashboard');
+    }
+
+    // 2. Controlar visibilidad de los paneles operativos principales
+    const pFacturar = $('panel-seccion-facturar');
+    const pInventario = $('panel-seccion-inventario');
+    const pGastos = $('panel-seccion-gastos');
+    const pReportes = $('panel-seccion-reportes');
+
+    if (pFacturar) pFacturar.classList.toggle('hidden', pes !== 'facturar');
+    if (pInventario) pInventario.classList.toggle('hidden', pes !== 'inventario');
+    if (pGastos) pGastos.classList.toggle('hidden', pes !== 'gastos');
+    if (pReportes) pReportes.classList.toggle('hidden', pes !== 'reportes');
+
+    // 3. Mover píldora neón superior e iluminar con color temático del módulo
+    const navs = [
+        { id: 'nav-btn-dashboard', name: 'dashboard', colorClass: 'text-blue-400 bg-blue-600/20 border border-blue-500/30 shadow-[0_0_14px_rgba(59,130,246,0.35)]', pillClass: 'bg-blue-500 shadow-[0_0_8px_#3b82f6]' },
+        { id: 'nav-btn-facturar', name: 'facturar', colorClass: 'text-blue-400 bg-blue-600/20 border border-blue-500/30 shadow-[0_0_14px_rgba(59,130,246,0.35)]', pillClass: 'bg-blue-500 shadow-[0_0_8px_#3b82f6]' },
+        { id: 'nav-btn-inventario', name: 'inventario', colorClass: 'text-purple-400 bg-purple-600/20 border border-purple-500/30 shadow-[0_0_14px_rgba(147,51,234,0.35)]', pillClass: 'bg-purple-500 shadow-[0_0_8px_#a855f7]' },
+        { id: 'nav-btn-gastos', name: 'gastos', colorClass: 'text-red-400 bg-red-600/20 border border-red-500/30 shadow-[0_0_14px_rgba(239,68,68,0.35)]', pillClass: 'bg-red-500 shadow-[0_0_8px_#ef4444]' },
+        { id: 'nav-btn-reportes', name: 'reportes', colorClass: 'text-emerald-400 bg-emerald-600/20 border border-emerald-500/30 shadow-[0_0_14px_rgba(16,185,129,0.35)]', pillClass: 'bg-emerald-500 shadow-[0_0_8px_#10b981]' }
+    ];
+
+    const claseInactiva = "relative flex flex-col items-center justify-center py-1.5 px-1 rounded-2xl transition-all duration-300 text-slate-400 hover:text-slate-200 border border-transparent";
+
+    navs.forEach(n => {
+        const btn = $(n.id);
+        if (btn) {
+            // Eliminar píldora antigua
+            const oldPill = btn.querySelector('.neon-pill-top-bar');
+            if (oldPill) oldPill.remove();
+
+            if (n.name === pes) {
+                btn.className = `relative flex flex-col items-center justify-center py-1.5 px-1 rounded-2xl transition-all duration-300 ${n.colorClass}`;
+                const pill = document.createElement('span');
+                pill.className = `neon-pill-top-bar absolute -top-1 w-6 h-1 rounded-full ${n.pillClass}`;
+                btn.appendChild(pill);
+            } else {
+                btn.className = claseInactiva;
+            }
+        }
+    });
+
+    // 4. Scroll suave hacia arriba
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+};
 
         window.ejecutarBusquedaHistorialPorCedulaNota = function() {
             const criterion = $('busqueda-cedula-input').value.trim().toUpperCase();
